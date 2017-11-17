@@ -1,0 +1,19 @@
+{
+  "name": "gardiot-api",
+  "version": "0.1",
+  "description": "API para el proyecto de Gestión de Contenidos del grupo Symbiose del ABP 2017/18",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gardiot",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-mariaconnection": "^1.0.0",
+    "helmet": "^3.9.0",
+    "mariasql": "^0.2.6",
+    "mongoose": "^4.13.2"
+  }
+}
