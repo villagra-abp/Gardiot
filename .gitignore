@@ -1,22 +1,25 @@
 
 # Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+api/olgs
+api/*.log
+api/npm-debug.log*
+api/yarn-debug.log*
+api/yarn-error.log*
 
 # Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+api/pids
+api/*.pid
+api/*.seed
+api/*.pid.lock
 
 # Dependency directories
 node_modules/
 jspm_packages/
 
 # Optional npm cache directory
-.npm
+api/.npm
+
+#wordpress
+symbiose/
 
 
