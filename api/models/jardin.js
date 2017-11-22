@@ -1,7 +1,7 @@
 var conn = require('./connection');
 var maria = require('mariasql');
 
-connection = mysql.createConnection(conn);
+connection = maria.createConnection(conn);
 
 var jardin = {};
 
