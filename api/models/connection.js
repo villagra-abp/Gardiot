@@ -6,4 +6,4 @@ var dbinfo = {
 	db: 'gardiotDB'
 }
 
-module.exports = connection;
+module.exports = dbinfo;

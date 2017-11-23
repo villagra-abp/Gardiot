@@ -1,11 +1,12 @@
 //Dependencies
 var express = require('express');
-var mongoose = require('mongoose'); //Creating Models and Schemas. MONGODB
+var cors = require('cors');
+//var mongoose = require('mongoose'); //Creating Models and Schemas. MONGODB
 var bodyParser = require('body-parser'); //Parsing body data handled
 var mariadb = require('mariasql'); //Load MariaDB
-var connection = require('express-mariaconnection');//Middleware for MariaDB
+//var connection = require('express-mariaconnection');//Middleware for MariaDB
 var helmet = require('helmet'); //Security
-var dbinfo = require('./models/connection');
+//var dbinfo = require('./models/connection');
 
 //MongoDB
 //mongoose.connect('mongodb:'); //Introducir direccion MongoDB
@@ -13,13 +14,15 @@ var dbinfo = require('./models/connection');
 
 //Express init and load modules
 var app = express();
-app.use(connection(mariadb, dbinfo));
-app.use(bodyParser.urlencoded({ extended: true}));
+//app.use(connection(mariadb, dbinfo));
 app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cors());
 app.use(helmet());
 
 //Routes
-app.use('/api', require('./routes/jardin'));
+app.use('/api', require('./routes/jardinRoutes'));
+app.use('/api', require('./routes/usuariosRoutes'));
 
 //Start server
 app.listen(3000, function () {

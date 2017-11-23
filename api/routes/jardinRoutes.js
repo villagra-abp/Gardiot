@@ -23,8 +23,8 @@ router.get('/jardin', function(request, response) {
 
 router.post('/jardin', function(request, response) {
 	var jardinData = {
-		id: null,
-		titulo: request.body.nombre
+		idJardin: null, //Podria ser null
+		titulo: request.body.titulo
 	};
 	jardinModel.insertJardin(jardinData, function(error, datos) {
 		if (datos) {
@@ -38,7 +38,7 @@ router.post('/jardin', function(request, response) {
 
 router.put('/jardin', function(request, response) {
 	var jardinData = {
-		id: request.query.id,
+		idJardin: request.query.id,
 		titulo: request.query.nombre
 	};
 	jardinModel.updateJardin(jardinData, function(error, datos) {
@@ -51,7 +51,7 @@ router.put('/jardin', function(request, response) {
 	});
 });
 
-router.delete('jardin', function(request, response) {
+router.delete('/jardin', function(request, response) {
 	var id = request.query.id;
 	jardinModel.deleteJardin(id, function(error, datos) {
 		if (datos && datos.mensaje === "Borrado") {

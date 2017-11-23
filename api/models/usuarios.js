@@ -11,11 +11,11 @@ var connection = new mariadb({
 
 //connection = mariadb.createConnection(conn);
 
-var jardin = {};
+var usuarios = {};
 
-jardin.getJardines = function(callback) {
+usuarios.getUsuarios = function(callback) {
 	if (connection) {
-		connection.query('SELECT * FROM jardin', function(error, rows) {
+		connection.query('SELECT * FROM usuarios', function(error, rows) {
 			if (error) {
 				throw error;
 			}
@@ -26,9 +26,9 @@ jardin.getJardines = function(callback) {
 	} 
 }
 
-jardin.getJardinById = function(id, callback) {
+usuarios.getUsuariosById = function(id, callback) {
 	if (connection) {
-		var mariasql = 'SELECT * FROM jardin WHERE idJardin = ' + connection.escape(id);
+		var mariasql = 'SELECT * FROM usuarios WHERE idUsuarios = ' + connection.escape(id);
 		connection.query(mariasql, function(error, row) {
 			if (error) {
 				throw error;
@@ -40,11 +40,10 @@ jardin.getJardinById = function(id, callback) {
 	}
 }
 
-jardin.insertJardin = function(jardinData, callback) {
+usuarios.insertUsuarios = function(usuariosData, callback) {
 	if (connection) {
-		var mariasql = 'INSER INTO jardin SET titulo = ' + jardinData.titulo;
-		connection.query(mariasql, function(error, result) {
-		//connection.query('INSERT INTO jardin SET ?', jardinData, function(error, result) {
+		//var sql = 'INSER INTO usuarios SET ?'
+		connection.query('INSERT INTO usuarios SET ?', usuariosData, function(error, result) {
 			if (error) {
 				throw error;
 			}
@@ -55,9 +54,9 @@ jardin.insertJardin = function(jardinData, callback) {
 	}
 }
 
-jardin.updateJardin = function(jardinData, callback) {
+usuarios.updateUsuarios = function(usuariosData, callback) { 
 	if (connection) {
-		var mariasql = 'UPDATE jardin SET titulo = ' + connection.escape(jardinData.titulo) + 'WHERE idJardin = ' + jardinData.id;
+		var mariasql = 'UPDATE usuarios SET contrasenya = ' + usuariosData.contrasenya + 'WHERE idusuarios = ' + usuariosData.id;
 		connection.query(mariasql, function(error, result) {
 			if (error) {
 				throw error;
@@ -69,9 +68,9 @@ jardin.updateJardin = function(jardinData, callback) {
 	}
 }
 
-jardin.deleteJardin = function(id, callback) {
+usuarios.deleteUsuarios = function(id, callback) {
 	if (connection) {
-		var mariasql = 'DELETE FROM jardin WHERE idJardin = ' + connection.escape(id);
+		var mariasql = 'DELETE FROM usuarios WHERE idUsuarios = ' + connection.escape(id);
 		connection.query(mariasql, function(error, result) {
 			if (error) {
 				throw error;
@@ -84,4 +83,4 @@ jardin.deleteJardin = function(id, callback) {
 }
 
 connection.end();
-module.exports = jardin;
+module.exports = usuarios;
