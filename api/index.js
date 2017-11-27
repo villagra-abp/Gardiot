@@ -16,7 +16,7 @@ var helmet = require('helmet'); //Security
 var app = express();
 //app.use(connection(mariadb, dbinfo));
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cors());
 app.use(helmet());
 

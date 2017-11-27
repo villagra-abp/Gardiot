@@ -42,14 +42,17 @@ jardin.getJardinById = function(id, callback) {
 
 jardin.insertJardin = function(jardinData, callback) {
 	if (connection) {
-		var mariasql = 'INSER INTO jardin SET titulo = ' + jardinData.titulo;
-		connection.query(mariasql, function(error, result) {
+		if (!jardinData.idJardin) //SANEAR INTEGER PARA VALORES VACIOS
+			jardinData.idJardin = "NULL";
+		//var mariasql = 'INSER INTO jardin SET idJardin = ' + jardinData.idJardin + ', titulo = ' + jardinData.titulo;
+		var mariasql2 = 'INSERT INTO jardin(idJardin, titulo) VALUES(' + jardinData.idJardin +' ,"' + jardinData.titulo + '")';
+		connection.query(mariasql2, function(error, result) {
 		//connection.query('INSERT INTO jardin SET ?', jardinData, function(error, result) {
 			if (error) {
 				throw error;
 			}
 			else {
-				callback(null, result.insertid);
+				callback(null, result.info.affectedRows); //Si es autoincremental cambiar por insertId
 			}
 		});
 	}

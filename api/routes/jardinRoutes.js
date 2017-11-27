@@ -23,7 +23,7 @@ router.get('/jardin', function(request, response) {
 
 router.post('/jardin', function(request, response) {
 	var jardinData = {
-		idJardin: null, //Podria ser null
+		idJardin: request.body.id, //Podria ser null
 		titulo: request.body.titulo
 	};
 	jardinModel.insertJardin(jardinData, function(error, datos) {
@@ -39,7 +39,7 @@ router.post('/jardin', function(request, response) {
 router.put('/jardin', function(request, response) {
 	var jardinData = {
 		idJardin: request.query.id,
-		titulo: request.query.nombre
+		titulo: request.query.titulo
 	};
 	jardinModel.updateJardin(jardinData, function(error, datos) {
 		if (datos && datos.mensaje) {
