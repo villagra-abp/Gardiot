@@ -1,13 +1,7 @@
-//var conn = require('./connection');
+var connection = require('./connection.js');
 var mariadb = require('mariasql');
 
-var connection = new mariadb({
-	host: 'localhost',
-	user: 'root',
-	password: 'gardiot',
-	charset: 'utf8',
-	db: 'gardiotDB'
-});
+var connection = new mariadb(connection.dbParameters);
 
 //connection = mariadb.createConnection(conn);
 
@@ -15,7 +9,7 @@ var usuarios = {};
 
 usuarios.getUsuarios = function(callback) {
 	if (connection) {
-		connection.query('SELECT * FROM usuarios', function(error, rows) {
+		connection.query('SELECT * FROM User', function(error, rows) {
 			if (error) {
 				throw error;
 			}
@@ -23,7 +17,7 @@ usuarios.getUsuarios = function(callback) {
 				callback(null, rows);
 			}
 		});
-	} 
+	}
 }
 
 usuarios.getUsuariosById = function(id, callback) {
@@ -54,7 +48,7 @@ usuarios.insertUsuarios = function(usuariosData, callback) {
 	}
 }
 
-usuarios.updateUsuarios = function(usuariosData, callback) { 
+usuarios.updateUsuarios = function(usuariosData, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE usuarios SET contrasenya = ' + usuariosData.contrasenya + 'WHERE idusuarios = ' + usuariosData.id;
 		connection.query(mariasql, function(error, result) {

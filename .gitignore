@@ -1,6 +1,6 @@
 
 # Logs
-api/olgs
+api/logs
 api/*.log
 api/npm-debug.log*
 api/yarn-debug.log*
@@ -19,7 +19,9 @@ jspm_packages/
 # Optional npm cache directory
 api/.npm
 
+#configuration file
+api/models/connection.js
+
+
 #wordpress
 symbiose/
-
-

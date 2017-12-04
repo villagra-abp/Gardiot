@@ -1,15 +1,8 @@
-//var conn = require('./connection');
+var connection = require('./connection.js');
 var mariadb = require('mariasql');
 
-var connection = new mariadb({
-	host: 'localhost',
-	user: 'root',
-	password: 'gardiot',
-	charset: 'utf8',
-	db: 'gardiotDB'
-});
+var connection = new mariadb(connection.dbParameters);
 
-//connection = mariadb.createConnection(conn);
 
 var jardin = {};
 
@@ -23,7 +16,7 @@ jardin.getJardines = function(callback) {
 				callback(null, rows);
 			}
 		});
-	} 
+	}
 }
 
 jardin.getJardinById = function(id, callback) {
