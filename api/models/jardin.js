@@ -3,7 +3,6 @@ var mariadb = require('mariasql');
 
 var connection = new mariadb(connection.dbParameters);
 
-
 var jardin = {};
 
 jardin.getJardines = function(callback) {
