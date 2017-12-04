@@ -66,6 +66,18 @@ tool.updateTool = function(data, callback) {
 	}
 }
 
+tool.deleteTool = function(id, callback) {
+  if(connection) {
+    var sentence = 'DELETE FROM Tool WHERE id = "' + id + '"';
+    connection.query(sentence, function(error, result) {
+			if (error)
+				throw error;
+			else
+				callback(null, result.info.affectedRows);
+		});
+  }
+}
+
 
 connection.end()
 module.exports = tool;

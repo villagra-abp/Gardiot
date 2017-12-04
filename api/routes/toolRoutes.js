@@ -53,4 +53,19 @@ router.put('/tool', function(request, response) {
 	});
 });
 
+router.delete('/tool/:id', function(request, response) {
+	var id = request.params.id;
+	toolModel.deleteTool(id, function(error, data) {
+		if (data == 1) {
+			response.status(200).json({"Mensaje":"Borrado"});
+		}
+		else if (data == 0) {
+			response.status(404).json({"Mensaje":"No existe"});
+		}
+		else {
+			response.status(500).json({"Mensaje":"Error"});
+		}
+	});
+});
+
 module.exports = router;
