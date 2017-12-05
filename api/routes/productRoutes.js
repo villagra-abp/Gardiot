@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var toolModel = require('../models/tool');
+var productModel = require('../models/product');
 
-router.get('/tool', function(request, response) {
-	toolModel.getTool (function(error, data) { //Asocia la llamada con la funcion del modelo
+router.get('/product', function(request, response) {
+	productModel.getProduct (function(error, data) { //Asocia la llamada con la funcion del modelo
 		response.status(200).json(data);
 	});
 });
 
-router.get('/tool/:id', function(request, response) {
+router.get('/product/:id', function(request, response) {
 	var id = request.params.id;
-	toolModel.getToolById(id, function(error, data) {
+	productModel.getProductById(id, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
 			response.status(200).json(data);
 		}
@@ -21,14 +21,13 @@ router.get('/tool/:id', function(request, response) {
 	});
 });
 
-router.post('/tool', function(request, response) {
-	var toolData = {
+router.post('/product', function(request, response) {
+	var productData = {
 		name: request.body.name,
-		photo: request.body.photo,
+		price: request.body.price,
 	};
-	console.log(request);
-
-	toolModel.insertTool(toolData, function(error, data) {
+	console.log(request.body);
+	productModel.insertProduct(productData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
 		}
@@ -38,13 +37,14 @@ router.post('/tool', function(request, response) {
 	});
 });
 
-router.put('/tool', function(request, response) {
-	var toolData = {
+router.put('/product', function(request, response) {
+	var productData = {
 		id: request.body.id,
 		name: request.body.name,
-		photo: request.body.photo,
+		price: request.body.price,
 	};
-	toolModel.updateTool(toolData,function(error, data) {
+	console.log(productData);
+	productModel.updateProduct(productData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
 		}
@@ -54,9 +54,9 @@ router.put('/tool', function(request, response) {
 	});
 });
 
-router.delete('/tool/:id', function(request, response) {
+router.delete('/product/:id', function(request, response) {
 	var id = request.params.id;
-	toolModel.deleteTool(id, function(error, data) {
+	productModel.deleteProduct(id, function(error, data) {
 		if (data == 1) {
 			response.status(200).json({"Mensaje":"Borrado"});
 		}
@@ -68,5 +68,6 @@ router.delete('/tool/:id', function(request, response) {
 		}
 	});
 });
+
 
 module.exports = router;

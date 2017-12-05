@@ -1,10 +1,10 @@
 var connection = require('./connection');
 
-var tool = {};
+var product = {};
 
-tool.getTool = function(callback) {
+product.getProduct = function(callback) {
   if(connection) {
-    connection.query('SELECT * FROM Tool', function(error, rows) {
+    connection.query('SELECT * FROM Product', function(error, rows) {
       if (error) {
         throw error;
       }
@@ -15,10 +15,9 @@ tool.getTool = function(callback) {
   }
 }
 
-
-tool.getToolById = function(id, callback) {
+product.getProductById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Tool WHERE id = ' + id;
+		var sentence = 'SELECT * FROM Product WHERE id = ' + id;
 		connection.query(sentence, function(error, row) {
 			if (error) {
 				throw error;
@@ -30,9 +29,9 @@ tool.getToolById = function(id, callback) {
 	}
 }
 
-tool.insertTool = function(data, callback) {
+product.insertProduct = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Tool(name, photo) values("'+data.name+'", "'+data.photo+'")';
+    var sentence = 'INSERT INTO Product(name, price) values("'+data.name+'", "'+data.price+'")';
     connection.query(sentence, function(error, result){
       if(error)
         throw error;
@@ -42,39 +41,40 @@ tool.insertTool = function(data, callback) {
   }
 }
 
-tool.updateTool = function(data, callback) {
+product.updateProduct = function(data, callback) {
   if(connection) {
-    var commaCounter=0;
-    var sentence = 'UPDATE Tool SET ';
+    commaCounter=0;
+    var sentence =  'UPDATE Product SET ';
     if(data.name){
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    if(data.photo){
+    //console.log('data.price -> ' + data.price);
+    if(data.price) {
       if(commaCounter>0)
         sentence +=', ';
-      sentence += 'photo = "' + data.photo + '"';
+      sentence +='price =' + data.price;
       commaCounter++;
     }
-    sentence += 'WHERE id = "' + data.id + '"';
+    sentence += ' WHERE id = "' + data.id +'"';
     connection.query(sentence, function(error, result) {
-			if (error) {
+			if (error){
 				throw error;
       }
 			else{
         if(result.info.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
-				  callback(null, {"mensaje":"Actualizado"});
+  				callback(null, {"mensaje":"Actualizado"});
         }
       }
 		});
-	}
+  }
 }
 
-tool.deleteTool = function(id, callback) {
+product.deleteProduct = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Tool WHERE id = "' + id + '"';
+    var sentence = 'DELETE FROM Product WHERE id = "' + id + '"';
     connection.query(sentence, function(error, result) {
 			if (error)
 				throw error;
@@ -84,6 +84,5 @@ tool.deleteTool = function(id, callback) {
   }
 }
 
-
 connection.end()
-module.exports = tool;
+module.exports = product;
