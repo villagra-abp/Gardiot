@@ -21,6 +21,7 @@ app.use('/api', require('./routes/jardinRoutes'));
 app.use('/api', require('./routes/userRoutes'));
 app.use('/api', require('./routes/toolRoutes'));
 app.use('/api', require('./routes/productRoutes'));
+app.use('/api', require('./routes/treatmentRoutes'));
 
 //Start server
 app.listen(3000, function () {
