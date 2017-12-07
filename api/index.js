@@ -22,6 +22,7 @@ app.use('/api', require('./routes/userRoutes'));
 app.use('/api', require('./routes/toolRoutes'));
 app.use('/api', require('./routes/productRoutes'));
 app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/categoryRoutes'));
 
 //Start server
 app.listen(3000, function () {
