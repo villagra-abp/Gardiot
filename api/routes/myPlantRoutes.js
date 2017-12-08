@@ -1,18 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-var treatmentModel = require('../models/treatment');
+var myPlantModel = require('../models/myPlant');
 
-router.get('/treatment', function (request, response) {
-  treatmentModel.getTreatment (function(error, data){
+router.get('/myPlant', function (request, response) {
+  myPlantModel.getMyPlant (function(error, data){
     response.status(200).json(data);
   });
 });
 
 
-router.get('/treatment/:id', function(request, response) {
+router.get('/myPlant/:id', function(request, response) {
 	var id = request.params.id;
-	treatmentModel.getTreatmentById(id, function(error, data) {
+	myPlantModel.getMyPlantById(id, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
 			response.status(200).json(data);
 		}
@@ -22,13 +22,19 @@ router.get('/treatment/:id', function(request, response) {
 	});
 });
 
-router.post('/treatment', function(request, response) {
-	var treatmentData = {
+router.post('/myPlant', function(request, response) {
+	var myPlantData = {
 		name: request.body.name,
-		description: request.body.description,
+		xCoordinate: request.body.xCoordinate,
+    yCoordinate: request.body.yCoordinate,
+    seed: request.body.seed,
+    number: request.body.number,
+    plant: request.body.plant,
+    garden: request.body.garden,
+    soil: request.body.soil,
 	};
-	console.log(request.body);
-	treatmentModel.insertTreatment(treatmentData, function(error, data) {
+	console.log('myPlant ->' +request.body);
+	myPlantModel.insertMyPlant(myPlantData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
 		}
@@ -38,14 +44,20 @@ router.post('/treatment', function(request, response) {
 	});
 });
 
-router.put('/treatment', function(request, response) {
-	var treatmentData = {
+router.put('/myPlant', function(request, response) {
+	var myPlantData = {
 		id: request.body.id,
-		name: request.body.name,
-		description: request.body.description,
+    name: request.body.name,
+		xCoordinate: request.body.xCoordinate,
+    yCoordinate: request.body.yCoordinate,
+    seed: request.body.seed,
+    number: request.body.number,
+    plant: request.body.plant,
+    garden: request.body.garden,
+    soil: request.body.soil,
 	};
-	console.log(treatmentData);
-	treatmentModel.updateTreatment(treatmentData, function(error, data) {
+	console.log(myPlantData);
+	myPlantModel.updateMyPlant(myPlantData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
 		}
@@ -55,9 +67,9 @@ router.put('/treatment', function(request, response) {
 	});
 });
 
-router.delete('/treatment/:id', function(request, response) {
+router.delete('/myPlant/:id', function(request, response) {
 	var id = request.params.id;
-	treatmentModel.deleteTreatment(id, function(error, data) {
+	myPlantModel.deleteMyPlant(id, function(error, data) {
 		if (data == 1) {
 			response.status(200).json({"Mensaje":"Borrado"});
 		}

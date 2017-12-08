@@ -51,10 +51,46 @@ myPlant.updateMyPlant = function(data, callback) {
       commaCounter++;
     }
     //console.log('data.description -> ' + data.description);
-    if(data.description) {
+    if(data.xCoordinate) {
       if(commaCounter>0)
         sentence +=', ';
-      sentence +='description ="' + data.description + '"';
+      sentence +='xCoordinate ="' + data.xCoordinate + '"';
+      commaCounter++;
+    }
+    if(data.yCoordinate) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='yCoordinate ="' + data.yCoordinate + '"';
+      commaCounter++;
+    }
+    if(data.seed) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='seed ="' + data.seed + '"';
+      commaCounter++;
+    }
+    if(data.number) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='number ="' + data.number + '"';
+      commaCounter++;
+    }
+    if(data.plant) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='plant ="' + data.plant + '"';
+      commaCounter++;
+    }
+    if(data.garden) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='garden ="' + data.garden + '"';
+      commaCounter++;
+    }
+    if(data.soil) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='soil ="' + data.soil + '"';
       commaCounter++;
     }
     sentence += ' WHERE id = "' + data.id +'"';

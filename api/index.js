@@ -26,6 +26,7 @@ app.use('/api', require('./routes/categoryRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
 app.use('/api', require('./routes/soilRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/myPlantRoutes'));
 
 //Start server
 app.listen(3000, function () {
