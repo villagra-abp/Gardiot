@@ -8,34 +8,9 @@ var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
 var _ = require('lodash'); //_ functionality
-//var passportJWT = require('passport-jwt'); //JWT Strategy
-//var extractJwt = passportJWT.ExtractJwt;
-//var strategyJwt = passportJWT.Strategy;
+
 
 var config = require('./config/main');
-
-/*var userModel = require('./models/user');
-
-var jwtOptions = {}
-jwtOptions.jwtFromRequest = extractJwt.fromAuthHeaderWithScheme('jwt');
-jwtOptions.secretOrKey = config.secret;
-
-var JWTstrategy = new strategyJwt(jwtOptions, function(payload, next) {
-	console.log('Payload', payload);
-	console.log('PAYLOAD ID: ' + payload.id);
-	userModel.getUserById(payload.id, function(err, user) {
-		if (err) 
-			next(err, false);		
-		else if (user) 
-			next(null, user);	
-		else 
-			done(null, false);		
-	});
-
-});
-
-passport.use(JWTstrategy);*/
-
 
 //Express init and load modules
 var app = express();
@@ -48,7 +23,6 @@ app.use(passport.initialize());
 require('./config/passport'); //REVISAR
 
 //Routes
-app.use('/api', require('./routes/jardinRoutes'));
 app.use('/api', require('./routes/userRoutes'));
 
 //Start server
