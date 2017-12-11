@@ -17,13 +17,9 @@
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
     "mariasql": "^0.2.6",
-<<<<<<< HEAD
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
     "validator": "^9.1.2"
-=======
-    "morgan": "^1.9.0"
->>>>>>> eventos
   }
 }
