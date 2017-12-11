@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var userModel = require('../models/user');
+var toolModel = require('../models/tool');
 
-router.get('/user', function(request, response) {
-	userModel.getUser (function(error, data) { //Asocia la llamada con la funcion del modelo
+router.get('/tool', function(request, response) {
+	toolModel.getTool (function(error, data) { //Asocia la llamada con la funcion del modelo
 		response.status(200).json(data);
 	});
 });
 
-router.get('/user/:id', function(request, response) {
-	console.log(request.params);
+router.get('/tool/:id', function(request, response) {
 	var id = request.params.id;
-	userModel.getUserById(id, function(error, data) {
+	toolModel.getToolById(id, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
 			response.status(200).json(data);
 		}
@@ -22,19 +21,14 @@ router.get('/user/:id', function(request, response) {
 	});
 });
 
-
-router.post('/user', function(request, response) {
-	var userData = {
-		id: request.body.id,
-		password: request.body.contrasenya,
+router.post('/tool', function(request, response) {
+	var toolData = {
 		name: request.body.name,
-		birthDate: request.body.birthDate,
 		photo: request.body.photo,
-		active: 1, //Activos por defecto
-		city: request.body.city,
-		plan: request.body.plan,
 	};
-	userModel.insertUser(userData, function(error, data) {
+	console.log(request);
+
+	toolModel.insertTool(toolData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
 		}
@@ -44,17 +38,13 @@ router.post('/user', function(request, response) {
 	});
 });
 
-router.put('/user', function(request, response) {
-	var userData = {
+router.put('/tool', function(request, response) {
+	var toolData = {
 		id: request.body.id,
-		password: request.body.contrasenya,
 		name: request.body.name,
-		birthDate: request.body.birthDate,
 		photo: request.body.photo,
-		city: request.body.city,
-		plan: request.body.plan
 	};
-	userModel.updateUser(userData, function(error, data) {
+	toolModel.updateTool(toolData,function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
 		}
@@ -64,9 +54,9 @@ router.put('/user', function(request, response) {
 	});
 });
 
-router.delete('/user/:id', function(request, response) {
+router.delete('/tool/:id', function(request, response) {
 	var id = request.params.id;
-	userModel.deleteUser(id, function(error, data) {
+	toolModel.deleteTool(id, function(error, data) {
 		if (data == 1) {
 			response.status(200).json({"Mensaje":"Borrado"});
 		}
@@ -78,7 +68,5 @@ router.delete('/user/:id', function(request, response) {
 		}
 	});
 });
-
-
 
 module.exports = router;
