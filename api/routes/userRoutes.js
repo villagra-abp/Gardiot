@@ -175,6 +175,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 });
 
 
+
 //*** Muestra a un usuario concreto
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {

@@ -116,5 +116,5 @@ user.checkPassword = function(pw1, pw2, callback) {
 
 
 
-connection.end();
+//connection.end();
 module.exports = user;
