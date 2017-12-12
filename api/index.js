@@ -20,20 +20,20 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.use(passport.initialize());
-require('./config/passport'); 
+require('./config/passport');
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
-//app.use('/api', require('./routes/toolRoutes'));
-//app.use('/api', require('./routes/productRoutes'));
-//app.use('/api', require('./routes/treatmentRoutes'));
-//app.use('/api', require('./routes/categoryRoutes'));
-//app.use('/api', require('./routes/plantRoutes'));
-//app.use('/api', require('./routes/soilRoutes'));
-//app.use('/api', require('./routes/gardenRoutes'));
-//app.use('/api', require('./routes/myPlantRoutes'));
-//app.use('/api', require('./routes/eventRoutes'));
-//app.use('/api', require('./routes/registryRoutes'));
+app.use('/api', require('./routes/categoryRoutes'));
+app.use('/api', require('./routes/eventRoutes'));
+app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/myPlantRoutes'));
+app.use('/api', require('./routes/plantRoutes'));
+app.use('/api', require('./routes/productRoutes'));
+app.use('/api', require('./routes/registryRoutes'));
+app.use('/api', require('./routes/soilRoutes'));
+app.use('/api', require('./routes/toolRoutes'));
+app.use('/api', require('./routes/treatmentRoutes'));
 
 
 //Start server

@@ -122,5 +122,4 @@ myPlant.deleteMyPlant = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = myPlant;

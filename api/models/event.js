@@ -92,5 +92,4 @@ event.deleteEvent = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = event;

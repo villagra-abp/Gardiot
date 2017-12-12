@@ -123,5 +123,4 @@ garden.deleteGarden = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = garden;

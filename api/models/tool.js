@@ -85,5 +85,4 @@ tool.deleteTool = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = tool;

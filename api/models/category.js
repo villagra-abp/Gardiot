@@ -86,5 +86,4 @@ category.deleteCategory = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = category;

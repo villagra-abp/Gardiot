@@ -86,5 +86,4 @@ treatment.deleteTreatment = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = treatment;

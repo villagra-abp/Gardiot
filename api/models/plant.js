@@ -109,5 +109,4 @@ plant.deletePlant = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = plant;

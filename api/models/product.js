@@ -84,5 +84,4 @@ product.deleteProduct = function(id, callback) {
   }
 }
 
-connection.end()
 module.exports = product;

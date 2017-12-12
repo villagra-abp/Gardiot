@@ -93,5 +93,4 @@ soil.deleteSoil = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = soil;

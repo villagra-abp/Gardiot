@@ -92,5 +92,4 @@ registry.deleteRegistry = function(id, callback) {
 }
 
 
-connection.end()
 module.exports = registry;
