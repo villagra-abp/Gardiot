@@ -24,6 +24,8 @@ require('./config/passport');
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
+
+app.use('/api', require('./routes/billRoutes'));
 app.use('/api', require('./routes/categoryRoutes'));
 app.use('/api', require('./routes/eventRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
