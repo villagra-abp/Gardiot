@@ -46,7 +46,7 @@ router.post('/register', function(request, response) {
 });
 
 
-//*** Autenticacion
+//*** Autenticacion con id, password
 
 router.post('/authenticate', function(request, response) {
 	var id = validator.normalizeEmail(validator.trim(request.body.id));
@@ -76,7 +76,7 @@ router.post('/authenticate', function(request, response) {
 *		USER ROUTES
 ***************************/
 
-//***Muestra al usuario actual
+//***Muestra al usuario actual. Sin parametros
 
 router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
 	tokenDecoder(request, response, function(err, token) {
@@ -128,7 +128,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 	});
 });
 
-//*** Darse de baja
+//*** Darse de baja. Sin parametros
 
 router.delete('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	tokenDecoder(request, response, function (err, token) {
@@ -152,7 +152,7 @@ router.delete('/user', passport.authenticate('jwt', {session: false}),  function
 
 //*** Logout
 
-router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
+/*router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	request.logout();
 	console.log(request.user);
 	tokenDecoder(request, response, function(err, token) {
@@ -162,7 +162,7 @@ router.get('/logout', passport.authenticate('jwt', {session: false}),  function(
 			response.status(200).json(token);
 		}
 	});
-});
+}); */
 
 /***************************
 *		ADMIN ROUTES
@@ -178,7 +178,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 
 
 
-//*** Muestra a un usuario concreto
+//*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	var id = request.params.id;
@@ -193,7 +193,7 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 });
 
 
-//*** Elimina a un usuario
+//*** Elimina a un usuario. Misma forma que antes
 
 router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	var id = request.params.id;
