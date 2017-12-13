@@ -37,7 +37,7 @@ treatment.insertTreatment = function(data, callback) {
       if(error)
         throw error;
       else
-        callback(null, result.info.affectedRows);
+        callback(null, result.affectedRows);
     });
   }
 }
@@ -63,7 +63,7 @@ treatment.updateTreatment = function(data, callback) {
 				throw error;
       }
 			else{
-        if(result.info.affectedRows < 1){
+        if(result.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
   				callback(null, {"mensaje":"Actualizado"});
@@ -80,7 +80,7 @@ treatment.deleteTreatment = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
   }
 }

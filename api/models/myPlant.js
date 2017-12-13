@@ -37,7 +37,7 @@ myPlant.insertMyPlant = function(data, callback) {
       if(error)
         throw error;
       else
-        callback(null, result.info.affectedRows);
+        callback(null, result.affectedRows);
     });
   }
 }
@@ -99,7 +99,7 @@ myPlant.updateMyPlant = function(data, callback) {
 				throw error;
       }
 			else{
-        if(result.info.affectedRows < 1){
+        if(result.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
   				callback(null, {"mensaje":"Actualizado"});
@@ -116,7 +116,7 @@ myPlant.deleteMyPlant = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
   }
 }

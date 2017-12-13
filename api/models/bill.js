@@ -37,7 +37,7 @@ bill.insertBill = function(data, callback) {
       if(error)
         throw error;
       else
-        callback(null, fields.affectedRows);
+        callback(null, result.affectedRows);
     });
   }
 }
@@ -81,7 +81,7 @@ bill.updateBill = function(data, callback) {
 				throw error;
       }
 			else{
-        if(fields.affectedRows < 1){
+        if(result.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
   				callback(null, {"mensaje":"Actualizado"});
@@ -98,7 +98,7 @@ bill.deleteBill = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
   }
 }

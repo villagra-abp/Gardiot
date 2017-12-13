@@ -37,7 +37,7 @@ soil.insertSoil = function(data, callback) {
       if(error)
         throw error;
       else
-        callback(null, result.info.affectedRows);
+        callback(null, result.affectedRows);
     });
   }
 }
@@ -70,7 +70,7 @@ soil.updateSoil = function(data, callback) {
 				throw error;
       }
 			else{
-        if(result.info.affectedRows < 1){
+        if(result.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
   				callback(null, {"mensaje":"Actualizado"});
@@ -87,7 +87,7 @@ soil.deleteSoil = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
   }
 }
