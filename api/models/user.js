@@ -90,7 +90,7 @@ user.deleteUser = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
 	}
 }
