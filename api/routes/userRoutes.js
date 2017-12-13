@@ -14,7 +14,7 @@ var tokenDecoder = require('../config/tokenDecoder');
 *		NO AUTH ROUTES
 ***************************/
 
-//*** Registro de usuario
+//*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password) { //PROBABLEMENTE ESTO SE PUEDA CONTROLAR DESDE EL FRONTEND MEJOR
@@ -54,7 +54,9 @@ router.post('/authenticate', function(request, response) {
 		if (typeof user !== 'undefined' && user.length > 0) {
 			userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) { 
 				if (isMatch && !err) {
-					var payload = {id: user[0].id, admin: false}; //Aqui se puede poner el nombre para que aparezca siempre
+					if (user[0].admin == 1) user[0].admin = true;
+					else user[0].admin = false;
+					var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
 					var token = jwt.sign(payload, config.secret, { 
 						expiresIn: 10080 //El id de user debe ir en sub
 					});
@@ -231,34 +233,6 @@ router.put('/user', function(request, response) {
 	});
 }); */
 
-
-/***************************
-*		DEBUGGERS
-***************************/
-
-router.get('/checkToken', passport.authenticate('jwt', {session: false}), function(request, response) {
-	var token = request.headers.authorization.slice(4); //Recorto el JWT(espacio) del POSTMAN
-	jwt.verify(token, config.secret, function(err, decoded) {
-		if (err)
-			console.log(err);
-		else
-			response.status(200).json({"Mensaje":"El token funciona de puta madre para " + decoded.id});
-	});
-});
-
-router.get('/checkAdmin', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
-	var token = request.headers.authorization.slice(4); //Recorto el JWT(espacio) del POSTMAN
-	jwt.verify(token, config.secret, function(err, decoded) {
-		if (err)
-			console.log(err);
-		else
-			response.status(200).json({"Mensaje":"El admin funciona de puta madre"});
-	});	
-});
-
-router.get('/Requser', passport.authenticate('jwt', {session: false}), function(request, response) {
-	response.status(200).json(request.user);
-});
 
 function sanitizeInput(data) {
 	if (data.id) { data.id = validator.normalizeEmail(data.id); data.id = validator.trim(data.id);}
