@@ -113,17 +113,27 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 				plan: request.body.plan
 			};
 			userData = sanitizeInput(userData);
-			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) {
-					userData.password = hash;
-					userModel.updateUser(userData, token.id, function(error, data) {
-						if (data) 
-							response.status(200).json({"Mensaje":"Actualizado"});					
-						else 
-							response.status(500).json({"Mensaje":"Error"});					
-					});
-				}
-			});						
+			if (userData.password) {
+				userModel.genHash(userData.password, function(error, hash) {
+					if (!error) {
+						userData.password = hash;
+						userModel.updateUser(userData, token.id, function(error, data) {
+							if (data) 
+								response.status(200).json({"Mensaje":"Actualizado"});					
+							else 
+								response.status(500).json({"Mensaje":"Error"});					
+						});
+					}
+				});
+			}
+			else {
+				userModel.updateUser(userData, token.id, function(error, data) {
+					if (data) 
+						response.status(200).json({"Mensaje":"Actualizado"});					
+					else 
+						response.status(500).json({"Mensaje":"Error"});	
+				});
+			}									
 		}
 	});
 });
