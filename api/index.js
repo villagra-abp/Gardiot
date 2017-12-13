@@ -30,6 +30,7 @@ app.use('/api', require('./routes/categoryRoutes'));
 app.use('/api', require('./routes/eventRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
 app.use('/api', require('./routes/myPlantRoutes'));
+app.use('/api', require('./routes/planRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
 app.use('/api', require('./routes/productRoutes'));
 app.use('/api', require('./routes/registryRoutes'));
