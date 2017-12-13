@@ -1,10 +1,10 @@
 var connection = require('../config/connection');
 
-var registry = {};
+var bill = {};
 
-registry.getRegistry = function(callback) {
+bill.getBill = function(callback) {
   if(connection) {
-    connection.query('SELECT * FROM Registry' , function (error, rows){
+    connection.query('SELECT * FROM Bill' , function (error, rows){
       if(error) {
         throw error;
       }
@@ -16,9 +16,9 @@ registry.getRegistry = function(callback) {
 }
 
 
-registry.getRegistryById = function(id, callback) {
+bill.getBillById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Registry WHERE id = ' + id;
+		var sentence = 'SELECT * FROM Bill WHERE id = ' + id;
 		connection.query(sentence, function(error, row) {
 			if (error) {
 				throw error;
@@ -30,10 +30,10 @@ registry.getRegistryById = function(id, callback) {
 	}
 }
 
-registry.insertRegistry = function(data, callback) {
+bill.insertBill = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Registry(name, date, event) values("'+data.name+'", "'+data.date+'", "'+data.event+'")';
-    connection.query(sentence, function(error, result){
+    var sentence = 'INSERT INTO Bill(amount, paid, paidDay, emitedDay, user) values("'+data.amount+'", "'+data.paid+'", "'+data.paidDay+'", "'+data.emitedDay+'", "'+data.user+'")';
+    connection.query(sentence, function(error, result, fields){
       if(error)
         throw error;
       else
@@ -42,25 +42,37 @@ registry.insertRegistry = function(data, callback) {
   }
 }
 
-registry.updateRegistry = function(data, callback) {
+bill.updateBill = function(data, callback) {
   if(connection) {
     commaCounter=0;
-    var sentence =  'UPDATE Registry SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
+    var sentence =  'UPDATE Bill SET ';
+    if(data.amount){
+      sentence += 'amount = "' + data.amount + '"' ;
       commaCounter++;
     }
     //console.log('data.description -> ' + data.description);
-    if(data.date) {
+    if(data.paid) {
       if(commaCounter>0)
         sentence +=', ';
-      sentence +='date ="' + data.date + '"';
+      sentence +='paid ="' + data.paid + '"';
       commaCounter++;
     }
-    if(data.event) {
+    if(data.paidDay) {
       if(commaCounter>0)
         sentence +=', ';
-      sentence +='event ="' + data.event + '"';
+      sentence +='paidDay ="' + data.paidDay + '"';
+      commaCounter++;
+    }
+    if(data.emitedDay) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='emitedDay ="' + data.emitedDay + '"';
+      commaCounter++;
+    }
+    if(data.user) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='user ="' + data.user + '"';
       commaCounter++;
     }
     sentence += ' WHERE id = "' + data.id +'"';
@@ -79,9 +91,9 @@ registry.updateRegistry = function(data, callback) {
   }
 }
 
-registry.deleteRegistry = function(id, callback) {
+bill.deleteBill = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Registry WHERE id = "' + id + '"';
+    var sentence = 'DELETE FROM Bill WHERE id = "' + id + '"';
     connection.query(sentence, function(error, result) {
 			if (error)
 				throw error;
@@ -92,4 +104,4 @@ registry.deleteRegistry = function(id, callback) {
 }
 
 
-module.exports = registry;
+module.exports = bill;

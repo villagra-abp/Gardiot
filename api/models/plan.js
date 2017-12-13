@@ -1,10 +1,10 @@
 var connection = require('../config/connection');
 
-var treatment = {};
+var plan = {};
 
-treatment.getTreatment = function(callback) {
+plan.getPlan = function(callback) {
   if(connection) {
-    connection.query('SELECT * FROM Treatment' , function (error, rows){
+    connection.query('SELECT * FROM Plan' , function (error, rows){
       if(error) {
         throw error;
       }
@@ -16,9 +16,9 @@ treatment.getTreatment = function(callback) {
 }
 
 
-treatment.getTreatmentById = function(id, callback) {
+plan.getPlanById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Treatment WHERE id = ' + id;
+		var sentence = 'SELECT * FROM Plan WHERE id = "' + id + '"';
 		connection.query(sentence, function(error, row) {
 			if (error) {
 				throw error;
@@ -30,31 +30,32 @@ treatment.getTreatmentById = function(id, callback) {
 	}
 }
 
-treatment.insertTreatment = function(data, callback) {
+plan.insertPlan = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Treatment(name, description) values("'+data.name+'", "'+data.description+'")';
-    connection.query(sentence, function(error, result){
+    var sentence = 'INSERT INTO Plan(id, description, price) values("'+data.id+'", "'+data.description+'", "'+data.price+'")';
+    connection.query(sentence, function(error, result, fields){
       if(error)
         throw error;
       else
+      console.log('fields->' + JSON.stringify(result));
         callback(null, result.affectedRows);
     });
   }
 }
 
-treatment.updateTreatment = function(data, callback) {
+plan.updatePlan = function(data, callback) {
   if(connection) {
     commaCounter=0;
-    var sentence =  'UPDATE Treatment SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
+    var sentence =  'UPDATE Plan SET ';
+    if(data.description){
+      sentence += 'description = "' + data.description + '"' ;
       commaCounter++;
     }
     //console.log('data.description -> ' + data.description);
-    if(data.description) {
+    if(data.price) {
       if(commaCounter>0)
         sentence +=', ';
-      sentence +='description ="' + data.description + '"';
+      sentence +='price =' + data.price;
       commaCounter++;
     }
     sentence += ' WHERE id = "' + data.id +'"';
@@ -73,9 +74,9 @@ treatment.updateTreatment = function(data, callback) {
   }
 }
 
-treatment.deleteTreatment = function(id, callback) {
+plan.deletePlan = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Treatment WHERE id = "' + id + '"';
+    var sentence = 'DELETE FROM Plan WHERE id = "' + id + '"';
     connection.query(sentence, function(error, result) {
 			if (error)
 				throw error;
@@ -86,4 +87,4 @@ treatment.deleteTreatment = function(id, callback) {
 }
 
 
-module.exports = treatment;
+module.exports = plan;

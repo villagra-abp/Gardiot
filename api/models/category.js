@@ -33,11 +33,12 @@ category.getCategoryById = function(id, callback) {
 category.insertCategory = function(data, callback) {
   if(connection) {
     var sentence = 'INSERT INTO Category(name, description) values("'+data.name+'", "'+data.description+'")';
-    connection.query(sentence, function(error, result){
+    connection.query(sentence, function(error, result, fields){
       if(error)
         throw error;
       else
-        callback(null, result.info.affectedRows);
+      console.log('fields->' + JSON.stringify(result));
+        callback(null, result.affectedRows);
     });
   }
 }
@@ -63,7 +64,7 @@ category.updateCategory = function(data, callback) {
 				throw error;
       }
 			else{
-        if(result.info.affectedRows < 1){
+        if(result.affectedRows < 1){
           callback(null, {"mensaje":"No existe"});
         }else{
   				callback(null, {"mensaje":"Actualizado"});
@@ -80,7 +81,7 @@ category.deleteCategory = function(id, callback) {
 			if (error)
 				throw error;
 			else
-				callback(null, result.info.affectedRows);
+				callback(null, result.affectedRows);
 		});
   }
 }
