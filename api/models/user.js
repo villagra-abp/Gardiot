@@ -71,7 +71,7 @@ user.updateUser = function(userData, oldId, callback) {
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
 		//mariasql = mariasql.slice(0, -1); //Delete last comma
-		mariasql += 'WHERE id = "' + oldId + '"';
+		mariasql += ' WHERE id = "' + oldId + '"';
 		connection.query(mariasql, function(error, result) {
 			connection.end();
 			if (error)
