@@ -52,19 +52,24 @@ router.post('/authenticate', function(request, response) {
 	var id = validator.normalizeEmail(validator.trim(request.body.id));
 	userModel.getUserById(id, function (error, user) {
 		if (typeof user !== 'undefined' && user.length > 0) {
-			userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
-				if (isMatch && !err) {
-					if (user[0].admin == 1) user[0].admin = true;
-					else user[0].admin = false;
-					var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
-					var token = jwt.sign(payload, config.secret, {
-						expiresIn: 10080 //El id de user debe ir en sub
-					});
-					response.status(200).json({"Token":token});
-				}
-				else
-					response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
-			});
+			if (user[0].active == 1) {
+				userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
+					if (isMatch && !err) {
+						if (user[0].admin == 1) user[0].admin = true;
+						else user[0].admin = false;
+						var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
+						var token = jwt.sign(payload, config.secret, {
+							expiresIn: 10080 //El id de user debe ir en sub
+						});
+						response.status(200).json({"Token":token});
+					}
+					else
+						response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
+				});
+			}
+			else {
+				response.status(403).json({"Mensaje":"Cuenta desactivada"});
+			}		
 		}
 		else {
 			response.status(404).json({"Mensaje":"No existe el usuario"});
@@ -140,14 +145,14 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 
 //*** Darse de baja. Sin parametros
 
-router.delete('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
+router.patch('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	tokenDecoder(request, response, function (err, token) {
 		if (err)
 			response.status(400).json({"Mensaje":"Error con el token"});
 		else {
 			userModel.deleteUser(token.id, function(error, data) {
 				if (data == 1) {
-					response.status(200).json({"Mensaje":"Borrado"});
+					response.status(200).json({"Mensaje":"Adiós"});
 				}
 				else if (data == 0) {
 					response.status(404).json({"Mensaje":"No existe"});
@@ -203,13 +208,13 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 });
 
 
-//*** Elimina a un usuario. Misma forma que antes
+//*** Desactiva a un usuario. Misma forma que antes
 
-router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
+router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	var id = request.params.id;
 	userModel.deleteUser(id, function(error, data) {
 		if (data == 1) {
-			response.status(200).json({"Mensaje":"Borrado"});
+			response.status(200).json({"Mensaje":"Desactivado"});
 		}
 		else if (data == 0) {
 			response.status(404).json({"Mensaje":"No existe"});

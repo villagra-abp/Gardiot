@@ -82,9 +82,22 @@ user.updateUser = function(userData, oldId, callback) {
 	}
 }
 
-user.deleteUser = function(id, callback) {
+/*user.deleteUser = function(id, callback) {
 	if (connection) {
 		var mariasql = 'DELETE FROM User WHERE id = "' + id + '"';
+		connection.query(mariasql, function(error, result) {
+			//connection.end();
+			if (error)
+				throw error;
+			else
+				callback(null, result.affectedRows);
+		});
+	}
+}*/
+
+user.deactivateUser = function(id, callback) {
+	if (connection) {
+		var mariasql = 'UPDATE User SET active = 0 WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, result) {
 			//connection.end();
 			if (error)
