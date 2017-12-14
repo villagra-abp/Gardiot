@@ -69,7 +69,7 @@ router.post('/authenticate', function(request, response) {
 			}
 			else {
 				response.status(403).json({"Mensaje":"Cuenta desactivada"});
-			}		
+			}
 		}
 		else {
 			response.status(404).json({"Mensaje":"No existe el usuario"});
@@ -150,7 +150,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}),  function(
 		if (err)
 			response.status(400).json({"Mensaje":"Error con el token"});
 		else {
-			userModel.deleteUser(token.id, function(error, data) {
+			userModel.deactivateUser(token.id, function(error, data) {
 				if (data == 1) {
 					response.status(200).json({"Mensaje":"Adiós"});
 				}
@@ -212,7 +212,7 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	var id = request.params.id;
-	userModel.deleteUser(id, function(error, data) {
+	userModel.deactivateUser(id, function(error, data) {
 		if (data == 1) {
 			response.status(200).json({"Mensaje":"Desactivado"});
 		}
