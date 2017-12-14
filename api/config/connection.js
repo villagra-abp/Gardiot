@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
 	user: 'root',
 	password: 'gardiot',
 	charset: 'utf8',
-	database: 'gardiotDBT'
+	database: 'gardiotDB'
 });
 
 connection.connect(function(err) {

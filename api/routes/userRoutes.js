@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config/main'); 
+var config = require('../config/main');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
@@ -22,7 +22,7 @@ router.post('/register', function(request, response) {
 	}
 	else {
 		var userData = {
-			id: request.body.id, 
+			id: request.body.id,
 			password: request.body.password,
 			name: request.body.name,
 			birthDate: request.body.birthDate,
@@ -35,10 +35,10 @@ router.post('/register', function(request, response) {
 			if (!error) {
 				userData.password = hash;
 				userModel.insertUser(userData, function(error, data) {
-					if (data) 
-						response.status(200).json({"Mensaje":"Insertado"});					
-					else 
-						response.status(500).json({"Mensaje":"Error"});					
+					if (data)
+						response.status(200).json({"Mensaje":"Insertado"});
+					else
+						response.status(500).json({"Mensaje":"Error"});
 				});
 			}
 		});
@@ -52,12 +52,12 @@ router.post('/authenticate', function(request, response) {
 	var id = validator.normalizeEmail(validator.trim(request.body.id));
 	userModel.getUserById(id, function (error, user) {
 		if (typeof user !== 'undefined' && user.length > 0) {
-			userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) { 
+			userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 				if (isMatch && !err) {
 					if (user[0].admin == 1) user[0].admin = true;
 					else user[0].admin = false;
 					var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
-					var token = jwt.sign(payload, config.secret, { 
+					var token = jwt.sign(payload, config.secret, {
 						expiresIn: 10080 //El id de user debe ir en sub
 					});
 					response.status(200).json({"Token":token});
@@ -92,7 +92,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), function(req
 				}
 			});
 		}
-	});					
+	});
 });
 
 
@@ -104,7 +104,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 			response.status(400).json({"Mensaje":"Error con el token"});
 		else {
 			var userData = { //Si no se comprueban que existen estos valores, peta
-				id: request.body.id, 
+				id: request.body.id,
 				password: request.body.contrasenya,
 				name: request.body.name,
 				birthDate: request.body.birthDate,
@@ -118,22 +118,22 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 					if (!error) {
 						userData.password = hash;
 						userModel.updateUser(userData, token.id, function(error, data) {
-							if (data) 
-								response.status(200).json({"Mensaje":"Actualizado"});					
-							else 
-								response.status(500).json({"Mensaje":"Error"});					
+							if (data)
+								response.status(200).json({"Mensaje":"Actualizado"});
+							else
+								response.status(500).json({"Mensaje":"Error"});
 						});
 					}
 				});
 			}
 			else {
 				userModel.updateUser(userData, token.id, function(error, data) {
-					if (data) 
-						response.status(200).json({"Mensaje":"Actualizado"});					
-					else 
-						response.status(500).json({"Mensaje":"Error"});	
+					if (data)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else
+						response.status(500).json({"Mensaje":"Error"});
 				});
-			}									
+			}
 		}
 	});
 });
@@ -181,7 +181,7 @@ router.delete('/user', passport.authenticate('jwt', {session: false}),  function
 //*** Lista todos los usuarios
 
 router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
-	userModel.getUser (function(error, data) { 
+	userModel.getUser (function(error, data) {
 		response.status(200).json(data);
 	});
 });
@@ -224,7 +224,7 @@ router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requi
 /*
 router.put('/user', function(request, response) {
 	var userData = {
-		id: request.body.id, 
+		id: request.body.id,
 		password: request.body.contrasenya,
 		name: request.body.name,
 		birthDate: request.body.birthDate,
@@ -235,7 +235,7 @@ router.put('/user', function(request, response) {
 	userData = sanitizeInput(userData);
 	userModel.updateUser(userData, function(error, data) {
 		if (data && data.mensaje) {
-			response.status(200).json(data);			
+			response.status(200).json(data);
 		}
 		else {
 			response.status(500).json({"Mensaje":"Error"});
