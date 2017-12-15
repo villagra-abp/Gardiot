@@ -1,9 +1,9 @@
 var jwt = require('jsonwebtoken');
+var jwtExtract = require('passport-jwt').ExtractJwt;
 var config = require('./main'); 
 
 var tokenDecoder = function(request, response, next){
-var token = request.headers.authorization.slice(4); //Recorto el JWT(espacio) del POSTMAN
-	jwt.verify(token, config.secret, function(err, decoded) {
+	jwt.verify(jwtExtract.fromAuthHeaderAsBearerToken(), config.secret, function(err, decoded) {
 		if (err)
 			next(err, null);
 		else

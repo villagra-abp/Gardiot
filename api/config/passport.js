@@ -30,8 +30,10 @@ const localLogin = new localStrategy(localOptions, function(email, password, don
 
 
 var jwtOptions = {}
-jwtOptions.jwtFromRequest = jwtExtract.fromAuthHeaderWithScheme('jwt');
+jwtOptions.jwtFromRequest = jwtExtract.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = config.secret;
+jwtOptions.audience = "gardiot.ovh";
+jwtOptions.algorithms = "HS256";
 
 var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
 	console.log('Payload', payload);
