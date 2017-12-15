@@ -1,9 +1,9 @@
-var jwt = require('jsonwebtoken');
-var config = require('../config/main'); 
+//var jwt = require('jsonwebtoken');
+//var jwtExtract = require('passport-jwt').ExtractJwt;
+//var config = require('../config/main'); 
 
-var requireAdmin = function(request, response, next) { //Anyadir en las llamadas para check de admin en token
-	var token = request.headers.authorization.slice(4);
-	jwt.verify(token, config.secret, function(err, decoded) {
+/*var requireAdmin = function(request, response, next) { //Anyadir en las llamadas para check de admin en token	
+	jwt.verify(jwtExtract.fromAuthHeaderWithScheme('jwt'), config.secret, function(err, decoded) {
 		if (err)
 			throw err;
 		else {
@@ -13,6 +13,13 @@ var requireAdmin = function(request, response, next) { //Anyadir en las llamadas
 				next();
 		}
 	});
+}*/
+
+var requireAdmin = function (request, response, next) {
+	if (request.user.admin == 0)
+		response.status(403).json({"Mensaje":"Permiso denegado"});
+	else
+		next();
 }
 
 module.exports = requireAdmin;

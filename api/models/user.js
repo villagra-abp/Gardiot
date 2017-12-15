@@ -6,7 +6,7 @@ var user = {};
 user.getUser = function(callback) {
 	if (connection) {
 		connection.query('SELECT * FROM User', function(error, rows) {
-			connection.end();
+			//connection.end();
 			if (error)
 				throw error;
 			else
@@ -19,7 +19,7 @@ user.getUserById = function(id, callback) {
 	if (connection) { //Si el id es el mail finalmenente hay que poner las dobles comillas
 		var mariasql = 'SELECT * FROM User WHERE id = "' + id + '"'; //Esto era connection.escape
 		connection.query(mariasql, function(error, row) {
-			connection.end();
+			//connection.end();
 			if (error)
 				throw error;
 			else
@@ -44,7 +44,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 	if (connection) {
 		var sql = 'INSERT INTO User(id, password, active, city, plan, admin) VALUES("' + userData.id + '", "' + userData.password + '", 1, 1, "Free", 0)';
 		connection.query(sql, function(error, result) {
-			connection.end();
+			//connection.end();
 			if (error)
 				throw error;
 			else
@@ -53,7 +53,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 	}
 }
 
-user.updateUser = function(userData, oldId, callback) { 
+user.updateUser = function(userData, oldId, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
 		if (userData.id)
@@ -70,10 +70,10 @@ user.updateUser = function(userData, oldId, callback) {
 			mariasql += 'city = ' + userData.city + ',';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
-		//mariasql = mariasql.slice(0, -1); //Delete last comma
+		mariasql = mariasql.slice(0, -1); //Delete last comma
 		mariasql += 'WHERE id = "' + oldId + '"';
 		connection.query(mariasql, function(error, result) {
-			connection.end();
+			//connection.end();
 			if (error)
 				throw error;
 			else
@@ -82,11 +82,24 @@ user.updateUser = function(userData, oldId, callback) {
 	}
 }
 
-user.deleteUser = function(id, callback) {
+/*user.deleteUser = function(id, callback) {
 	if (connection) {
 		var mariasql = 'DELETE FROM User WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, result) {
-			connection.end();
+			//connection.end();
+			if (error)
+				throw error;
+			else
+				callback(null, result.affectedRows);
+		});
+	}
+}*/
+
+user.deactivateUser = function(id, callback) {
+	if (connection) {
+		var mariasql = 'UPDATE User SET active = 0 WHERE id = "' + id + '"';
+		connection.query(mariasql, function(error, result) {
+			//connection.end();
 			if (error)
 				throw error;
 			else
