@@ -59,7 +59,8 @@ router.post('/authenticate', function(request, response) {
 						else user[0].admin = false;
 						var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
 						var token = jwt.sign(payload, config.secret, {
-							expiresIn: 10080 //El id de user debe ir en sub
+							expiresIn: 10080,
+							audience: "gardiot.ovh"
 						});
 						response.status(200).json({"Token":token});
 					}
@@ -68,7 +69,7 @@ router.post('/authenticate', function(request, response) {
 				});
 			}
 			else {
-				response.status(403).json({"Mensaje":"Cuenta desactivada"});
+				response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
 		}
 		else {
@@ -83,85 +84,57 @@ router.post('/authenticate', function(request, response) {
 
 //***Muestra al usuario actual. Sin parametros
 
-router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	tokenDecoder(request, response, function(err, token) {
-		if (err)
-			response.status(400).json({"Mensaje":"Error con el token"});
-		else {
-			userModel.getUserById(token.id, function(error, data) {
-				if (typeof data !== 'undefined' && data.length > 0) {
-					response.status(200).json(data);
-				}
-				else {
-					response.status(404).json({"Mensaje":"No existe"});
-				}
-			});
-		}
+/*router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
+	userModel.getUserById(request.user.id, function(error, data) {
+		if (typeof data !== 'undefined' && data.length > 0) 
+			response.status(200).json(data);		
+		else 
+			response.status(404).json({"Mensaje":"No existe"});		
 	});
+});*/
+
+router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) { 
+	response.status(200).json(request.user);		
 });
 
 
 //***Actualiza al usuario actual
 
 router.put('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	tokenDecoder(request, response, function(err, token) {
-		if (err)
-			response.status(400).json({"Mensaje":"Error con el token"});
-		else {
-			var userData = { //Si no se comprueban que existen estos valores, peta
-				id: request.body.id,
-				password: request.body.contrasenya,
-				name: request.body.name,
-				birthDate: request.body.birthDate,
-				photo: request.body.photo,
-				city: request.body.city,
-				plan: request.body.plan
-			};
-			userData = sanitizeInput(userData);
-			if (userData.password) {
-				userModel.genHash(userData.password, function(error, hash) {
-					if (!error) {
-						userData.password = hash;
-						userModel.updateUser(userData, token.id, function(error, data) {
-							if (data)
-								response.status(200).json({"Mensaje":"Actualizado"});
-							else
-								response.status(500).json({"Mensaje":"Error"});
-						});
-					}
-				});
-			}
-			else {
-				userModel.updateUser(userData, token.id, function(error, data) {
-					if (data)
-						response.status(200).json({"Mensaje":"Actualizado"});
-					else
-						response.status(500).json({"Mensaje":"Error"});
-				});
-			}
-		}
+	var userData = { //Si no se comprueban que existen estos valores, peta
+		id: request.body.id,
+		password: request.body.contrasenya,
+		name: request.body.name,
+		birthDate: request.body.birthDate,
+		photo: request.body.photo,
+		city: request.body.city,
+		plan: request.body.plan
+	};
+	userData = sanitizeInput(userData);
+	if (userData.password) {
+		userModel.genHash(userData.password, function(error, hash) {
+			if (!error) userData.password = hash;
+		});
+	}
+	userModel.updateUser(userData, request.user.id, function(error, data) {
+		if (data)
+			response.status(200).json({"Mensaje":"Actualizado"});
+		else
+			response.status(500).json({"Mensaje":"Error"});
 	});
 });
+
 
 //*** Darse de baja. Sin parametros
 
 router.patch('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
-	tokenDecoder(request, response, function (err, token) {
-		if (err)
-			response.status(400).json({"Mensaje":"Error con el token"});
-		else {
-			userModel.deactivateUser(token.id, function(error, data) {
-				if (data == 1) {
-					response.status(200).json({"Mensaje":"Adiós"});
-				}
-				else if (data == 0) {
-					response.status(404).json({"Mensaje":"No existe"});
-				}
-				else {
-					response.status(500).json({"Mensaje":"Error"});
-				}
-			});
-		}
+	userModel.deactivateUser(token.id, function(error, data) {
+		if (data == 1) 
+			response.status(200).json({"Mensaje":"Cuenta desactivada"});
+		else if (data == 0) 
+			response.status(404).json({"Mensaje":"No existe"});
+		else 
+			response.status(500).json({"Mensaje":"Error"});
 	});
 });
 
@@ -196,14 +169,11 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
-	var id = request.params.id;
-	userModel.getUserById(id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0) {
+	userModel.getUserById(request.params.id, function(error, data) {
+		if (typeof data !== 'undefined' && data.length > 0) 
 			response.status(200).json(data);
-		}
-		else {
+		else 
 			response.status(404).json({"Mensaje":"No existe"});
-		}
 	});
 });
 
@@ -211,17 +181,13 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 //*** Desactiva a un usuario. Misma forma que antes
 
 router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
-	var id = request.params.id;
-	userModel.deactivateUser(id, function(error, data) {
-		if (data == 1) {
+	userModel.deactivateUser(request.params.id, function(error, data) {
+		if (data == 1) 
 			response.status(200).json({"Mensaje":"Desactivado"});
-		}
-		else if (data == 0) {
+		else if (data == 0) 
 			response.status(404).json({"Mensaje":"No existe"});
-		}
-		else {
+		else 
 			response.status(500).json({"Mensaje":"Error"});
-		}
 	});
 });
 
