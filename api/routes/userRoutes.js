@@ -62,19 +62,14 @@ router.post('/authenticate', function(request, response) {
 							expiresIn: 10080,
 							audience: "gardiot.ovh"
 						});
-						response.status(200).json({"Token":token});
+						response.status(200).json({"Copia y pega el Token":token});
 					}
-					else
-						response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
+					else response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
 				});
 			}
-			else {
-				response.status(403).json({"Mensaje":"Cuenta no activa"});
-			}
+			else response.status(403).json({"Mensaje":"Cuenta no activa"});
 		}
-		else {
-			response.status(404).json({"Mensaje":"No existe el usuario"});
-		}
+		else response.status(404).json({"Mensaje":"No existe el usuario"});	
 	});
 });
 
@@ -94,7 +89,7 @@ router.post('/authenticate', function(request, response) {
 });*/
 
 router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) { 
-	response.status(200).json(request.user);		
+	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
 });
 
 

@@ -1,6 +1,7 @@
 var passport = require('passport');
 var jwtStrategy = require('passport-jwt').Strategy;
 var jwtExtract = require('passport-jwt').ExtractJwt;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 //var localStrategy = require('passport-local'); //CAMBIAR TODO A CONST
 
 var userModel = require('../models/user');
@@ -28,6 +29,31 @@ const localLogin = new localStrategy(localOptions, function(email, password, don
 	});
 }); */
 
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://www.example.com/auth/google/callback",
+  },
+  function(accessToken, refreshToken, profile, cb) {
+  	userModel.getUserById({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    profileFields: 'email' //Se pueden anyadir mas con [,]
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    userModel.getUserById({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 var jwtOptions = {}
 jwtOptions.jwtFromRequest = jwtExtract.fromAuthHeaderAsBearerToken();
