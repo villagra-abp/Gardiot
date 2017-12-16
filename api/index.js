@@ -27,6 +27,7 @@ app.use('/api', require('./routes/userRoutes'));
 
 app.use('/api', require('./routes/billRoutes'));
 app.use('/api', require('./routes/categoryRoutes'));
+app.use('/api', require('./routes/cityRoutes'));
 app.use('/api', require('./routes/countryRoutes'));
 app.use('/api', require('./routes/eventRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
