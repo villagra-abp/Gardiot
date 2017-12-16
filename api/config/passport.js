@@ -3,6 +3,7 @@ var jwtStrategy = require('passport-jwt').Strategy;
 var jwtExtract = require('passport-jwt').ExtractJwt;
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 //var localStrategy = require('passport-local'); //CAMBIAR TODO A CONST
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var userModel = require('../models/user');
 var config = require('./main'); 
@@ -31,8 +32,8 @@ const localLogin = new localStrategy(localOptions, function(email, password, don
 
 
 passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
+    clientID: "122766485062-o9tfjesnk22hfe371bi8h1juv9j2t8uo.apps.googleusercontent.com",
+    clientSecret: "NmIayflE5RizlVJFyOm_Y-wG",
     callbackURL: "http://www.example.com/auth/google/callback",
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -43,9 +44,9 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: "178427739567130",
+    clientSecret: "65fc96d8e2eaa9f0f35df2b998f125fc",
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
     profileFields: 'email' //Se pueden anyadir mas con [,]
   },
   function(accessToken, refreshToken, profile, cb) {
