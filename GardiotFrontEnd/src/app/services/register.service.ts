@@ -13,10 +13,12 @@ export class RegisterService {
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log(body);
+
       return this.http.post(this.registerURL, body, { headers } )
           .map( res=>{
-            alert(res.json());
+            if(res.json().Mensaje=="Insertado"){
+              alert(`Usuario ${register.email} insertado`);
+            }
             return res.json();
           })
     }
