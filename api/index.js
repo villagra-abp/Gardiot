@@ -39,6 +39,7 @@ app.use('/api', require('./routes/registryRoutes'));
 app.use('/api', require('./routes/soilRoutes'));
 app.use('/api', require('./routes/toolRoutes'));
 app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/yearRoutes'));
 
 
 //Start server
