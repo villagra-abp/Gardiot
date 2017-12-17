@@ -24,6 +24,7 @@ require('./config/passport');
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
+app.use('/api', require('./routes/authRoutes'));
 
 app.use('/api', require('./routes/billRoutes'));
 app.use('/api', require('./routes/categoryRoutes'));

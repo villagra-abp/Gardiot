@@ -7,7 +7,7 @@ var validator = require('validator');
 
 var userModel = require('../models/user');
 var requireAdmin = require('../config/adminCheck');
-var tokenDecoder = require('../config/tokenDecoder');
+//var tokenDecoder = require('../config/tokenDecoder');
 
 
 /***************************
@@ -72,6 +72,12 @@ router.post('/authenticate', function(request, response) {
 		else response.status(404).json({"Mensaje":"No existe el usuario"});	
 	});
 });
+
+/*router.get('/hash/:passwd', function(request, response) {
+	userModel.genHash(request.params.passwd, function(error, hash) {
+		if (!error) response.status(200).json(hash);
+	});
+});*/
 
 /***************************
 *		USER ROUTES
@@ -158,8 +164,6 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 		response.status(200).json(data);
 	});
 });
-
-
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
