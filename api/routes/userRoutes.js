@@ -227,12 +227,12 @@ function sanitizeInput(data) {
 
 function validateInput(data) {
 	var resp;
-	if (!validator.isEmail(data.id)) resp += 'Email no válido, ';
-	if (!validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
-	if (validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
-	if (!validator.isInt(data.city)) resp += 'Ciudad no válida, ';
-	if (!validator.isURL(data.photo)) resp += 'Foto no válida, ';
-	if (!validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
+	if (data.id && !validator.isEmail(data.id)) resp += 'Email no válido, ';
+	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
+	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
+	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
+	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
 
 	if (resp) resp = mariasql.slice(0, -2);
 	return resp;	 
