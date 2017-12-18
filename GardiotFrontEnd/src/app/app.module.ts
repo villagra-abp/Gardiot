@@ -19,7 +19,7 @@ import { LoginComponent } from './components/users/login.component';
 import { LogoutComponent } from './components/users/logout.component';
 import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
-import { IndexComponent } from './components/index/index.component';
+import { DetailComponent } from './components/users/detail.component';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { IndexComponent } from './components/index/index.component';
     LogoutComponent,
     RegisterComponent,
     FooterComponent,
-    IndexComponent
+    DetailComponent
   ],
   imports: [
     BrowserModule,

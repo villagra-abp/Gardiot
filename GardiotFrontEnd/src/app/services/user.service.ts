@@ -35,7 +35,7 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               alert(`Usuario ${user.id} logueado`);
-              sessionStorage.setItem('token', res.json().Token);
+              localStorage.setItem('Bearer', res.json().Token);
               console.log(res.json().Token);
             }
             else{
@@ -47,8 +47,20 @@ export class UserService {
           })
     }
 
+    details(user:User){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.get(this.apiURL+"user", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
     logout(): void{
-      sessionStorage.removeItem('token');
+
+      localStorage.removeItem('Bearer');
     }
 
 }
