@@ -8,8 +8,6 @@ import { APP_ROUTING } from "./app.routes";
 //services
 import { UserService } from "./services/user.service";
 
-//guards
-import { AuthGuard } from "./guards/authguard.guard"
 
 import { AppComponent } from './app.component';
 
@@ -40,8 +38,7 @@ import { DetailComponent } from './components/users/detail.component';
     APP_ROUTING
   ],
   providers: [
-    UserService,
-    AuthGuard
+    UserService
   ],
   bootstrap: [AppComponent]
 })

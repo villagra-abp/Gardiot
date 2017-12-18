@@ -59,7 +59,7 @@ export class UserService {
     }
 
     logout(): void{
-
+      //llamar a la api a su método logout
       localStorage.removeItem('Bearer');
     }
 
