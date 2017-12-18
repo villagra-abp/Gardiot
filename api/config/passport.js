@@ -2,65 +2,63 @@ var passport = require('passport');
 var jwtStrategy = require('passport-jwt').Strategy;
 var jwtExtract = require('passport-jwt').ExtractJwt;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-//var localStrategy = require('passport-local'); //CAMBIAR TODO A CONST
 var FacebookStrategy = require('passport-facebook').Strategy;
+var jwt = require('jsonwebtoken');
 
 var userModel = require('../models/user');
 var config = require('./main'); 
 var configAuth = require('./auth');
-
-/*const localOptions = {usernameField: 'email'};
-
-const localLogin = new localStrategy(localOptions, function(email, password, done) {
-	userModel.getUserById(email, function(err, user) {
-		if (err) {
-			return done(err);
-		}
-		if (!user) {
-			return done(null, false, {error: 'Your login details could not be verified.'});
-		}
-		userModel.checkPassword(password, email, function(err, isMatch) {
-			if (err) {
-				return done(err);
-			}
-			if (!isMatch) {
-				return done(null, false, {error: 'Your login details could not be verified.'});
-			}
-			return done(null, user);
-		});
-	});
-}); */
 
 
 passport.use(new GoogleStrategy({
     clientID: configAuth.googleAuth.clientID,
     clientSecret: configAuth.googleAuth.clientSecret,
     callbackURL: configAuth.googleAuth.callbackURL,
+    passReqToCallback: true
   },
-  function(accessToken, refreshToken, profile, done) {
+  function(request, accessToken, refreshToken, profile, done) {
   	process.nextTick(function() {
-		console.log('Google Access Token: ' + accessToken);
-	  	console.log('Google Refresh Token: ' + refreshToken);
-	  	console.log('Profile: ' + JSON.stringify.profile);
-	  	userModel.getUserById(profile.email, function (err, user) {
-	      	if (typeof user !== 'undefined' && user.length > 0) 
-				return done(err, user);	     	
+	  	var parsed = JSON.parse(JSON.stringify(profile, null, 4));
+	  	console.log(parsed);
+	  	var user;
+	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {
+	      	if (typeof user !== 'undefined' && user.length > 0) {
+	      		if (user.access.search("google")!=-1) {
+	      			var userData = {
+						googleId: parsed.id,
+						access: user.access + ',google'
+					};
+	      			userModel.updateUser(parsed.emails[0].value, function(err, data) {
+	      				if (data == 'undefined')
+							response.status(500).json({"Mensaje":"Error"});							
+	      			});
+	      		}
+	      	} 							     	
 			else {
 				var userData = {
-					id: profile.email,
-					password: accessToken
+					id: parsed.emails[0].value,
+					googleId: parsed.id,
+					name: parsed.displayName,
+					access: 'google'
+					//photo: parsed.photos[0].value
 				};
 				userModel.insertUser(userData, function(error, data) {
-					if (data) {
-						userModel.getUserById({ googleId: profile.email }, function (err, user) {
-							return done(err, user);
-						});
-					}					
-					else
+					if (data) 
+						userModel.getUserById(parsed.emails[0].value, function (err, user) {});										
+					else 
 						response.status(500).json({"Mensaje":"Error"});
 				});	  
 			} 
 	    });
+	    var token;
+	    if (!request.user) { 
+			token = jwt.sign({}, config.secret, {
+				expiresIn: '6h',
+				audience: "gardiot.ovh",
+				subject: user.id
+			});	    	
+	    }
+	    return done(err, user, token);
   	}); 	
   }
 ));
@@ -112,4 +110,3 @@ var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
 });
 
 passport.use(JWTstrategy);
-//passport.use(localLogin);
