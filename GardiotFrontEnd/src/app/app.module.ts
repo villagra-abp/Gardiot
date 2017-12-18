@@ -5,25 +5,33 @@ import { FormsModule } from "@angular/forms";
 
 import { APP_ROUTING } from "./app.routes";
 
-import { RegisterService } from "./services/register.service";
+//services
+import { UserService } from "./services/user.service";
+
+//guards
+import { AuthGuard } from "./guards/authguard.guard"
 
 import { AppComponent } from './app.component';
 
-import { HeaderComponent } from './components/header.component';
+import { HeaderLogComponent } from './components/headerlog.component';
+import { HeaderNoLogComponent } from './components/headernolog.component';
 import { LoginComponent } from './components/users/login.component';
+import { LogoutComponent } from './components/users/logout.component';
 import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
-
-
+import { IndexComponent } from './components/index/index.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderLogComponent,
+    HeaderNoLogComponent,
     LoginComponent,
+    LogoutComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +40,8 @@ import { FooterComponent } from './components/footer.component';
     APP_ROUTING
   ],
   providers: [
-    RegisterService
+    UserService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

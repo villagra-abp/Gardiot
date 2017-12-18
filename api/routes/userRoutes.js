@@ -62,7 +62,7 @@ router.post('/authenticate', function(request, response) {
 							expiresIn: 10080,
 							audience: "gardiot.ovh"
 						});
-						response.status(200).json({"Copia y pega el Token":token});
+						response.status(200).json({"Token":token});
 					}
 					else response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
 				});
