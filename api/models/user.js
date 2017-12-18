@@ -42,9 +42,31 @@ user.getUserById = function(id, callback) {
 
 user.insertUser = function(userData, callback) { //Falta sanear INT
 	if (connection) {
-		var sql = 'INSERT INTO User(id, password, active, city, plan, admin) VALUES("' + userData.id + '", "' + userData.password + '", 1, 1, "Free", 0)';
-		connection.query(sql, function(error, result) {
-			//connection.end();
+		var mariasql = 'INSERT INTO User SET id = "' + userData.id +'",';
+		if (userData.password) 
+			mariasql += 'password = "' + userData.password + '",';
+		if (userData.name)
+			mariasql += 'name = "' + userData.name + '",';
+		if (userData.birthDate)
+			mariasql += 'birthDate = ' + userData.birthDate + ',';
+		if (userData.photo)
+			mariasql += 'photo = "' + userData.photo + '",';
+		if (userData.city)
+			mariasql += 'city = ' + userData.city + ',';
+		else //ELIMINAR
+			mariasql += 'city = 1,';
+		if (userData.plan)
+			mariasql += 'plan = "' + userData.plan + '",';
+		else //ELIMINAR
+			mariasql += 'plan = "Free",';
+		if (userData.access)
+			mariasql += 'access = "' + userData.access + '",';
+		if (userData.googleId)
+			mariasql += 'googleId = "' + userData.googleId + '",';
+		if (userData.facebookId)
+			mariasql += 'facebookId = "' + userData.facebookId + '",';
+		mariasql = mariasql.slice(0, -1); //Delete last comma
+		connection.query(mariasql, function(error, result) {
 			if (error)
 				throw error;
 			else
@@ -53,7 +75,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 	}
 }
 
-user.updateUser = function(userData, oldId, callback) {
+user.updateUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
 		if (userData.id)
@@ -70,10 +92,15 @@ user.updateUser = function(userData, oldId, callback) {
 			mariasql += 'city = ' + userData.city + ',';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
+		if (userData.access)
+			mariasql += 'access = "' + userData.access + '",';
+		if (userData.googleId)
+			mariasql += 'googleId = "' + userData.googleId + '",';
+		if (userData.facebookId)
+			mariasql += 'facebookId = "' + userData.facebookId + '",';
 		mariasql = mariasql.slice(0, -1); //Delete last comma
-		mariasql += 'WHERE id = "' + oldId + '"';
+		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
-			//connection.end();
 			if (error)
 				throw error;
 			else

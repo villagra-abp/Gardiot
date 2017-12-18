@@ -6,8 +6,8 @@ var passport = require('passport');
 var validator = require('validator');
 
 var userModel = require('../models/user');
-var requireAdmin = require('../config/adminCheck');
-var tokenDecoder = require('../config/tokenDecoder');
+var requireAdmin = require('../functions/adminCheck');
+
 
 
 /***************************
@@ -55,12 +55,10 @@ router.post('/authenticate', function(request, response) {
 			if (user[0].active == 1) {
 				userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 					if (isMatch && !err) {
-						if (user[0].admin == 1) user[0].admin = true;
-						else user[0].admin = false;
-						var payload = {id: user[0].id, admin: user[0].admin}; //Aqui se puede poner el nombre para que aparezca siempre
-						var token = jwt.sign(payload, config.secret, {
-							expiresIn: 10080,
-							audience: "gardiot.ovh"
+						var token = jwt.sign({}, config.secret, {
+							expiresIn: '6h',
+							audience: "gardiot.ovh",
+							subject: user[0].id
 						});
 						response.status(200).json({"Token":token});
 					}
@@ -72,6 +70,12 @@ router.post('/authenticate', function(request, response) {
 		else response.status(404).json({"Mensaje":"No existe el usuario"});	
 	});
 });
+
+/*router.get('/hash/:passwd', function(request, response) {
+	userModel.genHash(request.params.passwd, function(error, hash) {
+		if (!error) response.status(200).json(hash);
+	});
+});*/
 
 /***************************
 *		USER ROUTES
@@ -103,7 +107,8 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		city: request.body.city,
-		plan: request.body.plan
+		plan: request.body.plan,
+		oldId: request.user.id
 	};
 	userData = sanitizeInput(userData);
 	if (userData.password) {
@@ -111,7 +116,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 			if (!error) userData.password = hash;
 		});
 	}
-	userModel.updateUser(userData, request.user.id, function(error, data) {
+	userModel.updateUser(userData, function(error, data) {
 		if (data)
 			response.status(200).json({"Mensaje":"Actualizado"});
 		else
@@ -135,17 +140,9 @@ router.patch('/user', passport.authenticate('jwt', {session: false}),  function(
 
 //*** Logout
 
-/*router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
+router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	request.logout();
-	console.log(request.user);
-	tokenDecoder(request, response, function(err, token) {
-		if (err)
-			response.status(400).json({"Mensaje":"Error con el token"});
-		else {
-			response.status(200).json(token);
-		}
-	});
-}); */
+}); 
 
 /***************************
 *		ADMIN ROUTES
@@ -158,8 +155,6 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 		response.status(200).json(data);
 	});
 });
-
-
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
@@ -218,6 +213,10 @@ function sanitizeInput(data) {
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
 	return data;
+}
+
+function validateInput(data) {
+	
 }
 
 module.exports = router;
