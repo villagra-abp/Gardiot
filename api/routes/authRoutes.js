@@ -4,7 +4,7 @@ var passport = require('passport');
 
 var userModel = require('../models/user');
 
-router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email'], session: false}));
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email'], prompt:'consent', accessType:'offline', session: false}));
 
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login', session: false }),

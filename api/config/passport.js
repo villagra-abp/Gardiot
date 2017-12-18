@@ -1,12 +1,13 @@
 var passport = require('passport');
 var jwtStrategy = require('passport-jwt').Strategy;
 var jwtExtract = require('passport-jwt').ExtractJwt;
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 //var localStrategy = require('passport-local'); //CAMBIAR TODO A CONST
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 var userModel = require('../models/user');
 var config = require('./main'); 
+var configAuth = require('./auth');
 
 /*const localOptions = {usernameField: 'email'};
 
@@ -32,18 +33,18 @@ const localLogin = new localStrategy(localOptions, function(email, password, don
 
 
 passport.use(new GoogleStrategy({
-    clientID: "122766485062-o9tfjesnk22hfe371bi8h1juv9j2t8uo.apps.googleusercontent.com",
-    clientSecret: "NmIayflE5RizlVJFyOm_Y-wG",
-    callbackURL: "http://localhost:3000/api/auth/google/callback",
+    clientID: configAuth.googleAuth.clientID,
+    clientSecret: configAuth.googleAuth.clientSecret,
+    callbackURL: configAuth.googleAuth.callbackURL,
   },
-  function(accessToken, refreshToken, profile, cb) {
+  function(accessToken, refreshToken, profile, done) {
   	process.nextTick(function() {
 		console.log('Google Access Token: ' + accessToken);
 	  	console.log('Google Refresh Token: ' + refreshToken);
 	  	console.log('Profile: ' + JSON.stringify.profile);
 	  	userModel.getUserById(profile.email, function (err, user) {
 	      	if (typeof user !== 'undefined' && user.length > 0) 
-				return cb(err, user);	     	
+				return done(err, user);	     	
 			else {
 				var userData = {
 					id: profile.email,
@@ -52,7 +53,7 @@ passport.use(new GoogleStrategy({
 				userModel.insertUser(userData, function(error, data) {
 					if (data) {
 						userModel.getUserById({ googleId: profile.email }, function (err, user) {
-							return cb(err, user);
+							return done(err, user);
 						});
 					}					
 					else

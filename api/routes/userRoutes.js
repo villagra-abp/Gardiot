@@ -6,8 +6,8 @@ var passport = require('passport');
 var validator = require('validator');
 
 var userModel = require('../models/user');
-var requireAdmin = require('../config/adminCheck');
-//var tokenDecoder = require('../config/tokenDecoder');
+var requireAdmin = require('../functions/adminCheck');
+
 
 
 /***************************
