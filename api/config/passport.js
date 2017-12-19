@@ -51,7 +51,7 @@ passport.use(new GoogleStrategy({
 						else return done (err, false);						
 	      			});
 	      		}
-	      		else { //Si el usuario existe y ya tiene asociado el login de Google en BD
+	      		else if (user.Id == parsed.id) { //Si el usuario existe y ya tiene asociado el login de Google en BD
 	      			if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 						token = jwt.sign({}, config.secret, {
 							expiresIn: '6h',

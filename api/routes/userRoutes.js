@@ -18,7 +18,7 @@ var requireAdmin = require('../functions/adminCheck');
 
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password) { 
-		response.status(500).json({"Mensaje":"Introduce usuario y contraseña"});
+		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	}
 	else {
 		var userData = {
@@ -35,14 +35,20 @@ router.post('/register', function(request, response) {
 			response.status(400).json({"Mensaje": validate});
 		else {
 			userData = sanitizeInput(userData);
-			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) {
-					userData.password = hash;
-					userModel.insertUser(userData, function(error, data) {
-						if (data)
-							response.status(200).json({"Mensaje":"Insertado"});
-						else
-							response.status(500).json({"Mensaje":"Error"});
+			userModel.getUserById(request.params.id, function(error, data) {
+				if (typeof data !== 'undefined' && data.length > 0) 
+					response.status(202).json({"Mensaje":"Este usuario ya existe"});
+				else {					
+					userModel.genHash(userData.password, function(error, hash) {
+						if (!error) {
+							userData.password = hash;
+							userModel.insertUser(userData, function(error, data) {
+								if (data)
+									response.status(201).json({"Mensaje":"Insertado"});
+								else
+									response.status(500).json({"Mensaje":"Error"});
+							});
+						}
 					});
 				}
 			});
@@ -122,15 +128,19 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 		userData = sanitizeInput(userData);
 		if (userData.password) {
 			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) userData.password = hash;
+				if (!error) {
+					userData.password = hash;
+					userModel.updateUser(userData, function(error, data) {
+						if (data)
+							response.status(200).json({"Mensaje":"Actualizado"});
+						else
+							response.status(500).json({"Mensaje":"Error"});
+					});
+				}
+				else
+				response.status(500).json({"Mensaje":"Error con la contraseña"}); 
 			});
-		}
-		userModel.updateUser(userData, function(error, data) {
-			if (data)
-				response.status(200).json({"Mensaje":"Actualizado"});
-			else
-				response.status(500).json({"Mensaje":"Error"});
-		});
+		}		
 	}
 });
 

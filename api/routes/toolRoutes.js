@@ -3,6 +3,7 @@ var router = express.Router();
 
 var toolModel = require('../models/tool');
 
+
 router.get('/tool', function(request, response) {
 	toolModel.getTool (function(error, data) { //Asocia la llamada con la funcion del modelo
 		response.status(200).json(data);
