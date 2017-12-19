@@ -226,7 +226,7 @@ function sanitizeInput(data) {
 }
 
 function validateInput(data) {
-	var resp;
+	var resp = '';
 	if (data.id && !validator.isEmail(data.id)) resp += 'Email no válido, ';
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
 	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
@@ -234,7 +234,7 @@ function validateInput(data) {
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
 
-	if (resp) resp = mariasql.slice(0, -2);
+	if (resp) resp = resp.slice(0, -2);
 	return resp;	 
 }
 
