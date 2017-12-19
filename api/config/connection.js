@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: 'gardior',
+	password: 'gardiot',
 	charset: 'utf8',
 	database: 'gardiotDB'
 });
