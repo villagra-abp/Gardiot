@@ -46,6 +46,18 @@ export class UserService {
             return res.json();
           })
     }
+    loginGoogle(){
+      let headers = new Headers({
+        'Access-Control-Allow-Origin':'*',
+        'Access-Control-Allow-Methods':'GET',
+        'Access-Control-Allow-Headers':'Content-Type'
+      });
+
+      return this.http.get(this.apiURL+"auth/google", { headers })
+        .map(res=>{
+          return res.json();
+        });
+    }
 
     details(user:User){
       let headers = new Headers({
