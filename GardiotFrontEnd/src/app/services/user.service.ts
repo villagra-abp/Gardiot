@@ -70,6 +70,19 @@ export class UserService {
           })
     }
 
+    modifyUserProfile(user:User){
+      let body = `name=${user.name}`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.put(this.apiURL+"user", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+
+
     logout(): void{
       //llamar a la api a su método logout
       localStorage.removeItem('Bearer');

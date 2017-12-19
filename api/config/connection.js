@@ -7,6 +7,7 @@ var connection = mysql.createConnection({
 	charset: 'utf8',
 	database: 'gardiotDB'
 });
+//kjh
 
 connection.connect(function(err) {
   if (err) {

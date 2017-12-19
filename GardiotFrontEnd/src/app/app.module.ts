@@ -18,6 +18,7 @@ import { LogoutComponent } from './components/users/logout.component';
 import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/users/detail.component';
+import { ProfileComponent } from './components/users/profile.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DetailComponent } from './components/users/detail.component';
     LogoutComponent,
     RegisterComponent,
     FooterComponent,
-    DetailComponent
+    DetailComponent,
+    ProfileComponent 
   ],
   imports: [
     BrowserModule,
