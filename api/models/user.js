@@ -21,7 +21,7 @@ user.getUserById = function(id, callback) {
 		connection.query(mariasql, function(error, row) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, row);
 		});
@@ -68,7 +68,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});
