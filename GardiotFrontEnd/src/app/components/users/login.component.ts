@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit{
   guardarGoogle(){
     this._loginService.loginGoogle()
     .subscribe(data=>{
-      console.log(data);
+      alert(data);
     })
 
   }
