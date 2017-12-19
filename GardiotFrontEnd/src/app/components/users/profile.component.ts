@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Router } from "@angular/router";
+import {UserService} from "../../services/user.service";
 import { User } from "../../interfaces/user.interface";
-import { UserService } from "../../services/user.service";
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html'
+  selector: 'app-profile',
+  templateUrl: './profile.component.html'
 })
-export class DetailComponent implements OnInit{
-
+export class ProfileComponent {
   user:User={
     id:"",
     password:"",
@@ -27,6 +26,8 @@ export class DetailComponent implements OnInit{
           this.user.id=data.id;
           this.user.password=data.password;
           this.user.password=data.password;
+          this.user.plan=data.plan;
+          this.user.name=data.name;
         },
       error => {
         console.error(error);
@@ -34,10 +35,20 @@ export class DetailComponent implements OnInit{
       });
     }
 
+    edit(){
+      this._detailService.modifyUserProfile(this.user)
+          .subscribe(data=>{
+          },
+        error => {
+          console.error(error);
+          this._route.navigate(['/login']);
+        });
+      }
+
 
   ngOnInit() {
     this.mostrar();
   }
 
 
-}
+  }

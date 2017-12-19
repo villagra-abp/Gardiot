@@ -1,0 +1,17 @@
+<section>
+  <ul>
+    <li>Nombre: {{this.user.name}}</li>
+    <li>Email: {{this.user.id}}</li>
+    <li>Fecha Nacimiento: {{fecha}}</li>
+    <li>Ciudad: {{cuidad}}</li>
+    <li>Plan: {{this.user.plan}}</li>
+  </ul>
+</section>
+
+<section>
+  <form class="" action="index.html" method="post">
+    <label  for="name_user">Cambiar Nombre </label>
+    <input [(ngModel)]="user.name" type="text" name="name" id="name_user" >
+    <button  (click)="edit()" type="submit" class="btn btn-default">Submit</button>
+  </form>
+</section>

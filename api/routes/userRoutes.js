@@ -17,7 +17,7 @@ var requireAdmin = require('../functions/adminCheck');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password) { 
+	if (!request.body.id || !request.body.password) {
 		response.status(500).json({"Mensaje":"Introduce usuario y contraseña"});
 	}
 	else {
@@ -72,7 +72,7 @@ router.post('/authenticate', function(request, response) {
 			}
 			else response.status(403).json({"Mensaje":"Cuenta no activa"});
 		}
-		else response.status(404).json({"Mensaje":"No existe el usuario"});	
+		else response.status(404).json({"Mensaje":"No existe el usuario"});
 	});
 });
 
@@ -90,14 +90,14 @@ router.post('/authenticate', function(request, response) {
 
 /*router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
 	userModel.getUserById(request.user.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0) 
-			response.status(200).json(data);		
-		else 
-			response.status(404).json({"Mensaje":"No existe"});		
+		if (typeof data !== 'undefined' && data.length > 0)
+			response.status(200).json(data);
+		else
+			response.status(404).json({"Mensaje":"No existe"});
 	});
 });*/
 
-router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) { 
+router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
 	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
 });
 
@@ -105,7 +105,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), function(req
 //***Actualiza al usuario actual
 
 router.put('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	var userData = { 
+	var userData = {
 		id: request.body.id,
 		password: request.body.contrasenya,
 		name: request.body.name,
@@ -139,11 +139,11 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 
 router.patch('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	userModel.deactivateUser(token.id, function(error, data) {
-		if (data == 1) 
+		if (data == 1)
 			response.status(200).json({"Mensaje":"Cuenta desactivada"});
-		else if (data == 0) 
+		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
-		else 
+		else
 			response.status(500).json({"Mensaje":"Error"});
 	});
 });
@@ -152,7 +152,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}),  function(
 
 router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	request.logout();
-}); 
+});
 
 /***************************
 *		ADMIN ROUTES
@@ -170,9 +170,9 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0) 
+		if (typeof data !== 'undefined' && data.length > 0)
 			response.status(200).json(data);
-		else 
+		else
 			response.status(404).json({"Mensaje":"No existe"});
 	});
 });
@@ -182,11 +182,11 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
-		if (data == 1) 
+		if (data == 1)
 			response.status(200).json({"Mensaje":"Desactivado"});
-		else if (data == 0) 
+		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
-		else 
+		else
 			response.status(500).json({"Mensaje":"Error"});
 	});
 });
@@ -222,6 +222,7 @@ function sanitizeInput(data) {
 	if (data.photo) data.photo = validator.trim(data.photo);
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
+	if (data.oldId) { data.oldId = validator.normalizeEmail(data.oldId); data.oldId = validator.trim(data.oldId);}
 	return data;
 }
 
@@ -235,7 +236,7 @@ function validateInput(data) {
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
 
 	if (resp) resp = resp.slice(0, -2);
-	return resp;	 
+	return resp;
 }
 
 module.exports = router;
