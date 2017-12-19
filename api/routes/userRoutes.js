@@ -17,7 +17,7 @@ var requireAdmin = require('../functions/adminCheck');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password) { //PROBABLEMENTE ESTO SE PUEDA CONTROLAR DESDE EL FRONTEND MEJOR
+	if (!request.body.id || !request.body.password) { 
 		response.status(500).json({"Mensaje":"Introduce usuario y contraseña"});
 	}
 	else {
@@ -30,18 +30,23 @@ router.post('/register', function(request, response) {
 			city: request.body.city,
 			plan: request.body.plan
 		};
-		userData = sanitizeInput(userData);
-		userModel.genHash(userData.password, function(error, hash) {
-			if (!error) {
-				userData.password = hash;
-				userModel.insertUser(userData, function(error, data) {
-					if (data)
-						response.status(200).json({"Mensaje":"Insertado"});
-					else
-						response.status(500).json({"Mensaje":"Error"});
-				});
-			}
-		});
+		var validate = validateInput(userData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
+		else {
+			userData = sanitizeInput(userData);
+			userModel.genHash(userData.password, function(error, hash) {
+				if (!error) {
+					userData.password = hash;
+					userModel.insertUser(userData, function(error, data) {
+						if (data)
+							response.status(200).json({"Mensaje":"Insertado"});
+						else
+							response.status(500).json({"Mensaje":"Error"});
+					});
+				}
+			});
+		}
 	}
 });
 
@@ -100,7 +105,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), function(req
 //***Actualiza al usuario actual
 
 router.put('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	var userData = { //Si no se comprueban que existen estos valores, peta
+	var userData = { 
 		id: request.body.id,
 		password: request.body.contrasenya,
 		name: request.body.name,
@@ -110,18 +115,23 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 		plan: request.body.plan,
 		oldId: request.user.id
 	};
-	userData = sanitizeInput(userData);
-	if (userData.password) {
-		userModel.genHash(userData.password, function(error, hash) {
-			if (!error) userData.password = hash;
+	var validate = validateInput(userData);
+	if (validate.length > 0)
+		response.status(400).json({"Mensaje": validate});
+	else {
+		userData = sanitizeInput(userData);
+		if (userData.password) {
+			userModel.genHash(userData.password, function(error, hash) {
+				if (!error) userData.password = hash;
+			});
+		}
+		userModel.updateUser(userData, function(error, data) {
+			if (data)
+				response.status(200).json({"Mensaje":"Actualizado"});
+			else
+				response.status(500).json({"Mensaje":"Error"});
 		});
 	}
-	userModel.updateUser(userData, function(error, data) {
-		if (data)
-			response.status(200).json({"Mensaje":"Actualizado"});
-		else
-			response.status(500).json({"Mensaje":"Error"});
-	});
 });
 
 
@@ -208,7 +218,7 @@ router.put('/user', function(request, response) {
 function sanitizeInput(data) {
 	if (data.id) { data.id = validator.normalizeEmail(data.id); data.id = validator.trim(data.id);}
 	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	if (data.birthDate) data.birthDate = validator.toDate(request.body.date);
+	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
 	if (data.photo) data.photo = validator.trim(data.photo);
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
@@ -216,7 +226,16 @@ function sanitizeInput(data) {
 }
 
 function validateInput(data) {
-	
+	var resp = '';
+	if (data.id && !validator.isEmail(data.id)) resp += 'Email no válido, ';
+	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
+	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
+	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
+	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
+
+	if (resp) resp = resp.slice(0, -2);
+	return resp;	 
 }
 
 module.exports = router;

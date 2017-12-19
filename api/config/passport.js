@@ -19,22 +19,52 @@ passport.use(new GoogleStrategy({
   function(request, accessToken, refreshToken, profile, done) {
   	process.nextTick(function() {
 	  	var parsed = JSON.parse(JSON.stringify(profile, null, 4));
-	  	console.log(parsed);
 	  	var user;
-	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {
-	      	if (typeof user !== 'undefined' && user.length > 0) {
-	      		if (user.access.search("google")!=-1) {
+	  	var token = '';
+	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {  		
+	      	if (typeof user !== 'undefined' && user.length > 0) { //Si encontramos al usuario en la BD
+	      		user = JSON.parse(JSON.stringify(user[0], null, 4));
+	      		if (user.access.search("google")==-1) { //Si no tiene asociado el login por OAuth de Google lo anyadimos
 	      			var userData = {
 						googleId: parsed.id,
-						access: user.access + ',google'
+						access: user.access + ',google',
+						oldId: parsed.emails[0].value
 					};
-	      			userModel.updateUser(parsed.emails[0].value, function(err, data) {
-	      				if (data == 'undefined')
-							response.status(500).json({"Mensaje":"Error"});							
+	      			userModel.updateUser(userData, function(err, data) {
+	      				if (data!=null) {
+	      					userModel.getUserById(parsed.emails[0].value, function (err, user) {
+	      						if (typeof user !== 'undefined' && user.length > 0) {
+	      							user = JSON.parse(JSON.stringify(user[0], null, 4));
+	      							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+										token = jwt.sign({}, config.secret, {
+											expiresIn: '6h',
+											audience: "gardiot.ovh",
+											subject: user.id
+										});
+										user.token = token;	    	
+							   		}
+							    	return done(err, user);
+	      						}
+	      						else return done (err, false);
+	      					});
+	      				}
+						else return done (err, false);						
 	      			});
 	      		}
-	      	} 							     	
-			else {
+	      		else { //Si el usuario existe y ya tiene asociado el login de Google en BD
+	      			if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+						token = jwt.sign({}, config.secret, {
+							expiresIn: '6h',
+							audience: "gardiot.ovh",
+							subject: user.id
+						});
+						user.token = token;	    	
+			   		}
+			    	return done(err, user);
+	      		}		    	
+	      	} 
+
+			else { //Si no encontramos al usuario en la BD, lo creamos
 				var userData = {
 					id: parsed.emails[0].value,
 					googleId: parsed.id,
@@ -43,22 +73,27 @@ passport.use(new GoogleStrategy({
 					//photo: parsed.photos[0].value
 				};
 				userModel.insertUser(userData, function(error, data) {
-					if (data) 
-						userModel.getUserById(parsed.emails[0].value, function (err, user) {});										
-					else 
-						response.status(500).json({"Mensaje":"Error"});
-				});	  
-			} 
-	    });
-	    var token;
-	    if (!request.user) { 
-			token = jwt.sign({}, config.secret, {
-				expiresIn: '6h',
-				audience: "gardiot.ovh",
-				subject: user.id
-			});	    	
-	    }
-	    return done(err, user, token);
+					if (data!=null) {
+						userModel.getUserById(parsed.emails[0].value, function (err, user) {
+							if (typeof user !== 'undefined' && user.length > 0) {
+								user = JSON.parse(JSON.stringify(user[0], null, 4));
+								if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+									token = jwt.sign({}, config.secret, {
+										expiresIn: '6h',
+										audience: "gardiot.ovh",
+										subject: user.id
+									});
+									user.token = token;	    	
+						   		}
+						   		return done(err, user); 
+							}
+							else return done (err, false);							
+						});
+					} 
+					else  return done(err, false);
+				});		    	 
+			}			
+	    });  
   	}); 	
   }
 ));
@@ -97,8 +132,7 @@ jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
 var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
-	console.log('Payload', payload);
-	userModel.getUserById(payload.id, function(err, user) {
+	userModel.getUserById(payload.sub, function(err, user) {
 		if (err) 
 			next(err, false);		
 		else if (user) 

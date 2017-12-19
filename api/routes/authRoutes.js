@@ -7,8 +7,8 @@ var userModel = require('../models/user');
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email'], prompt:'consent', session: false}));
 
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login', session: false }), function(request, response) {
-    if (request.token) 
-    	response.status(200).json({"Token": request.token});
+    if (request.user.token) 
+    	response.status(200).json({"Token": request.user.token});
     else
     	response.status(200).json({"Mensaje":"Cuenta añadida correctamente"});
 });
