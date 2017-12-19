@@ -12,7 +12,9 @@ export class LoginComponent implements OnInit{
 
   user:User={
     id:"",
-    password:""
+    password:"",
+    name:"",
+    plan:""
   }
 
   constructor(
