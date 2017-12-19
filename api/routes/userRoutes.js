@@ -218,7 +218,7 @@ router.put('/user', function(request, response) {
 function sanitizeInput(data) {
 	if (data.id) { data.id = validator.normalizeEmail(data.id); data.id = validator.trim(data.id);}
 	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	if (data.birthDate) data.birthDate = validator.toDate(request.body.date);
+	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
 	if (data.photo) data.photo = validator.trim(data.photo);
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
