@@ -50,6 +50,7 @@ export class UserService {
     loginGoogle(){
       window.location.href=this.apiURL+"auth/google";
     }
+    
 
     details(user:User){
       let headers = new Headers({
