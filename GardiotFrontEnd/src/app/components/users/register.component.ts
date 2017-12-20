@@ -11,7 +11,10 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit{
   user:User={
     id:"",
-    password:""
+    password:"",
+    name:"",
+    plan:""
+
   }
 
   constructor(
