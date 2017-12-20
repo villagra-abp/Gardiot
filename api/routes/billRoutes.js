@@ -9,6 +9,7 @@ router.get('/bill', function (request, response) {
   });
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
 
 router.get('/bill/:id', function(request, response) {
 	var id = request.params.id;
@@ -30,7 +31,7 @@ router.post('/bill', function(request, response) {
     emitedDay: request.body.emitedDay,
     user: request.body.user,
 	};
-	console.log(request.body);
+
 	billModel.insertBill(billData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -50,7 +51,7 @@ router.put('/bill', function(request, response) {
     emitedDay: request.body.emitedDay,
     user: request.body.user,
 	};
-	console.log(billData);
+	
 	billModel.updateBill(billData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

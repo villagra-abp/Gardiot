@@ -9,6 +9,7 @@ router.get('/myPlant', function (request, response) {
   });
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
 
 router.get('/myPlant/:id', function(request, response) {
 	var id = request.params.id;
@@ -33,7 +34,7 @@ router.post('/myPlant', function(request, response) {
     garden: request.body.garden,
     soil: request.body.soil,
 	};
-	console.log('myPlant ->' +request.body);
+
 	myPlantModel.insertMyPlant(myPlantData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -56,7 +57,7 @@ router.put('/myPlant', function(request, response) {
     garden: request.body.garden,
     soil: request.body.soil,
 	};
-	console.log(myPlantData);
+	
 	myPlantModel.updateMyPlant(myPlantData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

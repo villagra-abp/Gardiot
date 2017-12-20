@@ -9,6 +9,7 @@ router.get('/treatment', function (request, response) {
   });
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
 
 router.get('/treatment/:id', function(request, response) {
 	var id = request.params.id;
@@ -27,7 +28,7 @@ router.post('/treatment', function(request, response) {
 		name: request.body.name,
 		description: request.body.description,
 	};
-	console.log(request.body);
+
 	treatmentModel.insertTreatment(treatmentData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -44,7 +45,7 @@ router.put('/treatment', function(request, response) {
 		name: request.body.name,
 		description: request.body.description,
 	};
-	console.log(treatmentData);
+	
 	treatmentModel.updateTreatment(treatmentData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

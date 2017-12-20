@@ -50,7 +50,7 @@ bill.updateBill = function(data, callback) {
       sentence += 'amount = "' + data.amount + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.paid) {
       if(commaCounter>0)
         sentence +=', ';

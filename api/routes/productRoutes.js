@@ -9,6 +9,8 @@ router.get('/product', function(request, response) {
 	});
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
+
 router.get('/product/:id', function(request, response) {
 	var id = request.params.id;
 	productModel.getProductById(id, function(error, data) {
@@ -26,7 +28,7 @@ router.post('/product', function(request, response) {
 		name: request.body.name,
 		price: request.body.price,
 	};
-	console.log(request.body);
+
 	productModel.insertProduct(productData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -43,7 +45,7 @@ router.put('/product', function(request, response) {
 		name: request.body.name,
 		price: request.body.price,
 	};
-	console.log(productData);
+	
 	productModel.updateProduct(productData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

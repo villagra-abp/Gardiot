@@ -3,11 +3,15 @@ var router = express.Router();
 
 var toolModel = require('../models/tool');
 
+
 router.get('/tool', function(request, response) {
 	toolModel.getTool (function(error, data) { //Asocia la llamada con la funcion del modelo
 		response.status(200).json(data);
 	});
 });
+
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
+
 
 router.get('/tool/:id', function(request, response) {
 	var id = request.params.id;
@@ -26,7 +30,7 @@ router.post('/tool', function(request, response) {
 		name: request.body.name,
 		photo: request.body.photo,
 	};
-	console.log(request);
+	
 
 	toolModel.insertTool(toolData, function(error, data) {
 		if (data) {

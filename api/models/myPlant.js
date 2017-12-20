@@ -50,7 +50,7 @@ myPlant.updateMyPlant = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.xCoordinate) {
       if(commaCounter>0)
         sentence +=', ';

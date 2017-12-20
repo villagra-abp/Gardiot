@@ -37,7 +37,6 @@ plan.insertPlan = function(data, callback) {
       if(error)
         throw error;
       else
-      console.log('fields->' + JSON.stringify(result));
         callback(null, result.affectedRows);
     });
   }
@@ -51,7 +50,7 @@ plan.updatePlan = function(data, callback) {
       sentence += 'description = "' + data.description + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.price) {
       if(commaCounter>0)
         sentence +=', ';
