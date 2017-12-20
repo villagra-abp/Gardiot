@@ -113,7 +113,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), function(req
 router.put('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
 	var userData = {
 		id: request.body.id,
-		password: request.body.contrasenya,
+		password: request.body.password,
 		name: request.body.name,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
@@ -140,6 +140,14 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 				else
 				response.status(500).json({"Mensaje":"Error con la contraseña"}); 
 			});
+		}
+		else {
+			userModel.updateUser(userData, function(error, data) {
+				if (data)
+					response.status(200).json({"Mensaje":"Actualizado"});
+				else
+					response.status(500).json({"Mensaje":"Error"});
+			});
 		}		
 	}
 });
@@ -162,6 +170,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}),  function(
 
 router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
 	request.logout();
+	response.status(200).json({"Mensaje":"Desconectado"});
 });
 
 /***************************
