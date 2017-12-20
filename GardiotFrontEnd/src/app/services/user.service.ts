@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, RequestOptions  } from "@angular/http";
 import { User } from "../interfaces/user.interface";
+import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
 @Injectable()
@@ -8,7 +9,7 @@ export class UserService {
 
   private apiURL:string="http://localhost:3000/api/";
 
-  constructor( private http:Http) {}
+  constructor( private http:Http, private _route:Router) {}
 
     registro( user:User ){
       let body = `id=${user.id}&password=${user.password}`;
@@ -47,16 +48,7 @@ export class UserService {
           })
     }
     loginGoogle(){
-      let headers = new Headers({
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Methods':'GET',
-        'Access-Control-Allow-Headers':'Content-Type'
-      });
-
-      return this.http.get(this.apiURL+"auth/google", { headers })
-        .map(res=>{
-          return res.json();
-        });
+      window.location.href=this.apiURL+"auth/google";
     }
 
     details(user:User){
