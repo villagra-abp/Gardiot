@@ -54,8 +54,6 @@ export class UserService {
             return res.json();
           })
     }
-    
-
 
     details(user:User){
       let headers = new Headers({
@@ -63,6 +61,17 @@ export class UserService {
       });
 
       return this.http.get(this.apiURL+"user", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    detailsAll(user:User){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.get(this.apiURL+"users", { headers } )
           .map( res =>{
             return res.json();
           })

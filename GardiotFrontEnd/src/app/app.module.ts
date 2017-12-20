@@ -19,6 +19,7 @@ import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/users/detail.component';
 import { ProfileComponent } from './components/users/profile.component';
+import { ListusersComponent } from './components/listusers/listusers.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ProfileComponent } from './components/users/profile.component';
     RegisterComponent,
     FooterComponent,
     DetailComponent,
-    ProfileComponent 
+    ProfileComponent,
+    ListusersComponent,
   ],
   imports: [
     BrowserModule,

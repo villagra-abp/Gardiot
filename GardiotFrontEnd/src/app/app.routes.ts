@@ -4,6 +4,7 @@ import { LogoutComponent } from "./components/users/logout.component";
 import { RegisterComponent } from "./components/users/register.component";
 import { DetailComponent } from "./components/users/detail.component";
 import { ProfileComponent } from "./components/users/profile.component";
+import { ListusersComponent } from './components/admin/listusers/listusers.component';
 
 
 const app_routes: Routes = [
@@ -12,6 +13,7 @@ const app_routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'detail', component: DetailComponent },
   { path: 'profile', component: ProfileComponent },
+
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 
