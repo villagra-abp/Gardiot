@@ -9,6 +9,7 @@ router.get('/plan', function (request, response) {
   });
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
 
 router.get('/plan/:id', function(request, response) {
 	var id = request.params.id;

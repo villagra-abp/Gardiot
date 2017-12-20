@@ -9,6 +9,8 @@ router.get('/product', function(request, response) {
 	});
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
+
 router.get('/product/:id', function(request, response) {
 	var id = request.params.id;
 	productModel.getProductById(id, function(error, data) {

@@ -10,6 +10,9 @@ router.get('/tool', function(request, response) {
 	});
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
+
+
 router.get('/tool/:id', function(request, response) {
 	var id = request.params.id;
 	toolModel.getToolById(id, function(error, data) {
