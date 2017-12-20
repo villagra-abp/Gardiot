@@ -50,7 +50,7 @@ soil.updateSoil = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.description) {
       if(commaCounter>0)
         sentence +=', ';

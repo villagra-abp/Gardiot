@@ -49,7 +49,7 @@ product.updateProduct = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    //console.log('data.price -> ' + data.price);
+    
     if(data.price) {
       if(commaCounter>0)
         sentence +=', ';

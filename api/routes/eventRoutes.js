@@ -29,7 +29,7 @@ router.post('/event', function(request, response) {
 		description: request.body.description,
     done: request.body.done,
 	};
-	console.log(request.body);
+
 	eventModel.insertEvent(eventData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -47,7 +47,7 @@ router.put('/event', function(request, response) {
 		description: request.body.description,
     done: request.body.done,
 	};
-	console.log(eventData);
+	
 	eventModel.updateEvent(eventData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

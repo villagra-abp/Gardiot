@@ -29,7 +29,7 @@ router.post('/soil', function(request, response) {
 		description: request.body.description,
     texture: request.body.texture,
 	};
-	console.log(request.body);
+
 	soilModel.insertSoil(soilData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -47,7 +47,7 @@ router.put('/soil', function(request, response) {
 		description: request.body.description,
     texture: request.body.texture,
 	};
-	console.log(soilData);
+	
 	soilModel.updateSoil(soilData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

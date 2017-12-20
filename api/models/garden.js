@@ -33,7 +33,7 @@ garden.getGardenById = function(id, callback) {
 garden.insertGarden = function(data, callback) {
   if(connection) {
     var sentence = 'INSERT INTO Garden(title, width, lenght, longitude, latitude,soil, user, city) values("'+data.title+'", "'+data.width+'", "'+data.length+'", "'+data.longitude+'", "'+data.latitude+'", "'+data.soil+'", "'+data.user+'", "'+data.city+'")';
-    console.log(sentence);
+
     connection.query(sentence, function(error, result){
       if(error)
         throw error;
@@ -51,7 +51,7 @@ garden.updateGarden = function(data, callback) {
       sentence += 'title = "' + data.title + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.width) {
       if(commaCounter>0)
         sentence +=', ';

@@ -29,7 +29,7 @@ router.post('/registry', function(request, response) {
 		date: request.body.date,
     event: request.body.event,
 	};
-	console.log(request.body);
+
 	registryModel.insertRegistry(registryData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -47,7 +47,7 @@ router.put('/registry', function(request, response) {
     date: request.body.date,
     event: request.body.event,
 	};
-	console.log(registryData);
+	
 	registryModel.updateRegistry(registryData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

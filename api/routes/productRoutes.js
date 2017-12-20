@@ -28,7 +28,7 @@ router.post('/product', function(request, response) {
 		name: request.body.name,
 		price: request.body.price,
 	};
-	console.log(request.body);
+
 	productModel.insertProduct(productData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -45,7 +45,7 @@ router.put('/product', function(request, response) {
 		name: request.body.name,
 		price: request.body.price,
 	};
-	console.log(productData);
+	
 	productModel.updateProduct(productData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
