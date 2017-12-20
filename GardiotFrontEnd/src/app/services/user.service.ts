@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, RequestOptions  } from "@angular/http";
 import { User } from "../interfaces/user.interface";
+import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
 @Injectable()
@@ -8,7 +9,7 @@ export class UserService {
 
   private apiURL:string="http://localhost:3000/api/";
 
-  constructor( private http:Http) {}
+  constructor( private http:Http, private _route:Router) {}
 
     registro( user:User ){
       let body = `id=${user.id}&password=${user.password}`;
@@ -53,6 +54,7 @@ export class UserService {
             return res.json();
           })
     }
+    
 
 
     details(user:User){
