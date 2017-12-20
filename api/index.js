@@ -6,7 +6,7 @@ var helmet = require('helmet'); //Security
 var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
-var _ = require('lodash'); //_ functionality
+
 
 
 var config = require('./config/main');
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cors());
 app.use(helmet());
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 app.use(passport.initialize());
 require('./config/passport');
