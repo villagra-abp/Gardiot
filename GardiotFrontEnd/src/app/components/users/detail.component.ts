@@ -26,7 +26,6 @@ export class DetailComponent implements OnInit{
           console.log(data);
           this.user.id=data.id;
           this.user.password=data.password;
-          this.user.password=data.password;
         },
       error => {
         console.error(error);

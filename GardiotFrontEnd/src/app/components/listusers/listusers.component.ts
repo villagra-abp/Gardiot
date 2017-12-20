@@ -10,19 +10,20 @@ import { UserService } from "../../services/user.service";
 })
 export class ListusersComponent {
 
-  user:User{
-    id:"hola",
-
-  }
+  users:any[] = [];
 
   constructor(
     private _detailService:UserService,
     private _route:Router){ }
 
   mostrar(){
-    this._detailService.detailsAll(this.user)
+    this._detailService.detailsAll(this.users)
         .subscribe(data=>{
           console.log(data);
+          for(let key$ in data){
+            console.log(data[key$]);
+            this.users.push(data[key$]);
+          }
         },
       error => {
         console.error(error);
