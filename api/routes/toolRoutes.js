@@ -30,7 +30,7 @@ router.post('/tool', function(request, response) {
 		name: request.body.name,
 		photo: request.body.photo,
 	};
-	console.log(request);
+	
 
 	toolModel.insertTool(toolData, function(error, data) {
 		if (data) {

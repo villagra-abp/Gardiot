@@ -32,7 +32,7 @@ router.post('/plant', function(request, response) {
     url3DModel: request.body.url3DModel,
     category: request.body.category,
 	};
-	console.log(request.body);
+
 	plantModel.insertPlant(plantData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -53,7 +53,7 @@ router.put('/plant', function(request, response) {
     url3DModel: request.body.url3DModel,
     category: request.body.category,
 	};
-	console.log(plantData);
+	
 	plantModel.updatePlant(plantData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

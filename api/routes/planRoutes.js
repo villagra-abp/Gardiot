@@ -29,7 +29,7 @@ router.post('/plan', function(request, response) {
 		description: request.body.description,
     price: request.body.price,
 	};
-	console.log(request.body);
+
 	planModel.insertPlan(planData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -46,7 +46,7 @@ router.put('/plan', function(request, response) {
 		description: request.body.description,
     price: request.body.price,
 	};
-	console.log(planData);
+	
 	planModel.updatePlan(planData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

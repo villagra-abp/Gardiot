@@ -28,7 +28,7 @@ router.post('/city', function(request, response) {
 		name: request.body.name,
     country: request.body.country,
 	};
-	console.log(request.body);
+
 	cityModel.insertCity(cityData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -45,7 +45,7 @@ router.put('/city', function(request, response) {
     name: request.body.name,
     country: request.body.country,
 	};
-	console.log(cityData);
+	
 	cityModel.updateCity(cityData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

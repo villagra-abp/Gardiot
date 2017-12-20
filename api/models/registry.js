@@ -50,7 +50,7 @@ registry.updateRegistry = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    //console.log('data.description -> ' + data.description);
+    
     if(data.date) {
       if(commaCounter>0)
         sentence +=', ';

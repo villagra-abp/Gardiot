@@ -28,7 +28,7 @@ router.post('/year', function(request, response) {
 		id: request.body.id,
 
 	};
-	console.log(request.body);
+
 	yearModel.insertYear(yearData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -44,7 +44,7 @@ router.put('/year', function(request, response) {
 		idOld: request.body.idOld,
     idNew: request.body.idNew,
 	};
-	console.log(yearData);
+	
 	yearModel.updateYear(yearData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

@@ -34,7 +34,7 @@ router.post('/garden', function(request, response) {
     user: request.body.user,
     city: request.body.city,
 	};
-	console.log(request.body);
+
 	gardenModel.insertGarden(gardenData, function(error, data) {
 		if (data) {
 			response.status(200).json({"Mensaje":"Insertado"});
@@ -57,7 +57,7 @@ router.put('/garden', function(request, response) {
     user: request.body.user,
     city: request.body.city,
 	};
-	console.log(gardenData);
+	
 	gardenModel.updateGarden(gardenData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
