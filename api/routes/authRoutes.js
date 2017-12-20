@@ -8,10 +8,9 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['profile', '
 
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login', session: false }), function(request, response) {
     if (request.user.token) 
-    	response.status(200).json({"Token": request.user.token});
+    	response.redirect('localhost:4200/details').json({"Token": request.user.token});
     else
-    	response.status(200).json({"Mensaje":"Cuenta añadida correctamente"});
-    response.redirect('localhost:4200/details');
+    	response.redirect('localhost:4200/details').json({"Mensaje":"Cuenta añadida correctamente"});
 });
 router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email'], session: false}));
 
