@@ -9,6 +9,7 @@ router.get('/garden', function (request, response) {
   });
 });
 
+router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
 
 router.get('/garden/:id', function(request, response) {
 	var id = request.params.id;
