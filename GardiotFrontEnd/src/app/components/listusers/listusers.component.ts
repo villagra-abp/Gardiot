@@ -19,9 +19,9 @@ export class ListusersComponent {
   mostrar(){
     this._detailService.detailsAll(this.users)
         .subscribe(data=>{
-          console.log(data);
+          //console.log(data);
           for(let key$ in data){
-            console.log(data[key$]);
+            //console.log(data[key$]);
             this.users.push(data[key$]);
           }
         },

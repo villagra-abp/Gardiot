@@ -1,27 +1,16 @@
 <h1>Panel de administrador</h1>
 <hr>
 <h2>Lista de Usuarios</h2>
-<div class="row animated fadeIn fast">
-  <div class="col-md-12 text-right">
-    <button [routerLink]="['/user','nuevo']"
-            class="btn btn-outline-primary"
-            type="submit" name="button">
-      Nuevo usuario
-    </button>
-  </div>
-
-</div>
-<hr>
-
+<br>
 <div class="col-md-12 text-right">
-  <!-- <button [routerLink] ="['/profile']" class="btn btn-outline-primary"
+  <button [routerLink] ="['/user:id']" class="btn btn-outline-primary"
           type="submit" name="button">
-    Editar usuario
-  </button> -->
+    Nuevo usuario
+  </button>
   <br><br>
 
 </div>
-<div class="row animated fadeIn fast">
+<div class="row">
   <div class="col-md-12">
     <div class="table-responsive">
       <table class="table">

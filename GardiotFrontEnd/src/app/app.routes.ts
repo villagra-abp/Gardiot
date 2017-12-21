@@ -14,8 +14,6 @@ const app_routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'detail', component: DetailComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'profile', component: ProfileComponent },
-
   { path: 'user/:id', component: UserComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
