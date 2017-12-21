@@ -14,7 +14,7 @@ export class DetailComponent implements OnInit{
     password:"",
     name:"",
     plan:"",
-    birthDate: new Date(),
+    birthDate:new Date(),
   }
 
   constructor(
