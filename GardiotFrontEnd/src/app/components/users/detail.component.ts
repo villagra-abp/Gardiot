@@ -13,7 +13,8 @@ export class DetailComponent implements OnInit{
     id:"",
     password:"",
     name:"",
-    plan:""
+    plan:"",
+    birthDate: new Date(),
   }
 
   constructor(
@@ -26,7 +27,9 @@ export class DetailComponent implements OnInit{
           console.log(data);
           this.user.id=data.id;
           this.user.password=data.password;
-          this.user.password=data.password;
+          this.user.birthDate=data.birthDate;
+          this.user.plan=data.plan;
+          this.user.name=data.name;
         },
       error => {
         console.error(error);

@@ -69,7 +69,7 @@ export class UserService {
     }
 
     modifyUserProfile(user:User){
-      let body = `name=${user.name}`;
+      let body = `name=${user.name}&birthdate=${user.birthDate}&password=${user.password}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
