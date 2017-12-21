@@ -60,26 +60,32 @@ router.post('/register', function(request, response) {
 //*** Autenticacion con id, password
 
 router.post('/authenticate', function(request, response) {
-	var id = validator.normalizeEmail(validator.trim(request.body.id));
-	userModel.getUserById(id, function (error, user) {
-		if (typeof user !== 'undefined' && user.length > 0) {
-			if (user[0].active == 1) {
-				userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
-					if (isMatch && !err) {
-						var token = jwt.sign({}, config.secret, {
-							expiresIn: '6h',
-							audience: "gardiot.ovh",
-							subject: user[0].id
-						});
-						response.status(200).json({"Token":token});
-					}
-					else response.status(401).json({"Mensaje":"Las contraseñas no coinciden"});
-				});
+	if (!request.body.id || !request.body.password) 
+		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});	
+	if (!validator.isEmail(request.body.id))
+		response.status(400).json({"Mensaje":"Introduce un email válido"});
+	else {
+		var id = validator.normalizeEmail(validator.trim(request.body.id));
+		userModel.getUserById(id, function (error, user) {
+			if (typeof user !== 'undefined' && user.length > 0) {
+				if (user[0].active == 1) {
+					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
+						if (isMatch && !err) {
+							var token = jwt.sign({}, config.secret, {
+								expiresIn: '6h',
+								audience: "gardiot.ovh",
+								subject: user[0].id
+							});
+							response.status(200).json({"Token":token});
+						}
+						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
+					});
+				}
+				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
-			else response.status(403).json({"Mensaje":"Cuenta no activa"});
-		}
-		else response.status(404).json({"Mensaje":"No existe el usuario"});
-	});
+			else response.status(404).json({"Mensaje":"No existe el usuario"});
+		});
+	}
 });
 
 /*router.get('/hash/:passwd', function(request, response) {
