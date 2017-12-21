@@ -2,7 +2,7 @@
   <ul>
     <li>Nombre: {{this.user.name}}</li>
     <li>Email: {{this.user.id}}</li>
-    <li>Fecha Nacimiento: {{fecha}}</li>
+    <li>Fecha Nacimiento: {{this.user.birthDate}}</li>
     <li>Ciudad: {{cuidad}}</li>
     <li>Plan: {{this.user.plan}}</li>
   </ul>
@@ -10,8 +10,19 @@
 
 <section>
   <form class="" action="index.html" method="post">
-    <label  for="name_user">Cambiar Nombre </label>
-    <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" >
+    <div>
+      <label  for="name_user">Cambiar Nombre </label>
+      <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" >
+    </div>
+
+    <div class="">
+    <label for="birthDate_user">Cambiar Fecha</label>
+    <input [(ngModel)]="user.birthDate" type="date" name="birthDate" id="birthDate_user"  >
+  </div>
+  <div class="">
+    <label for="password_user">Cambiar Contraseña</label>
+    <input [(ngModel)]="user.password" type="password" name="password" id="password_user" >
+  </div>
     <button  (click)="edit()" type="submit" class="btn btn-default">Submit</button>
   </form>
 </section>
