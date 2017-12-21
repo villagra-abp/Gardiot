@@ -54,8 +54,6 @@ export class UserService {
             return res.json();
           })
     }
-    
-
 
     details(user:User){
       let headers = new Headers({
@@ -68,10 +66,22 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User){
-      let body = `name=${user.name}`;
+    detailsAll(user:User){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.get(this.apiURL+"users", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    modifyUserProfile(user:User){
+      let body = `name=${user.name}&birthdate=${user.birthDate}&password=${user.password}`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
       });
       return this.http.put(this.apiURL+"user", body, { headers })
           .map( res =>{
@@ -81,9 +91,16 @@ export class UserService {
 
 
 
-    logout(): void{
-      //llamar a la api a su método logout
-      localStorage.removeItem('Bearer');
+    logout(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      console.log("headers");
+      return this.http.get(this.apiURL+"logout", { headers })
+        .map(res=>{
+          return res.json();
+        })
     }
 
 }

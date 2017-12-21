@@ -12,7 +12,8 @@ export class ProfileComponent {
     id:"",
     password:"",
     name:"",
-    plan:""
+    plan:"",
+    birthDate:new Date(),
   }
 
   constructor(
@@ -25,7 +26,7 @@ export class ProfileComponent {
           console.log(data);
           this.user.id=data.id;
           this.user.password=data.password;
-          this.user.password=data.password;
+          this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
           this.user.name=data.name;
         },
@@ -38,6 +39,7 @@ export class ProfileComponent {
     edit(){
       this._detailService.modifyUserProfile(this.user)
           .subscribe(data=>{
+            console.log(data);
           },
         error => {
           console.error(error);
