@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh:3000/api/";
+  private apiURL:string="https://gardiot.ovh/api/";
 
   constructor( private http:Http, private _route:Router) {}
 
