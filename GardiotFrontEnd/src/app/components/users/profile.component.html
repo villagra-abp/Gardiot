@@ -2,16 +2,35 @@
   <ul>
     <li>Nombre: {{this.user.name}}</li>
     <li>Email: {{this.user.id}}</li>
-    <li>Fecha Nacimiento: {{fecha}}</li>
+    <li>Fecha Nacimiento: {{this.user.birthDate}}</li>
     <li>Ciudad: {{cuidad}}</li>
     <li>Plan: {{this.user.plan}}</li>
   </ul>
+  <button [routerLink]="['listusers']" class="btn btn-outline-primary">
+    Regresar
+  </button>
 </section>
+<section class="container">
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12">
+      <form  action="index.html" method="post">
+        <div class="form-group">
+          <label  for="name_user">Cambiar Nombre </label>
+          <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" >
+        </div>
 
-<section>
-  <form class="" action="index.html" method="post">
-    <label  for="name_user">Cambiar Nombre </label>
-    <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" >
-    <button  (click)="edit()" type="submit" class="btn btn-default">Submit</button>
-  </form>
+        <div class="form-group">
+          <label for="birthDate_user">Cambiar Fecha</label>
+          <input [(ngModel)]="user.birthDate" type="date" name="birthDate" id="birthDate_user"  >
+        </div>
+
+        <div class="form-group">
+          <label for="password_user">Cambiar Contraseña</label>
+          <input [(ngModel)]="user.password" type="password" name="password" id="password_user" >
+        </div>
+
+        <button  (click)="edit()" type="submit" class="btn btn-outline-primary">Submit</button>
+      </form>
+    </div>
+  </div>
 </section>

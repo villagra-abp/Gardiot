@@ -13,7 +13,8 @@ export class RegisterComponent implements OnInit{
     id:"",
     password:"",
     name:"",
-    plan:""
+    plan:"",
+    birthDate:null
 
   }
 

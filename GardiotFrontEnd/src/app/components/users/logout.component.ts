@@ -13,8 +13,12 @@ export class LogoutComponent implements OnInit {
     private _route:Router) {}
 
   ngOnInit() {
-    this._logoutService.logout();
-    this._route.navigate(['/login']);
+    this._logoutService.logout()
+        .subscribe(data=>{
+          if(data.Mensaje=="Desconectado"){
+            localStorage.removeItem('Bearer');
+            this._route.navigate(['/login']);
+          }
+        });
   }
-
 }
