@@ -66,7 +66,7 @@ export class UserService {
           })
     }
 
-    detailsAll(user:User){
+    detailsAll(){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
@@ -96,7 +96,6 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log("headers");
       return this.http.get(this.apiURL+"logout", { headers })
         .map(res=>{
           return res.json();
