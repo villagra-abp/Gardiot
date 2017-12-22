@@ -9,7 +9,6 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
     	response.json({"Token": request.user.token});
     else
     	response.json({"Mensaje":"Cuenta añadida correctamente"});
-    response.redirect('localhost:4200/details')
 });
 //router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email'], session: false}));
 
