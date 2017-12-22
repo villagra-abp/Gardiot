@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit{
     id:"",
     password:"",
     name:"",
-    plan:""
+    plan:"",
+    birthDate:null
   }
 
   constructor(

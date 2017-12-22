@@ -17,7 +17,7 @@ export class ListusersComponent {
     private _route:Router){ }
 
   mostrar(){
-    this._detailService.detailsAll(this.users)
+    this._detailService.detailsAll()
         .subscribe(data=>{
           //console.log(data);
           for(let key$ in data){
