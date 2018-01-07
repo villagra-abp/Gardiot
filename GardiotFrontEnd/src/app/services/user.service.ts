@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/";
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -87,6 +87,13 @@ export class UserService {
           .map( res =>{
             return res.json();
           })
+    }
+
+    public isAuthenticated(): boolean{
+      if(localStorage['Bearer']!=null){
+        return true;
+      }
+      return false;
     }
 
 
