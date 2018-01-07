@@ -23,9 +23,9 @@ export class RegisterComponent implements OnInit{
     private _route:Router){}
 
   guardar(){
-    this._registerService.registro(this.user)
+    this._registerService.register(this.user)
         .subscribe(data=>{
-
+          this._route.navigate(['/index']);
         });
   }
 
