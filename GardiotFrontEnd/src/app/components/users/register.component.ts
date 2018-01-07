@@ -19,13 +19,16 @@ export class RegisterComponent implements OnInit{
   }
 
   constructor(
-    private _registerService:UserService,
+    private _userService:UserService,
     private _route:Router){}
 
   guardar(){
-    this._registerService.register(this.user)
+    this._userService.register(this.user)
         .subscribe(data=>{
-          this._route.navigate(['/index']);
+          this._userService.login(this.user)//una vez se registra, loguea automáticamente al usuario. PROVISIONAL
+              .subscribe(data=>{
+                this._route.navigate(['/index']);
+              });
         });
   }
 
