@@ -11,8 +11,7 @@ import { UserService } from "./services/user.service";
 
 import { AppComponent } from './app.component';
 
-import { HeaderLogComponent } from './components/headerlog.component';
-import { HeaderNoLogComponent } from './components/headernolog.component';
+import { HeaderComponent } from './components/header.component';
 import { LoginComponent } from './components/users/login.component';
 import { LogoutComponent } from './components/users/logout.component';
 import { RegisterComponent } from './components/users/register.component';
@@ -26,8 +25,7 @@ import { UserComponent } from './components/listusers/user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderLogComponent,
-    HeaderNoLogComponent,
+    HeaderComponent,
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
