@@ -47,4 +47,10 @@ app.use('/api', require('./routes/yearRoutes'));
 //Start server
 app.listen(config.port, function () {
   console.log('API running on port ' + config.port);
+}).on('error', function(err) {
+	console.log('Error handled: ' + err);
+});
+
+process.on('uncaughtException', function(err) {
+	console.log('Except handled: ' + err);
 });

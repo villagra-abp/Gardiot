@@ -35,7 +35,7 @@ router.post('/register', function(request, response) {
 			response.status(400).json({"Mensaje": validate});
 		else {
 			userData = sanitizeInput(userData);
-			userModel.getUserById(request.params.id, function(error, data) {
+			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data !== 'undefined' && data.length > 0) 
 					response.status(202).json({"Mensaje":"Este usuario ya existe"});
 				else {					
@@ -162,7 +162,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 //*** Darse de baja. Sin parametros
 
 router.patch('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
-	userModel.deactivateUser(token.id, function(error, data) {
+	userModel.deactivateUser(request.user.id, function(error, data) {
 		if (data == 1)
 			response.status(200).json({"Mensaje":"Cuenta desactivada"});
 		else if (data == 0)
