@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit{
   guardar(){
     this._loginService.login(this.user)
         .subscribe(data=>{
-          this._route.navigate(['/index']);
+          this._route.navigate(['/detail']);
         });
   }
 

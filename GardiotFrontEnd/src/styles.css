@@ -1,6 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files*/
 .footer{
-  position: relativo;
+  position: absolute;
   bottom:0;
   width:100%;
 }

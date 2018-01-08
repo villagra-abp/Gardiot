@@ -7,6 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  nombre:string= "Luis";
-  apellido:string="Berenguer";
+  admin:boolean=window.location.href.indexOf('admin')>=0;
 }
