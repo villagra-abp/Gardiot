@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit{
         .subscribe(data=>{
           this._userService.login(this.user)//una vez se registra, loguea automáticamente al usuario. PROVISIONAL
               .subscribe(data=>{
-                this._route.navigate(['/index']);
+                this._route.navigate(['/detail']);
               });
         });
   }

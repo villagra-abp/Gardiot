@@ -7,7 +7,10 @@ import { UserService } from '../services/user.service';
 })
 
 export class HeaderComponent {
+
+  admin:boolean=window.location.href.indexOf('admin')>=0;
+
     constructor( private user:UserService ){
-      
+
     }
 }

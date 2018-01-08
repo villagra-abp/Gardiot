@@ -18,8 +18,12 @@ import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/users/detail.component';
 import { ProfileComponent } from './components/users/profile.component';
-import { ListusersComponent } from './components/listusers/listusers.component';
-import { UserComponent } from './components/listusers/user.component';
+
+//Admin imports
+import { AdminListUsersComponent } from './components/admin/listusers.component';
+import { AdminUserComponent } from './components/admin/user.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminDashboardComponent } from './components/admin/dashboard.component';
 
 
 @NgModule({
@@ -32,8 +36,10 @@ import { UserComponent } from './components/listusers/user.component';
     FooterComponent,
     DetailComponent,
     ProfileComponent,
-    ListusersComponent,
-    UserComponent
+    AdminComponent,
+    AdminListUsersComponent,
+    AdminDashboardComponent,
+    AdminUserComponent
   ],
   imports: [
     BrowserModule,

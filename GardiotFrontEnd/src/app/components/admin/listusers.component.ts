@@ -4,11 +4,11 @@ import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 
 @Component({
-  selector: 'app-listusers',
+  selector: 'app-admin-listusers',
   templateUrl: './listusers.component.html',
   styleUrls: []
 })
-export class ListusersComponent {
+export class AdminListUsersComponent {
 
   users:any[] = [];
 
