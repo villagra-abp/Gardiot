@@ -17,9 +17,10 @@ var requireActive = require('../functions/userActiveCheck');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password) { 
+	if (!request.body.id || !request.body.password || !request.body.password2) 
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
-	}
+	else if (request.body.password !== request.body.password2)
+		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
 	else {
 		var userData = {
 			id: request.body.id,
@@ -126,7 +127,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 		photo: request.body.photo,
 		city: request.body.city,
 		plan: request.body.plan,
-		oldId: request.user.id
+		oldId: request.user.id,
 	};
 	var validate = validateInput(userData);
 	if (validate.length > 0)
@@ -134,19 +135,29 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 	else {
 		userData = sanitizeInput(userData);
 		if (userData.password) {
-			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) {
-					userData.password = hash;
-					userModel.updateUser(userData, function(error, data) {
-						if (data)
-							response.status(200).json({"Mensaje":"Actualizado"});
-						else
-							response.status(500).json({"Mensaje":"Error"});
-					});
-				}
-				else
-				response.status(500).json({"Mensaje":"Error con la contraseña"}); 
-			});
+			if (!request.body.oldPassword)
+				response.status(500).json({"Mensaje":"Introduce tu contraseña anterior para cambiarla"});
+			else if (request.body.password !== request.body.password2)
+				response.status(400).json({"Mensaje":"Las contraseñas nuevas no coinciden"});
+			else {
+				userModel.checkPassword(request.body.oldPassword, user[0].password, function(err, isMatch) { 
+					if (isMatch && !err) {
+						userModel.genHash(userData.password, function(error, hash) {
+							if (!error) {
+								userData.password = hash;
+								userModel.updateUser(userData, function(error, data) {
+									if (data)
+										response.status(200).json({"Mensaje":"Actualizado"});
+									else
+										response.status(500).json({"Mensaje":"Error"});
+								});
+							}
+							else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
+						});
+					}
+					else response.status(401).json({"Mensaje":"Contraseña anterior incorrecta"});
+				});				
+			}	
 		}
 		else {
 			userModel.updateUser(userData, function(error, data) {
