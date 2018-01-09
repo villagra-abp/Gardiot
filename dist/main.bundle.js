@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<app-header-nolog></app-header-nolog>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n"
+module.exports = "<app-header></app-header>\r\n<router-outlet></router-outlet>\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -57,8 +57,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.nombre = "Luis";
-        this.apellido = "Berenguer";
+        this.admin = window.location.href.indexOf('admin') >= 0;
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -86,16 +85,17 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routes__ = __webpack_require__("../../../../../src/app/app.routes.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_headerlog_component__ = __webpack_require__("../../../../../src/app/components/headerlog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_headernolog_component__ = __webpack_require__("../../../../../src/app/components/headernolog.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_users_login_component__ = __webpack_require__("../../../../../src/app/components/users/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_users_logout_component__ = __webpack_require__("../../../../../src/app/components/users/logout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_users_register_component__ = __webpack_require__("../../../../../src/app/components/users/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_footer_component__ = __webpack_require__("../../../../../src/app/components/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_users_detail_component__ = __webpack_require__("../../../../../src/app/components/users/detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_users_profile_component__ = __webpack_require__("../../../../../src/app/components/users/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_listusers_listusers_component__ = __webpack_require__("../../../../../src/app/components/listusers/listusers.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_listusers_user_component__ = __webpack_require__("../../../../../src/app/components/listusers/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_header_component__ = __webpack_require__("../../../../../src/app/components/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_users_login_component__ = __webpack_require__("../../../../../src/app/components/users/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_users_logout_component__ = __webpack_require__("../../../../../src/app/components/users/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_users_register_component__ = __webpack_require__("../../../../../src/app/components/users/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_footer_component__ = __webpack_require__("../../../../../src/app/components/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_users_detail_component__ = __webpack_require__("../../../../../src/app/components/users/detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_users_profile_component__ = __webpack_require__("../../../../../src/app/components/users/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_admin_listusers_component__ = __webpack_require__("../../../../../src/app/components/admin/listusers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_admin_user_component__ = __webpack_require__("../../../../../src/app/components/admin/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_admin_dashboard_component__ = __webpack_require__("../../../../../src/app/components/admin/dashboard.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -117,6 +117,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+//Admin imports
+
 
 
 
@@ -127,16 +129,17 @@ var AppModule = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__components_headerlog_component__["a" /* HeaderLogComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__components_headernolog_component__["a" /* HeaderNoLogComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__components_users_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__components_users_logout_component__["a" /* LogoutComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__components_users_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__components_footer_component__["a" /* FooterComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__components_users_detail_component__["a" /* DetailComponent */],
-                __WEBPACK_IMPORTED_MODULE_14__components_users_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_15__components_listusers_listusers_component__["a" /* ListusersComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__components_listusers_user_component__["a" /* UserComponent */]
+                __WEBPACK_IMPORTED_MODULE_7__components_header_component__["a" /* HeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__components_users_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__components_users_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__components_users_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__components_footer_component__["a" /* FooterComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__components_users_detail_component__["a" /* DetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__components_users_profile_component__["a" /* ProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__components_admin_admin_component__["a" /* AdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__components_admin_listusers_component__["a" /* AdminListUsersComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__components_admin_dashboard_component__["a" /* AdminDashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__components_admin_user_component__["a" /* AdminUserComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -168,7 +171,9 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_users_register_component__ = __webpack_require__("../../../../../src/app/components/users/register.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_users_detail_component__ = __webpack_require__("../../../../../src/app/components/users/detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_users_profile_component__ = __webpack_require__("../../../../../src/app/components/users/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_listusers_user_component__ = __webpack_require__("../../../../../src/app/components/listusers/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_admin_admin_routes__ = __webpack_require__("../../../../../src/app/components/admin/admin.routes.ts");
+
 
 
 
@@ -180,9 +185,9 @@ var app_routes = [
     { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__components_users_register_component__["a" /* RegisterComponent */] },
     { path: 'login', component: __WEBPACK_IMPORTED_MODULE_1__components_users_login_component__["a" /* LoginComponent */] },
     { path: 'logout', component: __WEBPACK_IMPORTED_MODULE_2__components_users_logout_component__["a" /* LogoutComponent */] },
+    { path: 'admin', component: __WEBPACK_IMPORTED_MODULE_6__components_admin_admin_component__["a" /* AdminComponent */], children: __WEBPACK_IMPORTED_MODULE_7__components_admin_admin_routes__["a" /* admin_routes */] },
     { path: 'detail', component: __WEBPACK_IMPORTED_MODULE_4__components_users_detail_component__["a" /* DetailComponent */] },
     { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_5__components_users_profile_component__["a" /* ProfileComponent */] },
-    { path: 'user/:id', component: __WEBPACK_IMPORTED_MODULE_6__components_listusers_user_component__["a" /* UserComponent */] },
     { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 var APP_ROUTING = __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* RouterModule */].forRoot(app_routes);
@@ -190,10 +195,233 @@ var APP_ROUTING = __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* RouterMod
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/admin/admin.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/admin.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AdminComponent = (function () {
+    function AdminComponent(_detailService, _route) {
+        this._detailService = _detailService;
+        this._route = _route;
+        this.users = [];
+    }
+    AdminComponent.prototype.ngOnInit = function () {
+    };
+    AdminComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin',
+            template: __webpack_require__("../../../../../src/app/components/admin/admin.component.html")
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+    ], AdminComponent);
+    return AdminComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/admin.routes.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return admin_routes; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listusers_component__ = __webpack_require__("../../../../../src/app/components/admin/listusers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_component__ = __webpack_require__("../../../../../src/app/components/admin/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_component__ = __webpack_require__("../../../../../src/app/components/admin/dashboard.component.ts");
+//Admin imports
+
+
+
+var admin_routes = [
+    { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_2__dashboard_component__["a" /* AdminDashboardComponent */] },
+    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_1__user_component__["a" /* AdminUserComponent */] },
+    { path: 'listusers', component: __WEBPACK_IMPORTED_MODULE_0__listusers_component__["a" /* AdminListUsersComponent */] },
+    { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
+];
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/dashboard.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container main-container\">\r\n<button [routerLink] =\"['/admin/listusers']\" class=\"btn btn-outline-primary\"\r\n        type=\"submit\" name=\"button\">Lista de usuarios</button>\r\n<button [routerLink] =\"['/admin/user']\" class=\"btn btn-outline-primary\"\r\n                type=\"submit\" name=\"button\">Crear nuevo usuario</button>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/dashboard.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminDashboardComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminDashboardComponent = (function () {
+    function AdminDashboardComponent() {
+    }
+    AdminDashboardComponent.prototype.ngOnInit = function () {
+    };
+    AdminDashboardComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin-dashboard',
+            template: __webpack_require__("../../../../../src/app/components/admin/dashboard.component.html")
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminDashboardComponent);
+    return AdminDashboardComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/listusers.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container main-container\">\r\n<h1>Panel de administrador</h1>\r\n<hr>\r\n<h2>Lista de Usuarios</h2>\r\n<br>\r\n<div class=\"col-md-12 text-right\">\r\n  <button [routerLink] =\"['/user/:id']\" class=\"btn btn-outline-primary\"\r\n          type=\"submit\" name=\"button\">\r\n    Nuevo usuario\r\n  </button>\r\n  <br><br>\r\n\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col-md-12\">\r\n    <div class=\"table-responsive\">\r\n      <table class=\"table\">\r\n        <thead class=\"thead-dark\">\r\n          <tr>\r\n            <th scope=\"col\">ID</th>\r\n            <!-- <th scope=\"col\">Pass</th> -->\r\n            <th scope=\"col\">Nombre</th>\r\n            <th scope=\"col\">Cumpleaños</th>\r\n            <th scope=\"col\">Foto</th>\r\n            <th scope=\"col\">Activo</th>\r\n            <th scope=\"col\">Plan</th>\r\n            <th scope=\"col\">Ciudad</th>\r\n            <th scope=\"col\">Admin</th>\r\n            <th scope=\"col\">Acceso</th>\r\n            <th scope=\"col\">GoogleId</th>\r\n            <th scope=\"col\">FacebookId</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let user of users\">\r\n            <td>{{user.id}}</td>\r\n            <!-- <td>{{user.password}}</td> -->\r\n            <td>{{user.name}}</td>\r\n            <td>{{user.birthDate | date}}</td>\r\n            <td>{{user.photo}}</td>\r\n            <!-- <td><img src=\"...\" class=\"img-fluid pull-xs-left\" alt=\"...\">{{user.photo}}</td> -->\r\n            <td>{{user.active}}</td>\r\n            <td>{{user.plan}}</td>\r\n            <td>{{user.city}}</td>\r\n            <td>{{user.admin}}</td>\r\n            <td>{{user.acces}}</td>\r\n            <td>{{user.googleId}}</td>\r\n            <td>{{user.facebookId}}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/listusers.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminListUsersComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AdminListUsersComponent = (function () {
+    function AdminListUsersComponent(_detailService, _route) {
+        this._detailService = _detailService;
+        this._route = _route;
+        this.users = [];
+    }
+    AdminListUsersComponent.prototype.mostrar = function () {
+        var _this = this;
+        this._detailService.detailsAll()
+            .subscribe(function (data) {
+            //console.log(data);
+            for (var key$ in data) {
+                //console.log(data[key$]);
+                _this.users.push(data[key$]);
+            }
+        }, function (error) {
+            console.error(error);
+            // this._route.navigate(['/login']);
+        });
+    };
+    AdminListUsersComponent.prototype.ngOnInit = function () {
+        this.mostrar();
+    };
+    AdminListUsersComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin-listusers',
+            template: __webpack_require__("../../../../../src/app/components/admin/listusers.component.html"),
+            styleUrls: []
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+    ], AdminListUsersComponent);
+    return AdminListUsersComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/user.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container main-container\">\r\n  <h3>Usuario <small>nombre... </small></h3>\r\n  <button [routerLink]=\"['listusers']\" class=\"btn btn-outline-primary\">\r\n    Regresar\r\n  </button>\r\n  <hr>\r\n  <div class=\"row animated fadeIn fast\">\r\n    <div class=\"col-md-12\">\r\n      <form>\r\n        <div class=\"form-group\">\r\n          <label>Nombre</label>\r\n          <input\r\n                type=\"text\" name=\"\"\r\n                class=\"form-control\" requided>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Password</label>\r\n          <input\r\n                type=\"text\" name=\"\"\r\n                class=\"form-control\" requided>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Ciudad</label>\r\n          <input\r\n                type=\"text\" name=\"\"\r\n                class=\"form-control\" requided>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Fecha de nacimiento</label>\r\n          <input\r\n                type=\"text\" name=\"\"\r\n                class=\"form-control\" requided>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Foto</label>\r\n          <input\r\n                type=\"file\" name=\"\"\r\n                class=\"form-control\" requided>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">\r\n            Guardar\r\n          </button>\r\n        </div>\r\n\r\n      </form>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin/user.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminUserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminUserComponent = (function () {
+    function AdminUserComponent() {
+    }
+    AdminUserComponent.prototype.ngOnInit = function () {
+    };
+    AdminUserComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-admin-user',
+            template: __webpack_require__("../../../../../src/app/components/admin/user.component.html"),
+            styles: []
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminUserComponent);
+    return AdminUserComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"footer bg-light text-center\">\n  <div class=\"container\">\n    <p class=\"text\">\n      &copy; Symbiose\n    </p>\n\n  </div>\n</footer>\n"
+module.exports = "\r\n<footer class=\"footer text-center\">\r\n  <div class=\"container\">\r\n    <p class=\"text\">\r\n      &copy; Symbiose\r\n    </p>\r\n\r\n  </div>\r\n</footer>\r\n"
 
 /***/ }),
 
@@ -226,93 +454,20 @@ var FooterComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/headerlog.component.html":
+/***/ "../../../../../src/app/components/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n<a class=\"navbar-brand\" href=\"#\">Gardiot</a>\r\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n<span class=\"navbar-toggler-icon\"></span>\r\n</button>\r\n\r\n<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n<ul class=\"navbar-nav mr-auto\">\r\n  <li class=\"nav-item active\">\r\n    <a [routerLink]=\"['/index']\" class=\"nav-link\" href=\"#\">Index <span class=\"sr-only\">(current)</span></a>\r\n  </li>\r\n  <li class=\"nav-item active\">\r\n    <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Logout <span class=\"sr-only\">(current)</span></a>\r\n  </li>\r\n\r\n</ul>\r\n<form class=\"form-inline my-2 my-lg-0\">\r\n  <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n  <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n</form>\r\n</div>\r\n</nav>\r\n"
+module.exports = "<!-- Menú estándar -->\r\n<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n<a class=\"navbar-brand\" href=\"#\">Gardiot</a>\r\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n<span class=\"navbar-toggler-icon\"></span>\r\n</button>\r\n\r\n<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n<ul class=\"navbar-nav mr-auto\">\r\n  <li class=\"nav-item\" *ngIf=\"!user.isAuthenticated()\">\r\n    <a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse <span class=\"sr-only\">(current)</span></a>\r\n  </li>\r\n  <li class=\"nav-item\" *ngIf=\"!user.isAuthenticated()\">\r\n    <a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\r\n  </li>\r\n  <li class=\"nav-item\" *ngIf=\"user.isAuthenticated() && user.isAdmin()\">\r\n    <a [routerLink]=\"['/admin']\" class=\"nav-link\" href=\"#\">Administración</a>\r\n  </li>\r\n  <li class=\"nav-item\" *ngIf=\"user.isAuthenticated()\">\r\n    <a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Mi perfil</a>\r\n  </li>\r\n\r\n  <li class=\"nav-item\">\r\n    <a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\r\n  </li>\r\n  <li class=\"nav-item\" *ngIf=\"user.isAuthenticated()\">\r\n    <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\r\n  </li>\r\n\r\n\r\n</ul>\r\n\r\n</div>\r\n\r\n\r\n\r\n</nav>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/headerlog.component.ts":
+/***/ "../../../../../src/app/components/header.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderLogComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var HeaderLogComponent = (function () {
-    function HeaderLogComponent() {
-    }
-    HeaderLogComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-header-log ',
-            template: __webpack_require__("../../../../../src/app/components/headerlog.component.html")
-        })
-    ], HeaderLogComponent);
-    return HeaderLogComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/headernolog.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n<a class=\"navbar-brand\" href=\"#\">Gardiot</a>\r\n<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n<span class=\"navbar-toggler-icon\"></span>\r\n</button>\r\n\r\n<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n<ul class=\"navbar-nav mr-auto\">\r\n  <li class=\"nav-item active\">\r\n    <a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse <span class=\"sr-only\">(current)</span></a>\r\n  </li>\r\n  <li class=\"nav-item\">\r\n    <a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\r\n  </li>\r\n  <li class=\"nav-item\">\r\n    <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\r\n  </li>\r\n  <li class=\"nav-item\">\r\n    <a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\r\n  </li>\r\n\r\n\r\n</ul>\r\n<form class=\"form-inline my-2 my-lg-0\">\r\n  <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">\r\n  <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>\r\n</form>\r\n</div>\r\n</nav>\r\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/headernolog.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderNoLogComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-var HeaderNoLogComponent = (function () {
-    function HeaderNoLogComponent() {
-    }
-    HeaderNoLogComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-header-nolog ',
-            template: __webpack_require__("../../../../../src/app/components/headernolog.component.html")
-        })
-    ], HeaderNoLogComponent);
-    return HeaderNoLogComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/listusers/listusers.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h1>Panel de administrador</h1>\n<hr>\n<h2>Lista de Usuarios</h2>\n<br>\n<div class=\"col-md-12 text-right\">\n  <button [routerLink] =\"['/user/:id']\" class=\"btn btn-outline-primary\"\n          type=\"submit\" name=\"button\">\n    Nuevo usuario\n  </button>\n  <br><br>\n\n</div>\n<div class=\"row\">\n  <div class=\"col-md-12\">\n    <div class=\"table-responsive\">\n      <table class=\"table\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th scope=\"col\">ID</th>\n            <!-- <th scope=\"col\">Pass</th> -->\n            <th scope=\"col\">Nombre</th>\n            <th scope=\"col\">Cumpleaños</th>\n            <th scope=\"col\">Foto</th>\n            <th scope=\"col\">Activo</th>\n            <th scope=\"col\">Plan</th>\n            <th scope=\"col\">Ciudad</th>\n            <th scope=\"col\">Admin</th>\n            <th scope=\"col\">Acceso</th>\n            <th scope=\"col\">GoogleId</th>\n            <th scope=\"col\">FacebookId</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let user of users\">\n            <td>{{user.id}}</td>\n            <!-- <td>{{user.password}}</td> -->\n            <td>{{user.name}}</td>\n            <td>{{user.birthDate | date}}</td>\n            <td>{{user.photo}}</td>\n            <!-- <td><img src=\"...\" class=\"img-fluid pull-xs-left\" alt=\"...\">{{user.photo}}</td> -->\n            <td>{{user.active}}</td>\n            <td>{{user.plan}}</td>\n            <td>{{user.city}}</td>\n            <td>{{user.admin}}</td>\n            <td>{{user.acces}}</td>\n            <td>{{user.googleId}}</td>\n            <td>{{user.facebookId}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/listusers/listusers.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListusersComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -324,83 +479,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-var ListusersComponent = (function () {
-    function ListusersComponent(_detailService, _route) {
-        this._detailService = _detailService;
-        this._route = _route;
-        this.users = [];
+var HeaderComponent = (function () {
+    function HeaderComponent(user) {
+        this.user = user;
+        this.admin = window.location.href.indexOf('admin') >= 0;
     }
-    ListusersComponent.prototype.mostrar = function () {
-        var _this = this;
-        this._detailService.detailsAll()
-            .subscribe(function (data) {
-            //console.log(data);
-            for (var key$ in data) {
-                //console.log(data[key$]);
-                _this.users.push(data[key$]);
-            }
-        }, function (error) {
-            console.error(error);
-            // this._route.navigate(['/login']);
-        });
-    };
-    ListusersComponent.prototype.ngOnInit = function () {
-        this.mostrar();
-    };
-    ListusersComponent = __decorate([
+    HeaderComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-listusers',
-            template: __webpack_require__("../../../../../src/app/components/listusers/listusers.component.html"),
-            styleUrls: []
+            selector: 'app-header',
+            template: __webpack_require__("../../../../../src/app/components/header.component.html")
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
-    ], ListusersComponent);
-    return ListusersComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/listusers/user.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container\">\n  <h3>Usuario <small>nombre... </small></h3>\n  <button [routerLink]=\"['listusers']\" class=\"btn btn-outline-primary\">\n    Regresar\n  </button>\n  <hr>\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form>\n        <div class=\"form-group\">\n          <label>Nombre</label>\n          <input\n                type=\"text\" name=\"\"\n                class=\"form-control\" requided>\n        </div>\n        <div class=\"form-group\">\n          <label>Password</label>\n          <input\n                type=\"text\" name=\"\"\n                class=\"form-control\" requided>\n        </div>\n        <div class=\"form-group\">\n          <label>Ciudad</label>\n          <input\n                type=\"text\" name=\"\"\n                class=\"form-control\" requided>\n        </div>\n        <div class=\"form-group\">\n          <label>Fecha de nacimiento</label>\n          <input\n                type=\"text\" name=\"\"\n                class=\"form-control\" requided>\n        </div>\n        <div class=\"form-group\">\n          <label>Foto</label>\n          <input\n                type=\"file\" name=\"\"\n                class=\"form-control\" requided>\n        </div>\n        <div class=\"form-group\">\n          <button type=\"submit\" class=\"btn btn-outline-primary\">\n            Guardar\n          </button>\n        </div>\n\n      </form>\n    </div>\n  </div>\n\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/listusers/user.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var UserComponent = (function () {
-    function UserComponent() {
-    }
-    UserComponent.prototype.ngOnInit = function () {
-    };
-    UserComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-user',
-            template: __webpack_require__("../../../../../src/app/components/listusers/user.component.html"),
-            styles: []
-        }),
-        __metadata("design:paramtypes", [])
-    ], UserComponent);
-    return UserComponent;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]])
+    ], HeaderComponent);
+    return HeaderComponent;
 }());
 
 
@@ -410,7 +501,7 @@ var UserComponent = (function () {
 /***/ "../../../../../src/app/components/users/detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\n  <h1>\n    Bienvenido a Gardiot, tu email es {{this.user.id}}\n  </h1>\n  <a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Perfil <span class=\"sr-only\">(current)</span></a>\n\n  <app-listusers></app-listusers>\n</div>\n"
+module.exports = "\r\n\r\n<div class=\"container main-container\">\r\n  <h1>\r\n    Bienvenido a Gardiot, tu email es {{this.user.id}}\r\n  </h1>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -482,7 +573,7 @@ var DetailComponent = (function () {
 /***/ "../../../../../src/app/components/users/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"container main-container\">\n  <div class=\"row\">\n\n    <div class=\"col-md-12\">\n      <h2>Iniciar sesión</h2>\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"exampleInputEmail1\">Email</label>\n          <input [(ngModel)]=\"user.id\" name=\"id\"\n                type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" required>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"exampleInputPassword1\">Contraseña</label>\n          <input [(ngModel)]=\"user.password\" name=\"password\"\n                type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" required>\n        </div>\n\n        <button [disabled]=\"!forma.valid\"\n              type=\"submit\" class=\"btn btn-primary\">Log in</button>\n      </form>\n      <br>\n      <button type=\"button\" (click)=\"guardarGoogle()\" class=\"btn btn-secondary\">Inicio de sesión Google</button>\n      <button type=\"button\" class=\"btn btn-success\">Inicio de sesión Facebook</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "\r\n<div class=\"container main-container\">\r\n  <div class=\"row\">\r\n\r\n    <div class=\"col-md-12\">\r\n      <h2>Iniciar sesión</h2>\r\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputEmail1\">Email</label>\r\n          <input [(ngModel)]=\"user.id\" name=\"id\"\r\n                type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputPassword1\">Contraseña</label>\r\n          <input [(ngModel)]=\"user.password\" name=\"password\"\r\n                type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" required>\r\n        </div>\r\n\r\n        <button [disabled]=\"!forma.valid\"\r\n              type=\"submit\" class=\"btn btn-primary\">Log in</button>\r\n      </form>\r\n      <br>\r\n      <button type=\"button\" (click)=\"guardarGoogle()\" class=\"btn btn-secondary\">Inicio de sesión Google</button>\r\n      <button type=\"button\" class=\"btn btn-success\">Inicio de sesión Facebook</button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -522,7 +613,7 @@ var LoginComponent = (function () {
         var _this = this;
         this._loginService.login(this.user)
             .subscribe(function (data) {
-            _this._route.navigate(['/index']);
+            _this._route.navigate(['/detail']);
         });
     };
     LoginComponent.prototype.guardarGoogle = function () {
@@ -579,6 +670,7 @@ var LogoutComponent = (function () {
             .subscribe(function (data) {
             if (data.Mensaje == "Desconectado") {
                 localStorage.removeItem('Bearer');
+                sessionStorage.clear();
                 _this._route.navigate(['/login']);
             }
         });
@@ -600,7 +692,7 @@ var LogoutComponent = (function () {
 /***/ "../../../../../src/app/components/users/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section>\n  <ul>\n    <li>Nombre: {{this.user.name}}</li>\n    <li>Email: {{this.user.id}}</li>\n    <li>Fecha Nacimiento: {{this.user.birthDate}}</li>\n    <li>Ciudad: {{cuidad}}</li>\n    <li>Plan: {{this.user.plan}}</li>\n  </ul>\n  <button [routerLink]=\"['listusers']\" class=\"btn btn-outline-primary\">\n    Regresar\n  </button>\n</section>\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  action=\"index.html\" method=\"post\">\n        <div class=\"form-group\">\n          <label  for=\"name_user\">Cambiar Nombre </label>\n          <input  type=\"text\" [(ngModel)]=\"user.name\" name=\"name\" id=\"name_user\" >\n        </div>\n\n        <div class=\"form-group\">\n          <label for=\"birthDate_user\">Cambiar Fecha</label>\n          <input [(ngModel)]=\"user.birthDate\" type=\"date\" name=\"birthDate\" id=\"birthDate_user\"  >\n        </div>\n\n        <div class=\"form-group\">\n          <label for=\"password_user\">Cambiar Contraseña</label>\n          <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" id=\"password_user\" >\n        </div>\n\n        <button  (click)=\"edit()\" type=\"submit\" class=\"btn btn-outline-primary\">Submit</button>\n      </form>\n    </div>\n  </div>\n</section>\n"
+module.exports = "<div class=\"container main-container\">\r\n  <h1>Mi perfil</h1>\r\n\r\n<section class=\"container\">\r\n  <div class=\"row animated fadeIn fast\">\r\n    <div class=\"col-md-12\">\r\n      <form  (ngSubmit)=\"edit(forma)\" #forma=\"ngForm\" novalidate=\"\">\r\n        <div class=\"form-group\">\r\n          <label  for=\"name_user\">Nombre: </label>\r\n          <input  type=\"text\" [(ngModel)]=\"user.name\" name=\"name\" id=\"name_user\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label  for=\"name_user\">Email: </label>\r\n          <label for=\"name_user\">{{this.user.id}}</label>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n          <label for=\"birthDate_user\">Fecha de nacimiento: </label>\r\n          <input [(ngModel)]=\"user.birthDate\" type=\"date\" name=\"birthDate\" id=\"birthDate_user\"  >\r\n        </div>\r\n\r\n        <h3>Cambiar contraseña</h3>\r\n        <div class=\"form-group\">\r\n          <label for=\"password_user\">Introduce tu contraseña actual</label>\r\n          <input ngModel type=\"password\" name=\"password1\" id=\"password1_user\" >\r\n</div>\r\n<div class=\"form-group\">\r\n          <label for=\"password_user\">Introduce tu nueva contraseña</label>\r\n          <input ngModel type=\"password\" name=\"passwordn\" id=\"passwordn_user\" >\r\n</div>\r\n<div class=\"form-group\">\r\n          <label for=\"password_user\">Repite tu contraseña</label>\r\n          <input ngModel type=\"password\" name=\"passwordn2\" id=\"passwordn2_user\" >\r\n        </div>\r\n\r\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -651,11 +743,25 @@ var ProfileComponent = (function () {
             _this._route.navigate(['/login']);
         });
     };
-    ProfileComponent.prototype.edit = function () {
+    ProfileComponent.prototype.edit = function (forma) {
         var _this = this;
-        this._detailService.modifyUserProfile(this.user)
+        console.log(forma);
+        if (forma.value.passwordn != "") {
+            if (forma.value.password1 != "") {
+                if (forma.value.passwordn == forma.value.passwordn2) {
+                    this.user.password = forma.value.passwordn;
+                }
+                else {
+                    alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
+                }
+            }
+            else {
+                alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
+            }
+        }
+        this._detailService.modifyUserProfile(this.user, forma.value.password1)
             .subscribe(function (data) {
-            console.log(data);
+            alert(data);
         }, function (error) {
             console.error(error);
             _this._route.navigate(['/login']);
@@ -682,7 +788,7 @@ var ProfileComponent = (function () {
 /***/ "../../../../../src/app/components/users/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"container main-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <h2>Formulario de registro</h2>\r\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputEmail1\">Email address</label>\r\n          <input [(ngModel)]=\"user.id\" name=\"id\"\r\n                type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" required>\r\n          <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputPassword1\">Password</label>\r\n          <input [(ngModel)]=\"user.password\" name=\"password\"\r\n          type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" required>\r\n        </div>\r\n\r\n        <button [disabled]=\"!forma.valid\"\r\n        type=\"submit\" class=\"btn btn-primary\">Registrarse</button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"container main-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <h2>Formulario de registro</h2>\r\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputEmail1\">Email</label>\r\n          <input [(ngModel)]=\"user.id\" name=\"id\"\r\n                type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Enter email\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"exampleInputPassword1\">Contraseña</label>\r\n          <input [(ngModel)]=\"user.password\" name=\"password\"\r\n          type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\" required>\r\n        </div>\r\n\r\n        <button [disabled]=\"!forma.valid\"\r\n        type=\"submit\" class=\"btn btn-primary\">Registrarse</button>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -707,8 +813,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RegisterComponent = (function () {
-    function RegisterComponent(_registerService, _route) {
-        this._registerService = _registerService;
+    function RegisterComponent(_userService, _route) {
+        this._userService = _userService;
         this._route = _route;
         this.user = {
             id: "",
@@ -719,8 +825,13 @@ var RegisterComponent = (function () {
         };
     }
     RegisterComponent.prototype.guardar = function () {
-        this._registerService.registro(this.user)
+        var _this = this;
+        this._userService.register(this.user)
             .subscribe(function (data) {
+            _this._userService.login(_this.user) //una vez se registra, loguea automáticamente al usuario. PROVISIONAL
+                .subscribe(function (data) {
+                _this._route.navigate(['/detail']);
+            });
         });
     };
     RegisterComponent.prototype.ngOnInit = function () {
@@ -768,7 +879,7 @@ var UserService = (function () {
         this._route = _route;
         this.apiURL = "https://gardiot.ovh/api/";
     }
-    UserService.prototype.registro = function (user) {
+    UserService.prototype.register = function (user) {
         var body = "id=" + user.id + "&password=" + user.password;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -776,7 +887,7 @@ var UserService = (function () {
         return this.http.post(this.apiURL + "register", body, { headers: headers })
             .map(function (res) {
             if (res.json().Mensaje == "Insertado") {
-                alert("Usuario " + user.id + " insertado");
+                console.log("Usuario " + user.id + " insertado");
             }
             return res.json();
         });
@@ -789,7 +900,10 @@ var UserService = (function () {
         return this.http.post(this.apiURL + "authenticate", body, { headers: headers })
             .map(function (res) {
             if (res.json().Token != null) {
-                alert("Usuario " + user.id + " logueado");
+                console.log("Usuario " + user.id + " logueado");
+                if (user.id == "luisb_herr@hotmail.com") {
+                    sessionStorage['nombre'] = "Luis";
+                }
                 localStorage.setItem('Bearer', res.json().Token);
                 console.log(res.json().Token);
             }
@@ -801,7 +915,14 @@ var UserService = (function () {
         });
     };
     UserService.prototype.loginGoogle = function () {
-        return this.http.get(this.apiURL + "auth/google")
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
+            'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
+        });
+        return this.http.get(this.apiURL + "auth/google", { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -824,8 +945,9 @@ var UserService = (function () {
             return res.json();
         });
     };
-    UserService.prototype.modifyUserProfile = function (user) {
+    UserService.prototype.modifyUserProfile = function (user, oldPassword) {
         var body = "name=" + user.name + "&birthdate=" + user.birthDate + "&password=" + user.password;
+        //body+=`&oldPassword=${oldPassword}`;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -834,6 +956,18 @@ var UserService = (function () {
             .map(function (res) {
             return res.json();
         });
+    };
+    UserService.prototype.isAuthenticated = function () {
+        if (localStorage['Bearer'] != null) {
+            return true;
+        }
+        return false;
+    };
+    UserService.prototype.isAdmin = function () {
+        if (sessionStorage['nombre'] == "Luis") {
+            return true;
+        }
+        return false;
     };
     UserService.prototype.logout = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
