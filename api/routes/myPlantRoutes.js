@@ -9,8 +9,6 @@ router.get('/myPlant', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/myPlant/:id', function(request, response) {
 	var id = request.params.id;
 	myPlantModel.getMyPlantById(id, function(error, data) {

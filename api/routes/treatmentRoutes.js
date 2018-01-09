@@ -9,8 +9,6 @@ router.get('/treatment', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/treatment/:id', function(request, response) {
 	var id = request.params.id;
 	treatmentModel.getTreatmentById(id, function(error, data) {
