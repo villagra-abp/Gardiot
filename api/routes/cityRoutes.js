@@ -9,8 +9,6 @@ router.get('/city', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/city/:id', function(request, response) {
 	var id = request.params.id;
 	cityModel.getCityById(id, function(error, data) {

@@ -9,8 +9,6 @@ router.get('/category', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/category/:id', function(request, response) {
 	var id = request.params.id;
 	categoryModel.getCategoryById(id, function(error, data) {

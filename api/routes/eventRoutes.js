@@ -9,8 +9,6 @@ router.get('/event', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/event/:id', function(request, response) {
 	var id = request.params.id;
 	eventModel.getEventById(id, function(error, data) {
