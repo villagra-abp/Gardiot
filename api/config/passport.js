@@ -132,23 +132,15 @@ jwtOptions.secretOrKey = config.secret;
 jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
-var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
-	var token = jwtExtract.fromAuthHeaderAsBearerToken();
-	inactiveTokenModel.getInactiveTokenByToken(token, function (error, data) {
-		if (error) 
-			next(err, false);
-		else if (typeof data[0] !== 'undefined') 
-			next(null, false);
-		else {
-			userModel.getUserById(payload.sub, function(err, user) {
-				if (err) 
-					next(err, false);		
-				else if (typeof user[0] !== 'undefined') 
-					next(null, user[0]);	
-				else 
-					next(null, false);		
-			});
-		}
+var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {	
+	userModel.getUserById(payload.sub, function(err, user) {
+		if (err) 
+			next(err, false);		
+		else if (typeof user[0] !== 'undefined') 
+			next(null, user[0]);	
+		else 
+			next(null, false);		
+	
 	});	
 });
 
