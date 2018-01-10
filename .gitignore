@@ -20,7 +20,7 @@ jspm_packages/
 api/.npm
 
 #configuration file
-api/models/connection.js
+api/config/
 
 .tern-project
 #wordpress
