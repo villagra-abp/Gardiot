@@ -6,17 +6,31 @@ var helmet = require('helmet'); //Security
 var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
-//V1
+/*var Raven = require('raven'); //Sentry package
 
+Raven.config('__DSN__').install();*/
 var config = require('./config/main');
 
 //Express init and load modules
 var app = express();
+
+//Sentry stuff
+/*app.use(Raven.requestHandler());
+app.get('/api', function mainHandler(req, res) {
+    throw new Error('Broke!');
+});
+app.use(Raven.errorHandler());
+app.use(function onError(err, req, res, next) {
+    res.statusCode = 500;
+    res.end(res.sentry + '\n');
+});*/
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(cors());
 app.use(helmet());
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
+
 
 app.use(passport.initialize());
 require('./config/passport');

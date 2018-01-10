@@ -4,8 +4,10 @@ var config = require('../config/main');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
+var nodemailer = require('nodemailer');
 
 var userModel = require('../models/user');
+var verificationTokenModel = require('../models/verificationToken');
 var requireAdmin = require('../functions/adminCheck');
 var requireActive = require('../functions/userActiveCheck');
 
@@ -18,7 +20,7 @@ var requireActive = require('../functions/userActiveCheck');
 
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password || !request.body.password2) 
-		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
+		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
 	else {
@@ -38,14 +40,29 @@ router.post('/register', function(request, response) {
 			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data !== 'undefined' && data!= null && data.length > 0) // Esto peta que flipas
-					response.status(202).json({"Mensaje":"Este usuario ya existe"});
+					response.status(400).json({"Mensaje":"Este usuario ya existe"});
 				else {					
 					userModel.genHash(userData.password, function(error, hash) {
 						if (!error) {
 							userData.password = hash;
 							userModel.insertUser(userData, function(error, data) {
-								if (data)
-									response.status(201).json({"Mensaje":"Insertado"});
+								if (data) {
+									var token = jwt.sign({}, config.secret, {
+										expiresIn: '1h',
+										subject: userData.id
+									});
+									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
+										if (error) response.status(500).json({"Mensaje":"Error"});
+										else {
+											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: USUARIODESENDGRID, pass: PASSWORDDESENDGRID} }); //Coger de fichero
+											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttps:\/\/' + request.headers.host + '\/api\/confirmation\/' + token + '\n'};
+											transporter.sendMail(mailOptions, function(err) {
+												if (err) response.status(500).json({"Mensaje": err.message});
+												else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
+											});
+										}
+									});
+								}
 								else
 									response.status(500).json({"Mensaje":"Error"});
 							});
@@ -69,7 +86,7 @@ router.post('/authenticate', function(request, response) {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user !== 'undefined' && user!= null && user.length > 0) { //  Esto obviamente tambien peta que flipas
-				if (user[0].active == 1) {
+				//if (user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 						if (isMatch && !err) {
@@ -82,13 +99,15 @@ router.post('/authenticate', function(request, response) {
 						}
 						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
 					});
-				}
-				else response.status(403).json({"Mensaje":"Cuenta no activa"});
+				//}
+				//else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
 			else response.status(404).json({"Mensaje":"No existe el usuario"});
 		});
 	}
 });
+
+
 
 /*router.get('/hash/:passwd', function(request, response) {
 	userModel.genHash(request.params.passwd, function(error, hash) {
