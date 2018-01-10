@@ -8,7 +8,6 @@ var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
 //V1
 
-
 var config = require('./config/main');
 
 //Express init and load modules
@@ -21,6 +20,9 @@ app.use(helmet());
 
 app.use(passport.initialize());
 require('./config/passport');
+
+//Blocker
+app.use('/api', require('./functions/BLOCK')); //Bloquea las siguientes rutas
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
@@ -47,4 +49,10 @@ app.use('/api', require('./routes/yearRoutes'));
 //Start server
 app.listen(config.port, function () {
   console.log('API running on port ' + config.port);
+}).on('error', function(err) {
+	console.log('Error handled: ' + err);
+});
+
+process.on('uncaughtException', function(err) {
+	console.log('Except handled: ' + err);
 });

@@ -11,7 +11,7 @@ export class UserService {
 
   constructor( private http:Http, private _route:Router) {}
 
-    registro( user:User ){
+    register( user:User ){
       let body = `id=${user.id}&password=${user.password}`;
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
@@ -20,7 +20,7 @@ export class UserService {
       return this.http.post(this.apiURL+"register", body, { headers } )
           .map( res=>{
             if(res.json().Mensaje=="Insertado"){
-              alert(`Usuario ${user.id} insertado`);
+              console.log(`Usuario ${user.id} insertado`);
             }
             return res.json();
           })
@@ -35,7 +35,10 @@ export class UserService {
       return this.http.post(this.apiURL+"authenticate", body, { headers } )
           .map( res=>{
             if(res.json().Token!=null){
-              alert(`Usuario ${user.id} logueado`);
+              console.log(`Usuario ${user.id} logueado`);
+              if(user.id=="luisb_herr@hotmail.com"){
+                sessionStorage['nombre']="Luis";
+              }
               localStorage.setItem('Bearer', res.json().Token);
               console.log(res.json().Token);
             }
@@ -48,8 +51,15 @@ export class UserService {
           })
     }
     loginGoogle(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
+        'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
+      });
 
-      return this.http.get(this.apiURL+"auth/google")
+      return this.http.get(this.apiURL+"auth/google", { headers } )
           .map( res =>{
             return res.json();
           })
@@ -77,8 +87,9 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User){
+    modifyUserProfile(user:User, oldPassword:string){
       let body = `name=${user.name}&birthdate=${user.birthDate}&password=${user.password}`;
+      //body+=`&oldPassword=${oldPassword}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -87,6 +98,20 @@ export class UserService {
           .map( res =>{
             return res.json();
           })
+    }
+
+    public isAuthenticated(): boolean{
+      if(localStorage['Bearer']!=null){
+        return true;
+      }
+      return false;
+    }
+
+    public isAdmin(): boolean{//comprobar si el usuario es administrador
+      if(sessionStorage['nombre']=="Luis"){
+        return true;
+      }
+      return false;
     }
 
 

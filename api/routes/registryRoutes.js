@@ -9,8 +9,6 @@ router.get('/registry', function (request, response) {
   });
 });
 
-router.use('/', require('../functions/BLOCK')); //Bloquea las siguientes rutas
-
 router.get('/registry/:id', function(request, response) {
 	var id = request.params.id;
 	registryModel.getRegistryById(id, function(error, data) {

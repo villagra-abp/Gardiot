@@ -7,7 +7,7 @@ var validator = require('validator');
 
 var userModel = require('../models/user');
 var requireAdmin = require('../functions/adminCheck');
-
+var requireActive = require('../functions/userActiveCheck');
 
 
 /***************************
@@ -17,9 +17,10 @@ var requireAdmin = require('../functions/adminCheck');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password) { 
+	if (!request.body.id || !request.body.password || !request.body.password2) 
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
-	}
+	else if (request.body.password !== request.body.password2)
+		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
 	else {
 		var userData = {
 			id: request.body.id,
@@ -35,8 +36,8 @@ router.post('/register', function(request, response) {
 			response.status(400).json({"Mensaje": validate});
 		else {
 			userData = sanitizeInput(userData);
-			userModel.getUserById(request.params.id, function(error, data) {
-				if (typeof data !== 'undefined' && data.length > 0) 
+			userModel.getUserById(userData.id, function(error, data) {
+				if (typeof data !== 'undefined' && data!= null && data.length > 0) // Esto peta que flipas
 					response.status(202).json({"Mensaje":"Este usuario ya existe"});
 				else {					
 					userModel.genHash(userData.password, function(error, hash) {
@@ -67,8 +68,9 @@ router.post('/authenticate', function(request, response) {
 	else {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
-			if (typeof user !== 'undefined' && user.length > 0) {
+			if (typeof user !== 'undefined' && user!= null && user.length > 0) { //  Esto obviamente tambien peta que flipas
 				if (user[0].active == 1) {
+					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 						if (isMatch && !err) {
 							var token = jwt.sign({}, config.secret, {
@@ -109,14 +111,14 @@ router.post('/authenticate', function(request, response) {
 	});
 });*/
 
-router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
+router.get('/user', passport.authenticate('jwt', {session: false}), requireActive, function(request, response) {
 	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
 });
 
 
 //***Actualiza al usuario actual
 
-router.put('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
+router.put('/user', passport.authenticate('jwt', {session: false}), requireActive, function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
@@ -125,7 +127,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 		photo: request.body.photo,
 		city: request.body.city,
 		plan: request.body.plan,
-		oldId: request.user.id
+		oldId: request.user.id,
 	};
 	var validate = validateInput(userData);
 	if (validate.length > 0)
@@ -133,19 +135,29 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 	else {
 		userData = sanitizeInput(userData);
 		if (userData.password) {
-			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) {
-					userData.password = hash;
-					userModel.updateUser(userData, function(error, data) {
-						if (data)
-							response.status(200).json({"Mensaje":"Actualizado"});
-						else
-							response.status(500).json({"Mensaje":"Error"});
-					});
-				}
-				else
-				response.status(500).json({"Mensaje":"Error con la contraseña"}); 
-			});
+			if (!request.body.oldPassword)
+				response.status(500).json({"Mensaje":"Introduce tu contraseña anterior para cambiarla"});
+			else if (request.body.password !== request.body.password2)
+				response.status(400).json({"Mensaje":"Las contraseñas nuevas no coinciden"});
+			else {
+				userModel.checkPassword(request.body.oldPassword, user[0].password, function(err, isMatch) { 
+					if (isMatch && !err) {
+						userModel.genHash(userData.password, function(error, hash) {
+							if (!error) {
+								userData.password = hash;
+								userModel.updateUser(userData, function(error, data) {
+									if (data)
+										response.status(200).json({"Mensaje":"Actualizado"});
+									else
+										response.status(500).json({"Mensaje":"Error"});
+								});
+							}
+							else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
+						});
+					}
+					else response.status(401).json({"Mensaje":"Contraseña anterior incorrecta"});
+				});				
+			}	
 		}
 		else {
 			userModel.updateUser(userData, function(error, data) {
@@ -161,8 +173,8 @@ router.put('/user', passport.authenticate('jwt', {session: false}), function(req
 
 //*** Darse de baja. Sin parametros
 
-router.patch('/user', passport.authenticate('jwt', {session: false}),  function(request, response) {
-	userModel.deactivateUser(token.id, function(error, data) {
+router.patch('/user', passport.authenticate('jwt', {session: false}), requireActive,  function(request, response) {
+	userModel.deactivateUser(request.user.id, function(error, data) {
 		if (data == 1)
 			response.status(200).json({"Mensaje":"Cuenta desactivada"});
 		else if (data == 0)
@@ -174,7 +186,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}),  function(
 
 //*** Logout
 
-router.get('/logout', passport.authenticate('jwt', {session: false}),  function(request, response) {
+router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive,  function(request, response) {
 	request.logout();
 	response.status(200).json({"Mensaje":"Desconectado"});
 });
@@ -185,7 +197,7 @@ router.get('/logout', passport.authenticate('jwt', {session: false}),  function(
 
 //*** Lista todos los usuarios
 
-router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
+router.get('/users', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.getUser (function(error, data) {
 		response.status(200).json(data);
 	});
@@ -193,7 +205,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireAdmi
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
-router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
+router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0)
 			response.status(200).json(data);
@@ -205,7 +217,7 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 //*** Desactiva a un usuario. Misma forma que antes
 
-router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireAdmin, function(request, response) {
+router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
 		if (data == 1)
 			response.status(200).json({"Mensaje":"Desactivado"});

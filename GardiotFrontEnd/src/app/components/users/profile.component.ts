@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { Router } from "@angular/router";
-import {UserService} from "../../services/user.service";
+import { FormsModule, NgForm } from "@angular/forms";
+import { UserService} from "../../services/user.service";
 import { User } from "../../interfaces/user.interface";
 
 @Component({
@@ -36,10 +37,24 @@ export class ProfileComponent {
       });
     }
 
-    edit(){
-      this._detailService.modifyUserProfile(this.user)
+    edit(forma:NgForm){
+      console.log(forma);
+      if(forma.value.passwordn!=""){
+        if(forma.value.password1!=""){
+          if(forma.value.passwordn==forma.value.passwordn2){
+            this.user.password=forma.value.passwordn;
+          }
+          else{
+            alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
+          }
+        }
+        else{
+          alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
+        }
+      }
+      this._detailService.modifyUserProfile(this.user, forma.value.password1)
           .subscribe(data=>{
-            console.log(data);
+            alert(data);
           },
         error => {
           console.error(error);
