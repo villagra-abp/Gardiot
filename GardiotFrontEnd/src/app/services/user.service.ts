@@ -92,11 +92,14 @@ export class UserService {
     }
 
     modifyUserProfile(user:User, oldPassword, password){
-
-      let body = `name=${user.name}&birthdate=${user.birthDate}`;
-      if(oldPassword && password){
-        body+=`password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      let body = `name=${user.name}`;
+      if(user.birthDate!=null){
+        body+=`&birthDate=${user.birthDate}`;
       }
+      if(oldPassword && password){
+        body+=`&password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      }
+      alert(body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'

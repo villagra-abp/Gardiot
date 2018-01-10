@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-login',
@@ -22,22 +23,18 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private _loginService:UserService,
-    private _route:Router ){ }
+    private _route:Router,
+    private _appComponent:AppComponent){ }
 
   guardar(){
     this._loginService.login(this.user)
         .subscribe(data=>{
-          let div=document.createElement("div");
-          div.className="alert alert-primary msg";
-          div.setAttribute("role", "alert");
-          div.innerHTML="Te has logueado correctamente!<a [routerLink]=\"['/details']\" href=\"#\" class=\"btn btn-info\" role=\"button\">Aceptar</a>";
-          document.querySelector("body").appendChild(div);
+          this._appComponent.mensajeEmergente("Te has logueado correctamente!", "primary", "detail");
+
         });
   }
 
-  goToDetails(){
-    this._route.navigate(['/detail']);
-  }
+
 
   guardarGoogle(){
     this._loginService.loginGoogle()

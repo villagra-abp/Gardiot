@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
 import { UserService} from "../../services/user.service";
 import { User } from "../../interfaces/user.interface";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,8 @@ export class ProfileComponent {
 
   constructor(
     private _detailService:UserService,
-    private _route:Router ){ }
+    private _route:Router,
+    private _appComponent:AppComponent){ }
 
   mostrar(){
     this._detailService.details(this.user)
@@ -38,14 +40,24 @@ export class ProfileComponent {
       });
     }
 
-    edit(user:NgForm){
+    edit(){
       let oldPassword, password;
-      console.log(user);
-      if(user.value.passwordn!=""){
-        if(user.value.password1!=""){
-          if(user.value.passwordn==user.value.passwordn2){
-            oldPassword=user.value.password1;
-            password=user.value.passwordn;
+      alert(this.user.password);
+      console.log(this.user);
+      if(this.user.password!=""){
+        if(this.user.oldPassword!=""){
+          if(this.user.password==this.user.password2){
+            oldPassword=this.user.oldPassword;
+            password=this.user.password;
+            this._detailService.modifyUserProfile(this.user, oldPassword, password)
+                .subscribe(data=>{
+                  this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+                },
+              error => {
+                console.error(error);
+                this._appComponent.mensajeEmergente(error, "danger", "profile");
+                this._route.navigate(['/login']);
+              });
           }
           else{
             alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
@@ -55,14 +67,18 @@ export class ProfileComponent {
           alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
         }
       }
-      this._detailService.modifyUserProfile(this.user, oldPassword, password)
-          .subscribe(data=>{
-            alert(data);
-          },
-        error => {
-          console.error(error);
-          this._route.navigate(['/login']);
-        });
+      else{
+        this._detailService.modifyUserProfile(this.user, oldPassword, password)
+            .subscribe(data=>{
+              this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+            },
+          error => {
+            console.error(error);
+            this._appComponent.mensajeEmergente(error, "danger", "profile");
+            this._route.navigate(['/login']);
+          });
+      }
+
       }
 
 

@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 import { Router } from "@angular/router";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-register',
@@ -22,12 +23,13 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     private _userService:UserService,
-    private _route:Router){}
+    private _route:Router,
+    private _appComponent:AppComponent){}
 
   guardar(user:NgForm){
     this._userService.register(this.user)
         .subscribe(data=>{
-            this._route.navigate(['/detail']);
+            this._appComponent.mensajeEmergente("Te has registrado correctamente!", "primary", "login");
         });
   }
 

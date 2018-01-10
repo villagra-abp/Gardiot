@@ -4,7 +4,7 @@
 <section class="container">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
-      <form  (ngSubmit)="edit(forma)" #forma="ngForm" novalidate="">
+      <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
         <div class="form-group">
           <label  for="name_user">Nombre: </label>
           <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" required>
@@ -21,16 +21,16 @@
 
         <h3>Cambiar contraseña</h3>
         <div class="form-group">
-          <label for="password_user">Introduce tu contraseña actual</label>
-          <input ngModel type="password" name="password1" id="password1_user" >
+          <label for="oldPassword_user">Introduce tu contraseña actual</label>
+          <input [(ngModel)]="user.oldPassword" type="password" name="oldPassword" id="oldPassword_user" >
 </div>
 <div class="form-group">
           <label for="password_user">Introduce tu nueva contraseña</label>
-          <input ngModel type="password" name="passwordn" id="passwordn_user" >
+          <input [(ngModel)]="user.password" type="password" name="password" id="password_user" >
 </div>
 <div class="form-group">
-          <label for="password_user">Repite tu contraseña</label>
-          <input ngModel type="password" name="passwordn2" id="passwordn2_user" >
+          <label for="password2_user">Repite tu contraseña</label>
+          <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" >
         </div>
 
         <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
