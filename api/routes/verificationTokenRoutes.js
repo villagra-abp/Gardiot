@@ -19,9 +19,9 @@ router.get('/confirmation/:token', function(request, response) {
 				if (error) response.status(500).json({"Mensaje":"Error"});
 				else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario"}); 
 				else {
-					userModel.activateUser(user, function(error, data) {
+					userModel.activateUser(user[0].userId, function(error, data) {
 						if (data == 1)
-							response.redirect(request.hostname + '/dist/login');							
+							response.status(200).json({"Mensaje":"Cuenta verificada. Por favor autentícate."});
 						else if (data == 0)
 							response.status(404).json({"Mensaje":"No existe la cuenta"});
 						else
@@ -73,3 +73,5 @@ router.post('/resend', passport.authenticate('jwt', {session: false}), function(
 		}
 	});	
 });
+
+module.exports = router;

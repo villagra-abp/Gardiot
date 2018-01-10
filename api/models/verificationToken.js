@@ -21,7 +21,7 @@ verificationToken.getUserByVerificationToken = function(token, callback) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, result[0]);
+				callback(null, result);
 		});
 	}
 }
@@ -33,7 +33,7 @@ verificationToken.getVerificationTokenByUser = function(user, callback) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, result[0]);
+				callback(null, result);
 		});
 	}
 }

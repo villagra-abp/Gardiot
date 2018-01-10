@@ -1,4 +1,6 @@
 var connection = require('../config/connection');
+var jwt = require('jsonwebtoken');
+var config = require('../config/main');
 
 var inactiveToken = {};
 
