@@ -11,17 +11,17 @@ var verificationTokenModel = require('../models/verificationToken');
 
 //*** Confirmacion correo tras registro
 
-router.post('/confirmation/:token', function(request, response) {
+router.get('/confirmation/:token', function(request, response) {
 	jwt.verify(request.params.token, config.secret, function(err, decoded) { //Hay que ver si esto hace una comparacion automatica de los tiempos de expiracion
 		if (err) response.status(500).json(err);
 		else {
 			verificationTokenModel.getUserByVerificationToken(request.params.token, function (error, user) {
 				if (error) response.status(500).json({"Mensaje":"Error"});
-				else if (typeof user === 'undefined' || user == null) response.status(404).json({"Mensaje":"No existe el usuario"}); 
+				else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario"}); 
 				else {
 					userModel.activateUser(user, function(error, data) {
 						if (data == 1)
-							response.status(200).json({"Mensaje":"Cuenta verificada. Por favor autentícate."});
+							response.redirect('https://' + request.hostname + '/dist/login');							
 						else if (data == 0)
 							response.status(404).json({"Mensaje":"No existe la cuenta"});
 						else
@@ -33,7 +33,7 @@ router.post('/confirmation/:token', function(request, response) {
 	});	
 	
 });
-
+//response.status(200).json({"Mensaje":"Cuenta verificada. Por favor autentícate."});
 
 //*** Reenvio del correo 
 

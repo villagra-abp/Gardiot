@@ -58,7 +58,7 @@ router.post('/register', function(request, response) {
 										if (error) response.status(500).json({"Mensaje":"Error"});
 										else {
 											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttps:\/\/' + request.headers.host + '\/api\/confirmation\/' + token + '\n'};
+											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/api\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
 												else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
@@ -88,7 +88,7 @@ router.post('/authenticate', function(request, response) {
 	else {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
-			if (typeof user[0] !== 'undefined') { //  Esto obviamente tambien peta que flipas
+			if (typeof user[0] !== 'undefined') {
 				//if (user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
