@@ -133,7 +133,6 @@ jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
 var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
-	console.log(payload);
 	var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	inactiveTokenModel.getInactiveTokenByToken(token, function (error, data) {
 		if (error) 
