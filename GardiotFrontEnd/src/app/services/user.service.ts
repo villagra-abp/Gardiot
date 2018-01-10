@@ -12,7 +12,7 @@ export class UserService {
   constructor( private http:Http, private _route:Router) {}
 
     register( user:User ){
-      let body = `id=${user.id}&password=${user.password}`;
+      let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
@@ -36,9 +36,14 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
+              //TRUNYO TEMPORAL
               if(user.id=="luisb_herr@hotmail.com"){
-                sessionStorage['nombre']="Luis";
+                sessionStorage['admin']=1;
               }
+              else{
+                sessionStorage['admin']=0;
+              }
+
               localStorage.setItem('Bearer', res.json().Token);
               console.log(res.json().Token);
             }
@@ -108,7 +113,7 @@ export class UserService {
     }
 
     public isAdmin(): boolean{//comprobar si el usuario es administrador
-      if(sessionStorage['nombre']=="Luis"){
+      if(sessionStorage['admin']==1){
         return true;
       }
       return false;
