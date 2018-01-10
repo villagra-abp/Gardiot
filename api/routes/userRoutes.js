@@ -6,9 +6,11 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
 var nodemailer = require('nodemailer');
+var jwtExtract = require('passport-jwt').ExtractJwt;
 
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
+var inactiveTokenModel = require('../models/inactiveToken');
 var requireAdmin = require('../functions/adminCheck');
 var requireActive = require('../functions/userActiveCheck');
 
@@ -207,8 +209,12 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), requireAct
 //*** Logout
 
 router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive,  function(request, response) {
-	request.logout();
-	response.status(200).json({"Mensaje":"Desconectado"});
+	var token = jwtExtract.fromAuthHeaderAsBearerToken();
+	inactiveTokenModel.insertInactiveToken(token, function (error, data) {		
+		if (data == 1) { request.logout(); response.status(200).json({"Mensaje":"Desconectado"});  }
+		else if (data == 0) response.status(500).json({"Mensaje":"Error interno"});
+		else  response.status(500).json({"Mensaje":"Error desconectando, pruébalo otra vez."});
+	});	
 });
 
 /***************************
@@ -227,7 +233,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireActi
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0)
+		if (typeof data !== 'undefined' && data!= null && data.length > 0)
 			response.status(200).json(data);
 		else
 			response.status(404).json({"Mensaje":"No existe"});

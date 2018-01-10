@@ -5,6 +5,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var jwt = require('jsonwebtoken');
 
+var inactiveTokenModel = require('../models/inactiveToken');
 var userModel = require('../models/user');
 var config = require('./main'); 
 var configAuth = require('./auth');
@@ -132,15 +133,24 @@ jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
 var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
-	userModel.getUserById(payload.sub, function(err, user) {
-		if (err) 
-			next(err, false);		
-		else if (user) 
-			next(null, user[0]);	
-		else 
-			next(null, false);		
-	});
-
+	console.log(payload);
+	var token = jwtExtract.fromAuthHeaderAsBearerToken();
+	inactiveTokenModel.getInactiveTokenByToken(token, function (error, data) {
+		if (error) 
+			next(err, false);
+		else if (typeof data !== 'undefined' && data!= null && data.length > 0) 
+			next(null, false);
+		else {
+			userModel.getUserById(payload.sub, function(err, user) {
+				if (err) 
+					next(err, false);		
+				else if (user) 
+					next(null, user[0]);	
+				else 
+					next(null, false);		
+			});
+		}
+	});	
 });
 
 passport.use(JWTstrategy);
