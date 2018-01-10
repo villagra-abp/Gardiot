@@ -5,6 +5,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var jwt = require('jsonwebtoken');
 
+var inactiveTokenModel = require('../models/inactiveToken');
 var userModel = require('../models/user');
 var config = require('./main'); 
 var configAuth = require('./auth');
@@ -22,7 +23,7 @@ passport.use(new GoogleStrategy({
 	  	var user;
 	  	var token = '';
 	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {  		
-	      	if (typeof user !== 'undefined' && user.length > 0) { //Si encontramos al usuario en la BD
+	      	if (typeof user[0] !== 'undefined') { //Si encontramos al usuario en la BD
 	      		user = JSON.parse(JSON.stringify(user[0], null, 4));
 	      		if (user.access.search("google")==-1) { //Si no tiene asociado el login por OAuth de Google lo anyadimos
 	      			var userData = {
@@ -33,7 +34,7 @@ passport.use(new GoogleStrategy({
 	      			userModel.updateUser(userData, function(err, data) {
 	      				if (data!=null) {
 	      					userModel.getUserById(parsed.emails[0].value, function (err, user) {
-	      						if (typeof user !== 'undefined' && user.length > 0) {
+	      						if (typeof user[0] !== 'undefined') {
 	      							user = JSON.parse(JSON.stringify(user[0], null, 4));
 	      							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 										token = jwt.sign({}, config.secret, {
@@ -75,7 +76,7 @@ passport.use(new GoogleStrategy({
 				userModel.insertUser(userData, function(error, data) {
 					if (data!=null) {
 						userModel.getUserById(parsed.emails[0].value, function (err, user) {
-							if (typeof user !== 'undefined' && user.length > 0) {
+							if (typeof user[0] !== 'undefined') {
 								user = JSON.parse(JSON.stringify(user[0], null, 4));
 								if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 									token = jwt.sign({}, config.secret, {
@@ -132,15 +133,23 @@ jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
 var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
-	userModel.getUserById(payload.sub, function(err, user) {
-		if (err) 
-			next(err, false);		
-		else if (user) 
-			next(null, user[0]);	
-		else 
-			next(null, false);		
-	});
-
+	var token = jwtExtract.fromAuthHeaderAsBearerToken();
+	inactiveTokenModel.getInactiveTokenByToken(token, function (error, data) {
+		if (error) 
+			next(err, false);
+		else if (typeof data[0] !== 'undefined') 
+			next(null, false);
+		else {
+			userModel.getUserById(payload.sub, function(err, user) {
+				if (err) 
+					next(err, false);		
+				else if (typeof user[0] !== 'undefined') 
+					next(null, user[0]);	
+				else 
+					next(null, false);		
+			});
+		}
+	});	
 });
 
 passport.use(JWTstrategy);

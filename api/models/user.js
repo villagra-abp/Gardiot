@@ -23,7 +23,7 @@ user.getUserById = function(id, callback) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, row);
+				callback(null, row);		
 		});
 	}
 }
@@ -135,6 +135,19 @@ user.deactivateUser = function(id, callback) {
 	}
 }
 
+user.activateUser = function(id, callback) {
+	if (connection) {
+		var mariasql = 'UPDATE User SET active = 1 WHERE id = "' + id + '"';
+		connection.query(mariasql, function(error, result) {
+			//connection.end();
+			if (error)
+				throw error;
+			else
+				callback(null, result.affectedRows);
+		});
+	}
+}
+
 user.genHash = function(password, callback) {
 	bcrypt.genSalt(10, function(err, salt) {
 		if (err)
@@ -158,8 +171,6 @@ user.checkPassword = function(pw1, pw2, callback) {
 			callback(null, isMatch);
 	});
 }
-
-
 
 //connection.end();
 module.exports = user;
