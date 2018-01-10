@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config/main');
+var sendgrid = require('../config/sendgrid');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
+var nodemailer = require('nodemailer');
+var jwtExtract = require('passport-jwt').ExtractJwt;
 
 var userModel = require('../models/user');
+var verificationTokenModel = require('../models/verificationToken');
+var inactiveTokenModel = require('../models/inactiveToken');
 var requireAdmin = require('../functions/adminCheck');
 var requireActive = require('../functions/userActiveCheck');
 
@@ -18,7 +23,7 @@ var requireActive = require('../functions/userActiveCheck');
 
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password || !request.body.password2) 
-		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
+		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
 	else {
@@ -37,15 +42,30 @@ router.post('/register', function(request, response) {
 		else {
 			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
-				if (typeof data !== 'undefined' && data!= null && data.length > 0) // Esto peta que flipas
-					response.status(202).json({"Mensaje":"Este usuario ya existe"});
+				if (typeof data[0] !== 'undefined') 
+					response.status(400).json({"Mensaje":"Este usuario ya existe"});
 				else {					
 					userModel.genHash(userData.password, function(error, hash) {
 						if (!error) {
 							userData.password = hash;
 							userModel.insertUser(userData, function(error, data) {
-								if (data)
-									response.status(201).json({"Mensaje":"Insertado"});
+								if (data == 1) {
+									var token = jwt.sign({}, config.secret, {
+										expiresIn: '1h',
+										subject: userData.id
+									});
+									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
+										if (error) response.status(500).json({"Mensaje":"Error"});
+										else {
+											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
+											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/api\/confirmation\/' + token + '\n'};
+											transporter.sendMail(mailOptions, function(err) {
+												if (err) response.status(500).json({"Mensaje": err.message});
+												else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
+											});
+										}
+									});
+								}
 								else
 									response.status(500).json({"Mensaje":"Error"});
 							});
@@ -68,8 +88,8 @@ router.post('/authenticate', function(request, response) {
 	else {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
-			if (typeof user !== 'undefined' && user!= null && user.length > 0) { //  Esto obviamente tambien peta que flipas
-				if (user[0].active == 1) {
+			if (typeof user[0] !== 'undefined') {
+				//if (user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 						if (isMatch && !err) {
@@ -82,13 +102,15 @@ router.post('/authenticate', function(request, response) {
 						}
 						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
 					});
-				}
-				else response.status(403).json({"Mensaje":"Cuenta no activa"});
+				//}
+				//else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
 			else response.status(404).json({"Mensaje":"No existe el usuario"});
 		});
 	}
 });
+
+
 
 /*router.get('/hash/:passwd', function(request, response) {
 	userModel.genHash(request.params.passwd, function(error, hash) {
@@ -187,8 +209,12 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), requireAct
 //*** Logout
 
 router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive,  function(request, response) {
-	request.logout();
-	response.status(200).json({"Mensaje":"Desconectado"});
+	var token = jwtExtract.fromAuthHeaderAsBearerToken();
+	inactiveTokenModel.insertInactiveToken(token, function (error, data) {		
+		if (data == 1) { request.logout(); response.status(200).json({"Mensaje":"Desconectado"});  }
+		else if (data == 0) response.status(500).json({"Mensaje":"Error interno"});
+		else  response.status(500).json({"Mensaje":"Error desconectando, pruébalo otra vez."});
+	});	
 });
 
 /***************************
@@ -207,7 +233,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireActi
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0)
+		if (typeof data[0] !== 'undefined')
 			response.status(200).json(data);
 		else
 			response.status(404).json({"Mensaje":"No existe"});
