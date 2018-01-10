@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config/main');
+var sendgrid = require('../config/sendgrid');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
@@ -54,7 +55,7 @@ router.post('/register', function(request, response) {
 									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
 										if (error) response.status(500).json({"Mensaje":"Error"});
 										else {
-											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: USUARIODESENDGRID, pass: PASSWORDDESENDGRID} }); //Coger de fichero
+											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
 											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttps:\/\/' + request.headers.host + '\/api\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
