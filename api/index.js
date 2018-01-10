@@ -46,7 +46,7 @@ app.use('/api', require('./routes/soilRoutes'));
 app.use('/api', require('./routes/toolRoutes'));
 app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/yearRoutes'));
-
+app.use('/api', require('./routes/verificationTokenRoutes'));
 
 //Start server
 app.listen(config.port, function () {

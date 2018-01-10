@@ -21,7 +21,7 @@ router.get('/confirmation/:token', function(request, response) {
 				else {
 					userModel.activateUser(user, function(error, data) {
 						if (data == 1)
-							response.redirect('https://' + request.hostname + '/dist/login');							
+							response.redirect(request.hostname + '/dist/login');							
 						else if (data == 0)
 							response.status(404).json({"Mensaje":"No existe la cuenta"});
 						else
