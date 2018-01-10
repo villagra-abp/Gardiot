@@ -8,3 +8,13 @@
 .main-container{
   margin-top: 20px;
 }
+
+.msg{
+  position: fixed;
+  width: 60%;
+  top: 20%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-around;
+}

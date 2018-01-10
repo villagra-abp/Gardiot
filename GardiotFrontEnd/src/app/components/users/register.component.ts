@@ -12,9 +12,10 @@ export class RegisterComponent implements OnInit{
 
   user:User={
     id:"",
+    name:"",
     password:"",
     password2:"",
-    name:"",
+    oldPassword:"",
     plan:"",
     birthDate:null
   }
@@ -23,17 +24,16 @@ export class RegisterComponent implements OnInit{
     private _userService:UserService,
     private _route:Router){}
 
-  guardar(){
+  guardar(user:NgForm){
     this._userService.register(this.user)
         .subscribe(data=>{
-          this._userService.login(this.user)//una vez se registra, loguea automáticamente al usuario. PROVISIONAL
-              .subscribe(data=>{
-                this._route.navigate(['/detail']);
-              });
+            this._route.navigate(['/detail']);
         });
   }
 
   ngOnInit() {
-
+    if(this._userService.isAuthenticated()){
+      this._route.navigate(['/detail']);
+    }
   }
 }

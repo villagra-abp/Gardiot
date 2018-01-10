@@ -11,9 +11,10 @@ import { User } from "../../interfaces/user.interface";
 export class ProfileComponent {
   user:User={
     id:"",
+    name:"",
     password:"",
     password2:"",
-    name:"",
+    oldPassword:"",
     plan:"",
     birthDate:new Date(),
   }
@@ -27,7 +28,6 @@ export class ProfileComponent {
         .subscribe(data=>{
           console.log(data);
           this.user.id=data.id;
-          this.user.password=data.password;
           this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
           this.user.name=data.name;
@@ -38,12 +38,14 @@ export class ProfileComponent {
       });
     }
 
-    edit(forma:NgForm){
-      console.log(forma);
-      if(forma.value.passwordn!=""){
-        if(forma.value.password1!=""){
-          if(forma.value.passwordn==forma.value.passwordn2){
-            this.user.password=forma.value.passwordn;
+    edit(user:NgForm){
+      let oldPassword, password;
+      console.log(user);
+      if(user.value.passwordn!=""){
+        if(user.value.password1!=""){
+          if(user.value.passwordn==user.value.passwordn2){
+            oldPassword=user.value.password1;
+            password=user.value.passwordn;
           }
           else{
             alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
@@ -53,7 +55,7 @@ export class ProfileComponent {
           alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
         }
       }
-      this._detailService.modifyUserProfile(this.user, forma.value.password1)
+      this._detailService.modifyUserProfile(this.user, oldPassword, password)
           .subscribe(data=>{
             alert(data);
           },
@@ -65,6 +67,7 @@ export class ProfileComponent {
 
 
   ngOnInit() {
+
     this.mostrar();
   }
 

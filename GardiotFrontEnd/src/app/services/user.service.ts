@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/";
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -36,6 +36,7 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
+
               //TRUNYO TEMPORAL
               if(user.id=="luisb_herr@hotmail.com"){
                 sessionStorage['admin']=1;
@@ -43,9 +44,7 @@ export class UserService {
               else{
                 sessionStorage['admin']=0;
               }
-
               localStorage.setItem('Bearer', res.json().Token);
-              console.log(res.json().Token);
             }
             else{
               console.log("Token es null");
@@ -92,9 +91,12 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldPassword:string){
-      let body = `name=${user.name}&birthdate=${user.birthDate}&password=${user.password}`;
-      //body+=`&oldPassword=${oldPassword}`;
+    modifyUserProfile(user:User, oldPassword, password){
+
+      let body = `name=${user.name}&birthdate=${user.birthDate}`;
+      if(oldPassword && password){
+        body+=`password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      }
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -108,6 +110,7 @@ export class UserService {
     public isAuthenticated(): boolean{
       if(localStorage['Bearer']!=null){
         return true;
+
       }
       return false;
     }

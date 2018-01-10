@@ -12,9 +12,10 @@ export class LoginComponent implements OnInit{
 
   user:User={
     id:"",
+    name:"",
     password:"",
     password2:"",
-    name:"",
+    oldPassword:"",
     plan:"",
     birthDate:null
   }
@@ -26,20 +27,31 @@ export class LoginComponent implements OnInit{
   guardar(){
     this._loginService.login(this.user)
         .subscribe(data=>{
-          this._route.navigate(['/detail']);
+          let div=document.createElement("div");
+          div.className="alert alert-primary msg";
+          div.setAttribute("role", "alert");
+          div.innerHTML="Te has logueado correctamente!<a [routerLink]=\"['/details']\" href=\"#\" class=\"btn btn-info\" role=\"button\">Aceptar</a>";
+          document.querySelector("body").appendChild(div);
         });
+  }
+
+  goToDetails(){
+    this._route.navigate(['/detail']);
   }
 
   guardarGoogle(){
     this._loginService.loginGoogle()
       .subscribe(data=>{
       console.log(data);
+
     });
 
   }
 
   ngOnInit() {
-
+    if(this._loginService.isAuthenticated()){
+      this._route.navigate(['/detail']);
+    }
   }
 
 
