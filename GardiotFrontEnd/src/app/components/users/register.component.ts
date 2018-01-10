@@ -9,13 +9,14 @@ import { Router } from "@angular/router";
   templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit{
+
   user:User={
     id:"",
     password:"",
+    password2:"",
     name:"",
     plan:"",
     birthDate:null
-
   }
 
   constructor(

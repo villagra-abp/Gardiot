@@ -12,6 +12,7 @@ export class ProfileComponent {
   user:User={
     id:"",
     password:"",
+    password2:"",
     name:"",
     plan:"",
     birthDate:new Date(),
