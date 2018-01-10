@@ -42,14 +42,14 @@ router.post('/register', function(request, response) {
 		else {
 			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
-				if (typeof data !== 'undefined' && data.length > 0) // Esto peta que flipas
+				if (typeof data[0] !== 'undefined') 
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
 				else {					
 					userModel.genHash(userData.password, function(error, hash) {
 						if (!error) {
 							userData.password = hash;
 							userModel.insertUser(userData, function(error, data) {
-								if (data) {
+								if (data == 1) {
 									var token = jwt.sign({}, config.secret, {
 										expiresIn: '1h',
 										subject: userData.id
@@ -88,7 +88,7 @@ router.post('/authenticate', function(request, response) {
 	else {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
-			if (typeof user !== 'undefined' && user.length > 0) { //  Esto obviamente tambien peta que flipas
+			if (typeof user[0] !== 'undefined') { //  Esto obviamente tambien peta que flipas
 				//if (user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
@@ -233,7 +233,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireActi
 
 router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0)
+		if (typeof data[0] !== 'undefined')
 			response.status(200).json(data);
 		else
 			response.status(404).json({"Mensaje":"No existe"});

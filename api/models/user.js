@@ -23,7 +23,7 @@ user.getUserById = function(id, callback) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, row);
+				callback(null, row);		
 		});
 	}
 }
