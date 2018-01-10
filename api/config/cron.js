@@ -9,7 +9,7 @@ var job = new CronJob({
       connection.query('SELECT * FROM VerificationToken', function(error, rows) {
         if (error)
           console.log("CronJob: Unable to retrieve VerificationTokens");
-        else if (typeof rows !== 'undefined' || rows != null)
+        else if (typeof rows !== 'undefined' || rows != null) {
           for (var i = 0; i < rows.lenght; i ++) {
             jwt.verify(rows[i].token, config.secret, function(err, decoded) {
               if (err && err.name == 'TokenExpiredError') {
@@ -21,6 +21,7 @@ var job = new CronJob({
               else {}           
             }
           }
+        }         
       });
     }
   },
