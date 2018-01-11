@@ -11,10 +11,18 @@
 
 .msg{
   position: fixed;
-  width: 60%;
+  text-align: center;
+  min-width: 300px;
+  width: 20%;
+  max-width: 20S%;
   top: 20%;
   margin-left: 50%;
   transform: translateX(-50%);
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
+.msg>a{
+  margin: 0 auto;
+  margin-top: 2em;
+  max-width: 100px;
 }
