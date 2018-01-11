@@ -210,6 +210,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), requireAct
 router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken,  function(request, response) {
 	//var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	var token = request.headers.authorization;
+	token = token.slice(7);
 	inactiveTokenModel.insertInactiveToken(token, function (error, data) {	
 		if (data == 1) { request.logout(); response.status(200).json({"Mensaje":"Desconectado"});  }
 		else if (data == 0) response.status(500).json({"Mensaje":"Error interno"});
