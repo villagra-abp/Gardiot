@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/users/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/users/detail.component';
 import { ProfileComponent } from './components/users/profile.component';
+import { ConfirmationComponent } from './components/users/confirmation.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -36,6 +37,7 @@ import { AdminDashboardComponent } from './components/admin/dashboard.component'
     FooterComponent,
     DetailComponent,
     ProfileComponent,
+    ConfirmationComponent,
     AdminComponent,
     AdminListUsersComponent,
     AdminDashboardComponent,

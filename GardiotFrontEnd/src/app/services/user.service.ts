@@ -110,10 +110,20 @@ export class UserService {
           })
     }
 
+    comprobateActivationToken(token:String){
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+
+      return this.http.post(this.apiURL+"confirmation/"+token, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
     public isAuthenticated(): boolean{
       if(localStorage['Bearer']!=null){
         return true;
-
       }
       return false;
     }
