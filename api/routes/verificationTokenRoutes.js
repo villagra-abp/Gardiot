@@ -11,7 +11,7 @@ var verificationTokenModel = require('../models/verificationToken');
 
 //*** Confirmacion correo tras registro
 
-router.post('/confirmation/:token', function(request, response) {
+router.get('/confirmation/:token', function(request, response) {
 	jwt.verify(request.params.token, config.secret, function(err, decoded) { //Hay que ver si esto hace una comparacion automatica de los tiempos de expiracion
 		if (err) response.status(500).json(err);
 		else {
