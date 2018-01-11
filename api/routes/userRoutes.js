@@ -161,7 +161,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 			else if (request.body.password !== request.body.password2)
 				response.status(400).json({"Mensaje":"Las contraseñas nuevas no coinciden"});
 			else {
-				userModel.checkPassword(request.body.oldPassword, user[0].password, function(err, isMatch) { 
+				userModel.checkPassword(request.body.oldPassword, request.user.password, function(err, isMatch) { 
 					if (isMatch && !err) {
 						userModel.genHash(userData.password, function(error, hash) {
 							if (!error) {
