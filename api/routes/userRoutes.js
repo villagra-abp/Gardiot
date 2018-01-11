@@ -57,7 +57,7 @@ router.post('/register', function(request, response) {
 										if (error) response.status(500).json({"Mensaje":"Error"});
 										else {
 											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.headers.host + '\/confirmation\/' + token + '\n'};
+											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/dist\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
 												else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
