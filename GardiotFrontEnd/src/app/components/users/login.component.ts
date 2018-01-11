@@ -31,6 +31,11 @@ export class LoginComponent implements OnInit{
         .subscribe(data=>{
           this._appComponent.mensajeEmergente("Te has logueado correctamente!", "primary", "detail");
 
+        },
+        error=>{
+          let v=JSON.parse(error._body);
+          console.log(v.Mensaje);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
   }
 

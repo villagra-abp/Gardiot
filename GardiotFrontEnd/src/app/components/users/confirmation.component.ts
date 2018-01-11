@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-confirmation',
@@ -22,7 +23,8 @@ export class ConfirmationComponent implements OnInit{
   constructor(
     private _comprobationService:UserService,
     private _route:Router,
-    private _router: ActivatedRoute ){ }
+    private _router: ActivatedRoute,
+    private _appComponent: AppComponent ){ }
 
 
 
@@ -32,11 +34,10 @@ export class ConfirmationComponent implements OnInit{
                 this._comprobationService.comprobateActivationToken(params['key'])
                 .subscribe(data=>{
                     console.log(data);
-                    this._route.navigate(['/login']);
+                    this._appComponent.mensajeEmergente("Tu cuenta se ha activado correctamente! Loguéate ahora", "primary", "login");
                   },
                 error => {
-                  console.error(error);
-                  
+                  this._appComponent.mensajeEmergente("Ha habido un error activando tu cuenta, inténtalo más tarde", "danger", "login");
                 });
             }
          });

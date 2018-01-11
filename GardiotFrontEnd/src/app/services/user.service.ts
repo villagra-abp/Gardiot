@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="http://localhost:3000/api/";
+  private apiURL:string="https://gardiot.ovh/api/";
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -38,7 +38,7 @@ export class UserService {
               console.log(`Usuario ${user.id} logueado`);
 
               //TRUNYO TEMPORAL
-              if(user.id=="luisb_herr@hotmail.com"){
+              if(user.id=="luisberenguer96@gmail.com"){
                 sessionStorage['admin']=1;
               }
               else{
@@ -94,12 +94,12 @@ export class UserService {
     modifyUserProfile(user:User, oldPassword, password){
       let body = `name=${user.name}`;
       if(user.birthDate!=null){
-        body+=`&birthDate=${user.birthDate}`;
+        //body+=`&birthDate=${user.birthDate}`;
       }
       if(oldPassword && password){
         body+=`&password=${password}&password2=${password}&oldPassword=${oldPassword}`;
       }
-      alert(body);
+
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -115,7 +115,7 @@ export class UserService {
         'Content-Type':'application/x-www-form-urlencoded'
       });
 
-      return this.http.post(this.apiURL+"confirmation/"+token, { headers } )
+      return this.http.get(this.apiURL+"confirmation/"+token, { headers } )
           .map( res =>{
             return res.json();
           })

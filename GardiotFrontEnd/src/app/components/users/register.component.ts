@@ -29,7 +29,12 @@ export class RegisterComponent implements OnInit{
   guardar(user:NgForm){
     this._userService.register(this.user)
         .subscribe(data=>{
-            this._appComponent.mensajeEmergente("Te has registrado correctamente!", "primary", "login");
+            this._appComponent.mensajeEmergente("Te has registrado correctamente! Revisa tu correo para activar tu cuenta", "primary", "login");
+        },
+        error=>{
+          let v=JSON.parse(error._body);
+          console.log(v.Mensaje);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
   }
 
