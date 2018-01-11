@@ -11,7 +11,6 @@ router.get('/tool', function(request, response) {
 });
 
 router.get('/tool/:id', function(request, response) {
-	console.log(request.params);
 	var id = request.params.id;
 	toolModel.getToolById(id, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
