@@ -4,6 +4,7 @@ import { LogoutComponent } from "./components/users/logout.component";
 import { RegisterComponent } from "./components/users/register.component";
 import { DetailComponent } from "./components/users/detail.component";
 import { ProfileComponent } from "./components/users/profile.component";
+import { ConfirmationComponent } from "./components/users/confirmation.component";
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -20,6 +21,7 @@ const app_routes: Routes = [
   { path: 'admin', component: AdminComponent, children: admin_routes },
   { path: 'detail', component: DetailComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'confirmation/:key', component: ConfirmationComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
