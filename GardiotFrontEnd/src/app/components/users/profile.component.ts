@@ -42,7 +42,6 @@ export class ProfileComponent {
 
     edit(){
       let oldPassword, password;
-      alert(this.user.password);
       console.log(this.user);
       if(this.user.password!=""){
         if(this.user.oldPassword!=""){
@@ -51,31 +50,30 @@ export class ProfileComponent {
             password=this.user.password;
             this._detailService.modifyUserProfile(this.user, oldPassword, password)
                 .subscribe(data=>{
-                  this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+                  this._appComponent.mensajeEmergente("Datos modificados", "success", "");
                 },
               error => {
                 console.error(error);
-                this._appComponent.mensajeEmergente(error, "danger", "profile");
+                this._appComponent.mensajeEmergente(error, "danger", "");
                 this._route.navigate(['/login']);
               });
           }
           else{
-            alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
+            this._appComponent.mensajeEmergente("Las contraseñas no coinciden, la contraseña no se ha guardado", "danger", "");
           }
         }
         else{
-          alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
+          this._appComponent.mensajeEmergente("Debes introducir tu contraseña actual para poder cambiar tu contraseña", "warning", "");
         }
       }
       else{
         this._detailService.modifyUserProfile(this.user, oldPassword, password)
             .subscribe(data=>{
-              this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+              this._appComponent.mensajeEmergente("Datos modificados", "success", "");
             },
           error => {
             console.error(error);
-            this._appComponent.mensajeEmergente(error, "danger", "profile");
-            this._route.navigate(['/login']);
+            this._appComponent.mensajeEmergente(error, "danger", "");
           });
       }
 

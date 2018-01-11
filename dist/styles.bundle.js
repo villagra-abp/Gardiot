@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files*/\r\n.footer{\r\n  position: absolute;\r\n  bottom:0;\r\n  width:100%;\r\n}\r\n.main-container{\r\n  margin-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files*/\r\n.footer{\r\n  position: absolute;\r\n  bottom:0;\r\n  width:100%;\r\n}\r\n\r\n.main-container{\r\n  margin-top: 20px;\r\n}\r\n\r\n.msg{\r\n  position: fixed;\r\n  text-align: center;\r\n  min-width: 300px;\r\n  width: 20%;\r\n  max-width: 20S%;\r\n  top: 20%;\r\n  margin-left: 50%;\r\n  -webkit-transform: translateX(-50%);\r\n          transform: translateX(-50%);\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n.msg>a{\r\n  margin: 0 auto;\r\n  margin-top: 2em;\r\n  max-width: 100px;\r\n}\r\n", ""]);
 
 // exports
 

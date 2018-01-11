@@ -13,7 +13,12 @@ export class AppComponent {
     let div=document.createElement("div");
     div.className=`alert alert-${tipo} msg`;
     div.setAttribute("role", "alert");
-    div.innerHTML=`${msg}<a href="http://localhost:4200/${link}" class="btn btn-info" role="button">Aceptar</a>`;
+    if(link==""){
+      div.innerHTML=`${msg}<a onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="btn btn-info" role="button">Aceptar</a>`;
+    }
+    else{
+      div.innerHTML=`${msg}<a href="https://gardiot.ovh/dist/${link}" class="btn btn-info" role="button">Aceptar</a>`;
+    }
     document.querySelector("body").appendChild(div);
   }
 }
