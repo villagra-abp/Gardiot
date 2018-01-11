@@ -88,7 +88,7 @@ router.post('/authenticate', function(request, response) {
 		var id = validator.normalizeEmail(validator.trim(request.body.id));
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user[0] !== 'undefined') {
-				//if (user[0].active == 1) {
+				if (user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
 					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 						if (isMatch && !err) {
@@ -101,8 +101,8 @@ router.post('/authenticate', function(request, response) {
 						}
 						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
 					});
-				//}
-				//else response.status(403).json({"Mensaje":"Cuenta no activa"});
+				}
+				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
 			else response.status(404).json({"Mensaje":"No existe el usuario"});
 		});
