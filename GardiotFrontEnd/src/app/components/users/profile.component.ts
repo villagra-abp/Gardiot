@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
 import { UserService} from "../../services/user.service";
 import { User } from "../../interfaces/user.interface";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-profile',
@@ -11,22 +12,24 @@ import { User } from "../../interfaces/user.interface";
 export class ProfileComponent {
   user:User={
     id:"",
-    password:"",
     name:"",
+    password:"",
+    password2:"",
+    oldPassword:"",
     plan:"",
     birthDate:new Date(),
   }
 
   constructor(
     private _detailService:UserService,
-    private _route:Router ){ }
+    private _route:Router,
+    private _appComponent:AppComponent){ }
 
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
           console.log(data);
           this.user.id=data.id;
-          this.user.password=data.password;
           this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
           this.user.name=data.name;
@@ -37,33 +40,48 @@ export class ProfileComponent {
       });
     }
 
-    edit(forma:NgForm){
-      console.log(forma);
-      if(forma.value.passwordn!=""){
-        if(forma.value.password1!=""){
-          if(forma.value.passwordn==forma.value.passwordn2){
-            this.user.password=forma.value.passwordn;
+    edit(){
+      let oldPassword, password;
+      console.log(this.user);
+      if(this.user.password!=""){
+        if(this.user.oldPassword!=""){
+          if(this.user.password==this.user.password2){
+            oldPassword=this.user.oldPassword;
+            password=this.user.password;
+            this._detailService.modifyUserProfile(this.user, oldPassword, password)
+                .subscribe(data=>{
+                  this._appComponent.mensajeEmergente("Datos modificados", "success", "");
+                },
+              error => {
+                console.error(error);
+                this._appComponent.mensajeEmergente(error, "danger", "");
+                this._route.navigate(['/login']);
+              });
           }
           else{
-            alert("Las contraseñas no coinciden, la contraseña no se ha guardado");
+            this._appComponent.mensajeEmergente("Las contraseñas no coinciden, la contraseña no se ha guardado", "danger", "");
           }
         }
         else{
-          alert("Debes introducir tu contraseña actual para poder cambiar tu contraseña");
+          this._appComponent.mensajeEmergente("Debes introducir tu contraseña actual para poder cambiar tu contraseña", "warning", "");
         }
       }
-      this._detailService.modifyUserProfile(this.user, forma.value.password1)
-          .subscribe(data=>{
-            alert(data);
-          },
-        error => {
-          console.error(error);
-          this._route.navigate(['/login']);
-        });
+      else{
+        this._detailService.modifyUserProfile(this.user, oldPassword, password)
+            .subscribe(data=>{
+              this._appComponent.mensajeEmergente("Datos modificados", "success", "");
+            },
+          error => {
+            console.error(error);
+            this._appComponent.mensajeEmergente(error, "danger", "");
+          });
+      }
+
       }
 
 
   ngOnInit() {
+
     this.mostrar();
   }
 

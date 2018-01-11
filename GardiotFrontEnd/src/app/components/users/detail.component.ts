@@ -11,8 +11,10 @@ export class DetailComponent implements OnInit{
 
   user:User={
     id:"",
-    password:"",
     name:"",
+    password:"",
+    password2:"",
+    oldPassword:"",
     plan:"",
     birthDate:new Date(),
   }
@@ -26,7 +28,6 @@ export class DetailComponent implements OnInit{
         .subscribe(data=>{
           console.log(data);
           this.user.id=data.id;
-          this.user.password=data.password;
           this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
           this.user.name=data.name;

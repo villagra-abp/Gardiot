@@ -17,9 +17,12 @@ export class LogoutComponent implements OnInit {
         .subscribe(data=>{
           if(data.Mensaje=="Desconectado"){
             localStorage.removeItem('Bearer');
-            sessionStorage.clear();
             this._route.navigate(['/login']);
+            sessionStorage.clear();
           }
+
         });
+
+
   }
 }

@@ -12,7 +12,7 @@ export class UserService {
   constructor( private http:Http, private _route:Router) {}
 
     register( user:User ){
-      let body = `id=${user.id}&password=${user.password}`;
+      let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
@@ -36,11 +36,15 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
-              if(user.id=="luisb_herr@hotmail.com"){
-                sessionStorage['nombre']="Luis";
+
+              //TRUNYO TEMPORAL
+              if(user.id=="luisberenguer96@gmail.com"){
+                sessionStorage['admin']=1;
+              }
+              else{
+                sessionStorage['admin']=0;
               }
               localStorage.setItem('Bearer', res.json().Token);
-              console.log(res.json().Token);
             }
             else{
               console.log("Token es null");
@@ -87,14 +91,31 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldPassword:string){
-      let body = `name=${user.name}&birthdate=${user.birthDate}&password=${user.password}`;
-      //body+=`&oldPassword=${oldPassword}`;
+    modifyUserProfile(user:User, oldPassword, password){
+      let body = `name=${user.name}`;
+      if(user.birthDate!=null){
+        //body+=`&birthDate=${user.birthDate}`;
+      }
+      if(oldPassword && password){
+        body+=`&password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      }
+
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
       return this.http.put(this.apiURL+"user", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    comprobateActivationToken(token:String){
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+
+      return this.http.get(this.apiURL+"confirmation/"+token, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -108,7 +129,7 @@ export class UserService {
     }
 
     public isAdmin(): boolean{//comprobar si el usuario es administrador
-      if(sessionStorage['nombre']=="Luis"){
+      if(sessionStorage['admin']==1){
         return true;
       }
       return false;
