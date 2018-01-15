@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /404.html
+Sitemap: https://gardiot.ovh/symbiose/i18n-index-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/en/i18n-index-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/post-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/page-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/services-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/employees-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/category-sitemap.xml
+Sitemap: https://gardiot.ovh/symbiose/post_tag-sitemap.xml
+Sitemap: https://gardiot.ovh/landing/sitemap.xml
