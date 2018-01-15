@@ -11,6 +11,7 @@ export class AppComponent {
 
   mensajeEmergente(msg:String, tipo:String, link:String){
     let backdiv=document.createElement("div");
+    backdiv.className="background";
     let div=document.createElement("div");
     div.className=`alert alert-${tipo} msg`;
     div.setAttribute("role", "alert");

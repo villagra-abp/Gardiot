@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
-import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 import { AppComponent } from "../../app.component";
 
@@ -11,14 +10,14 @@ import { AppComponent } from "../../app.component";
 })
 export class LoginComponent implements OnInit{
 
-  user:User={
-    id:"",
-    name:"",
-    password:"",
-    password2:"",
-    oldPassword:"",
-    plan:"",
-    birthDate:null
+  user:Object={
+      id:"",
+      name:"",
+      password:"",
+      password2:"",
+      oldPassword:"",
+      plan:"",
+      birthDate:new Date(),
   }
 
   constructor(
