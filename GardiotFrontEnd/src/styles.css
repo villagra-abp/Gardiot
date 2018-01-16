@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files*/
 .footer{
-  position: absolute;
+  position: relative;
   bottom:0;
   width:100%;
 }
-
+button{
+  cursor: pointer;
+}
 .main-container{
   margin-top: 20px;
 }
@@ -21,8 +23,19 @@
   display: flex;
   flex-direction: column;
 }
-.msg>a{
+.msg>button{
   margin: 0 auto;
   margin-top: 2em;
   max-width: 100px;
+}
+.table>thead>tr>th{
+  max-width: 20px;
+}
+.background{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
 }

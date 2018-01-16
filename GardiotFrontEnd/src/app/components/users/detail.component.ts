@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { User } from "../../interfaces/user.interface";
+import { User } from '../../classes/user.class';
 import { UserService } from "../../services/user.service";
 
 @Component({
@@ -9,15 +9,7 @@ import { UserService } from "../../services/user.service";
 })
 export class DetailComponent implements OnInit{
 
-  user:User={
-    id:"",
-    name:"",
-    password:"",
-    password2:"",
-    oldPassword:"",
-    plan:"",
-    birthDate:new Date(),
-  }
+  user=new User("");
 
   constructor(
     private _detailService:UserService,
@@ -34,6 +26,8 @@ export class DetailComponent implements OnInit{
         },
       error => {
         console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
         this._route.navigate(['/login']);
       });
     }

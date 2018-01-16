@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 import { AppComponent } from "../../app.component";
 
@@ -10,7 +9,7 @@ import { AppComponent } from "../../app.component";
 })
 export class ConfirmationComponent implements OnInit{
 
-  user:User={
+  user:Object={
     id:"",
     name:"",
     password:"",

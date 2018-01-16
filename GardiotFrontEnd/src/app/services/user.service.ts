@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions  } from "@angular/http";
-import { User } from "../interfaces/user.interface";
+import { User } from "../classes/user.class";
 import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/";
 
   constructor( private http:Http, private _route:Router) {}
 
     register( user:User ){
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
+      if(user.birthDate!=null){
+        //body+=`&birthDate=${user.birthDate}`;
+      }
+      console.log(user);
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
@@ -38,7 +42,10 @@ export class UserService {
               console.log(`Usuario ${user.id} logueado`);
 
               //TRUNYO TEMPORAL
-              if(user.id=="luisberenguer96@gmail.com"){
+              if(user.id=="luisberenguer96@gmail.com"
+            || user.id=="symbiosegardiot@gmail.com"
+            || user.id=="julisangarcia@gmail.com"
+            || user.id=="gonzalezmarco95@gmail.com"){
                 sessionStorage['admin']=1;
               }
               else{
@@ -74,7 +81,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"user", { headers } )
+      return this.http.get(this.apiURL+"user/"+user.id, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -91,13 +98,13 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldPassword, password){
+    modifyUserProfile(user:User){
       let body = `name=${user.name}`;
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
-      if(oldPassword && password){
-        body+=`&password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      if(user.oldPassword && user.password){
+        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
       }
 
       let headers = new Headers({

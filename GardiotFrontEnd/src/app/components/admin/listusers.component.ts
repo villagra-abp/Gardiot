@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 
 @Component({
@@ -30,6 +29,10 @@ export class AdminListUsersComponent {
         // this._route.navigate(['/login']);
       });
 
+    }
+
+    borrarUsuario(id$:string){
+      alert("En un futuro no muy lejano este botón borrará el usuario "+id$);
     }
 
 

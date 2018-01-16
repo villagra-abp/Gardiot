@@ -23,6 +23,7 @@ import { ConfirmationComponent } from './components/users/confirmation.component
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
 import { AdminUserComponent } from './components/admin/user.component';
+import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
 
@@ -40,6 +41,7 @@ import { AdminDashboardComponent } from './components/admin/dashboard.component'
     ConfirmationComponent,
     AdminComponent,
     AdminListUsersComponent,
+    AdminEditUserComponent,
     AdminDashboardComponent,
     AdminUserComponent
   ],
