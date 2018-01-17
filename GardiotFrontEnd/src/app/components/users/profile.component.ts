@@ -10,7 +10,7 @@ import { AppComponent } from "../../app.component";
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  user=new User();
+  user=new User("");
 
   constructor(
     private _detailService:UserService,
@@ -41,8 +41,6 @@ export class ProfileComponent {
                 let v=JSON.parse(error._body);
                 this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
               });
-
-
       }
 
 
