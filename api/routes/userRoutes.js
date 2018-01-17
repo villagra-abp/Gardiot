@@ -110,13 +110,6 @@ router.post('/authenticate', function(request, response) {
 });
 
 
-
-/*router.get('/hash/:passwd', function(request, response) {
-	userModel.genHash(request.params.passwd, function(error, hash) {
-		if (!error) response.status(200).json(hash);
-	});
-});*/
-
 /***************************
 *		USER ROUTES
 ***************************/
@@ -134,6 +127,15 @@ router.post('/authenticate', function(request, response) {
 
 router.get('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
 	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
+});
+
+//*** Saber si es admin
+
+router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+	if (request.user.admin == 1)
+		response.status(200).send(true); 
+	else
+		response.status(403).send(false);
 });
 
 
@@ -241,12 +243,13 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 	});
 });
 
-
 //*** Desactiva a un usuario. Misma forma que antes
 
 router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
-		if (data == 1)
+		if (error)
+			response.status(500).json({"Mensaje":"Error: " + error});
+		else if (data == 1)
 			response.status(200).json({"Mensaje":"Desactivado"});
 		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
@@ -255,28 +258,64 @@ router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requir
 	});
 });
 
+//*** Elimina a un usuario 
 
-/*
-router.put('/user', function(request, response) {
+router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+	userModel.deleteUser(request.params.id, function(error, data) {
+		if (error)
+			response.status(500).json({"Mensaje":"Error: " + error});
+		else if (data == 1)
+			response.status(200).json({"Mensaje":"Eliminado"});
+		else if (data == 0)
+			response.status(404).json({"Mensaje":"No existe"});
+		else
+			response.status(500).json({"Mensaje":"Error"});
+	});
+});
+
+
+//***Actualiza a otro usuario
+
+router.put('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
 	var userData = {
 		id: request.body.id,
-		password: request.body.contrasenya,
+		password: request.body.password,
 		name: request.body.name,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		city: request.body.city,
-		plan: request.body.plan
+		plan: request.body.plan,
+		oldId: request.params.id,
 	};
-	userData = sanitizeInput(userData);
-	userModel.updateUser(userData, function(error, data) {
-		if (data && data.mensaje) {
-			response.status(200).json(data);
+	var validate = validateInput(userData);
+	if (validate.length > 0)
+		response.status(400).json({"Mensaje": validate});
+	else {
+		userData = sanitizeInput(userData);
+		if (userData.password) {
+			userModel.genHash(userData.password, function(error, hash) {
+				if (!error) {
+					userData.password = hash;
+					userModel.updateUser(userData, function(error, data) {
+						if (data)
+							response.status(200).json({"Mensaje":"Actualizado"});
+						else
+							response.status(500).json({"Mensaje":"Error"});
+					});
+				}
+				else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
+			});						
 		}
 		else {
-			response.status(500).json({"Mensaje":"Error"});
-		}
-	});
-}); */
+			userModel.updateUser(userData, function(error, data) {
+				if (data)
+					response.status(200).json({"Mensaje":"Actualizado"});
+				else
+					response.status(500).json({"Mensaje":"Error"});
+			});
+		}		
+	}
+});
 
 
 function sanitizeInput(data) {
@@ -285,7 +324,7 @@ function sanitizeInput(data) {
 	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
 	if (data.photo) data.photo = validator.trim(data.photo);
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
-	if (data.plan) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
+	if (data.plan) { data.plan = validator.trim(data.plan); data.plan = validator.stripLow(data.plan); data.plan = validator.escape(data.plan);}
 	if (data.oldId) { data.oldId = validator.normalizeEmail(data.oldId); data.oldId = validator.trim(data.oldId);}
 	return data;
 }
