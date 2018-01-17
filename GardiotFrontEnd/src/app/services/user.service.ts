@@ -40,17 +40,6 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
-
-              //TRUNYO TEMPORAL
-              if(user.id=="luisberenguer96@gmail.com"
-            || user.id=="symbiosegardiot@gmail.com"
-            || user.id=="julisangarcia@gmail.com"
-            || user.id=="gonzalezmarco95@gmail.com"){
-                sessionStorage['admin']=1;
-              }
-              else{
-                sessionStorage['admin']=0;
-              }
               localStorage.setItem('Bearer', res.json().Token);
             }
             else{
@@ -83,6 +72,7 @@ export class UserService {
 
       return this.http.get(this.apiURL+"user/"+user.id, { headers } )
           .map( res =>{
+            console.log(res.json());
             return res.json();
           })
     }
@@ -135,11 +125,16 @@ export class UserService {
       return false;
     }
 
-    public isAdmin(): boolean{//comprobar si el usuario es administrador
-      if(sessionStorage['admin']==1){
-        return true;
-      }
-      return false;
+    public isAdmin(){//comprobar si el usuario es administrador
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+    return this.http.get(this.apiURL+"isAdmin", { headers })
+        .map(res=>{
+            return res.json();
+        })
+
     }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -6,11 +6,21 @@ import { UserService } from '../services/user.service';
   templateUrl:  'header.component.html'
 })
 
-export class HeaderComponent {
-
-  admin:boolean=window.location.href.indexOf('admin')>=0;
+export class HeaderComponent implements OnInit{
+    private isAdmin:boolean;
+    private authenticated:boolean;
 
     constructor( private user:UserService ){
 
+    }
+    ngOnInit(){
+      this.user.isAdmin().subscribe(data=>{
+        if(data){
+          this.isAdmin=true;
+        }
+        else{
+          this.isAdmin=false;
+        }
+      });
     }
 }
