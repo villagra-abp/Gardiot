@@ -15,6 +15,7 @@ export class DetailComponent implements OnInit{
     private _detailService:UserService,
     private _route:Router ){ }
 
+  //Recoge los datos del usuario logueado y los guarda para mostrarlos
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{

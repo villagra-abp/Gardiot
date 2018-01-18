@@ -32,7 +32,14 @@ export class AdminListUsersComponent {
     }
 
     borrarUsuario(id$:string){
-      alert("En un futuro no muy lejano este botón borrará el usuario "+id$);
+      this._detailService.delete(id$)
+          .subscribe(data=>{
+              this._route.navigate(['/admin/listusers']);
+            },
+        error => {
+          console.error(error);
+          // this._route.navigate(['/login']);
+        });
     }
 
 

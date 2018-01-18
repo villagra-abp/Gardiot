@@ -17,6 +17,7 @@ export class ProfileComponent {
     private _route:Router,
     private _appComponent:AppComponent){ }
 
+    //Cargar usuario para mostrar sus datos en el formulario por defecto
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
@@ -28,24 +29,26 @@ export class ProfileComponent {
         },
       error => {
         console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
         this._route.navigate(['/login']);
       });
     }
 
+    //Enviar los nuevos datos del usuario a UserService para guardarlos
     edit(){
-            this._detailService.modifyUserProfile(this.user)
-                .subscribe(data=>{
-                  this._appComponent.mensajeEmergente("Datos modificados", "success", "detail");
-                },
-              error => {
-                let v=JSON.parse(error._body);
-                this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-              });
+      this._detailService.modifyUserProfile(this.user, this.user.id)
+          .subscribe(data=>{
+            this._appComponent.mensajeEmergente("Datos modificados", "success", "detail");
+          },
+        error => {
+          let v=JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
       }
 
 
   ngOnInit() {
-
     this.mostrar();
   }
 
