@@ -11,6 +11,8 @@ import { AdminListUsersComponent } from './components/admin/listusers.component'
 import { AdminUserComponent } from './components/admin/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 
+import { AuthguardGuard } from "./authguard.guard";
+
 import { admin_routes } from "./components/admin/admin.routes";
 
 
@@ -18,9 +20,9 @@ const app_routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'admin', component: AdminComponent, children: admin_routes },
-  { path: 'detail', component: DetailComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'admin', component: AdminComponent, children: admin_routes, canActivate: [AuthguardGuard] },
+  { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { UserService } from "../../services/user.service";
+import { User } from "../../classes/user.class";
 import { Router } from "@angular/router";
 import { AppComponent } from "../../app.component";
 
@@ -10,15 +11,7 @@ import { AppComponent } from "../../app.component";
 })
 export class RegisterComponent implements OnInit{
 
-  user:Object={
-    id:"",
-    name:"",
-    password:"",
-    password2:"",
-    oldPassword:"",
-    plan:"",
-    birthDate:null
-  }
+  user=new User("");
 
   constructor(
     private _userService:UserService,

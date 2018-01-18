@@ -13,7 +13,7 @@
   <li class="nav-item" *ngIf="!user.isAuthenticated()">
     <a [routerLink]="['/login']" class="nav-link" href="#">Log In</a>
   </li>
-  <li class="nav-item" *ngIf="user.isAuthenticated() && this.isAdmin">
+  <li class="nav-item" *ngIf="user.isAuthenticated() && this.user.isAdmin">
     <a [routerLink]="['/admin']" class="nav-link" href="#">Administración</a>
   </li>
   <li class="nav-item" *ngIf="user.isAuthenticated()">

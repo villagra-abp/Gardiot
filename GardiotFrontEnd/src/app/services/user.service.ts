@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 export class UserService {
 
   private apiURL:string="http://localhost:3000/api/";
+  public isAdmin:boolean;
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -72,7 +73,6 @@ export class UserService {
 
       return this.http.get(this.apiURL+"user/"+user.id, { headers } )
           .map( res =>{
-            console.log(res.json());
             return res.json();
           })
     }
@@ -88,7 +88,7 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User){
+    modifyUserProfile(user:User, oldId:String){
       let body = `name=${user.name}`;
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
@@ -101,7 +101,18 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.put(this.apiURL+"user", body, { headers })
+      return this.http.put(this.apiURL+"user/"+oldId, body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    delete(idUser:String){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.delete(this.apiURL+"user/"+idUser, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -125,7 +136,7 @@ export class UserService {
       return false;
     }
 
-    public isAdmin(){//comprobar si el usuario es administrador
+    public isUserAdmin(){//comprobar si el usuario es administrador
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -134,10 +145,7 @@ export class UserService {
         .map(res=>{
             return res.json();
         })
-
     }
-
-
 
     logout(){
       let headers = new Headers({
