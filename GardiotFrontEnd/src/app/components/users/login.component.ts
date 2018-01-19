@@ -25,11 +25,23 @@ export class LoginComponent implements OnInit{
     private _route:Router,
     private _appComponent:AppComponent){ }
 
+//logueo de usuario y comprobación de si es admin o no
   guardar(){
     this._loginService.login(this.user)
         .subscribe(data=>{
-          this._appComponent.mensajeEmergente("Te has logueado correctamente!", "primary", "detail");
-
+          this._loginService.isAuthenticated=true;
+          this._loginService.isUserAdmin().subscribe(data=>{
+            if(data){
+              this._loginService.isAdmin=true;
+            }
+            else{
+              this._loginService.isAdmin=false;
+            }
+          },
+          error=>{
+            this._loginService.isAdmin=false
+          });
+          this._route.navigate(['/detail']);
         },
         error=>{
           let v=JSON.parse(error._body);
@@ -50,7 +62,7 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this._loginService.isAuthenticated()){
+    if(this._loginService.isUserAuthenticated()){
       this._route.navigate(['/detail']);
     }
   }

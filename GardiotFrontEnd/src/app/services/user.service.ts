@@ -8,6 +8,8 @@ import 'rxjs/Rx';
 export class UserService {
 
   private apiURL:string="http://localhost:3000/api/";
+  public isAdmin:boolean;
+  public isAuthenticated:boolean;
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -40,17 +42,6 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
-
-              //TRUNYO TEMPORAL
-              if(user.id=="luisberenguer96@gmail.com"
-            || user.id=="symbiosegardiot@gmail.com"
-            || user.id=="julisangarcia@gmail.com"
-            || user.id=="gonzalezmarco95@gmail.com"){
-                sessionStorage['admin']=1;
-              }
-              else{
-                sessionStorage['admin']=0;
-              }
               localStorage.setItem('Bearer', res.json().Token);
             }
             else{
@@ -98,7 +89,7 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User){
+    modifyUserProfile(user:User, oldId:String){
       let body = `name=${user.name}`;
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
@@ -111,7 +102,18 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.put(this.apiURL+"user", body, { headers })
+      return this.http.put(this.apiURL+"user/"+oldId, body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    delete(idUser:String){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.delete(this.apiURL+"user/"+idUser, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -128,21 +130,23 @@ export class UserService {
           })
     }
 
-    public isAuthenticated(): boolean{
+    public isUserAuthenticated(){
       if(localStorage['Bearer']!=null){
         return true;
       }
       return false;
     }
 
-    public isAdmin(): boolean{//comprobar si el usuario es administrador
-      if(sessionStorage['admin']==1){
-        return true;
-      }
-      return false;
+    public isUserAdmin(){//comprobar si el usuario es administrador
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+    return this.http.get(this.apiURL+"isAdmin", { headers })
+        .map(res=>{
+            return res.json();
+        })
     }
-
-
 
     logout(){
       let headers = new Headers({

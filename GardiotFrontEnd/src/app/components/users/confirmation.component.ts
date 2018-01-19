@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { UserService } from "../../services/user.service";
 import { AppComponent } from "../../app.component";
 
@@ -7,21 +7,11 @@ import { AppComponent } from "../../app.component";
   selector: 'app-confirmation',
   template: ''
 })
+//Esta clase recibe el link de correo de confirmación de usuario y envía el token a la api para validarlo
 export class ConfirmationComponent implements OnInit{
-
-  user:Object={
-    id:"",
-    name:"",
-    password:"",
-    password2:"",
-    oldPassword:"",
-    plan:"",
-    birthDate:new Date(),
-  }
 
   constructor(
     private _comprobationService:UserService,
-    private _route:Router,
     private _router: ActivatedRoute,
     private _appComponent: AppComponent ){ }
 

@@ -15,6 +15,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cors());
+app.options('*', cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
@@ -24,7 +25,7 @@ require('./config/passport');
 
 require('./functions/cron'); //Purga tokens de verificacion expirados cada 30 segundos
 //Blocker
-app.use('/api', require('./functions/BLOCK')); //Bloquea las siguientes rutas
+app.use('/api', require('./functions/BLOCK')); //Bloquea rutas
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
