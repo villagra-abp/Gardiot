@@ -9,6 +9,7 @@ export class UserService {
 
   private apiURL:string="http://localhost:3000/api/";
   public isAdmin:boolean;
+  public isAuthenticated:boolean;
 
   constructor( private http:Http, private _route:Router) {}
 
@@ -129,7 +130,7 @@ export class UserService {
           })
     }
 
-    public isAuthenticated(): boolean{
+    public isUserAuthenticated(){
       if(localStorage['Bearer']!=null){
         return true;
       }

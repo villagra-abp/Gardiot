@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit{
   guardar(){
     this._loginService.login(this.user)
         .subscribe(data=>{
+          this._loginService.isAuthenticated=true;
           this._loginService.isUserAdmin().subscribe(data=>{
             if(data){
               this._loginService.isAdmin=true;
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this._loginService.isAuthenticated()){
+    if(this._loginService.isUserAuthenticated()){
       this._route.navigate(['/detail']);
     }
   }

@@ -16,15 +16,17 @@ export class LogoutComponent implements OnInit {
         .subscribe(data=>{
           if(data.Mensaje=="Desconectado"){
             localStorage.removeItem('Bearer');
-            sessionStorage.clear();
             this._route.navigate(['/login']);
           }
         },
         error=>{
           localStorage.clear();
-          sessionStorage.clear();
           this._route.navigate(['/login']);
         });
+        
+        sessionStorage.clear();
+        this._logoutService.isAdmin=false;
+        this._logoutService.isAuthenticated=false;
 
 
   }

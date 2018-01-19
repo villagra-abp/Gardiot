@@ -7,22 +7,34 @@ import { UserService } from '../services/user.service';
 })
 
 export class HeaderComponent implements OnInit{
-    private authenticated:boolean;
 
     constructor( private user:UserService ){
 
     }
     ngOnInit(){
-      this.user.isUserAdmin().subscribe(data=>{
-        if(data){
-          this.user.isAdmin=true;
-        }
-        else{
-          this.user.isAdmin=false;
-        }
-      },
-      error=>{
-        this.user.isAdmin=false
-      });
+      //comprueba si está autenticado
+      if(this.user.isUserAuthenticated){
+        this.user.isAuthenticated=true;
+        //comprueba si es usuario admin
+        this.user.isUserAdmin().subscribe(data=>{
+          if(data){
+            this.user.isAdmin=true;
+          }
+          else{
+            this.user.isAdmin=false;
+          }
+        },
+        error=>{
+          if(error.status==401){
+            this.user.isAuthenticated=false;
+          }
+          this.user.isAdmin=false
+        });
+      }
+      else{
+        this.user.isAuthenticated=false;
+        this.user.isAdmin=false;
+      }
+
     }
 }
