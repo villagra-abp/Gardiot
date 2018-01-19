@@ -5,12 +5,12 @@ var helmet = require('helmet'); //Security
 var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
-
+var cors = require('cors'); //CORS standard
 var config = require('./config/main');
 
 //Express init and load modules
 var app = express();
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
