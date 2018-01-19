@@ -130,23 +130,30 @@ export class UserService {
           })
     }
 
-    public isUserAuthenticated(){
+    isUserAuthenticated(){
       if(localStorage['Bearer']!=null){
+        this.isAuthenticated=true;
         return true;
       }
-      return false;
+      else{
+        this.isAuthenticated=false;
+        return false;
+      }
     }
 
-    public isUserAdmin(){//comprobar si el usuario es administrador
+    isUserAdmin(){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-    return this.http.get(this.apiURL+"isAdmin", { headers })
-        .map(res=>{
+
+      return this.http.get(this.apiURL+"isAdmin", { headers } )
+          .map( res =>{
             return res.json();
-        })
+          });
     }
+
+
 
     logout(){
       let headers = new Headers({
