@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit{
     this._loginService.login(this.user)
         .subscribe(data=>{
           this._loginService.isAuthenticated=true;
+
+          //comprobar si es admin
           this._loginService.isUserAdmin().subscribe(data=>{
             if(data){
               this._loginService.isAdmin=true;
@@ -37,10 +39,12 @@ export class LoginComponent implements OnInit{
             else{
               this._loginService.isAdmin=false;
             }
-          },
-          error=>{
-            this._loginService.isAdmin=false
+          },error=>{
+            this._loginService.isAdmin=false;
           });
+
+
+
           this._route.navigate(['/detail']);
         },
         error=>{
