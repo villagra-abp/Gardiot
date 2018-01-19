@@ -129,6 +129,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), requireActiv
 	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
 });
 
+
 //*** Saber si es admin
 
 router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
