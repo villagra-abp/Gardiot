@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this._userService.isAuthenticated()){
+    if(this._userService.isUserAuthenticated()){
       this._route.navigate(['/detail']);
     }
   }

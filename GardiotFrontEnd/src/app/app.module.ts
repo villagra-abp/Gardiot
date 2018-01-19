@@ -8,8 +8,9 @@ import { APP_ROUTING } from "./app.routes";
 //services
 import { UserService } from "./services/user.service";
 
-//AuthguardGuard
+//Guards
 import { AuthguardGuard } from "./authguard.guard";
+import { AdminguardGuard } from "./components/admin/adminguard.guard";
 
 import { AppComponent } from './app.component';
 
@@ -55,7 +56,8 @@ import { AdminDashboardComponent } from './components/admin/dashboard.component'
   ],
   providers: [
     UserService,
-    AuthguardGuard
+    AuthguardGuard,
+    AdminguardGuard
   ],
   bootstrap: [AppComponent]
 })

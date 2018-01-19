@@ -7,23 +7,23 @@
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <ul class="navbar-nav mr-auto">
-  <li class="nav-item" *ngIf="!user.isAuthenticated()">
+  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
     <a [routerLink]="['/register']" class="nav-link" href="#">Registrarse <span class="sr-only">(current)</span></a>
   </li>
-  <li class="nav-item" *ngIf="!user.isAuthenticated()">
+  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
     <a [routerLink]="['/login']" class="nav-link" href="#">Log In</a>
   </li>
-  <li class="nav-item" *ngIf="user.isAuthenticated() && this.user.isAdmin">
+  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
     <a [routerLink]="['/admin']" class="nav-link" href="#">Administración</a>
   </li>
-  <li class="nav-item" *ngIf="user.isAuthenticated()">
+  <li class="nav-item" *ngIf="this.user.isAuthenticated">
     <a [routerLink]="['/profile']" class="nav-link" href="#">Mi perfil</a>
   </li>
 
   <li class="nav-item">
     <a href="https://gardiot.ovh/symbiose/" class="nav-link" target="blank">Symbiose</a>
   </li>
-  <li class="nav-item" *ngIf="user.isAuthenticated()">
+  <li class="nav-item" *ngIf="this.user.isAuthenticated">
     <a [routerLink]="['/logout']" class="nav-link" href="#">Log Out</a>
   </li>
 
