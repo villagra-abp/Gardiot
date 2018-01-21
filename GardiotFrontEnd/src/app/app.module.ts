@@ -22,6 +22,7 @@ import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/users/detail.component';
 import { ProfileComponent } from './components/users/profile.component';
 import { ConfirmationComponent } from './components/users/confirmation.component';
+import { ResendComponent } from './components/users/resend.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -42,6 +43,7 @@ import { AdminDashboardComponent } from './components/admin/dashboard.component'
     DetailComponent,
     ProfileComponent,
     ConfirmationComponent,
+    ResendComponent,
     AdminComponent,
     AdminListUsersComponent,
     AdminEditUserComponent,

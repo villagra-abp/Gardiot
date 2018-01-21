@@ -50,7 +50,13 @@ export class LoginComponent implements OnInit{
         error=>{
           let v=JSON.parse(error._body);
           console.log(v.Mensaje);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+          if(v.Mensaje=="Cuenta no activa"){
+            this._route.navigate(['/resend']);
+          }
+          else{
+            this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+          }
+
         });
   }
 
