@@ -30,6 +30,7 @@ import { AdminUserComponent } from './components/admin/user.component';
 import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
+import { GardenComponent } from './components/garden/garden.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { AdminDashboardComponent } from './components/admin/dashboard.component'
     AdminListUsersComponent,
     AdminEditUserComponent,
     AdminDashboardComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    GardenComponent
   ],
   imports: [
     BrowserModule,

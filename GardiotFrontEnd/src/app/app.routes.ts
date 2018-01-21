@@ -12,6 +12,9 @@ import { AdminListUsersComponent } from './components/admin/listusers.component'
 import { AdminUserComponent } from './components/admin/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 
+//GardenComponent
+import { GardenComponent } from './components/garden/garden.component';
+
 import { AuthguardGuard } from "./authguard.guard";
 
 import { admin_routes } from "./components/admin/admin.routes";
@@ -25,6 +28,7 @@ const app_routes: Routes = [
   { path: 'admin', component: AdminComponent, children: admin_routes, canActivate: [AuthguardGuard] },
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
+  { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
 
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
