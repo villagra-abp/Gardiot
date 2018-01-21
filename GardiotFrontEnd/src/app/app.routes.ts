@@ -5,6 +5,7 @@ import { RegisterComponent } from "./components/users/register.component";
 import { DetailComponent } from "./components/users/detail.component";
 import { ProfileComponent } from "./components/users/profile.component";
 import { ConfirmationComponent } from "./components/users/confirmation.component";
+import { ResendComponent } from "./components/users/resend.component";
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -17,6 +18,7 @@ import { admin_routes } from "./components/admin/admin.routes";
 
 
 const app_routes: Routes = [
+  { path: 'resend', component: ResendComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
