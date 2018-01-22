@@ -85,7 +85,7 @@ router.post('/authenticate', function(request, response) {
 	if (!validator.isEmail(request.body.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
-		var id = validator.normalizeEmail(validator.trim(request.body.id));
+		var id = validator.trim(request.body.id);
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user[0] !== 'undefined') {
 				if (user[0].active == 1) {
