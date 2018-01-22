@@ -31,6 +31,14 @@ import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
 import { GardenComponent } from './components/garden/garden.component';
+import { AnalyticsComponent } from './components/admin/analytics.component';
+import { StatisticsComponent } from './components/admin/statistics.component';
+import { EmailComponent } from './components/admin/email.component';
+import { UserdataComponent } from './components/admin/userdata.component';
+import { PlantdataComponent } from './components/admin/plantdata.component';
+import { EventdataComponent } from './components/admin/eventdata.component';
+import { ToolComponent } from './components/admin/tool.component';
+import { InvoiceComponent } from './components/admin/invoice.component';
 
 
 @NgModule({
@@ -50,7 +58,15 @@ import { GardenComponent } from './components/garden/garden.component';
     AdminEditUserComponent,
     AdminDashboardComponent,
     AdminUserComponent,
-    GardenComponent
+    GardenComponent,
+    AnalyticsComponent,
+    StatisticsComponent,
+    EmailComponent,
+    UserdataComponent,
+    PlantdataComponent,
+    EventdataComponent,
+    ToolComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,
