@@ -15,14 +15,16 @@ import { AdminguardGuard } from "./components/admin/adminguard.guard";
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './components/header.component';
-import { LoginComponent } from './components/users/login.component';
-import { LogoutComponent } from './components/users/logout.component';
-import { RegisterComponent } from './components/users/register.component';
+import { LoginComponent } from './components/manage/login.component';
+import { LogoutComponent } from './components/manage/logout.component';
+import { RegisterComponent } from './components/manage/register.component';
 import { FooterComponent } from './components/footer.component';
-import { DetailComponent } from './components/users/detail.component';
-import { ProfileComponent } from './components/users/profile.component';
-import { ConfirmationComponent } from './components/users/confirmation.component';
-import { ResendComponent } from './components/users/resend.component';
+import { DetailComponent } from './components/user/detail.component';
+import { ProfileComponent } from './components/user/profile.component';
+import { ConfirmationComponent } from './components/manage/confirmation.component';
+import { ResendComponent } from './components/manage/resend.component';
+import { LibraryComponent } from './components/user/library.component';
+import { CalendarComponent } from './components/user/calendar.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -30,7 +32,7 @@ import { AdminUserComponent } from './components/admin/user.component';
 import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
-import { GardenComponent } from './components/garden/garden.component';
+import { GardenComponent } from './components/user/garden.component';
 import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
@@ -39,6 +41,8 @@ import { PlantdataComponent } from './components/admin/plantdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
+
+
 
 
 @NgModule({
@@ -66,7 +70,10 @@ import { InvoiceComponent } from './components/admin/invoice.component';
     PlantdataComponent,
     EventdataComponent,
     ToolComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    LibraryComponent,
+    CalendarComponent
+
   ],
   imports: [
     BrowserModule,

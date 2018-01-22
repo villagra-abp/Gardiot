@@ -23,7 +23,7 @@
     <a [routerLink]="['/plants']" class="nav-link" href="#">Plantas</a>
   </li>
   <li class="nav-item" *ngIf="this.user.isAuthenticated && !this.user.isAdmin">
-    <a [routerLink]="['/calender']" class="nav-link" href="#">Calendario</a>
+    <a [routerLink]="['/calendar']" class="nav-link" href="#">Calendario</a>
   </li>
   <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
     <a [routerLink]="['/admin/statistics']" class="nav-link" href="#">Estadísticas</a>
