@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../../services/user.service";
+import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-admin-listusers',
@@ -13,7 +14,8 @@ export class AdminListUsersComponent {
 
   constructor(
     private _detailService:UserService,
-    private _route:Router){ }
+    private _route:Router,
+    private _appComponent:AppComponent){ }
 
   mostrar(){
     this._detailService.detailsAll()
@@ -34,10 +36,13 @@ export class AdminListUsersComponent {
     borrarUsuario(id$:string){
       this._detailService.delete(id$)
           .subscribe(data=>{
-              this._route.navigate(['/admin/listusers']);
+              this._appComponent.mensajeEmergente(data.Mensaje, "primary", "");
+              this.users=[];
+              this.mostrar();
             },
         error => {
-          console.error(error);
+          let v=JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
           // this._route.navigate(['/login']);
         });
     }
