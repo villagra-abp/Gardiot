@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('validator');
 var nodemailer = require('nodemailer');
-
+var isEmail = require('isemail');
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
@@ -85,7 +85,7 @@ router.post('/authenticate', function(request, response) {
 	if (!validator.isEmail(request.body.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
-		var id = validator.normalizeEmail(validator.trim(request.body.id));
+		var id = validator.trim(request.body.id);
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user[0] !== 'undefined') {
 				if (user[0].active == 1) {
@@ -109,6 +109,12 @@ router.post('/authenticate', function(request, response) {
 	}
 });
 
+router.get('/isAuthenticated', function(request, response) {
+	if (request.user)
+		response.status(200).send(true); 
+	else
+		response.status(200).send(false);
+});
 
 /***************************
 *		USER ROUTES
@@ -136,7 +142,7 @@ router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireAc
 	if (request.user.admin == 1)
 		response.status(200).send(true); 
 	else
-		response.status(403).send(false);
+		response.status(200).send(false);
 });
 
 
@@ -320,25 +326,25 @@ router.put('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 
 function sanitizeInput(data) {
-	if (data.id) { data.id = validator.normalizeEmail(data.id); data.id = validator.trim(data.id);}
+	if (data.id) {  data.id = validator.trim(data.id);}
 	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
 	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
 	if (data.photo) data.photo = validator.trim(data.photo);
 	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.plan = validator.trim(data.plan); data.plan = validator.stripLow(data.plan); data.plan = validator.escape(data.plan);}
-	if (data.oldId) { data.oldId = validator.normalizeEmail(data.oldId); data.oldId = validator.trim(data.oldId);}
+	if (data.oldId) {data.oldId = validator.trim(data.oldId);}
 	return data;
 }
 
 function validateInput(data) {
 	var resp = '';
-	if (data.id && !validator.isEmail(data.id)) resp += 'Email no válido, ';
+	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
 	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
-
+	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }
