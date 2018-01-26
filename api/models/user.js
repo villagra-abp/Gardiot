@@ -109,6 +109,15 @@ user.updateUser = function(userData, callback) {
 	}
 }
 
+user.updatePassword = function (email, password, callback) {
+	if (connection) {
+		connection.query('UPDATE User SET password = "' + password + '" WHERE id = "' + email + '"', function (error, result) {
+			if (error) callback(error, null);
+			else callback (null, {"Mensaje":"Actualizado"});
+		});
+	}
+}
+
 user.deleteUser = function(id, callback) {
 	if (connection) {
 		var mariasql = 'DELETE FROM User WHERE id = "' + id + '"';
