@@ -29,21 +29,21 @@ app.use('/api', require('./routes/userRoutes'));
 app.use('/api', require('./routes/authRoutes'));
 
 //app.use('/api', require('./routes/billRoutes'));
-//app.use('/api', require('./routes/categoryRoutes'));
-//app.use('/api', require('./routes/cityRoutes'));
-//app.use('/api', require('./routes/countryRoutes'));
-//app.use('/api', require('./routes/eventRoutes'));
+app.use('/api', require('./routes/categoryRoutes'));
+app.use('/api', require('./routes/cityRoutes'));
+app.use('/api', require('./routes/countryRoutes'));
+app.use('/api', require('./routes/eventRoutes'));
 //app.use('/api', require('./routes/gardenRoutes'));
 
 //app.use('/api', require('./routes/myPlantRoutes'));
-//app.use('/api', require('./routes/planRoutes'));
+app.use('/api', require('./routes/planRoutes'));
 //app.use('/api', require('./routes/plantRoutes'));
-//app.use('/api', require('./routes/productRoutes'));
+app.use('/api', require('./routes/productRoutes'));
 //app.use('/api', require('./routes/registryRoutes'));
-//app.use('/api', require('./routes/soilRoutes'));
-//app.use('/api', require('./routes/toolRoutes'));
-//app.use('/api', require('./routes/treatmentRoutes'));
-//app.use('/api', require('./routes/yearRoutes'));
+app.use('/api', require('./routes/soilRoutes'));
+app.use('/api', require('./routes/toolRoutes'));
+app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/yearRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
 

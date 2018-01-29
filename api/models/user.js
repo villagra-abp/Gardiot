@@ -8,7 +8,7 @@ user.getUser = function(callback) {
 		connection.query('SELECT * FROM User', function(error, rows) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, rows);
 		});

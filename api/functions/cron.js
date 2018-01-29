@@ -70,7 +70,7 @@ var forgetPasswordTokenJob = new CronJob({
                 if (error) console.log("CronJob: Unable to delete expired ForgetPasswordToken assigned to " + rows[i].userId);
               });
             } 
-            else if (err) console.log("CronJob-Verification Error: " + err.message);
+            else if (err) console.log("CronJob-ResetPassword Error: " + err.message);
             else {}           
           });
         }            
