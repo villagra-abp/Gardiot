@@ -71,17 +71,18 @@ router.put('/resetPassword/:token', function (request, response) {
 					else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario o este usuario no ha solicitado un cambio de contraseña."}); 
 					else {
 						userModel.genHash(request.body.password, function(error, hash) {
-						if (!error) {
-							userModel.updatePassword (user[0].userId, hash, function(error, data) {
-								if (data) {
-									forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
-										response.status(200).json({"Mensaje":"Contraseña actualizada. Por favor autentícate con tu nueva contraseña."});
-									});									
-								}
-								else
-									response.status(500).json({"Mensaje":"Error al actualizar la contraseña"});
-							});
-						}
+							if (!error) {
+								userModel.updatePassword (user[0].userId, hash, function(error, data) {
+									if (data) {
+										forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
+											response.status(200).json({"Mensaje":"Contraseña actualizada. Por favor autentícate con tu nueva contraseña."});
+										});									
+									}
+									else
+										response.status(500).json({"Mensaje":"Error al actualizar la contraseña"});
+								});
+							}
+						});
 					}
 				});
 			}

@@ -45,6 +45,7 @@ app.use('/api', require('./routes/authRoutes'));
 //app.use('/api', require('./routes/treatmentRoutes'));
 //app.use('/api', require('./routes/yearRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
+app.use('/api', require('./routes/forgetPasswordRoutes'));
 
 //Start server
 app.listen(config.port, function () {
