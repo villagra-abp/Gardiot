@@ -1831,7 +1831,7 @@ var UserService = (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;
-        this.apiURL = "http://localhost:3000/api/";
+        this.apiURL = "https://gardiot.ovh/api/";
     }
     UserService.prototype.register = function (user) {
         var body = "id=" + user.id + "&password=" + user.password + "&password2=" + user.password2;
