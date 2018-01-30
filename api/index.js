@@ -28,6 +28,8 @@ require('./functions/cron'); //Purga tokens de verificacion expirados cada 30 se
 app.use('/api', require('./routes/userRoutes'));
 app.use('/api', require('./routes/authRoutes'));
 
+app.use('/api', require('./routes/owmRoutes'));
+
 //app.use('/api', require('./routes/billRoutes'));
 //app.use('/api', require('./routes/categoryRoutes'));
 //app.use('/api', require('./routes/cityRoutes'));
