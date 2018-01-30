@@ -32,27 +32,21 @@ passport.use(new GoogleStrategy({
 						oldId: parsed.emails[0].value
 					};
 	      			userModel.updateUser(userData, function(err, data) {
-	      				if (data!=null) {
-	      					userModel.getUserById(parsed.emails[0].value, function (err, user) {
-	      						if (typeof user[0] !== 'undefined') {
-	      							user = JSON.parse(JSON.stringify(user[0], null, 4));
-	      							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
-										token = jwt.sign({}, config.secret, {
-											expiresIn: '6h',
-											audience: "gardiot.ovh",
-											subject: user.id
-										});
-										user.token = token;	    	
-							   		}
-							    	return done(err, user);
-	      						}
-	      						else return done (err, false);
-	      					});
+	      				if (data) {						
+  							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+								token = jwt.sign({}, config.secret, {
+									expiresIn: '6h',
+									audience: "gardiot.ovh",
+									subject: user.id
+								});
+								user.token = token;	    	
+					   		}
+					    	return done(err, user);	      								
 	      				}
 						else return done (err, false);						
 	      			});
 	      		}
-	      		else if (user.Id == parsed.id) { //Si el usuario existe y ya tiene asociado el login de Google en BD
+	      		else if (user.googleId == parsed.id) { //Si el usuario existe y ya tiene asociado el login de Google en BD
 	      			if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 						token = jwt.sign({}, config.secret, {
 							expiresIn: '6h',
@@ -74,22 +68,16 @@ passport.use(new GoogleStrategy({
 					//photo: parsed.photos[0].value
 				};
 				userModel.insertUser(userData, function(error, data) {
-					if (data!=null) {
-						userModel.getUserById(parsed.emails[0].value, function (err, user) {
-							if (typeof user[0] !== 'undefined') {
-								user = JSON.parse(JSON.stringify(user[0], null, 4));
-								if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
-									token = jwt.sign({}, config.secret, {
-										expiresIn: '6h',
-										audience: "gardiot.ovh",
-										subject: user.id
-									});
-									user.token = token;	    	
-						   		}
-						   		return done(err, user); 
-							}
-							else return done (err, false);							
-						});
+					if (data == 1) {						
+						if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+							token = jwt.sign({}, config.secret, {
+								expiresIn: '6h',
+								audience: "gardiot.ovh",
+								subject: userData.id
+							});
+							user.token = token;	    	
+				   		}
+				   		return done(err, user); 																
 					} 
 					else  return done(err, false);
 				});		    	 

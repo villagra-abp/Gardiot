@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { User } from "../../interfaces/user.interface";
 import { UserService } from "../../services/user.service";
 import { AdminListUsersComponent } from "./listusers.component";
 import { AdminUserComponent } from "./user.component";
+
 
 
 @Component({

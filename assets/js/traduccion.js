@@ -1,0 +1,391 @@
+function toggleIdioma(){
+	traduction=!traduction;
+	if(traduction){
+		let title=$("#titulos")[0];
+		if(title.innerHTML=="Descubre la jardinería inteligente"){
+			title.innerHTML="Discover smart gardening";
+		}
+		else if(title.innerHTML=="Ahorra tiempo y esfuerzos"){
+			title.innerHTML="Save time and efforts";
+		}
+		else if(title.innerHTML=="Únete gratis"){
+			title.innerHTML="Join free";
+		}
+		$('#navigation > ul > li:nth-child(4) > a')[0].innerHTML="<img src=\"assets/flags/ing.png\" alt=\"english\">Switch language";
+		titles=["Discover smart gardening","Save time and efforts","Join free"];
+		$('#texto')[0].innerHTML="With Gardiot you will access a new level of care for your gardens and plants. You can have your gardens recreated in 3D, useful information in real time on the care of your plants and much more.";
+		$('#join')[0].innerHTML="Join Gardiot";
+		let advantages=	'<h2 class="invisible">Cuidado y diseño de tus plantas</h2>';
+	    advantages+='        <div class="container">';
+	    advantages+='            <div class="row justify-content-center">';
+	    advantages+='                <div class="col-lg-6">';
+	    advantages+='                    <div class="title text-center">';
+	    advantages+='                        <h3><b>Advantages</b></h3>';
+	    advantages+='                        <span class="title-border"><i class="mdi mdi-set-none"></i></span>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='            <div class="row mt-4 pt-4 vertical-content">';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div>';
+	    advantages+='                        <img src="images/mockup2.png" alt="" class="img-fluid mx-auto d-block">';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='                <div class="col-lg-6 mt-2 text-center">';
+	    advantages+='                    <div class="features-desc">';
+	    advantages+='                        <h4>Learn how to take care of your plants</h4>';
+	    advantages+='                        <div class="features-border mx-auto mt-3"></div>';
+	    advantages+='                        <p class="text-muted mt-3">With the advices of Gardiot, learn about caring for your plants and reduce the time spent taking care of them.</p>';
+	    advantages+='                        <a href="#" class="">Learn more<i class="mdi mdi-chevron-right"></i></a>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='            <div class="row mt-5 vertical-content">';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div class="features-desc text-center">';
+	    advantages+='                        <h4>Create and design your garden in 3D</h4>';
+	    advantages+='                        <div class="features-border mx-auto mt-3"></div>';
+	    advantages+='                        <p class="text-muted mt-3">With our graphic tool, design your garden easily and intuitively and get great results. Try your interactive garden now!</p>';
+	    advantages+='                        <a href="#" class="">Try it<i class="mdi mdi-chevron-right"></i></a>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div>';
+	    advantages+='                        <img src="images/mockup1.png" alt="" class="img-fluid mx-auto d-block">';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='        </div>';
+        let feat=document.getElementById("features");
+        feat.innerHTML=advantages;
+
+        let llamada='<h2 class="invisible">¿Cómo cuidar mis plantas?</h2>';
+        llamada+='    <div class="container">';
+        llamada+='        <div class="row">';
+        llamada+='            <div class="col-md-9 text-white critarea-desc mt-3 mb-3">';
+        llamada+='            Join the great community of Gardiot and discover its advantages';
+        llamada+='            </div>';
+        llamada+='            <div class="col-md-3 mt-3 mb-3 text-md-right">';
+        llamada+='                <a href="#" class="btn btn-outline-custom">Join Gardiot</a>';
+        llamada+='            </div>';
+        llamada+='        </div>';
+        llamada+='    </div>';
+        let llam=document.querySelector('body > section.pt-5.pb-5.bg-custom');
+        llam.innerHTML=llamada;
+
+        let features='<h2 class="invisible">Empezar a plantar mis plantas</h2>';
+            features+='<div class="container">';
+            features+='    <div class="row justify-content-center">';
+            features+='        <div class="col-lg-6">';
+            features+='            <div class="title text-center">';
+            features+='                <h3><b>Features</b></h3>';
+            features+='                <span class="title-border"><i class="mdi mdi-set-none"></i></span>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='    <div class="row pt-4 mt-4">';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-website-theme"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>3D garden designer</h4>';
+            features+='                    <p class="text-muted mb-0">Recreate your gardens in Gardiot in an easy and intuitive way and explore all the possibilities offered by the designer.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-growing-chart"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Track your plants</h4>';
+            features+='                    <p class="text-muted mb-0">Record the treatments you do and have an effective follow-up of the care of your plants from your computer or mobile.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                 <div class="service-icon service-left"><i class="mbri-calendar"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Events calendar</h4>';
+            features+='                    <p class="text-muted mb-0">Program and record events in your calendar so that nothing important happens to you about the care of your plants.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='    <div class="row">';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-alert"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Smart notifications</h4>';
+            features+='                    <p class="text-muted mb-0">Receive personalized notifications in the form of notifications and emails referring to the needs of your plants.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='            <div class="service-icon service-left"><i class="mbri-responsive"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Everything in your hand</h4>';
+            features+='                    <p class="text-muted mb-0">Your garden, the weather, sowing times, irrigation times, plant needs, recommendations ...</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-protect"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Easy to mantain</h4>';
+            features+='                    <p class="text-muted mb-0">Gardiot will facilitate the care of your gardens and save time in the maintenance and care of your plants.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='</div>';
+        let feat2=document.getElementById('service');
+        feat2.innerHTML=features;
+
+        let footer='<div class="container">';
+            footer+='    <div class="row">';
+            footer+='        <div class="col-lg-6">';
+            footer+='            <p class="copy-rights">2017 © <a href="https://gardiot.ovh/symbiose/">Symbiose</a></p>';
+            footer+='            <p>All rights reserved</p><p>Design <a href="http://themesdesign.in/linexon/">Linexon</a></p>';
+            footer+='        </div>';
+            footer+='        <div class="col-lg-6">';
+            footer+='            <p class="text-uppercase footer-title">Contact with Symbiose</p>';
+            footer+='            <ul class="list-unstyled company-sub-menu">';
+            footer+='                <li>';
+            footer+='                    <a href="https://gardiot.ovh/symbiose">About us</a>';
+            footer+='                </li>';
+            footer+='                <li class="contact-us">';
+            footer+='                    <p>symbiosegardiot@gmail.com</p>';
+            footer+='                </li>';
+            footer+='            </ul>';
+            footer+='            <ul class="footer-icons list-inline mt-4"> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.facebook.com/SymbioseTeam/" class=""><i class="mdi mdi-facebook"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.instagram.com/symbioseteam/" class=""><i class="mdi mdi-instagram"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://twitter.com/SymbioseTeam" class=""><i class="mdi mdi-twitter"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.youtube.com/channel/UC54CbtC3vqbcjMaN7S9DhIA?view_as=subscriber" class=""><i class="mdi mdi-youtube-play"></i></a></li> ';
+            footer+='                <!--<li class="list-inline-item"><a href="#" class=""><i class="mdi mdi-google-plus"></i></a></li>';
+            footer+='                <li class="list-inline-item"><a href="#" class=""><i class="mdi mdi-apple"></i></a></li>  -->';
+            footer+='            </ul>';
+            footer+='        </div>';
+            footer+='    </div>';
+            footer+='</div>';
+        let fot=document.querySelector('body > div.footer-alt.bg-dark');
+        fot.innerHTML=footer;
+
+        let rrss='<ul class="rrss">';
+            rrss+='<li class="popupfb">';
+            rrss+='     <img src="images/icons/face.png" alt="Share on Facebook" width="32" height="32">';
+            rrss+='    <p>Share on Facebook</p>';
+            rrss+='</li>';
+            rrss+='<li class="popuptw">';
+            rrss+='    <img src="images/icons/twitter.png" alt="Share on Twitter" width="32" height="32">';
+            rrss+='    <p>Share on Twitter</p>';
+            rrss+='</li>';
+       		rrss+=' </ul>';
+
+       	let rs=document.querySelector('body > div.rrss-container');
+        rs.innerHTML=rrss;
+
+
+        
+
+	}
+	else{
+		let title=$("#titulos")[0];
+		if(title.innerHTML=="Discover smart gardening"){
+			title.innerHTML="Descubre la jardinería inteligente";
+		}
+		else if(title.innerHTML=="Save time and efforts"){
+			title.innerHTML="Ahorra tiempo y esfuerzos";
+		}
+		else if(title.innerHTML=="Join free"){
+			title.innerHTML="Únete gratis";
+		}
+		$('#navigation > ul > li:nth-child(4) > a')[0].innerHTML="<img src=\"assets/flags/spain.png\" alt=\"spanish\">Cambiar idioma";
+		titles=["Descubre la jardinería inteligente","Ahorra tiempo y esfuerzos","Únete gratis"];
+		$('#texto')[0].innerHTML="Con Gardiot accederás a un nuevo nivel de cuidado de tus jardines y plantas. Podrás tener tus jardines diseñados en 3D fácilmente, realizar el seguimiento del cuidado de tus plantas y mucho más.";
+		$('#join')[0].innerHTML="Regístrate en Gardiot";
+		let advantages=	'<h2 class="invisible">Cuidado y diseño de tus plantas</h2>';
+	    advantages+='        <div class="container">';
+	    advantages+='            <div class="row justify-content-center">';
+	    advantages+='                <div class="col-lg-6">';
+	    advantages+='                    <div class="title text-center">';
+	    advantages+='                        <h3><b>Ventajas</b></h3>';
+	    advantages+='                        <span class="title-border"><i class="mdi mdi-set-none"></i></span>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='            <div class="row mt-4 pt-4 vertical-content">';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div>';
+	    advantages+='                        <img src="images/mockup2.png" alt="" class="img-fluid mx-auto d-block">';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='                <div class="col-lg-6 mt-2 text-center">';
+	    advantages+='                    <div class="features-desc">';
+	    advantages+='                        <h4>Aprende cómo cuidar tus plantas</h4>';
+	    advantages+='                        <div class="features-border mx-auto mt-3"></div>';
+	    advantages+='                        <p class="text-muted mt-3">Con las recomendaciones y consejos de Gardiot, aprende sobre el cuidado de tus plantas y  reduce el tiempo empleado cuidando de ellas.</p>';
+	    advantages+='                        <a href="#" class="">Saber más<i class="mdi mdi-chevron-right"></i></a>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='            <div class="row mt-5 vertical-content">';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div class="features-desc text-center">';
+	    advantages+='                        <h4>Crea y diseña tu jardín en 3D</h4>';
+	    advantages+='                        <div class="features-border mx-auto mt-3"></div>';
+	    advantages+='                        <p class="text-muted mt-3">Con nuestra herramienta gráfica, diseña tu jardín de forma fácil e intuitiva y obtén geniales resultados. ¡Prueba ya tu jardín interactivo!</p>';
+	    advantages+='                        <a href="#" class="">Probar<i class="mdi mdi-chevron-right"></i></a>';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='                <div class="col-lg-6 mt-2">';
+	    advantages+='                    <div>';
+	    advantages+='                        <img src="images/mockup1.png" alt="" class="img-fluid mx-auto d-block">';
+	    advantages+='                    </div>';
+	    advantages+='                </div>';
+	    advantages+='            </div>';
+	    advantages+='        </div>';
+        let feat=document.getElementById("features");
+        feat.innerHTML=advantages;
+
+        let llamada='<h2 class="invisible">¿Cómo cuidar mis plantas?</h2>';
+        llamada+='    <div class="container">';
+        llamada+='        <div class="row">';
+        llamada+='            <div class="col-md-9 text-white critarea-desc mt-3 mb-3">';
+        llamada+='            Forma parte de la gran comunidad de Gardiot y descubre sus ventajas';
+        llamada+='            </div>';
+        llamada+='            <div class="col-md-3 mt-3 mb-3 text-md-right">';
+        llamada+='                <a href="#" class="btn btn-outline-custom">Únete a Gardiot</a>';
+        llamada+='            </div>';
+        llamada+='        </div>';
+        llamada+='    </div>';
+        let llam=document.querySelector('body > section.pt-5.pb-5.bg-custom');
+        llam.innerHTML=llamada;
+
+        let features='<h2 class="invisible">Empezar a plantar mis plantas</h2>';
+            features+='<div class="container">';
+            features+='    <div class="row justify-content-center">';
+            features+='        <div class="col-lg-6">';
+            features+='            <div class="title text-center">';
+            features+='                <h3><b>Características</b></h3>';
+            features+='                <span class="title-border"><i class="mdi mdi-set-none"></i></span>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='    <div class="row pt-4 mt-4">';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-website-theme"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Diseñador de jardines 3D</h4>';
+            features+='                    <p class="text-muted mb-0">Recrea tus jardines en Gardiot de forma fácil e intuitiva y explora todas las posibilidades que ofrece el diseñador.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-growing-chart"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Seguimiento de tus plantas</h4>';
+            features+='                    <p class="text-muted mb-0">Registra los tratamientos que haces y ten un seguimiento efectivo del cuidado de tus plantas desde tu ordenador o móvil.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                 <div class="service-icon service-left"><i class="mbri-calendar"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Calendario de eventos</h4>';
+            features+='                    <p class="text-muted mb-0">Programa y registra eventos en tu calendario para que no se te pase nada importante del cuidado de tus plantas.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='    <div class="row">';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-alert"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Notificaciones inteligentes</h4>';
+            features+='                    <p class="text-muted mb-0">Recibe avisos personalizados en forma de notificaciones y emails referentes a las necesidades de tus plantas.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='            <div class="service-icon service-left"><i class="mbri-responsive"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Todo en la palma de tu mano</h4>';
+            features+='                    <p class="text-muted mb-0">Tu jardín, el tiempo meteorológico, épocas de siembra, plazos de riego, necesidades de las plantas, recomendaciones...</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='        <div class="col-lg-4 mt-3">';
+            features+='            <div class="service-box clearfix p-4">';
+            features+='                <div class="service-icon service-left"><i class="mbri-protect"></i></div>';
+            features+='                <div class="service-desc service-left">';
+            features+='                    <h4>Fácil mantenimiento</h4>';
+            features+='                    <p class="text-muted mb-0">Gardiot te facilitará el cuidado de tus jardines y ahorrarás tiempo en el mantenimiento y cuidado de tus plantas.</p>';
+            features+='                </div>';
+            features+='            </div>';
+            features+='        </div>';
+            features+='    </div>';
+            features+='</div>';
+        let feat2=document.getElementById('service');
+        feat2.innerHTML=features;
+
+        let footer='<div class="container">';
+            footer+='    <div class="row">';
+            footer+='        <div class="col-lg-6">';
+            footer+='            <p class="copy-rights">2017 © <a href="https://gardiot.ovh/symbiose/">Symbiose</a></p>';
+            footer+='            <p>Todos los derechos reservados</p><p>Diseño <a href="http://themesdesign.in/linexon/">Linexon</a></p>';
+            footer+='        </div>';
+            footer+='        <div class="col-lg-6">';
+            footer+='            <p class="text-uppercase footer-title">Contacta con Symbiose</p>';
+            footer+='            <ul class="list-unstyled company-sub-menu">';
+            footer+='                <li>';
+            footer+='                    <a href="https://gardiot.ovh/symbiose">Sobre nosotros</a>';
+            footer+='                </li>';
+            footer+='                <li class="contact-us">';
+            footer+='                    <p>symbiosegardiot@gmail.com</p>';
+            footer+='                </li>';
+            footer+='            </ul>';
+            footer+='            <ul class="footer-icons list-inline mt-4"> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.facebook.com/SymbioseTeam/" class=""><i class="mdi mdi-facebook"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.instagram.com/symbioseteam/" class=""><i class="mdi mdi-instagram"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://twitter.com/SymbioseTeam" class=""><i class="mdi mdi-twitter"></i></a></li> ';
+            footer+='                <li class="list-inline-item"><a href="https://www.youtube.com/channel/UC54CbtC3vqbcjMaN7S9DhIA?view_as=subscriber" class=""><i class="mdi mdi-youtube-play"></i></a></li> ';
+            footer+='                <!--<li class="list-inline-item"><a href="#" class=""><i class="mdi mdi-google-plus"></i></a></li>';
+            footer+='                <li class="list-inline-item"><a href="#" class=""><i class="mdi mdi-apple"></i></a></li>  -->';
+            footer+='            </ul>';
+            footer+='        </div>';
+            footer+='    </div>';
+            footer+='</div>';
+        let fot=document.querySelector('body > div.footer-alt.bg-dark');
+        fot.innerHTML=footer;
+
+
+        let rrss='<ul class="rrss">';
+            rrss+='<li class="popupfb">';
+            rrss+='     <img src="images/icons/face.png" alt="Compartir la plataforma en Facebook" width="32" height="32">';
+            rrss+='    <p>Compartir en Facebook</p>';
+            rrss+='</li>';
+            rrss+='<li class="popuptw">';
+            rrss+='    <img src="images/icons/twitter.png" alt="Compartir la plataforma en Twitter" width="32" height="32">';
+            rrss+='    <p>Compartir en Twitter</p>';
+            rrss+='</li>';
+       		rrss+=' </ul>';
+
+       	let rs=document.querySelector('body > div.rrss-container');
+        rs.innerHTML=rrss;
+
+
+        
+
+	}
+
+}

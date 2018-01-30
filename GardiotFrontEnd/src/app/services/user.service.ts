@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions  } from "@angular/http";
-import { User } from "../interfaces/user.interface";
+import { User } from "../classes/user.class";
 import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/";
+  public isAdmin:boolean;
+  public isAuthenticated:boolean;
 
   constructor( private http:Http, private _route:Router) {}
 
     register( user:User ){
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
+      if(user.birthDate!=null){
+        //body+=`&birthDate=${user.birthDate}`;
+      }
+      console.log(user);
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
@@ -36,14 +42,6 @@ export class UserService {
           .map( res=>{
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
-
-              //TRUNYO TEMPORAL
-              if(user.id=="luisberenguer96@gmail.com"){
-                sessionStorage['admin']=1;
-              }
-              else{
-                sessionStorage['admin']=0;
-              }
               localStorage.setItem('Bearer', res.json().Token);
             }
             else{
@@ -74,7 +72,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"user", { headers } )
+      return this.http.get(this.apiURL+"user/"+user.id, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -91,20 +89,31 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldPassword, password){
+    modifyUserProfile(user:User, oldId:String){
       let body = `name=${user.name}`;
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
-      if(oldPassword && password){
-        body+=`&password=${password}&password2=${password}&oldPassword=${oldPassword}`;
+      if(user.oldPassword && user.password){
+        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
       }
 
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.put(this.apiURL+"user", body, { headers })
+      return this.http.put(this.apiURL+"user/"+oldId, body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    delete(idUser:String){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.delete(this.apiURL+"user/"+idUser, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -121,18 +130,27 @@ export class UserService {
           })
     }
 
-    public isAuthenticated(): boolean{
+    isUserAuthenticated(){
       if(localStorage['Bearer']!=null){
+        this.isAuthenticated=true;
         return true;
       }
-      return false;
+      else{
+        this.isAuthenticated=false;
+        return false;
+      }
     }
 
-    public isAdmin(): boolean{//comprobar si el usuario es administrador
-      if(sessionStorage['admin']==1){
-        return true;
-      }
-      return false;
+    isUserAdmin(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+
+      return this.http.get(this.apiURL+"isAdmin", { headers } )
+          .map( res =>{
+            return res.json();
+          });
     }
 
 

@@ -8,7 +8,7 @@ user.getUser = function(callback) {
 		connection.query('SELECT * FROM User', function(error, rows) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, rows);
 		});
@@ -102,25 +102,34 @@ user.updateUser = function(userData, callback) {
 		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, {"mensaje":"Actualizado"});
 		});
 	}
 }
 
-/*user.deleteUser = function(id, callback) {
+user.updatePassword = function (email, password, callback) {
+	if (connection) {
+		connection.query('UPDATE User SET password = "' + password + '" WHERE id = "' + email + '"', function (error, result) {
+			if (error) callback(error, null);
+			else callback (null, {"Mensaje":"Actualizado"});
+		});
+	}
+}
+
+user.deleteUser = function(id, callback) {
 	if (connection) {
 		var mariasql = 'DELETE FROM User WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, result) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});
 	}
-}*/
+}
 
 user.deactivateUser = function(id, callback) {
 	if (connection) {
@@ -128,7 +137,7 @@ user.deactivateUser = function(id, callback) {
 		connection.query(mariasql, function(error, result) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});
@@ -141,7 +150,7 @@ user.activateUser = function(id, callback) {
 		connection.query(mariasql, function(error, result) {
 			//connection.end();
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});
@@ -155,7 +164,7 @@ user.genHash = function(password, callback) {
 		else {
 			bcrypt.hash(password, salt, function(err, hash) {
 				if (err)
-					throw err;
+					callback(err, null);
 				else
 					callback(null, hash);
 			});
@@ -166,7 +175,7 @@ user.genHash = function(password, callback) {
 user.checkPassword = function(pw1, pw2, callback) {
 	bcrypt.compare(pw1, pw2, function(err, isMatch) {
 		if (err)
-			throw err;
+			callback(err, null);
 		else
 			callback(null, isMatch);
 	});
