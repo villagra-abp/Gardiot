@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700|Roboto:400,500,700');
+
+
+body > div.footer-alt.bg-dark > div > div > div:nth-child(2){
+	margin-top: 3em;
+}
+body > div.footer-alt.bg-dark > div > div > div:nth-child(2)>p{
+	margin-bottom: .5em;
+}
+.invisible{
+	display: none;
+}
+div.footer-alt.bg-dark > div > div > div > p{
+	color: #fff;
+
+}
+
+
+body > div.footer-alt.bg-dark > div > div > div{
+	display: flex;
+	flex-direction: column;
+}
+body > div.footer-alt.bg-dark > div > div > div>p,div,ul{
+	margin: auto;
+}
+
+body > div.footer-alt.bg-dark > div > div > div:nth-child(2) > ul > ul{
+	display: flex;
+	justify-content: center;
+}
+#service > div > div:nth-child(3) > div > div > div.service-desc.service-left > h3{
+	font-size: 18px;
+    font-weight: 600;
+}
+
+
+#navigation > ul > li:last-of-type{
+	cursor: pointer;
+}
+
+#navigation > ul > li:nth-child(4) > a > img{
+	max-width: 15px;
+	margin-right: 5px;
+}
+#service > div > div.row.pt-4.mt-4 > div > div > div.service-desc.service-left > h3{
+	font-size: 18px;
+    font-weight: 600;
+}
+#service > div > div:nth-child(3) > div > div > div.service-desc.service-left > h3{
+	font-size: 18px;
+    font-weight: 600;
+}
+
+body > div.footer-alt.bg-dark > div > div > div:nth-child(1)  a{
+	color: #fff;
+	text-decoration: underline !important;
+}
+
+
+.rrss-container{
+    padding:0px;
+    margin:0px;
+    position:fixed;
+    right:-130px;
+    top:230px;
+    width:210px;
+    z-index: 1100;
+}
+.rrss>li{
+    list-style-type:none !important;
+    color:#efefef !important;
+    height:43px !important;
+    padding:0px !important;
+    margin:0px 0px 1px 0px !important;
+    -webkit-transition:all 0.25s ease-in-out;
+    -moz-transition:all 0.25s ease-in-out;
+    -o-transition:all 0.25s ease-in-out;
+    transition:all 0.25s ease-in-out;
+    cursor:pointer;
+}
+.rrss>li:first-of-type{
+	background-color: #36609f;
+
+}
+.rrss>li:nth-of-type(2){
+	background-color: #2daae1;
+}
+.rrss>li:hover{
+    margin-left:-115px !important;
+}
+.rrss>li img{
+    float:left !important;
+    margin: 0;
+    width: 43px;
+    height: auto;
+
+
+    margin-right:5px !important;
+}
+.rrss>li p{
+	width: 115px;
+    padding-top:5px !important;
+    margin:0px !important;
+    line-height:16px !important;
+    font-size:11px !important;
+}
+
+body > div.footer-alt.bg-dark > div > div > div:nth-child(2) > ul.list-unstyled.company-sub-menu{
+	margin-bottom: 0;
+}
+
+
+@media all and (max-width: 991px){
+body > div.footer-alt.bg-dark > div > div{
+	display: flex;
+	flex-direction: column-reverse;
+	padding-bottom: 2em;
+}
+}
