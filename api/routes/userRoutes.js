@@ -68,7 +68,7 @@ router.post('/register', cors(), function(request, response) {
 									});
 								}
 								else
-									response.status(500).json({"Mensaje":"Error"});
+									response.status(500).json({"Mensaje":error.message});
 							});
 						}
 					});
