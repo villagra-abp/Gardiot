@@ -5,12 +5,12 @@ var helmet = require('helmet'); //Security
 var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
-var cors = require('cors'); //CORS standard
+//var cors = require('cors'); //CORS standard
 var config = require('./config/main');
 
 //Express init and load modules
 var app = express();
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 require('./config/passport');
 
-require('./functions/cron'); //Purga tokens de verificacion expirados cada 30 segundos
+require('./functions/cron'); //Purga tokens
 //Blocker
 //app.use('/api', require('./functions/BLOCK')); //Bloquea rutas
 
