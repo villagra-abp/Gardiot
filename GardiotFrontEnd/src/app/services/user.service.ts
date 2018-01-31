@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
