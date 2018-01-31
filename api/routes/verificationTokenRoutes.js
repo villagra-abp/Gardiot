@@ -5,13 +5,14 @@ var sendgrid = require('../config/sendgrid');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
+var cors = require('cors'); //CORS standard
 
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 
 //*** Confirmacion correo tras registro
 
-router.post('/confirmation/:token', function(request, response) {
+router.post('/confirmation/:token', cors(), function(request, response) {
 	jwt.verify(request.params.token, config.secret, function(err, decoded) { //Hay que ver si esto hace una comparacion automatica de los tiempos de expiracion
 		if (err) response.status(500).json(err);
 		else {
@@ -36,7 +37,7 @@ router.post('/confirmation/:token', function(request, response) {
 
 //*** Reenvio del correo 
 
-router.post('/resend', passport.authenticate('jwt', {session: false}), function(request, response) {
+router.post('/resend', cors(), passport.authenticate('jwt', {session: false}), function(request, response) {
 	var tokenNew = jwt.sign({}, config.secret, {
 		expiresIn: '1h',
 		subject: request.user.id

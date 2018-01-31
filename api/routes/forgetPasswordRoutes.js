@@ -9,7 +9,7 @@ var nodemailer = require('nodemailer');
 var userModel = require('../models/user');
 var forgetPasswordModel = require('../models/forgetPassword');
 
-router.post('/forgetPassword', function (request, response) {
+router.post('/forgetPassword', cors(), function (request, response) {
 	if (!request.body.email)
 		response.status(400).json({"Mensaje":"Introduce el correo electrónico para restablecer tu contraseña"});
 	if (!validator.isEmail(request.body.email))
@@ -57,7 +57,7 @@ router.post('/forgetPassword', function (request, response) {
 	}
 });
 
-router.put('/resetPassword/:token', function (request, response) {
+router.put('/resetPassword/:token', cors(), function (request, response) {
 	if (!request.body.password || request.body.password2)
 		response.status(400).json({"Mensaje":"Introduce ambas contraseñas"});
 	else if (!request.params.token)
