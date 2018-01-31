@@ -5,6 +5,7 @@ var sendgrid = require('../config/sendgrid');
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
+var cors = require('cors'); //CORS standard
 
 var userModel = require('../models/user');
 var forgetPasswordModel = require('../models/forgetPassword');

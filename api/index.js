@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 require('./config/passport');
 
-require('./functions/cron'); //Purga tokens de verificacion expirados cada 30 segundos
+require('./functions/cron'); //Purga tokens
 //Blocker
 //app.use('/api', require('./functions/BLOCK')); //Bloquea rutas
 
