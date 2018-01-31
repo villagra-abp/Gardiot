@@ -20,8 +20,9 @@ jspm_packages/
 api/.npm
 
 #configuration file
-api/config/
+api/config/connection.js
 
 .tern-project
 #wordpress
 symbiose/
+
