@@ -53,15 +53,15 @@ export class UserService {
           })
     }
     loginGoogle(){
-      let headers = new Headers({
+      /*let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
         'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
-      });
+      });*/
 
-      return this.http.get(this.apiURL+"auth/google", { headers } )
+      return this.http.get(this.apiURL+"auth/google"/*, { headers }*/ )
           .map( res =>{
             return res.json();
           })
