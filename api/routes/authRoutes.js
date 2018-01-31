@@ -10,13 +10,14 @@ var passport = require('passport');
   	next();
 });**/
 
-/*router.options('/auth/google', cors(corsOptions), function(request, response, next) {
-	console.log("ESTOY ENTRANDO AL OPTIONS");
+router.options('/auth/google', function(request, response, next) {
+	console.log("HOLA" + request.url);
 	next();
-});*/
+});
 
 //router.get('/auth/google',  cors(corsOptions),  passport.authenticate('google', {scope: ['profile', 'email'], prompt:'consent', session: false}));
 router.get('/auth/google',  passport.authenticate('google', {scope: ['profile', 'email'], prompt:'consent', session: false}));
+ 
 
 /*router.options('/auth/google/callback', cors(corsOptions), function(request, response, next) {
 	console.log("ESTOY ENTRANDO AL OPTIONS DEL CALLBACK");
