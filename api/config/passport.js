@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 
 var inactiveTokenModel = require('../models/inactiveToken');
 var userModel = require('../models/user');
-var config = require('./main'); 
+var config = require('./main');
 var configAuth = require('./auth');
 
 
@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
 	  	var parsed = JSON.parse(JSON.stringify(profile, null, 4));
 	  	var user;
 	  	var token = '';
-	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {  		
+	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {
 	      	if (typeof user[0] !== 'undefined') { //Si encontramos al usuario en la BD
 	      		user = JSON.parse(JSON.stringify(user[0], null, 4));
 	      		if (user.access.search("google")==-1) { //Si no tiene asociado el login por OAuth de Google lo anyadimos
@@ -32,18 +32,18 @@ passport.use(new GoogleStrategy({
 						oldId: parsed.emails[0].value
 					};
 	      			userModel.updateUser(userData, function(err, data) {
-	      				if (data) {						
+	      				if (data) {
   							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 								token = jwt.sign({}, config.secret, {
 									expiresIn: '6h',
 									audience: "gardiot.ovh",
 									subject: user.id
 								});
-								user.token = token;	    	
+								user.token = token;
 					   		}
-					    	return done(err, user);	      								
+					    	return done(err, user);
 	      				}
-						else return done (err, false);						
+						else return done (err, false);
 	      			});
 	      		}
 	      		else if (user.googleId == parsed.id) { //Si el usuario existe y ya tiene asociado el login de Google en BD
@@ -53,11 +53,11 @@ passport.use(new GoogleStrategy({
 							audience: "gardiot.ovh",
 							subject: user.id
 						});
-						user.token = token;	    	
+						user.token = token;
 			   		}
 			    	return done(err, user);
-	      		}		    	
-	      	} 
+	      		}
+	      	}
 
 			else { //Si no encontramos al usuario en la BD, lo creamos
 				var userData = {
@@ -68,22 +68,22 @@ passport.use(new GoogleStrategy({
 					//photo: parsed.photos[0].value
 				};
 				userModel.insertUser(userData, function(error, data) {
-					if (data == 1) {						
+					if (data == 1) {
 						if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
 							token = jwt.sign({}, config.secret, {
 								expiresIn: '6h',
 								audience: "gardiot.ovh",
 								subject: userData.id
 							});
-							user.token = token;	    	
+							user.token = token;
 				   		}
-				   		return done(err, user); 																
-					} 
+				   		return done(err, user);
+					}
 					else  return done(err, false);
-				});		    	 
-			}			
-	    });  
-  	}); 	
+				});
+			}
+	    });
+  	});
   }
 ));
 
@@ -97,8 +97,8 @@ passport.use(new FacebookStrategy({
   	console.log('Facebook Refresh Token: ' + refreshToken);
   	console.log('Facebook Profile Data: ' + json.profile);
     userModel.getUserById({ facebookId: profile.id }, function (err, user) {
-    	if (err || user) 
-			return cb(err, user);	
+    	if (err || user)
+			return cb(err, user);
 		/*else {
 			var userData = {
 
@@ -108,8 +108,8 @@ passport.use(new FacebookStrategy({
 					response.status(200).json({"Mensaje":"Insertado"});
 				else
 					response.status(500).json({"Mensaje":"Error"});
-			});	  
-		} */ 	
+			});
+		} */
     });
   }
 ));
@@ -120,16 +120,16 @@ jwtOptions.secretOrKey = config.secret;
 jwtOptions.audience = "gardiot.ovh";
 jwtOptions.algorithms = "HS256";
 
-var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {	
+var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
 	userModel.getUserById(payload.sub, function(err, user) {
-		if (err) 
-			next(err, false);		
-		else if (typeof user[0] !== 'undefined') 
-			next(null, user[0]);	
-		else 
-			next(null, false);		
-	
-	});	
+		if (err)
+			next(err, false);
+		else if (typeof user[0] !== 'undefined')
+			next(null, user[0]);
+		else
+			next(null, false);
+
+	});
 });
 
 passport.use(JWTstrategy);
