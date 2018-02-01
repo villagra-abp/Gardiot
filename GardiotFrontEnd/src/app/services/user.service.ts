@@ -61,7 +61,7 @@ export class UserService {
         'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
       });
 
-      return this.http.get(this.apiURL+"auth/google", { headers } )
+      return this.http.get(this.apiURL+"auth/google"/*, { headers }*/ )
           .map( res =>{
             return res.json();
           })
