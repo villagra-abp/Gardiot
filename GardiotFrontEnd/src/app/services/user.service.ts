@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="https://gardiot.ovh/api/";
+  private apiURL:string="http://localhost:3000/api/"; 
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
@@ -161,6 +161,13 @@ export class UserService {
         'Content-Type':'application/x-www-form-urlencoded'
       });
       return this.http.get(this.apiURL+"logout", { headers })
+        .map(res=>{
+          return res.json();
+        })
+    }
+
+    listCoutries(){
+      return this.http.get(this.apiURL + "geonamesAllCountries")
         .map(res=>{
           return res.json();
         })
