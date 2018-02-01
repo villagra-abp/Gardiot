@@ -11,6 +11,7 @@ import { AppComponent } from "../../app.component";
 })
 export class ProfileComponent {
   user=new User("");
+  countries:any[] = [];
 
   constructor(
     private _detailService:UserService,
@@ -50,6 +51,23 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.mostrar();
+    this.listarPaises();
+  }
+
+  listarPaises() {
+    this._detailService.listCoutries()
+      .subscribe(data=> {
+        //console.log(data.geonames);
+        for(let key$ in data){
+            //console.log(data[key$]);
+            this.countries.push(data[key$]);
+          }
+          console.log(this.countries);
+          console.log(this.countries[0][0]);
+      },
+      error => {
+        console.log(error);
+      })
   }
 
 
