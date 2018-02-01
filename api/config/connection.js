@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var db_config = {
 	host: 'localhost',
 	user: 'root',
-	password: '',
+	password: 'gardiot',
 	charset: 'utf8',
 	database: 'gardiotDB'
 };
