@@ -8,6 +8,9 @@ import { APP_ROUTING } from "./app.routes";
 //services
 import { UserService } from "./services/user.service";
 
+//Oauth
+import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
+
 //Guards
 import { AuthguardGuard } from "./authguard.guard";
 import { AdminguardGuard } from "./components/admin/adminguard.guard";
@@ -72,7 +75,8 @@ import { InvoiceComponent } from './components/admin/invoice.component';
     ToolComponent,
     InvoiceComponent,
     LibraryComponent,
-    CalendarComponent
+    CalendarComponent,
+    OauthConfirmationComponent
 
   ],
   imports: [
