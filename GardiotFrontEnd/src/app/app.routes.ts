@@ -9,7 +9,8 @@ import { ResendComponent } from "./components/manage/resend.component";
 import { LibraryComponent } from "./components/user/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
 
-
+//Oauth
+import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
 import { AdminUserComponent } from './components/admin/user.component';
@@ -35,7 +36,7 @@ const app_routes: Routes = [
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
-
+  { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 
