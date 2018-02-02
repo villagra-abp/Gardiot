@@ -88,29 +88,80 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.use(new FacebookStrategy({
-    clientID: "178427739567130",
-    clientSecret: "65fc96d8e2eaa9f0f35df2b998f125fc",
-    callbackURL: "http://localhost:3000/api/auth/facebook/callback",
+    clientID: configAuth.facebookAuth.clientID,
+    clientSecret: configAuth.facebookAuth.clientSecret,
+    callbackURL: configAuth.facebookAuth.callbackURL,
+    profileFields: ['id', 'displayName', 'email'],
+    enableProof: true,
+    passReqToCallback: true
   },
-  function(accessToken, refreshToken, profile, cb) {
-  	console.log('Facebook Access Token: ' + accesToken);
-  	console.log('Facebook Refresh Token: ' + refreshToken);
-  	console.log('Facebook Profile Data: ' + json.profile);
-    userModel.getUserById({ facebookId: profile.id }, function (err, user) {
-    	if (err || user)
-			return cb(err, user);
-		/*else {
-			var userData = {
+  function(request, accessToken, refreshToken, profile, done) {
+  	process.nextTick(function() {
+	  	var parsed = JSON.parse(JSON.stringify(profile, null, 4));
+	  	var user;
+	  	var token = '';
+	  	userModel.getUserById(parsed.emails[0].value, function (err, user) {
+	      	if (typeof user[0] !== 'undefined') { //Si encontramos al usuario en la BD
+	      		user = JSON.parse(JSON.stringify(user[0], null, 4));
+	      		if (user.access.search("facebook")==-1) { //Si no tiene asociado el login por OAuth de facebook lo anyadimos
+	      			var userData = {
+						facebookId: parsed.id,
+						access: user.access + ',facebook',
+						oldId: parsed.emails[0].value
+					};
+	      			userModel.updateUser(userData, function(err, data) {
+	      				if (data) {
+  							if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+								token = jwt.sign({}, config.secret, {
+									expiresIn: '6h',
+									audience: "gardiot.ovh",
+									subject: user.id
+								});
+								user.token = token;
+					   		}
+					    	return done(err, user);
+	      				}
+						else return done (err, false);
+	      			});
+	      		}
+	      		else if (user.facebookId == parsed.id) { //Si el usuario existe y ya tiene asociado el login de facebook en BD
+	      			if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+						token = jwt.sign({}, config.secret, {
+							expiresIn: '6h',
+							audience: "gardiot.ovh",
+							subject: user.id
+						});
+						user.token = token;
+			   		}
+			    	return done(err, user);
+	      		}
+	      	}
 
+			else { //Si no encontramos al usuario en la BD, lo creamos
+				var userData = {
+					id: parsed.emails[0].value,
+					facebookId: parsed.id,
+					name: parsed.displayName,
+					access: 'facebook'
+					//photo: parsed.photos[0].value
+				};
+				userModel.insertUser(userData, function(error, data) {
+					if (data == 1) {
+						if (!request.user) { //Si el usuario no se ha logeado antes, se crea un JWT
+							token = jwt.sign({}, config.secret, {
+								expiresIn: '6h',
+								audience: "gardiot.ovh",
+								subject: userData.id
+							});
+							user.token = token;
+				   		}
+				   		return done(err, user);
+					}
+					else  return done(err, false);
+				});
 			}
-			userModel.insertUser(userData, function(error, data) {
-				if (data)
-					response.status(200).json({"Mensaje":"Insertado"});
-				else
-					response.status(500).json({"Mensaje":"Error"});
-			});
-		} */
-    });
+	    });
+  	});
   }
 ));
 

@@ -33,6 +33,7 @@ category.getCategoryById = function(id, callback) {
 category.insertCategory = function(data, callback) {
   if(connection) {
     if (!data.name) //Hay que comprobar la existencia de datos. Si se permite null y el valor no es pasado desde la ruta, pues se fuerza a null
+      data.name = null;
     if (!data.description)
       data.description = null;
     var sentence = 'INSERT INTO Category(name, description) VALUES("'+data.name+'", "'+data.description+'")';
