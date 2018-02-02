@@ -49,7 +49,7 @@ app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/yearRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
-//app.use('/api', require('./routes/finderRoutes'));
+app.use('/api', require('./routes/finderRoutes'));
 
 //Start server
 app.listen(config.port, function () {
