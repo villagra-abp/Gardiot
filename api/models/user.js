@@ -62,9 +62,9 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 		if (userData.access)
 			mariasql += 'access = "' + userData.access + '",';
 		if (userData.googleId)
-			mariasql += 'googleId = "' + userData.googleId + '",';
+			mariasql += 'googleId = "' + userData.googleId + '", active = 1,';
 		if (userData.facebookId)
-			mariasql += 'facebookId = "' + userData.facebookId + '",';
+			mariasql += 'facebookId = "' + userData.facebookId + '", active = 1,';
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
 			if (error)
