@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="http://localhost:3000/api/"; 
+  private apiURL:string="http://localhost:3000/api/";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
@@ -15,6 +15,7 @@ export class UserService {
 
     register( user:User ){
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
+      body+= `&name=${user.name}&lastName=${user.lastName}`;
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
@@ -43,6 +44,8 @@ export class UserService {
             if(res.json().Token!=null){
               console.log(`Usuario ${user.id} logueado`);
               localStorage.setItem('Bearer', res.json().Token);
+              let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
+              localStorage.setItem('expires_at', expires.toString());
             }
             else{
               console.log("Token es null");
@@ -130,12 +133,32 @@ export class UserService {
           })
     }
 
+    resendConfirmation(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.post(this.apiURL+"resend", { headers })
+        .map(res=>{
+          return res.json();
+        })
+    }
+
     isUserAuthenticated(){
-      if(localStorage['Bearer']!=null){
-        this.isAuthenticated=true;
-        return true;
+      if(localStorage['Bearer']!=null && localStorage['expires_at']!=null){
+        let expire=parseInt(localStorage['expires_at']);//comprobar que sigue siendo válido el token
+        if(expire<Date.now()){//Si no ha pasado la fecha de expiración
+          localStorage.clear();
+          this.isAuthenticated=false;
+          return false;
+        }
+        else{
+          this.isAuthenticated=true;
+          return true;
+        }
       }
       else{
+        localStorage.clear();
         this.isAuthenticated=false;
         return false;
       }

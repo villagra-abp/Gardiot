@@ -40,11 +40,14 @@
               {{ country.countryName }}
             </li>
           </ul>-->
-          
+
             <select id="country">
               <option *ngFor="let country of countries[0]" value="{{country.countryCode}}">{{country.countryName}}</option>
             </select>
-        
+            <h3>Para quien trabaje esta interfaz, un poco de usabilidad jajaja</h3>
+            <p>Si entras a tu perfil no es porque quieras "Introducir tu nuevo país". Tu país debe estar seleccionado
+               (y si no tienes ninguno, vacío) y no en la sección de contraseña, sino junto al nombre y email</p>
+
 
 
           <!--<span>{{this.countries}}</span>-->

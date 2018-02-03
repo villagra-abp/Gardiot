@@ -12,16 +12,23 @@ export class HeaderComponent implements OnInit{
 
     }
     ngOnInit(){
-      this.user.isAuthenticated=this.user.isUserAuthenticated();
-      this.user.isUserAdmin().subscribe(data=>{
-        if(data){
-          this.user.isAdmin=true;
-        }
-        else{
+
+      if(this.user.isUserAuthenticated()){
+        this.user.isAuthenticated=this.user.isUserAuthenticated();
+        this.user.isUserAdmin().subscribe(data=>{
+          if(data){
+            this.user.isAdmin=true;
+          }
+          else{
+            this.user.isAdmin=false;
+          }
+        },error=>{
           this.user.isAdmin=false;
-        }
-      },error=>{
+        });
+      }
+      else{
         this.user.isAdmin=false;
-      });
+      }
+
     }
 }

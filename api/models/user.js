@@ -47,6 +47,8 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'password = "' + userData.password + '",';
 		if (userData.name)
 			mariasql += 'name = "' + userData.name + '",';
+		if(userData.lastName)
+			mariasql += 'lastName = "' + userData.lastName + '",';
 		if (userData.birthDate)
 			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)

@@ -22,6 +22,8 @@ export class OauthConfirmationComponent implements OnInit{
     this._router.params.subscribe(params => {
             if(params['key']!=null){
               localStorage.setItem('Bearer',params['key']);
+              let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
+              localStorage.setItem('expires_at', expires.toString());
               this._route.navigate(['/detail']);
             }
          });

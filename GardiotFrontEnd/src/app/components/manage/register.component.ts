@@ -18,9 +18,12 @@ export class RegisterComponent implements OnInit{
     private _route:Router,
     private _appComponent:AppComponent){}
 
-  guardar(user:NgForm){
+  guardar(){
+    console.log(this.user);
     this._userService.register(this.user)
         .subscribe(data=>{
+            //sessionStorage['WaitUser']=this.user.name;
+            //sessionStorage['WaitId']=this.user.id;
             this._appComponent.mensajeEmergente("Te has registrado correctamente! Revisa tu correo para activar tu cuenta", "primary", "login");
         },
         error=>{

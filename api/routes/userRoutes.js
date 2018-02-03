@@ -24,13 +24,18 @@ var routeRequirements = require('../functions/routeRequirements');
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password || !request.body.password2) 
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
-	else if (request.body.password !== request.body.password2)
+	else if (request.body.password !== request.body.password2){
+		console.log(request.body.password2);
+		console.log(request.body.password);
+		
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
+	}
 	else {
 		var userData = {
 			id: request.body.id,
 			password: request.body.password,
 			name: request.body.name,
+			lastName: request.body.lastName,
 			birthDate: request.body.birthDate,
 			photo: request.body.photo,
 			city: request.body.city,
