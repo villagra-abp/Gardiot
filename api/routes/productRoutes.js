@@ -21,6 +21,18 @@ router.get('/product/:id', function(request, response) {
 	});
 });
 
+router.get('/productSearch/:name', function(request, response) {
+	var name = request.params.name;
+	productModel.getProductSearch(name, function(error, data) {
+		if (typeof data !== 'undefined' && data.length > 0) {
+			response.status(200).json(data);
+		}
+		else {
+			response.status(404).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
 router.post('/product', function(request, response) {
 	var productData = {
 		name: request.body.name,
@@ -43,7 +55,7 @@ router.put('/product', function(request, response) {
 		name: request.body.name,
 		price: request.body.price,
 	};
-	
+
 	productModel.updateProduct(productData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);
