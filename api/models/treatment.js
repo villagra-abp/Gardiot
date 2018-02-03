@@ -15,6 +15,39 @@ treatment.getTreatment = function(callback) {
   }
 }
 
+treatment.getTreatmentsByPlant = function(plant, callback) {
+  if(connection) {
+    var sentence = 'SELECT Treatment.id, Treatment.name, Treatment.description';
+    sentence += ' FROM Plant INNER JOIN TreatmentPlant ON TreatmentPlant.plant=Plant.id ';
+    sentence += 'INNER JOIN Treatment ON Treatment.id=TreatmentPlant.plant where Plant.id=' + plant;
+    connection.query(sentence, function (error, rows){
+      if(error) {
+        throw error;
+      }
+      else {
+        callback(null, rows);
+      }
+    });
+  }
+}
+
+treatment.getTreatmentsByGarden = function(garden, callback) {
+  if(connection) {
+    var sentence = 'SELECT Treatment.id, Treatment.name, Treatment.description FROM Garden';
+    sentence += ' INNER JOIN MyPlant on MyPlant.garden=Garden.id INNER JOIN Plant';
+    sentence += ' ON Plant.id=MyPlant.plant INNER JOIN TreatmentPlant ON TreatmentPlant.plant=Plant.id';
+    sentence += ' INNER JOIN Treatment ON Treatment.id=TreatmentPlant.plant where Garden.id=' + garden;
+    connection.query(sentence , function (error, rows){
+      if(error) {
+        throw error;
+      }
+      else {
+        callback(null, rows);
+      }
+    });
+  }
+}
+
 
 treatment.getTreatmentById = function(id, callback) {
 	if (connection) {
