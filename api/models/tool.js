@@ -15,6 +15,42 @@ tool.getTool = function(callback) {
   }
 }
 
+//obtiene todas las tools asociadas a los tratamientos de una planta concreta
+tool.getToolByTreatment = function(treatment, callback){
+  if(connection){
+    var sentence='SELECT TreatmentTool.Tool, Tool.Name, Tool.Photo';
+    sentencia += ' FROM TreatmentTool INNER JOIN Tool on TreatmentTool.Tool=Tool.Id';
+    sentencia += ' where TreatmentTool.Treatment = ' + treatment;
+    connection.query(sentence, function(error, row){
+      if(error){
+        throw error;
+      }
+      else{
+        callback(null, row);
+      }
+    });
+
+  }
+}
+
+tool.getToolByPlant = function(plant, callback){
+  if(connection){
+    var sentence='SELECT TreatmentTool.Tool, Tool.Name, Tool.Photo FROM Plant INNER JOIN TreatmentPlant';
+    sentence += ' ON TreatmentPlant.Plant=Plant.Id INNER JOIN Treatment';
+    sentence += ' ON Treatment.Id=TreatmentPlant.Treatment INNER JOIN TreatmentTool';
+    sentence += ' ON TreatmentTool.Treatment=Treatment.Id INNER JOIN Tool ON Tool.Id=Treatmenttool.tool WHERE Plant.Id='+plant;
+    connection.query(sentence, function(error, row){
+      if(error){
+        throw error;
+      }
+      else{
+        callback(null, row);
+      }
+    });
+
+  }
+}
+
 
 tool.getToolById = function(id, callback) {
 	if (connection) {
