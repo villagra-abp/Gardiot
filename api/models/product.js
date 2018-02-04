@@ -29,6 +29,52 @@ product.getProductById = function(id, callback) {
 	}
 }
 
+// búsqueda por NOMBRE
+product.getProductSearch = function(name, callback) {
+	if (connection) {
+		var sentence = 'SELECT * from Product  where  name like "%'+name+'%" order by name ASC';
+;
+		connection.query(sentence, function(error, row) {
+			if (error) {
+				throw error;
+			}
+			else {
+				callback(null, row);
+			}
+		});
+	}
+}
+// búsqueda por precio MENOR que
+product.getProductFilterLessThan = function(price, callback) {
+	if (connection) {
+		var sentence = 'SELECT * from Product where price <='+price+' order by price DESC';
+;
+		connection.query(sentence, function(error, row) {
+			if (error) {
+				throw error;
+			}
+			else {
+				callback(null, row);
+			}
+		});
+	}
+}
+// búsqueda por precio MAYOR que
+product.getProductFilterMoreThan = function(price, callback) {
+	if (connection) {
+		var sentence = 'SELECT * from Product where price >='+price+' order by price DESC';
+;
+		connection.query(sentence, function(error, row) {
+			if (error) {
+				throw error;
+			}
+			else {
+				callback(null, row);
+			}
+		});
+	}
+}
+
 product.insertProduct = function(data, callback) {
   if(connection) {
     var sentence = 'INSERT INTO Product(name, price) values("'+data.name+'", "'+data.price+'")';
@@ -49,7 +95,7 @@ product.updateProduct = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    
+
     if(data.price) {
       if(commaCounter>0)
         sentence +=', ';
