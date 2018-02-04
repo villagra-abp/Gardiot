@@ -41,14 +41,20 @@
             </li>
           </ul>-->
           
-            <select id="country">
+            <select id="country" #country (change)="listaCuidades(country.value)">
+              <option value="">-- Selecciona un pais --</option>
               <option *ngFor="let country of countries[0]" value="{{country.countryCode}}">{{country.countryName}}</option>
             </select>
-        
-
-
-          <!--<span>{{this.countries}}</span>-->
+           </div>
+           <div>
+            
+            <select *ngIf="country.value!='' ">
+              <option value="">-- Selecciona una ciudad --</option>
+              <option *ngFor="let city of cities[1]" value="{{city.toponymName}}">{{city.toponymName}}</option>
+            </select>
+          
         </div>
+        
 
         <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
       </form>

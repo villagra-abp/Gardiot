@@ -12,6 +12,8 @@ import { AppComponent } from "../../app.component";
 export class ProfileComponent {
   user=new User("");
   countries:any[] = [];
+  cities:any[] = [];
+  selected:string = "";
 
   constructor(
     private _detailService:UserService,
@@ -69,6 +71,20 @@ export class ProfileComponent {
         console.log(error);
       })
   }
-
+  listaCuidades(value:string){
+    this._detailService.listCities(value)
+      .subscribe(data=> {
+        //console.log(data.geonames);
+        for(let key$ in data){
+            //console.log(data[key$]);
+            this.cities.push(data[key$]);
+          }
+          console.log(this.cities);
+          console.log(this.cities[1][0]);
+      },
+      error => {
+        console.log(error);
+      })
+  }
 
   }
