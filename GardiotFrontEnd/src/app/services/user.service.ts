@@ -91,6 +91,9 @@ export class UserService {
 
     modifyUserProfile(user:User, oldId:String){
       let body = `name=${user.name}`;
+
+      console.log("user un modify; ");
+      console.log(user);
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }

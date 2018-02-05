@@ -24,11 +24,17 @@ export class ProfileComponent {
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
+          console.log("datosUsuario: ")
           console.log(data);
           this.user.id=data.id;
           this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
           this.user.name=data.name;
+          this.user.city=data.city;
+          this.user.countryCode=data.countryCode;
+          
+        this.listaCuidades(this.user.countryCode);
+    
         },
       error => {
         console.error(error);
@@ -36,6 +42,7 @@ export class ProfileComponent {
         sessionStorage.clear();
         this._route.navigate(['/login']);
       });
+
     }
 
     //Enviar los nuevos datos del usuario a UserService para guardarlos
@@ -54,6 +61,7 @@ export class ProfileComponent {
   ngOnInit() {
     this.mostrar();
     this.listarPaises();
+    
   }
 
   listarPaises() {
@@ -64,7 +72,7 @@ export class ProfileComponent {
             //console.log(data[key$]);
             this.countries.push(data[key$]);
           }
-          console.log(this.countries);
+          console.log("countrues:");
           console.log(this.countries[0][0]);
       },
       error => {
@@ -72,6 +80,7 @@ export class ProfileComponent {
       })
   }
   listaCuidades(value:string){
+
     this._detailService.listCities(value)
       .subscribe(data=> {
         this.cities=[];
@@ -85,7 +94,8 @@ export class ProfileComponent {
       },
       error => {
         console.log(error);
-      })
+      });
+    
   }
 
   }
