@@ -48,7 +48,7 @@
            </div>
            <div>
             
-            <select *ngIf="country.value!='' ">
+            <select id="city" #city *ngIf="country.value!='' ">
               <option value="">-- Selecciona una ciudad --</option>
               <option *ngFor="let city of cities[1]" value="{{city.toponymName}}">{{city.toponymName}}</option>
             </select>

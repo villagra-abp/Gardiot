@@ -74,6 +74,7 @@ export class ProfileComponent {
   listaCuidades(value:string){
     this._detailService.listCities(value)
       .subscribe(data=> {
+        this.cities=[];
         //console.log(data.geonames);
         for(let key$ in data){
             //console.log(data[key$]);

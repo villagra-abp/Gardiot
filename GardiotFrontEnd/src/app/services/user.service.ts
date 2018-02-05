@@ -173,7 +173,7 @@ export class UserService {
         })
     }
 
-    listCities(value){
+    listCities(value:string){
       return this.http.get(this.apiURL + "geonamesCities/" + value)
         .map(res=>{
           return res.json();
