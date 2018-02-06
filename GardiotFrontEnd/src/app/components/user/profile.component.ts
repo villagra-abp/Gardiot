@@ -24,8 +24,6 @@ export class ProfileComponent {
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
-          console.log("datosUsuario: ")
-          console.log(data);
           this.user.id=data.id;
           this.user.birthDate=data.birthDate;
           this.user.plan=data.plan;
@@ -47,6 +45,7 @@ export class ProfileComponent {
 
     //Enviar los nuevos datos del usuario a UserService para guardarlos
     edit(){
+      console.log("user:"+this.user);
       this._detailService.modifyUserProfile(this.user, this.user.id)
           .subscribe(data=>{
             this._appComponent.mensajeEmergente("Datos modificados", "success", "detail");
@@ -73,6 +72,7 @@ export class ProfileComponent {
             this.countries.push(data[key$]);
           }
           console.log("countrues:");
+          console.log(this.countries);
           console.log(this.countries[0][0]);
       },
       error => {

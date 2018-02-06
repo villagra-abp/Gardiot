@@ -51,10 +51,6 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.city)
-			mariasql += 'city = ' + userData.city + ',';
-		else //ELIMINAR
-			mariasql += 'city = 1,';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
 		else //ELIMINAR
@@ -88,8 +84,10 @@ user.updateUser = function(userData, callback) {
 			mariasql += 'birthDate = ' + userData.birthDate + ',';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
+		if (userData.countryCode)
+			mariasql += 'countryCode = "' + userData.countryCode + '",';
 		if (userData.city)
-			mariasql += 'city = ' + userData.city + ',';
+			mariasql += 'city = "' + userData.city + '",';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
 		if (userData.access)

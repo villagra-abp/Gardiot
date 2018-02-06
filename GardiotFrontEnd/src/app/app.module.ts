@@ -7,6 +7,7 @@ import { APP_ROUTING } from "./app.routes";
 
 //services
 import { UserService } from "./services/user.service";
+import { GardenService } from "./services/garden.service";
 
 //Guards
 import { AuthguardGuard } from "./authguard.guard";
@@ -83,6 +84,7 @@ import { InvoiceComponent } from './components/admin/invoice.component';
   ],
   providers: [
     UserService,
+    GardenService,
     AuthguardGuard,
     AdminguardGuard
   ],
