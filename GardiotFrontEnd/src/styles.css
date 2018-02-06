@@ -39,3 +39,25 @@ button{
   right: 0;
   background: rgba(0, 0, 0, 0.7);
 }
+
+.notification{
+  width: 100%;
+  min-width: 100%;
+  text-align: center;
+  border-radius: 0 !important;
+}
+
+.desarrollo{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 300px;
+  height: 60px;
+  background-color: red;
+  padding: .3em;
+  border-radius: 5px;
+  text-align: center;
+}
+.desarrollo>p{
+  color: #fff;
+}

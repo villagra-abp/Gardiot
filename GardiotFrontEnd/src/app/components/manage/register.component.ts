@@ -22,9 +22,7 @@ export class RegisterComponent implements OnInit{
     console.log(this.user);
     this._userService.register(this.user)
         .subscribe(data=>{
-            //sessionStorage['WaitUser']=this.user.name;
-            //sessionStorage['WaitId']=this.user.id;
-            this._appComponent.mensajeEmergente("Te has registrado correctamente! Revisa tu correo para activar tu cuenta", "primary", "login");
+            this._route.navigate(['/detail']);
         },
         error=>{
           let v=JSON.parse(error._body);
