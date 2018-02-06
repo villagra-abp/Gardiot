@@ -66,7 +66,15 @@ router.post('/register', function(request, response) {
 											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/dist\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
-												else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
+												else{
+													var token = jwt.sign({}, config.secret, {
+														expiresIn: '6h',
+														audience: "gardiot.ovh",
+														subject: userData.id
+													});
+													response.status(201).json({"Token":token});
+												}
+												//else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
 											});
 										}
 									});

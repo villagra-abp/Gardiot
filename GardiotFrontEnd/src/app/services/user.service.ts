@@ -7,11 +7,18 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="http://localhost:3000/api/";
+  private apiURL:string="";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
-  constructor( private http:Http, private _route:Router) {}
+  constructor( private http:Http, private _route:Router) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.apiURL="http://localhost:3000/api/";
+    }
+    else if(window.location.toString().indexOf("gardiot")<0){
+      this.apiURL="https://gardiot.ovh/api/";
+    }
+  }
 
     register( user:User ){
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
@@ -26,8 +33,11 @@ export class UserService {
 
       return this.http.post(this.apiURL+"register", body, { headers } )
           .map( res=>{
-            if(res.json().Mensaje=="Insertado"){
-              console.log(`Usuario ${user.id} insertado`);
+            if(res.json().Token!=null){
+              console.log(`Usuario ${user.id} logueado`);
+              localStorage.setItem('Bearer', res.json().Token);
+              let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
+              localStorage.setItem('expires_at', expires.toString());
             }
             return res.json();
           })

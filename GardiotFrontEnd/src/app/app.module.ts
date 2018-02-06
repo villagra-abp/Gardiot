@@ -44,6 +44,7 @@ import { PlantdataComponent } from './components/admin/plantdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
+import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 
 
 
@@ -76,7 +77,8 @@ import { InvoiceComponent } from './components/admin/invoice.component';
     InvoiceComponent,
     LibraryComponent,
     CalendarComponent,
-    OauthConfirmationComponent
+    OauthConfirmationComponent,
+    DesarrolloComponent
 
   ],
   imports: [
