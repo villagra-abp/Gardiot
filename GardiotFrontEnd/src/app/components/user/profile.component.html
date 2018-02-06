@@ -23,17 +23,17 @@
         <div class="form-group">
           <label for="oldPassword_user">Introduce tu contraseña actual</label>
           <input [(ngModel)]="user.oldPassword" type="password" name="oldPassword" id="oldPassword_user" >
-</div>
-<div class="form-group">
+        </div>
+        <div class="form-group">
           <label for="password_user">Introduce tu nueva contraseña</label>
           <input [(ngModel)]="user.password" type="password" name="password" id="password_user" >
-</div>
-<div class="form-group">
+        </div>
+        <div class="form-group">
           <label for="password2_user">Repite tu contraseña</label>
           <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" >
         </div>
         <div class="form-group" ng-init="listarPaises()">
-          <label for="countries">Introduce tu nuevo pais {{this.countries}}</label>
+          <label for="countries">Introduce tu nuevo pais:</label>
 
           <!--<ul>
             <li *ngFor="let country of countries[0]">
@@ -41,17 +41,21 @@
             </li>
           </ul>-->
 
-            <select id="country">
+          
+            <select id="country" name="countryCode" [(ngModel)]="user.countryCode" (change)="listaCuidades(user.countryCode)">
+              <option value=null>-- Selecciona un pais --</option>
               <option *ngFor="let country of countries[0]" value="{{country.countryCode}}">{{country.countryName}}</option>
             </select>
-            <!--<h3>Para quien trabaje esta interfaz, un poco de usabilidad jajaja</h3>
-            <p>Si entras a tu perfil no es porque quieras "Introducir tu nuevo país". Tu país debe estar seleccionado
-               (y si no tienes ninguno, vacío) y no en la sección de contraseña, sino junto al nombre y email</p>-->
-
-
-
-          <!--<span>{{this.countries}}</span>-->
+           </div>
+           <div>
+            
+            <select id="city" name="city" [(ngModel)]="user.city" *ngIf="user.countryCode!=null ">
+              <option value=null>-- Selecciona una ciudad --</option>
+              <option *ngFor="let city of cities[1]" value="{{city.toponymName}}">{{city.toponymName}}</option>
+            </select>
+          
         </div>
+        
 
         <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
       </form>

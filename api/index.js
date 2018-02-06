@@ -36,7 +36,7 @@ app.use('/api', require('./routes/categoryRoutes'));
 app.use('/api', require('./routes/cityRoutes'));
 app.use('/api', require('./routes/countryRoutes'));
 app.use('/api', require('./routes/eventRoutes'));
-//app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/gardenRoutes'));
 
 //app.use('/api', require('./routes/myPlantRoutes'));
 app.use('/api', require('./routes/planRoutes'));

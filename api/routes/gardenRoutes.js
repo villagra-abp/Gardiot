@@ -21,6 +21,18 @@ router.get('/garden/:id', function(request, response) {
 	});
 });
 
+router.get('/gardenByUser/:user', function(request, response) {
+	var user = request.params.user;
+	gardenModel.getGardenByUser(user, function(error, data) {
+		if (typeof data !== 'undefined' && data.length > 0) {
+			response.status(200).json(data);
+		}
+		else {
+			response.status(404).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
 router.post('/garden', function(request, response) {
 	var gardenData = {
     title: request.body.title,

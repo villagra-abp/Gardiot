@@ -104,6 +104,11 @@ export class UserService {
 
     modifyUserProfile(user:User, oldId:String){
       let body = `name=${user.name}`;
+
+      console.log("user un modify; ");
+      console.log(user);
+      var country = 0;
+      
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
@@ -111,6 +116,14 @@ export class UserService {
         body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
       }
 
+      if(user.countryCode){
+        body+= `&countryCode=${user.countryCode}`;
+        country = 1;
+      }
+      if(user.city && country==1){
+        body+=`&city=${user.city}`;
+      }
+      console.log(body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -201,6 +214,13 @@ export class UserService {
 
     listCoutries(){
       return this.http.get(this.apiURL + "geonamesAllCountries")
+        .map(res=>{
+          return res.json();
+        })
+    }
+
+    listCities(value:string){
+      return this.http.get(this.apiURL + "geonamesCities/" + value)
         .map(res=>{
           return res.json();
         })

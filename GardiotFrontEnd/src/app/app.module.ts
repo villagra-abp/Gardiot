@@ -7,6 +7,7 @@ import { APP_ROUTING } from "./app.routes";
 
 //services
 import { UserService } from "./services/user.service";
+import { GardenService } from "./services/garden.service";
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -89,6 +90,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
   ],
   providers: [
     UserService,
+    GardenService,
     AuthguardGuard,
     AdminguardGuard
   ],

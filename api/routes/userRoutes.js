@@ -38,7 +38,6 @@ router.post('/register', function(request, response) {
 			lastName: request.body.lastName,
 			birthDate: request.body.birthDate,
 			photo: request.body.photo,
-			city: request.body.city,
 			plan: request.body.plan
 		};
 		var validate = validateInput(userData);
@@ -169,10 +168,12 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 		name: request.body.name,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
+		countryCode: request.body.countryCode,
 		city: request.body.city,
 		plan: request.body.plan,
-		oldId: request.user.id,
+		oldId: request.user.id
 	};
+	console.log(userData);
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
@@ -305,6 +306,7 @@ router.put('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		city: request.body.city,
+		countryCode: request.body.countryCode,
 		plan: request.body.plan,
 		oldId: request.params.id,
 	};
@@ -345,7 +347,7 @@ function sanitizeInput(data) {
 	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
 	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
 	if (data.photo) data.photo = validator.trim(data.photo);
-	if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
+	//if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
 	if (data.plan) { data.plan = validator.trim(data.plan); data.plan = validator.stripLow(data.plan); data.plan = validator.escape(data.plan);}
 	if (data.oldId) {data.oldId = validator.trim(data.oldId);}
 	return data;
@@ -356,7 +358,7 @@ function validateInput(data) {
 	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
 	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
-	if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
+	//if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
 	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';

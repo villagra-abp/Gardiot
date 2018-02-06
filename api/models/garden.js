@@ -30,6 +30,20 @@ garden.getGardenById = function(id, callback) {
 	}
 }
 
+garden.getGardenByUser = function(user, callback) {
+  if (connection) {
+    var sentence = 'SELECT * FROM Garden WHERE user = "' + user + '"';
+    connection.query(sentence, function(error, row) {
+      if (error) {
+        throw error;
+      }
+      else {
+        callback(null, row);
+      }
+    });
+  }
+}
+
 garden.insertGarden = function(data, callback) {
   if(connection) {
     var sentence = 'INSERT INTO Garden(title, width, lenght, longitude, latitude,soil, user, city) values("'+data.title+'", "'+data.width+'", "'+data.length+'", "'+data.longitude+'", "'+data.latitude+'", "'+data.soil+'", "'+data.user+'", "'+data.city+'")';
