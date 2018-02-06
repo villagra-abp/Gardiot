@@ -7,11 +7,18 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="http://localhost:3000/api/";
+  private apiURL:string="";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
-  constructor( private http:Http, private _route:Router) {}
+  constructor( private http:Http, private _route:Router) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.apiURL="http://localhost:3000/api/";
+    }
+    else if(window.location.toString().indexOf("gardiot")<0){
+      this.apiURL="https://gardiot.ovh/api/";
+    }
+  }
 
     register( user:User ){
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
