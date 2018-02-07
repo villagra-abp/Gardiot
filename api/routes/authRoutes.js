@@ -5,13 +5,15 @@ var returnURL = "";
 
 
 
-router.get('/auth/google', passport.authenticate('google', {scope: ['profile','email'],prompt:'consent',session: false, failureRedirect: '/login'}));
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile','email'],prompt:'consent',session: false}));
 
-router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login', session: false }), function(request, response) {
+router.get('/auth/google/callback', passport.authenticate('google', {session: false }), function(request, response) {
     if (request.user.token){
-      response.writeHead(301,
-        {Location: 'https://gardiot.ovh/oauthconfirmation/'+ request.user.token});
-        response.end();
+      if (request.hostname == 'gardiot.ovh') 
+        response.writeHead(301,{Location: 'https://' + request.hostname + '/oauthconfirmation/'+ request.user.token});
+     else
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
+      response.end();
     }
 
     else
@@ -28,10 +30,13 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']
 
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', session: false }), function(request, response) {
     if (request.user.token){
-      response.writeHead(301,
-        {Location: 'https://gardiot.ovh/oauthconfirmation/'+ request.user.token});
-        response.end();
+      if (request.hostname == 'gardiot.ovh') 
+        response.writeHead(301,{Location: 'https://' + request.hostname + '/oauthconfirmation/'+ request.user.token});
+     else
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
+      response.end();
     }
+
     else
       response.json({"Mensaje":"Cuenta añadida correctamente"});
 });
