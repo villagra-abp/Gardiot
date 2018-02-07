@@ -10,7 +10,7 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['profile','e
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login', session: false }), function(request, response) {
     if (request.user.token){
       response.writeHead(301,
-        {Location: 'http://localhost:4200/oauthconfirmation/'+ request.user.token});
+        {Location: 'https://gardiot.ovh/oauthconfirmation/'+ request.user.token});
         response.end();
     }
 
@@ -29,7 +29,7 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', session: false }), function(request, response) {
     if (request.user.token){
       response.writeHead(301,
-        {Location: 'http://localhost:4200/oauthconfirmation/'+ request.user.token});
+        {Location: 'https://gardiot.ovh/oauthconfirmation/'+ request.user.token});
         response.end();
     }
     else
