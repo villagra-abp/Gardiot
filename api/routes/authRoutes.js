@@ -12,7 +12,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {session: fa
       if (request.hostname == 'gardiot.ovh') 
         response.writeHead(301,{Location: 'https://' + request.hostname + '/app/oauthconfirmation/'+ request.user.token});
      else
-        response.writeHead(301,{Location: 'http://' + request.headers.host + '/app/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
       response.end();
     }
 
@@ -33,7 +33,7 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
       if (request.hostname == 'gardiot.ovh') 
         response.writeHead(301,{Location: 'https://' + request.hostname + '/app/oauthconfirmation/'+ request.user.token});
      else
-        response.writeHead(301,{Location: 'http://' + request.headers.host + '/app/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
       response.end();
     }
 

@@ -1,13 +1,21 @@
-var requireAdmin = require('./adminCheck');
-var requireActive = require('./userActiveCheck');
-var requireActiveToken = require('./tokenCheck');
+var inactiveTokenModel = require('../models/inactiveToken');
 
 var routeRequirements = function (request, response, next) {
-	requireAdmin(request, response, next);
-	requireActive(request, response, next);
-	requireActiveToken(request, response, next);
-	//if (!response.headersSent)
-		//next();
+	if (user == 'admin' && request.user.admin == 0)
+		response.status(403).json({"Mensaje":"Permiso denegado"});
+	else if (request.hostname =='gardiot.ovh' && request.user.active == 0)
+		response.status(403).json({"Mensaje":"Cuenta no activa"});
+	else {
+		var token = request.headers['authorization'];
+		token = token.slice(7);
+		inactiveTokenModel.getInactiveTokenByToken(token, function (error, data) {
+			if (error) response.status(500).json({"Mensaje":"Error interno comprobando el token"});
+			else if (typeof data[0] === 'undefined') 
+				next();
+			else response.status(401).json({"Mensaje":"Token no válido"});
+		});
+	}
+
 }
 
 module.exports = routeRequirements;

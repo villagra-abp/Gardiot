@@ -65,7 +65,8 @@ router.post('/register', function(request, response) {
 											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
-												else{
+												else if (request.hostname == 'gardiot.ovh') response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
+												else{ //Localhost
 													var token = jwt.sign({}, config.secret, {
 														expiresIn: '6h',
 														audience: "gardiot.ovh",
@@ -73,7 +74,6 @@ router.post('/register', function(request, response) {
 													});
 													response.status(201).json({"Token":token});
 												}
-												//else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
 											});
 										}
 									});
@@ -157,6 +157,14 @@ router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireAc
 	else
 		response.status(200).send(false);
 });
+
+router.get('/isWorking', passport.authenticate('jwt', {session: false}), routeRequirements(request, response, next, 'user'), function(request, response) {
+	if (request.user.admin == 1)
+		response.status(200).send(true); 
+	else
+		response.status(200).send(false);
+});
+
 
 
 //***Actualiza al usuario actual
