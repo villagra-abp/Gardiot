@@ -10,9 +10,9 @@ router.get('/auth/google', passport.authenticate('google', {scope: ['profile','e
 router.get('/auth/google/callback', passport.authenticate('google', {session: false }), function(request, response) {
     if (request.user.token){
       if (request.hostname == 'gardiot.ovh') 
-        response.writeHead(301,{Location: 'https://' + request.hostname + '/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'https://' + request.hostname + '/app/oauthconfirmation/'+ request.user.token});
      else
-        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/app/oauthconfirmation/'+ request.user.token});
       response.end();
     }
 
@@ -31,9 +31,9 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login', session: false }), function(request, response) {
     if (request.user.token){
       if (request.hostname == 'gardiot.ovh') 
-        response.writeHead(301,{Location: 'https://' + request.hostname + '/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'https://' + request.hostname + '/app/oauthconfirmation/'+ request.user.token});
      else
-        response.writeHead(301,{Location: 'http://' + request.headers.host + '/oauthconfirmation/'+ request.user.token});
+        response.writeHead(301,{Location: 'http://' + request.headers.host + '/app/oauthconfirmation/'+ request.user.token});
       response.end();
     }
 
