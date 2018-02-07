@@ -14,7 +14,7 @@ export class AppComponent {
     if(window.location.toString().indexOf("localhost")>=0){
       this.url="http://localhost:4200/";
     }
-    else if(window.location.toString().indexOf("gardiot")<0){
+    else if(window.location.toString().indexOf("gardiot")>=0){
       this.url="https://gardiot.ovh/app/";
     }
   }
