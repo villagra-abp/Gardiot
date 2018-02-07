@@ -8,13 +8,13 @@ import 'rxjs/Rx';
 export class GardenService {
 
 	private apiURL:string="";
-  	
+
 
 	  constructor( private http:Http, private _route:Router) {
 	    if(window.location.toString().indexOf("localhost")>=0){
 	      this.apiURL="http://localhost:3000/api/";
 	    }
-	    else if(window.location.toString().indexOf("gardiot")<0){
+	    else if(window.location.toString().indexOf("gardiot")>=0){
 	      this.apiURL="https://gardiot.ovh/api/";
 	    }
 	  }
@@ -23,7 +23,7 @@ export class GardenService {
 	  	let headers = new Headers({
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
-	  	
+
       	return this.http.get(this.apiURL+"garden/3", { headers } )
           .map( res =>{
             return res.json();

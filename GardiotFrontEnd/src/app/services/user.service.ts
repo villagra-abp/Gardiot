@@ -15,7 +15,7 @@ export class UserService {
     if(window.location.toString().indexOf("localhost")>=0){
       this.apiURL="http://localhost:3000/api/";
     }
-    else if(window.location.toString().indexOf("gardiot")<0){
+    else if(window.location.toString().indexOf("gardiot")>=0){
       this.apiURL="https://gardiot.ovh/api/";
     }
   }
@@ -34,10 +34,15 @@ export class UserService {
       return this.http.post(this.apiURL+"register", body, { headers } )
           .map( res=>{
             if(res.json().Token!=null){
-              console.log(`Usuario ${user.id} logueado`);
-              localStorage.setItem('Bearer', res.json().Token);
-              let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
-              localStorage.setItem('expires_at', expires.toString());
+              if(window.location.toString().indexOf("gardiot")>=0){
+
+              }
+              else{
+                console.log(`Usuario ${user.id} logueado`);
+                localStorage.setItem('Bearer', res.json().Token);
+                let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
+                localStorage.setItem('expires_at', expires.toString());
+              }
             }
             return res.json();
           })
@@ -108,7 +113,7 @@ export class UserService {
       console.log("user un modify; ");
       console.log(user);
       var country = 0;
-      
+
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
