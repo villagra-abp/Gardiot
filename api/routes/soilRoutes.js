@@ -21,6 +21,18 @@ router.get('/soil/:id', function(request, response) {
 	});
 });
 
+router.get('/soilSearch/:name', function(request, response) {
+	var name = request.params.name;
+	soilModel.getSoilSearch(name, function(error, data) {
+		if (typeof data !== 'undefined' && data.length > 0) {
+			response.status(200).json(data);
+		}
+		else {
+			response.status(404).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
 router.post('/soil', function(request, response) {
 	var soilData = {
 		name: request.body.name,
@@ -45,7 +57,7 @@ router.put('/soil', function(request, response) {
 		description: request.body.description,
     texture: request.body.texture,
 	};
-	
+
 	soilModel.updateSoil(soilData, function(error, data) {
 		if (data && data.mensaje) {
 			response.status(200).json(data);

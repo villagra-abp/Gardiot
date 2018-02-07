@@ -61,16 +61,6 @@ export class LoginComponent implements OnInit{
   }
 
 
-
-  guardarGoogle(){
-    this._loginService.loginGoogle()
-      .subscribe(data=>{
-      console.log(data);
-
-    });
-
-  }
-
   ngOnInit() {
     if(this._loginService.isUserAuthenticated()){
       this._route.navigate(['/detail']);

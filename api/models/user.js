@@ -47,14 +47,12 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'password = "' + userData.password + '",';
 		if (userData.name)
 			mariasql += 'name = "' + userData.name + '",';
+		if(userData.lastName)
+			mariasql += 'lastName = "' + userData.lastName + '",';
 		if (userData.birthDate)
 			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.city)
-			mariasql += 'city = ' + userData.city + ',';
-		else //ELIMINAR
-			mariasql += 'city = 1,';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
 		else //ELIMINAR
@@ -62,9 +60,13 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 		if (userData.access)
 			mariasql += 'access = "' + userData.access + '",';
 		if (userData.googleId)
-			mariasql += 'googleId = "' + userData.googleId + '",';
+			mariasql += 'googleId = "' + userData.googleId + '", active = 1,';
 		if (userData.facebookId)
-			mariasql += 'facebookId = "' + userData.facebookId + '",';
+			mariasql += 'facebookId = "' + userData.facebookId + '", active = 1,';
+
+		//TODOS LOS USUARIOS COMO ACTIVOS, PROVISIONAL
+		mariasql += 'active = "1",';
+		
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
 			if (error)
@@ -88,8 +90,10 @@ user.updateUser = function(userData, callback) {
 			mariasql += 'birthDate = ' + userData.birthDate + ',';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
+		if (userData.countryCode)
+			mariasql += 'countryCode = "' + userData.countryCode + '",';
 		if (userData.city)
-			mariasql += 'city = ' + userData.city + ',';
+			mariasql += 'city = "' + userData.city + '",';
 		if (userData.plan)
 			mariasql += 'plan = "' + userData.plan + '",';
 		if (userData.access)

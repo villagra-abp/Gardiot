@@ -30,6 +30,20 @@ soil.getSoilById = function(id, callback) {
 	}
 }
 
+soil.getSoilSearch = function(name, callback) {
+	if (connection) {
+		var sentence = 'SELECT * from Soil where name like "%'+name+'%" order by name ASC';
+		connection.query(sentence, function(error, row) {
+			if (error) {
+				throw error;
+			}
+			else {
+				callback(null, row);
+			}
+		});
+	}
+}
+
 soil.insertSoil = function(data, callback) {
   if(connection) {
     var sentence = 'INSERT INTO Soil(name, description, texture) values("'+data.name+'", "'+data.description+'", "'+data.texture+'")';
@@ -50,7 +64,7 @@ soil.updateSoil = function(data, callback) {
       sentence += 'name = "' + data.name + '"' ;
       commaCounter++;
     }
-    
+
     if(data.description) {
       if(commaCounter>0)
         sentence +=', ';

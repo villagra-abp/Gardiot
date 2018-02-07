@@ -12,11 +12,21 @@ export class ResendComponent implements OnInit{
   user=new User("");
 
   constructor(
-    private _detailService:UserService,
+    private _resendService:UserService,
     private _route:Router ){ }
 
+    enviarEmail(){
+      this._resendService.resendConfirmation()
+        .subscribe(data=>{
+          console.log(data);
+        },
+        error=>{
+
+        });
+    }
 
   ngOnInit() {
+
   }
 
 

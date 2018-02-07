@@ -7,6 +7,10 @@ import { APP_ROUTING } from "./app.routes";
 
 //services
 import { UserService } from "./services/user.service";
+import { GardenService } from "./services/garden.service";
+
+//Oauth
+import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 
 //Guards
 import { AuthguardGuard } from "./authguard.guard";
@@ -41,6 +45,7 @@ import { PlantdataComponent } from './components/admin/plantdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
+import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 
 
 
@@ -72,7 +77,9 @@ import { InvoiceComponent } from './components/admin/invoice.component';
     ToolComponent,
     InvoiceComponent,
     LibraryComponent,
-    CalendarComponent
+    CalendarComponent,
+    OauthConfirmationComponent,
+    DesarrolloComponent
 
   ],
   imports: [
@@ -83,6 +90,7 @@ import { InvoiceComponent } from './components/admin/invoice.component';
   ],
   providers: [
     UserService,
+    GardenService,
     AuthguardGuard,
     AdminguardGuard
   ],
