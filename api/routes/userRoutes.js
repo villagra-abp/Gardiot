@@ -10,9 +10,7 @@ var isEmail = require('isemail');
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
-var requireAdmin = require('../functions/adminCheck');
-var requireActive = require('../functions/userActiveCheck');
-var requireActiveToken = require('../functions/tokenCheck');
+
 var routeRequirements = require('../functions/routeRequirements');
 
 /***************************
@@ -65,7 +63,8 @@ router.post('/register', function(request, response) {
 											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
 											transporter.sendMail(mailOptions, function(err) {
 												if (err) response.status(500).json({"Mensaje": err.message});
-												else{
+												else if (request.hostname == 'gardiot.ovh') response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
+												else{ //Localhost
 													var token = jwt.sign({}, config.secret, {
 														expiresIn: '6h',
 														audience: "gardiot.ovh",
@@ -73,7 +72,6 @@ router.post('/register', function(request, response) {
 													});
 													response.status(201).json({"Token":token});
 												}
-												//else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
 											});
 										}
 									});
@@ -135,23 +133,14 @@ router.get('/isAuthenticated', function(request, response) {
 
 //***Muestra al usuario actual. Sin parametros
 
-/*router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	userModel.getUserById(request.user.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0)
-			response.status(200).json(data);
-		else
-			response.status(404).json({"Mensaje":"No existe"});
-	});
-});*/
-
-router.get('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
 });
 
 
 //*** Saber si es admin
 
-router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.get('/isAdmin', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (request.user.admin == 1)
 		response.status(200).send(true); 
 	else
@@ -161,7 +150,7 @@ router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireAc
 
 //***Actualiza al usuario actual
 
-router.put('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.put('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
@@ -218,7 +207,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 
 //*** Darse de baja. Sin parametros
 
-router.patch('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken,  function(request, response) {
+router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	userModel.deactivateUser(request.user.id, function(error, data) {
 		if (data == 1)
 			response.status(200).json({"Mensaje":"Cuenta desactivada"});
@@ -231,7 +220,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), requireAct
 
 //*** Logout
 
-router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken,  function(request, response) {
+router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	//var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	var token = request.headers.authorization;
 	token = token.slice(7);
@@ -248,7 +237,7 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), requireAct
 
 //*** Lista todos los usuarios
 
-router.get('/users', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.get('/admin/users', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.getUser (function(error, data) {
 		response.status(200).json(data);
 	});
@@ -256,7 +245,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireActi
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
-router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
 		if (typeof data[0] !== 'undefined')
 			response.status(200).json(data);
@@ -267,7 +256,7 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 //*** Desactiva a un usuario. Misma forma que antes
 
-router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
 		if (error)
 			response.status(500).json({"Mensaje":"Error: " + error});
@@ -282,7 +271,7 @@ router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requir
 
 //*** Elimina a un usuario 
 
-router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.deleteUser(request.params.id, function(error, data) {
 		if (error)
 			response.status(500).json({"Mensaje":"Error: " + error});
@@ -298,7 +287,7 @@ router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requi
 
 //***Actualiza a otro usuario
 
-router.put('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,

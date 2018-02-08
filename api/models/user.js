@@ -65,7 +65,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'facebookId = "' + userData.facebookId + '", active = 1,';
 
 		//TODOS LOS USUARIOS COMO ACTIVOS, PROVISIONAL
-		mariasql += 'active = "1",';
+		//mariasql += 'active = "1",';
 		
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
