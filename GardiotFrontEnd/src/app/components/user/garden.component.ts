@@ -44,12 +44,10 @@ export class GardenComponent {
           this.getTiempo();
         },
       error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
+        console.error(JSON.parse(error._body).Mensaje);
+        this._route.navigate(['/detail']);
       });
-        
+
   }
 
   getTiempo(){

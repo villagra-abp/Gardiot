@@ -23,7 +23,7 @@ export class AdminEditUserComponent implements OnInit {
 
   guardarUsuario(forma:NgForm){
     console.log(forma.value);
-    this._editUserService.modifyUserProfile(forma.value, this.oldId)
+    this._editUserService.modifyUserProfileAdmin(forma.value, this.oldId)
       .subscribe(data=>{
         this._appComponent.mensajeEmergente(data.Mensaje, "primary", "admin/listusers");
       })
