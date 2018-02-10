@@ -53,10 +53,6 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.plan)
-			mariasql += 'plan = "' + userData.plan + '",';
-		else //ELIMINAR
-			mariasql += 'plan = "Free",';
 		if (userData.access)
 			mariasql += 'access = "' + userData.access + '",';
 		if (userData.googleId)

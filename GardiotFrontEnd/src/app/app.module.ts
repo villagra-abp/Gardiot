@@ -25,6 +25,7 @@ import { RegisterComponent } from './components/manage/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/user/detail.component';
 import { ProfileComponent } from './components/user/profile.component';
+import { EditProfileComponent } from './components/user/editprofile.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 import { ResendComponent } from './components/manage/resend.component';
 import { LibraryComponent } from './components/user/library.component';
@@ -60,6 +61,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     FooterComponent,
     DetailComponent,
     ProfileComponent,
+    EditProfileComponent,
     ConfirmationComponent,
     ResendComponent,
     AdminComponent,

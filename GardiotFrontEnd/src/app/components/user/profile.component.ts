@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
 import { UserService} from "../../services/user.service";
@@ -9,7 +9,7 @@ import { AppComponent } from "../../app.component";
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
   user=new User("");
   countries:any[] = [];
   cities:any[] = [];
@@ -26,13 +26,12 @@ export class ProfileComponent {
         .subscribe(data=>{
           this.user.id=data.id;
           this.user.birthDate=data.birthDate;
-          this.user.plan=data.plan;
+          this.user.photo=data.photo;
           this.user.name=data.name;
+          this.user.lastName=data.lastName;
           this.user.city=data.city;
           this.user.countryCode=data.countryCode;
-          
-        this.listaCuidades(this.user.countryCode);
-    
+
         },
       error => {
         console.error(error);
@@ -40,62 +39,12 @@ export class ProfileComponent {
         sessionStorage.clear();
         this._route.navigate(['/login']);
       });
+}
+
+
+    ngOnInit() {
+      this.mostrar();
 
     }
 
-    //Enviar los nuevos datos del usuario a UserService para guardarlos
-    edit(){
-      console.log("user:"+this.user);
-      this._detailService.modifyUserProfile(this.user, this.user.id)
-          .subscribe(data=>{
-            this._appComponent.mensajeEmergente("Datos modificados", "success", "detail");
-          },
-        error => {
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
-      }
-
-
-  ngOnInit() {
-    this.mostrar();
-    this.listarPaises();
-    
-  }
-
-  listarPaises() {
-    this._detailService.listCoutries()
-      .subscribe(data=> {
-        //console.log(data.geonames);
-        for(let key$ in data){
-            //console.log(data[key$]);
-            this.countries.push(data[key$]);
-          }
-          console.log("countrues:");
-          console.log(this.countries);
-          console.log(this.countries[0][0]);
-      },
-      error => {
-        console.log(error);
-      })
-  }
-  listaCuidades(value:string){
-
-    this._detailService.listCities(value)
-      .subscribe(data=> {
-        this.cities=[];
-        //console.log(data.geonames);
-        for(let key$ in data){
-            //console.log(data[key$]);
-            this.cities.push(data[key$]);
-          }
-          console.log(this.cities);
-          console.log(this.cities[1][0]);
-      },
-      error => {
-        console.log(error);
-      });
-    
-  }
-
-  }
+    }

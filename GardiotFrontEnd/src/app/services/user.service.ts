@@ -107,11 +107,8 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldId:String){
-      let body = `name=${user.name}`;
-
-      console.log("user un modify; ");
-      console.log(user);
+    modifyUserProfile(user:User){
+      let body = `name=${user.name}&lastName=${user.lastName}`;
       var country = 0;
 
       if(user.birthDate!=null){
@@ -133,7 +130,36 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.put(this.apiURL+"user/"+oldId, body, { headers })
+      return this.http.put(this.apiURL+"user", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    modifyUserProfileAdmin(user:User, oldId:String){
+      let body = `name=${user.name}`;
+      var country = 0;
+
+      if(user.birthDate!=null){
+        //body+=`&birthDate=${user.birthDate}`;
+      }
+      if(user.oldPassword && user.password){
+        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
+      }
+
+      if(user.countryCode){
+        body+= `&countryCode=${user.countryCode}`;
+        country = 1;
+      }
+      if(user.city && country==1){
+        body+=`&city=${user.city}`;
+      }
+      console.log(body);
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.put(this.apiURL+"/admin/user/"+oldId, body, { headers })
           .map( res =>{
             return res.json();
           })
