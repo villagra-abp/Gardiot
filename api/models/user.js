@@ -28,18 +28,6 @@ user.getUserById = function(id, callback) {
 	}
 }
 
-/* user.insertUser = function(userData, callback) { //Falta sanear INT
-	if (connection) {
-		var sql = 'INSERT INTO User(id, password, name, birthDate, photo, active, city, plan) VALUES("' + userData.id + '", "' + userData.password + '", "' + userData.name + '", ' + userData.birthDate + ', "' + userData.photo + '", ' + userData.active + ', ' + userData.city + ', "' + userData.plan +'")';
-		connection.query(sql, function(error, result) {
-			if (error)
-				throw error;
-			else
-				callback(null, result.info.affectedRows);
-		});
-	}
-}*/
-
 user.insertUser = function(userData, callback) { //Falta sanear INT
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET id = "' + userData.id +'",';
@@ -53,19 +41,12 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.plan)
-			mariasql += 'plan = "' + userData.plan + '",';
-		else //ELIMINAR
-			mariasql += 'plan = "Free",';
 		if (userData.access)
 			mariasql += 'access = "' + userData.access + '",';
 		if (userData.googleId)
 			mariasql += 'googleId = "' + userData.googleId + '", active = 1,';
 		if (userData.facebookId)
 			mariasql += 'facebookId = "' + userData.facebookId + '", active = 1,';
-
-		//TODOS LOS USUARIOS COMO ACTIVOS, PROVISIONAL
-		//mariasql += 'active = "1",';
 		
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
@@ -86,6 +67,8 @@ user.updateUser = function(userData, callback) {
 			mariasql += 'password = "' + userData.password + '",';
 		if (userData.name)
 			mariasql += 'name = "' + userData.name + '",';
+		if (userData.lastName)
+			mariasql += 'lastName = "' + userData.lastName + '",';
 		if (userData.birthDate)
 			mariasql += 'birthDate = ' + userData.birthDate + ',';
 		if (userData.photo)
@@ -94,8 +77,6 @@ user.updateUser = function(userData, callback) {
 			mariasql += 'countryCode = "' + userData.countryCode + '",';
 		if (userData.city)
 			mariasql += 'city = "' + userData.city + '",';
-		if (userData.plan)
-			mariasql += 'plan = "' + userData.plan + '",';
 		if (userData.access)
 			mariasql += 'access = "' + userData.access + '",';
 		if (userData.googleId)
@@ -137,7 +118,8 @@ user.deleteUser = function(id, callback) {
 
 user.deactivateUser = function(id, callback) {
 	if (connection) {
-		var mariasql = 'UPDATE User SET active = 0 WHERE id = "' + id + '"';
+		var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+		var mariasql = 'UPDATE User SET dateDelete = "' + utc + '" WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, result) {
 			//connection.end();
 			if (error)
