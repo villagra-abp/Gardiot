@@ -32,11 +32,6 @@ router.post('/register', function(request, response) {
 		var userData = {
 			id: request.body.id,
 			password: request.body.password,
-			name: request.body.name,
-			lastName: request.body.lastName,
-			birthDate: request.body.birthDate,
-			photo: request.body.photo,
-			plan: request.body.plan
 		};
 		var validate = validateInput(userData);
 		if (validate.length > 0)
@@ -134,7 +129,7 @@ router.get('/isAuthenticated', function(request, response) {
 //***Muestra al usuario actual. Sin parametros
 
 router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
+	response.status(200).json({"Name:":request.user.name, "LastName":request.user.lastName, "Photo":request.user.photo}); //PASSPORT devuelve siempre el objeto user
 });
 
 
@@ -155,14 +150,13 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 		id: request.body.id,
 		password: request.body.password,
 		name: request.body.name,
+		lastName: request.body.lastName,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		countryCode: request.body.countryCode,
 		city: request.body.city,
-		plan: request.body.plan,
 		oldId: request.user.id
 	};
-	console.log(userData);
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
@@ -292,11 +286,11 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 		id: request.body.id,
 		password: request.body.password,
 		name: request.body.name,
+		lastName: request.body.lastName,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		city: request.body.city,
 		countryCode: request.body.countryCode,
-		plan: request.body.plan,
 		oldId: request.params.id,
 	};
 	var validate = validateInput(userData);
