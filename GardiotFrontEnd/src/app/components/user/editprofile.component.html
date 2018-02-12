@@ -19,15 +19,15 @@
           <label for="countries">País:</label>
 
 
-            <select id="country" name="countryCode" [(ngModel)]="user.countryCode" (change)="listaCuidades(user.countryCode)">
-              <option value=null>-- Selecciona un pais --</option>
+            <select id="country" name="countryCode" [(ngModel)]="user.countryCode">
+              <option value="0">-- Selecciona un pais --</option>
               <option *ngFor="let country of countries[0]" value="{{country.countryCode}}">{{country.countryName}}</option>
             </select>
            </div>
-           <div class="form-group">
+        <div class="form-group">
+            <label for="countries">Ciudad:</label>
+            <select id="city" name="city" [(ngModel)]="user.city" *ngIf="this.countrySelected">
 
-            <select id="city" name="city" [(ngModel)]="user.city" *ngIf="user.countryCode!=null ">
-              <label for="countries">Ciudad:</label>
               <option value=null>-- Selecciona una ciudad --</option>
               <option *ngFor="let city of cities[1]" value="{{city.toponymName}}">{{city.toponymName}}</option>
             </select>
