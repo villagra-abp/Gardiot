@@ -54,20 +54,22 @@ router.post('/register', function(request, response) {
 									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
 										if (error) response.status(500).json({"Mensaje":err.message});
 										else {
-											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
-											transporter.sendMail(mailOptions, function(err) {
-												if (err) response.status(500).json({"Mensaje": err.message});
-												else if (request.hostname == 'gardiot.ovh') response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
-												else{ //Localhost
-													var token = jwt.sign({}, config.secret, {
-														expiresIn: '6h',
-														audience: "gardiot.ovh",
-														subject: userData.id
-													});
-													response.status(201).json({"Token":token});
-												}
-											});
+											if (request.hostname == 'gardiot.ovh') {
+												var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
+												var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
+												transporter.sendMail(mailOptions, function(err) {
+													if (err) response.status(500).json({"Mensaje": err.message});
+													else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});													
+												});
+											}
+											else { //LOCALHOST
+												var token = jwt.sign({}, config.secret, {
+													expiresIn: '6h',
+													audience: "gardiot.ovh",
+													subject: userData.id
+												});
+												response.status(201).json({"Token":token});
+											}											
 										}
 									});
 								}
@@ -94,19 +96,22 @@ router.post('/authenticate', function(request, response) {
 		var id = validator.trim(request.body.id);
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user[0] !== 'undefined') {
-				if (user[0].active == 1) {
+				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
-						if (isMatch && !err) {
-							var token = jwt.sign({}, config.secret, {
-								expiresIn: '6h',
-								audience: "gardiot.ovh",
-								subject: user[0].id
-							});
-							response.status(200).json({"Token":token});
-						}
-						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
-					});
+					else if (user[0].dateDelete !== 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else {
+						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
+							if (isMatch && !err) {
+								var token = jwt.sign({}, config.secret, {
+									expiresIn: '6h',
+									audience: "gardiot.ovh",
+									subject: user[0].id
+								});
+								response.status(200).json({"Token":token});
+							}
+							else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
+						});
+					}	
 				}
 				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
