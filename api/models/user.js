@@ -59,6 +59,7 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 }
 
 user.updateUser = function(userData, callback) {
+	console.log(userData.birthDate);
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
 		if (userData.id)
@@ -70,7 +71,7 @@ user.updateUser = function(userData, callback) {
 		if (userData.lastName)
 			mariasql += 'lastName = "' + userData.lastName + '",';
 		if (userData.birthDate)
-			mariasql += 'birthDate = ' + userData.birthDate + ',';
+			mariasql += 'birthDate = "' + userData.birthDate + '",';
 		if (userData.photo)
 			mariasql += 'photo = "' + userData.photo + '",';
 		if (userData.countryCode)

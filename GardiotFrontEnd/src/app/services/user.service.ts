@@ -108,11 +108,15 @@ export class UserService {
     }
 
     modifyUserProfile(user:User){
-      let body = `name=${user.name}&lastName=${user.lastName}`;
+      let body = `name=${user.name}`;
+      if(user.lastName!==undefined){
+        body+=`&lastName=${user.lastName}`;
+      }
       var country = 0;
 
       if(user.birthDate!=null){
-        //body+=`&birthDate=${user.birthDate}`;
+        console.log(user.birthDate);
+        body+=`&birthDate=${user.birthDate}`;
       }
       if(user.oldPassword && user.password){
         body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
