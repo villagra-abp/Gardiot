@@ -98,7 +98,7 @@ router.post('/authenticate', function(request, response) {
 			if (typeof user[0] !== 'undefined') {
 				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					else if (user[0].dateDelete !== 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else if (user[0].dateDelete === 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
 					else {
 						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 							if (isMatch && !err) {

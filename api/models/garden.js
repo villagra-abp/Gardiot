@@ -81,7 +81,6 @@ garden.isProprietary = function(user, id, callback) {
 
     connection.query(sentence, function(error, row) {
       if (error) {
-        throw error;
       }
       else {
         if(user.id == row[0].user){

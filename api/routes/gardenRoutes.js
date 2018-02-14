@@ -3,19 +3,17 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 
-var requireAdmin = require('../functions/adminCheck');
-var requireActive = require('../functions/userActiveCheck');
-var requireActiveToken = require('../functions/tokenCheck');
+var routeRequirements = require('../functions/routeRequirements');
 
 var gardenModel = require('../models/garden');
 
-router.get('/garden',  passport.authenticate('jwt', {session: false}), requireActiveToken, requireAdmin, function (request, response) {
+router.get('/garden',  passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
   gardenModel.getGarden (function(error, data){
     response.status(200).json(data);
   });
 });
 
-router.get('/garden/:id', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
+router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var id = request.params.id;
 	var user = request.user;
 	gardenModel.getGardenById(id, function(error, data) {
@@ -32,7 +30,7 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), requir
 	});
 });
 
-router.get('/gardenByUser/', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
+router.get('/gardenByUser/', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var user = request.user.id;
 	gardenModel.getGardenByUser(user, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
@@ -44,7 +42,7 @@ router.get('/gardenByUser/', passport.authenticate('jwt', {session: false}), req
 	});
 });
 
-router.post('/garden', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
+router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var gardenData = {
     title: request.body.title,
 	width: request.body.width,
@@ -67,7 +65,7 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), requireAc
 	});
 });
 
-router.put('/garden', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
+router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
   var gardenData = {
     id: request.body.id,
 	title: request.body.title,
@@ -98,7 +96,7 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), requireAct
 	
 });
 
-router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
+router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var id = request.params.id;
 
 	gardenModel.isProprietary(request.user, id, function(error, data) {
