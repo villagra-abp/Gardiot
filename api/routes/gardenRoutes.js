@@ -98,16 +98,23 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), requireAct
 	
 });
 
-router.delete('/garden/:id', function(request, response) {
+router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), requireActiveToken, function(request, response) {
 	var id = request.params.id;
-	gardenModel.deleteGarden(id, function(error, data) {
-		if (data == 1) {
-			response.status(200).json({"Mensaje":"Borrado"});
-		}
-		else if (data == 0) {
-			response.status(404).json({"Mensaje":"No existe"});
-		}
-		else {
+
+	gardenModel.isProprietary(request.user, id, function(error, data) {
+		if(data){
+			gardenModel.deleteGarden(id, function(error, data) {
+				if (data == 1) {
+					response.status(200).json({"Mensaje":"Borrado"});
+				}
+				else if (data == 0) {
+					response.status(404).json({"Mensaje":"No existe"});
+				}
+				else {
+					response.status(500).json({"Mensaje":"Error"});
+				}
+			});
+		}else{
 			response.status(500).json({"Mensaje":"Error"});
 		}
 	});
