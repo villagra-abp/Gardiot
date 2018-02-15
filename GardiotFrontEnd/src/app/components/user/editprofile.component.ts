@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
 import { UserService} from "../../services/user.service";
@@ -27,6 +27,12 @@ export class EditProfileComponent implements OnInit{
     private _detailService:UserService,
     private _route:Router,
     private _appComponent:AppComponent){ }
+
+    @HostListener('document:keyup', ['$event'])
+    searchZip(event: KeyboardEvent): void {
+      //aqui vamos cargando las posibles ciudades a elegir
+      console.log(event.key);
+    }
 
     //Cargar usuario para mostrar sus datos en el formulario por defecto
   mostrar(){
@@ -69,7 +75,6 @@ export class EditProfileComponent implements OnInit{
   ngOnInit() {
     this.mostrar();
 
-
   }
 
   listarPaises() {
@@ -107,15 +112,6 @@ export class EditProfileComponent implements OnInit{
     this._detailService.listCities(value)
       .subscribe(data=> {
         console.log(data);
-        this.cities=[];
-        //console.log(data.geonames);
-        for(let key$ in data){
-            //console.log(data[key$]);
-            this.cities.push(data[key$]);
-          }
-          console.log(this.cities);
-          console.log(this.cities[1][0]);
-
 
           let aux=[];
           aux.push({id:0, text:"Selecciona una ciudad"});
@@ -141,6 +137,10 @@ export class EditProfileComponent implements OnInit{
 
   }
 
+
+
+//Estas dos funciones son para guardar los datos
+//del país y ciudad en el objeto de usuario
   changeCities(e){
     if(e.value!=0 && e.value!==undefined){
       this.user.countryCode=e.value;

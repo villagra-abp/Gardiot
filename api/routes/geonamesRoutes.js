@@ -43,6 +43,21 @@ router.get('/geonamesCities/:code', function (request, response) {
   });
 });
 
+router.get('/geonamesSearchByZip/:zip/:code', function (request, response) {
+  var zip = request.params.zip,
+      code = request.params.code;
+  geonamesModel.searchByZip (zip, code, function(error, data){
+    process.nextTick(function() {
+      data = JSON.stringify(data);
+      data = data.replace(/\\/g, "");
+      data= data.substring(1, data.length-1);
+
+      response.status(200).send(data);
+    });
+
+  });
+});
+
 
 
 module.exports = router;
