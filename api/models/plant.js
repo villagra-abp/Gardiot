@@ -2,9 +2,9 @@ var connection = require('../config/connection');
 
 var plant = {};
 
-plant.getPlant = function(callback) {
+plant.getPlants = function(number, page, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Plant' , function (error, rows){
+    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + (page - 1) * number + ' AND ' + page * number , function (error, rows){
       if(error) {
         throw error;
       }
