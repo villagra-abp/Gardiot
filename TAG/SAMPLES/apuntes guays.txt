@@ -1,0 +1,1 @@
+-Podemos poner un onresize para manejar los cambios de tamaño del canvas y así ajustar el viewport del setupWebGL

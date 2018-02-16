@@ -32,6 +32,7 @@ app.use('/api', require('./routes/geonamesRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
 app.use('/api', require('./routes/finderRoutes'));
+app.use('/api', require('./routes/gardenRoutes'));
 
 //Start server
 app.listen(config.port, function () {

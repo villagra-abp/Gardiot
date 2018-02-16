@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit{
           this.user.lastName=data.lastName;
           this.user.city=data.city;
           this.user.countryCode=data.countryCode;
-
+          console.log(this.user.birthDate);
         },
       error => {
         console.error(error);

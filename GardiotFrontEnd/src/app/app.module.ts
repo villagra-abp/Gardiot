@@ -6,6 +6,8 @@ import { FormsModule } from "@angular/forms";
 //Rutas
 import { APP_ROUTING } from "./app.routes";
 
+import { Select2Module } from 'ng2-select2';
+
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
@@ -89,6 +91,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    Select2Module,
     APP_ROUTING
   ],
   providers: [

@@ -25,4 +25,11 @@ geonames.getCities= function(code, callback) {
     callback(null, req.responseText);
 }
 
+geonames.searchByZip = function(zip, code, callback) {
+  var req = new XMLHttpRequest();
+  req.open('GET', 'http://api.geonames.org/postalCodeSearchJSON?username=escaoba&country='+code+'&postalcode_startsWith='+zip, false);
+  req.send(null);
+    callback(null, req.responseText);
+}
+
 module.exports = geonames;

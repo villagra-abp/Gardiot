@@ -46,13 +46,50 @@ garden.getGardenByUser = function(user, callback) {
 
 garden.insertGarden = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Garden(title, width, lenght, longitude, latitude,soil, user, city) values("'+data.title+'", "'+data.width+'", "'+data.length+'", "'+data.longitude+'", "'+data.latitude+'", "'+data.soil+'", "'+data.user+'", "'+data.city+'")';
+    var sentence = 'INSERT INTO Garden SET title = "'+data.title+'", user= "'+data.user+'", soil = '+data.soil+', width='+ data.width+', lenght = '+data.length+', ';
+    if(data.longitude) {
+      sentence +=' longitude =' + data.longitude + ',';
+    }
+    if(data.latitude) {
+      sentence +='latitude =' + data.latitude + ',';
+    }
+    if(data.countryCode) {
+      sentence +='countryCode ="' + data.countryCode + '",';
+    }
+    if(data.city) {
+      sentence +='city ="' + data.city + '",';
+    }
+    if(data.zip) {
+      sentence +='zip ="' + data.zip + '" ';
+    }
+    sentence = sentence.slice(0, -1);
+
+    console.log(sentence);
 
     connection.query(sentence, function(error, result){
       if(error)
         throw error;
       else
         callback(null, result.affectedRows);
+    });
+  }
+}
+
+garden.isProprietary = function(user, id, callback) {
+  if(connection){
+    var sentence = 'select user from Garden where id =' + id;
+
+    connection.query(sentence, function(error, row) {
+      if (error) {
+      }
+      else {
+        if(user.id == row[0].user){
+          callback(null, true);
+        }else{
+          callback(null, false);
+        }
+        
+      }
     });
   }
 }
@@ -102,10 +139,22 @@ garden.updateGarden = function(data, callback) {
       sentence +='user ="' + data.user + '"';
       commaCounter++;
     }
+    if(data.countryCode) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='countryCode ="' + data.countryCode + '"';
+      commaCounter++;
+    }
     if(data.city) {
       if(commaCounter>0)
         sentence +=', ';
       sentence +='city ="' + data.city + '"';
+      commaCounter++;
+    }
+    if(data.zip) {
+      if(commaCounter>0)
+        sentence +=', ';
+      sentence +='zip ="' + data.zip + '"';
       commaCounter++;
     }
     sentence += ' WHERE id = "' + data.id +'"';

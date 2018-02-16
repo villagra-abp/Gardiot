@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebGL</title>
+    <script src="main.js"></script>
+    <script src="entidades.js"></script>
+    <script src="nodo.js"></script>
+    <script src="TGestorRecursos.js"></script>
+    <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
+    <!--IMPORTACIÓN DESDE ARCHIVOS
+    <script src="content/gl-matrix-min.js"></script>-->
+
+    <script src="content/gl-matrix.js"></script>
+
+
+</head>
+<body>
+
+    <canvas id="my-canvas" width="600" height="450">
+        Tu navegador no soporta el elemento canvas de HTML5.
+    </canvas>
+
+    <script>
+
+        var matrixStack=[];
+        var matrixModel = mat4.create();
+        matrixStack.push(matrixModel);
+
+        //console.log(matrixStack);
+        //verPunteros();
+        var arrayResource=[];
+
+        inicializar();
+    </script>
+</body>
+</html>
