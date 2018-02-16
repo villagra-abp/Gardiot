@@ -155,7 +155,7 @@ class TMalla extends TEntidad {
     //Para más info ved el archivo readmePunteros.txt
     constructor (malla) {
     	super();
-        this._malla = loadResource(malla);
+        this._malla=malla;
     }
 
     get malla(){
@@ -180,12 +180,12 @@ class TMalla extends TEntidad {
 }
 
 
-
-class TRecursoMalla extends TEntidad {
+// luis comento esto por que creo que se hace fuera
+/*class TRecursoMalla extends TEntidad {
     constructor (malla) {
         super();
     }
-}
+}*/
 
 class TFichero extends TEntidad {
     constructor () {
