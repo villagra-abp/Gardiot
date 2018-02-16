@@ -7,6 +7,7 @@ import { AppComponent } from "../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
+declare var $:any;
 
 @Component({
   selector: 'app-editprofile',
@@ -16,7 +17,7 @@ export class EditProfileComponent implements OnInit{
   user=new User("");
   countries:any[] = [];
   cities:any[] = [];
-  selected:string = "";
+  zip:string = "";
   countryData: Observable<Array<Select2OptionData>>;
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
@@ -31,7 +32,30 @@ export class EditProfileComponent implements OnInit{
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
-      console.log(event.key);
+      if(document.querySelector("span.select2-search.select2-search--dropdown>input")!=null){
+        let code=(<HTMLInputElement>document.querySelector("span.select2-search.select2-search--dropdown>input")).value;
+        if(code.length>=3){
+          this._detailService.listCitiesByZip(this.user.countryCode, code)
+          .subscribe(data=> {
+            console.log(data);
+            let aux=[];
+            for(let i=0; i<data.length; i++){
+              aux.push({id:data[i].adminName3, text:data[i].postalCode+"-"+data[i].adminName3});
+            }
+
+            this.cityData=Observable.create((obs)=>{
+                obs.next(aux);
+
+            });
+
+
+
+          },
+          error => {
+            console.log(error);
+          });
+        }
+      }
     }
 
     //Cargar usuario para mostrar sus datos en el formulario por defecto
@@ -47,6 +71,7 @@ export class EditProfileComponent implements OnInit{
           this.user.countryCode=data.countryCode;
 
           this.listarPaises();
+          this.mostrarCiudad();
 
         },
       error => {
@@ -107,32 +132,21 @@ export class EditProfileComponent implements OnInit{
   }
 
 
-  listaCiudades(value:string){
-
-    this._detailService.listCities(value)
-      .subscribe(data=> {
-        console.log(data);
-
-          let aux=[];
-          aux.push({id:0, text:"Selecciona una ciudad"});
-          for(let i=0; i<data.geonames.length; i++){
-            aux.push({id:data.geonames[i].name, text:data.geonames[i].name});
-          }
+  mostrarCiudad(){
 
 
+      let aux=[];
+      aux.push({id:this.user.city, text:this.user.city});
 
-          this.cityData=Observable.create((obs)=>{
-                obs.next(aux);
-                obs.complete();
-          });
 
-          this.startCity=Observable.create((obs)=>{
-                obs.next(this.user.city);
-                obs.complete();
-          });
-      },
-      error => {
-        console.log(error);
+      this.cityData=Observable.create((obs)=>{
+          obs.next(aux);
+          obs.complete();
+      });
+
+      this.startCity=Observable.create((obs)=>{
+          obs.next(this.user.city);
+          obs.complete();
       });
 
   }
@@ -141,14 +155,14 @@ export class EditProfileComponent implements OnInit{
 
 //Estas dos funciones son para guardar los datos
 //del país y ciudad en el objeto de usuario
-  changeCities(e){
+  saveCountry(e){
     if(e.value!=0 && e.value!==undefined){
       this.user.countryCode=e.value;
-      this.listaCiudades(e.value);
     }
   }
 
   saveCity(e){
+    console.log("save city");
     if(e.value!=0 && e.value!==undefined){
       this.user.city=e.value;
     }

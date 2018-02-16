@@ -261,4 +261,11 @@ export class UserService {
         })
     }
 
+    listCitiesByZip(country:string, value:string){
+      return this.http.get(this.apiURL + "geonamesSearchByZip/" + value+"/"+country)
+        .map(res=>{
+          return res.json();
+        })
+    }
+
 }

@@ -27,13 +27,13 @@
         <div class="form-group" ng-init="listarPaises()">
           <label for="countries">País:</label>
 
-            <select2 [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.changeCities($event)">
+            <select2 [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
             </select2>
 
            </div>
         <div class="form-group">
             <label for="countries">Ciudad:</label>
-            <select2 [data]="cityData | async" [value]="startCity | async" (keyup)="this.searchZip($event)" (valueChanged)="this.saveCity($event)">
+            <select2 id="zipCode" [data]="cityData | async" [value]="startCity | async" (valueChanged)="this.saveCity($event)">
             </select2>
 
         </div>
