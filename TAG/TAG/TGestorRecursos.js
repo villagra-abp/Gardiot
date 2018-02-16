@@ -1,6 +1,19 @@
 // Gestor de recursos. Abre cada recurso apuntando
 // a la dirección de memoria. Julián Sánchez García
 
+class TGestorRecursos {
+    var TRecurso recursos=[];
+    constructor () {
+
+    }
+    TRecurso getRecurso(nombre){
+
+    }
+  }
+
+
+
+/*
 function loadResource(malla){
 
   console.log("llamada al gestor "+malla.toString());
@@ -25,3 +38,4 @@ function loadResource(malla){
   return 0;
 
 }
+*/
