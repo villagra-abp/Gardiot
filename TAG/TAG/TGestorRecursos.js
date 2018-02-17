@@ -1,8 +1,9 @@
 // Gestor de recursos. Abre cada recurso apuntando
 // a la dirección de memoria. Julián Sánchez García
 
+// aquí debemos de llamar al RECURSO
 class TGestorRecursos {
-    var TRecurso recursos=[];
+    // var TRecurso recursos=[];
     constructor () {
 
     }

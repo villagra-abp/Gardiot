@@ -155,7 +155,7 @@ class TMalla extends TEntidad {
     //Para más info ved el archivo readmePunteros.txt
     constructor (malla) {
     	super();
-        this._malla=malla;
+        this._malla=malla; // LAMADA AL GESTOR¿?¿?¿?¿
     }
 
     get malla(){
