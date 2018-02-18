@@ -22,6 +22,8 @@ export class EditProfileComponent implements OnInit{
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
+  public options: Select2Options;
+  public options2: Select2Options;
 
 
   constructor(
@@ -32,31 +34,59 @@ export class EditProfileComponent implements OnInit{
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
-      if(document.querySelector("span.select2-search.select2-search--dropdown>input")!=null){
-        let code=(<HTMLInputElement>document.querySelector("span.select2-search.select2-search--dropdown>input")).value;
-        if(code.length>=3){
-          this._detailService.listCitiesByZip(this.user.countryCode, code)
-          .subscribe(data=> {
-            console.log(data);
-            let aux=[];
-            for(let i=0; i<data.length; i++){
-              aux.push({id:data[i].adminName3, text:data[i].postalCode+"-"+data[i].adminName3});
-            }
+      if(document.querySelector("#zipCode > span").classList.contains("select2-container--open")){
+        if(document.querySelector("span.select2-search.select2-search--dropdown>input")!=null){
+          let code=(<HTMLInputElement>document.querySelector("span.select2-search.select2-search--dropdown>input")).value;
+          if(code.length>=3){
+            this._detailService.listCitiesByZip(this.user.countryCode, code)
+            .subscribe(data=> {
 
-            this.cityData=Observable.create((obs)=>{
-                obs.next(aux);
+              let tit=document.querySelectorAll(".select2-selection__rendered")[1];
+              tit.innerHTML="joder";
+              console.log(tit);
+              tit.setAttribute('ng-reflect-value', "data[0].adminName3");
+              tit.setAttribute('title', '-_-');
+              console.log(tit.innerHTML);
 
+
+              console.log(data);
+              let op=document.querySelector("#zipCode > select");
+              let li=document.querySelector("span.select2-results>ul");
+              op.innerHTML="";
+              li.innerHTML="";
+              let aux=[];
+              for(let i=0; i<1; i++){
+                if(i==0){
+                  li.innerHTML+=`<li class="select2-results__option select2-results__option--highlighted" role="treeitem" aria-selected="false" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</li>`;
+                }
+                else{
+                  li.innerHTML+=`<li class="select2-results__option" role="treeitem" aria-selected="false" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</li>`;
+                }
+                op.innerHTML+=`<option value="${data[i].adminName3}" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</option>`;
+                aux.push({id:data[i].adminName3, text:data[i].postalCode+"-"+data[i].adminName3});
+              }
+
+              let tit=document.querySelectorAll(".select2-selection__rendered")[1];
+              tit.innerHTML="joder";
+              console.log(tit);
+              tit.setAttribute('ng-reflect-value', "tuputamadre");
+              tit.setAttribute('title', data[0].adminName3);
+              console.log(tit.innerHTML);
+
+              /*this.cityData=Observable.create((obs)=>{
+                  obs.next(aux);
+                  obs.complete();
+              });*/
+            },
+            error => {
+              console.log(error);
             });
-
-
-
-          },
-          error => {
-            console.log(error);
-          });
+          }
         }
       }
     }
+
+
 
     //Cargar usuario para mostrar sus datos en el formulario por defecto
   mostrar(){
@@ -99,6 +129,12 @@ export class EditProfileComponent implements OnInit{
 
   ngOnInit() {
     this.mostrar();
+    this.options={
+      selectOnClose: true
+    }
+    this.options2={
+      selectOnClose: true
+    }
 
   }
 
@@ -134,10 +170,8 @@ export class EditProfileComponent implements OnInit{
 
   mostrarCiudad(){
 
-
       let aux=[];
       aux.push({id:this.user.city, text:this.user.city});
-
 
       this.cityData=Observable.create((obs)=>{
           obs.next(aux);
@@ -156,16 +190,20 @@ export class EditProfileComponent implements OnInit{
 //Estas dos funciones son para guardar los datos
 //del país y ciudad en el objeto de usuario
   saveCountry(e){
+  console.log("save country"+e.value);
     if(e.value!=0 && e.value!==undefined){
       this.user.countryCode=e.value;
     }
   }
 
   saveCity(e){
-    console.log("save city");
+    console.log("save city"+e.value);
     if(e.value!=0 && e.value!==undefined){
       this.user.city=e.value;
+      this.mostrarCiudad();
     }
   }
 
-  }
+
+
+}
