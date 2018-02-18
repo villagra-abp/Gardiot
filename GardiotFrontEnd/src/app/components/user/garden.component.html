@@ -1,13 +1,28 @@
 <div class="main-container">
-  <h1>Jardín</h1>
+  <h1>{{garden.title}}</h1>
   
-
+  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
 
 <section class="container">
+	<h2>Informacion</h2>
+	<div>
+		<p>Localizacion:{{garden.city}}, {{garden.countryCode}}</p>
+		<p>Coordenadas: {{garden.latitude}} {{garden.longitude}}</p>
+		<p>Tiempo: {{tiempo}}</p>
+		<p>Humedad: {{humedad}}%</p>
+	</div>
+</section>
+
+<section class="container">
+<h2>Tareas:</h2>
   <div>
-  	<p>Tiempo: {{tiempo}}</p>
-  	<p>Humedad: {{humedad}}%</p>
+  	<ul>
+  		<li>Tarea1</li>
+  		<li>Tarea2</li>
+  		<li>Tarea3</li>
+  	</ul>
   </div>
 </section>
+<button>Editar</button>
 
 </div>
