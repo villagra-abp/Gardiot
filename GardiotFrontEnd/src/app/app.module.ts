@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { APP_ROUTING } from "./app.routes";
 
 import { Select2Module } from 'ng2-select2';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 //services
 import { UserService } from "./services/user.service";
@@ -83,7 +84,8 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     LibraryComponent,
     CalendarComponent,
     OauthConfirmationComponent,
-    DesarrolloComponent
+    DesarrolloComponent,
+    FileSelectDirective
 
   ],
   imports: [
