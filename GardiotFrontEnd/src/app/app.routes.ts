@@ -20,6 +20,7 @@ import { AdminComponent } from './components/admin/admin.component';
 
 //GardenComponent
 import { GardenComponent } from './components/user/garden.component';
+import { EditGardenardenComponent } from './components/user/editgarden.component';
 
 import { AuthguardGuard } from "./authguard.guard";
 import { admin_routes } from "./components/admin/admin.routes";
@@ -35,6 +36,7 @@ const app_routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
+  { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
