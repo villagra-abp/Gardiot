@@ -1,16 +1,19 @@
 class TRecursoMalla extends TRecurso{
-  var vertices, normales, texturas;
-  var vertTriangulos, normTriangulos, textTriangulos;
-  var nTriangulos;
-  var pila = new Stack;
 
   constructor (){
     super();
-  }
-  cargarFichero(nombre){
+    this._vertices;
+    this._normales;
+    this._texturas;
+    this._vertTriangulos;
+    this._normTriangulos;
+    this._texTriangulos;
+    this._nTriangulos;
+    this._pila= [];
 
   }
-  // draw();
+  cargarFichero(nombre){}
+  draw(){}
 }
 
 
