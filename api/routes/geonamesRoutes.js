@@ -51,8 +51,20 @@ router.get('/geonamesSearchByZip/:zip/:code', function (request, response) {
       data = JSON.stringify(data);
       data = data.replace(/\\/g, "");
       data= data.substring(1, data.length-1);
+      let datos=JSON.parse(data).postalCodes;
+      let nuevoArray = [];
+      let lookup  = {};
 
-      response.status(200).send(data);
+      for (var i in datos) {
+          lookup[datos[i]['adminName3']] = datos[i];
+      }
+
+      for (i in lookup) {
+          nuevoArray.push(lookup[i]);
+      }
+
+
+      response.status(200).send(nuevoArray);
     });
 
   });

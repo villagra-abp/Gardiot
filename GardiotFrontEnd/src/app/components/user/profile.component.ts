@@ -7,13 +7,15 @@ import { AppComponent } from "../../app.component";
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  templateUrl: './profile.component.html',
+  styleUrls: ['profile.component.css']
 })
 export class ProfileComponent implements OnInit{
   user=new User("");
   countries:any[] = [];
   cities:any[] = [];
   selected:string = "";
+  imgUrl:string='https://gardiot.ovh/uploads/avatar/';
 
   constructor(
     private _detailService:UserService,
