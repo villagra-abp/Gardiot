@@ -4,7 +4,9 @@ var plant = {};
 
 plant.getPlants = function(number, page, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + (page - 1) * number + ' AND ' + page * number , function (error, rows){
+    let minPeak = (page - 1) * number + 1;
+    let maxPeak = page * number;
+    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + minPeak  + ' AND ' + maxPeak , function (error, rows){
       if(error) 
         callback(error, null);
       else 
