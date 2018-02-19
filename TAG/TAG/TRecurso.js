@@ -5,7 +5,7 @@
     this._vetorRecursos=[]; // para almacenar tds los recursos
   }
 
-   get rombre(){}
+   get nombre(){}
    set recurso(nombre) {}
    deleteRecurso(nombre){}
 }

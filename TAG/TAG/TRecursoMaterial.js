@@ -5,7 +5,7 @@ class TRecursoMaterial extends TRecurso{
   constructor (){
     super();
   }
-  function cargarFichero(nombre){
+  cargarFichero(nombre){
 
   }
   // draw();

@@ -11,6 +11,23 @@ class TGestorRecursos {
     }
 
     get recurso(nombre){
+
+      var encontrado = false;
+      var recursoNuevo;
+
+      for (var i = 0; i < recursos.length; i++ && !encontrado) {
+        if(recursos[i] != null && recursos[i] = nombre){
+            console.log("Está el recurso: "+nombre.toString()+" y debemos cargarlo.");
+            encontrado = true; // cargar recurso
+        }
+      }
+      if(!encontrado){
+        console.log("NO está el recurso: "+nombre.toString()+" y debemos añadirlo.");
+        // cargar el fichero
+        // recursoNuevo = new TRecurso(nombre);
+        // recursos.push(recursoNuevo);
+
+      }
       return nombre;
     }
   }
