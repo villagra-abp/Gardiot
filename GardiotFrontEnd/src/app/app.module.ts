@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 
+//Rutas
 import { APP_ROUTING } from "./app.routes";
 
 import { Select2Module } from 'ng2-select2';
