@@ -5,12 +5,19 @@ public class TRecurso{
 
   constructor (nombre){
     this._nombre=nombre;
+    this._vetorRecursos=[]; // para almacenar tds los recursos
   }
 
   function getNombre(){
+    // MARIANO
 
   }
-  function setNombre(nombre) {
+  function setRecurso(nombre) {
+    // MARIANO
+
+  }
+  function deleteRecurso(nombre){
+    // MARIANO
 
   }
 }
