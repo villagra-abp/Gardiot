@@ -112,6 +112,10 @@ export class UserService {
       if(user.lastName!==undefined){
         body+=`&lastName=${user.lastName}`;
       }
+      if(user.photo!==undefined){
+        console.log(user.photo);
+        body+=`&photo=${user.photo}`;
+      }
       var country = 0;
 
       if(user.birthDate!=null){
@@ -126,7 +130,8 @@ export class UserService {
         body+= `&countryCode=${user.countryCode}`;
         country = 1;
       }
-      if(user.city && country==1){
+      if(user.city!==undefined && country==1){
+        console.log(user.city);
         body+=`&city=${user.city}`;
       }
       console.log(body);
@@ -256,6 +261,13 @@ export class UserService {
 
     listCities(value:string){
       return this.http.get(this.apiURL + "geonamesCities/" + value)
+        .map(res=>{
+          return res.json();
+        })
+    }
+
+    listCitiesByZip(country:string, value:string){
+      return this.http.get(this.apiURL + "geonamesSearchByZip/" + value+"/"+country)
         .map(res=>{
           return res.json();
         })

@@ -134,7 +134,6 @@ router.get('/isAuthenticated', function(request, response) {
 //***Muestra al usuario actual. Sin parametros
 
 router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	console.log(request);
 	response.status(200).json(request.user); //Arreglar
 	//response.status(200).json({"Name:":request.user.name, "LastName":request.user.lastName, "Photo":request.user.photo}); //PASSPORT devuelve siempre el objeto user
 });
