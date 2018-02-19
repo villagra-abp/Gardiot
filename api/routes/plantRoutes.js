@@ -21,7 +21,7 @@ router.get('/plant/:id', function(request, response) {
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlantById(request.params.id, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
 			else
 				response.status(404).json({"Mensaje":"No existe"});
@@ -34,7 +34,7 @@ router.get('/plantFamily/:id', function(request, response) {
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlantsByFamily(request.params.id, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
 			else
 				response.status(404).json({"Mensaje":"No existe"});
@@ -114,11 +114,11 @@ router.delete('/plant/:id', passport.authenticate('jwt', {session: false}), rout
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.deletePlant(request.params.id, function(error, data) {
-			if (data == 1) 
-				response.status(200).json({"Mensaje":"Borrado"});	
-			else if (data == 0) 
+			if (data == 1)
+				response.status(200).json({"Mensaje":"Borrado"});
+			else if (data == 0)
 				response.status(404).json({"Mensaje":"No existe"});
-			else 
+			else
 				response.status(500).json({"Mensaje":"Error"});
 		});
 	}
