@@ -347,7 +347,7 @@ function validateInput(data) {
 	var resp = '';
 	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
-	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	//if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
