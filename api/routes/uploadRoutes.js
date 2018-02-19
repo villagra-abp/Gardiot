@@ -12,7 +12,7 @@ var mime = require('mime');
 //Storage para las fotos de perfil
 var storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../app/uploads/avatar/')
+    cb(null, '../uploads/avatar/')
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
@@ -24,7 +24,7 @@ var storage1 = multer.diskStorage({
 //Storage para las fotos de plantas
 var storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../app/uploads/plant/')
+    cb(null, '../uploads/plant/')
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {

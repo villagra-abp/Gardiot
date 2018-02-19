@@ -12,7 +12,8 @@ declare var $:any;
 
 @Component({
   selector: 'app-editprofile',
-  templateUrl: './editprofile.component.html'
+  templateUrl: './editprofile.component.html',
+  styleUrls: ['editprofile.component.css']
 })
 export class EditProfileComponent implements OnInit{
   user=new User("");
@@ -23,6 +24,7 @@ export class EditProfileComponent implements OnInit{
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
+  imgUrl:string='https://gardiot.ovh/uploads/avatar/';
 
   uploader:FileUploader=new FileUploader({url: 'http://localhost:3000/api/uploadAvatar', itemAlias: 'photo'});
 
@@ -35,57 +37,42 @@ export class EditProfileComponent implements OnInit{
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
-      if(document.querySelector("#zipCode > span").classList.contains("select2-container--open")){
-        if(document.querySelector("span.select2-search.select2-search--dropdown>input")!=null){
-          let code=(<HTMLInputElement>document.querySelector("span.select2-search.select2-search--dropdown>input")).value;
-          if(code.length>=3){
-            this._detailService.listCitiesByZip(this.user.countryCode, code)
+      let input=(<HTMLInputElement>document.querySelector("#zipCode"));
+      if(input.value.length>=5){
+          this._detailService.listCitiesByZip(this.user.countryCode, input.value)
             .subscribe(data=> {
-
-              /*let tit=document.querySelectorAll(".select2-selection__rendered")[1];
-              tit.innerHTML="joder";
-              console.log(tit);
-              tit.setAttribute('ng-reflect-value', "data[0].adminName3");
-              tit.setAttribute('title', '-_-');
-              console.log(tit.innerHTML);*/
-
-
+              let sp=document.querySelector('#ciudad');
               console.log(data);
-              let op=document.querySelector("#zipCode > select");
-              let li=document.querySelector("span.select2-results>ul");
-              op.innerHTML="";
-              li.innerHTML="";
-              let aux=[];
-              for(let i=0; i<data.length; i++){
-                if(i==0){
-                  li.innerHTML+=`<li class="select2-results__option select2-results__option--highlighted" role="treeitem" aria-selected="false" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</li>`;
+              if(data.length>0){
+                if(data[0].adminName3!==undefined){
+                  this.user.city=data[0].adminName3;
+                  sp.innerHTML=data[0].adminName3;
+                }
+                else if(data[0].adminName2!==undefined){
+                  this.user.city=data[0].adminName2;
+                  sp.innerHTML=data[0].adminName2;
+                }
+                else if(data[0].adminName1!==undefined){
+                  this.user.city=data[0].adminName1;
+                  sp.innerHTML=data[0].adminName1;
                 }
                 else{
-                  li.innerHTML+=`<li class="select2-results__option" role="treeitem" aria-selected="false" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</li>`;
+                  this.user.city='';
+                  sp.innerHTML='Código postal no encontrado';
                 }
-                op.innerHTML+=`<option value="${data[i].adminName3}" data-select2-id="${i}">${data[i].postalCode+"-"+data[i].adminName3}</option>`;
-                aux.push({id:data[i].adminName3, text:data[i].postalCode+"-"+data[i].adminName3});
               }
+              else{
+                this.user.city='';
+                sp.innerHTML='Código postal no encontrado';
+              }
+              input.value='';
 
-              /*tit=document.querySelectorAll(".select2-selection__rendered")[1];
-              tit.innerHTML="joder";
-              console.log(tit);
-              tit.setAttribute('ng-reflect-value', "tuputamadre");
-              tit.setAttribute('title', data[0].adminName3);
-              console.log(tit.innerHTML);*/
-
-              /*this.cityData=Observable.create((obs)=>{
-                  obs.next(aux);
-                  obs.complete();
-              });*/
             },
             error => {
               console.log(error);
             });
           }
         }
-      }
-    }
 
 
 
@@ -116,24 +103,15 @@ export class EditProfileComponent implements OnInit{
 
     //Enviar los nuevos datos del usuario a UserService para guardarlos
     edit(){
-      if(this.uploader.getNotUploadedItems().length){
-        this.uploader.uploadAll();
-      }
-      else{
-        this.send();
-      }
+      this._detailService.modifyUserProfile(this.user)
+          .subscribe(data=>{
+            this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+          },
+        error => {
+          let v=JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
     }
-
-    send(){
-        this._detailService.modifyUserProfile(this.user)
-            .subscribe(data=>{
-              this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
-            },
-          error => {
-            let v=JSON.parse(error._body);
-            this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-          });
-      }
 
 
   ngOnInit() {
@@ -143,8 +121,18 @@ export class EditProfileComponent implements OnInit{
        //able to deal with the server response.
        this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
             console.log("ImageUpload:uploaded:", item, status, response);
+
+            let url=response.split(" ");
+            url=url[url.length-1];
+            url=url.replace("..\\uploads\\avatar\\", "");
+            console.log(url);
+            this.user.photo=url;
+            let img=document.getElementById('photoProfile');
+            img.setAttribute('src', this.imgUrl+url);
+
+
+            console.log(img.getAttribute('src'));
             //cambiamos el atributo this.user.photo y guardamos el formulario
-            this.send();
         };
 
   }
@@ -168,7 +156,7 @@ export class EditProfileComponent implements OnInit{
         this.startCountry=Observable.create((obs)=>{
               obs.next(this.user.countryCode);
               obs.complete();
-        }).delay(2000);
+        }).delay(1000);
 
 
       },
@@ -189,14 +177,15 @@ export class EditProfileComponent implements OnInit{
           obs.complete();
       });
 
-      this.startCity=Observable.create((obs)=>{
-          obs.next(this.user.city);
-          obs.complete();
-      });
+      document.querySelector('#ciudad').innerHTML=this.user.city;
 
   }
 
-
+  uploadPhoto(){
+    if(this.uploader.getNotUploadedItems().length){
+      this.uploader.uploadAll();
+    }
+  }
 
 //Estas dos funciones son para guardar los datos
 //del país y ciudad en el objeto de usuario

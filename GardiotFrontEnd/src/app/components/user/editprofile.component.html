@@ -1,11 +1,13 @@
 <div class="container main-container">
   <h1>Mi perfil</h1>
-{{this.user.photo}}
+
 <section class="container">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
-        <img src="{{user.photo}}" alt="Foto de perfil">
+        <img src="{{this.imgUrl+user.photo}}" id="photoProfile" alt="Foto de perfil">
+        <!--<img id="photoProfile" src="https://haciendofotos.com/wp-content/uploads/las-mejores-fotos-para-el-perfil-whatsapp-wasap-oso-ted.jpg">-->
+        <input type="file" (change)="uploadPhoto()" ng2FileSelect [uploader]="uploader" />
         <div class="form-group">
           <label  for="name_user">Nombre: </label>
           <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" required>
@@ -31,11 +33,15 @@
             </select2>
 
            </div>
+
+        <div class="form-group">
+            <label for="countries">Introduce tu código postal:</label>
+            <input type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
+        </div>
+
         <div class="form-group">
             <label for="countries">Ciudad:</label>
-            <select2 id="zipCode" [data]="cityData | async" [value]="startCity | async" [width]="200" (valueChanged)="this.saveCity($event)">
-            </select2>
-
+            <span id="ciudad"></span>
         </div>
 
         <!--<div class="form-group">
@@ -57,7 +63,7 @@
           <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" >
         </div>
 
-        <input type="file" ng2FileSelect [uploader]="uploader" />
+
 
 
 
