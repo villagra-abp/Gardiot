@@ -20,7 +20,7 @@ router.get('/plant/:id', function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 1}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		plantModel.getPlantById(id, function(error, data) {
+		plantModel.getPlantById(request.params.id, function(error, data) {
 			if (typeof data !== 'undefined') 
 				response.status(200).json(data);
 			else 
@@ -33,7 +33,7 @@ router.get('/plantFamily/:id', function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 1}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		plantModel.getPlantsByFamily(id, function(error, data) {
+		plantModel.getPlantsByFamily(request.params.id, function(error, data) {
 			if (typeof data !== 'undefined') 
 				response.status(200).json(data);
 			else 
@@ -110,15 +110,18 @@ router.put('/plant', passport.authenticate('jwt', {session: false}), routeRequir
 });
 
 router.delete('/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	var id = request.params.id;
-	plantModel.deletePlant(id, function(error, data) {
-		if (data == 1) 
-			response.status(200).json({"Mensaje":"Borrado"});	
-		else if (data == 0) 
-			response.status(404).json({"Mensaje":"No existe"});
-		else 
-			response.status(500).json({"Mensaje":"Error"});
-	});
+	if (!validator.isInt(request.params.id, {gt: 1}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		plantModel.deletePlant(request.params.id, function(error, data) {
+			if (data == 1) 
+				response.status(200).json({"Mensaje":"Borrado"});	
+			else if (data == 0) 
+				response.status(404).json({"Mensaje":"No existe"});
+			else 
+				response.status(500).json({"Mensaje":"Error"});
+		});
+	}
 });
 
 function sanitizeInput(data) {
