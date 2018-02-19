@@ -2,17 +2,16 @@
 // a la dirección de memoria. Julián Sánchez García y Mariano López Escudero
 
 // aquí debemos de llamar al RECURSO
-import('./TRecurso.js');
-require('TRecurso.js');
 class TGestorRecursos {
   //lo que de verdad se quiere es un array
-    var recursos = new TRecurso('caca');
-    constructor () {
-
+    //var recursos = new TRecurso('caca');
+    constructor (nombre) {
+      this._nombre=nombre;
+      this.recursos=[];
     }
 
-    getRecurso(nombre){
-      return 1;
+    get recurso(nombre){
+      return nombre;
     }
   }
 
