@@ -1,14 +1,18 @@
 // Gestor de recursos. Abre cada recurso apuntando
-// a la dirección de memoria. Julián Sánchez García
+// a la dirección de memoria. Julián Sánchez García y Mariano López Escudero
 
 // aquí debemos de llamar al RECURSO
+import('./TRecurso.js');
+require('TRecurso.js');
 class TGestorRecursos {
-    // var TRecurso recursos=[];
+  //lo que de verdad se quiere es un array
+    var recursos = new TRecurso('caca');
     constructor () {
 
     }
-    TRecurso getRecurso(nombre){
 
+    getRecurso(nombre){
+      return 1;
     }
   }
 
