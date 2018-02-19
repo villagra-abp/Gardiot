@@ -42,7 +42,7 @@ plant.insertPlant = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Plant SET ';
     for (var key in data)
-      if (data[key]!== 'undefined') 
+      if (typeof data[key]!== 'undefined') 
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){
@@ -57,7 +57,7 @@ plant.updatePlant = function(data, callback) {
   if(connection) {   
     var sql = 'UPDATE Plant SET ';
     for (var key in data)
-      if (data[key]!== 'undefined' && key!= 'id') 
+      if (typeof data[key]!== 'undefined' && key!= 'id') 
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE id= "' + data.id +'"';

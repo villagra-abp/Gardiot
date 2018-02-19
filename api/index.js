@@ -33,6 +33,11 @@ app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
 app.use('/api', require('./routes/finderRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/soilRoutes'));
+app.use('/api', require('./routes/productRoutes'));
+app.use('/api', require('./routes/feedRoutes'));
+app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/plantRoutes'));
 
 //Start server
 app.listen(config.port, function () {

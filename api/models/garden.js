@@ -64,8 +64,6 @@ garden.insertGarden = function(data, callback) {
     }
     sentence = sentence.slice(0, -1);
 
-    console.log(sentence);
-
     connection.query(sentence, function(error, result){
       if(error)
         throw error;
@@ -88,7 +86,7 @@ garden.isProprietary = function(user, id, callback) {
         }else{
           callback(null, false);
         }
-        
+
       }
     });
   }
@@ -102,7 +100,7 @@ garden.updateGarden = function(data, callback) {
       sentence += 'title = "' + data.title + '"' ;
       commaCounter++;
     }
-    
+
     if(data.width) {
       if(commaCounter>0)
         sentence +=', ';
