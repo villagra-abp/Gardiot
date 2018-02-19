@@ -61,7 +61,7 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
     	finDateHarvest: request.body.finDateHarvest,
     	leaveType: request.body.leaveType
 	};
-	var validate = validateInput(userData);
+	var validate = validateInput(plantData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
@@ -70,12 +70,12 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
 			if (data)
 				response.status(200).json({"Mensaje":"Insertado"});
 			else
-				response.status(500).json({"Mensaje":"Error"});
+				response.status(500).json({"Mensaje":"Error: " +error.message});
 		});
 	}
 });
 
-router.put('/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.put('/admin//plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
   var plantData = {
     	id: request.body.id,
 		scientificName: request.body.scientificName,
@@ -95,7 +95,7 @@ router.put('/plant', passport.authenticate('jwt', {session: false}), routeRequir
     	finDateHarvest: request.body.finDateHarvest,
     	leaveType: request.body.leaveType
 	};
-	var validate = validateInput(userData);
+	var validate = validateInput(plantData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
@@ -109,7 +109,7 @@ router.put('/plant', passport.authenticate('jwt', {session: false}), routeRequir
 	}
 });
 
-router.delete('/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.delete('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 1}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -148,8 +148,8 @@ function sanitizeInput(data) {
 function validateInput(data) {
 	var resp = '';
 	if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (data.scientificName && !validator.isAlpha(data.scientificName, 'es-ES')) resp += 'Nombre científico no válido, ';
-	if (data.commonName && !validator.isAlpha(data.commonName, 'es-ES')) resp += 'Nombre común no válido, ';
+	if (data.scientificName && !validator.isAscii(data.scientificName, 'es-ES')) resp += 'Nombre científico no válido, ';
+	if (data.commonName && !validator.isAscii(data.commonName, 'es-ES')) resp += 'Nombre común no válido, ';
 	if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data._3DModel && !validator.isURL(data._3DModel)) resp += 'Modelo no válido, ';
