@@ -7,7 +7,7 @@ var routeRequirements = require('../functions/routeRequirements');
 var plantModel = require('../models/plant');
 
 router.get('/plants/:number/:page', function (request, response) {
-	if (!validator.isInt(request.params.number, {gt: 1}) || !validator.isInt(request.params.page, {gt: 1}))
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlants (request.params.number, request.params.page, function(error, data){
@@ -17,7 +17,7 @@ router.get('/plants/:number/:page', function (request, response) {
 });
 
 router.get('/plant/:id', function(request, response) {
-	if (validator.isInt(request.params.id, {gt: 1}))
+	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlantById(request.params.id, function(error, data) {
@@ -30,7 +30,7 @@ router.get('/plant/:id', function(request, response) {
 });
 
 router.get('/plantFamily/:id', function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 1}))
+	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlantsByFamily(request.params.id, function(error, data) {
