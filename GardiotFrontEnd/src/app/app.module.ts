@@ -34,6 +34,7 @@ import { ConfirmationComponent } from './components/manage/confirmation.componen
 import { ResendComponent } from './components/manage/resend.component';
 import { LibraryComponent } from './components/user/library.component';
 import { CalendarComponent } from './components/user/calendar.component';
+import { PlantComponent } from './components/user/plant.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -51,9 +52,6 @@ import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -86,7 +84,8 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     CalendarComponent,
     OauthConfirmationComponent,
     DesarrolloComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    PlantComponent
 
   ],
   imports: [
