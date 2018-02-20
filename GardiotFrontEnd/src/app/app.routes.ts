@@ -9,6 +9,9 @@ import { ConfirmationComponent } from "./components/manage/confirmation.componen
 import { ResendComponent } from "./components/manage/resend.component";
 import { LibraryComponent } from "./components/user/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
+import { PlantComponent } from "./components/user/plant.component";
+
+
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -36,6 +39,7 @@ const app_routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
+  { path: 'plant', component: PlantComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
