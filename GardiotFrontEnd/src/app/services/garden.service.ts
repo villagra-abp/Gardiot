@@ -30,6 +30,12 @@ export class GardenService {
           })
 	  }
 
+
+	  modifyGarden(garden:Garden){
+	  	let body = `id=${garden.id}`;
+
+	  }
+
 	  tiempo(garden:Garden){
 	  	let headers = new Headers({
         	'Authorization':`Bearer ${localStorage['Bearer']}`

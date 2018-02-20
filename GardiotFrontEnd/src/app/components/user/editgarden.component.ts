@@ -9,11 +9,11 @@ import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
 
 @Component({
-  selector: 'app-editprofile',
+  selector: 'app-editgarden',
   templateUrl: './editgarden.component.html'
 })
 
-export class EditProfileComponent implements OnInit{
+export class EditGardenComponent implements OnInit{
 
 	garden = new Garden("");
 
@@ -21,7 +21,7 @@ export class EditProfileComponent implements OnInit{
 	 constructor(
 	    private _gardenService:GardenService,
 	    private _route:Router,
-	    private _appComponent:AppComponent){ })
+	    private _appComponent:AppComponent){ }
 
 
 
@@ -51,7 +51,18 @@ export class EditProfileComponent implements OnInit{
   	this.mostrar();
   }
 
-	
+	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
+  edit(){
+
+    this._gardenService.modifyGarden(this.garden)
+      /*  .subscribe(data=>{
+          this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
+        },
+      error => {
+        let v=JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });*/
+  }
 
 
 }

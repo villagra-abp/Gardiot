@@ -20,7 +20,7 @@ import { AdminComponent } from './components/admin/admin.component';
 
 //GardenComponent
 import { GardenComponent } from './components/user/garden.component';
-import { EditGardenardenComponent } from './components/user/editgarden.component';
+import { EditGardenComponent } from './components/user/editgarden.component';
 
 import { AuthguardGuard } from "./authguard.guard";
 import { admin_routes } from "./components/admin/admin.routes";
