@@ -9,15 +9,16 @@ export class Plant {
    public photo?: string,
    public model?: string,
    public family?: string,
-   public depth?: float,
-   public distance?: float,
-   public disease?: string,
-   public iniPlan?: Date,
-   public endPlant?: Date,
-   public iniBloom?: Date,
-   public endBloom?: Date,
-   public iniHarvert?: Date,
-   public endHarvest?: Date,
+   public depth?: string,
+   public distance?: string,
+   public diseaseResist?: string,
+   public initDatePlan?: Date,
+   public finDatePlant?: Date,
+   public initDateBloom?: Date,
+   public finDateBloom?: Date,
+   public initDateHarvert?: Date,
+   public endDateHarvest?: Date,
    public leaveType?: string) {
+
  }
 }
