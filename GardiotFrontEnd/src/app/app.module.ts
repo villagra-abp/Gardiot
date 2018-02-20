@@ -12,6 +12,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
+import { PlantService } from "./services/plant.service";
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -98,6 +99,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
   providers: [
     UserService,
     GardenService,
+    PlantService,
     AuthguardGuard,
     AdminguardGuard
   ],

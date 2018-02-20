@@ -43,6 +43,7 @@ router.get('/plantFamily/:id', function(request, response) {
 });
 
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+console.log(request.body);
 	var plantData = {
 		scientificName: request.body.scientificName,
 		commonName: request.body.commonName,
@@ -135,12 +136,12 @@ function sanitizeInput(data) {
 	if (data.depth) {  data.depth = validator.trim(data.depth); data.depth = validator.toFloat(data.depth);}
 	if (data.distance) {  data.distance = validator.trim(data.distance); data.distance = validator.toFloat(data.distance);}
 	if (data.diseaseResist) { data.diseaseResist = validator.trim(data.diseaseResist); data.diseaseResist = validator.stripLow(data.diseaseResist); data.diseaseResist = validator.escape(data.diseaseResist);}
-	if (data.initDatePlant) data.initDatePlant = validator.toDate(data.initDatePlant);
-	if (data.finDatePlant) data.finDatePlant = validator.toDate(data.finDatePlant);
-	if (data.initDateBloom) data.initDateBloom = validator.toDate(data.initDateBloom);
-	if (data.finDateBloom) data.finDateBloom = validator.toDate(data.finDateBloom);
-	if (data.initDateHarvest) data.initDateHarvest = validator.toDate(data.initDateHarvest);
-	if (data.finDateHarvest) data.finDateHarvest = validator.toDate(data.finDateHarvest);
+	//if (data.initDatePlant) data.initDatePlant = validator.toDate(data.initDatePlant);
+	//if (data.finDatePlant) data.finDatePlant = validator.toDate(data.finDatePlant);
+	//if (data.initDateBloom) data.initDateBloom = validator.toDate(data.initDateBloom);
+	//if (data.finDateBloom) data.finDateBloom = validator.toDate(data.finDateBloom);
+	//if (data.initDateHarvest) data.initDateHarvest = validator.toDate(data.initDateHarvest);
+	//if (data.finDateHarvest) data.finDateHarvest = validator.toDate(data.finDateHarvest);
 	if (data.leaveType) { data.leaveType = validator.trim(data.leaveType); data.leaveType = validator.stripLow(data.leaveType); data.leaveType = validator.escape(data.leaveType);}
 	return data;
 }
@@ -157,12 +158,12 @@ function validateInput(data) {
 	if (data.depth && !validator.isFloat(data.depth)) resp += 'Profundidad no válida, ';
 	if (data.distance && !validator.isFloat(data.distance)) resp += 'Distancia no válida, ';
 	if (data.diseaseResist && !validator.isAscii(data.diseaseResist)) resp += 'Resistencia a las enfermedades no válida, ';
-	if (data.initDatePlant && !validator.isISO8601(data.initDatePlant)) resp += 'Fecha inicio plantación no válida, ';
-	if (data.finDatePlant && !validator.isISO8601(data.finDatePlant)) resp += 'Fecha fin plantación no válida, ';
-	if (data.initDateBloom && !validator.isISO8601(data.initDateBloom)) resp += 'Fecha inicio floración no válida, ';
-	if (data.finDateBloom && !validator.isISO8601(data.finDateBloom)) resp += 'Fecha fin floración no válida, ';
-	if (data.initDateHarvest && !validator.isISO8601(data.initDateHarvest)) resp += 'Fecha inicio cosecha no válida, ';
-	if (data.finDateHarvest && !validator.isISO8601(data.finDateHarvest)) resp += 'Fecha fin cosecha no válida, ';
+	//if (data.initDatePlant && !validator.isISO8601(data.initDatePlant)) resp += 'Fecha inicio plantación no válida, ';
+	//if (data.finDatePlant && !validator.isISO8601(data.finDatePlant)) resp += 'Fecha fin plantación no válida, ';
+	//if (data.initDateBloom && !validator.isISO8601(data.initDateBloom)) resp += 'Fecha inicio floración no válida, ';
+	//if (data.finDateBloom && !validator.isISO8601(data.finDateBloom)) resp += 'Fecha fin floración no válida, ';
+	//if (data.initDateHarvest && !validator.isISO8601(data.initDateHarvest)) resp += 'Fecha inicio cosecha no válida, ';
+	//if (data.finDateHarvest && !validator.isISO8601(data.finDateHarvest)) resp += 'Fecha fin cosecha no válida, ';
 	if (data.leaveType && !validator.isAscii(data.leaveType)) resp += 'Tipo de hoja no válida, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
