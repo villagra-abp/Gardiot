@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { GardenService} from "../../services/garden.service";
 import { Garden } from "../../classes/garden.class";
 import { AppComponent } from "../../app.component";
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-garden',
@@ -11,8 +12,14 @@ import { AppComponent } from "../../app.component";
 })
 export class GardenComponent {
 	garden = new Garden("");
-	tiempo:string = "";
-	humedad:string = "";
+
+	cielo: string = "Cargando" ;
+  temperatura = "Cargando";
+  humedad = "Cargando";
+  presion ="Cargando";
+  viento = "Cargando";
+  angulo = "0";
+
   constructor(
   	private _gardenService:GardenService,
   	private _route:Router,
@@ -54,8 +61,15 @@ export class GardenComponent {
   	this._gardenService.tiempo(this.garden)
 	        .subscribe(data=>{
 	          console.log(data);
-		  		this.tiempo= data.weather[0].main;
-		  		this.humedad= data.main.humidity;
+
+          
+		  		this.cielo = data.weather[0].main;
+          var aux = data.main.temp - 273;
+          this.temperatura = aux.toFixed(2);;
+          this.humedad = data.main.humidity;
+          this.presion =  data.main.pressure;
+          this.viento = data.wind.speed;
+          
 
 	        },
 	      error => {

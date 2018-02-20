@@ -44,6 +44,7 @@ import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
 import { GardenComponent } from './components/user/garden.component';
+import { EditGardenComponent } from './components/user/editgarden.component';
 import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
@@ -73,6 +74,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     AdminDashboardComponent,
     AdminUserComponent,
     GardenComponent,
+    EditGardenComponent,
     AnalyticsComponent,
     StatisticsComponent,
     EmailComponent,
@@ -101,7 +103,8 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     GardenService,
     PlantService,
     AuthguardGuard,
-    AdminguardGuard
+    AdminguardGuard,
+    PlantService
   ],
   bootstrap: [AppComponent]
 })

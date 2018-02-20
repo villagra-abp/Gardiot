@@ -49,7 +49,7 @@ export class PlantService {
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
 
-      	return this.http.get(this.apiURL+"plant/1", { headers } )
+      	return this.http.get(this.apiURL+"plant/6", { headers } )
           .map( res =>{
             return res.json();
           })

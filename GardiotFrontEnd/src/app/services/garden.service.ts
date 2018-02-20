@@ -24,10 +24,16 @@ export class GardenService {
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
 
-      	return this.http.get(this.apiURL+"garden/3", { headers } )
+      	return this.http.get(this.apiURL+"gardenByUser/", { headers } )
           .map( res =>{
             return res.json();
           })
+	  }
+
+
+	  modifyGarden(garden:Garden){
+	  	let body = `id=${garden.id}`;
+
 	  }
 
 	  tiempo(garden:Garden){

@@ -19,5 +19,6 @@ export class Plant {
    public initDateHarvert?: Date,
    public finDateHarvest?: Date,
    public leaveType?: string) {
+
  }
 }
