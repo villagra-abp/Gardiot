@@ -11,13 +11,14 @@ export class Plant {
    public family?: string,
    public depth?: string,
    public distance?: string,
-   public disease?: string,
-   public iniPlan?: Date,
-   public endPlant?: Date,
-   public iniBloom?: Date,
-   public endBloom?: Date,
-   public iniHarvert?: Date,
-   public endHarvest?: Date,
+   public diseaseResist?: string,
+   public initDatePlan?: Date,
+   public finDatePlant?: Date,
+   public initDateBloom?: Date,
+   public finDateBloom?: Date,
+   public initDateHarvert?: Date,
+   public endDateHarvest?: Date,
    public leaveType?: string) {
+
  }
 }

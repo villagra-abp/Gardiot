@@ -7,8 +7,8 @@ import 'rxjs/Rx';
 @Injectable()
 export class PlantService {
 	private apiURL:string="";
-	public isAdmin:boolean;
-	public isAuthenticated:boolean;
+	//public isAdmin:boolean;
+	//public isAuthenticated:boolean;
 
   constructor( private http:Http, private _route:Router) {
 	    if(window.location.toString().indexOf("localhost")>=0){
@@ -24,7 +24,7 @@ export class PlantService {
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
 
-      	return this.http.get(this.apiURL+"plant/1", { headers } )
+      	return this.http.get(this.apiURL+"plant/6", { headers } )
           .map( res =>{
             return res.json();
           })
