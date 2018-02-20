@@ -25,7 +25,7 @@ export class PlantdataComponent implements OnInit {
       this._plantService.save(this.plant)
           .subscribe(data=>{
 
-              this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "dataplant");
+              this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/plantdata");
 
           },
           error=>{

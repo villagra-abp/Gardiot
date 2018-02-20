@@ -24,8 +24,8 @@ export class PlantService {
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
 			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
-			body+= `&initDateHarvert=${plant.initDateHarvert}&finDateHarvest=${plant.finDateHarvest}`;
-			body+= `&distance=${plant.distance}&disease=${plant.disease}`;
+			body+= `&initDateHarvert=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
+			body+= `&distance=${plant.distance}&disease=${plant.diseaseResist}`;
 
       console.log(body);
       let headers = new Headers({

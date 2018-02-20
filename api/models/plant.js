@@ -41,7 +41,6 @@ plant.getPlantsByFamily = function(id, callback) { //HAY QUE AFINAR MAS LOS CAMP
 }
 
 plant.insertPlant = function(data, callback) {
-  console.log(data);
   if(connection) {
     sql = 'INSERT INTO Plant SET ';
     for (var key in data)

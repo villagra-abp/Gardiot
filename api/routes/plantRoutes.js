@@ -43,7 +43,6 @@ router.get('/plantFamily/:id', function(request, response) {
 });
 
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-console.log(request.body);
 	var plantData = {
 		scientificName: request.body.scientificName,
 		commonName: request.body.commonName,
@@ -135,7 +134,7 @@ function sanitizeInput(data) {
 	if (data.family) {  data.family = validator.trim(data.family); data.family = validator.toInt(data.family);}
 	if (data.depth) {  data.depth = validator.trim(data.depth); data.depth = validator.toFloat(data.depth);}
 	if (data.distance) {  data.distance = validator.trim(data.distance); data.distance = validator.toFloat(data.distance);}
-	if (data.diseaseResist) { data.diseaseResist = validator.trim(data.diseaseResist); data.diseaseResist = validator.stripLow(data.diseaseResist); data.diseaseResist = validator.escape(data.diseaseResist);}
+	//if (data.diseaseResist) { data.diseaseResist = validator.trim(data.diseaseResist); data.diseaseResist = validator.stripLow(data.diseaseResist); data.diseaseResist = validator.escape(data.diseaseResist);}
 	//if (data.initDatePlant) data.initDatePlant = validator.toDate(data.initDatePlant);
 	//if (data.finDatePlant) data.finDatePlant = validator.toDate(data.finDatePlant);
 	//if (data.initDateBloom) data.initDateBloom = validator.toDate(data.initDateBloom);
@@ -157,7 +156,7 @@ function validateInput(data) {
 	if (data.family && !validator.isInt(data.family)) resp += 'Familia no válida, ';
 	if (data.depth && !validator.isFloat(data.depth)) resp += 'Profundidad no válida, ';
 	if (data.distance && !validator.isFloat(data.distance)) resp += 'Distancia no válida, ';
-	if (data.diseaseResist && !validator.isAscii(data.diseaseResist)) resp += 'Resistencia a las enfermedades no válida, ';
+	//if (data.diseaseResist && !validator.isAscii(data.diseaseResist)) resp += 'Resistencia a las enfermedades no válida, ';
 	//if (data.initDatePlant && !validator.isISO8601(data.initDatePlant)) resp += 'Fecha inicio plantación no válida, ';
 	//if (data.finDatePlant && !validator.isISO8601(data.finDatePlant)) resp += 'Fecha fin plantación no válida, ';
 	//if (data.initDateBloom && !validator.isISO8601(data.initDateBloom)) resp += 'Fecha inicio floración no válida, ';

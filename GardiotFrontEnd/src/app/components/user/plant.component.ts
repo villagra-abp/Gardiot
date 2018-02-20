@@ -28,13 +28,13 @@ export class PlantComponent implements OnInit {
               this.plant.family=data[0].family;
               this.plant.depth=data[0].depth;
               this.plant.distance=data[0].distance;
-              this.plant.disease=data[0].diseaseResist;
+              this.plant.diseaseResist=data[0].diseaseResist;
 
               this.plant.initDatePlant=data[0].initDatePlan;
               this.plant.finDatePlant=data[0].finDatePlant;
               this.plant.initDateBloom=data[0].initDateBloom;
               this.plant.finDateBloom=data[0].finDateBloom;
-              this.plant.initDateHarvert=data[0].initDateHarvert;
+              this.plant.initDateHarvest=data[0].initDateHarvert;
               this.plant.finDateHarvest=data[0].endDateHarvest;
               this.plant.leaveType=data[0].leaveType;
 
