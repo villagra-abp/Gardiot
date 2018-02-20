@@ -35,7 +35,8 @@ export class PlantComponent implements OnInit {
               this.plant.initDateBloom=data[0].initDateBloom;
               this.plant.finDateBloom=data[0].finDateBloom;
               this.plant.initDateHarvest=data[0].initDateHarvert;
-              this.plant.finDateHarvest=data[0].endDateHarvest;
+              this.plant.finDateHarvest=data[0].finDateHarvest;
+
               this.plant.leaveType=data[0].leaveType;
 
               // this.plant.commonName=data[0].photo;
