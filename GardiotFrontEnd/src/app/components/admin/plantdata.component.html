@@ -2,4 +2,71 @@
 	<h1>Plantas</h1>
   <p>texto</p>
 
+	<section class="container">
+	  <div class="row animated fadeIn fast">
+	    <div class="col-md-12">
+	      <form  (ngSubmit)="create()" #forma="ngForm" novalidate="">
+					<!-- datos básicos -->
+					<div class="form-group">
+						<label  for="name_plant">Nombre comun: </label>
+						<input  type="text" [(ngModel)]="plant.name" name="name" id="name_plant" required>
+					</div>
+					<div class="form-group">
+						<label  for="formal_name_plant">Nombre cientifico: </label>
+						<input  type="text" [(ngModel)]="plant.formalname" name="name" id="formal_name_plant" required>
+					</div>
+					<div class="form-group">
+						<label  for="descp_plant">Descripcion: </label>
+						<input  type="text" [(ngModel)]="plant.descrip" name="descp" id="descp_plant" required>
+					</div>
+
+					<!-- datos tecnicos -->
+					<div class="form-group">
+						<label  for="depth_plant">Profundidad: </label>
+						<input  type="text" [(ngModel)]="plant.depth" name="depth" id="depth_plant" required>
+					</div>
+					<div class="form-group">
+						<label  for="distance_plant">Distancia: </label>
+						<input  type="text" [(ngModel)]="plant.distance" name="distance" id="distance_plant" required>
+					</div>
+					<div class="form-group">
+						<label  for="resist_plant">Resistencia: </label>
+						<input  type="text" [(ngModel)]="plant.resist" name="resist" id="resist_plant" required>
+					</div>
+
+					<!-- fecha de plantaion -->
+				 <div class="form-group">
+					 <label  for="date_initplant">Inico Fecha de plantacion: </label>
+					 <input  type="date" [(ngModel)]="plant.initplant" name="initplant" id="date_initplant">
+				 </div>
+				 <div class="form-group">
+					 <label  for="date_endplant">Fin Fecha de plantacion: </label>
+					 <input  type="date" [(ngModel)]="plant.endplant" name="endplant" id="date_endplant">
+				 </div>
+				 <!-- fecha de floracion -->
+				 <div class="form-group">
+					 <label  for="date_initbloomplant">Inico Fecha de floracion: </label>
+					 <input  type="date" [(ngModel)]="plant.initbloomplant" name="initbloomplant" id="date_initbloomplant">
+				 </div>
+				 <div class="form-group">
+					 <label  for="date_endbloomplant">Fin Fecha de floracion: </label>
+					 <input  type="date" [(ngModel)]="plant.endbloomplant" name="endbloomplant" id="date_endbloomplant">
+				 </div>
+				 <!-- fecha de cosecha -->
+				<div class="form-group">
+					<label  for="date_initharvestplant">Inico Fecha de cosecha: </label>
+					<input  type="date" [(ngModel)]="plant.initharvestplant" name="initharvestplant" id="date_initharvestplant">
+				</div>
+				<div class="form-group">
+					<label  for="date_endharvestplant">Fin Fecha de cosecha: </label>
+					<input  type="date" [(ngModel)]="plant.endharvestplant" name="endharvestplant" id="date_endharvestplant">
+				</div>
+
+	        <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+	        <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
+	      </form>
+	    </div>
+	  </div>
+	</section>
+
 </div>
