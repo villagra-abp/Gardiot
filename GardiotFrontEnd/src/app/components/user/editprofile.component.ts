@@ -7,6 +7,7 @@ import { AppComponent } from "../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { Ng2ImgMaxService} from 'ng2-img-max';
 import 'rxjs/add/operator/delay';
 declare var $:any;
 
@@ -32,7 +33,8 @@ export class EditProfileComponent implements OnInit{
   constructor(
     private _detailService:UserService,
     private _route:Router,
-    private _appComponent:AppComponent){ }
+    private _appComponent:AppComponent,
+    private _ng2ImgMax:Ng2ImgMaxService){ }
 
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
@@ -119,8 +121,6 @@ export class EditProfileComponent implements OnInit{
 
     this.uploader.onAfterAddingFile = (file)=> {
       file.withCredentials = false;
-      console.log("resize");
-      console.log(file);
     };
 
        this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
@@ -185,9 +185,23 @@ export class EditProfileComponent implements OnInit{
 
   }
 
-  uploadPhoto(){
+  uploadPhoto(event){
     if(this.uploader.getNotUploadedItems().length){
-      this.uploader.uploadAll();
+      console.log(event.target.files);
+      let file=[];
+      file.push(event.target.files[0]);
+      file.forEach(function(){
+        console.log(file);
+      });
+      this._ng2ImgMax.compress(file, 1.25).subscribe(
+        result=>{
+          const newImage=new File([result], result.name);
+          this.uploader.clearQueue();
+          this.uploader.addToQueue([newImage]);
+          this.uploader.uploadAll();
+        },
+        error=> console.log(error)
+      );
     }
   }
 
