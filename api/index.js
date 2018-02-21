@@ -6,6 +6,7 @@ var morgan = require('morgan'); //POST Body console logger
 var passport = require('passport'); //Authentication strategies
 var jwt = require('jsonwebtoken'); //Session tokens
 var cors = require('cors'); //CORS standard
+var multer = require('multer');
 var config = require('./config/main');
 
 //Express init and load modules
@@ -27,29 +28,18 @@ require('./functions/cron'); //Purga tokens
 //Routes
 app.use('/api', require('./routes/userRoutes'));
 app.use('/api', require('./routes/authRoutes'));
-
 app.use('/api', require('./routes/owmRoutes'));
 app.use('/api', require('./routes/geonamesRoutes'));
-
-//app.use('/api', require('./routes/billRoutes'));
-//app.use('/api', require('./routes/categoryRoutes'));
-app.use('/api', require('./routes/cityRoutes'));
-app.use('/api', require('./routes/countryRoutes'));
-//app.use('/api', require('./routes/eventRoutes'));
-app.use('/api', require('./routes/gardenRoutes'));
-
-//app.use('/api', require('./routes/myPlantRoutes'));
-//app.use('/api', require('./routes/planRoutes'));
-//app.use('/api', require('./routes/plantRoutes'));
-//app.use('/api', require('./routes/productRoutes'));
-//app.use('/api', require('./routes/registryRoutes'));
-//app.use('/api', require('./routes/soilRoutes'));
-//app.use('/api', require('./routes/toolRoutes'));
-//app.use('/api', require('./routes/treatmentRoutes'));
-//app.use('/api', require('./routes/yearRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
 app.use('/api', require('./routes/finderRoutes'));
+//app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/uploadRoutes'));
+//app.use('/api', require('./routes/soilRoutes'));
+//app.use('/api', require('./routes/productRoutes'));
+//app.use('/api', require('./routes/feedRoutes'));
+//app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/plantRoutes'));
 
 //Start server
 app.listen(config.port, function () {

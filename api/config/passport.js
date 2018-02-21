@@ -63,9 +63,11 @@ passport.use(new GoogleStrategy({
 				var userData = {
 					id: parsed.emails[0].value,
 					googleId: parsed.id,
-					name: parsed.displayName,
-					access: 'google'
-					//photo: parsed.photos[0].value
+					name: parsed.name.givenName,
+					lastName: parsed.name.familyName,
+					//photo: parsed.image.url,
+					access: 'google',
+					photo: parsed.photos[0].value
 				};
 				userModel.insertUser(userData, function(error, data) {
 					if (data == 1) {

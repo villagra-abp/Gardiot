@@ -2,15 +2,15 @@ var connection = require('../config/connection');
 
 var plant = {};
 
-plant.getPlant = function(callback) {
+plant.getPlants = function(number, page, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Plant' , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
+    let minPeak = (page - 1) * number + 1;
+    let maxPeak = page * number;
+    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + minPeak  + ' AND ' + maxPeak , function (error, rows){
+      if(error)
+        callback(error, null);
+      else
         callback(null, rows);
-      }
     });
   }
 }
@@ -20,22 +20,37 @@ plant.getPlantById = function(id, callback) {
 	if (connection) {
 		var sentence = 'SELECT * FROM Plant WHERE id = ' + id;
 		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
+			if (error)
+				callback(error, null);
+			else
 				callback(null, row);
-			}
 		});
 	}
 }
+
+plant.getPlantsByFamily = function(id, callback) { //HAY QUE AFINAR MAS LOS CAMPOS A DEVOLVER
+  if (connection) {
+    var sentence = 'SELECT * FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id;
+    connection.query(sentence, function(error, row) {
+      if (error)
+        callback(error, null);
+      else
+        callback(null, row);
+    });
+  }
+}
+
 plant.insertPlant = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Plant(scientificName, commonName, description, photo, 3DModel, category) ';
-    sentence += 'values("'+data.scientificName+'", "'+data.commonName+'", "'+ data.description+'", "'+data.photo+'", "'+data.url3DModel+'", "'+data.category+'")';
-    connection.query(sentence, function(error, result){
+    sql = 'INSERT INTO Plant SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    console.log(sql);
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
       else
         callback(null, result.affectedRows);
     });
@@ -43,54 +58,20 @@ plant.insertPlant = function(data, callback) {
 }
 plant.updatePlant = function(data, callback) {
   if(connection) {
-    commaCounter = 0;
-    var sentence = 'UPDATE Plant SET ';
-    if(data.scientificName){
-      sentence += 'scientificName = "' + data.scientificName + '"' ;
-      commaCounter++;
-    }
-    if(data.commonName) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='commonName ="' + data.commonName + '"';
-      commaCounter++;
-    }
-    if(data.description) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='description ="' + data.description + '"';
-      commaCounter++;
-    }
-    if(data.photo) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='photo ="' + data.photo + '"';
-      commaCounter++;
-    }
-    if(data.url3DModel) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='3DModel ="' + data.url3DModel + '"';
-      commaCounter++;
-    }
-    if(data.category) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='category ="' + data.category + '"';
-      commaCounter++;
-    }
-
-    sentence += ' WHERE id= "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
-      }
+    var sql = 'UPDATE Plant SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined' && key!= 'id')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id= "' + data.id +'"';
+    connection.query(sql, function(error, result) {
+			if (error)
+				callback(error, null);
 			else{
-        if(result.affectedRows < 1){
+        if(result.affectedRows < 1)
           callback(null, {"mensaje":"No existe"});
-        }else{
+        else
   				callback(null, {"mensaje":"Actualizado"});
-        }
       }
 		});
   }
@@ -101,7 +82,7 @@ plant.deletePlant = function(id, callback) {
     var sentence = 'DELETE FROM Plant WHERE id = "' + id + '"';
     connection.query(sentence, function(error, result) {
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});

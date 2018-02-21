@@ -3,11 +3,16 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 
+//Rutas
 import { APP_ROUTING } from "./app.routes";
+
+import { Select2Module } from 'ng2-select2';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
+import { PlantService } from "./services/plant.service";
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -25,10 +30,12 @@ import { RegisterComponent } from './components/manage/register.component';
 import { FooterComponent } from './components/footer.component';
 import { DetailComponent } from './components/user/detail.component';
 import { ProfileComponent } from './components/user/profile.component';
+import { EditProfileComponent } from './components/user/editprofile.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 import { ResendComponent } from './components/manage/resend.component';
 import { LibraryComponent } from './components/user/library.component';
 import { CalendarComponent } from './components/user/calendar.component';
+import { PlantComponent } from './components/user/plant.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -37,6 +44,7 @@ import { AdminEditUserComponent } from './components/admin/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
 import { GardenComponent } from './components/user/garden.component';
+import { EditGardenComponent } from './components/user/editgarden.component';
 import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
@@ -46,9 +54,6 @@ import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -60,6 +65,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     FooterComponent,
     DetailComponent,
     ProfileComponent,
+    EditProfileComponent,
     ConfirmationComponent,
     ResendComponent,
     AdminComponent,
@@ -68,6 +74,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     AdminDashboardComponent,
     AdminUserComponent,
     GardenComponent,
+    EditGardenComponent,
     AnalyticsComponent,
     StatisticsComponent,
     EmailComponent,
@@ -79,20 +86,25 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     LibraryComponent,
     CalendarComponent,
     OauthConfirmationComponent,
-    DesarrolloComponent
+    DesarrolloComponent,
+    FileSelectDirective,
+    PlantComponent
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    Select2Module,
     APP_ROUTING
   ],
   providers: [
     UserService,
     GardenService,
+    PlantService,
     AuthguardGuard,
-    AdminguardGuard
+    AdminguardGuard,
+    PlantService
   ],
   bootstrap: [AppComponent]
 })

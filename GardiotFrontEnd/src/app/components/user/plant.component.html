@@ -1,0 +1,34 @@
+<div class="main-container">
+
+  <h1>Ficha planta</h1>
+  <!--delante de la url https://gardiot.ovh/ -->
+  <img src="{{plant.photo}}" class="img-circle" width="300px" height="200px" alt="...">
+  <section id="datos" class="card">
+    <p>ID:{{plant.id}}</p>
+    <p>Nombre Común: {{plant.commonName}}</p>
+    <p>Nombre científico: {{plant.scientificName}}</p>
+    <p>Familia: {{plant.family}}</p>
+  </section>
+
+  <section class="card">
+    <p>Descripción: {{plant.description}}</p>
+  </section>
+
+  <section class="card">
+    <p>Profundidad de siembra: {{plant.depth}} cm</p>
+    <p>Distancia entre plantas: {{plant.distance}} cm</p>
+    <p>Resistencia al frío: {{plant.diseaseResist}}</p>
+    <p>Tipo de hoja: {{plant.leaveType}}</p>
+  </section>
+
+  <section class="card">
+    <p>Inicio de siembra: {{plant.initDatePlan | date}}</p>
+    <p>Fin de siembra: {{plant.finDatePlant | date}}</p>
+
+    <p>Inicio periodo de floración: {{plant.initDateBloom | date}}</p>
+    <p>Fin periodo de floración: {{plant.finDateBloom | date}}</p>
+
+    <p>Inicio periodo recolección: {{plant.initDateHarvest | date}}</p>
+    <p>Fin periodo recolección: {{plant.finDateHarvest | date}}</p>
+  </section>
+</div>

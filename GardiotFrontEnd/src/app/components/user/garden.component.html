@@ -1,13 +1,33 @@
 <div class="main-container">
-  <h1>Jardín</h1>
+  <h1>{{garden.title}}</h1>
   
+  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
+
+<section class="container">
+	<h2>Informacion</h2>
+	<div>
+		<ul>
+			<li>Localizacion:{{garden.city}}, {{garden.countryCode}}</li>
+			<li>Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>
+			<li>Tiempo: {{cielo}}</li>
+			<li>Humedad: {{humedad}}%</li>
+			<li>Presion: {{presion}} Pa</li>
+			<li>Temperatura: {{temperatura}} ºC</li>
+		</ul>
+	</div>
+</section>
 
 
 <section class="container">
+<h2>Tareas:</h2>
   <div>
-  	<p>Tiempo: {{tiempo}}</p>
-  	<p>Humedad: {{humedad}}%</p>
+  	<ul>
+  		<li>Tarea1</li>
+  		<li>Tarea2</li>
+  		<li>Tarea3</li>
+  	</ul>
   </div>
 </section>
+<button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
 
 </div>

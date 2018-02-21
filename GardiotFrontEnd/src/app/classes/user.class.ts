@@ -7,7 +7,7 @@ export class User {
    public password?: string,
    public password2?: string,
    public oldPassword?: string,
-   public plan?: string,
+   public photo?: string,
    public countryCode?: string,
    public city?: string,
    public birthDate?: Date) {

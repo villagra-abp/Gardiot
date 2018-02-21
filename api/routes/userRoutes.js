@@ -10,9 +10,8 @@ var isEmail = require('isemail');
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
-var requireAdmin = require('../functions/adminCheck');
-var requireActive = require('../functions/userActiveCheck');
-var requireActiveToken = require('../functions/tokenCheck');
+
+var routeRequirements = require('../functions/routeRequirements');
 
 /***************************
 *		NO AUTH ROUTES
@@ -33,11 +32,6 @@ router.post('/register', function(request, response) {
 		var userData = {
 			id: request.body.id,
 			password: request.body.password,
-			name: request.body.name,
-			lastName: request.body.lastName,
-			birthDate: request.body.birthDate,
-			photo: request.body.photo,
-			plan: request.body.plan
 		};
 		var validate = validateInput(userData);
 		if (validate.length > 0)
@@ -60,20 +54,22 @@ router.post('/register', function(request, response) {
 									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
 										if (error) response.status(500).json({"Mensaje":err.message});
 										else {
-											var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-											var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
-											transporter.sendMail(mailOptions, function(err) {
-												if (err) response.status(500).json({"Mensaje": err.message});
-												else{
-													var token = jwt.sign({}, config.secret, {
-														expiresIn: '6h',
-														audience: "gardiot.ovh",
-														subject: userData.id
-													});
-													response.status(201).json({"Token":token});
-												}
-												//else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
-											});
+											if (request.hostname == 'gardiot.ovh') {
+												var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
+												var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
+												transporter.sendMail(mailOptions, function(err) {
+													if (err) response.status(500).json({"Mensaje": err.message});
+													else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});													
+												});
+											}
+											else { //LOCALHOST
+												var token = jwt.sign({}, config.secret, {
+													expiresIn: '6h',
+													audience: "gardiot.ovh",
+													subject: userData.id
+												});
+												response.status(201).json({"Token":token});
+											}											
 										}
 									});
 								}
@@ -100,19 +96,22 @@ router.post('/authenticate', function(request, response) {
 		var id = validator.trim(request.body.id);
 		userModel.getUserById(id, function (error, user) {
 			if (typeof user[0] !== 'undefined') {
-				if (user[0].active == 1) {
+				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
-						if (isMatch && !err) {
-							var token = jwt.sign({}, config.secret, {
-								expiresIn: '6h',
-								audience: "gardiot.ovh",
-								subject: user[0].id
-							});
-							response.status(200).json({"Token":token});
-						}
-						else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
-					});
+					else if (user[0].dateDelete === 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else {
+						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
+							if (isMatch && !err) {
+								var token = jwt.sign({}, config.secret, {
+									expiresIn: '6h',
+									audience: "gardiot.ovh",
+									subject: user[0].id
+								});
+								response.status(200).json({"Token":token});
+							}
+							else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
+						});
+					}	
 				}
 				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
@@ -134,23 +133,15 @@ router.get('/isAuthenticated', function(request, response) {
 
 //***Muestra al usuario actual. Sin parametros
 
-/*router.get('/user', passport.authenticate('jwt', {session: false}), function(request, response) {
-	userModel.getUserById(request.user.id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0)
-			response.status(200).json(data);
-		else
-			response.status(404).json({"Mensaje":"No existe"});
-	});
-});*/
-
-router.get('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
-	response.status(200).json(request.user); //PASSPORT devuelve siempre el objeto user
+router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	response.status(200).json(request.user); //Arreglar
+	//response.status(200).json({"Name:":request.user.name, "LastName":request.user.lastName, "Photo":request.user.photo}); //PASSPORT devuelve siempre el objeto user
 });
 
 
 //*** Saber si es admin
 
-router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.get('/isAdmin', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (request.user.admin == 1)
 		response.status(200).send(true); 
 	else
@@ -160,19 +151,18 @@ router.get('/isAdmin', passport.authenticate('jwt', {session: false}), requireAc
 
 //***Actualiza al usuario actual
 
-router.put('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.put('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
 		name: request.body.name,
+		lastName: request.body.lastName,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		countryCode: request.body.countryCode,
 		city: request.body.city,
-		plan: request.body.plan,
 		oldId: request.user.id
 	};
-	console.log(userData);
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
@@ -217,7 +207,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), requireActiv
 
 //*** Darse de baja. Sin parametros
 
-router.patch('/user', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken,  function(request, response) {
+router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	userModel.deactivateUser(request.user.id, function(error, data) {
 		if (data == 1)
 			response.status(200).json({"Mensaje":"Cuenta desactivada"});
@@ -230,7 +220,7 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), requireAct
 
 //*** Logout
 
-router.get('/logout', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken,  function(request, response) {
+router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	//var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	var token = request.headers.authorization;
 	token = token.slice(7);
@@ -247,7 +237,7 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), requireAct
 
 //*** Lista todos los usuarios
 
-router.get('/users', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.get('/admin/users', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.getUser (function(error, data) {
 		response.status(200).json(data);
 	});
@@ -255,7 +245,7 @@ router.get('/users', passport.authenticate('jwt', {session: false}), requireActi
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
-router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.getUserById(request.params.id, function(error, data) {
 		if (typeof data[0] !== 'undefined')
 			response.status(200).json(data);
@@ -266,7 +256,7 @@ router.get('/user/:id', passport.authenticate('jwt', {session: false}), requireA
 
 //*** Desactiva a un usuario. Misma forma que antes
 
-router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
 		if (error)
 			response.status(500).json({"Mensaje":"Error: " + error});
@@ -281,7 +271,7 @@ router.patch('/user/:id', passport.authenticate('jwt', {session: false}), requir
 
 //*** Elimina a un usuario 
 
-router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireAdmin, requireActiveToken, function(request, response) {
+router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.deleteUser(request.params.id, function(error, data) {
 		if (error)
 			response.status(500).json({"Mensaje":"Error: " + error});
@@ -297,16 +287,16 @@ router.delete('/user/:id', passport.authenticate('jwt', {session: false}), requi
 
 //***Actualiza a otro usuario
 
-router.put('/user/:id', passport.authenticate('jwt', {session: false}), requireActive, requireActiveToken, function(request, response) {
+router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
 		name: request.body.name,
+		lastName: request.body.lastName,
 		birthDate: request.body.birthDate,
 		photo: request.body.photo,
 		city: request.body.city,
 		countryCode: request.body.countryCode,
-		plan: request.body.plan,
 		oldId: request.params.id,
 	};
 	var validate = validateInput(userData);
@@ -356,7 +346,7 @@ function validateInput(data) {
 	var resp = '';
 	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
-	if (data.birthDate && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	//if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';

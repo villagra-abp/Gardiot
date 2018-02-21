@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebGL</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <script id="shader-vs" type="x-shader/x-vertex">
+        //declaramos vColor en vertex y fragment shader xq porque el valor de salida del vertex shader es el de entrada del fragment shader
+        attribute vec3 aVertexPosition;
+        attribute vec3 aVertexColor;//creamos nuevo atributo
+
+        varying highp vec4 vColor;//y se lo pasaremos al fragment shader con una varying variable
+        void main(void){
+            gl_Position=vec4(aVertexPosition, 1.0);
+            vColor=vec4(aVertexColor, 1.0);
+            gl_PointSize=2.0;
+        }
+    </script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+        varying highp vec4 vColor;
+        void main(void){
+            gl_FragColor=vColor;
+        }
+    </script>
+    <script src="codigo.js"></script>
+</head>
+<body>
+
+    <canvas id="my-canvas" width="400" height="300">
+        Tu navegador no soporta el elemento canvas de HTML5.
+
+    </canvas>
+    
+
+    <script>
+        var gl=null,
+            canvas=null,
+            glProgram=null,
+            fragmentShader=null,
+            vertexShader=null,
+            angle=0;
+
+        var vertexPositionAttribute=null,
+            trianglesVerticeBuffer=null,
+            //variables para almacer el atributo color y el bufer de los datos de color
+            vertexColorAttribute=null,
+            trianglesColorBuffer=null;
+
+        initWebGL();
+    </script>
+</body>
+</html>

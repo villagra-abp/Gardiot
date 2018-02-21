@@ -15,7 +15,7 @@ export class UserService {
     if(window.location.toString().indexOf("localhost")>=0){
       this.apiURL="http://localhost:3000/api/";
     }
-    else if(window.location.toString().indexOf("gardiot")<0){
+    else if(window.location.toString().indexOf("gardiot")>=0){
       this.apiURL="https://gardiot.ovh/api/";
     }
   }
@@ -34,10 +34,15 @@ export class UserService {
       return this.http.post(this.apiURL+"register", body, { headers } )
           .map( res=>{
             if(res.json().Token!=null){
-              console.log(`Usuario ${user.id} logueado`);
-              localStorage.setItem('Bearer', res.json().Token);
-              let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
-              localStorage.setItem('expires_at', expires.toString());
+              if(window.location.toString().indexOf("gardiot")>=0){
+
+              }
+              else{
+                console.log(`Usuario ${user.id} logueado`);
+                localStorage.setItem('Bearer', res.json().Token);
+                let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
+                localStorage.setItem('expires_at', expires.toString());
+              }
             }
             return res.json();
           })
@@ -102,13 +107,48 @@ export class UserService {
           })
     }
 
-    modifyUserProfile(user:User, oldId:String){
+    modifyUserProfile(user:User){
       let body = `name=${user.name}`;
-
-      console.log("user un modify; ");
-      console.log(user);
+      if(user.lastName!==undefined){
+        body+=`&lastName=${user.lastName}`;
+      }
+      if(user.photo!==undefined){
+        console.log(user.photo);
+        body+=`&photo=${user.photo}`;
+      }
       var country = 0;
-      
+
+      if(user.birthDate!=null){
+        console.log(user.birthDate);
+        body+=`&birthDate=${user.birthDate}`;
+      }
+      if(user.oldPassword && user.password){
+        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
+      }
+
+      if(user.countryCode){
+        body+= `&countryCode=${user.countryCode}`;
+        country = 1;
+      }
+      if(user.city!==undefined && country==1){
+        console.log(user.city);
+        body+=`&city=${user.city}`;
+      }
+      console.log(body);
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.put(this.apiURL+"user", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    modifyUserProfileAdmin(user:User, oldId:String){
+      let body = `name=${user.name}`;
+      var country = 0;
+
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
@@ -128,7 +168,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.put(this.apiURL+"user/"+oldId, body, { headers })
+      return this.http.put(this.apiURL+"/admin/user/"+oldId, body, { headers })
           .map( res =>{
             return res.json();
           })
@@ -221,6 +261,13 @@ export class UserService {
 
     listCities(value:string){
       return this.http.get(this.apiURL + "geonamesCities/" + value)
+        .map(res=>{
+          return res.json();
+        })
+    }
+
+    listCitiesByZip(country:string, value:string){
+      return this.http.get(this.apiURL + "geonamesSearchByZip/" + value+"/"+country)
         .map(res=>{
           return res.json();
         })

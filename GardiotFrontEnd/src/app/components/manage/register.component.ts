@@ -22,7 +22,12 @@ export class RegisterComponent implements OnInit{
     console.log(this.user);
     this._userService.register(this.user)
         .subscribe(data=>{
+          if(window.location.toString().indexOf("gardiot")>=0){
+            this._appComponent.mensajeEmergente("Te has registrado correctamente, confirma tu correo para poder iniciar sesión", "primary", "login");
+          }
+          else{
             this._route.navigate(['/detail']);
+          }
         },
         error=>{
           let v=JSON.parse(error._body);

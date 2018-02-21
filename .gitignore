@@ -21,6 +21,9 @@ api/.npm
 
 #configuration file
 api/config/connection.js
+api/config/auth.js
+api/config/main.js
+api/config/sendgrid.js
 
 .tern-project
 #wordpress

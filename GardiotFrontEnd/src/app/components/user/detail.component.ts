@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit{
           console.log(data);
           this.user.id=data.id;
           this.user.birthDate=data.birthDate;
-          this.user.plan=data.plan;
+          this.user.photo=data.photo;
           this.user.name=data.name;
         },
       error => {
