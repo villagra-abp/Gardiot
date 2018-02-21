@@ -24,9 +24,9 @@ export class EditProfileComponent implements OnInit{
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
-  imgUrl:string='https://gardiot.ovh/uploads/avatar/';
+  imgUrl:string='https://gardiot.ovh/api/';
 
-  uploader:FileUploader=new FileUploader({url: 'https://gardiot.ovh/api/uploadAvatar', itemAlias: 'photo'});
+  uploader:FileUploader=new FileUploader({url: 'http://localhost:3000/api/uploadAvatar', itemAlias: 'photo'});
 
 
   constructor(
@@ -116,9 +116,13 @@ export class EditProfileComponent implements OnInit{
 
   ngOnInit() {
     this.mostrar();
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-       //overide the onCompleteItem property of the uploader so we are
-       //able to deal with the server response.
+
+    this.uploader.onAfterAddingFile = (file)=> {
+      file.withCredentials = false;
+      console.log("resize");
+      console.log(file);
+    };
+
        this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
             console.log("ImageUpload:uploaded:", item, status, response);
 

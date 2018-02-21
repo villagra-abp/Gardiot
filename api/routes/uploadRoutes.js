@@ -33,7 +33,7 @@ var storage2 = multer.diskStorage({
   }
 });
 
-var upload1 = multer({storage: storage1}).single('photo');
+var upload1 = multer({storage: storage1, limits: {fileSize: 1310720}}).single('photo');
 var upload2 = multer({storage: storage2}).single('photo');
 
 router.post('/uploadAvatar', function (req, res, next) {
@@ -41,10 +41,9 @@ router.post('/uploadAvatar', function (req, res, next) {
      upload1(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          console.log(err);
-          return res.status(422).send("an Error occured")
+          return res.status(422).send(err)
         }  
-        console.log(res);
+
        // No error occured.
         path = req.file.path;
         return res.send("Upload Completed for "+path); 
@@ -56,8 +55,7 @@ router.post('/uploadPlant', function (req, res, next) {
      upload2(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          console.log(err);
-          return res.status(422).send("an Error occured")
+          return res.status(422).send(err)
         }  
         console.log(res);
        // No error occured.
