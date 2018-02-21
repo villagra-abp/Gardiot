@@ -26,7 +26,7 @@ export class EditProfileComponent implements OnInit{
   startCity: Observable<string>;
   imgUrl:string='https://gardiot.ovh/uploads/avatar/';
 
-  uploader:FileUploader=new FileUploader({url: 'http://localhost:3000/api/uploadAvatar', itemAlias: 'photo'});
+  uploader:FileUploader=new FileUploader({url: 'https://gardiot.ovh/api/uploadAvatar', itemAlias: 'photo'});
 
 
   constructor(
