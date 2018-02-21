@@ -23,7 +23,7 @@ function verPunteros(){
 //main donde creamos el árbol
 function inicializar(){
 
-
+    var motor = new TMotor("gestorRecursos");
 	//nodo raíz
 	var escena=new TNodo("escena");
 

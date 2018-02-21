@@ -10,13 +10,13 @@ class TGestorRecursos {
       this.recursos=[];
     }
 
-    get recurso(nombre){
+      getRecurso(nombre){
 
       var encontrado = false;
       var recursoNuevo;
 
       for (var i = 0; i < recursos.length; i++ && !encontrado) {
-        if(recursos[i] != null && recursos[i] = nombre){
+        if(recursos[i] != null && recursos[i] == nombre){
             console.log("Está el recurso: "+nombre.toString()+" y debemos cargarlo.");
             encontrado = true; // cargar recurso
         }

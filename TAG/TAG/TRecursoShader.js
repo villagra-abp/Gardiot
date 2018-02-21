@@ -1,7 +1,7 @@
 class TRecursoShader extends TRecurso{
-  var vertices, normales, texturas;
+  /*var vertices, normales, texturas;
   var vertTriangulos, normTriangulos, textTriangulos;
-  var nTriangulos;
+  var nTriangulos;*/
   constructor (){
     super();
   }
