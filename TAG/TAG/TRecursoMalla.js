@@ -12,8 +12,23 @@ class TRecursoMalla extends TRecurso{
     this._pila= [];
 
   }
-  cargarFichero(nombre){}
-  draw(){}
+  cargarFichero(nombre){
+    //Estructura de buffer de vertices
+    
+    var triangleVertices=[
+    //de abajo a la izquierda a arriba a la derecha
+        -0.5, -0.5, 0.0,
+        0.5, -0.5, 0.0,
+        0.5, 0.5, 0.0,
+
+        0.5, 0.5, 0.0,
+        -0.5, 0.5, 0.0,
+        -0.5, -0.5, 0.0
+    ];
+  }
+  draw(){
+    //volcar datos de los buffers en webgl
+  }
 }
 
 

@@ -6,7 +6,9 @@ class TRecursoShader extends TRecurso{
     super();
   }
   cargarFichero(nombre){
-
+  	
   }
   // draw();
 }
+
+

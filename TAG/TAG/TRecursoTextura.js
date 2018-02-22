@@ -7,6 +7,7 @@ class TRecursoTextura extends TRecurso{
   }
   cargarFichero(nombre){
 
+  	
   }
   // draw();
 }

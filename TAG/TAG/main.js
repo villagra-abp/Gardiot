@@ -1,27 +1,28 @@
 
 
+function initWebGL(){
+    canvas=document.getElementById("my-canvas");
+    try{
+        gl=canvas.getContext("webgl");
+    }
+    catch(e){
 
+    }
 
-/*De esto nada
-function verPunteros(){
-    var pila={};
-    pila.property=['hola', 'que tal'];
+    if(gl){
+        console.log("WebGL running");
 
-    var malla=new TMalla(pila);
+    }
+    else{
+        alert("Error: Tu navegador no soporta WebGL");
+    }
+}
 
-    console.log(pila.property);
-    console.log(malla.malla);
-
-    malla.suma();
-
-    console.log(pila.property);
-    console.log(malla.malla);
-
-}*/
 
 
 //main donde creamos el árbol
 function inicializar(){
+
 
     var motor = new TMotor("gestorRecursos");
 	//nodo raíz
@@ -48,7 +49,7 @@ function inicializar(){
     //el nodo del chasis de la moto (malla) será el hijo de este último nodo
     //Al ser nodo hoja, este nodo no tiene ninguna transformación (ver diapositivas
     //del final del seminario 2 para comprender esto mejor)
-    var moto=new TNodo("moto", new Tjuh Malla("moto"), trasMoto);
+    var moto=new TNodo("moto", new TMalla("moto"), trasMoto);
 
     //Ahora, mediante el mismo concepto, las ruedas de la moto tendrán su nodo de rotación,
     //de traslación y de malla. De esta forma, a la malla de la rueda, en WebGL se le aplicarán

@@ -12,6 +12,8 @@
     <script src="TRecursoMaterial.js"></script>
     <script src="TRecursoTextura.js"></script>
     <script src="TMotor.js"></script>
+    <script src="content/utilities.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
     <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
     <!--IMPORTACIÓN DESDE ARCHIVOS
@@ -28,16 +30,19 @@
     </canvas>
 
     <script>
-
+        //crear matriz modelo
         var matrixStack=[];
         var matrixModel = mat4.create();
         matrixStack.push(matrixModel);
 
-        //console.log(matrixStack);
-        //verPunteros();
-        var arrayResource=[];
+        //variable que tendrá el programa webgl
+        var gl;
 
-        inicializar();
+        //console.log(matrixStack);
+
+        //probarGestor();
+        //inicializar();
+        initWebGL();
     </script>
 </body>
 </html>

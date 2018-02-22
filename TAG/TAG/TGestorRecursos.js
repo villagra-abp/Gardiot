@@ -1,18 +1,39 @@
 // Gestor de recursos. Abre cada recurso apuntando
 // a la dirección de memoria. Julián Sánchez García y Mariano López Escudero
 
-// aquí debemos de llamar al RECURSO
+
 class TGestorRecursos {
-  //lo que de verdad se quiere es un array
-    //var recursos = new TRecurso('caca');
+
+//Se ha creado un tipo map para que sea más sencillo el código de recuperar
+//recursos. Con el map le pasamos el nombre (rosa, shader, etc.) y si está
+//está en el map, lo devolvemos, si no, lo cargamos
     constructor (nombre) {
       this._nombre=nombre;
-      this.recursos=[];
+      this._recursos=new Map();
     }
 
-      getRecurso(nombre){
+    //a getRecurso le pasaremos el nombre del recurso (rosa, shader, suelo...)
+    //y el tipo, que podrá ser: malla, material, shader, textura
+      getRecurso(nombre, tipo){
+        if(this._recursos.get(nombre)===undefined){
+          let newRecurso;
+          if(tipo=='malla')
+            newRecurso=new TRecursoMalla();
+          else if(tipo=='material')
+            newRecurso=new TRecursoMaterial();
+          else if(tipo=='shader')
+            newRecurso=new TRecursoShader();
+          else if(tipo=='textura')
+            newRecurso=new TRecursoTextura();
+          newRecurso.cargarFichero(nombre);
+          this._recursos.set(nombre, newRecurso);
 
-      var encontrado = false;
+        }
+
+        return this._recursos.get(nombre);
+        
+
+      /*var encontrado = false;
       var recursoNuevo;
 
       for (var i = 0; i < recursos.length; i++ && !encontrado) {
@@ -28,35 +49,6 @@ class TGestorRecursos {
         // recursos.push(recursoNuevo);
 
       }
-      return nombre;
+      return nombre;*/
     }
   }
-
-
-
-/*
-function loadResource(malla){
-
-  console.log("llamada al gestor "+malla.toString());
-
-  var object;
-  // comprobar que existe en memoria
-
-  for(var i = 0; i <= arrayResource.length; i++){
-    // si existe devolver la dirección de memoria
-    if(arrayResource.length != 0 && arrayResource[i] == malla){
-      console.log("Ya está en Memoria "+malla.toString());
-    }else{
-      // si no existe cargar el recursos
-      console.log("Cargo el fichero y lo meto Memoria "+malla.toString());
-      object = malla;
-    }
-
-  }
-  arrayResource.push(object);
-  console.log(arrayResource.length);
-
-  return 0;
-
-}
-*/
