@@ -8,8 +8,7 @@ class TMotor{
         this.gestorRecursos = gestorRecursos;
     }
 	/**
-	 * Crea un nodo asociandolo a un padre, se le tiene que especificar el
-	 * tipo (tform, luz, malla, camara)
+	 * Crea un nodo asociandolo a un padre
 	 * 
 	 * @param  {string} nombre
 	 * @param  {TNodo} padre
@@ -20,7 +19,6 @@ class TMotor{
 		var nodo = undefined;
 		if(padre !== undefined){
 			nodo = new TNodo(nombre, entidad, padre);
-		
 		}
 		return nodo;
 	}
