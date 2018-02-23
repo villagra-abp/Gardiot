@@ -28,35 +28,6 @@ function initWebGL(){
     }
 }
 
-function configurarShaders(vertexShader, fragmentShader){
-    //aquí dentro cogemos los recursos del directorio
-    let vs=gestor.getRecurso(vertexShader, 'shader').shader,
-        fs=gestor.getRecurso(fragmentShader, 'shader').shader;
-
-    //Ya tenemos los shaders aquí! (formato texto)
-    //console.log(vs);
-    //console.log(fs);
-
-    //Aqui viene WebGL
-    //compilamos los shaders
-    glVertexShader=makeShader(vs, gl.VERTEX_SHADER);
-    glFragmentShader=makeShader(fs, gl.FRAGMENT_SHADER);
-
-    //creamos el programa
-    glProgram=gl.createProgram();
-
-    //añadimos los shaders al programa
-    gl.attachShader(glProgram, glVertexShader);
-    gl.attachShader(glProgram, glFragmentShader);
-    gl.linkProgram(glProgram);
-
-    if(!gl.getProgramParameter(glProgram, gl.LINK_STATUS)){
-        alert("No se puede inicializar el shader");
-    }
-
-    gl.useProgram(glProgram);
-}
-
 
 
 
@@ -84,13 +55,16 @@ function inicializar(){
 	//ahora tendremos una moto en la escena. Primero tendremos el nodo
     //que controlará la rotación de la moto
     var rotMoto=new TNodo("rotMoto", new TTransf(), escena);
+
     //nodo que controlará la traslación de la moto
     var trasMoto=new TNodo("trasMoto", new TTransf(), rotMoto);
 
 
 
     //voy a sustituir la moto por el cubo que tenemos
-    var cubo=new TNodo("cubo", new TMalla('cubo'), trasMoto);
+    //var cubo=new TNodo("cubo", new TMalla('cubo'), trasMoto);
+
+    var chair=new TNodo("chair", new TMalla('chair'), trasMoto);
 
 
 

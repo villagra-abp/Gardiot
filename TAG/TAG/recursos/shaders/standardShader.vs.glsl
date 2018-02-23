@@ -1,13 +1,14 @@
-precision mediump float;
+//declaramos vColor en vertex y fragment shader xq porque el valor de salida del vertex shader es el de entrada del fragment shader
+        attribute vec3 aVertexPosition;
+        attribute vec3 aVertexColor;//creamos nuevo atributo
 
-attribute vec3 vertPosition;
-attribute vec2 vertTexCoord;
-varying vec2 fragTexCoord;
-uniform mat4 mModel;
-uniform mat4 mView;
-uniform mat4 mProj;
+        //uniforms de las matrices de vista
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
 
-void main(){
-	fragTexCoord=vertTexCoord;
-	gl_Position=mProj*mView*mModel*vec4(vertPosition, 1.0);
-}
+        varying highp vec4 vColor;//y se lo pasaremos al fragment shader con una varying variable
+        void main(void){
+            gl_Position=uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vColor=vec4(aVertexColor, 1.0);
+            gl_PointSize=2.0;
+        }
