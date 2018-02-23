@@ -13,6 +13,7 @@ import { AppComponent } from "../../app.component";
 })
 export class PlantdataComponent implements OnInit {
   plant=new Plant("");
+  private plants:any[]= null;
 
   constructor(
     private _plantService:PlantService,
@@ -35,8 +36,39 @@ export class PlantdataComponent implements OnInit {
           });
     }
 
-  ngOnInit() {
+    mostrar2(){
+      this._plantService.details()
+            .subscribe(data=>{
+              this.plant.id=data[0].id;
+              this.plant.commonName=data[0].scientificName;
+              this.plant.photo=data[0].photo;
+              this.plant.family=data[0].family;
+            },
+          error => {
+            console.error(JSON.parse(error._body).Mensaje);
 
+          });
+
+    }
+
+    mostrar(){
+      this._plantService.detailsAll()
+          .subscribe(data=>{
+            //console.log(data);
+            for(let key$ in data){
+              //console.log(data[key$]);
+              this.plants.push(data[key$]);
+            }
+          },
+        error => {
+          console.error(error);
+          // this._route.navigate(['/login']);
+        });
+
+      }
+
+  ngOnInit() {
+    this.mostrar();
   }
 
 }

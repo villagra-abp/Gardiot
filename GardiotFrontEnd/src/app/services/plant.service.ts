@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class PlantService {
 	private apiURL:string="";
+
 	//public isAdmin:boolean;
 	//public isAuthenticated:boolean;
 
@@ -39,7 +40,16 @@ export class PlantService {
           })
     }
 
+		detailsAll(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
 
+      return this.http.get(this.apiURL+"plants", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
 
 
 
