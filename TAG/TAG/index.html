@@ -11,7 +11,11 @@
     <script src="TRecursoMalla.js"></script>
     <script src="TRecursoMaterial.js"></script>
     <script src="TRecursoTextura.js"></script>
+    <script src="TRecursoShader.js"></script>
     <script src="TMotor.js"></script>
+    <script src="content/utilities.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
     <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
     <!--IMPORTACIÓN DESDE ARCHIVOS
@@ -28,16 +32,38 @@
     </canvas>
 
     <script>
+        var canvas, pMatrix=[], mvMatrix=[];
+        //variable que tendrá el programa webgl
+        var gl=null;
 
+        //variable del nodo raiz
+        var escena=null;
+
+        //fachada
+        var motor = new TMotor("gestorRecursos");
+
+        //inicializamos el gestor de recursos
+        var gestor=new TGestorRecursos();
+
+        //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];
         var matrixModel = mat4.create();
         matrixStack.push(matrixModel);
 
-        //console.log(matrixStack);
-        //verPunteros();
-        var arrayResource=[];
+        //declaramos las variables necesarias para ejecutar el programa
+        //las variables de WebGL empezarán siempre por gl para distinguirlas de
+        //las variables del motor gráfico 
+        var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
-        inicializar();
+
+        //console.log(matrixStack);
+
+        //probarGestor();
+        //inicializar();
+
+        //CARLOS, TRATA DE ARRANCARLO (WEBGL)
+        motor.draw();
+
     </script>
 </body>
 </html>
