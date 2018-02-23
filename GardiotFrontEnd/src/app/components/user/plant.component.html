@@ -1,34 +1,35 @@
 <div class="main-container">
 
-  <h1>Ficha planta</h1>
+  <h1>Ficha {{plant.commonName}}</h1>
   <!--delante de la url https://gardiot.ovh/ -->
   <img src="{{plant.photo}}" class="img-circle" width="300px" height="200px" alt="...">
-  <section id="datos" class="card">
-    <p>ID:{{plant.id}}</p>
-    <p>Nombre Común: {{plant.commonName}}</p>
-    <p>Nombre científico: {{plant.scientificName}}</p>
-    <p>Familia: {{plant.family}}</p>
+  <section class="card">
+    <!-- <p>ID:{{plant.id}}</p>-->
+    <p *ngIf="plant.commonName !=undefined">Nombre Común: {{plant.commonName}}</p>
+    <p *ngIf="plant.scientificName !=undefined">Nombre científico: {{plant.scientificName}}</p>
+    <p *ngIf="plant.family !=undefined">Familia: {{plant.family}}</p>
+  </section>
+  <div><i class="fas fa-home fa-fw" style="background:MistyRose"></i> Home</div>
+
+
+  <section class="card">
+    <p *ngIf="plant.description !=undefined">Descripción: {{plant.description}}</p>
   </section>
 
   <section class="card">
-    <p>Descripción: {{plant.description}}</p>
+    <p *ngIf="plant.depth !=undefined">Profundidad de siembra: {{plant.depth}} cm</p>
+    <p *ngIf="plant.distance !=undefined">Distancia entre plantas: {{plant.distance}} cm</p>
+    <p *ngIf="plant.diseaseResist !=undefined">Resistencia al frío: {{plant.diseaseResist}}</p>
+    <p *ngIf="plant.leaveType !=undefined">Tipo de hoja: {{plant.leaveType}}</p>
   </section>
 
   <section class="card">
-    <p>Profundidad de siembra: {{plant.depth}} cm</p>
-    <p>Distancia entre plantas: {{plant.distance}} cm</p>
-    <p>Resistencia al frío: {{plant.diseaseResist}}</p>
-    <p>Tipo de hoja: {{plant.leaveType}}</p>
-  </section>
+    <p *ngIf="plant.initDatePlant !=undefined" >Inicio de siembra: {{plant.initDatePlant | date}}</p>
+    <p *ngIf="plant.finDatePlant !=undefined">Fin de siembra: {{plant.finDatePlant | date}}</p>
+    <p *ngIf="plant.initDateBloom !=undefined">Inicio periodo de floración: {{plant.initDateBloom | date}}</p>
+    <p *ngIf="plant.finDateBloom !=undefined">Fin periodo de floración: {{plant.finDateBloom | date}}</p>
 
-  <section class="card">
-    <p>Inicio de siembra: {{plant.initDatePlan | date}}</p>
-    <p>Fin de siembra: {{plant.finDatePlant | date}}</p>
-
-    <p>Inicio periodo de floración: {{plant.initDateBloom | date}}</p>
-    <p>Fin periodo de floración: {{plant.finDateBloom | date}}</p>
-
-    <p>Inicio periodo recolección: {{plant.initDateHarvest | date}}</p>
-    <p>Fin periodo recolección: {{plant.finDateHarvest | date}}</p>
+    <p *ngIf="plant.initDateHarvest !=undefined">Inicio periodo recolección: {{plant.initDateHarvest | date}}</p>
+    <p *ngIf="plant.finDateHarvest !=undefined">Fin periodo recolección: {{plant.finDateHarvest | date}}</p>
   </section>
 </div>

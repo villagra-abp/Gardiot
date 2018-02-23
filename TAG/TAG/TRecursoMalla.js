@@ -12,7 +12,9 @@ class TRecursoMalla extends TRecurso{
     this._pila= [];
 
   }
-  cargarFichero(nombre){}
+  cargarFichero(nombre){
+    
+  }
   draw(){}
 }
 
