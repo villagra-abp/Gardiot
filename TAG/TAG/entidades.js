@@ -153,28 +153,22 @@ saber que malla es en concreto.*/
 class TMalla extends TEntidad {
     //Al constructor deberemos pasarle un puntero.
     //Para más info ved el archivo readmePunteros.txt
-    constructor (malla) {
+    constructor (nombreMalla) {
     	super();
-        this._malla=malla; // LAMADA AL GESTOR¿?¿?¿?¿
+        this._malla=gestor.getRecurso(nombreMalla, 'malla');
     }
 
     get malla(){
-        return this._malla.property;
+        return this._malla;
     }
 
-    //A set malla debemos pasarle un puntero
-    set malla(malla){
-        this._malla=malla;
+    //A set malla le pasamos el nombre de la malla para que la carge del gestor
+    set malla(nombreMalla){
+        this._malla=gestor.getRecurso(nombreMalla, 'malla');
     }
 
-    cargarMalla (fichero) {
-        //? this._malla = fichero;
-    }
-
-    beginDraw () { //Puntero a recurso. Llama al shader que dibuja el recurso a traves de los vertex,normales, textura y multiplica con MModel. Toma MView, MLuz, MProyeccion
-        //console.log("dibujo "+this._malla);
-        console.log("Aquí se dibuja la malla "+this._malla+" con la siguiente transformación de la pila de matrices:");
-        console.log(matrixStack);
+    beginDraw () { 
+        this._malla.draw();
     }
     endDraw () {}
 }

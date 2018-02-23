@@ -7,48 +7,36 @@ class TGestorRecursos {
 //Se ha creado un tipo map para que sea más sencillo el código de recuperar
 //recursos. Con el map le pasamos el nombre (rosa, shader, etc.) y si está
 //está en el map, lo devolvemos, si no, lo cargamos
-    constructor (nombre) {
-      this._nombre=nombre;
+    constructor () {
       this._recursos=new Map();
     }
 
-    //a getRecurso le pasaremos el nombre del recurso (rosa, shader, suelo...)
-    //y el tipo, que podrá ser: malla, material, shader, textura
+    //a getRecurso le pasaremos el nombre del recurso (rosa, shader.fs, suelo...)
+    //y el tipo, que podrá ser: malla, material, shader o textura
       getRecurso(nombre, tipo){
+        //Si no encuentra el recurso (es igual a undefined), lo cargamos
         if(this._recursos.get(nombre)===undefined){
+          //creamos el recurso, del tipo que sea
           let newRecurso;
           if(tipo=='malla')
-            newRecurso=new TRecursoMalla();
+            newRecurso=new TRecursoMalla(nombre);
           else if(tipo=='material')
-            newRecurso=new TRecursoMaterial();
+            newRecurso=new TRecursoMaterial(nombre);
           else if(tipo=='shader')
-            newRecurso=new TRecursoShader();
+            newRecurso=new TRecursoShader(nombre);
           else if(tipo=='textura')
-            newRecurso=new TRecursoTextura();
+            newRecurso=new TRecursoTextura(nombre);
+
+          //cargamos el fichero
           newRecurso.cargarFichero(nombre);
+
+          //lo anyadimos al vector (mapa) de recursos
           this._recursos.set(nombre, newRecurso);
 
         }
 
+        //devolvemos recurso
         return this._recursos.get(nombre);
         
-
-      /*var encontrado = false;
-      var recursoNuevo;
-
-      for (var i = 0; i < recursos.length; i++ && !encontrado) {
-        if(recursos[i] != null && recursos[i] == nombre){
-            console.log("Está el recurso: "+nombre.toString()+" y debemos cargarlo.");
-            encontrado = true; // cargar recurso
-        }
-      }
-      if(!encontrado){
-        console.log("NO está el recurso: "+nombre.toString()+" y debemos añadirlo.");
-        // cargar el fichero
-        // recursoNuevo = new TRecurso(nombre);
-        // recursos.push(recursoNuevo);
-
-      }
-      return nombre;*/
     }
   }

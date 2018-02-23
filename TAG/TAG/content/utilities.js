@@ -1,6 +1,6 @@
 var loadTextResource=function (url, callback){
 	var request = new XMLHttpRequest();
-    request.open('GET', url, true);
+    request.open('GET', url+'?dont_cache=', false);
     request.onload=function(){
       if(request.status<200 || request.status>299){
         callback('Error: HTTP Status ' + request.status);
@@ -32,3 +32,15 @@ var loadJSONResource=function(url, callback){
     }
   });
 };
+
+function makeShader(src, type){
+    //compilar el vertex shader
+    let shader=gl.createShader(type);
+    gl.shaderSource(shader, src);
+    gl.compileShader(shader);
+
+    if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
+        alert("Error compilando el Shader "+gl.getShaderInfoLog(shader));
+    }
+    return shader;
+}
