@@ -24,6 +24,20 @@ function verPunteros(){
 function inicializar(){
 
     var motor = new TMotor("gestorRecursos");
+    var camara1 = motor.crearNodoCamara("camara1", true, undefined);
+
+    var luz1 = motor.crearNodoLuz("Luz1", 0.1, undefined);
+
+    var malla = motor.crearNodoMalla("Malla1", "recurso", undefined );
+    
+    console.log("camara:");
+    console.log(camara1);
+
+    console.log("luz:");
+    console.log(luz1);
+
+    console.log("malla:");
+    console.log(malla);
 	//nodo raíz
 	var escena=new TNodo("escena");
 
@@ -48,7 +62,7 @@ function inicializar(){
     //el nodo del chasis de la moto (malla) será el hijo de este último nodo
     //Al ser nodo hoja, este nodo no tiene ninguna transformación (ver diapositivas
     //del final del seminario 2 para comprender esto mejor)
-    var moto=new TNodo("moto", new Tjuh Malla("moto"), trasMoto);
+    //var moto=new TNodo("moto", new Tjuh Malla("moto"), trasMoto);
 
     //Ahora, mediante el mismo concepto, las ruedas de la moto tendrán su nodo de rotación,
     //de traslación y de malla. De esta forma, a la malla de la rueda, en WebGL se le aplicarán
