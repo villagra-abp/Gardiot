@@ -1,0 +1,28 @@
+
+H1{
+  font-size: 30px;
+}
+H2{
+  font-size: 25px;
+}
+
+H3{
+  font-size: 20px;
+}
+
+H4{
+  font-size: 17px;
+}
+
+p{
+  font-size: 14px;
+  text-decoration-color: #333333;
+}
+link{
+  font-size: 14px;
+  text-decoration-color: #0073bb;
+}
+
+Small{
+  font-size: 12px;
+}

@@ -1,34 +1,47 @@
-<div class="main-container">
+<div class="container">
+    <h1>{{plant.commonName}}</h1>
+    <div class="row">
+      <section class="card">
+        <h2>Descripción</h2>
+        <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
+      </section>
+    </div>
+    <div class="row">
 
-  <h1>Ficha planta</h1>
-  <!--delante de la url https://gardiot.ovh/ -->
-  <img src="{{plant.photo}}" class="img-circle" width="300px" height="200px" alt="...">
-  <section id="datos" class="card">
-    <p>ID:{{plant.id}}</p>
-    <p>Nombre Común: {{plant.commonName}}</p>
-    <p>Nombre científico: {{plant.scientificName}}</p>
-    <p>Familia: {{plant.family}}</p>
-  </section>
-
-  <section class="card">
-    <p>Descripción: {{plant.description}}</p>
-  </section>
-
-  <section class="card">
-    <p>Profundidad de siembra: {{plant.depth}} cm</p>
-    <p>Distancia entre plantas: {{plant.distance}} cm</p>
-    <p>Resistencia al frío: {{plant.diseaseResist}}</p>
-    <p>Tipo de hoja: {{plant.leaveType}}</p>
-  </section>
-
-  <section class="card">
-    <p>Inicio de siembra: {{plant.initDatePlan | date}}</p>
-    <p>Fin de siembra: {{plant.finDatePlant | date}}</p>
-
-    <p>Inicio periodo de floración: {{plant.initDateBloom | date}}</p>
-    <p>Fin periodo de floración: {{plant.finDateBloom | date}}</p>
-
-    <p>Inicio periodo recolección: {{plant.initDateHarvest | date}}</p>
-    <p>Fin periodo recolección: {{plant.finDateHarvest | date}}</p>
-  </section>
+      <div class="col">
+        <!--delante de la url https://gardiot.ovh/ -->
+        <section class="card">
+          <img *ngIf="plant.photo !=undefined"src="{{plant.photo}}"alt="puerros">
+          <!-- <p>ID:{{plant.id}}</p>-->
+          <p *ngIf="plant.commonName !=undefined">Nombre común: {{plant.commonName}}</p>
+          <p *ngIf="plant.scientificName !=undefined">Nombre científico: {{plant.scientificName}}</p>
+          <p *ngIf="plant.family !=undefined">Familia: {{plant.family}}</p>
+        </section>
+      </div>
+      <div class="col">
+        <section class="card">
+            <img *ngIf="plant.depth !=undefined" class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">
+            <p *ngIf="plant.depth !=undefined">Profundidad de siembra: {{plant.depth}} cm</p>
+            <img *ngIf="plant.distance !=undefined" class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">
+            <p *ngIf="plant.distance !=undefined">Distancia entre plantas: {{plant.distance}} cm</p>
+            <img *ngIf="plant.diseaseResist !=undefined" class="iconplant"src="assets/images/icon/hielo.png" alt="Hielo">
+            <p *ngIf="plant.diseaseResist !=undefined">Resistencia al frío: {{plant.diseaseResist}}</p>
+            <img *ngIf="plant.leaveType !=undefined" class="iconplant"src="assets/images/icon/hoja.png" alt="Hoja">
+            <p *ngIf="plant.leaveType !=undefined">Tipo de hoja: {{plant.leaveType}}</p>
+        </section>
+      </div>
+      <div class="col">
+        <section class="card">
+          <img *ngIf="plant.initDatePlant !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
+          <p *ngIf="plant.initDatePlant !=undefined" >Inicio de siembra: {{plant.initDatePlant | date}}</p>
+          <p *ngIf="plant.finDatePlant !=undefined">Fin de siembra: {{plant.finDatePlant | date}}</p>
+          <img *ngIf="plant.initDateBloom !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
+          <p *ngIf="plant.initDateBloom !=undefined">Inicio de floración: {{plant.initDateBloom | date}}</p>
+          <p *ngIf="plant.finDateBloom !=undefined">Fin de floración: {{plant.finDateBloom | date}}</p>
+          <img *ngIf="plant.initDateHarvest !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Cosecha">
+          <p *ngIf="plant.initDateHarvest !=undefined">Inicio recolección: {{plant.initDateHarvest | date}}</p>
+          <p *ngIf="plant.finDateHarvest !=undefined">Fin recolección: {{plant.finDateHarvest | date}}</p>
+        </section>
+      </div>
+    </div>
 </div>
