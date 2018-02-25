@@ -16,7 +16,7 @@ export class PlantComponent implements OnInit {
   constructor(
     private _plantService:PlantService) {}
 
-    mostrar(){
+      mostrar(){
       this._plantService.details()
             .subscribe(data=>{
               this.plant.id=data[0].id;
@@ -28,18 +28,21 @@ export class PlantComponent implements OnInit {
               this.plant.family=data[0].family;
               this.plant.depth=data[0].depth;
               this.plant.distance=data[0].distance;
+
               this.plant.diseaseResist=data[0].diseaseResist;
 
               this.plant.initDatePlant=data[0].initDatePlant;
               this.plant.finDatePlant=data[0].finDatePlant;
+
               this.plant.initDateBloom=data[0].initDateBloom;
               this.plant.finDateBloom=data[0].finDateBloom;
+
               this.plant.initDateHarvest=data[0].initDateHarvest;
               this.plant.finDateHarvest=data[0].finDateHarvest;
 
               this.plant.leaveType=data[0].leaveType;
               // this.plant.commonName=data[0].3DModel;
-              console.log(data);
+              // console.log(data);
 
             },
           error => {
@@ -49,9 +52,10 @@ export class PlantComponent implements OnInit {
 
     }
 
+
+
   ngOnInit() {
     this.mostrar();
-
   }
 
 }
