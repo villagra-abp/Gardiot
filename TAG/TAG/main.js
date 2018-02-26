@@ -25,19 +25,48 @@ function inicializar(){
 
     var motor = new TMotor("gestorRecursos");
     var camara1 = motor.crearNodoCamara("camara1", true, undefined);
+    var camara2 = motor.crearNodoCamara("camara2", true, undefined);
+    var camara2 = motor.crearNodoCamara("camara3", true, undefined);
+    var camara2 = motor.crearNodoCamara("camara4", true, undefined);
 
     var luz1 = motor.crearNodoLuz("Luz1", 0.1, undefined);
+    var luz1 = motor.crearNodoLuz("Luz2", 0.1, undefined);
+    var luz1 = motor.crearNodoLuz("Luz3", 0.1, undefined);
+    var luz1 = motor.crearNodoLuz("Luz4", 0.1, undefined);
 
     var malla = motor.crearNodoMalla("Malla1", "recurso", undefined );
     
-    console.log("camara:");
-    console.log(camara1);
+    //console.log("camara:");
+    //console.log(camara1);
 
     console.log("luz:");
     console.log(luz1);
 
     console.log("malla:");
     console.log(malla);
+
+    console.log("activaciones camara:")
+    console.log(motor.activarCamara("camara1")); 
+    console.log(motor.activarCamara("camara3"));
+    console.log(motor.activarCamara("camara5"));
+
+
+    console.log("activaciones luz:");
+    console.log(motor.activarLuz("Luz1"));
+    console.log(motor.activarLuz("Luz3"));
+    console.log(motor.activarLuz("Luz2"));
+    console.log(motor.activarLuz("asb"));
+
+    console.log("desactivaciones luz:");
+    console.log(motor.desactivarLuz("Luz1"));
+    console.log(motor.desactivarLuz("Luz2"));
+    console.log(motor.activarLuz("asb"));
+
+    
+    console.log("draw");
+    motor.draw();
+
+    /*
 	//nodo raíz
 	var escena=new TNodo("escena");
 
@@ -79,12 +108,13 @@ function inicializar(){
     var rueda2=new TNodo("rueda2", new TMalla("rueda2"), trasRueda2);
 
 
-    /*Podemos probar a eliminar la rotRueda1 del árbol.
-    Entonces la malla rueda1 ya no se dibujará*/
+    //Podemos probar a eliminar la rotRueda1 del árbol.
+    //Entonces la malla rueda1 ya no se dibujará
     //trasMoto.removeChild(rotRueda1);
 
     //probamos a recorrer el árbol
     escena.draw();
+    */
 
 }
 
