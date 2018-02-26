@@ -41,6 +41,8 @@ function makeShader(src, type){
 
     if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
         alert("Error compilando el Shader "+gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
     }
     return shader;
 }

@@ -2,11 +2,19 @@ var connection = require('../config/connection');
 
 var plant = {};
 
-plant.getPlants = function(number, page, callback) {
+plant.getPlants = function(number, page, orderBy, sort, callback) {
   if(connection) {
-    let minPeak = (page - 1) * number + 1;
+    let minPeak = (page - 1) * number;
     let maxPeak = page * number;
-    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + minPeak  + ' AND ' + maxPeak , function (error, rows){
+    let orderSentence = '';
+    let orderByParam = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    if (orderBy.toUpperCase() === 'NAME')
+      orderByParam = 'commonName ' + orderSentence;
+    else if (orderBy.toUpperCase() === 'FAMILY')
+      orderByParam = 'family ' + orderSentence + ', commonName';
+    connection.query('SELECT * FROM Plant ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + maxPeak , function (error, rows){
       if(error)
         callback(error, null);
       else
@@ -18,8 +26,7 @@ plant.getPlants = function(number, page, callback) {
 
 plant.getPlantById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Plant WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
+		connection.query('SELECT * FROM Plant WHERE id = ' + id, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -28,10 +35,14 @@ plant.getPlantById = function(id, callback) {
 	}
 }
 
-plant.getPlantsByFamily = function(id, callback) { //HAY QUE AFINAR MAS LOS CAMPOS A DEVOLVER
+plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE AFINAR MAS LOS CAMPOS A DEVOLVER
   if (connection) {
-    var sentence = 'SELECT * FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id;
-    connection.query(sentence, function(error, row) {
+    let minPeak = (page - 1) * number;
+    let maxPeak = page * number;
+    let orderSentence = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    connection.query('SELECT * FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
       if (error)
         callback(error, null);
       else
@@ -47,7 +58,6 @@ plant.insertPlant = function(data, callback) {
       if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    console.log(sql);
     connection.query(sql, function(error, result){
       if(error)
         callback(error, null);
@@ -79,8 +89,7 @@ plant.updatePlant = function(data, callback) {
 
 plant.deletePlant = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Plant WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
+    connection.query('DELETE FROM Plant WHERE id = "' + id + '"', function(error, result) {
 			if (error)
 				callback(error, null);
 			else

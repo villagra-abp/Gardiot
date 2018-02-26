@@ -6,11 +6,11 @@ var routeRequirements = require('../functions/routeRequirements');
 
 var plantModel = require('../models/plant');
 
-router.get('/plants/:number/:page', function (request, response) {
-	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}))
+router.get('/plants/:number/:page/:order/:sort', function (request, response) {
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		plantModel.getPlants (request.params.number, request.params.page, function(error, data){
+		plantModel.getPlants (request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data){
     		response.status(200).json(data);
     	});
 	}
@@ -29,11 +29,11 @@ router.get('/plant/:id', function(request, response) {
 	}
 });
 
-router.get('/plantFamily/:id', function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0}))
+router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
+	if (!validator.isInt(request.params.id, {gt: 0})  || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		plantModel.getPlantsByFamily(request.params.id, function(error, data) {
+		plantModel.getPlantsByFamily(request.params.id, request.params.number, request.params.page, request.params.sort, function(error, data) {
 			if (typeof data !== 'undefined')
 				response.status(200).json(data);
 			else
