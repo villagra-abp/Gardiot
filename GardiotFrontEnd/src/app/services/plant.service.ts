@@ -25,9 +25,8 @@ export class PlantService {
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
 			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
-			body+= `&initDateHarvert=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
-			body+= `&distance=${plant.distance}&disease=${plant.diseaseResist}`;
-
+			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
+			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
