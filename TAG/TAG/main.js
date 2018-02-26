@@ -35,8 +35,49 @@ function initWebGL(){
 //main donde creamos el árbol
 function inicializar(){
 
+<<<<<<< HEAD
 
     
+=======
+    var motor = new TMotor("gestorRecursos");
+    var camara1 = motor.crearNodoCamara("camara1", true, undefined);
+    var camara2 = motor.crearNodoCamara("camara2", true, undefined);
+    var camara3 = motor.crearNodoCamara("camara3", true, undefined);
+    var camara4 = motor.crearNodoCamara("camara4", true, undefined);
+
+    var luz1 = motor.crearNodoLuz("Luz1", 0.1, undefined);
+    var luz2 = motor.crearNodoLuz("Luz2", 0.1, undefined);
+    var luz3 = motor.crearNodoLuz("Luz3", 0.1, undefined);
+    var luz4 = motor.crearNodoLuz("Luz4", 0.1, undefined);
+
+    var malla1 = motor.crearNodoMalla("Malla1", "recurso", undefined );
+    var malla2 = motor.crearNodoMalla("Malla2", "recurso", undefined );
+    var malla3 = motor.crearNodoMalla("Malla3", "recurso", undefined );
+    var malla4 = motor.crearNodoMalla("Malla4", "recurso", undefined );
+
+    console.log("activaciones camara:")
+    console.log(motor.activarCamara("camara1")); 
+    console.log(motor.activarCamara("camara3"));
+    console.log(motor.activarCamara("camara5"));
+
+
+    console.log("activaciones luz:");
+    console.log(motor.activarLuz("Luz1"));
+    console.log(motor.activarLuz("Luz3"));
+    console.log(motor.activarLuz("Luz2"));
+    console.log(motor.activarLuz("asb"));
+
+    console.log("desactivaciones luz:");
+    console.log(motor.desactivarLuz("Luz1"));
+    //console.log(motor.desactivarLuz("Luz2"));
+    console.log(motor.activarLuz("asb"));
+
+    
+    console.log("draw");
+    motor.draw();
+
+    /*
+>>>>>>> feature/fachada
 	//nodo raíz
 	escena=new TNodo("escena");
 
@@ -74,7 +115,11 @@ function inicializar(){
     //el nodo del chasis de la moto (malla) será el hijo de este último nodo
     //Al ser nodo hoja, este nodo no tiene ninguna transformación (ver diapositivas
     //del final del seminario 2 para comprender esto mejor)
+<<<<<<< HEAD
     var moto=new TNodo("moto", new TMalla("moto"), trasMoto);
+=======
+    //var moto=new TNodo("moto", new Tjuh Malla("moto"), trasMoto);
+>>>>>>> feature/fachada
 
     //Ahora, mediante el mismo concepto, las ruedas de la moto tendrán su nodo de rotación,
     //de traslación y de malla. De esta forma, a la malla de la rueda, en WebGL se le aplicarán
@@ -91,12 +136,21 @@ function inicializar(){
     var rueda2=new TNodo("rueda2", new TMalla("rueda2"), trasRueda2);
     */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/fachada
     //Podemos probar a eliminar la rotRueda1 del árbol.
     //Entonces la malla rueda1 ya no se dibujará
     //trasMoto.removeChild(rotRueda1);
 
     //probamos a recorrer el árbol
+<<<<<<< HEAD
     //escena.draw();
+=======
+    escena.draw();
+    */
+>>>>>>> feature/fachada
 
 }
 
