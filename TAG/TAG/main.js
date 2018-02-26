@@ -36,9 +36,8 @@ function initWebGL(){
 function inicializar(){
 
 
-    
-	//nodo raíz
-	escena=new TNodo("escena");
+    /*
+	var motor = new TMotor();
 
     //Nodo que controlará la rotación de la luz. Su hijo será el nodo
     //que controlará la traslación de la luz
@@ -66,7 +65,7 @@ function inicializar(){
 
     var chair=new TNodo("chair", new TMalla('chair'), trasMoto);
 
-
+    */
 
     //escena.draw();
 

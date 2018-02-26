@@ -39,11 +39,18 @@
         //variable del nodo raiz
         var escena=null;
 
-        //fachada
-        var motor = new TMotor("gestorRecursos");
-
         //inicializamos el gestor de recursos
         var gestor=new TGestorRecursos();
+
+        //fachada
+        var motor = new TMotor(gestor);
+
+        var luz = motor.crearNodoLuz("luz1", false, undefined);
+
+        var camara = motor.crearNodoCamara("camara1", 0.1, undefined);
+
+        var malla = motor.crearNodoMalla("malla1", "chair", undefined);
+
 
         //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];

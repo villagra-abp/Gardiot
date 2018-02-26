@@ -5,7 +5,7 @@ class TNodo {
         this._entity=entity;
         this._dad=dad;
         this._childs=[];
-        if(entity!==undefined)
+        if(dad!==undefined)
         	this._dad.addChild(this);
     }
  
