@@ -13,7 +13,7 @@ import { AppComponent } from "../../app.component";
 })
 export class PlantdataComponent implements OnInit {
   plant=new Plant("");
-  private plants:any[]= null;
+  private plants:any[]=[];
 
   constructor(
     private _plantService:PlantService,
@@ -33,7 +33,7 @@ export class PlantdataComponent implements OnInit {
             let v=JSON.parse(error._body);
             console.log(v.Mensaje);
             this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-          });
+          }); 
     }
 
     mostrar2(){
@@ -54,15 +54,12 @@ export class PlantdataComponent implements OnInit {
     mostrar(){
       this._plantService.detailsAll()
           .subscribe(data=>{
-            //console.log(data);
             for(let key$ in data){
-              //console.log(data[key$]);
               this.plants.push(data[key$]);
             }
           },
         error => {
           console.error(error);
-          // this._route.navigate(['/login']);
         });
 
       }

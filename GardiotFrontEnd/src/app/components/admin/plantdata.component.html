@@ -72,66 +72,30 @@
 	</section>
 </div>
 
+
+
+
+
 <div class="wrap">
 
-	<div class="card one-third first" style="width: 18rem;">
-	  <img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-	  <div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-	  </div>
-	</div>
-
-	<div class="card one-third" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+<!-- https://docs.angularjs.org/api/ng/directive/ngDisabled -->
+	<h2>Gestión de plantas</h2>
+	<div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Buscar</button>
+				</span>
+			</div>
+		</div>
+	<div class="card-columns">
+		<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
+		  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px">
+		  <div class="card-body" >
+				<h4>{{plant.commonName}} </h4>
+				<button [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
+				<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+		  </div>
 		</div>
 	</div>
-
-	<div class="card one-third" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		</div>
-	</div>
-
-	<div class="card one-third first" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		</div>
-	</div>
-	<div class="card one-third" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		</div>
-	</div>
-	<div class="card one-third" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		</div>
-	</div>
-	<div class="card one-third" style="width: 18rem;">
-		<img class="card-img-top" src="{{plant.photo}}" alt="Card image cap">
-		<div class="card-body">
-			<h4>{{plant.commonName}} </h4>
-			<button [routerLink]="['/detail']" class="btn btn-outline-primary">Modificar</button>
-			<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		</div>
-	</div>
-
 </div>
