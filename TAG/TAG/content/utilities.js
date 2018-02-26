@@ -41,8 +41,6 @@ function makeShader(src, type){
 
     if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
         alert("Error compilando el Shader "+gl.getShaderInfoLog(shader));
-        gl.deleteShader(shader);
-        return null;
     }
     return shader;
 }
@@ -91,10 +89,10 @@ function setupWebGL(){
     //establecemos dimensiones del canvas
     gl.viewport(0, 0, canvas.width, canvas.height);
 
-    //inicializamos matriz model y matriz projection (esto no se hará aquí)
+    /*//inicializamos matriz model y matriz projection (esto no se hará aquí)
     mat4.perspective(pMatrix, 45, canvas.width/canvas.height, 0.1, 100.0);
     mat4.identity(matrixModel);
-    mat4.translate(matrixModel, matrixModel, [0, -1, -1.0]);
+    mat4.translate(matrixModel, matrixModel, [0, -1, -1.0]);*/
 
 
 }

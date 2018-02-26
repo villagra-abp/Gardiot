@@ -55,24 +55,33 @@ class TTransf extends TEntidad{
 
     //sobreescribiendo métodos de dibujado
     beginDraw(){
+
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
 
-        matrixStack.push(matrixModel);
+        let a=matrixModel.slice(0);
+
+        matrixStack.push(a);
 
         mat4.multiply(matrixModel, matrixModel, this._matrix);
 
-        /*let aux=mat4.create();
-        for(let i=0; i<matrixStack.length; i++){
-            mat4.multiply(aux, aux, matrixStack[i]);
-        }
 
-        this._matrix=aux;*/
+        
     }
 
-    endDraw(){
-        matrixModel = matrixStack.pop();
+    endDraw(n){
+        /*if(n=='malla1_T'){
+            alert(matrixStack[matrixStack.length-1]);
+            alert(matrixStack[matrixStack.length-2]);
+            alert(matrixStack[matrixStack.length-3]);
+            console.log(matrixModel);
+            alert("holo");
+        }*/
+        /*console.log(matrixStack[matrixStack.length-1]);
+        console.log(matrixStack.pop());*/
+        matrixModel=matrixStack.pop();
+
     }
 
 }

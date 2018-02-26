@@ -13,23 +13,6 @@ class TMotor{
         this.mallaRegistro = [];
     }
 	
-	
-	/**
-	 * Crea un nodo asociandolo a un padre
-	 * 
-	 * @param  {string} nombre
-	 * @param  {TNodo} padre
-	 * @param  {TRecurso | null} entidad
-	 * @return {TNodo}
-	 */
-	crearNodo(nombre, entidad, padre){
-		var nodo = undefined;
-		if(padre !== undefined){
-			nodo = new TNodo(nombre, entidad, padre);
-		}
-		return nodo;
-	}
-
 
 	draw(){
 		canvas=document.getElementById("my-canvas");
@@ -53,19 +36,15 @@ class TMotor{
 	        //esta función está en content/utilities
 	        configurarShaders('standardShader.vs', 'standardShader.fs');
 
-
-	        //Esto es algo así como coger los parámetros de matriz proyección y matriz
-	        //view del shader. Una vez los hemos cogido, podemos hacer las transformaciones
-	        //En setupWebGL, para este ejemplo, inicializo las matrices de modelo y proyección y
-	        //le aplico algunas transformaciones
 	        glProgram.pMatrixUniform=gl.getUniformLocation(glProgram, "uPMatrix");
-	        glProgram.mvMatrixUniform=gl.getUniformLocation(glProgram, "uMVMatrix");
+    		glProgram.mvMatrixUniform=gl.getUniformLocation(glProgram, "uMVMatrix");
+
+    		
+	        
 
 	        setupWebGL();
 
-	        //entonces aquí le vuelvo a pasar las matrices al shader para que se pueda visualizar bien
-	        gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, pMatrix);
-    		gl.uniformMatrix4fv(glProgram.mvMatrixUniform, false, matrixModel);
+
 
 
 	        
@@ -91,14 +70,14 @@ class TMotor{
 
 		if( hermano !== undefined){
 			console.log("crea un hermano");
-			var rotCam = this.crearNodo(nombre + "_R",  new TTransf(), hermano.dad);
-			var traCam = this.crearNodo(nombre + "_T",  new TTransf(), rotCam);
-			var cam = this.crearNodo(nombre, new TCamara(perspective), traCam);
+			var rotCam = new TNodo(nombre + "_R",  new TTransf(), hermano.dad);
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), rotCam);
+			var cam = new TNodo(nombre, new TCamara(perspective), traCam);
 		}else{
 			console.log("crea en raiz");
-			var rotCam = this.crearNodo(nombre + "_R", new TTransf(), this.escena);
-			var traCam = this.crearNodo(nombre + "_T",  new TTransf(), rotCam);
-			var cam = this.crearNodo(nombre, new TCamara(perspective), traCam);
+			var rotCam = new TNodo(nombre + "_R", new TTransf(), this.escena);
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), rotCam);
+			var cam = new TNodo(nombre, new TCamara(perspective), traCam);
 		}
 		this.camaraRegistro.push(cam);
 		
@@ -117,14 +96,14 @@ class TMotor{
 
 		if( hermano !== undefined){
 			console.log("crea un hermano");
-			var rotLuz = this.crearNodo(nombre + "_R",  new TTransf(), hermano.dad);
-			var traLuz = this.crearNodo(nombre + "_T",  new TTransf(), rotLuz);
-			var luz = this.crearNodo(nombre, new TLuz(intensidad), traLuz);
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), hermano.dad);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(intensidad), traLuz);
 		}else{
 			console.log("crea en raiz");
-			var rotLuz = this.crearNodo(nombre + "_R", new TTransf(), this.escena);
-			var traLuz = this.crearNodo(nombre + "_T",  new TTransf(), rotLuz);
-			var luz = this.crearNodo(nombre, new TLuz(intensidad), traLuz);
+			var rotLuz = new TNodo(nombre + "_R", new TTransf(), this.escena);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(intensidad), traLuz);
 		}
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
@@ -144,16 +123,16 @@ class TMotor{
 		if( hermano !== undefined){
 			console.log("crea un hermano");
 
-			var rotMalla = this.crearNodo(nombre + "_R", new TTransf(), hermano.dad);
-			var traMalla = this.crearNodo(nombre + "_T", new TTransf(), rotMalla);
-			var escMalla = this.crearNodo(nombre + "_S", new TTransf(), traMalla);
-			var malla = this.crearNodo(nombre, new TMalla(recurso), escMalla);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), hermano.dad);
+			var traMalla = new TNodo(nombre + "_T", new TTransf(), rotMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), traMalla);
+			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
 		}else{
 			console.log("crea en raiz");
-			var rotMalla = this.crearNodo(nombre + "_R", new TTransf(), this.escena);
-			var traMalla = this.crearNodo(nombre + "_T",  new TTransf(), rotMalla);
-			var escMalla = this.crearNodo(nombre + "_S", new TTransf(), traMalla);
-			var malla = this.crearNodo(nombre, new TMalla(recurso), escMalla);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), this.escena);
+			var traMalla = new TNodo(nombre + "_T",  new TTransf(), rotMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), traMalla);
+			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
 		}
 		this.mallaRegistro.push(malla);
 		return malla;
