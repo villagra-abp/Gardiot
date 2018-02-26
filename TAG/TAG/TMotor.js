@@ -181,7 +181,15 @@ class TMotor{
 		console.log("draw camara");
 		console.log(this.camaraRegistro[this.camaraActiva]);
 		console.log("draw Luces");
-		
+		for(var i = 0; i<this.luzActiva.length; i++){
+			if(this.luzActiva[i]==1){
+				console.log(this.luzRegistro[i]);
+			}
+		}
+		console.log("draw Mallas");
+		for(var i = 0; i<this.luzActiva.length; i++){
+			console.log(this.mallaRegistro[i]);
+		}
 	}
 
 	

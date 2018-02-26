@@ -26,24 +26,18 @@ function inicializar(){
     var motor = new TMotor("gestorRecursos");
     var camara1 = motor.crearNodoCamara("camara1", true, undefined);
     var camara2 = motor.crearNodoCamara("camara2", true, undefined);
-    var camara2 = motor.crearNodoCamara("camara3", true, undefined);
-    var camara2 = motor.crearNodoCamara("camara4", true, undefined);
+    var camara3 = motor.crearNodoCamara("camara3", true, undefined);
+    var camara4 = motor.crearNodoCamara("camara4", true, undefined);
 
     var luz1 = motor.crearNodoLuz("Luz1", 0.1, undefined);
-    var luz1 = motor.crearNodoLuz("Luz2", 0.1, undefined);
-    var luz1 = motor.crearNodoLuz("Luz3", 0.1, undefined);
-    var luz1 = motor.crearNodoLuz("Luz4", 0.1, undefined);
+    var luz2 = motor.crearNodoLuz("Luz2", 0.1, undefined);
+    var luz3 = motor.crearNodoLuz("Luz3", 0.1, undefined);
+    var luz4 = motor.crearNodoLuz("Luz4", 0.1, undefined);
 
-    var malla = motor.crearNodoMalla("Malla1", "recurso", undefined );
-    
-    //console.log("camara:");
-    //console.log(camara1);
-
-    console.log("luz:");
-    console.log(luz1);
-
-    console.log("malla:");
-    console.log(malla);
+    var malla1 = motor.crearNodoMalla("Malla1", "recurso", undefined );
+    var malla2 = motor.crearNodoMalla("Malla2", "recurso", undefined );
+    var malla3 = motor.crearNodoMalla("Malla3", "recurso", undefined );
+    var malla4 = motor.crearNodoMalla("Malla4", "recurso", undefined );
 
     console.log("activaciones camara:")
     console.log(motor.activarCamara("camara1")); 
@@ -59,7 +53,7 @@ function inicializar(){
 
     console.log("desactivaciones luz:");
     console.log(motor.desactivarLuz("Luz1"));
-    console.log(motor.desactivarLuz("Luz2"));
+    //console.log(motor.desactivarLuz("Luz2"));
     console.log(motor.activarLuz("asb"));
 
     
