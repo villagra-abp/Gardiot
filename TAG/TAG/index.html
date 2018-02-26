@@ -36,8 +36,6 @@
         //variable que tendrá el programa webgl
         var gl=null;
 
-        //variable del nodo raiz
-        var escena=null;
 
         //inicializamos el gestor de recursos
         var gestor=new TGestorRecursos();
@@ -49,7 +47,26 @@
 
         var camara = motor.crearNodoCamara("camara1", 0.1, undefined);
 
-        var malla = motor.crearNodoMalla("malla1", "chair", undefined);
+
+        var malla =motor.crearNodoMalla("malla1", "chair", undefined);
+        
+        var malla2 = motor.crearNodoMalla("malla2", "chair", undefined);
+
+        var malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
+
+        
+
+
+        malla.dad.dad.entity.trasladar(-5, -2, -10);
+
+        malla2.dad.dad.entity.trasladar(5, -2, -10);
+
+        malla3.dad.dad.entity.trasladar(0, -2, -7);
+
+
+
+        console.log(motor.escena);
+
 
 
         //Inicializamos la pila de matriz y la matriz modelo

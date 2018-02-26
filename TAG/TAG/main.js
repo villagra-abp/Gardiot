@@ -1,6 +1,6 @@
 
 
-function initWebGL(){
+/*function initWebGL(){
     canvas=document.getElementById("my-canvas");
     try{
         gl=canvas.getContext("webgl");
@@ -27,7 +27,7 @@ function initWebGL(){
         alert("Error: Tu navegador no soporta WebGL");
     }
 }
-
+*/
 
 
 
