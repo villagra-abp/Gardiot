@@ -32,15 +32,15 @@
       </div>
       <div class="col">
         <section class="card">
-          <img *ngIf="plant.initDatePlant !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
-          <p *ngIf="plant.initDatePlant !=undefined" >Inicio de siembra: {{plant.initDatePlant | date}}</p>
-          <p *ngIf="plant.finDatePlant !=undefined">Fin de siembra: {{plant.finDatePlant | date}}</p>
-          <img *ngIf="plant.initDateBloom !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
-          <p *ngIf="plant.initDateBloom !=undefined">Inicio de floración: {{plant.initDateBloom | date}}</p>
-          <p *ngIf="plant.finDateBloom !=undefined">Fin de floración: {{plant.finDateBloom | date}}</p>
-          <img *ngIf="plant.initDateHarvest !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Cosecha">
-          <p *ngIf="plant.initDateHarvest !=undefined">Inicio recolección: {{plant.initDateHarvest | date}}</p>
-          <p *ngIf="plant.finDateHarvest !=undefined">Fin recolección: {{plant.finDateHarvest | date}}</p>
+          <img *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
+          <p *ngIf="iniSiembra !=undefined && finSiembra !=undefined">Se siembra entre {{iniSiembra}}
+           y {{finSiembra}}</p>
+          <img *ngIf="iniFlores !=undefined && finFlores !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
+          <p *ngIf="iniFlores !=undefined && finFlores !=undefined">Florece entre {{iniFlores}}
+          y {{finFlores}}</p>
+          <img *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">
+          <p *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined">Se recolecta entre {{iniRecolectar}}
+          y {{finRecolectar}}</p>
         </section>
       </div>
     </div>
