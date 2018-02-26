@@ -20,27 +20,42 @@
       </div>
       <div class="col">
         <section class="card">
-            <img *ngIf="plant.depth !=undefined" class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">
-            <p *ngIf="plant.depth !=undefined">Profundidad de siembra: {{plant.depth}} cm</p>
-            <img *ngIf="plant.distance !=undefined" class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">
-            <p *ngIf="plant.distance !=undefined">Distancia entre plantas: {{plant.distance}} cm</p>
-            <img *ngIf="plant.diseaseResist !=undefined" class="iconplant"src="assets/images/icon/hielo.png" alt="Hielo">
-            <p *ngIf="plant.diseaseResist !=undefined">Resistencia al frío: {{plant.diseaseResist}}</p>
-            <img *ngIf="plant.leaveType !=undefined" class="iconplant"src="assets/images/icon/hoja.png" alt="Hoja">
-            <p *ngIf="plant.leaveType !=undefined">Tipo de hoja: {{plant.leaveType}}</p>
+            <p *ngIf="plant.depth !=undefined">
+              <img *ngIf="plant.depth !=undefined" class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">
+              Profundidad de siembra: {{plant.depth}} cm
+            </p>
+
+            <p *ngIf="plant.distance !=undefined">
+              <img *ngIf="plant.distance !=undefined" class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">
+              Distancia entre plantas: {{plant.distance}} cm
+            </p>
+
+            <p *ngIf="plant.diseaseResist !=undefined">
+              <img *ngIf="plant.diseaseResist !=undefined" class="iconplant"src="assets/images/icon/hielo.png" alt="Hielo">
+              Resistencia al frío: {{plant.diseaseResist}}
+            </p>
+
+            <p *ngIf="plant.leaveType !=undefined">
+              <img *ngIf="plant.leaveType !=undefined" class="iconplant"src="assets/images/icon/hoja.png" alt="Hoja">
+              Tipo de hoja: {{plant.leaveType}}
+            </p>
         </section>
       </div>
       <div class="col">
         <section class="card">
-          <img *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
-          <p *ngIf="iniSiembra !=undefined && finSiembra !=undefined">Se siembra entre {{iniSiembra}}
-           y {{finSiembra}}</p>
-          <img *ngIf="iniFlores !=undefined && finFlores !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
-          <p *ngIf="iniFlores !=undefined && finFlores !=undefined">Florece entre {{iniFlores}}
-          y {{finFlores}}</p>
-          <img *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">
-          <p *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined">Se recolecta entre {{iniRecolectar}}
-          y {{finRecolectar}}</p>
+
+          <p *ngIf="iniSiembra !=undefined && finSiembra !=undefined">
+            <img *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
+            Se siembra entre {{iniSiembra}} y {{finSiembra}}
+          </p>
+          <p *ngIf="iniFlores !=undefined && finFlores !=undefined">
+            <img *ngIf="iniFlores !=undefined && finFlores !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
+            Florece entre {{iniFlores}} y {{finFlores}}
+          </p>
+          <p *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined">
+            <img *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">
+            Se recolecta entre {{iniRecolectar}} y {{finRecolectar}}
+          </p>
         </section>
       </div>
     </div>

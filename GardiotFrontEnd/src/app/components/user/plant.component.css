@@ -1,8 +1,7 @@
 .iconplant{
-  max-width: 20px;
-  max-height: 20px;
-
+  max-width: 25px;
+  max-height: 25px;
 }
-p{
-  padding-left: 30px;
+div, section{
+  padding: 1%;
 }
