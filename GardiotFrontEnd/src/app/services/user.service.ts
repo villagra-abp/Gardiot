@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="";
+  public apiURL:string="";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
@@ -102,6 +102,18 @@ export class UserService {
       });
 
       return this.http.get(this.apiURL+"users", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    savePhotoUser(photo:String){
+      let body=`photo=${photo}`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.put(this.apiURL+"user", body, { headers })
           .map( res =>{
             return res.json();
           })
