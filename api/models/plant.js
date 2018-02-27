@@ -66,14 +66,14 @@ plant.insertPlant = function(data, callback) {
     });
   }
 }
-plant.updatePlant = function(data, callback) {
+plant.updatePlant = function(data, id, callback) {
   if(connection) {
     var sql = 'UPDATE Plant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined' && key!= 'id')
+      if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    sql += ' WHERE id= "' + data.id +'"';
+    sql += ' WHERE id= "' + id +'"';
     connection.query(sql, function(error, result) {
 			if (error)
 				callback(error, null);
