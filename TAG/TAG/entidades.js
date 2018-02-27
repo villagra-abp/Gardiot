@@ -55,24 +55,33 @@ class TTransf extends TEntidad{
 
     //sobreescribiendo métodos de dibujado
     beginDraw(){
+
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
 
-        matrixStack.push(matrixModel);
+        let a=matrixModel.slice(0);
+
+        matrixStack.push(a);
 
         mat4.multiply(matrixModel, matrixModel, this._matrix);
 
-        /*let aux=mat4.create();
-        for(let i=0; i<matrixStack.length; i++){
-            mat4.multiply(aux, aux, matrixStack[i]);
-        }
 
-        this._matrix=aux;*/
+        
     }
 
-    endDraw(){
-        matrixModel = matrixStack.pop();
+    endDraw(n){
+        /*if(n=='malla1_T'){
+            alert(matrixStack[matrixStack.length-1]);
+            alert(matrixStack[matrixStack.length-2]);
+            alert(matrixStack[matrixStack.length-3]);
+            console.log(matrixModel);
+            alert("holo");
+        }*/
+        /*console.log(matrixStack[matrixStack.length-1]);
+        console.log(matrixStack.pop());*/
+        matrixModel=matrixStack.pop();
+
     }
 
 }
@@ -153,28 +162,22 @@ saber que malla es en concreto.*/
 class TMalla extends TEntidad {
     //Al constructor deberemos pasarle un puntero.
     //Para más info ved el archivo readmePunteros.txt
-    constructor (malla) {
+    constructor (nombreMalla) {
     	super();
-        this._malla=malla; // LAMADA AL GESTOR¿?¿?¿?¿
+        this._malla=gestor.getRecurso(nombreMalla, 'malla');
     }
 
     get malla(){
-        return this._malla.property;
+        return this._malla;
     }
 
-    //A set malla debemos pasarle un puntero
-    set malla(malla){
-        this._malla=malla;
+    //A set malla le pasamos el nombre de la malla para que la carge del gestor
+    set malla(nombreMalla){
+        this._malla=gestor.getRecurso(nombreMalla, 'malla');
     }
 
-    cargarMalla (fichero) {
-        //? this._malla = fichero;
-    }
-
-    beginDraw () { //Puntero a recurso. Llama al shader que dibuja el recurso a traves de los vertex,normales, textura y multiplica con MModel. Toma MView, MLuz, MProyeccion
-        //console.log("dibujo "+this._malla);
-        console.log("Aquí se dibuja la malla "+this._malla+" con la siguiente transformación de la pila de matrices:");
-        console.log(matrixStack);
+    beginDraw () { 
+        this._malla.draw();
     }
     endDraw () {}
 }

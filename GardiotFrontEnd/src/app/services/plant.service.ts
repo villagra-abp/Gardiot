@@ -39,11 +39,6 @@ export class PlantService {
           })
     }
 
-
-
-
-
-
 	  details(){
 	  	let headers = new Headers({
         	'Authorization':`Bearer ${localStorage['Bearer']}`
