@@ -234,8 +234,22 @@ class TMotor{
 				break;
 			}
 		}
-		
+		console.log(this.luzRegistro[pos].dad.dad);
 	}
+
+	moverMalla(nombre, x, y, z){
+		var pos = -1;
+		
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(nombre == this.mallaRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		console.log(this.mallaRegistro[pos].dad.dad.entity.trasladar(x,y,z));
+
+	}
+
 
 
 
