@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
+import {TabModule} from 'angular-tabs-component';
 
 //Rutas
 import { APP_ROUTING } from "./app.routes";
@@ -96,6 +97,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     FormsModule,
     HttpModule,
     Select2Module,
+    TabModule,
     APP_ROUTING
   ],
   providers: [

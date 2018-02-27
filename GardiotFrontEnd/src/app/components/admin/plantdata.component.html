@@ -1,6 +1,24 @@
 <div class="container main-container">
 	<h1>Plantas</h1>
+<!-- https://www.npmjs.com/package/angular-tabs-component-->
 
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Active</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+
+</ul>
+
+
+
+<tabs>
+<tab tabTitle="Nueva Planta">
 	<!-- <section class="container">
 	  <div class="row animated fadeIn fast">
 	    <div class="col-md-12">
@@ -88,12 +106,13 @@
 		<!-- https://codepen.io/Sebus059/pen/MwMQbP -->
 		<div class="form-group">
 			<div class="input-group input-file" name="Fichier1">
-		    <input type="text" class="form-control" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta' />
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-choose" type="button">Buscar</button>
-				</span>
+				<label class="btn btn-default btn-file">
+				Buscar <input type="file" class="form-control" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta'>
+				</label>
 			</div>
 	  </div>
+
+
 		<div class="form-group">
 			<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
 		</div>
@@ -185,33 +204,27 @@
 	</form>
 </section>
 
-
-
-
-
-
-
-
-<div class="wrap">
-
-<!-- https://docs.angularjs.org/api/ng/directive/ngDisabled -->
-	<h2>Gestión de plantas</h2>
-	<div class="col-lg-6">
-			<div class="input-group">
-				<input type="text" class="form-control">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">Buscar</button>
-				</span>
+</tab>
+<tab tabTitle="Gestión de plantas" active="true">
+	<div class="wrap">
+		<div class="col-lg-6">
+				<div class="input-group">
+					<input type="text" class="form-control">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Buscar</button>
+					</span>
+				</div>
+			</div>
+		<div class="card-columns">
+			<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
+			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px">
+			  <div class="card-body" >
+					<h4>{{plant.commonName}} </h4>
+					<button [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
+					<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+			  </div>
 			</div>
 		</div>
-	<div class="card-columns">
-		<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
-		  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px">
-		  <div class="card-body" >
-				<h4>{{plant.commonName}} </h4>
-				<button [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
-				<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-		  </div>
-		</div>
 	</div>
-</div>
+</tab>
+</tabs>
