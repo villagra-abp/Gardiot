@@ -11,6 +11,11 @@
     <script src="TRecursoMalla.js"></script>
     <script src="TRecursoMaterial.js"></script>
     <script src="TRecursoTextura.js"></script>
+    <script src="TRecursoShader.js"></script>
+    <script src="TMotor.js"></script>
+    <script src="content/utilities.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
     <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
     <!--IMPORTACIÓN DESDE ARCHIVOS
@@ -27,16 +32,77 @@
     </canvas>
 
     <script>
+        var canvas, pMatrix=[], mvMatrix=[];
+        //variable que tendrá el programa webgl
+        var gl=null;
 
+
+        //inicializamos el gestor de recursos
+        var gestor=new TGestorRecursos();
+
+        //fachada
+        var motor = new TMotor(gestor);
+
+        var luz = motor.crearNodoLuz("luz1", false, undefined);
+
+        var camara = motor.crearNodoCamara("camara1", 0.1, undefined);
+
+
+        var malla = motor.crearNodoMalla("malla1", "chair", undefined);
+        
+        var malla2 = motor.crearNodoMalla("malla2", "chair", undefined);
+
+        var malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
+
+        
+
+
+       // malla.dad.dad.entity.trasladar(-5, -2, -10);
+
+       // malla2.dad.dad.entity.trasladar(5, -2, -10);
+
+       // malla3.dad.dad.entity.trasladar(0, -2, -7);
+        
+
+        motor.moverMalla("malla1", -5, -2, -10);
+
+        motor.moverMalla("malla2", 5, -2, -10);
+
+        motor.moverMalla("malla3", 0, -2, -7);   
+
+        motor.moverLuz("luz1", 0, -2, -7);   
+
+        motor.rotarMalla("malla1", 0.5, "z");  
+
+        motor.escalarMalla("malla2", 0.3);
+
+
+
+
+
+        //console.log(motor.escena);
+
+
+
+        //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];
         var matrixModel = mat4.create();
         matrixStack.push(matrixModel);
 
-        //console.log(matrixStack);
-        //verPunteros();
-        var arrayResource=[];
+        //declaramos las variables necesarias para ejecutar el programa
+        //las variables de WebGL empezarán siempre por gl para distinguirlas de
+        //las variables del motor gráfico 
+        var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
-        inicializar();
+
+        //console.log(matrixStack);
+        motor.moverMalla("malla1", 0,0,0);
+        //probarGestor();
+        //inicializar();
+
+        //CARLOS, TRATA DE ARRANCARLO (WEBGL)
+        motor.draw();
+
     </script>
 </body>
 </html>

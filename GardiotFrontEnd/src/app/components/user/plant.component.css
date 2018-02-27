@@ -1,20 +1,7 @@
-div, h1{
+.iconplant{
+  max-width: 25px;
+  max-height: 25px;
+}
+div, section{
   padding: 1%;
-}
-section{
-  margin: 2%;
-  max-width: 50%;
-  background-color: #1241;
-  position: relative;
-  display: flex;
-
-}
-img{
-  margin-left: 2%;
-}
-.datos{
-
-}
-p{
-  padding-left: 4%;
 }

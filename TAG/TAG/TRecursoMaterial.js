@@ -1,9 +1,9 @@
 class TRecursoMaterial extends TRecurso{
-  var vertices, normales, texturas;
+ /* var vertices, normales, texturas;
   var vertTriangulos, normTriangulos, textTriangulos;
-  var nTriangulos;
-  constructor (){
-    super();
+  var nTriangulos;*/
+  constructor (nombre){
+    super(nombre);
   }
   cargarFichero(nombre){
 
