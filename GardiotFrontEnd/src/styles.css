@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files*/
+body{
+  padding-bottom: 50px;
+}
+
+nav{
+  background-color: #63d297;
+}
+
+
 .footer{
   position: relative;
   bottom:0;
@@ -60,4 +69,47 @@ button{
 }
 .desarrollo>p{
   color: #fff;
+}
+
+
+
+/* MARIANO */
+
+.wrap {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.card{
+  margin-top: 30px;
+}
+
+fieldset {
+  border: 1px solid #ced4da;
+	border-radius:8px;
+	box-shadow:0 0 10px #999;
+}
+.tabs__panel[_ngcontent-c2]{
+  background-color: #fff !important;
+}
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

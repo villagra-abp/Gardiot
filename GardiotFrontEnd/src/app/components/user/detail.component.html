@@ -4,4 +4,29 @@
   <h1>
     Bienvenido a Gardiot, tu email es {{this.user.id}}
   </h1>
+  <div class="wrap">
+    <div class="card-columns">
+      <div class="card text-white bg-success mb-3" [routerLink]="['/garden']" style="max-width: 25rem;">
+        <div class="card-header">Jardín</div>
+        <div class="card-body">
+          <h5 class="card-title">Success card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card text-white bg-warning mb-3" [routerLink]="['/plants']" style="max-width: 25rem;">
+        <div class="card-header">Biblioteca</div>
+        <div class="card-body">
+          <h5 class="card-title">Warning card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card text-white bg-info mb-3" [routerLink]="['/calendar']" style="max-width: 25rem;">
+        <div class="card-header">Calendario</div>
+        <div class="card-body">
+          <h5 class="card-title">Info card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

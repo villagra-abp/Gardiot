@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class PlantService {
 	private apiURL:string="";
+
 	//public isAdmin:boolean;
 	//public isAuthenticated:boolean;
 
@@ -24,10 +25,8 @@ export class PlantService {
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
 			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
-			body+= `&initDateHarvert=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
-			body+= `&distance=${plant.distance}&disease=${plant.diseaseResist}`;
-
-      console.log(body);
+			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
+			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -38,6 +37,19 @@ export class PlantService {
             return res.json();
           })
     }
+
+		detailsAll(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.get(this.apiURL+"plants"+"/9/1", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+
+
 
 	  details(){
 	  	let headers = new Headers({
