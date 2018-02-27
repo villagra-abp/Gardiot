@@ -1,13 +1,15 @@
 <div class="container main-container">
   <h1>Mi perfil</h1>
-
 <section class="container">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
-        <img src="{{this.imgUrl+user.photo}}" id="photoProfile" alt="Foto de perfil">
-        <!--<img id="photoProfile" src="https://haciendofotos.com/wp-content/uploads/las-mejores-fotos-para-el-perfil-whatsapp-wasap-oso-ted.jpg">-->
-        <input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
+        <div class="divPhoto" (click)="selectPhoto($event)">
+          <div>
+          </div>
+          <i class="material-icons">file_upload</i>
+        </div>
+      <input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
         <div class="form-group">
           <label  for="name_user">Nombre: </label>
           <input  type="text" [(ngModel)]="user.name" name="name" id="name_user" required>

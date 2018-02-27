@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener, Renderer} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
 import { UserService} from "../../services/user.service";
@@ -14,8 +14,9 @@ declare var $:any;
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
-  styleUrls: ['editprofile.component.css']
+  styleUrls: ['profile.component.css']
 })
+
 export class EditProfileComponent implements OnInit{
   user=new User("");
   countries:any[] = [];
@@ -25,16 +26,16 @@ export class EditProfileComponent implements OnInit{
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
-  imgUrl:string='https://gardiot.ovh/api/';
 
-  uploader:FileUploader=new FileUploader({url: 'http://localhost:3000/api/uploadAvatar', itemAlias: 'photo'});
+  uploader:FileUploader;
 
 
   constructor(
     private _detailService:UserService,
     private _route:Router,
     private _appComponent:AppComponent,
-    private _ng2ImgMax:Ng2ImgMaxService){ }
+    private _ng2ImgMax:Ng2ImgMaxService,
+    private _renderer:Renderer){ }
 
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
@@ -89,8 +90,17 @@ export class EditProfileComponent implements OnInit{
           this.user.lastName=data.lastName;
           this.user.city=data.city;
           this.user.countryCode=data.countryCode;
+          document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
+          background-image: url("${this.user.photo}");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          border: 2px solid #000;
+          border-radius: 200px;
+          cursor: pointer;
+          `);
 
-          this.listarPaises();
+          //this.listarPaises();
           this.mostrarCiudad();
 
         },
@@ -114,32 +124,6 @@ export class EditProfileComponent implements OnInit{
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
     }
-
-
-  ngOnInit() {
-    this.mostrar();
-
-    this.uploader.onAfterAddingFile = (file)=> {
-      file.withCredentials = false;
-    };
-
-       this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-            console.log("ImageUpload:uploaded:", item, status, response);
-
-            let url=response.split(" ");
-            url=url[url.length-1];
-            url=url.replace("..\\uploads\\avatar\\", "");
-            console.log(url);
-            this.user.photo=url;
-            let img=document.getElementById('photoProfile');
-            img.setAttribute('src', this.imgUrl+url);
-
-
-            console.log(img.getAttribute('src'));
-            //cambiamos el atributo this.user.photo y guardamos el formulario
-        };
-
-  }
 
   listarPaises() {
     this._detailService.listCoutries()
@@ -182,9 +166,17 @@ export class EditProfileComponent implements OnInit{
       });
 
       document.querySelector('#ciudad').innerHTML=this.user.city;
-
   }
 
+  //click en el div para seleccionar una foto
+  selectPhoto(e){
+    console.log(e);
+    let file=<HTMLInputElement>document.querySelector('input[type="file"]');
+    file.click();
+  }
+
+
+  //evento change para subir la foto al servidor
   uploadPhoto(event){
     if(this.uploader.getNotUploadedItems().length){
       console.log(event.target.files);
@@ -222,6 +214,25 @@ export class EditProfileComponent implements OnInit{
     }
   }
 
+  ngOnInit() {
+    this.uploader=new FileUploader({url: this._detailService.apiURL+'uploadAvatar', itemAlias: 'photo'});
+    this.mostrar();
 
+    this.uploader.onAfterAddingFile = (file)=> {
+      file.withCredentials = false;
+    };
+
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+         console.log("ImageUpload:uploaded:", item, status, response);
+         let url=response.split(" ");
+         url=url[url.length-1];
+         url=url.split("\\");
+         url=url[url.length-1];
+         this.user.photo='assets/images/imgProfile/'+url;
+         let img=document.querySelector(".divPhoto");
+         this._renderer.setElementStyle(img, 'background-image', `url("${this.user.photo}")`);
+         };
+
+  }
 
 }

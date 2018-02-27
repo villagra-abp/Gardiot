@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "ajv": "^6.1.1",
+    "angular-tabs-component": "^1.0.6",
     "blueimp-canvas-to-blob": "^3.14.0",
     "core-js": "^2.4.1",
     "exif-js": "^2.3.0",
