@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions  } from "@angular/http";
 import { Plant } from "../classes/plant.class";
+import { Family } from "../classes/family.class";
 import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
@@ -27,6 +28,8 @@ export class PlantService {
 			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
 			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
 			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
+			body+= `&leaveType=${plant.leaveType}`;
+
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -42,7 +45,17 @@ export class PlantService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1", { headers } )
+      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+		detailsAllFamily(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
           .map( res =>{
             return res.json();
           })

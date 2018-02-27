@@ -93,23 +93,35 @@ fieldset {
   background-color: #fff !important;
 }
 
-
-.btn-file {
-    position: relative;
-    overflow: hidden;
+.upload {
+display: none;
+border: 1px solid #ccc;
+width: 300px;
+position: relative;
+height: 30px;
+display: flex;
 }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.bttn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
