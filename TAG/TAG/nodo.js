@@ -56,19 +56,19 @@ class TNodo {
 
     draw(){
         if(this._entity!==undefined){
-            console.log("beginDraw" + this._name);
-            console.log(matrixModel);
+            //console.log("beginDraw" + this._name);
+            //console.log(matrixModel);
             this._entity.beginDraw();
-            console.log(matrixModel);
+            //console.log(matrixModel);
         }
         for(let i=0; i<this._childs.length; i++){
             this._childs[i].draw();
         }
         if(this._entity!==undefined){
-            console.log("endDraw" + this._name);
-            console.log(matrixModel);
+           // console.log("endDraw" + this._name);
+           // console.log(matrixModel);
             this._entity.endDraw(this._name);
-            console.log(matrixModel);
+           // console.log(matrixModel);
         }
     }
 

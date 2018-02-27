@@ -69,15 +69,15 @@ class TMotor{
 	crearNodoCamara(nombre, perspective, hermano){
 
 		if( hermano !== undefined){
-			console.log("crea un hermano");
-			var rotCam = new TNodo(nombre + "_R",  new TTransf(), hermano.dad);
-			var traCam = new TNodo(nombre + "_T",  new TTransf(), rotCam);
-			var cam = new TNodo(nombre, new TCamara(perspective), traCam);
+			//console.log("crea un hermano");
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), hermano.dad );
+			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
+			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}else{
-			console.log("crea en raiz");
-			var rotCam = new TNodo(nombre + "_R", new TTransf(), this.escena);
-			var traCam = new TNodo(nombre + "_T",  new TTransf(), rotCam);
-			var cam = new TNodo(nombre, new TCamara(perspective), traCam);
+			//console.log("crea en raiz");
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), this.escena );
+			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
+			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
 		this.camaraRegistro.push(cam);
 		
@@ -95,15 +95,15 @@ class TMotor{
 	crearNodoLuz(nombre, intensidad, hermano){
 
 		if( hermano !== undefined){
-			console.log("crea un hermano");
-			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), hermano.dad);
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotLuz);
-			var luz = new TNodo(nombre, new TLuz(intensidad), traLuz);
+			//console.log("crea un hermano");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);	
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz(intensidad), rotLuz);
 		}else{
-			console.log("crea en raiz");
-			var rotLuz = new TNodo(nombre + "_R", new TTransf(), this.escena);
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotLuz);
-			var luz = new TNodo(nombre, new TLuz(intensidad), traLuz);
+			//console.log("crea en raiz");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);	
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz(intensidad), rotLuz);
 		}
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
@@ -121,33 +121,22 @@ class TMotor{
 	crearNodoMalla(nombre, recurso, hermano){
 
 		if( hermano !== undefined){
-			console.log("crea un hermano");
+			//console.log("crea un hermano");
 
-			var rotMalla = new TNodo(nombre + "_R", new TTransf(), hermano.dad);
-			var traMalla = new TNodo(nombre + "_T", new TTransf(), rotMalla);
-			var escMalla = new TNodo(nombre + "_S", new TTransf(), traMalla);
+			var traMalla = new TNodo(nombre + "_T", new TTransf(),  hermano.dad);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
 			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
 		}else{
-			console.log("crea en raiz");
-			var rotMalla = new TNodo(nombre + "_R", new TTransf(), this.escena);
-			var traMalla = new TNodo(nombre + "_T",  new TTransf(), rotMalla);
-			var escMalla = new TNodo(nombre + "_S", new TTransf(), traMalla);
+			//console.log("crea en raiz");
+			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
 			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
 		}
 		this.mallaRegistro.push(malla);
 		return malla;
 	}
-/** se le pasa el ?? por parametro y activa dicha camara */
-	/*activarCamara(pos){
-		if(pos>=0 && pos<=this.camaraActiva.length){
-			var lastPos= this.camaraRegistro.indexOf(1);
-			this.camaraActiva[lastPos] = 0;
-			this.camaraActiva[pos] = 1;
-			return this.camaraRegistro[pos];
-		}else{
-			return "no existe";
-		}
-	}*/
 
 	/** se le pasa el nombre por parametro y activa dicha camara */
 	activarCamara(nombre){
@@ -203,7 +192,7 @@ class TMotor{
 			return undefined;
 		}
 	}
-
+	//TODO
 	moverLuz(nombre, x, y, z){
 		var pos = -1;
 		
@@ -213,7 +202,7 @@ class TMotor{
 				break;
 			}
 		}
-		console.log(this.luzRegistro[pos].dad.dad);
+		console.log(this.luzRegistro[pos].dad.dad.entity.trasladar(x,y,z));
 	}
 
 	moverMalla(nombre, x, y, z){
@@ -225,12 +214,38 @@ class TMotor{
 				break;
 			}
 		}
-		console.log(this.mallaRegistro[pos].dad.dad.entity.trasladar(x,y,z));
+		if(pos>=0)
+			this.mallaRegistro[pos].dad.dad.dad.entity.trasladar(x,y,z);
 
 	}
 
+	rotarMalla(nombre, grados, eje){
+		var pos = -1;
+		
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(nombre == this.mallaRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0)
+			this.mallaRegistro[pos].dad.dad.entity.rotar(grados, eje);
 
+	}
 
+	escalarMalla(nombre, q){
+		var pos = -1;
+		
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(nombre == this.mallaRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0)
+			this.mallaRegistro[pos].dad.entity.escalar(q, q, q);			
+
+	}
 
 	
 }

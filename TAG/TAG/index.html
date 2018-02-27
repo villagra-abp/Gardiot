@@ -48,7 +48,7 @@
         var camara = motor.crearNodoCamara("camara1", 0.1, undefined);
 
 
-        var malla =motor.crearNodoMalla("malla1", "chair", undefined);
+        var malla = motor.crearNodoMalla("malla1", "chair", undefined);
         
         var malla2 = motor.crearNodoMalla("malla2", "chair", undefined);
 
@@ -57,15 +57,30 @@
         
 
 
-        malla.dad.dad.entity.trasladar(-5, -2, -10);
+       // malla.dad.dad.entity.trasladar(-5, -2, -10);
 
-        malla2.dad.dad.entity.trasladar(5, -2, -10);
+       // malla2.dad.dad.entity.trasladar(5, -2, -10);
 
-        malla3.dad.dad.entity.trasladar(0, -2, -7);
+       // malla3.dad.dad.entity.trasladar(0, -2, -7);
+        
+
+        motor.moverMalla("malla1", -5, -2, -10);
+
+        motor.moverMalla("malla2", 5, -2, -10);
+
+        motor.moverMalla("malla3", 0, -2, -7);   
+
+        motor.moverLuz("luz1", 0, -2, -7);   
+
+        motor.rotarMalla("malla1", 0.5, "z");  
+
+        motor.escalarMalla("malla2", 0.3);
 
 
 
-        console.log(motor.escena);
+
+
+        //console.log(motor.escena);
 
 
 
