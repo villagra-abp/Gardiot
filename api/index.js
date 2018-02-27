@@ -40,6 +40,7 @@ app.use('/api', require('./routes/uploadRoutes'));
 //app.use('/api', require('./routes/feedRoutes'));
 //app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
+app.use('/api', require('./routes/familyRoutes'));
 
 //Start server
 app.listen(config.port, function () {

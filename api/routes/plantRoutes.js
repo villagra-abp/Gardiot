@@ -43,74 +43,82 @@ router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
 });
 
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	var plantData = {
-		scientificName: request.body.scientificName,
-		commonName: request.body.commonName,
-    	description: request.body.description,
-    	//photo: request.body.photo, Esto funciona distinto
-    	_3DModel: request.body._3DModel,
-    	family: request.body.family,
-    	depth: request.body.depth,
-    	distance: request.body.distance,
-    	diseaseResist: request.body.diseaseResist,
-    	initDatePlant: request.body.initDatePlant,
-    	finDatePlant: request.body.finDatePlant,
-    	initDateBloom: request.body.initDateBloom,
-    	finDateBloom: request.body.finDateBloom,
-    	initDateHarvest: request.body.initDateHarvest,
-    	finDateHarvest: request.body.finDateHarvest,
-    	leaveType: request.body.leaveType
-	};
-	var validate = validateInput(plantData);
-	if (validate.length > 0)
-		response.status(400).json({"Mensaje": validate});
+	if (!request.body.scientificName || !request.body.commonName || request.body.description)
+		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
-		plantData = sanitizeInput(plantData);
-		plantModel.insertPlant(plantData, function(error, data) {
-			if (data)
-				response.status(200).json({"Mensaje":"Insertado"});
-			else
-				response.status(500).json({"Mensaje":"Error: " +error.message});
-		});
+		var plantData = {
+			scientificName: request.body.scientificName,
+			commonName: request.body.commonName,
+	    	description: request.body.description,
+	    	//photo: request.body.photo, Esto funciona distinto
+	    	_3DModel: request.body._3DModel,
+	    	family: request.body.family,
+	    	depth: request.body.depth,
+	    	distance: request.body.distance,
+	    	diseaseResist: request.body.diseaseResist,
+	    	initDatePlant: request.body.initDatePlant,
+	    	finDatePlant: request.body.finDatePlant,
+	    	initDateBloom: request.body.initDateBloom,
+	    	finDateBloom: request.body.finDateBloom,
+	    	initDateHarvest: request.body.initDateHarvest,
+	    	finDateHarvest: request.body.finDateHarvest,
+	    	leaveType: request.body.leaveType
+		};
+		var validate = validateInput(plantData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
+		else {
+			plantData = sanitizeInput(plantData);
+			plantModel.insertPlant(plantData, function(error, data) {
+				if (data)
+					response.status(200).json({"Mensaje":"Insertado"});
+				else
+					response.status(500).json({"Mensaje":error.message});
+			});
+		}
 	}
 });
 
-router.put('/admin//plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-  var plantData = {
-    	id: request.body.id,
-		scientificName: request.body.scientificName,
-		commonName: request.body.commonName,
-    	description: request.body.description,
-    	//photo: request.body.photo, Esto funciona distinto
-    	_3DModel: request.body._3DModel,
-    	family: request.body.family,
-    	depth: request.body.depth,
-    	distance: request.body.distance,
-    	diseaseResist: request.body.diseaseResist,
-    	initDatePlant: request.body.initDatePlant,
-    	finDatePlant: request.body.finDatePlant,
-    	initDateBloom: request.body.initDateBloom,
-    	finDateBloom: request.body.finDateBloom,
-    	initDateHarvest: request.body.initDateHarvest,
-    	finDateHarvest: request.body.finDateHarvest,
-    	leaveType: request.body.leaveType
-	};
-	var validate = validateInput(plantData);
-	if (validate.length > 0)
-		response.status(400).json({"Mensaje": validate});
-	else {
-		plantData = sanitizeInput(plantData);
-		plantModel.updatePlant(plantData, function(error, data) {
-			if (data && data.mensaje)
-				response.status(200).json(data);
-			else
-				response.status(500).json({"Mensaje":"Error"});
-		});
+router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.id, {gt: 0})) {
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	}
+	else {
+		var plantData = {
+			scientificName: request.body.scientificName,
+			commonName: request.body.commonName,
+	    	description: request.body.description,
+	    	//photo: request.body.photo, Esto funciona distinto
+	    	_3DModel: request.body._3DModel,
+	    	family: request.body.family,
+	    	depth: request.body.depth,
+	    	distance: request.body.distance,
+	    	diseaseResist: request.body.diseaseResist,
+	    	initDatePlant: request.body.initDatePlant,
+	    	finDatePlant: request.body.finDatePlant,
+	    	initDateBloom: request.body.initDateBloom,
+	    	finDateBloom: request.body.finDateBloom,
+	    	initDateHarvest: request.body.initDateHarvest,
+	    	finDateHarvest: request.body.finDateHarvest,
+	    	leaveType: request.body.leaveType
+		};
+		var validate = validateInput(plantData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
+		else {
+			plantData = sanitizeInput(plantData);
+			plantModel.updatePlant(plantData, request.params.id, function(error, data) {
+				if (data && data.mensaje)
+					response.status(200).json(data);
+				else
+					response.status(500).json({"Mensaje":error.message});
+			});
+		}
+	} 
 });
 
 router.delete('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 1}))
+	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.deletePlant(request.params.id, function(error, data) {
@@ -119,7 +127,7 @@ router.delete('/admin/plant/:id', passport.authenticate('jwt', {session: false})
 			else if (data == 0)
 				response.status(404).json({"Mensaje":"No existe"});
 			else
-				response.status(500).json({"Mensaje":"Error"});
+				response.status(500).json({"Mensaje":error.message});
 		});
 	}
 });
@@ -148,8 +156,8 @@ function sanitizeInput(data) {
 function validateInput(data) {
 	var resp = '';
 	if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (data.scientificName && !validator.isAscii(data.scientificName, 'es-ES')) resp += 'Nombre científico no válido, ';
-	if (data.commonName && !validator.isAscii(data.commonName, 'es-ES')) resp += 'Nombre común no válido, ';
+	if (data.scientificName && !validator.isAscii(data.scientificName)) resp += 'Nombre científico no válido, ';
+	if (data.commonName && !validator.isAscii(data.commonName)) resp += 'Nombre común no válido, ';
 	if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
 	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data._3DModel && !validator.isURL(data._3DModel)) resp += 'Modelo no válido, ';
