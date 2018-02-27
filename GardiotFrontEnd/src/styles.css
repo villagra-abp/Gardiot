@@ -3,6 +3,11 @@ body{
   padding-bottom: 50px;
 }
 
+nav{
+  background-color: #63d297;
+}
+
+
 .footer{
   position: relative;
   bottom:0;
@@ -87,6 +92,7 @@ fieldset {
 .tabs__panel[_ngcontent-c2]{
   background-color: #fff !important;
 }
+
 
 .btn-file {
     position: relative;
