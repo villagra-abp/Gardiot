@@ -10,7 +10,7 @@ router.get('/families/:number/:page/:sort', function (request, response) {
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		plantModel.getFamilies (request.params.number, request.params.page, request.params.sort, function(error, data){
+		familyModel.getFamilies (request.params.number, request.params.page, request.params.sort, function(error, data){
     		response.status(200).json(data);
     	});
 	}
