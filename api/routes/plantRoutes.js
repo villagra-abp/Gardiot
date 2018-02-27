@@ -43,7 +43,8 @@ router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
 });
 
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.scientificName || !request.body.commonName || request.body.description)
+	console.log(request.body);
+	if (!request.body.scientificName || !request.body.commonName || !request.body.description)
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
 		var plantData = {
@@ -114,7 +115,7 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 					response.status(500).json({"Mensaje":error.message});
 			});
 		}
-	} 
+	}
 });
 
 router.delete('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
@@ -138,7 +139,7 @@ function sanitizeInput(data) {
 	if (data.commonName) { data.commonName = validator.trim(data.commonName); data.commonName = validator.stripLow(data.commonName); data.commonName = validator.escape(data.commonName);}
 	if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
 	if (data.photo) data.photo = validator.trim(data.photo);
-	if (data._3DModel) data._3DModel = validator.trim(data.photo);
+	//if (data._3DModel) data._3DModel = validator.trim(data.photo);
 	if (data.family) {  data.family = validator.trim(data.family); data.family = validator.toInt(data.family);}
 	if (data.depth) {  data.depth = validator.trim(data.depth); data.depth = validator.toFloat(data.depth);}
 	if (data.distance) {  data.distance = validator.trim(data.distance); data.distance = validator.toFloat(data.distance);}
@@ -159,8 +160,8 @@ function validateInput(data) {
 	if (data.scientificName && !validator.isAscii(data.scientificName)) resp += 'Nombre científico no válido, ';
 	if (data.commonName && !validator.isAscii(data.commonName)) resp += 'Nombre común no válido, ';
 	if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
-	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
-	if (data._3DModel && !validator.isURL(data._3DModel)) resp += 'Modelo no válido, ';
+	//if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
+	//if (data._3DModel && !validator.isURL(data._3DModel)) resp += 'Modelo no válido, ';
 	if (data.family && !validator.isInt(data.family)) resp += 'Familia no válida, ';
 	if (data.depth && !validator.isFloat(data.depth)) resp += 'Profundidad no válida, ';
 	if (data.distance && !validator.isFloat(data.distance)) resp += 'Distancia no válida, ';

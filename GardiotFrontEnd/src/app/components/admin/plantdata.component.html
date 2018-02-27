@@ -2,7 +2,7 @@
 	<h1>Plantas</h1>
 <!-- https://www.npmjs.com/package/angular-tabs-component-->
 
-<ul class="nav nav-tabs">
+<!-- <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" href="#">Active</a>
   </li>
@@ -13,84 +13,10 @@
     <a class="nav-link" href="#">Link</a>
   </li>
 
-</ul>
-
-
+</ul> -->
 
 <tabs>
 <tab tabTitle="Nueva Planta">
-	<!-- <section class="container">
-	  <div class="row animated fadeIn fast">
-	    <div class="col-md-12">
-	      <form  (ngSubmit)="this.guardar()" #forma="ngForm" novalidate="">
-					<h2>datos básicos</h2>
-					<div class="form-group">
-						<label  for="name_plant">Nombre comun: </label>
-						<input  type="text" [(ngModel)]="plant.commonName" name="name" id="name_plant" required>
-					</div>
-					<div class="form-group">
-						<label  for="formal_name_plant">Nombre cientifico: </label>
-						<input  type="text" [(ngModel)]="plant.scientificName" name="name" id="formal_name_plant" required>
-					</div>
-					<div class="form-group">
-						<label  for="descp_plant">Descripcion: </label>
-						<input  type="text" [(ngModel)]="plant.description" name="descp" id="descp_plant" required>
-					</div>
-
-					<h2>datos tecnicos</h2>
-					<div class="form-group">
-						<label  for="family_plant">Familia: </label>
-						<input  type="text" [(ngModel)]="plant.family" name="family" id="family_plant" required>
-					</div>
-					<div class="form-group">
-						<label  for="depth_plant">Profundidad: </label>
-						<input  type="text" [(ngModel)]="plant.depth" name="depth" id="depth_plant" required>
-					</div>
-					<div class="form-group">
-						<label  for="distance_plant">Distancia: </label>
-						<input  type="text" [(ngModel)]="plant.distance" name="distance" id="distance_plant" required>
-					</div>
-					<div class="form-group">
-						<label  for="resist_plant">Resistencia: </label>
-						<input  type="text" [(ngModel)]="plant.diseaseResist" name="resist" id="resist_plant" required>
-					</div>
-
-					<h2>fecha de plantacion</h2>
-				 <div class="form-group">
-					 <label  for="date_initplant">Inico Fecha de plantacion: </label>
-					 <input  type="date" [(ngModel)]="plant.initDatePlant" name="initplant" id="date_initplant">
-				 </div>
-				 <div class="form-group">
-					 <label  for="date_endplant">Fin Fecha de plantacion: </label>
-					 <input  type="date" [(ngModel)]="plant.finDatePlant" name="endplant" id="date_endplant">
-				 </div>
-				 <h2>fecha de floracion</h2>
-				 <div class="form-group">
-					 <label  for="date_initbloomplant">Inico Fecha de floracion: </label>
-					 <input  type="date" [(ngModel)]="plant.initDateBloom" name="initbloomplant" id="date_initbloomplant">
-				 </div>
-				 <div class="form-group">
-					 <label  for="date_endbloomplant">Fin Fecha de floracion: </label>
-					 <input  type="date" [(ngModel)]="plant.finDateBloom" name="endbloomplant" id="date_endbloomplant">
-				 </div>
-				 <h2>fecha de cosecha</h2>
-				<div class="form-group">
-					<label  for="date_initharvestplant">Inico Fecha de cosecha: </label>
-					<input  type="date" [(ngModel)]="plant.initDateHarvest" name="initharvestplant" id="date_initharvestplant">
-				</div>
-				<div class="form-group">
-					<label  for="date_endharvestplant">Fin Fecha de cosecha: </label>
-					<input  type="date" [(ngModel)]="plant.finDateHarvest" name="endharvestplant" id="date_endharvestplant">
-				</div>
-	        <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-	        <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
-	      </form>
-	    </div>
-	  </div>
-	</section>
-</div> -->
-
-
 <section class="container">
 	<form (ngSubmit)="this.guardar()" #forma="ngForm" novalidate="">
 		<h4>Datos Básicos</h4>
@@ -105,10 +31,12 @@
 		<br>
 		<!-- https://codepen.io/Sebus059/pen/MwMQbP -->
 		<div class="form-group">
-			<div class="input-group input-file" name="Fichier1">
-				<label class="btn btn-default btn-file">
-				Buscar <input type="file" class="form-control" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta'>
-				</label>
+			  <label for="photo_plant">Foto</label>
+			  <!-- <input type="text" class="form-control upload" id="photo_plant">
+			Buscar <input type="file" class="form-control upload" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta'> -->
+			<div class="upload-btn-wrapper form-control ">
+			  <button class="bttn">Selecionar imagen</button>
+			  <input type="file" name="myfile" id="photo_plant" />
 			</div>
 	  </div>
 
@@ -118,14 +46,17 @@
 		</div>
 		<h4>Datos Técnicos</h4>
 		<div class="form-row">
-	    <!-- <div class="form-group col-md-6">
-	      <label for="family_plant">Familia</label>
-	      <input type="text" class="form-control" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >
-	    </div> -->
 			<div class="form-group col-md-6" ng-init="listarFamilias()">
-	      <label for="family_plant">Familia</label>
-	      <input type="text" class="form-control" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >
-				<select2 id="family_plant" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)"></select2>
+				<label for="family_plant">Familia</label>
+				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >>
+					 <option *ngFor="let family of families">1</option>
+					 <option>2</option>
+					 <option>3</option>
+					 <option>4</option>
+					 <option>5</option>
+				 </select>
+	      <!-- <label for="family_plant">Familia</label>
+				<select2 id="family_plant" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)"></select2>-->
 	    </div>
 
 	    <div class="form-group col-md-6">
@@ -143,14 +74,22 @@
 					<input type="text" class="form-control" [(ngModel)]="plant.distance" name="distance" id="distance_plant" placeholder="Se mide en cm" required>
 				</div>
 		</div>
-		<div class="form-group">
-	    <label for="_3DModel">Modelo 3D</label>
-			<div class="input-group input-file" name="Fichier1">
-		    <input type="text" class="form-control" name="_3DModel" id="_3DModel" placeholder='Seleccionar modelo 3D' />
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-choose" type="button">Buscar</button>
-				</span>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="photo_plant">Modelo 3D</label>
+
+			<div class="upload-btn-wrapper form-control ">
+				<button class="bttn">Selecionar</button>
+				<input type="file" name="myfile" id="photo_plant" />
 			</div>
+			</div>
+			<div class="form-group col-md-6">
+					<label for="leaveType">Tipo hoja</label>
+					<input type="text" class="form-control" [(ngModel)]="plant.leaveType" name="leaveType" id="leaveType" placeholder="Caduca o perenne" required>
+				</div>
+		</div>
+		<div class="form-group">
+
 	  </div>
 
 	<h4>Calendario</h4>
