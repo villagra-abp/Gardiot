@@ -22,12 +22,8 @@ var routeRequirements = require('../functions/routeRequirements');
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password || !request.body.password2) 
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
-	else if (request.body.password !== request.body.password2){
-		console.log(request.body.password2);
-		console.log(request.body.password);
-		
+	else if (request.body.password !== request.body.password2)		
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
-	}
 	else {
 		var userData = {
 			id: request.body.id,
@@ -98,7 +94,7 @@ router.post('/authenticate', function(request, response) {
 			if (typeof user[0] !== 'undefined') {
 				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					else if (user[0].dateDelete === 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else if (user[0].dateDelete !== 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
 					else {
 						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 							if (isMatch && !err) {
@@ -208,9 +204,9 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 //*** Darse de baja. Sin parametros
 
 router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
-	userModel.deactivateUser(request.user.id, function(error, data) {
+	userModel.blockUser(request.user.id, function(error, data) {
 		if (data == 1)
-			response.status(200).json({"Mensaje":"Cuenta desactivada"});
+			response.status(200).json({"Mensaje":"Cuenta dada de baja"});
 		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
 		else
@@ -221,7 +217,6 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequi
 //*** Logout
 
 router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
-	//var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	var token = request.headers.authorization;
 	token = token.slice(7);
 	inactiveTokenModel.insertInactiveToken(token, function (error, data) {	
@@ -237,10 +232,14 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequi
 
 //*** Lista todos los usuarios
 
-router.get('/admin/users', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.getUser (function(error, data) {
-		response.status(200).json(data);
-	});
+router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		userModel.getUser(request.params.number, request.params.page, reques.params.order, request.params.sort, function(error, data) {
+			response.status(200).json(data);
+		});
+	}
 });
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
@@ -254,7 +253,7 @@ router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 	});
 });
 
-//*** Desactiva a un usuario. Misma forma que antes
+//*** Da de baja a un usuario. Misma forma que antes
 
 router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	userModel.deactivateUser(request.params.id, function(error, data) {
@@ -267,6 +266,44 @@ router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), 
 		else
 			response.status(500).json({"Mensaje":"Error"});
 	});
+});
+
+
+//*** Inserta un usuario, puede ser admin
+
+router.post('/admin/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!request.body.id || !request.body.password) 
+		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
+	else {
+		var userData = {
+			id: request.body.id,
+			password: request.body.password,
+			admin: request.body.admin
+		};
+		var validate = validateInput(userData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
+		else {
+			userData = sanitizeInput(userData);
+			userModel.getUserById(userData.id, function(error, data) {
+				if (typeof data[0] !== 'undefined') 
+					response.status(400).json({"Mensaje":"Este usuario ya existe"});
+				else {					
+					userModel.genHash(userData.password, function(error, hash) {
+						if (!error) {
+							userData.password = hash;
+							userModel.insertUser(userData, function(error, data) {
+								if (data == 1) 
+									response.status(200).json({"Mensaje":"Usuario insertado"});
+								else
+									response.status(500).json({"Mensaje":error.message});
+							});
+						}
+					});
+				}
+			});
+		}
+	}
 });
 
 //*** Elimina a un usuario 

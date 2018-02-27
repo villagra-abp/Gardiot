@@ -3,10 +3,18 @@ var bcrypt = require('bcryptjs');
 
 var user = {};
 
-user.getUser = function(callback) {
+user.getUser = function(number, page, order, sort, callback) {
 	if (connection) {
-		connection.query('SELECT * FROM User', function(error, rows) {
-			//connection.end();
+	    let minPeak = (page - 1) * number;
+	    let maxPeak = page * number;
+	    let orderSentence = '';
+	    let orderByParam = '';
+	    order = order.toUpperCase();
+	    if (sort.toUpperCase() === 'DESC')
+	      orderSentence = 'DESC';
+	    if (order === 'NAME' || order === 'LASTNAME' || order === 'BIRTHDATE' || order === 'CITY')
+	      orderByParam = 'commonName ' + orderSentence;
+		connection.query('SELECT id, name, lastName, birthDate, active, ciudad, admin FROM User', function(error, rows) {
 			if (error)
 				callback(error, null);
 			else
@@ -16,10 +24,9 @@ user.getUser = function(callback) {
 }
 
 user.getUserById = function(id, callback) {
-	if (connection) { //Si el id es el mail finalmenente hay que poner las dobles comillas
-		var mariasql = 'SELECT * FROM User WHERE id = "' + id + '"'; //Esto era connection.escape
+	if (connection) { 
+		var mariasql = 'SELECT * FROM User WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, row) {
-			//connection.end();
 			if (error)
 				callback(error, null);
 			else
@@ -28,26 +35,15 @@ user.getUserById = function(id, callback) {
 	}
 }
 
-user.insertUser = function(userData, callback) { //Falta sanear INT
+user.insertUser = function(userData, callback) { 
 	if (connection) {
-		var mariasql = 'INSERT INTO User SET id = "' + userData.id +'",';
-		if (userData.password) 
-			mariasql += 'password = "' + userData.password + '",';
-		if (userData.name)
-			mariasql += 'name = "' + userData.name + '",';
-		if(userData.lastName)
-			mariasql += 'lastName = "' + userData.lastName + '",';
-		if (userData.birthDate)
-			mariasql += 'birthDate = "' + userData.birthDate + '",';
-		if (userData.photo)
-			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.access)
-			mariasql += 'access = "' + userData.access + '",';
-		if (userData.googleId)
-			mariasql += 'googleId = "' + userData.googleId + '", active = 1,';
-		if (userData.facebookId)
-			mariasql += 'facebookId = "' + userData.facebookId + '", active = 1,';
-		
+		var mariasql = 'INSERT INTO User SET ';
+		for (var key in data)
+      		if (typeof data[key]!== 'undefined') {
+        		mariasql += key + ' = "' + data[key] + '",';
+        		if (key == 'googleId' || key == 'facebookId')
+        			mariasql += 'active = 1,';
+      		}		
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		connection.query(mariasql, function(error, result) {
 			if (error)
@@ -58,32 +54,12 @@ user.insertUser = function(userData, callback) { //Falta sanear INT
 	}
 }
 
-user.updateUser = function(userData, callback) {
-	console.log(userData.birthDate);
+user.updateUser = function(userData, id, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
-		if (userData.id)
-			mariasql += 'id = "' + userData.id +'",';
-		if (userData.password) //Todo esto es en caso de que no se haga un GET para mostrar los valores anteriores en el formulario
-			mariasql += 'password = "' + userData.password + '",';
-		if (userData.name)
-			mariasql += 'name = "' + userData.name + '",';
-		if (userData.lastName)
-			mariasql += 'lastName = "' + userData.lastName + '",';
-		if (userData.birthDate)
-			mariasql += 'birthDate = "' + userData.birthDate + '",';
-		if (userData.photo)
-			mariasql += 'photo = "' + userData.photo + '",';
-		if (userData.countryCode)
-			mariasql += 'countryCode = "' + userData.countryCode + '",';
-		if (userData.city)
-			mariasql += 'city = "' + userData.city + '",';
-		if (userData.access)
-			mariasql += 'access = "' + userData.access + '",';
-		if (userData.googleId)
-			mariasql += 'googleId = "' + userData.googleId + '",';
-		if (userData.facebookId)
-			mariasql += 'facebookId = "' + userData.facebookId + '",';
+		for (var key in data)
+      		if (typeof data[key]!== 'undefined' && key!='oldId')
+        		sql += key + ' = "' + data[key] + '",';
 		mariasql = mariasql.slice(0, -1); //Delete last comma
 		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
@@ -106,9 +82,7 @@ user.updatePassword = function (email, password, callback) {
 
 user.deleteUser = function(id, callback) {
 	if (connection) {
-		var mariasql = 'DELETE FROM User WHERE id = "' + id + '"';
-		connection.query(mariasql, function(error, result) {
-			//connection.end();
+		connection.query('DELETE FROM User WHERE id = "' + id + '"', function(error, result) {
 			if (error)
 				callback(error, null);
 			else
@@ -117,12 +91,10 @@ user.deleteUser = function(id, callback) {
 	}
 }
 
-user.deactivateUser = function(id, callback) {
+user.blockUser = function(id, callback) {
 	if (connection) {
 		var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-		var mariasql = 'UPDATE User SET dateDelete = "' + utc + '" WHERE id = "' + id + '"';
-		connection.query(mariasql, function(error, result) {
-			//connection.end();
+		connection.query('UPDATE User SET dateDelete = "' + utc + '" WHERE id = "' + id + '"', function(error, result) {
 			if (error)
 				callback(error, null);
 			else
@@ -133,9 +105,7 @@ user.deactivateUser = function(id, callback) {
 
 user.activateUser = function(id, callback) {
 	if (connection) {
-		var mariasql = 'UPDATE User SET active = 1 WHERE id = "' + id + '"';
-		connection.query(mariasql, function(error, result) {
-			//connection.end();
+		connection.query('UPDATE User SET active = 1 WHERE id = "' + id + '"', function(error, result) {
 			if (error)
 				callback(error, null);
 			else
