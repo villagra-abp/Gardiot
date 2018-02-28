@@ -22,6 +22,7 @@ export class PlantService {
 	  }
 
 		save( plant:Plant ){
+			console.log(plant.photo);
       let body = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
@@ -29,6 +30,7 @@ export class PlantService {
 			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
 			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
 			body+= `&leaveType=${plant.leaveType}`;
+			body+= `&photo=${plant.photo}`;
 
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
