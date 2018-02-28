@@ -22,12 +22,8 @@ var routeRequirements = require('../functions/routeRequirements');
 router.post('/register', function(request, response) {
 	if (!request.body.id || !request.body.password || !request.body.password2) 
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
-	else if (request.body.password !== request.body.password2){
-		console.log(request.body.password2);
-		console.log(request.body.password);
-		
+	else if (request.body.password !== request.body.password2)		
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
-	}
 	else {
 		var userData = {
 			id: request.body.id,
@@ -98,7 +94,7 @@ router.post('/authenticate', function(request, response) {
 			if (typeof user[0] !== 'undefined') {
 				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					else if (user[0].dateDelete === 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else if (user[0].dateDelete !== 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
 					else {
 						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 							if (isMatch && !err) {
@@ -134,8 +130,7 @@ router.get('/isAuthenticated', function(request, response) {
 //***Muestra al usuario actual. Sin parametros
 
 router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	response.status(200).json(request.user); //Arreglar
-	//response.status(200).json({"Name:":request.user.name, "LastName":request.user.lastName, "Photo":request.user.photo}); //PASSPORT devuelve siempre el objeto user
+	response.status(200).json({"id": request.user.id, "birthDate":request.user.birthDate, "name:":request.user.name, "lastName":request.user.lastName, "photo":request.user.photo, "access":request.user.access, "countryCode": request.user.countryCode, "city":request.user.city}); //PASSPORT devuelve siempre el objeto user
 });
 
 
@@ -180,10 +175,10 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 							if (!error) {
 								userData.password = hash;
 								userModel.updateUser(userData, function(error, data) {
-									if (data)
+									if (data == 1)
 										response.status(200).json({"Mensaje":"Actualizado"});
 									else
-										response.status(500).json({"Mensaje":"Error"});
+										response.status(500).json({"Mensaje":error.message});
 								});
 							}
 							else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
@@ -195,10 +190,10 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 		}
 		else {
 			userModel.updateUser(userData, function(error, data) {
-				if (data)
+				if (data == 1)
 					response.status(200).json({"Mensaje":"Actualizado"});
 				else
-					response.status(500).json({"Mensaje":"Error"});
+					response.status(500).json({"Mensaje":error.message});
 			});
 		}		
 	}
@@ -208,20 +203,19 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 //*** Darse de baja. Sin parametros
 
 router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
-	userModel.deactivateUser(request.user.id, function(error, data) {
+	userModel.blockUser(request.user.id, function(error, data) {
 		if (data == 1)
-			response.status(200).json({"Mensaje":"Cuenta desactivada"});
+			response.status(200).json({"Mensaje":"Cuenta dada de baja"});
 		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
 		else
-			response.status(500).json({"Mensaje":"Error"});
+			response.status(500).json({"Mensaje":error.message});
 	});
 });
 
 //*** Logout
 
 router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
-	//var token = jwtExtract.fromAuthHeaderAsBearerToken();
 	var token = request.headers.authorization;
 	token = token.slice(7);
 	inactiveTokenModel.insertInactiveToken(token, function (error, data) {	
@@ -237,10 +231,14 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequi
 
 //*** Lista todos los usuarios
 
-router.get('/admin/users', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.getUser (function(error, data) {
-		response.status(200).json(data);
-	});
+router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		userModel.getUser(request.params.number, request.params.page, reques.params.order, request.params.sort, function(error, data) {
+			response.status(200).json(data);
+		});
+	}
 });
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
@@ -254,78 +252,122 @@ router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 	});
 });
 
-//*** Desactiva a un usuario. Misma forma que antes
+//*** Da de baja a un usuario. Misma forma que antes
 
 router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.deactivateUser(request.params.id, function(error, data) {
+	userModel.blockUser(request.params.id, function(error, data) {
 		if (error)
-			response.status(500).json({"Mensaje":"Error: " + error});
+			response.status(500).json({"Mensaje": error.message});
 		else if (data == 1)
-			response.status(200).json({"Mensaje":"Desactivado"});
+			response.status(200).json({"Mensaje":"Dado de baja"});
 		else if (data == 0)
 			response.status(404).json({"Mensaje":"No existe"});
-		else
-			response.status(500).json({"Mensaje":"Error"});
 	});
+});
+
+
+//*** Inserta un usuario, puede ser admin
+
+router.post('/admin/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!request.body.id || !request.body.password) 
+		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
+	else {
+		var userData = {
+			id: request.body.id,
+			password: request.body.password,
+			admin: request.body.admin
+		};
+		var validate = validateInput(userData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
+		else {
+			userData = sanitizeInput(userData);
+			userModel.getUserById(userData.id, function(error, data) {
+				if (typeof data[0] !== 'undefined') 
+					response.status(400).json({"Mensaje":"Este usuario ya existe"});
+				else {					
+					userModel.genHash(userData.password, function(error, hash) {
+						if (!error) {
+							userData.password = hash;
+							userModel.insertUser(userData, function(error, data) {
+								if (data == 1) 
+									response.status(200).json({"Mensaje":"Usuario insertado"});
+								else
+									response.status(500).json({"Mensaje":error.message});
+							});
+						}
+					});
+				}
+			});
+		}
+	}
 });
 
 //*** Elimina a un usuario 
 
 router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.deleteUser(request.params.id, function(error, data) {
-		if (error)
-			response.status(500).json({"Mensaje":"Error: " + error});
-		else if (data == 1)
-			response.status(200).json({"Mensaje":"Eliminado"});
-		else if (data == 0)
-			response.status(404).json({"Mensaje":"No existe"});
-		else
-			response.status(500).json({"Mensaje":"Error"});
-	});
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+		response.status(400).json({"Mensaje":"Introduce un mail válido"});
+	else {
+		userModel.deleteUser(request.params.id, function(error, data) {
+			if (error)
+				response.status(500).json({"Mensaje":"Error: " + error});
+			else if (data == 1)
+				response.status(200).json({"Mensaje":"Eliminado"});
+			else if (data == 0)
+				response.status(404).json({"Mensaje":"No existe"});
+			else
+				response.status(500).json({"Mensaje":error.message});
+		});
+	}
 });
 
 
 //***Actualiza a otro usuario
 
 router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	var userData = {
-		id: request.body.id,
-		password: request.body.password,
-		name: request.body.name,
-		lastName: request.body.lastName,
-		birthDate: request.body.birthDate,
-		photo: request.body.photo,
-		city: request.body.city,
-		countryCode: request.body.countryCode,
-		oldId: request.params.id,
-	};
-	var validate = validateInput(userData);
-	if (validate.length > 0)
-		response.status(400).json({"Mensaje": validate});
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
-		userData = sanitizeInput(userData);
-		if (userData.password) {
-			userModel.genHash(userData.password, function(error, hash) {
-				if (!error) {
-					userData.password = hash;
-					userModel.updateUser(userData, function(error, data) {
-						if (data)
-							response.status(200).json({"Mensaje":"Actualizado"});
-						else
-							response.status(500).json({"Mensaje":"Error"});
-					});
-				}
-				else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
-			});						
-		}
+		var userData = {
+			id: request.body.id,
+			password: request.body.password,
+			name: request.body.name,
+			lastName: request.body.lastName,
+			birthDate: request.body.birthDate,
+			photo: request.body.photo,
+			city: request.body.city,
+			countryCode: request.body.countryCode,
+			oldId: request.params.id,
+		};
+		var validate = validateInput(userData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
 		else {
-			userModel.updateUser(userData, function(error, data) {
-				if (data)
-					response.status(200).json({"Mensaje":"Actualizado"});
-				else
-					response.status(500).json({"Mensaje":"Error"});
-			});
-		}		
+			userData = sanitizeInput(userData);
+			if (userData.password) {
+				userModel.genHash(userData.password, function(error, hash) {
+					if (!error) {
+						userData.password = hash;
+						userModel.updateUser(userData, function(error, data) {
+							if (data == 1)
+								response.status(200).json({"Mensaje":"Actualizado"});
+							else
+								response.status(500).json({"Mensaje":error.message});
+						});
+					}
+					else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
+				});						
+			}
+			else {
+				userModel.updateUser(userData, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}		
+		}
 	}
 });
 
@@ -334,10 +376,9 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 function sanitizeInput(data) {
 	if (data.id) {  data.id = validator.trim(data.id);}
 	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	//if (data.birthDate) data.birthDate = validator.toDate(data.birthDate);
+	if (data.lastName) { data.lastName = validator.trim(data.lastName); data.lastName = validator.stripLow(data.lastName); data.lastName = validator.escape(data.lastName);}
 	if (data.photo) data.photo = validator.trim(data.photo);
-	//if (data.city) { data.city = validator.trim(data.city); data.city = validator.toInt(data.city);}
-	if (data.plan) { data.plan = validator.trim(data.plan); data.plan = validator.stripLow(data.plan); data.plan = validator.escape(data.plan);}
+	if (data.city) { data.city = validator.trim(data.city); data.city = validator.stripLow(data.city); data.city = validator.escape(data.city);}
 	if (data.oldId) {data.oldId = validator.trim(data.oldId);}
 	return data;
 }
@@ -345,11 +386,12 @@ function sanitizeInput(data) {
 function validateInput(data) {
 	var resp = '';
 	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
-	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
+	if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+	if (data.lastName && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
 	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
-	//if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
-	//if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
-	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
+	if (data.countryCode && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
+	if (data.city && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
+	if (data.photo && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
 	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
