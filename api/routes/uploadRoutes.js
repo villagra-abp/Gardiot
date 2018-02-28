@@ -12,11 +12,14 @@ var mime = require('mime');
 //Storage para las fotos de perfil
 var storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../uploads/avatar/')
+    if (req.hostname == 'gardiot.ovh')
+      cb(null, '../app/assets/images/imgProfile/');
+    else
+      cb(null, '../GardiotFrontEnd/src/assets/images/imgProfile/');
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      cb(null, raw.toString('hex') + Date.now() + '.jpeg');
     });
   }
 });
@@ -38,6 +41,7 @@ var upload2 = multer({storage: storage2}).single('photo');
 
 router.post('/uploadAvatar', function (req, res, next) {
      var path = '';
+     console.log(req);
      upload1(req, res, function (err) {
         if (err) {
           // An error occurred when uploading

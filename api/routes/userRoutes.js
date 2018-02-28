@@ -348,7 +348,7 @@ function validateInput(data) {
 	if (data.name && !validator.isAlpha(data.name, 'es-ES')) resp += 'Nombre no válido, ';
 	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	//if (data.city && !validator.isInt(data.city)) resp += 'Ciudad no válida, ';
-	if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
+	//if (data.photo && !validator.isURL(data.photo)) resp += 'Foto no válida, ';
 	if (data.plan && !validator.isAlpha(data.plan, 'es-ES')) resp += 'Plan no válido, ';
 	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);

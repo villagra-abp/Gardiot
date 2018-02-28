@@ -202,7 +202,8 @@ class TMotor{
 				break;
 			}
 		}
-		console.log(this.luzRegistro[pos].dad.dad.entity.trasladar(x,y,z));
+		if(pos>=0)
+			this.luzRegistro[pos].dad.dad.entity.trasladar(x,y,z);
 	}
 
 	moverMalla(nombre, x, y, z){

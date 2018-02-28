@@ -10,11 +10,14 @@ import { APP_ROUTING } from "./app.routes";
 
 import { Select2Module } from 'ng2-select2';
 import { FileSelectDirective } from 'ng2-file-upload';
+import {Ng2ImgMaxModule} from "ng2-img-max";
+
 
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
+import { Ng2ImgMaxService } from "ng2-img-max";
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -100,6 +103,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     FormsModule,
     HttpModule,
     Select2Module,
+    Ng2ImgMaxModule,
     TabModule,
     Ng2PaginationModule,
     APP_ROUTING
@@ -108,6 +112,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     UserService,
     GardenService,
     PlantService,
+    Ng2ImgMaxService,
     AuthguardGuard,
     AdminguardGuard,
     PlantService
