@@ -45,17 +45,17 @@ export class PlantService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
+      return this.http.get(this.apiURL+"plants"+"/9/1/NAME/asc", { headers } )
           .map( res =>{
             return res.json();
           })
     }
 
-		detailsAllFamily(){
+		detailsAllFamilies(){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
+      return this.http.get(this.apiURL+"families"+"/100/1/asc", { headers } )
           .map( res =>{
             return res.json();
           })

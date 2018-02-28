@@ -49,14 +49,8 @@
 			<div class="form-group col-md-6" ng-init="listarFamilias()">
 				<label for="family_plant">Familia</label>
 				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >>
-					 <option *ngFor="let family of families">1</option>
-					 <option>2</option>
-					 <option>3</option>
-					 <option>4</option>
-					 <option>5</option>
+					 <option *ngFor="let family of families" value="{{family.id}}">{{family.name}}</option>
 				 </select>
-	      <!-- <label for="family_plant">Familia</label>
-				<select2 id="family_plant" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)"></select2>-->
 	    </div>
 
 	    <div class="form-group col-md-6">
@@ -164,6 +158,7 @@
 			  </div>
 			</div>
 		</div>
+		<app-pagination [count]="100" [page]="3" [perPage]="6" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>
 </tab>
 </tabs>

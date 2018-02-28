@@ -15,7 +15,7 @@ import { AppComponent } from "../../app.component";
 export class PlantdataComponent implements OnInit {
   plant=new Plant("");
   private plants:any[]=[];
-  private families:any[];
+  private families:any[]=[];
 
   constructor(
     private _plantService:PlantService,
@@ -52,8 +52,22 @@ export class PlantdataComponent implements OnInit {
 
       }
 
+      mostrarFamilias(){
+        this._plantService.detailsAllFamilies()
+            .subscribe(data=>{
+              for(let key$ in data){
+                this.families.push(data[key$]);
+              }
+            },
+          error => {
+            console.error(error);
+          });
+
+        }
+
   ngOnInit() {
     this.mostrar();
+    this.mostrarFamilias();
   }
 
 }
