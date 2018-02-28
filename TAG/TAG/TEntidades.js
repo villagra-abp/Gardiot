@@ -110,13 +110,7 @@ class TCamara extends TEntidad {
         this._far;
     }
 
-    setPerspectiva (left, right, bottom, top, near, far) { //Estos floats no se para que son
-        console.log("left = "+left);
-        console.log("right = "+right);
-        console.log("bottom = "+bottom);
-        console.log("top = "+top);
-        console.log("near = "+near);
-        console.log("far = "+far);
+    setParams (left, right, bottom, top, near, far) { //Estos floats no se para que son
         this._left=left;
         this._right=right;
         this._bottom=bottom;
@@ -126,23 +120,23 @@ class TCamara extends TEntidad {
         this._esPerspectiva=true;
     }
 
+    setPerspectiva(){
+        this._isPerspective=true;
+    }
+
     setParalela (left, right, bottom, top, near, far) {
-        console.log("left = "+left);
-        console.log("right = "+right);
-        console.log("bottom = "+bottom);
-        console.log("top = "+top);
-        console.log("near = "+near);
-        console.log("far = "+far);
-        this._left=left;
-        this._right=right;
-        this._bottom=bottom;
-        this._top=top;
-        this._near=near;
-        this._far=far;
         this._esPerspectiva = false;
     }
 
-    beginDraw () {} //Suelen estar vacios
+    beginDraw () {
+        if(!this._isPerspective){
+            mat4.ortho(matrixProjection, this._left, this._right, this._bottom, this._top, this._near, this._far);
+        }
+        else{
+            mat4.frustum(matrixProjection, this._left, this._right, this._bottom, this._top, this._near*10, this._far);
+        }
+        gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, matrixProjection);
+    } //Suelen estar vacios
     endDraw () {}
 }
 

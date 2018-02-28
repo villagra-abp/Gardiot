@@ -41,12 +41,19 @@ class TMotor{
 
     		
 	        
-
+    		//inicializar librería gráfica
 	        setupWebGL();
 
+	        //inicializar luces
 
 
+	        //inicializar viewport
+    		gl.viewport(0, 0, canvas.width, canvas.height);
 
+
+	        //inicializar cámara 1
+	        console.log(this.camaraActiva);
+	        this.camaraRegistro[this.camaraActiva].entity.beginDraw();
 	        
     		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 	        this.escena.draw();
@@ -79,6 +86,7 @@ class TMotor{
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
+		cam.entity.setParams(-10, 10, -10, 10, 1, 100);
 		this.camaraRegistro.push(cam);
 		
 		return cam;
@@ -140,10 +148,10 @@ class TMotor{
 
 	/** se le pasa el nombre por parametro y activa dicha camara */
 	activarCamara(nombre){
-
 		var pos = -1;
 		
 		for (var i = 0; i< this.camaraRegistro.length; i++){
+			console.log(this.camaraRegistro[i].name);
 			if(nombre == this.camaraRegistro[i].name){
 				pos = i;
 				break;

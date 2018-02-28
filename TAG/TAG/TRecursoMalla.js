@@ -67,10 +67,7 @@ class TRecursoMalla extends TRecurso{
           //le aplico algunas transformaciones
     
 
-    mat4.perspective(pMatrix, 45, canvas.width/canvas.height, 0.1, 100.0);
-
     //entonces aquí le vuelvo a pasar las matrices al shader para que se pueda visualizar bien
-    gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, pMatrix);
     gl.uniformMatrix4fv(glProgram.mvMatrixUniform, false, matrixModel);
 
 

@@ -86,8 +86,7 @@ function setupWebGL(){
     //profundidad
     gl.enable(gl.DEPTH_TEST);
 
-    //establecemos dimensiones del canvas
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    
 
     /*//inicializamos matriz model y matriz projection (esto no se hará aquí)
     mat4.perspective(pMatrix, 45, canvas.width/canvas.height, 0.1, 100.0);
