@@ -18,7 +18,7 @@
 <tabs>
 <tab tabTitle="Nueva Planta">
 <section class="container">
-	<form (ngSubmit)="this.guardar()" #forma="ngForm" novalidate="">
+	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm" novalidate="">
 		<h4>Datos Básicos</h4>
 	  <div class="form-row">
 	    <div class="col">
@@ -32,8 +32,6 @@
 		<!-- https://codepen.io/Sebus059/pen/MwMQbP -->
 		<div class="form-group">
 			  <label for="photo_plant">Foto</label>
-			  <!-- <input type="text" class="form-control upload" id="photo_plant">
-			Buscar <input type="file" class="form-control upload" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta'> -->
 			<div class="upload-btn-wrapper form-control ">
 			  <button class="bttn">Selecionar imagen</button>
 			  <input type="file" name="myfile" id="photo_plant" />

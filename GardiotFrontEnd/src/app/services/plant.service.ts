@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class PlantService {
-	private apiURL:string="";
+	public apiURL:string="";
 
 	//public isAdmin:boolean;
 	//public isAuthenticated:boolean;

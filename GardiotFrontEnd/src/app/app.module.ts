@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import {TabModule} from 'angular-tabs-component';
-import {Ng2PaginationModule} from 'ng2-pagination';
+// import {Ng2PaginationModule} from 'ng2-pagination';
 
 //Rutas
 import { APP_ROUTING } from "./app.routes";
@@ -105,7 +105,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     Select2Module,
     Ng2ImgMaxModule,
     TabModule,
-    Ng2PaginationModule,
+    // Ng2PaginationModule,
     APP_ROUTING
   ],
   providers: [
