@@ -18,8 +18,8 @@
 <tabs>
 <tab tabTitle="Nueva Planta">
 <section class="container">
-	<form (ngSubmit)="this.guardar()" #forma="ngForm" novalidate="">
-		<h4>Datos Básicos</h4>
+	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm" novalidate="">
+		<h4>Datos Básicos</h4> 
 	  <div class="form-row">
 	    <div class="col">
 	      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Nombre común" required>
@@ -32,11 +32,9 @@
 		<!-- https://codepen.io/Sebus059/pen/MwMQbP -->
 		<div class="form-group">
 			  <label for="photo_plant">Foto</label>
-			  <!-- <input type="text" class="form-control upload" id="photo_plant">
-			Buscar <input type="file" class="form-control upload" name="_3DModel" id="_3DModel" placeholder='Seleccionar foto planta'> -->
 			<div class="upload-btn-wrapper form-control ">
 			  <button class="bttn">Selecionar imagen</button>
-			  <input type="file" name="myfile" id="photo_plant" />
+			  <input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
 			</div>
 	  </div>
 
@@ -49,14 +47,8 @@
 			<div class="form-group col-md-6" ng-init="listarFamilias()">
 				<label for="family_plant">Familia</label>
 				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >>
-					 <option *ngFor="let family of families">1</option>
-					 <option>2</option>
-					 <option>3</option>
-					 <option>4</option>
-					 <option>5</option>
+					 <option *ngFor="let family of families" value="{{family.id}}">{{family.name}}</option>
 				 </select>
-	      <!-- <label for="family_plant">Familia</label>
-				<select2 id="family_plant" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)"></select2>-->
 	    </div>
 
 	    <div class="form-group col-md-6">
@@ -164,6 +156,7 @@
 			  </div>
 			</div>
 		</div>
+		<app-pagination [count]="100" [page]="3" [perPage]="6" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>
 </tab>
 </tabs>

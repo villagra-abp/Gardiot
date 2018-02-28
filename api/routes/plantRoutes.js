@@ -51,7 +51,7 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
 			scientificName: request.body.scientificName,
 			commonName: request.body.commonName,
 	    	description: request.body.description,
-	    	//photo: request.body.photo, Esto funciona distinto
+	    	photo: request.body.photo,
 	    	_3DModel: request.body._3DModel,
 	    	family: request.body.family,
 	    	depth: request.body.depth,
