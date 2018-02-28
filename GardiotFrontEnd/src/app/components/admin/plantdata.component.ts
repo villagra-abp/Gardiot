@@ -69,11 +69,12 @@ export class PlantdataComponent implements OnInit {
 
         }
 
-      uploadPhoto(event){
+      uploadPhoto(){
+        let imgUpl=<HTMLInputElement>document.querySelector('#photo_plant');
         if(this.uploader.getNotUploadedItems().length){
-          console.log(event.target.files);
+          console.log(imgUpl.files);
           let file=[];
-          file.push(event.target.files[0]);
+          file.push(imgUpl.files[0]);
           file.forEach(function(){
             console.log(file);
           });
@@ -105,7 +106,7 @@ this.uploader.onAfterAddingFile = (file)=> {
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.plant.photo='assets/images/imgPlant/'+url;
+         this.plant.photo='assets/images/imgPlants/'+url;
          this.guardar();
          };
   }

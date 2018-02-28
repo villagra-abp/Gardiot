@@ -19,7 +19,7 @@
 <tab tabTitle="Nueva Planta">
 <section class="container">
 	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm" novalidate="">
-		<h4>Datos Básicos</h4>
+		<h4>Datos Básicos</h4>  
 	  <div class="form-row">
 	    <div class="col">
 	      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Nombre común" required>
@@ -34,7 +34,7 @@
 			  <label for="photo_plant">Foto</label>
 			<div class="upload-btn-wrapper form-control ">
 			  <button class="bttn">Selecionar imagen</button>
-			  <input type="file" name="myfile" id="photo_plant" />
+			  <input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
 			</div>
 	  </div>
 

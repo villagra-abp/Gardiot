@@ -28,9 +28,9 @@ var storage1 = multer.diskStorage({
 var storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
     if (req.hostname == 'gardiot.ovh')
-      cb(null, '../app/assets/images/imgPlant/');
+      cb(null, '../app/assets/images/imgPlants/');
     else
-      cb(null, '../GardiotFrontEnd/src/assets/images/imgPlant/');
+      cb(null, '../GardiotFrontEnd/src/assets/images/imgPlants/');
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
