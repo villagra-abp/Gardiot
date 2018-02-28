@@ -86,12 +86,5 @@ function setupWebGL(){
     //profundidad
     gl.enable(gl.DEPTH_TEST);
 
-    
-
-    /*//inicializamos matriz model y matriz projection (esto no se hará aquí)
-    mat4.perspective(pMatrix, 45, canvas.width/canvas.height, 0.1, 100.0);
-    mat4.identity(matrixModel);
-    mat4.translate(matrixModel, matrixModel, [0, -1, -1.0]);*/
-
 
 }

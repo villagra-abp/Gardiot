@@ -60,7 +60,6 @@ class TTransf extends TEntidad{
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
-
         let a=matrixModel.slice(0);
 
         matrixStack.push(a);
@@ -68,7 +67,6 @@ class TTransf extends TEntidad{
         mat4.multiply(matrixModel, matrixModel, this._matrix);
 
 
-        
     }
 
     endDraw(n){
@@ -128,15 +126,7 @@ class TCamara extends TEntidad {
         this._esPerspectiva = false;
     }
 
-    beginDraw () {
-        if(!this._isPerspective){
-            mat4.ortho(matrixProjection, this._left, this._right, this._bottom, this._top, this._near, this._far);
-        }
-        else{
-            mat4.frustum(matrixProjection, this._left, this._right, this._bottom, this._top, this._near*10, this._far);
-        }
-        gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, matrixProjection);
-    } //Suelen estar vacios
+    beginDraw () {} //Suelen estar vacios
     endDraw () {}
 }
 

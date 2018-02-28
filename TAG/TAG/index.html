@@ -50,7 +50,7 @@
 
         var luz = motor.crearNodoLuz("luz1", false, undefined);
 
-        var camara = motor.crearNodoCamara("camara1", false, undefined);
+        var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
         var malla = motor.crearNodoMalla("malla1", "chair", undefined);
@@ -74,8 +74,11 @@
         motor.escalarMalla("malla2", 0.3);
 
 
+        motor.moverCamara("camara1", 0, 0, 20);
+
         motor.activarCamara("camara1");
-        console.log(motor.camaraActiva);
+
+
 
 
 
