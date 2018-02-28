@@ -33,6 +33,24 @@ export class GardenService {
 
 	  modifyGarden(garden:Garden){
 	  	let body = `id=${garden.id}`;
+	  	body += `&title=${garden.title}`;
+	  	body += `&width=${garden.width}`;
+	  	body += `&lenght=${garden.lenght}`;
+	  	body += `&latitude=${garden.latitude}`;
+	  	body += `&longitude=${garden.longitude}`;
+	  	body += `&soil=${garden.soil}`;
+	  	body += `&countryCode=${garden.countryCode}`;
+	  	body += `&city=${garden.city}`;
+
+	  console.log(body);
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.put(this.apiURL+"garden", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
 
 	  }
 
@@ -46,6 +64,27 @@ export class GardenService {
             return res.json();
           })
 	  }
+
+	  listCoutries(){
+      return this.http.get(this.apiURL + "geonamesAllCountries")
+        .map(res=>{
+          return res.json();
+        })
+      }
+
+    listCities(value:string){
+      return this.http.get(this.apiURL + "geonamesCities/" + value)
+        .map(res=>{
+          return res.json();
+        })
+    }
+
+    listCitiesByZip(country:string, value:string){
+      return this.http.get(this.apiURL + "geonamesSearchByZip/" + value+"/"+country)
+        .map(res=>{
+          return res.json();
+        })
+    }
 
 
 

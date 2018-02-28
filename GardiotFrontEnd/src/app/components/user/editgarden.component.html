@@ -1,5 +1,9 @@
 <div class="container main-container">
-  <h1>Mi perfil</h1>
+  <h1>Editar mi jardin</h1>
+
+  <section class="container">
+  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
+  </section>
 
 <section class="container">
   <div class="row animated fadeIn fast">
@@ -9,9 +13,22 @@
           <label  for="title">Título: </label>
           <input  type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
         </div>
+        <div class="form-group" ng-init="listarPaises()">
+          <label for="countries">País:</label>
+ 
+          <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+          </select2>
+ 
+        </div>
+
+          <div class="form-group">
+            <label for="countries">Introduce tu código postal:</label>
+            <input type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
+        </div>
+ 
         <div class="form-group">
-          <label  for="countryCode">Pais: </label>
-          <input  type="text" [(ngModel)]="garden.CountryCode" name="countryCode" id="title_garden" required>
+            <label for="countries">Ciudad:</label>
+            <span id="ciudad"></span>
         </div>
 
        <!-- <div class="form-group" ng-init="listarPaises()">

@@ -62,7 +62,7 @@ router.put('/admin/family/:id', passport.authenticate('jwt', {session: false}), 
 			response.status(400).json({"Mensaje": validate});
 		else {
 			familyData = sanitizeInput(familyData);
-			familyModel.updateFamily(familyData, id, function(error, data) {
+			familyModel.updateFamily(familyData, request.params.id, function(error, data) {
 				if (data && data.mensaje)
 					response.status(200).json(data);
 				else

@@ -100,7 +100,7 @@ export class EditProfileComponent implements OnInit{
           cursor: pointer;
           `);
 
-          //this.listarPaises();
+          this.listarPaises();
           this.mostrarCiudad();
 
         },

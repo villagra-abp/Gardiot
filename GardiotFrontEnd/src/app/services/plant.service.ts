@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class PlantService {
-	private apiURL:string="";
+	public apiURL:string="";
 
 	//public isAdmin:boolean;
 	//public isAuthenticated:boolean;
@@ -22,6 +22,7 @@ export class PlantService {
 	  }
 
 		save( plant:Plant ){
+			console.log(plant.photo);
       let body = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
@@ -29,6 +30,7 @@ export class PlantService {
 			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
 			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
 			body+= `&leaveType=${plant.leaveType}`;
+			body+= `&photo=${plant.photo}`;
 
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
@@ -45,17 +47,17 @@ export class PlantService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
+      return this.http.get(this.apiURL+"plants"+"/9/1/NAME/asc", { headers } )
           .map( res =>{
             return res.json();
           })
     }
 
-		detailsAllFamily(){
+		detailsAllFamilies(){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1/family/asc", { headers } )
+      return this.http.get(this.apiURL+"families"+"/100/1/asc", { headers } )
           .map( res =>{
             return res.json();
           })

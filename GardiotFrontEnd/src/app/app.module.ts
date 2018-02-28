@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import {TabModule} from 'angular-tabs-component';
+// import {Ng2PaginationModule} from 'ng2-pagination';
 
 //Rutas
 import { APP_ROUTING } from "./app.routes";
@@ -58,6 +59,7 @@ import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,8 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     OauthConfirmationComponent,
     DesarrolloComponent,
     FileSelectDirective,
-    PlantComponent
+    PlantComponent,
+    PaginationComponent
 
   ],
   imports: [
@@ -102,6 +105,7 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
     Select2Module,
     Ng2ImgMaxModule,
     TabModule,
+    // Ng2PaginationModule,
     APP_ROUTING
   ],
   providers: [
