@@ -94,7 +94,7 @@ router.post('/authenticate', function(request, response) {
 			if (typeof user[0] !== 'undefined') {
 				if (request.hostname == 'localhost' || user[0].active == 1) {
 					if (user[0].access.search("local")==-1) response.status(403).json({"Mensaje":"Esta cuenta se autentica mediante Google"});
-					else if (user[0].dateDelete !== 'undefined') response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
+					else if (user[0].dateDelete !== null) response.status(403).json({"Mensaje":"Esta cuenta se ha dado de baja. Contacta con el administrador del sistema."});
 					else {
 						userModel.checkPassword(request.body.password, user[0].password, function(err, isMatch) {
 							if (isMatch && !err) {
@@ -244,25 +244,33 @@ router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
 router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.getUserById(request.params.id, function(error, data) {
-		if (typeof data[0] !== 'undefined')
-			response.status(200).json(data);
-		else
-			response.status(404).json({"Mensaje":"No existe"});
-	});
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+		response.status(400).json({"Mensaje":"Introduce un mail válido"});
+	else {
+		userModel.getUserById(request.params.id, function(error, data) {
+			if (typeof data[0] !== 'undefined')
+				response.status(200).json(data);
+			else
+				response.status(404).json({"Mensaje":"No existe"});
+		});
+	}
 });
 
 //*** Da de baja a un usuario. Misma forma que antes
 
 router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	userModel.blockUser(request.params.id, function(error, data) {
-		if (error)
-			response.status(500).json({"Mensaje": error.message});
-		else if (data == 1)
-			response.status(200).json({"Mensaje":"Dado de baja"});
-		else if (data == 0)
-			response.status(404).json({"Mensaje":"No existe"});
-	});
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+		response.status(400).json({"Mensaje":"Introduce un mail válido"});
+	else {
+		userModel.blockUser(request.params.id, function(error, data) {
+			if (error)
+				response.status(500).json({"Mensaje": error.message});
+			else if (data == 1)
+				response.status(200).json({"Mensaje":"Dado de baja"});
+			else if (data == 0)
+				response.status(404).json({"Mensaje":"No existe"});
+		});
+	}	
 });
 
 
