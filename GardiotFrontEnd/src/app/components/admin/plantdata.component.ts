@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { PlantService } from "../../services/plant.service";
 import { Plant } from "../../classes/plant.class";
+import { Family } from "../../classes/family.class";
 import { AppComponent } from "../../app.component";
 
 
@@ -14,6 +15,7 @@ import { AppComponent } from "../../app.component";
 export class PlantdataComponent implements OnInit {
   plant=new Plant("");
   private plants:any[]=[];
+  private families:any[];
 
   constructor(
     private _plantService:PlantService,
@@ -33,23 +35,9 @@ export class PlantdataComponent implements OnInit {
             let v=JSON.parse(error._body);
             console.log(v.Mensaje);
             this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-          }); 
-    }
-
-    mostrar2(){
-      this._plantService.details()
-            .subscribe(data=>{
-              this.plant.id=data[0].id;
-              this.plant.commonName=data[0].scientificName;
-              this.plant.photo=data[0].photo;
-              this.plant.family=data[0].family;
-            },
-          error => {
-            console.error(JSON.parse(error._body).Mensaje);
-
           });
-
     }
+
 
     mostrar(){
       this._plantService.detailsAll()

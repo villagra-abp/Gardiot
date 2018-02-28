@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>WebGL</title>
-    <script src="main.js"></script>
-    <script src="entidades.js"></script>
-    <script src="nodo.js"></script>
+    <script src="TEntidades.js"></script>
+    <script src="TNodo.js"></script>
     <script src="TGestorRecursos.js"></script>
     <script src="TRecurso.js"></script>
     <script src="TRecursoMalla.js"></script>
@@ -54,15 +53,7 @@
 
         var malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
-        
 
-
-       // malla.dad.dad.entity.trasladar(-5, -2, -10);
-
-       // malla2.dad.dad.entity.trasladar(5, -2, -10);
-
-       // malla3.dad.dad.entity.trasladar(0, -2, -7);
-        
 
         motor.moverMalla("malla1", -5, -2, -10);
 
@@ -72,7 +63,7 @@
 
         motor.moverLuz("luz1", 0, -2, -7);   
 
-        motor.rotarMalla("malla1", 0.5, "z");  
+        motor.rotarMalla("malla1", 90, "z");  
 
         motor.escalarMalla("malla2", 0.3);
 
@@ -95,10 +86,8 @@
         var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
 
-        //console.log(matrixStack);
         motor.moverMalla("malla1", 0,0,0);
-        //probarGestor();
-        //inicializar();
+
 
         //CARLOS, TRATA DE ARRANCARLO (WEBGL)
         motor.draw();
