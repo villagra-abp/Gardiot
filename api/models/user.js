@@ -38,13 +38,13 @@ user.getUserById = function(id, callback) {
 user.insertUser = function(userData, callback) { 
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET ';
-		for (var key in data)
-      		if (typeof data[key]!== 'undefined') {
-        		mariasql += key + ' = "' + data[key] + '",';
+		for (var key in userData)
+      		if (typeof userData[key]!== 'undefined') {
+        		mariasql += key + ' = "' + userData[key] + '",';
         		if (key == 'googleId' || key == 'facebookId')
         			mariasql += 'active = 1,';
       		}		
-		mariasql = mariasql.slice(0, -1); //Delete last comma
+		mariasql = mariasql.slice(0, -1); 
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
@@ -54,19 +54,19 @@ user.insertUser = function(userData, callback) {
 	}
 }
 
-user.updateUser = function(userData, id, callback) {
+user.updateUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
-		for (var key in data)
-      		if (typeof data[key]!== 'undefined' && key!='oldId')
-        		sql += key + ' = "' + data[key] + '",';
-		mariasql = mariasql.slice(0, -1); //Delete last comma
+		for (var key in userData)
+      		if (typeof userData[key]!== 'undefined' && key!='oldId')
+        		mariasql += key + ' = "' + userData[key] + '",';
+		mariasql = mariasql.slice(0, -1); 
 		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, {"mensaje":"Actualizado"});
+				callback(null, result.affectedRows);
 		});
 	}
 }
@@ -75,7 +75,7 @@ user.updatePassword = function (email, password, callback) {
 	if (connection) {
 		connection.query('UPDATE User SET password = "' + password + '" WHERE id = "' + email + '"', function (error, result) {
 			if (error) callback(error, null);
-			else callback (null, {"Mensaje":"Actualizado"});
+			else callback (null, result.affectedRows);
 		});
 	}
 }
@@ -138,5 +138,4 @@ user.checkPassword = function(pw1, pw2, callback) {
 	});
 }
 
-//connection.end();
 module.exports = user;
