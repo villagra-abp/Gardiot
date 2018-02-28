@@ -34,7 +34,7 @@ plant.getPlantsNumber = function (callback) {
 
 plant.getPlantById = function(id, callback) {
 	if (connection) {
-		connection.query('SELECT scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant WHERE id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
+		connection.query('SELECT scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant, Family WHERE Plant.id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
 			if (error)
 				callback(error, null);
 			else
