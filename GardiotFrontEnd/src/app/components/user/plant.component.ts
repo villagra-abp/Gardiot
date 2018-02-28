@@ -37,7 +37,7 @@ export class PlantComponent implements OnInit {
               this.plant.description=data[0].description;
               this.plant.photo=data[0].photo;
               // this.plant.photo=data[0].3DModel;
-              this.plant.family=data[0].family;
+              this.plant.family=data[0].name;
               this.plant.depth=data[0].depth;
               this.plant.distance=data[0].distance;
               this.plant.diseaseResist=data[0].diseaseResist;
