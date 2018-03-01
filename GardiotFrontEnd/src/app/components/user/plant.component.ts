@@ -28,8 +28,8 @@ export class PlantComponent implements OnInit {
 
     private _plantService:PlantService) {}
 
-      mostrar(){
-      this._plantService.details()
+      mostrar(numplant:number){
+      this._plantService.details(numplant)
             .subscribe(data=>{
               this.plant.id=data[0].id;
               this.plant.commonName=data[0].commonName;
@@ -105,7 +105,7 @@ export class PlantComponent implements OnInit {
 
 
   ngOnInit() {
-    this.mostrar();
+    this.mostrar(10);
   }
 
 }
