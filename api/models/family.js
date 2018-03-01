@@ -5,11 +5,10 @@ var family = {};
 family.getFamilies = function(number, page, sort, callback) {
   if(connection) {
     let minPeak = (page - 1) * number;
-    let maxPeak = page * number;
     let order = '';
     if (sort.toUpperCase() === 'DESC')
       order = 'DESC';
-    connection.query('SELECT * FROM Family ORDER BY name ' + order + ' LIMIT ' + minPeak  + ',' + maxPeak , function (error, rows){
+    connection.query('SELECT * FROM Family ORDER BY name ' + order + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
       if(error)
         callback(error, null);
       else
@@ -27,6 +26,15 @@ family.getFamilyById = function(id, callback) {
 				callback(null, row);
 		});
 	}
+}
+
+family.getFamiliesNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) FROM Family', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
+    });
+  }
 }
 
 family.insertFamily = function(data, callback) {

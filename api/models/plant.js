@@ -5,7 +5,6 @@ var plant = {};
 plant.getPlants = function(number, page, orderBy, sort, callback) {
   if(connection) {
     let minPeak = (page - 1) * number;
-    let maxPeak = page * number;
     let orderSentence = '';
     let orderByParam = '';
     if (sort.toUpperCase() === 'DESC')
@@ -14,7 +13,7 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
       orderByParam = 'commonName ' + orderSentence;
     else if (orderBy.toUpperCase() === 'FAMILY')
       orderByParam = 'Family.id ' + orderSentence + ', commonName';
-    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + maxPeak , function (error, rows){
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
       if(error)
         callback(error, null);
       else

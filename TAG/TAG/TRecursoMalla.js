@@ -58,20 +58,10 @@ class TRecursoMalla extends TRecurso{
     index.number_vertex_points=this._verticesIndex.length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
-
-
-    //matrices
-    //Esto es algo así como coger los parámetros de matriz proyección y matriz
-          //view del shader. Una vez los hemos cogido, podemos hacer las transformaciones
-          //En setupWebGL, para este ejemplo, inicializo las matrices de modelo y proyección y
-          //le aplico algunas transformaciones
     
 
-    mat4.perspective(pMatrix, 45, canvas.width/canvas.height, 0.1, 100.0);
-
     //entonces aquí le vuelvo a pasar las matrices al shader para que se pueda visualizar bien
-    gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, pMatrix);
-    gl.uniformMatrix4fv(glProgram.mvMatrixUniform, false, matrixModel);
+    gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
 
 
     //dibujamos en el canvas

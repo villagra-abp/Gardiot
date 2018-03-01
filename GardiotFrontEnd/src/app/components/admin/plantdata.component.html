@@ -18,8 +18,8 @@
 <tabs>
 <tab tabTitle="Nueva Planta">
 <section class="container">
-	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm" novalidate="">
-		<h4>Datos Básicos</h4> 
+	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
+		<h4>Datos Básicos</h4>
 	  <div class="form-row">
 	    <div class="col">
 	      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Nombre común" required>
@@ -44,9 +44,9 @@
 		</div>
 		<h4>Datos Técnicos</h4>
 		<div class="form-row">
-			<div class="form-group col-md-6" ng-init="listarFamilias()">
+			<div class="form-group col-md-6">
 				<label for="family_plant">Familia</label>
-				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" id="family_plant" placeholder="Categoría a la que pertenece" required >>
+				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family"required>
 					 <option *ngFor="let family of families" value="{{family.id}}">{{family.name}}</option>
 				 </select>
 	    </div>
@@ -138,14 +138,28 @@
 </tab>
 <tab tabTitle="Gestión de plantas" active="true">
 	<div class="wrap">
-		<div class="col-lg-6">
-				<div class="input-group">
-					<input type="text" class="form-control">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">Buscar</button>
-					</span>
-				</div>
-			</div>
+
+				<form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
+					<article class="form-group col-md-4">
+						<input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot" >
+			    </article>
+					<!-- <article class="form-group col-md-2">
+						 <select class="form-control"  name="family">
+							 <option  value="nombre">nombre</option>
+							 <option  value="familia">familia</option>
+						 </select>
+					</article>
+					<article class="form-group col-md-2">
+						 <select class="form-control"  name="order">
+							 <option  value="ASC">A-Z</option>
+							 <option  value="DES">Z-A</option>
+						 </select>
+					</article> -->
+					<article class="form-group col-md-2">
+						<button class="btn btn-default" type="submit">Buscar</button>
+					</article>
+				</form>
+
 		<div class="card-columns">
 			<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
 			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px">
@@ -156,7 +170,7 @@
 			  </div>
 			</div>
 		</div>
-		<app-pagination [count]="100" [page]="3" [perPage]="6" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+		<app-pagination [count]="10" [page]="3" [perPage]="2" [pagesToShow]="3" [loading]="true" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>
 </tab>
 </tabs>
