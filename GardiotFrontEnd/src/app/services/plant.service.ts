@@ -9,9 +9,6 @@ import 'rxjs/Rx';
 export class PlantService {
 	public apiURL:string="";
 
-	//public isAdmin:boolean;
-	//public isAuthenticated:boolean;
-
   constructor( private http:Http, private _route:Router) {
 	    if(window.location.toString().indexOf("localhost")>=0){
 	      this.apiURL="http://localhost:3000/api/";
@@ -22,7 +19,6 @@ export class PlantService {
 	  }
 
 		save( plant:Plant ){
-			console.log(plant.photo);
       let body = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
       body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
 			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
@@ -43,15 +39,16 @@ export class PlantService {
           })
     }
 
-		detailsAll(){
+		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/9/1/NAME/asc", { headers } )
+      return this.http.get(this.apiURL+"plants"+"/"+items+"/"+page+"/NAME/asc", { headers } )
           .map( res =>{
             return res.json();
           })
     }
+
 
 		detailsAllFamilies(){
       let headers = new Headers({
@@ -63,17 +60,39 @@ export class PlantService {
           })
     }
 
-
-
-
-	  details(){
+	  details(numplant:number){
 	  	let headers = new Headers({
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
 
-      	return this.http.get(this.apiURL+"plant/6", { headers } )
+      	return this.http.get(this.apiURL+"plant/"+numplant, { headers } )
           .map( res =>{
             return res.json();
           })
 	  }
+
+		searchAll(){
+			// let body = `commonName=${plant.commonName}`;
+			let body = `:cala`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.post(this.apiURL+"find/:cala",  { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+		getNumberItems(){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.get(this.apiURL+"numPlants/", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
+
+
 }

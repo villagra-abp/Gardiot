@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core'
+import { PlantService } from "../../services/plant.service";
 
 
 @Component({
@@ -8,6 +9,7 @@ import {Input, Output, EventEmitter} from '@angular/core'
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
+  private plants:any[]=[];
 
   constructor() { }
 
@@ -38,10 +40,12 @@ export class PaginationComponent implements OnInit {
   }
 
   onPrev(): void {
+    console.log("Para atras");
     this.goPrev.emit(true);
   }
 
   onNext(next: boolean): void {
+    console.log("para adelante");
     this.goNext.emit(next);
   }
 

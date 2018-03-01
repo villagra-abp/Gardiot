@@ -34,9 +34,9 @@ router.get('/numPlants', function(request, response) {
 		if (typeof data !== 'undefined')
 			response.status(200).json(data);
 		else
-			response.status(404).json({"Mensaje":"No existe"});
+			response.status(404).json({"Mensaje":"No existe"}); 
 	});
-	
+
 });
 
 router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {

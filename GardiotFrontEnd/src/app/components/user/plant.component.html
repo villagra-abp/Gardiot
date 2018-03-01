@@ -12,32 +12,45 @@
         <!--delante de la url https://gardiot.ovh/ -->
         <section class="card">
           <img *ngIf="plant.photo !=undefined" src="{{plant.photo}}" alt="puerros">
-          <!-- <p>ID:{{plant.id}}</p>-->
-          <p *ngIf="plant.commonName !=undefined">Nombre común: {{plant.commonName}}</p>
-          <p *ngIf="plant.scientificName !=undefined">Nombre científico: {{plant.scientificName}}</p>
-          <p *ngIf="plant.family !=undefined">Familia: {{plant.family}}</p>
+          <dl>
+            <dt *ngIf="plant.commonName !=undefined">Nombre común</dt>
+            <dd *ngIf="plant.commonName !=undefined">{{plant.commonName}}</dd>
+            <dt *ngIf="plant.scientificName !=undefined">Nombre científico</dt>
+            <dd *ngIf="plant.scientificName !=undefined">{{plant.scientificName}}</dd>
+            <dt *ngIf="plant.family !=undefined">Familia</dt>
+            <dd *ngIf="plant.family !=undefined"> {{plant.family}}</dd>
+          </dl>
         </section>
       </div>
+
+        <!--
+       <p>ID:{{plant.id}}</p>
+        <p *ngIf="plant.commonName !=undefined">Nombre común: {{plant.commonName}}</p>
+        <p *ngIf="plant.scientificName !=undefined">Nombre científico: {{plant.scientificName}}</p>
+        <p *ngIf="plant.family !=undefined">Familia: {{plant.family}}</p>
+      -->
+
+
       <div class="col">
         <section class="card">
             <p *ngIf="plant.depth !=undefined">
               <img *ngIf="plant.depth !=undefined" class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">
-              Profundidad de siembra: {{plant.depth}} cm
+              Profundidad de siembra <strong>{{plant.depth}} cm</strong>
             </p>
 
             <p *ngIf="plant.distance !=undefined">
               <img *ngIf="plant.distance !=undefined" class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">
-              Distancia entre plantas: {{plant.distance}} cm
+              Distancia entre plantas <strong>{{plant.distance}} cm</strong>
             </p>
 
             <p *ngIf="plant.diseaseResist !=undefined">
               <img *ngIf="plant.diseaseResist !=undefined" class="iconplant"src="assets/images/icon/hielo.png" alt="Hielo">
-              Resistencia al frío: {{plant.diseaseResist}}
+              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>
             </p>
 
             <p *ngIf="plant.leaveType !=undefined">
               <img *ngIf="plant.leaveType !=undefined" class="iconplant"src="assets/images/icon/hoja.png" alt="Hoja">
-              Tipo de hoja: {{plant.leaveType}}
+              Tipo de hoja <strong>{{plant.leaveType}}</strong>
             </p>
         </section>
       </div>
@@ -46,17 +59,19 @@
 
           <p *ngIf="iniSiembra !=undefined && finSiembra !=undefined">
             <img *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
-            Se siembra entre {{iniSiembra}} y {{finSiembra}}
+            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>
           </p>
           <p *ngIf="iniFlores !=undefined && finFlores !=undefined">
             <img *ngIf="iniFlores !=undefined && finFlores !=undefined" class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">
-            Florece entre {{iniFlores}} y {{finFlores}}
+            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>
           </p>
           <p *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined">
             <img *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">
-            Se recolecta entre {{iniRecolectar}} y {{finRecolectar}}
+            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>
           </p>
         </section>
       </div>
     </div>
+    <button [routerLink] ="['/library']" class="btn btn-outline-primary"
+        type="submit" name="button">Volver a Biblioteca</button> 
 </div>
