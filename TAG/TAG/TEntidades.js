@@ -60,7 +60,6 @@ class TTransf extends TEntidad{
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
-
         let a=matrixModel.slice(0);
 
         matrixStack.push(a);
@@ -68,7 +67,6 @@ class TTransf extends TEntidad{
         mat4.multiply(matrixModel, matrixModel, this._matrix);
 
 
-        
     }
 
     endDraw(n){
@@ -110,13 +108,7 @@ class TCamara extends TEntidad {
         this._far;
     }
 
-    setPerspectiva (left, right, bottom, top, near, far) { //Estos floats no se para que son
-        console.log("left = "+left);
-        console.log("right = "+right);
-        console.log("bottom = "+bottom);
-        console.log("top = "+top);
-        console.log("near = "+near);
-        console.log("far = "+far);
+    setParams (left, right, bottom, top, near, far) { //Estos floats no se para que son
         this._left=left;
         this._right=right;
         this._bottom=bottom;
@@ -126,19 +118,11 @@ class TCamara extends TEntidad {
         this._esPerspectiva=true;
     }
 
+    setPerspectiva(){
+        this._isPerspective=true;
+    }
+
     setParalela (left, right, bottom, top, near, far) {
-        console.log("left = "+left);
-        console.log("right = "+right);
-        console.log("bottom = "+bottom);
-        console.log("top = "+top);
-        console.log("near = "+near);
-        console.log("far = "+far);
-        this._left=left;
-        this._right=right;
-        this._bottom=bottom;
-        this._top=top;
-        this._near=near;
-        this._far=far;
         this._esPerspectiva = false;
     }
 

@@ -13,8 +13,8 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
     if (orderBy.toUpperCase() === 'NAME')
       orderByParam = 'commonName ' + orderSentence;
     else if (orderBy.toUpperCase() === 'FAMILY')
-      orderByParam = 'family ' + orderSentence + ', commonName';
-    connection.query('SELECT * FROM Plant ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + maxPeak , function (error, rows){
+      orderByParam = 'Family.id ' + orderSentence + ', commonName';
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + maxPeak , function (error, rows){
       if(error)
         callback(error, null);
       else
@@ -23,10 +23,18 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
   }
 }
 
+plant.getPlantsNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) FROM Plant', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
+    });
+  }
+}
 
 plant.getPlantById = function(id, callback) {
 	if (connection) {
-		connection.query('SELECT * FROM Plant WHERE id = ' + id, function(error, row) {
+		connection.query('SELECT scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant, Family WHERE Plant.id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -42,7 +50,7 @@ plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT * FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
       if (error)
         callback(error, null);
       else

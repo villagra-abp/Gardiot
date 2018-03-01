@@ -31,7 +31,13 @@
     </canvas>
 
     <script>
-        var canvas, pMatrix=[], mvMatrix=[];
+        var canvas;
+
+        //Inicializamos la pila de matriz y la matriz modelo
+        var matrixStack=[];
+        var matrixModel = mat4.create();
+        matrixStack.push(matrixModel);
+        var matrixProjection=[];
         //variable que tendrá el programa webgl
         var gl=null;
 
@@ -44,7 +50,7 @@
 
         var luz = motor.crearNodoLuz("luz1", false, undefined);
 
-        var camara = motor.crearNodoCamara("camara1", 0.1, undefined);
+        var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
         var malla = motor.crearNodoMalla("malla1", "chair", undefined);
@@ -59,13 +65,20 @@
 
         motor.moverMalla("malla2", 5, -2, -10);
 
-        motor.moverMalla("malla3", 0, -2, -7);   
+        motor.moverMalla("malla3", 0, 0, -7);   
 
         motor.moverLuz("luz1", 0, -2, -7);   
 
         motor.rotarMalla("malla1", 90, "z");  
 
         motor.escalarMalla("malla2", 0.3);
+
+
+        motor.moverCamara("camara1", 0, 0, 20);
+
+        motor.activarCamara("camara1");
+
+
 
 
 
@@ -75,10 +88,7 @@
 
 
 
-        //Inicializamos la pila de matriz y la matriz modelo
-        var matrixStack=[];
-        var matrixModel = mat4.create();
-        matrixStack.push(matrixModel);
+
 
         //declaramos las variables necesarias para ejecutar el programa
         //las variables de WebGL empezarán siempre por gl para distinguirlas de
@@ -86,7 +96,7 @@
         var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
 
-        motor.moverMalla("malla1", 0,0,0);
+        
 
 
         //CARLOS, TRATA DE ARRANCARLO (WEBGL)
