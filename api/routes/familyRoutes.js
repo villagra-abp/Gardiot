@@ -29,6 +29,15 @@ router.get('/family/:id', function(request, response) {
 	}
 });
 
+router.get('/numFamilies', function(request, response) {
+	plantModel.getFamiliesNumber(function(error, data) {
+		if (typeof data !== 'undefined')
+			response.status(200).json(data);
+		else
+			response.status(404).json({"Mensaje":"No existe"});
+	});	
+});
+
 router.post('/admin/family', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var familyData = {
 		name: request.body.name,
