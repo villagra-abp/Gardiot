@@ -39,11 +39,11 @@ export class PlantService {
           })
     }
 
-		detailsAll(page:number){
+		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"plants"+"/2/"+page+"/NAME/asc", { headers } )
+      return this.http.get(this.apiURL+"plants"+"/"+items+"/"+page+"/NAME/asc", { headers } )
           .map( res =>{
             return res.json();
           })
@@ -82,6 +82,16 @@ export class PlantService {
             return res.json();
           })
     }
+
+		getNumberItems(){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.get(this.apiURL+"numPlants/", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
 
 
 
