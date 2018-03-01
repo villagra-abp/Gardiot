@@ -7,7 +7,7 @@ import { Family } from "../../classes/family.class";
 import { AppComponent } from "../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
-import { RouterLink } from '@angular/router';
+import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -21,12 +21,15 @@ export class PlantdataComponent implements OnInit {
   private families:any[]=[];
   uploader:FileUploader;
   private numeroItems:number;
+  private paginaActual:number=1;
+  private elementosPorPagina:number=2;
 
   constructor(
     private _plantService:PlantService,
     private _route:Router,
     private _appComponent:AppComponent,
-    private _ng2ImgMax:Ng2ImgMaxService
+    private _ng2ImgMax:Ng2ImgMaxService,
+    private activatedRoute: ActivatedRoute
     ) { }
 
     guardar(){
@@ -46,7 +49,7 @@ export class PlantdataComponent implements OnInit {
 
 
     mostrar(){
-      this._plantService.detailsAll(1,2)
+      this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
           .subscribe(data=>{
             for(let key$ in data){
               this.plants.push(data[key$]);
@@ -107,16 +110,22 @@ export class PlantdataComponent implements OnInit {
       getitems(){
         this._plantService.getNumberItems()
         .subscribe(data=>{
-          console.log(data[0]);
-          this.numeroItems=data[0];
-          console.log(data[0]);
+          this.numeroItems=data[0].NUMPLANTAS;
         },
         error => {
           console.error(error);
         });
       }
 
+      ActualizarPagina(){
+     this.activatedRoute.params.subscribe((params: Params) => {
+         this.paginaActual = params['pag'];
+       });
+     }
+
+
   ngOnInit() {
+    this.ActualizarPagina();
     this.mostrar();
     this.mostrarFamilias();
     this.getitems();

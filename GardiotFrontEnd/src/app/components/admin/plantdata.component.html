@@ -155,7 +155,7 @@
 							 <option  value="DES">Z-A</option>
 						 </select>
 					</article> -->
-					<article class="form-group col-md-2">
+					<article class="form-group col-md-2"> 
 						<button class="btn btn-default" type="submit">Buscar</button>
 					</article>
 				</form>
@@ -170,7 +170,7 @@
 			  </div>
 			</div>
 		</div>
-		<app-pagination [count]="this.numeroItems" [page]="3" [perPage]="2" [pagesToShow]="3" [loading]="true" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+		<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="true" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>
 </tab>
 </tabs>

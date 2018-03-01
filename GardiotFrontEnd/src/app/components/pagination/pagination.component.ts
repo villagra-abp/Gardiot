@@ -3,6 +3,7 @@ import {Input, Output, EventEmitter} from '@angular/core'
 import { PlantService } from "../../services/plant.service";
 
 
+
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -37,6 +38,7 @@ export class PaginationComponent implements OnInit {
 
   onPage(n: number): void {
     this.goPage.emit(n);
+    this.page=n;
   }
 
   onPrev(): void {

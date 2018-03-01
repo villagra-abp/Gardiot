@@ -10,6 +10,7 @@ import { ResendComponent } from "./components/manage/resend.component";
 import { LibraryComponent } from "./components/user/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
 import { PlantComponent } from "./components/user/plant.component";
+import { PlantdataComponent } from "./components/admin/plantdata.component";
 
 
 
@@ -42,6 +43,7 @@ const app_routes: Routes = [
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
+  { path: 'plantdata/:id', component: PlantdataComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
