@@ -38,7 +38,6 @@ export class PaginationComponent implements OnInit {
 
   onPage(n: number): void {
     this.goPage.emit(n);
-    this.page=n;
   }
 
   onPrev(): void {

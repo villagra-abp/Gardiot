@@ -43,7 +43,7 @@ const app_routes: Routes = [
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
-  { path: 'plantdata/:id', component: PlantdataComponent, canActivate: [AuthguardGuard] },
+  { path: 'plantdata', component: PlantdataComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },

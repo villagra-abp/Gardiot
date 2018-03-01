@@ -33,7 +33,6 @@ export class PlantdataComponent implements OnInit {
     ) { }
 
     guardar(){
-      console.log(this.plant);
       this._plantService.save(this.plant)
           .subscribe(data=>{
 
@@ -42,7 +41,6 @@ export class PlantdataComponent implements OnInit {
           },
           error=>{
             let v=JSON.parse(error._body);
-            console.log(v.Mensaje);
             this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
           });
     }
@@ -118,9 +116,10 @@ export class PlantdataComponent implements OnInit {
       }
 
       ActualizarPagina(){
-     this.activatedRoute.params.subscribe((params: Params) => {
-         this.paginaActual = params['pag'];
-       });
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            this.paginaActual = params['page'];
+
+          });
      }
 
 
