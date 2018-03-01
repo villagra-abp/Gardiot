@@ -44,7 +44,7 @@ export class PlantdataComponent implements OnInit {
 
 
     mostrar(){
-      this._plantService.detailsAll()
+      this._plantService.detailsAll(3)
           .subscribe(data=>{
             for(let key$ in data){
               this.plants.push(data[key$]);
@@ -88,6 +88,18 @@ export class PlantdataComponent implements OnInit {
             error=> console.log(error)
           );
         }
+      }
+
+      searchcontent(){
+        this._plantService.searchAll()
+        .subscribe(data=>{
+          for(let key$ in data){
+            this.plants.push(data[key$]);
+          }
+        },
+        error => {
+          console.error(error);
+        });
       }
 
   ngOnInit() {
