@@ -2,13 +2,20 @@ var connection = require('../config/connection');
 
 var finder = {};
 
-finder.find = function(model, data, callback) {
+finder.find = function(model, data, number, page, order, sort, callback) {
 	if (connection) {
-		sql = 'SELECT * FROM ' + model + ' WHERE ';
+		let minPeak = (page - 1) * number;
+   		let order = '';
+		sql = 'SELECT *, COUNT() AS number FROM ' + model + ' WHERE ';
 		for (var key in data)
-			if (typeof data[key]!== 'undefined') 
+			if (typeof data[key]!== 'undefined') {
 				sql += ' ' + key + ' LIKE "%' + data[key] + '%",';
+			}
 		sql = sql.slice(0, -1);
+		sql += ' ORDER BY "' + order + '" ';
+		if(sort.toUpperCase() === 'DESC')
+			sql += 'DESC ';
+		sql += 'LIMIT ' + minPeak + ',' + number;
 		connection.query(sql, function(error, rows) {
 			if (error)
 				callback(error, null);
