@@ -1,13 +1,15 @@
 class TRecursoTextura extends TRecurso{
-  /*var vertices, normales, texturas;
-  var vertTriangulos, normTriangulos, textTriangulos;
-  var nTriangulos;*/
+
   constructor (nombre){
     super(nombre);
+    this._img;
   }
-  cargarFichero(nombre){
 
-  	
+
+
+  cargarFichero(nombre){
+    this._img=new Image();
+    this._img.src="/recursos/texturas/"+nombre;
+    console.log(this._img);
   }
-  // draw();
 }

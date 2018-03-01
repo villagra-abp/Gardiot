@@ -31,7 +31,7 @@
     </canvas>
 
     <script>
-        var canvas;
+        var canvas=null;
 
         //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];
@@ -53,7 +53,7 @@
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        var malla = motor.crearNodoMalla("malla1", "chair", undefined);
+        var malla = motor.crearNodoMalla("malla1", "cubo", undefined);
         
         var malla2 = motor.crearNodoMalla("malla2", "chair", undefined);
 
@@ -61,7 +61,9 @@
 
 
 
-        motor.moverMalla("malla1", -5, -2, -10);
+        motor.moverMalla("malla1", 0, 0, -5);
+
+        motor.escalarMalla("malla1", 1);
 
         motor.moverMalla("malla2", 5, -2, -10);
 
@@ -69,15 +71,22 @@
 
         motor.moverLuz("luz1", 0, -2, -7);   
 
-        motor.rotarMalla("malla1", 90, "z");  
+
+        motor.moverMalla("malla1", -5, 0, 0);
+
+        motor.rotarMalla("malla1", 10, "z");  
 
         motor.escalarMalla("malla2", 0.3);
 
 
-        motor.moverCamara("camara1", 0, 0, 20);
+        motor.moverCamara("camara1", 0, 0, 7);
 
         motor.activarCamara("camara1");
 
+        gestor.getRecurso('madera.jpg', 'textura');
+
+
+        
 
 
 
