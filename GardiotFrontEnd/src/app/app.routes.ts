@@ -41,7 +41,6 @@ const app_routes: Routes = [
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
-  { path: 'plant', component: PlantComponent, canActivate: [AuthguardGuard] }, // eliminar una vez linkado a libreria
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },

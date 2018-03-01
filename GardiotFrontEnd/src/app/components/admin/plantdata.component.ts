@@ -7,6 +7,7 @@ import { Family } from "../../classes/family.class";
 import { AppComponent } from "../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { Ng2ImgMaxService} from 'ng2-img-max';
 
 })
 export class PlantdataComponent implements OnInit {
-  plant=new Plant("");
+  plant=new Plant();
   private plants:any[]=[];
   private families:any[]=[];
   uploader:FileUploader;
+  private numeroItems:number;
 
   constructor(
     private _plantService:PlantService,
@@ -105,8 +107,9 @@ export class PlantdataComponent implements OnInit {
       getitems(){
         this._plantService.getNumberItems()
         .subscribe(data=>{
-          console.log(data)
-          return data;
+          console.log(data[0]);
+          this.numeroItems=data[0];
+          console.log(data[0]);
         },
         error => {
           console.error(error);
@@ -116,6 +119,7 @@ export class PlantdataComponent implements OnInit {
   ngOnInit() {
     this.mostrar();
     this.mostrarFamilias();
+    this.getitems();
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
 
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
