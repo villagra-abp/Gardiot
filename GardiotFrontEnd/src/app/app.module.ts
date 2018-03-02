@@ -38,9 +38,9 @@ import { ProfileComponent } from './components/user/profile.component';
 import { EditProfileComponent } from './components/user/editprofile.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 import { ResendComponent } from './components/manage/resend.component';
-import { LibraryComponent } from './components/user/library.component';
+import { LibraryComponent } from './components/plants/library/library.component';
 import { CalendarComponent } from './components/user/calendar.component';
-import { PlantComponent } from './components/user/plant.component';
+import { PlantComponent } from './components/plants/plant/plant.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -60,6 +60,8 @@ import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { NewplantComponent } from './components/Plants/newplant/newplant.component';
+import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DesarrolloComponent,
     FileSelectDirective,
     PlantComponent,
-    PaginationComponent
+    PaginationComponent,
+    NewplantComponent,
+    EditplantComponent
 
   ],
   imports: [
