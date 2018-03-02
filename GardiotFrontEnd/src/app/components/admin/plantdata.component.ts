@@ -127,7 +127,7 @@ export class PlantdataComponent implements OnInit {
     this.mostrar();
     this.mostrarFamilias();
     this.getitems();
-    this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
+    // this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
 
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
 this.uploader.onAfterAddingFile = (file)=> {
