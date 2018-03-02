@@ -3,8 +3,8 @@
 <!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->
 <nav aria-label="Page navigation example"  *ngIf="count > 0">
   <ul class="pagination justify-content-end">
-    <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>
-    <span> hay {{ totalPages() }} paginas totales </span>
+    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>
+    <span> hay {{ totalPages() }} paginas totales </span> -->
     <li class="page-item">
       <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" >Previous</button>
     </li>

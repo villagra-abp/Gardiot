@@ -19,7 +19,6 @@ export class DetailComponent implements OnInit{
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
-          console.log(data);
           this.user.id=data.id;
           this.user.birthDate=data.birthDate;
           this.user.photo=data.photo;
