@@ -1,5 +1,5 @@
 <div class="container main-container">
-  <h1>Editar mi jardin</h1>
+  <h1>Crear mi jardin</h1>
 
   <section class="container">
   <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
@@ -8,7 +8,7 @@
 <section class="container">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
-      <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
+      <form  (ngSubmit)="newGarden()" #forma="ngForm" novalidate="">
         <div class="form-group">
           <label  for="title">Título: </label>
           <input  type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
@@ -31,7 +31,18 @@
             <span id="ciudad"></span>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary">Crear</button>
+       <!-- <div class="form-group" ng-init="listarPaises()">
+          <label for="countries">País:</label>
+
+            <select2 [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.changeCities($event)">
+            </select2>
+
+        </div>-->
+      
+
+
+
+        <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
         <button [routerLink]="['/garden']" class="btn btn-outline-danger">Cancelar</button>
       </form>
     </div>
