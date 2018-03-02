@@ -12,6 +12,7 @@ import { CalendarComponent } from "./components/user/calendar.component";
 import { PlantComponent } from "./components/plants/plant/plant.component";
 import { PlantdataComponent } from "./components/admin/plantdata.component";
 import { NewplantComponent } from './components/Plants/newplant/newplant.component';
+import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 
 
@@ -43,7 +44,9 @@ const app_routes: Routes = [
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
+  { path: 'plants/:pag', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'newplant', component: NewplantComponent, canActivate: [AuthguardGuard] },
+  { path: 'editplant', component: EditplantComponent, canActivate: [AuthguardGuard] },
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
   { path: 'plantdata', component: PlantdataComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },

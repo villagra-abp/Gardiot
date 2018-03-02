@@ -33,11 +33,11 @@
 			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
 			  <div class="card-body" >
 					<h4>{{plant.commonName}} </h4>
-					<button *ngIf="this.user.isAdmin" [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
+					<button *ngIf="this.user.isAdmin" [routerLink]="['/editplant']" class="btn btn-outline-primary">Modificar</button>
 					<button *ngIf="this.user.isAdmin" [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
 			  </div>
 			</div>
-		</div>
+		</div> 
 
 		<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>

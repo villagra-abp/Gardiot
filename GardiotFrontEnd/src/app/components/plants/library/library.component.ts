@@ -67,6 +67,16 @@ export class LibraryComponent implements OnInit {
       });
  }
 
+ ActualizarPagina2(){
+   this.activatedRoute.params.subscribe(params => {
+     if(params['pag']!=null){
+       this.paginaActual = params['pag'];
+     }else{
+       this._route.navigate(['/library/1']);
+     }
+   });
+}
+
  comprobaciones(){
    if(this.user.isUserAuthenticated()){
      this.user.isAuthenticated=this.user.isUserAuthenticated();
@@ -87,7 +97,7 @@ export class LibraryComponent implements OnInit {
  }
 
   ngOnInit() {
-    this.ActualizarPagina();
+    this.ActualizarPagina2();
     this.mostrar();
     this.getitems();
   }
