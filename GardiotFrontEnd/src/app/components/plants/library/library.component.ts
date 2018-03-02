@@ -98,8 +98,8 @@ export class LibraryComponent implements OnInit {
 
   ngOnInit() {
     this.ActualizarPagina2();
-    this.mostrar();
     this.getitems();
+    this.mostrar();
   }
 
 }
