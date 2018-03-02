@@ -117,8 +117,7 @@ export class PlantdataComponent implements OnInit {
 
       ActualizarPagina(){
         this.activatedRoute.queryParams.subscribe((params: Params) => {
-            this.paginaActual = params['page'];
-
+            this.paginaActual = params['pag'];
           });
      }
 
