@@ -3,6 +3,7 @@ import {Input, Output, EventEmitter} from '@angular/core'
 import { PlantService } from "../../services/plant.service";
 
 
+
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -56,6 +57,9 @@ export class PaginationComponent implements OnInit {
   lastPage(): boolean {
     return this.perPage * this.page > this.count;
   }
+  firstPage(): boolean {
+    return this.page == 1;
+  }
 
   getPages(): number[] {
     const c = Math.ceil(this.count / this.perPage);
@@ -84,6 +88,7 @@ export class PaginationComponent implements OnInit {
 
 
   ngOnInit() {
+    this.lastPage();
   }
 
 }

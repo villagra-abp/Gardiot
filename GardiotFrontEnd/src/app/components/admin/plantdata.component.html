@@ -141,7 +141,7 @@
 
 				<form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
 					<article class="form-group col-md-4">
-						<input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot" >
+						<input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot"  >
 			    </article>
 					<!-- <article class="form-group col-md-2">
 						 <select class="form-control"  name="family">
@@ -162,7 +162,7 @@
 
 		<div class="card-columns">
 			<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
-			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px">
+			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
 			  <div class="card-body" >
 					<h4>{{plant.commonName}} </h4>
 					<button [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
@@ -170,7 +170,7 @@
 			  </div>
 			</div>
 		</div>
-		<app-pagination [count]="10" [page]="3" [perPage]="2" [pagesToShow]="3" [loading]="true" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+		<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 	</div>
 </tab>
 </tabs>

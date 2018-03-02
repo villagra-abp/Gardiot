@@ -24,9 +24,10 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
 
 plant.getPlantsNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) FROM Plant', function (error, number) {
+    connection.query('SELECT COUNT(*) AS NUMPLANTAS FROM Plant', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
+      console.log(number);
     });
   }
 }

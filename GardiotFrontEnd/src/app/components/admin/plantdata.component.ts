@@ -7,6 +7,7 @@ import { Family } from "../../classes/family.class";
 import { AppComponent } from "../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
+import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -15,20 +16,23 @@ import { Ng2ImgMaxService} from 'ng2-img-max';
 
 })
 export class PlantdataComponent implements OnInit {
-  plant=new Plant("");
+  plant=new Plant();
   private plants:any[]=[];
   private families:any[]=[];
   uploader:FileUploader;
+  private numeroItems:number;
+  private paginaActual:number=1;
+  private elementosPorPagina:number=2;
 
   constructor(
     private _plantService:PlantService,
     private _route:Router,
     private _appComponent:AppComponent,
-    private _ng2ImgMax:Ng2ImgMaxService
+    private _ng2ImgMax:Ng2ImgMaxService,
+    private activatedRoute: ActivatedRoute
     ) { }
 
     guardar(){
-      console.log(this.plant);
       this._plantService.save(this.plant)
           .subscribe(data=>{
 
@@ -37,14 +41,13 @@ export class PlantdataComponent implements OnInit {
           },
           error=>{
             let v=JSON.parse(error._body);
-            console.log(v.Mensaje);
             this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
           });
     }
 
 
     mostrar(){
-      this._plantService.detailsAll(1,2)
+      this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
           .subscribe(data=>{
             for(let key$ in data){
               this.plants.push(data[key$]);
@@ -105,17 +108,25 @@ export class PlantdataComponent implements OnInit {
       getitems(){
         this._plantService.getNumberItems()
         .subscribe(data=>{
-          console.log(data)
-          return data;
+          this.numeroItems=data[0].NUMPLANTAS;
         },
         error => {
           console.error(error);
         });
       }
 
+      ActualizarPagina(){
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            this.paginaActual = params['pag'];
+          });
+     }
+
+
   ngOnInit() {
+    this.ActualizarPagina();
     this.mostrar();
     this.mostrarFamilias();
+    this.getitems();
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
 
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Plant } from "../../classes/plant.class";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../services/plant.service";
 
 
@@ -11,7 +11,7 @@ import { PlantService } from "../../services/plant.service";
 })
 export class PlantComponent implements OnInit {
 
-  plant = new Plant("");
+  plant = new Plant();
 
   iniSiembra:String;
   finSiembra:String;
@@ -24,9 +24,10 @@ export class PlantComponent implements OnInit {
 
 
   constructor(
+    private _plantService:PlantService,
+    private _router: ActivatedRoute,
+    private _route:Router ) { }
 
-
-    private _plantService:PlantService) {}
 
       mostrar(numplant:number){
       this._plantService.details(numplant)
@@ -107,7 +108,16 @@ export class PlantComponent implements OnInit {
 
 
   ngOnInit() {
-    this.mostrar(10);
-  }
 
+    this._router.params.subscribe(params => {
+      if(params['id']!=null){
+        this.plant=new Plant(params['id']);
+        this.mostrar(this.plant.id);
+      }else{
+        this._route.navigate(['/library']);
+      }
+    });
+
+
+  }
 }
