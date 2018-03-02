@@ -24,7 +24,7 @@ import { AdminComponent } from './components/admin/admin.component';
 //GardenComponent
 import { GardenComponent } from './components/user/garden.component';
 import { EditGardenComponent } from './components/user/editgarden.component';
-
+import { NewGardenComponent } from './components/user/newgarden.component';
 import { AuthguardGuard } from "./authguard.guard";
 import { admin_routes } from "./components/admin/admin.routes";
 
@@ -40,6 +40,7 @@ const app_routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
+  { path: 'newgarden', component: NewGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'plant', component: PlantComponent, canActivate: [AuthguardGuard] }, // eliminar una vez linkado a libreria
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },

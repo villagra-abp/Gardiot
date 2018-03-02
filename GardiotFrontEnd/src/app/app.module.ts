@@ -50,6 +50,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
 import { GardenComponent } from './components/user/garden.component';
 import { EditGardenComponent } from './components/user/editgarden.component';
+import { NewGardenComponent } from './components/user/newgarden.component';
 import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
@@ -81,6 +82,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     AdminUserComponent,
     GardenComponent,
     EditGardenComponent,
+    NewGardenComponent,
     AnalyticsComponent,
     StatisticsComponent,
     EmailComponent,
