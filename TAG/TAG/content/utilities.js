@@ -86,5 +86,26 @@ function setupWebGL(){
     //profundidad
     gl.enable(gl.DEPTH_TEST);
 
+    //Nos traemos las matrices, projection, model y view al motor
+    glProgram.pMatrixUniform=gl.getUniformLocation(glProgram, "uPMatrix");
+    glProgram.mMatrixUniform=gl.getUniformLocation(glProgram, "uMMatrix");
+    glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
 
+
+}
+
+
+function iniciamosWebGL(idCanvas){
+    canvas=document.getElementById(idCanvas);
+    try{
+        gl=canvas.getContext("webgl");
+        if(gl){
+            return true;
+        }
+        return false;
+    }
+
+    catch(e){
+        return false;
+    }
 }

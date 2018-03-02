@@ -15,26 +15,15 @@ class TMotor{
 	
 
 	draw(){
-		canvas=document.getElementById("my-canvas");
-	    try{
-	        gl=canvas.getContext("webgl");
-	    }
-	    catch(e){
-
-	    }
-
-	    if(gl){
-	        console.log("Start drawing");
-	        //Esto ya si, es la inicialización de la librería gráfica
+		if(iniciamosWebGL('my-canvas')){
+			console.log("Start drawing");
+	        //Esto es la inicialización de la librería gráfica
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
 	        configurarShaders('standardShader.vs', 'standardShader.fs');
 
-	        glProgram.pMatrixUniform=gl.getUniformLocation(glProgram, "uPMatrix");
-    		glProgram.mMatrixUniform=gl.getUniformLocation(glProgram, "uMMatrix");
-    		glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
-
+	        //iniciamos los parámetros básicos de webGL
 	        setupWebGL();
 
 	        //inicializar luces
@@ -48,11 +37,12 @@ class TMotor{
 	        
     		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 	        this.escena.draw();
-	    }
-	    else{
-	        alert("Error: Tu navegador no soporta WebGL");
-	    }
+		}
+		else{
+			alert("No funciona WebGL");
+		}
 	}
+	    
 
 //=================================INICIO CÁMARA============================
 	/**
@@ -94,6 +84,20 @@ class TMotor{
 		}
 		if(pos>=0)
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+
+	}
+
+	rotarCamara(nombre, grados, eje){
+		var pos = -1;
+		
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0)
+			this.camaraRegistro[pos].dad.entity.rotar(grados, eje);
 
 	}
 
