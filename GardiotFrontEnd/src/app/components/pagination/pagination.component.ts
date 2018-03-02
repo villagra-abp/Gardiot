@@ -60,6 +60,12 @@ export class PaginationComponent implements OnInit {
   firstPage(): boolean {
     return this.page == 1;
   }
+  nextPage(): number {
+    return ((1 * this.page) ) + 1;
+  }
+  previusPage(): number {
+    return this.page- 1;
+  }
 
   getPages(): number[] {
     const c = Math.ceil(this.count / this.perPage);
