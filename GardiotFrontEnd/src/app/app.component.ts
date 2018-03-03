@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   public url:string="";
+  admin:boolean=window.location.href.indexOf('admin')>=0;
 
   constructor(){
     if(window.location.toString().indexOf("localhost")>=0){
@@ -18,7 +19,7 @@ export class AppComponent {
       this.url="https://gardiot.ovh/app/";
     }
   }
-  admin:boolean=window.location.href.indexOf('admin')>=0;
+
 
   mensajeEmergente(msg:String, tipo:String, link:String){
     let backdiv=document.createElement("div");
