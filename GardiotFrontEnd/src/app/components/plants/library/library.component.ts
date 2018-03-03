@@ -31,7 +31,9 @@ export class LibraryComponent implements OnInit {
   mostrar(){
     this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
         .subscribe(data=>{
-        //  this.cargarContenido();
+
+          this.plants=[];
+
           for(let key$ in data){
             this.plants.push(data[key$]);
           }
@@ -41,18 +43,6 @@ export class LibraryComponent implements OnInit {
       });
   }
 
-cargarContenido(){
-  let element = document.querySelector('section>div');
-  let padre = element.parentNode;
-  padre.removeChild(element);
-
-  let plantilla = document.querySelector('template');
-  let elem = plantilla.content.cloneNode(true);
-  let element2 = document.querySelector('section');
-  console.log(plantilla);
-  console.log(element2);
-  element2.appendChild(elem);
-}
 
   searchcontent(){
     this._plantService.searchAll()
