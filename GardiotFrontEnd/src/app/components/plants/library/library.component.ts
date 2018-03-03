@@ -55,6 +55,7 @@ export class LibraryComponent implements OnInit {
     this._plantService.getNumberItems()
     .subscribe(data=>{
       this.numeroItems=data[0].NUMPLANTAS;
+      this.mostrar();
     },
     error => {
       console.error(error);
@@ -64,6 +65,7 @@ export class LibraryComponent implements OnInit {
   ActualizarPagina(){
     this.activatedRoute.queryParams.subscribe((params: Params) => {
         this.paginaActual = params['pag'];
+        this.getitems();
       });
  }
 
@@ -74,7 +76,10 @@ export class LibraryComponent implements OnInit {
      }else{
        this._route.navigate(['/library/1']);
      }
+     this.getitems();
    });
+
+
 }
 
  comprobaciones(){
@@ -97,9 +102,8 @@ export class LibraryComponent implements OnInit {
  }
 
   ngOnInit() {
-    this.ActualizarPagina2();
-    this.getitems();
-    this.mostrar();
+    this.ActualizarPagina();
+
   }
 
 }

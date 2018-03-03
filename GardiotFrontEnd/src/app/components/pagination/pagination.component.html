@@ -8,7 +8,7 @@
     <li class="page-item">
       <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/plants']" [queryParams]="{pag: previusPage()}" >Previous</button>
     </li>
-    <li class="page-item" *ngFor="let pageNum of getPages()" ><button class="page-link" (click)="onPage(pageNum)" [routerLink]="['/plants/',pageNum]" [queryParams]="{pag: pageNum}">{{pageNum}}</button></li>
+    <li class="page-item" *ngFor="let pageNum of getPages()" ><button class="page-link" (click)="onPage(pageNum)" [routerLink]="['/plants']" [queryParams]="{pag: pageNum}">{{pageNum}}</button></li>
     <li class="page-item">
       <button class="page-link"  (click)="onNext()"  [routerLink]="['/plants']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading">Next</button>
     </li>
