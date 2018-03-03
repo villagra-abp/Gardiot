@@ -91,6 +91,10 @@ function setupWebGL(){
     glProgram.mMatrixUniform=gl.getUniformLocation(glProgram, "uMMatrix");
     glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
 
+    //matriz de normales
+    glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
+
+
 
 }
 

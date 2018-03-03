@@ -280,7 +280,7 @@ function drawScene(){
     gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
     //gl.drawElements(gl.TRIANGLES, triangleVerticesIndexBuffer.number_vertex_points, gl.UNSIGNED_SHORT, 0);
 
-    gl.drawArrays(gl.TRIANGLES, 0, triangleVerticesIndexBuffer.number_vertex_points);
+    gl.drawArrays(gl.LINES, 0, triangleVerticesIndexBuffer.number_vertex_points);
 
 }
 
@@ -319,18 +319,17 @@ function cargarTextura(){
     textureImage[STONE_TEXTURE]=new Image();
     textureImage[STONE_TEXTURE].onload=function(){
         setupTexture(STONE_TEXTURE);
-        gl.uniform1i(glProgram.samplerUniform, 0);
+
     }
     textureImage[STONE_TEXTURE].src="tex.jpg";
 
     textureImage[GARDIOT_LOGO]=new Image();
     textureImage[GARDIOT_LOGO].onload=function(){
         setupTexture(GARDIOT_LOGO);
-        gl.uniform1i(glProgram.samplerUniform2, 1);
+
     }
     textureImage[GARDIOT_LOGO].src="logo.png";
 
-    glProgram.uDoTexturing=gl.getUniformLocation(glProgram, "uDoTexturing");
     gl.uniform1i(glProgram.uDoTexturing, 1);
 
 }
@@ -340,6 +339,7 @@ function setupTexture(i){
     texture[i] = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture[i]);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    console.log(textureImage[i]);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImage[i]);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);

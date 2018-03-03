@@ -27,7 +27,7 @@ class TMotor{
 	        setupWebGL();
 
 	        //inicializar luces
-
+	        this.dibujarLucesActivas();
 
 	        //inicializar viewport
     		gl.viewport(0, 0, canvas.width, canvas.height);
@@ -141,7 +141,6 @@ class TMotor{
         while(auxCamara=auxCamara.dad){
         	if(auxCamara.entity!==undefined)
         		auxStack.push(auxCamara.entity.matrix);
-        	console.log(auxCamara.name);
         }
         //tenemos el recorrido de la cámara a la raíz en auxStack
         //console.log(auxStack);
@@ -158,6 +157,17 @@ class TMotor{
         //pasar matrices a WebGL
         gl.uniformMatrix4fv(glProgram.vMatrixUniform, false, auxMatrix);
         gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, matrixProjection);
+
+        //calculo matrix normales
+        let matrixModelView=[];
+        let normalMatrix=[];
+
+        mat4.multiply(matrixModelView, auxMatrix, matrixModel);
+
+        mat3.normalFromMat4(normalMatrix, matrixModelView);
+
+        //matrixUniform
+        gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
 	}
 //=================================FIN CÁMARA============================
 
@@ -234,6 +244,48 @@ class TMotor{
 		}
 		if(pos>=0)
 			this.luzRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+	}
+	dibujarLucesActivas(){
+		for(let i=0; i<this.luzRegistro.length; i++){
+			if(this.luzActiva[i]==1){
+				//recorrer al árbol a la inversa desde la luz a la raíz
+		        let auxStack=[];
+		        let auxLuz=this.luzRegistro[i];
+		        while(auxLuz=auxLuz.dad){
+		        	if(auxLuz.entity!==undefined)
+		        		auxStack.push(auxLuz.entity.matrix);
+		        	console.log(auxLuz.name);
+		        }
+
+		        //tenemos el recorrido de la cámara a la raíz en auxStack
+        		//console.log(auxStack);
+
+        		//recorremos la lista auxiliar invertida
+		        let auxMatrix=mat4.create();
+		        for(let i=auxStack.length-1; i>=0; i--){
+		        	mat4.multiply(auxMatrix, auxMatrix, auxStack[i]);
+		        }
+		        console.log("Dibujando luz activa");
+		        console.log(auxMatrix);
+
+
+		        //Ahora, con la posición de la luz, la dibujaríamos en WebGL
+		        let posLight=gl.createBuffer();
+		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
+		        let a=vec3.fromValues(1.0, 2.0, -1.0);
+				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([1.0, 2.0, -1.0]), gl.STATIC_DRAW);
+
+
+		        let lightPosition = gl.getAttribLocation(glProgram, "aLightPosition");
+
+		        gl.enableVertexAttribArray(lightPosition);
+
+		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
+
+		        gl.vertexAttribPointer(lightPosition, 3, gl.FLOAT, false, 0, 0);
+
+			}
+		}
 	}
 //=================================FIN LUCES============================
 
