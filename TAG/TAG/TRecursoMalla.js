@@ -42,6 +42,7 @@ class TRecursoMalla extends TRecurso{
         console.log(this._textureCoords);
       }
 
+
       //almacenamos las normales de los vértices
       this._normales=objeto.meshes[0].normals;
 
@@ -103,7 +104,7 @@ class TRecursoMalla extends TRecurso{
       //activar por defecto las texturas activadas
 
 
-        if( !gl.isTexture(textura) )
+      if( !gl.isTexture(textura) )
         {
             console.error("Error: Texture is invalid");
         }
@@ -124,21 +125,27 @@ class TRecursoMalla extends TRecurso{
     gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
 
 
+    //texturas
+    if(this._textura!==undefined){
+      let vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertexTextureCoord");
+      gl.enableVertexAttribArray(vertexTexCoordAttribute);
+      gl.bindBuffer(gl.ARRAY_BUFFER, textureCoords);
+      gl.vertexAttribPointer(vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
+    }
 
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index);
+
+    //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index);
 
 
     //para la iluminación de las mallas
     //calculamos el vector de normales
-    let vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertexNormal");
+    /*let vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertexNormal");
     gl.enableVertexAttribArray(vertexNormalAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, normales);
-    gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);*/
 
     gl.drawElements(gl.TRIANGLES, index.number_vertex_points, gl.UNSIGNED_SHORT, 0);
-
-    console.log(index.number_vertex_points);
-    //gl.drawArrays(gl.TRIANGLES, 0, Math.floor(index.number_vertex_points/1.7));
+    //gl.drawArrays(gl.TRIANGLES, 0, index.number_vertex_points);
 
 
   }

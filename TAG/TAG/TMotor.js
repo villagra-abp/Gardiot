@@ -273,7 +273,7 @@ class TMotor{
 		        let posLight=gl.createBuffer();
 		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
 		        let a=vec3.fromValues(1.0, 2.0, -1.0);
-				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([1.0, 2.0, -1.0]), gl.STATIC_DRAW);
+				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(auxMatrix), gl.STATIC_DRAW);
 
 
 		        let lightPosition = gl.getAttribLocation(glProgram, "aLightPosition");

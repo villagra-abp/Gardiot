@@ -280,7 +280,7 @@ function drawScene(){
     gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
     //gl.drawElements(gl.TRIANGLES, triangleVerticesIndexBuffer.number_vertex_points, gl.UNSIGNED_SHORT, 0);
 
-    gl.drawArrays(gl.LINES, 0, triangleVerticesIndexBuffer.number_vertex_points);
+    gl.drawArrays(gl.TRIANGLES, 0, triangleVerticesIndexBuffer.number_vertex_points);
 
 }
 
