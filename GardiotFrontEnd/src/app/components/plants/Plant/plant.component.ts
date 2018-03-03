@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Plant } from "../../classes/plant.class";
+import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
-import { PlantService } from "../../services/plant.service";
+import { PlantService } from "../../../services/plant.service";
 
 
 @Component({

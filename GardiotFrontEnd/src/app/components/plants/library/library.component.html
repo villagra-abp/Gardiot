@@ -1,0 +1,63 @@
+<div class="main-container">
+  <h1>Biblioteca</h1>
+  <div class="wrap">
+
+				<form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
+					<article class="form-group col-md-4">
+						<input type="text" class="form-control" name="commonName" placeholder="Buscar en gardiot"  >
+			    </article>
+					 <article class="form-group col-md-2">
+						 <select class="form-control"  name="family">
+							 <option  value="nombre">nombre</option>
+							 <option  value="familia">familia</option>
+						 </select>
+					</article>
+					<article class="form-group col-md-2">
+						 <select class="form-control"  name="order">
+							 <option  value="ASC">A-Z</option>
+							 <option  value="DES">Z-A</option>
+						 </select>
+					</article>
+					<article class="form-group col-md-2">
+						<button class="btn btn-default" type="submit">Buscar</button>
+					</article>
+          <article class="form-group col-md-2">
+            <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary">Nueva planta</button>
+          </article>
+				</form>
+
+
+
+  <section class="card-columns">
+    <div>
+      <div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
+        <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+        <div class="card-body" >
+          <h4>{{plant.commonName}} </h4>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant']" class="btn btn-outline-primary">Modificar</button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- <template>
+        <div>
+          <div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
+            <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+            <div class="card-body" >
+              <h4>{{plant.commonName}} </h4>
+              <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant']" class="btn btn-outline-primary">Modificar</button>
+              <button *ngIf="this.user.isAdmin" [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+            </div>
+          </div>
+        </div>
+    </template> -->
+
+
+
+
+		<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+	</div>
+
+</div>

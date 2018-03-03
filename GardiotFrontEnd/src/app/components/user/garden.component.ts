@@ -52,7 +52,12 @@ export class GardenComponent {
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-        this._route.navigate(['/detail']);
+        if(JSON.parse(error._body).Mensaje == 'No existe'){
+          this._route.navigate(['/newgarden']);
+        }else{
+          this._route.navigate(['/detail']);  
+        }
+        
       });
 
   }
