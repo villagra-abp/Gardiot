@@ -5,15 +5,9 @@ body{
 }
 
 .header{
-  background-color: #63d297;
+  background-color: #63d297 !important;
 }
 
-
-.footer{
-  position: relative;
-  bottom:0;
-  width:100%;
-}
 button{
   cursor: pointer;
 }
@@ -83,7 +77,9 @@ button{
 
 .card{
   margin-top: 30px;
+  cursor: pointer;
 }
+
 
 fieldset {
   border: 1px solid #ced4da;
@@ -125,4 +121,10 @@ display: flex;
   left: 0;
   top: 0;
   opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .vistaAdmin{
+    margin-left: 200px !important;
+  }
 }

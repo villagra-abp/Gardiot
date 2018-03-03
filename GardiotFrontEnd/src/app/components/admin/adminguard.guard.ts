@@ -11,7 +11,7 @@ export class AdminguardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if(this.user.isAdmin){
+      if(localStorage['Par']=='1')){
         return true;
       }
       else{

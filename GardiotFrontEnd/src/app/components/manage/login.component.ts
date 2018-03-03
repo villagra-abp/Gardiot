@@ -35,17 +35,21 @@ export class LoginComponent implements OnInit{
           this._loginService.isUserAdmin().subscribe(data=>{
             if(data){
               this._loginService.isAdmin=true;
+              localStorage.setItem('Par', '1');
+              this._route.navigate(['/admin/statistics']);
             }
             else{
               this._loginService.isAdmin=false;
+              this._route.navigate(['/detail']);
             }
           },error=>{
             this._loginService.isAdmin=false;
+            this._route.navigate(['/detail']);
           });
 
 
 
-          this._route.navigate(['/detail']);
+
         },
         error=>{
           let v=JSON.parse(error._body);

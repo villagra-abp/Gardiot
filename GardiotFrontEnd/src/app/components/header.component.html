@@ -1,81 +1,70 @@
+<!--Menú admin-->
+<nav *ngIf="this.user.isAdmin" class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<div id="menu-toggle" href="#" class="navbar-toggle" (click)="toggleMenu($event)">
+					<i class="material-icons">view_headline</i>
+
+			</div>
+		</div>
+		<div id="sidebar-wrapper" class="sidebar-toggle">
+			<ul class="sidebar-nav">
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/statistics']" href="#">Estadísticas</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/analytics']" href="#">Anatítica</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/email']" href="#">Correo</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/userdata']" href="#">Usuarios</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/plantdata']" [queryParams]="{pag: 1}"  href="#">Plantas</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/eventdata']" href="#">Tareas</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/tool']" href="#">Productos</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/admin/invoice']" href="#">Consejos</a>
+        </li>
+        <li *ngIf="this.user.isAuthenticated">
+          <a [routerLink]="['/logout']" href="#">Log Out</a>
+        </li>
+		  </ul>
+		</div>
+  	</div>
+</nav>
+
 <!-- Menú estándar -->
-<nav class="navbar navbar-expand-lg navbar-light header">
-<a class="navbar-brand" href="#">Gardiot</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
+<nav *ngIf="!this.user.isAdmin" class="navbar navbar-expand-lg navbar-light bg-light header">
+  <a [routerLink]="['/detail']" class="navbar-brand" href="#">Gardiot</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<ul class="navbar-nav mr-auto justify-content-end">
-  <!--<li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a href="https://gardiot.ovh/symbiose/" class="nav-link" target="blank">Symbiose</a>
-  </li>
-  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a [routerLink]="['/login']" class="nav-link" href="#">Log In</a>
-  </li>
-  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a [routerLink]="['/register']" class="nav-link" href="#">Registrarse <span class="sr-only">(current)</span></a>
-  </li>
-   <li class="nav-item" *ngIf="this.user.isAuthenticated && !this.user.isAdmin">
-    <a [routerLink]="['/garden']" class="nav-link" href="#">Jardin</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && !this.user.isAdmin">
-    <a [routerLink]="['/plants']" class="nav-link" href="#">Plantas</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && !this.user.isAdmin">
-    <a [routerLink]="['/calendar']" class="nav-link" href="#">Calendario</a>
-  </li> -->
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/statistics']" class="nav-link" href="#">Estadísticas</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/analytics']" class="nav-link" href="#">Anatítica</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/email']" class="nav-link" href="#">Correo</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/userdata']" class="nav-link" href="#">Usuarios</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/plantdata']" [queryParams]="{pag: 1}"  class="nav-link" href="#">Plantas</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/eventdata']" class="nav-link" href="#">Tareas</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/tool']" class="nav-link" href="#">Productos</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated && this.user.isAdmin">
-    <a [routerLink]="['/admin/invoice']" class="nav-link" href="#">Consejos</a>
-  </li>
-  <!-- <li class="nav-item" *ngIf="this.user.isAuthenticated">
-    <a [routerLink]="['/profile']" class="nav-link" href="#">Mi perfil</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated">
-    <a [routerLink]="['/logout']" class="nav-link" href="#">Log Out</a>
-  </li> -->
-</ul>
-
-
-<ul class="navbar-nav justify-content-end">
-  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a href="https://gardiot.ovh/symbiose/" class="nav-link" target="blank">Symbiose</a>
-  </li>
-  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a [routerLink]="['/login']" class="nav-link" href="#">Log In</a>
-  </li>
-  <li class="nav-item" *ngIf="!this.user.isAuthenticated">
-    <a [routerLink]="['/register']" class="nav-link" href="#">Registrarse <span class="sr-only">(current)</span></a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated">
-    <a [routerLink]="['/profile']" class="nav-link" href="#">Mi perfil</a>
-  </li>
-  <li class="nav-item" *ngIf="this.user.isAuthenticated">
-    <a [routerLink]="['/logout']" class="nav-link" href="#">Log Out</a>
-  </li>
-</ul>
-
-
-
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="!this.user.isAuthenticated">
+        <a href="https://gardiot.ovh/symbiose/" class="nav-link" target="blank">Symbiose</a>
+      </li>
+      <li class="nav-item" *ngIf="!this.user.isAuthenticated">
+        <a [routerLink]="['/login']" class="nav-link" href="#">Log In</a>
+      </li>
+      <li class="nav-item" *ngIf="!this.user.isAuthenticated">
+        <a [routerLink]="['/register']" class="nav-link" href="#">Registrarse <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="this.user.isAuthenticated">
+        <a [routerLink]="['/profile']" class="nav-link" href="#">Mi perfil</a>
+      </li>
+      <li class="nav-item" *ngIf="this.user.isAuthenticated">
+        <a [routerLink]="['/logout']" class="nav-link" href="#">Log Out</a>
+      </li>
+    </ul>
+  </div>
 </nav>
