@@ -15,24 +15,27 @@
         <li *ngIf="this.user.isAuthenticated">
           <a [routerLink]="['/admin/analytics']" href="#">Anatítica</a>
         </li>
+				<li *ngIf="this.user.isAuthenticated">
+					<a [routerLink]="['/admin/userdata']" href="#">Usuarios</a>
+				</li>
+				<li *ngIf="this.user.isAuthenticated">
+					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}"  href="#">Plantas</a>
+				</li>
         <li *ngIf="this.user.isAuthenticated">
-          <a [routerLink]="['/admin/email']" href="#">Correo</a>
+          <a [routerLink]="['/admin/email']" href="#">Tratamientos</a>
         </li>
-        <li *ngIf="this.user.isAuthenticated">
-          <a [routerLink]="['/admin/userdata']" href="#">Usuarios</a>
-        </li>
-        <li *ngIf="this.user.isAuthenticated">
-          <a [routerLink]="['/admin/plantdata']" [queryParams]="{pag: 1}"  href="#">Plantas</a>
-        </li>
+				<li *ngIf="this.user.isAuthenticated">
+					<a [routerLink]="['/admin/tool']" href="#">Productos</a>
+				</li>
         <li *ngIf="this.user.isAuthenticated">
           <a [routerLink]="['/admin/eventdata']" href="#">Tareas</a>
         </li>
         <li *ngIf="this.user.isAuthenticated">
-          <a [routerLink]="['/admin/tool']" href="#">Productos</a>
-        </li>
-        <li *ngIf="this.user.isAuthenticated">
           <a [routerLink]="['/admin/invoice']" href="#">Consejos</a>
         </li>
+				<li class="nav-item" *ngIf="this.user.isAuthenticated">
+					<a [routerLink]="['/profile']" class="nav-link" href="#">Mi perfil</a>
+				</li>
         <li *ngIf="this.user.isAuthenticated">
           <a [routerLink]="['/logout']" href="#">Log Out</a>
         </li>

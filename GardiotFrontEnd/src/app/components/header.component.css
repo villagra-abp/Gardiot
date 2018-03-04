@@ -4,7 +4,7 @@
   left:0;
   right:0;
   height: 40px;
-  background-color: #5677fc;
+  background-color: #5677fc ;
   z-index: 999999;
   }
   .navbar-header>div>i{
@@ -23,7 +23,7 @@
   top: 40px;
   left: -200px;
   width: 200px;
-  background-color: #5677fc;
+  background-color: #63d297;
   color: white;
   position: fixed;
   height: 100%;
