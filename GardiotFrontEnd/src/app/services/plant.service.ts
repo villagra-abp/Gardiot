@@ -39,6 +39,27 @@ export class PlantService {
           })
     }
 
+		modify( plant:Plant ){
+			let body = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
+			body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
+			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
+			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
+			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
+			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
+			body+= `&leaveType=${plant.leaveType}`;
+			body+= `&photo=${plant.photo}`;
+
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+
+			return this.http.put(this.apiURL+"admin/plant/10", body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
+
 		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`

@@ -27,7 +27,8 @@ export class EditplantComponent implements OnInit {
     ) { }
 
   guardar(){
-    this._plantService.save(this.plant)
+        console.log('pasaba por aqui');
+    this._plantService.modify(this.plant)
         .subscribe(data=>{
 
             this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/plantdata");
@@ -60,7 +61,6 @@ export class EditplantComponent implements OnInit {
       let file=[];
       file.push(imgUpl.files[0]);
       file.forEach(function(){
-        console.log(file);
       });
       this._ng2ImgMax.compress(file, 1.25).subscribe(
         result=>{
@@ -90,7 +90,37 @@ export class EditplantComponent implements OnInit {
          };
   }
 
+  mostrar(){
+    this._plantService.details(10)
+        .subscribe(data=>{
+          console.log(data);
+          this.plant.id=data.id;
+          this.plant.scientificName=data.scientificName;
+          this.plant.commonName=data.commonName;
+          this.plant.description=data.description;
+          this.plant.family=data.family;
+          this.plant.depth=data.depth;
+          this.plant.distance=data.distance;
+          this.plant.diseaseResist=data.diseaseResist;
+          this.plant.initDatePlant=data.initDatePlant;
+          this.plant.finDatePlant=data.finDatePlant;
+          this.plant.initDateBloom=data.initDateBloom;
+          this.plant.finDateBloom=data.finDateBloom;
+          this.plant.initDateHarvest=data.initDateHarvest;
+          this.plant.finDateHarvest=data.finDateHarvest;
+          this.plant.leaveType=data.leaveType;
+        },
+      error => {
+        console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
+      //  this._route.navigate(['/login']);
+      });
+
+    }
+
   ngOnInit() {
+    this.mostrar();
     this.mostrarFamilias();
     this.managePhoto();
   }
