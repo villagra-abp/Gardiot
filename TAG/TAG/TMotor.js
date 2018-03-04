@@ -165,6 +165,7 @@ class TMotor{
         mat4.multiply(matrixModelView, auxMatrix, matrixModel);
 
         mat3.normalFromMat4(normalMatrix, matrixModelView);
+        console.log(normalMatrix);
 
         //matrixUniform
         gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
@@ -272,7 +273,6 @@ class TMotor{
 		        //Ahora, con la posición de la luz, la dibujaríamos en WebGL
 		        let posLight=gl.createBuffer();
 		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
-		        let a=vec3.fromValues(1.0, 2.0, -1.0);
 				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(auxMatrix), gl.STATIC_DRAW);
 
 

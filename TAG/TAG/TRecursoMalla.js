@@ -139,10 +139,10 @@ class TRecursoMalla extends TRecurso{
 
     //para la iluminación de las mallas
     //calculamos el vector de normales
-    /*let vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertexNormal");
+    let vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertexNormal");
     gl.enableVertexAttribArray(vertexNormalAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, normales);
-    gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);*/
+    gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
 
     gl.drawElements(gl.TRIANGLES, index.number_vertex_points, gl.UNSIGNED_SHORT, 0);
     //gl.drawArrays(gl.TRIANGLES, 0, index.number_vertex_points);
