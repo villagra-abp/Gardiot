@@ -18,7 +18,7 @@ export class LibraryComponent implements OnInit {
   private plants:any[]=[];
   private numeroItems:number;
   private paginaActual:number=1;
-  private elementosPorPagina:number=2;
+  private elementosPorPagina:number=6;
 
   constructor(
     private _plantService:PlantService,
