@@ -48,11 +48,20 @@ export class LibraryComponent implements OnInit {
   searchcontent(){
     this._plantService.searchAll(this.plant)
     .subscribe(data=>{
-      console.log(data);
       this.plants=[];
       for(let key$ in data){
         this.plants.push(data[key$]);
       }
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  deleteplant(idPlant:number){
+    this._plantService.deletePlant(idPlant)
+    .subscribe(data=>{
+      this.ActualizarPagina();
     },
     error => {
       console.error(error);
@@ -77,6 +86,7 @@ export class LibraryComponent implements OnInit {
       });
  }
 
+//actualmente no se usa
  ActualizarPagina2(){
    this.activatedRoute.params.subscribe(params => {
      if(params['pag']!=null){

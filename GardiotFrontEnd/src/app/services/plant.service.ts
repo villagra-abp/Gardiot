@@ -114,6 +114,16 @@ export class PlantService {
 					})
 		}
 
+		deletePlant(idPlant: number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.delete(this.apiURL+"admin/plant/"+ idPlant, { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
 
 
 }

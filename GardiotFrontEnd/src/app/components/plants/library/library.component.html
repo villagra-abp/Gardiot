@@ -34,7 +34,7 @@
         <div class="card-body" >
           <h4>{{plant.commonName}} </h4>
           <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant']" class="btn btn-outline-primary">Modificar</button>
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
+          <button *ngIf="this.user.isAdmin" (click)="deleteplant(plant.id)" [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Eliminar</button>
         </div>
       </div>
   </section>
