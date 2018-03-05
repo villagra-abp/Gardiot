@@ -30,18 +30,80 @@ export class GardenService {
           })
 	  }
 
+    insertGarden(garden:Garden){
+      
+      //this is for debug issues
+      //
+      garden.width = "10";
+      garden.length = "10";
+      garden.soil="1";
+
+      console.log(garden);
+
+      let body = `title=${garden.title}`;
+      if(garden.width != undefined){
+        body += `&width=${garden.width}`;
+      }
+      if(garden.length != undefined){
+        body += `&length=${garden.length}`;
+      }
+      if(garden.latitude != undefined){
+        body += `&latitude=${garden.latitude}`;
+      }
+      if(garden.longitude != undefined){
+        body += `&longitude=${garden.longitude}`;
+      }
+      if(garden.soil != undefined){
+        body += `&soil=${garden.soil}`;
+      }
+      if(garden.countryCode != undefined){
+        body += `&countryCode=${garden.countryCode}`;
+      }
+      if(garden.city != undefined){
+        body += `&city=${garden.city}`;
+      }
+      console.log("cuerpo");
+    console.log(body);
+
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.post(this.apiURL+"garden", body, { headers })
+          .map( res =>{
+            return res.json();
+          })
+
+    }
+
 
 	  modifyGarden(garden:Garden){
 	  	let body = `id=${garden.id}`;
-	  	body += `&title=${garden.title}`;
-	  	body += `&width=${garden.width}`;
-	  	body += `&lenght=${garden.lenght}`;
-	  	body += `&latitude=${garden.latitude}`;
-	  	body += `&longitude=${garden.longitude}`;
-	  	body += `&soil=${garden.soil}`;
-	  	body += `&countryCode=${garden.countryCode}`;
-	  	body += `&city=${garden.city}`;
 
+      if(garden.title != "undefined"){
+	  	body += `&title=${garden.title}`;
+      }
+      if(garden.width != "undefined"){
+	  	//body += `&width=${garden.width}`;
+      }
+      if(garden.length != "undefined"){
+	  	//body += `&length=${garden.length}`;
+      }
+      if(garden.latitude != "undefined"){
+	  	body += `&latitude=${garden.latitude}`;
+      }
+      if(garden.longitude != "undefined"){
+	  	body += `&longitude=${garden.longitude}`;
+      }
+      if(garden.soil != "undefined"){
+	  	//body += `&soil=${garden.soil}`;
+      }
+      if(garden.countryCode != "undefined"){
+	  	body += `&countryCode=${garden.countryCode}`;
+      }
+      if(garden.city != "undefined"){
+	  	body += `&city=${garden.city}`;
+      }
 	  console.log(body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,

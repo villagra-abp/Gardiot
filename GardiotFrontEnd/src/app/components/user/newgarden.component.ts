@@ -36,7 +36,8 @@ export class NewGardenComponent implements OnInit{
    searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      if(this.startCity != undefined){
+      console.log("city " + this.garden.countryCode);
+      if(this.garden.countryCode != undefined){
         if(input.value.length==5){
             this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
               .subscribe(data=> {
@@ -122,35 +123,27 @@ export class NewGardenComponent implements OnInit{
 
 
 
-/*
+
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          this.garden.id=data[0].id;
-          this.garden.title=data[0].title;
-          this.garden.width=data[0].width;
-          this.garden.lenght=data[0].lenght;
-          this.garden.longitude=data[0].longitude;
-          this.garden.latitude=data[0].latitude;
-          this.garden.soil=data[0].soil;
-          this.garden.user=data[0].user;
-          this.garden.countryCode=data[0].countryCode;
-          this.garden.city=data[0].city;
-
-          this.listarPaises();
-          this.mostrarCiudad();
           
+          this._route.navigate(['/editgarden']);
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-        this._route.navigate(['/detail']);
+        //debug issues
+          this.garden.width="10";
+          this.garden.length = "10";
+          this.garden.soil= "1";  
       });
 
   }
-  */
+  
 
   ngOnInit(){
-  	//this.mostrar();
+  	this.mostrar();
+    //------------------ 
     this.listarPaises();
     this.mostrarCiudad();
   }
@@ -158,9 +151,10 @@ export class NewGardenComponent implements OnInit{
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
   newGarden(){
 
-    this._gardenService.modifyGarden(this.garden)
+    this._gardenService.insertGarden(this.garden)
         .subscribe(data=>{
-          this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+          console.log("entra?");
+          this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
         },
       error => {
         let v=JSON.parse(error._body);
