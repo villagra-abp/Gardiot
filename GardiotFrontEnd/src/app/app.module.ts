@@ -60,7 +60,7 @@ import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { NewplantComponent } from './components/Plants/newplant/newplant.component';
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
 import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 @NgModule({
