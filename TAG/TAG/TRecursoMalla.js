@@ -26,30 +26,34 @@ class TRecursoMalla extends TRecurso{
       }
     });
     if(cargado){
+      let k=0;
+      while(objeto.meshes[k]!==undefined && k<10){
       //almacenamos los vértices del objeto
-      this._vertices=objeto.meshes[0].vertices;
+      this._vertices=objeto.meshes[k].vertices;
 
       //almacenamos el índice de caras
-      for(let i=0; i<objeto.meshes[0].faces.length; i++){
-        for(let j=0; j<objeto.meshes[0].faces[i].length; j++){
-          this._verticesIndex.push(objeto.meshes[0].faces[i][j]);
+      for(let i=0; i<objeto.meshes[k].faces.length; i++){
+        for(let j=0; j<objeto.meshes[k].faces[i].length; j++){
+          this._verticesIndex.push(objeto.meshes[k].faces[i][j]);
         }
       }
 
       //almacenamos las coordenadas de textura
-      if(objeto.meshes[0].texturecoords!==undefined){
-        this._textureCoords=objeto.meshes[0].texturecoords[0];
+      if(objeto.meshes[k].texturecoords!==undefined){
+        this._textureCoords=objeto.meshes[k].texturecoords[0];
         console.log(this._textureCoords);
       }
 
 
       //almacenamos las normales de los vértices
-      this._normales=objeto.meshes[0].normals;
+      this._normales=objeto.meshes[k].normals;
+      k++;
+    }
 
-      if(objeto.materials[1]!==undefined){
+      /*if(objeto.materials[1]!==undefined){
         this._textura=gestor.getRecurso(objeto.materials[1].properties[8].value, "textura");
         console.log(this._textura._img);
-      }
+      }*/
     }
 
     return cargado;

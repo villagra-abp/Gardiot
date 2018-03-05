@@ -81,7 +81,7 @@ function configurarShaders(vertexShader, fragmentShader){
 function setupWebGL(){
     
     //establece el clear color a blanco
-    gl.clearColor(1.0, 1.0, 1.0, 1.0);
+    gl.clearColor(0.1, 0.8, 0.9, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
     //profundidad
     gl.enable(gl.DEPTH_TEST);

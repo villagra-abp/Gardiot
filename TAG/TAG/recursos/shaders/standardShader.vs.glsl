@@ -20,13 +20,13 @@
         void main(void) {
             gl_Position = uPMatrix * uVMatrix * uMMatrix * vec4(aVertexPosition, 1.0);
             vTextureCoord=aVertexTextureCoord;
-            vColor=vec4(1.0, 0.1, 0.1, 1.0);
+            vColor=vec4(0.48, 0.3, 0.25, 1.0);
  
             //lighting
  
-            vec3 ambientLight = vec3(0.1, 0.1, 0.1);       
+            vec3 ambientLight = vec3(0.4, 0.4, 0.4);       
  
-            vec3 pointLightPosition = vec3(1.0, 2.0, -1.0);
+            vec3 pointLightPosition = vec3(0.0, 1.0, 0.0);
  
             vec3 pointLightDirection = normalize(vec3(pointLightPosition.xyz - aVertexPosition.xyz));
  

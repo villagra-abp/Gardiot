@@ -350,7 +350,7 @@ class TMotor{
 
 	}
 
-	escalarMalla(nombre, q){
+	escalarMalla(nombre, x, y, z){
 		var pos = -1;
 		
 		for (var i = 0; i< this.mallaRegistro.length; i++){
@@ -360,7 +360,7 @@ class TMotor{
 			}
 		}
 		if(pos>=0)
-			this.mallaRegistro[pos].dad.entity.escalar(q, q, q);			
+			this.mallaRegistro[pos].dad.entity.escalar(x, y, z);			
 
 	}
 //=================================FIN MALLAS============================
