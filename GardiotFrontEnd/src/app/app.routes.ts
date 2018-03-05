@@ -10,7 +10,7 @@ import { ResendComponent } from "./components/manage/resend.component";
 import { LibraryComponent } from "./components/plants/library/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
 import { PlantComponent } from "./components/plants/plant/plant.component";
-import { NewplantComponent } from './components/Plants/newplant/newplant.component';
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
 import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 
