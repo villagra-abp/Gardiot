@@ -4,7 +4,7 @@ export class Garden {
    public id?: string,
    public title?: string,
    public width?: string,
-   public lenght?: string,
+   public length?: string,
    public latitude?: string,
    public longitude?: string,
    public soil?: string,

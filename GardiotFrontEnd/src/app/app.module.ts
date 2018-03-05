@@ -38,9 +38,9 @@ import { ProfileComponent } from './components/user/profile.component';
 import { EditProfileComponent } from './components/user/editprofile.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 import { ResendComponent } from './components/manage/resend.component';
-import { LibraryComponent } from './components/user/library.component';
+import { LibraryComponent } from './components/plants/library/library.component';
 import { CalendarComponent } from './components/user/calendar.component';
-import { PlantComponent } from './components/user/plant.component';
+import { PlantComponent } from './components/plants/plant/plant.component';
 
 //Admin imports
 import { AdminListUsersComponent } from './components/admin/listusers.component';
@@ -55,12 +55,13 @@ import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
 import { UserdataComponent } from './components/admin/userdata.component';
-import { PlantdataComponent } from './components/admin/plantdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
+import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     StatisticsComponent,
     EmailComponent,
     UserdataComponent,
-    PlantdataComponent,
     EventdataComponent,
     ToolComponent,
     InvoiceComponent,
@@ -97,7 +97,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     DesarrolloComponent,
     FileSelectDirective,
     PlantComponent,
-    PaginationComponent
+    PaginationComponent,
+    NewplantComponent,
+    EditplantComponent
 
   ],
   imports: [

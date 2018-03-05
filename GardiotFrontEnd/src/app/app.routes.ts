@@ -7,10 +7,11 @@ import { ProfileComponent } from "./components/user/profile.component";
 import { EditProfileComponent } from "./components/user/editprofile.component";
 import { ConfirmationComponent } from "./components/manage/confirmation.component";
 import { ResendComponent } from "./components/manage/resend.component";
-import { LibraryComponent } from "./components/user/library.component";
+import { LibraryComponent } from "./components/plants/library/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
-import { PlantComponent } from "./components/user/plant.component";
-import { PlantdataComponent } from "./components/admin/plantdata.component";
+import { PlantComponent } from "./components/plants/plant/plant.component";
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
+import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 
 
@@ -43,10 +44,10 @@ const app_routes: Routes = [
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'newgarden', component: NewGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
+  { path: 'newplant', component: NewplantComponent, canActivate: [AuthguardGuard] },
+  { path: 'editplant', component: EditplantComponent, canActivate: [AuthguardGuard] },
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
-  { path: 'plantdata', component: PlantdataComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
-  { path: 'library', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }

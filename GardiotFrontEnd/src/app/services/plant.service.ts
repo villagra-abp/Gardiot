@@ -39,6 +39,27 @@ export class PlantService {
           })
     }
 
+		modify( plant:Plant ){
+			let body = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
+			body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
+			body+= `&initDatePlant=${plant.initDatePlant}&finDatePlant=${plant.finDatePlant}`;
+			body+= `&initDateBloom=${plant.initDateBloom}&finDateBloom=${plant.finDateBloom}`;
+			body+= `&initDateHarvest=${plant.initDateHarvest}&finDateHarvest=${plant.finDateHarvest}`;
+			body+= `&distance=${plant.distance}&diseaseResist=${plant.diseaseResist}`;
+			body+= `&leaveType=${plant.leaveType}`;
+			body+= `&photo=${plant.photo}`;
+
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+
+			return this.http.put(this.apiURL+"admin/plant/10", body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
+
 		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
@@ -71,13 +92,13 @@ export class PlantService {
           })
 	  }
 
-		searchAll(){
-			// let body = `commonName=${plant.commonName}`;
-			let body = `:cala`;
+		searchAll(plant:Plant){
+			let body = `commonName=${plant.commonName}`;
       let headers = new Headers({
-        'Authorization':`Bearer ${localStorage['Bearer']}`
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.post(this.apiURL+"find/:cala",  { headers } )
+      return this.http.post(this.apiURL+"find/Plant/6/1/commonName/ASC", body,  { headers } )
           .map( res =>{
             return res.json();
           })
@@ -88,6 +109,16 @@ export class PlantService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});
 			return this.http.get(this.apiURL+"numPlants/", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
+		deletePlant(idPlant: number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.delete(this.apiURL+"admin/plant/"+ idPlant, { headers } )
 					.map( res =>{
 						return res.json();
 					})

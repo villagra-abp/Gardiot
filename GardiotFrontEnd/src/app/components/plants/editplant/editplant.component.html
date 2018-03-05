@@ -1,22 +1,3 @@
-<div class="container main-container">
-	<h1>Plantas</h1>
-<!-- https://www.npmjs.com/package/angular-tabs-component-->
-
-<!-- <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-
-</ul> -->
-
-<tabs>
-<tab tabTitle="Nueva Planta">
 <section class="container">
 	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
 		<h4>Datos Básicos</h4>
@@ -38,7 +19,6 @@
 			</div>
 	  </div>
 
-
 		<div class="form-group">
 			<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
 		</div>
@@ -46,7 +26,7 @@
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="family_plant">Familia</label>
-				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family"required>
+				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" required>
 					 <option *ngFor="let family of families" value="{{family.id}}">{{family.name}}</option>
 				 </select>
 	    </div>
@@ -131,46 +111,6 @@
 	    </div>
 	  </fieldset>
 		<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-		<button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
+		<button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
 	</form>
 </section>
-
-</tab>
-<tab tabTitle="Gestión de plantas" active="true">
-	<div class="wrap">
-
-				<form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
-					<article class="form-group col-md-4">
-						<input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot"  >
-			    </article>
-					<!-- <article class="form-group col-md-2">
-						 <select class="form-control"  name="family">
-							 <option  value="nombre">nombre</option>
-							 <option  value="familia">familia</option>
-						 </select>
-					</article>
-					<article class="form-group col-md-2">
-						 <select class="form-control"  name="order">
-							 <option  value="ASC">A-Z</option>
-							 <option  value="DES">Z-A</option>
-						 </select>
-					</article> -->
-					<article class="form-group col-md-2">
-						<button class="btn btn-default" type="submit">Buscar</button>
-					</article>
-				</form>
-
-		<div class="card-columns">
-			<div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
-			  <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
-			  <div class="card-body" >
-					<h4>{{plant.commonName}} </h4>
-					<button [routerLink]="['/plantdata']" class="btn btn-outline-primary">Modificar</button>
-					<button [routerLink]="['/detail']" class="btn btn-outline-danger">Eliminar</button>
-			  </div>
-			</div>
-		</div>
-		<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
-	</div>
-</tab>
-</tabs>

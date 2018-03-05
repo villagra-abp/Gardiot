@@ -130,7 +130,7 @@ router.get('/isAuthenticated', function(request, response) {
 //***Muestra al usuario actual. Sin parametros
 
 router.get('/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	response.status(200).json({"id": request.user.id, "birthDate":request.user.birthDate, "name:":request.user.name, "lastName":request.user.lastName, "photo":request.user.photo, "access":request.user.access, "countryCode": request.user.countryCode, "city":request.user.city}); //PASSPORT devuelve siempre el objeto user
+	response.status(200).json({"id": request.user.id, "birthDate":request.user.birthDate, "name":request.user.name, "lastName":request.user.lastName, "photo":request.user.photo, "access":request.user.access, "countryCode": request.user.countryCode, "city":request.user.city}); //PASSPORT devuelve siempre el objeto user
 });
 
 
