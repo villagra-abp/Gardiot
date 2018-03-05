@@ -5,7 +5,7 @@ var routeRequirements = function (request, response, next) {
 		response.status(403).json({"Mensaje":"Permiso denegado"});
 	else if (request.hostname =='gardiot.ovh' && request.user.active == 0)
 		response.status(403).json({"Mensaje":"Cuenta no activa"});
-	else if (request.user.dateDelete)
+	else if (request.user && request.user.dateDelete)
 		response.status(403).json({"Mensaje":"Cuenta dada de baja"});
 	else {
 		var token = request.headers['authorization'];
