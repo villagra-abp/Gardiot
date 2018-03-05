@@ -123,39 +123,26 @@ export class NewGardenComponent implements OnInit{
 
 
 
-/*
+
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          this.garden.id=data[0].id;
-          this.garden.title=data[0].title;
-          this.garden.width=data[0].width;
-          this.garden.length=data[0].length;
-          this.garden.longitude=data[0].longitude;
-          this.garden.latitude=data[0].latitude;
-          this.garden.soil=data[0].soil;
-          this.garden.user=data[0].user;
-          this.garden.countryCode=data[0].countryCode;
-          this.garden.city=data[0].city;
-
-          this.listarPaises();
-          this.mostrarCiudad();
           
+          this._route.navigate(['/editgarden']);
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-        this._route.navigate(['/detail']);
+        //debug issues
+          this.garden.width="10";
+          this.garden.length = "10";
+          this.garden.soil= "1";  
       });
 
   }
-  */
+  
 
   ngOnInit(){
-  	//this.mostrar();
-    //debug issues
-    this.garden.width="10";
-    this.garden.length = "10";
-    this.garden.soil= "1";   
+  	this.mostrar();
     //------------------ 
     this.listarPaises();
     this.mostrarCiudad();
