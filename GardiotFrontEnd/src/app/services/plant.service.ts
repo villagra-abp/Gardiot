@@ -92,13 +92,13 @@ export class PlantService {
           })
 	  }
 
-		searchAll(){
-			// let body = `commonName=${plant.commonName}`;
-			let body = `:cala`;
+		searchAll(plant:Plant){
+			let body = `commonName=${plant.commonName}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
+				'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.post(this.apiURL+"find/:cala",  { headers } )
+      return this.http.post(this.apiURL+"find/plant/6/1/commonName/ASC", body,  { headers } )
           .map( res =>{
             return res.json();
           })

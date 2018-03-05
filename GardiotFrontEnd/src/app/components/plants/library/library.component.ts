@@ -16,6 +16,7 @@ import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 export class LibraryComponent implements OnInit {
 
   private plants:any[]=[];
+  private plant=new Plant();
   private numeroItems:number;
   private paginaActual:number=1;
   private elementosPorPagina:number=6;
@@ -45,8 +46,10 @@ export class LibraryComponent implements OnInit {
 
 
   searchcontent(){
-    this._plantService.searchAll()
+    this._plantService.searchAll(this.plant)
     .subscribe(data=>{
+      console.log(data);
+      this.plants=[];
       for(let key$ in data){
         this.plants.push(data[key$]);
       }
