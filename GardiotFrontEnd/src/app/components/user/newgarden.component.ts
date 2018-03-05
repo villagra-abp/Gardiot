@@ -36,7 +36,8 @@ export class NewGardenComponent implements OnInit{
    searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      if(this.startCity != undefined){
+      console.log("city " + this.garden.countryCode);
+      if(this.garden.countryCode != undefined){
         if(input.value.length==5){
             this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
               .subscribe(data=> {
@@ -158,8 +159,9 @@ export class NewGardenComponent implements OnInit{
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
   newGarden(){
 
-    this._gardenService.modifyGarden(this.garden)
+    this._gardenService.insertGarden(this.garden)
         .subscribe(data=>{
+          console.log("entra?");
           this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
         },
       error => {
