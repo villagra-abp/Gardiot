@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { User } from '../classes/user.class';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,10 @@ import { UserService } from '../services/user.service';
 
 
 export class HeaderComponent implements OnInit{
-
-    constructor( private user:UserService ){
-
+    user=new User("");
+    constructor( private userService:UserService ){
     }
+
     toggleMenu(e){
       if(e.target.classList.contains('opened'))
         e.target.classList.remove('opened');
@@ -30,43 +31,65 @@ export class HeaderComponent implements OnInit{
     }
     ngOnInit(){
 
-      if(this.user.isUserAuthenticated()){
-        this.user.isAuthenticated=this.user.isUserAuthenticated();
-        this.user.isUserAdmin().subscribe(data=>{
+      if(this.userService.isUserAuthenticated()){
+        this.userService.details(this.user).subscribe(data=>{
+          this.user.photo=data.photo;
+          this.user.name=data.name;
+          console.log(this.user.name);
+          if(this.user.photo!==undefined){
+            document.querySelector('#photoMenu>div').setAttribute('style', `width: 40px; height: 40px;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-image: url("${this.user.photo}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 0.5px solid #000;
+            border-radius: 200px;
+            cursor: pointer;
+            `);
+          }
+          else
+            document.querySelector('#photoMenu>div').setAttribute('style', 'display: none');
+        });
+        this.userService.isAuthenticated=this.userService.isUserAuthenticated();
+        this.userService.isUserAdmin().subscribe(data=>{
           if(data){
-            this.user.isAdmin=true;
+            this.userService.isAdmin=true;
           }
           else{
-            this.user.isAdmin=false;
+            this.userService.isAdmin=false;
           }
         },error=>{
-          this.user.isAdmin=false;
+          this.userService.isAdmin=false;
         });
       }
       else{
-        this.user.isAdmin=false;
+        this.userService.isAdmin=false;
       }
 
+
+
     }
+
+
 }
 
+  //sidebar
+  $(window).resize(function() {
+    var path = $(this);
+    var contW = path.width();
+    if(contW >= 751){
+      (<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="200px";
+    }else{
+      (<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="-200px";
+    }
+  });
+  $(document).ready(function() {
+    $('.dropdown').on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+    });
+    $('.dropdown').on('hide.bs.dropdown', function(e){
+      $(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
+    });
 
-//sidebar
-$(window).resize(function() {
-	var path = $(this);
-	var contW = path.width();
-	if(contW >= 751){
-		(<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="200px";
-	}else{
-		(<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="-200px";
-	}
-});
-$(document).ready(function() {
-	$('.dropdown').on('show.bs.dropdown', function(e){
-	    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
-	});
-	$('.dropdown').on('hide.bs.dropdown', function(e){
-		$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
-	});
-
-});
+  });

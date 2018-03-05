@@ -4,10 +4,6 @@ body{
   padding-bottom: 50px;
 }
 
-.header{
-  background-color: #63d297 !important;
-}
-
 button{
   cursor: pointer;
 }
