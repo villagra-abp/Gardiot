@@ -2,124 +2,86 @@ var connection = require('../config/connection');
 
 var myPlant = {};
 
-myPlant.getMyPlant = function(callback) {
+myPlant.getMyPlantsByGarden = function(garden, user, callback) {
   if(connection) {
-    connection.query('SELECT * FROM MyPlant' , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
+    connection.query('SELECT MyPlant.id, MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name AS soil FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ' , function (error, rows){
+      if(error) 
+        callback (error, null);    
+      else 
         callback(null, rows);
-      }
     });
   }
 }
 
 
-myPlant.getMyPlantById = function(id, callback) {
+myPlant.getMyPlantById = function(garden, user, id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM MyPlant WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
-				callback(null, row);
-			}
+		connection.query('SELECT MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id  AND Plant.id = ' + id + ' AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ', function(error, row) {
+			if (error) 
+				callback (error, null);			
+			else 
+				callback(null, row);		
 		});
 	}
 }
 
-myPlant.insertMyPlant = function(data, callback) {
+myPlant.insertMyPlant = function(garden, data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO MyPlant(name, xCoordinate, yCoordinate, seed, number, plant, garden, soil) values("'+data.name+'", "'+data.xCoordinate+'", "'+data.yCoordinate+'", "'+data.seed+'", "'+data.number+'", "'+data.plant+'", "'+data.garden+'", "'+data.soil+'")';
-    connection.query(sentence, function(error, result){
+    sql = 'INSERT INTO MyPlant SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ', garden = ' + garden;
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    });  
+  }
+}
+
+myPlant.updateMyPlant = function(id, data, callback) {
+  if(connection) {
+    var sql = 'UPDATE MyPlant SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id = "' + id +'"';
+    connection.query(sql, function(error, result) {
+      if (error)
+        callback(error, null);
+      else{
+        callback(null, result.affectedRows);
+      }
+    });
+  }
+}
+
+myPlant.deleteMyPlant = function(id, callback) {
+  if(connection) {
+    connection.query('DELETE FROM MyPlant WHERE id = "' + id + '"', function(error, result) {
+      if (error)
+        callback(error, null);
       else
         callback(null, result.affectedRows);
     });
   }
 }
 
-myPlant.updateMyPlant = function(data, callback) {
-  if(connection) {
-    commaCounter=0;
-    var sentence =  'UPDATE MyPlant SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
-      commaCounter++;
-    }
-    
-    if(data.xCoordinate) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='xCoordinate ="' + data.xCoordinate + '"';
-      commaCounter++;
-    }
-    if(data.yCoordinate) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='yCoordinate ="' + data.yCoordinate + '"';
-      commaCounter++;
-    }
-    if(data.seed) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='seed ="' + data.seed + '"';
-      commaCounter++;
-    }
-    if(data.number) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='number ="' + data.number + '"';
-      commaCounter++;
-    }
-    if(data.plant) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='plant ="' + data.plant + '"';
-      commaCounter++;
-    }
-    if(data.garden) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='garden ="' + data.garden + '"';
-      commaCounter++;
-    }
-    if(data.soil) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='soil ="' + data.soil + '"';
-      commaCounter++;
-    }
-    sentence += ' WHERE id = "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
-      }
-			else{
-        if(result.affectedRows < 1){
-          callback(null, {"mensaje":"No existe"});
-        }else{
-  				callback(null, {"mensaje":"Actualizado"});
-        }
-      }
-		});
+myPlant.isOwner = function (user, garden, callback) {
+  if (connection) {
+    connection.query('SELECT user FROM Garden WHERE id = ' + garden, function (error, result) {
+      if (error)
+        callback(error, null);
+      else {
+        if (result[0].user == user) callback (null, true);
+        else callback (null, false);
+      }      
+    });
   }
 }
-
-myPlant.deleteMyPlant = function(id, callback) {
-  if(connection) {
-    var sentence = 'DELETE FROM MyPlant WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
-			if (error)
-				throw error;
-			else
-				callback(null, result.affectedRows);
-		});
-  }
-}
-
 
 module.exports = myPlant;

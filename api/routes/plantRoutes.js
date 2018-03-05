@@ -53,7 +53,6 @@ router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
 });
 
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	console.log(request.body);
 	if (!request.body.scientificName || !request.body.commonName || !request.body.description)
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
