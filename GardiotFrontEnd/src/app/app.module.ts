@@ -7,6 +7,7 @@ import {TabModule} from 'angular-tabs-component';
 
 //Rutas
 import { APP_ROUTING } from "./app.routes";
+import { DatePipe } from '@angular/common';
 
 import { Select2Module } from 'ng2-select2';
 import { FileSelectDirective } from 'ng2-file-upload';
@@ -119,7 +120,8 @@ import { EditplantComponent } from './components/plants/editplant/editplant.comp
     Ng2ImgMaxService,
     AuthguardGuard,
     AdminguardGuard,
-    PlantService
+    PlantService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
