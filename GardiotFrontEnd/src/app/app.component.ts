@@ -28,12 +28,13 @@ export class AppComponent {
     div.className=`alert alert-${tipo} msg`;
     div.setAttribute("role", "alert");
     if(link==""){
-      div.innerHTML=`${msg}<button onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);" class="btn btn-info">Aceptar</button>`;
+      div.innerHTML=`${msg}<button id="emergent" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);" class="btn btn-info">Aceptar</button>`;
     }
     else{
-      div.innerHTML=`${msg}<button onclick='location.href="${this.url+link}"' class="btn btn-info">Aceptar</button>`;
+      div.innerHTML=`${msg}<button id="emergent" onclick='location.href="${this.url+link}"' class="btn btn-info">Aceptar</button>`;
     }
     backdiv.appendChild(div);
     document.querySelector("body").appendChild(backdiv);
+    document.getElementById("emergent").focus();
   }
 }

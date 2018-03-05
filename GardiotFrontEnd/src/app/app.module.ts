@@ -55,13 +55,12 @@ import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
 import { UserdataComponent } from './components/admin/userdata.component';
-import { PlantdataComponent } from './components/admin/plantdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { NewplantComponent } from './components/Plants/newplant/newplant.component';
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
 import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
 @NgModule({
@@ -89,7 +88,6 @@ import { EditplantComponent } from './components/plants/editplant/editplant.comp
     StatisticsComponent,
     EmailComponent,
     UserdataComponent,
-    PlantdataComponent,
     EventdataComponent,
     ToolComponent,
     InvoiceComponent,

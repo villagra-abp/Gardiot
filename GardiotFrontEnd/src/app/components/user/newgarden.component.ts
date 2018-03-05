@@ -43,9 +43,10 @@ export class NewGardenComponent implements OnInit{
               .subscribe(data=> {
                 let sp=document.querySelector('#ciudad');
                 console.log(data);
-                this.garden.latitude=data[0].lat.toFixed(2);
-                this.garden.longitude=data[0].lng.toFixed(2);
+                
                 if(data.length>0){
+                  this.garden.latitude=data[0].lat.toFixed(2);
+                  this.garden.longitude=data[0].lng.toFixed(2);
                   if(data[0].adminName3!==undefined){
                     this.garden.city=data[0].adminName3;
                     sp.innerHTML=data[0].adminName3;
@@ -127,15 +128,10 @@ export class NewGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          
-          this._route.navigate(['/editgarden']);
+          this._route.navigate(['/garden']);
         },
       error => {
-        console.error(JSON.parse(error._body).Mensaje);
-        //debug issues
-          this.garden.width="10";
-          this.garden.length = "10";
-          this.garden.soil= "1";  
+        console.error(JSON.parse(error._body).Mensaje); 
       });
 
   }

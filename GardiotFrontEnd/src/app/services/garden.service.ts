@@ -30,12 +30,18 @@ export class GardenService {
           })
 	  }
 
+    deleteGarden(garden:Garden){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.delete(this.apiURL+"garden/"+garden.id, { headers })
+          .map( res =>{
+            return res.json();
+          })
+    }
+
     insertGarden(garden:Garden){
-      
-      //this is for debug issues
-      //
-      garden.width = "10";
-      garden.length = "10";
       garden.soil="1";
 
       console.log(garden);
@@ -78,16 +84,18 @@ export class GardenService {
 
 
 	  modifyGarden(garden:Garden){
+
+       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
       if(garden.title != "undefined"){
 	  	body += `&title=${garden.title}`;
       }
       if(garden.width != "undefined"){
-	  	//body += `&width=${garden.width}`;
+	  	body += `&width=${garden.width}`;
       }
       if(garden.length != "undefined"){
-	  	//body += `&length=${garden.length}`;
+	  	body += `&length=${garden.length}`;
       }
       if(garden.latitude != "undefined"){
 	  	body += `&latitude=${garden.latitude}`;
