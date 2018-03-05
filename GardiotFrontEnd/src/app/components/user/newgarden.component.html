@@ -11,7 +11,13 @@
       <form  (ngSubmit)="newGarden()" #forma="ngForm" novalidate="">
         <div class="form-group">
           <label  for="title">Título: </label>
-          <input  type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
+          <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
+        </div>
+        <div class="form-group">
+          <label  for="length">Largo: </label>
+          <input  class="form-control" type="text" [(ngModel)]="garden.length" name="length" id="length_garden" required>
+          <label  for="width">Ancho: </label>
+          <input  class="form-control" type="text" [(ngModel)]="garden.width" name="width" id="width_garden" required>
         </div>
         <div class="form-group" ng-init="listarPaises()">
           <label for="countries">País:</label>
@@ -23,7 +29,7 @@
 
           <div class="form-group">
             <label for="countries">Introduce tu código postal:</label>
-            <input type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
+            <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
         </div>
  
         <div class="form-group">
@@ -44,6 +50,7 @@
 
         <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
         <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
+        
       </form>
     </div>
   </div>

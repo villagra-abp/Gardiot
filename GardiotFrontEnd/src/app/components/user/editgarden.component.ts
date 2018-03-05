@@ -41,9 +41,10 @@ export class EditGardenComponent implements OnInit{
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');
               console.log(data);
-              this.garden.latitude=data[0].lat.toFixed(2);
-              this.garden.longitude=data[0].lng.toFixed(2);
+              
               if(data.length>0){
+                this.garden.latitude=data[0].lat.toFixed(2);
+                this.garden.longitude=data[0].lng.toFixed(2);
                 if(data[0].adminName3!==undefined){
                   this.garden.city=data[0].adminName3;
                   sp.innerHTML=data[0].adminName3;
@@ -126,10 +127,11 @@ export class EditGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
+          console.log(data[0]):
           this.garden.id=data[0].id;
           this.garden.title=data[0].title;
           this.garden.width=data[0].width;
-          this.garden.length=data[0].length;
+          this.garden.length=data[0].lenght;
           this.garden.longitude=data[0].longitude;
           this.garden.latitude=data[0].latitude;
           this.garden.soil=data[0].soil;
@@ -146,6 +148,17 @@ export class EditGardenComponent implements OnInit{
         this._route.navigate(['/detail']);
       });
 
+  }
+
+  delete(){
+    this._gardenService.deleteGarden(this.garden)
+        .subscribe(data=>{
+          this._appComponent.mensajeEmergente("Borrado", "success", "detail");
+        },
+      error => {
+        let v=JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
   ngOnInit(){

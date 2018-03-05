@@ -27,7 +27,6 @@ plant.getPlantsNumber = function (callback) {
     connection.query('SELECT COUNT(*) AS NUMPLANTAS FROM Plant', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
-      console.log(number);
     });
   }
 }
@@ -50,7 +49,7 @@ plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
       if (error)
         callback(error, null);
       else

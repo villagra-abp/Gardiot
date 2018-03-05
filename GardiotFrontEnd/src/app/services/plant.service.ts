@@ -98,7 +98,7 @@ export class PlantService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.post(this.apiURL+"find/plant/6/1/commonName/ASC", body,  { headers } )
+      return this.http.post(this.apiURL+"find/Plant/6/1/commonName/ASC", body,  { headers } )
           .map( res =>{
             return res.json();
           })
