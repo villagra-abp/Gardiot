@@ -6,7 +6,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 	if (connection) {
 		let minPeak = (page - 1) * number;
    		let order = '';
-		sql = 'SELECT *, COUNT() AS number FROM ' + model + ' WHERE ';
+		sql = 'SELECT COUNT(*) OVER () AS number, Q.* FROM ' + model + ' Q WHERE ';
 		for (var key in data)
 			if (typeof data[key]!== 'undefined') {
 				sql += ' ' + key + ' LIKE "%' + data[key] + '%",';
