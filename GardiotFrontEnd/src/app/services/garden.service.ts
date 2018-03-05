@@ -32,27 +32,35 @@ export class GardenService {
 
     insertGarden(garden:Garden){
       
+      //this is for debug issues
+      //
+      garden.width = "10";
+      garden.length = "10";
+      garden.soil="1";
+
+      console.log(garden);
+
       let body = `title=${garden.title}`;
       if(garden.width != undefined){
-      body += `&width=${garden.width}`;
+        body += `&width=${garden.width}`;
       }
-      if(garden.lenght != undefined){
-      body += `&lenght=${garden.lenght}`;
+      if(garden.length != undefined){
+        body += `&length=${garden.length}`;
       }
       if(garden.latitude != undefined){
-      body += `&latitude=${garden.latitude}`;
+        body += `&latitude=${garden.latitude}`;
       }
       if(garden.longitude != undefined){
-      body += `&longitude=${garden.longitude}`;
+        body += `&longitude=${garden.longitude}`;
       }
       if(garden.soil != undefined){
-      body += `&soil=${garden.soil}`;
+        body += `&soil=${garden.soil}`;
       }
       if(garden.countryCode != undefined){
-      body += `&countryCode=${garden.countryCode}`;
+        body += `&countryCode=${garden.countryCode}`;
       }
       if(garden.city != undefined){
-      body += `&city=${garden.city}`;
+        body += `&city=${garden.city}`;
       }
       console.log("cuerpo");
     console.log(body);
@@ -78,8 +86,8 @@ export class GardenService {
       if(garden.width != "undefined"){
 	  	//body += `&width=${garden.width}`;
       }
-      if(garden.lenght != "undefined"){
-	  	//body += `&lenght=${garden.lenght}`;
+      if(garden.length != "undefined"){
+	  	//body += `&length=${garden.length}`;
       }
       if(garden.latitude != "undefined"){
 	  	body += `&latitude=${garden.latitude}`;

@@ -130,7 +130,7 @@ export class NewGardenComponent implements OnInit{
           this.garden.id=data[0].id;
           this.garden.title=data[0].title;
           this.garden.width=data[0].width;
-          this.garden.lenght=data[0].lenght;
+          this.garden.length=data[0].length;
           this.garden.longitude=data[0].longitude;
           this.garden.latitude=data[0].latitude;
           this.garden.soil=data[0].soil;
@@ -152,6 +152,11 @@ export class NewGardenComponent implements OnInit{
 
   ngOnInit(){
   	//this.mostrar();
+    //debug issues
+    this.garden.width="10";
+    this.garden.length = "10";
+    this.garden.soil= "1";   
+    //------------------ 
     this.listarPaises();
     this.mostrarCiudad();
   }
@@ -162,7 +167,7 @@ export class NewGardenComponent implements OnInit{
     this._gardenService.insertGarden(this.garden)
         .subscribe(data=>{
           console.log("entra?");
-          this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+          this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
         },
       error => {
         let v=JSON.parse(error._body);

@@ -129,7 +129,7 @@ export class EditGardenComponent implements OnInit{
           this.garden.id=data[0].id;
           this.garden.title=data[0].title;
           this.garden.width=data[0].width;
-          this.garden.lenght=data[0].lenght;
+          this.garden.length=data[0].length;
           this.garden.longitude=data[0].longitude;
           this.garden.latitude=data[0].latitude;
           this.garden.soil=data[0].soil;

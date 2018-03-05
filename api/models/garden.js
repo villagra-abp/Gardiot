@@ -46,7 +46,17 @@ garden.getGardenByUser = function(user, callback) {
 
 garden.insertGarden = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Garden SET title = "'+data.title+'", user= "'+data.user+'", soil = '+data.soil+', width='+ data.width+', lenght = '+data.length+', ';
+    var sentence = 'INSERT INTO Garden SET title = "'+data.title+'", user= "'+data.user+'",';
+    if(data.width) {
+      sentence +=' width =' + data.width + ',';
+    }
+    console.log(data);
+    if(data.length) {
+      sentence +=' lenght =' + data.length + ',';
+    }
+    if(data.soil) {
+      sentence +=' soil =' + data.soil + ',';
+    }
     if(data.longitude) {
       sentence +=' longitude =' + data.longitude + ',';
     }
@@ -63,7 +73,7 @@ garden.insertGarden = function(data, callback) {
       sentence +='zip ="' + data.zip + '" ';
     }
     sentence = sentence.slice(0, -1);
-
+    console.log(sentence);
     connection.query(sentence, function(error, result){
       if(error)
         throw error;
