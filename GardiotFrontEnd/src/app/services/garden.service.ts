@@ -42,7 +42,7 @@ export class GardenService {
     }
 
     insertGarden(garden:Garden){
-      garden.soil=1;
+      garden.soil="1";
 
       console.log(garden);
 
@@ -85,7 +85,7 @@ export class GardenService {
 
 	  modifyGarden(garden:Garden){
 
-       garden.soil=1;
+       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
       if(garden.title != "undefined"){

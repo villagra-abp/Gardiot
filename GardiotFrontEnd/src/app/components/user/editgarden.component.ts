@@ -127,7 +127,7 @@ export class EditGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          console.log(data[0]):
+          console.log(data[0]);
           this.garden.id=data[0].id;
           this.garden.title=data[0].title;
           this.garden.width=data[0].width;
