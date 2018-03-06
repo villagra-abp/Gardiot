@@ -3,6 +3,10 @@ import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { AppComponent } from "../../../app.component";
 
+
+
+
+
 @Component({
   selector: 'app-admin-listusers',
   templateUrl: './listusers.component.html',
@@ -53,6 +57,17 @@ export class AdminListUsersComponent {
     deleteuser(idUser:number){
       this._detailService.deleteUser(idUser)
       .subscribe(data=>{
+        this.mostrar();
+      },
+      error => {
+        console.error(error);
+      });
+    }
+
+    getitems(){
+      this._detailService.getNumberItems()
+      .subscribe(data=>{
+        this.numeroItems=data[0].NUMPLANTAS;
         this.mostrar();
       },
       error => {

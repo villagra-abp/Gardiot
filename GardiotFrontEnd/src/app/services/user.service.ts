@@ -103,6 +103,16 @@ export class UserService {
           })
     }
 
+    getNumberItems(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.get(this.apiURL+"numPlants/", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
     savePhotoUser(photo:String){
       let body=`photo=${photo}`;
       let headers = new Headers({
