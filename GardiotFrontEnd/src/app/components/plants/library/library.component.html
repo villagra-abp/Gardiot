@@ -33,7 +33,7 @@
         <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
         <div class="card-body" >
           <h4>{{plant.commonName}} </h4>
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant']" class="btn btn-outline-primary">Modificar</button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]"  class="btn btn-outline-primary">Modificar</button>
           <button *ngIf="this.user.isAdmin" (click)="deleteplant(plant.id)" [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Eliminar</button>
         </div>
       </div>
