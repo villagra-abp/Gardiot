@@ -7,6 +7,7 @@ import { AppComponent } from "../../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
 import { DatePipe } from '@angular/common';
+import { DeprecatedDatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-editplant',
@@ -95,7 +96,6 @@ export class EditplantComponent implements OnInit {
   mostrar(){
     this._plantService.details(5)
         .subscribe(data=>{
-          console.log(data);
           this.plant.id=data[0].id;
           this.plant.scientificName=data[0].scientificName;
           this.plant.commonName=data[0].commonName;
@@ -104,9 +104,10 @@ export class EditplantComponent implements OnInit {
           this.plant.depth=data[0].depth;
           this.plant.distance=data[0].distance;
           this.plant.diseaseResist=data[0].diseaseResist;
-          this.plant.initDatePlant=new Date(this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd'));
-          // this.plant.initDatePlant=new Date(Date.parse(data[0].initDatePlant.toString()));
+          // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
+          this.plant.initDatePlant=this.formatoFecha(data[0].initDatePlant);
           console.log(this.plant.initDatePlant);
+
           this.plant.finDatePlant=data[0].finDatePlant;
           this.plant.initDateBloom=data[0].initDateBloom;
           this.plant.finDateBloom=data[0].finDateBloom;
@@ -122,6 +123,19 @@ export class EditplantComponent implements OnInit {
       });
 
     }
+
+  formatoFecha(fecha){
+    let fech=new Date(fecha);
+    fech.setDate(fech.getDate()+1);
+    var anno=fecha.getFullYear();
+    var mes= fecha.getMonth();
+    var dia= fecha.getDate();
+    mes = (mes < 10) ? ("0" + mes) : mes;
+    dia = (dia < 10) ? ("0" + dia) : dia;
+    var fechaFinal = new Date(dia+'/'+mes+'/'+2018);
+    return (fechaFinal);
+    //return fech;
+ }
 
   ngOnInit() {
     this.mostrar();
