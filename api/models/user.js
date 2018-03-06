@@ -12,9 +12,9 @@ user.getUser = function(number, page, order, sort, callback) {
 	    order = order.toUpperCase();
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
-	    if (order === 'NAME' || order === 'LASTNAME' || order === 'BIRTHDATE' || order === 'CITY')
-	      orderByParam = 'commonName ' + orderSentence;
-		connection.query('SELECT id, name, lastName, birthDate, active, ciudad, admin FROM User', function(error, rows) {
+	    if (order === 'name' || order === 'lastName' || order === 'birthDate' || order === 'city')
+	      orderByParam += order + '' + orderSentence;
+		connection.query('SELECT id, name, lastName, birthDate, active, city, admin FROM User', function(error, rows) {
 			if (error)
 				callback(error, null);
 			else
