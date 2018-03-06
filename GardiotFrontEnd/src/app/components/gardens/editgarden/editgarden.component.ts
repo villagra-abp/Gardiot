@@ -1,19 +1,19 @@
 import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
-import { GardenService } from "../../services/garden.service";
-import { Garden } from "../../classes/garden.class";
-import { AppComponent } from "../../app.component";
+import { GardenService } from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
+import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
 
 @Component({
-  selector: 'app-newgarden',
-  templateUrl: './newgarden.component.html'
+  selector: 'app-editgarden',
+  templateUrl: './editgarden.component.html'
 })
 
-export class NewGardenComponent implements OnInit{
+export class EditGardenComponent implements OnInit{
 
 	garden = new Garden("");
   countries:any[] = [];
@@ -36,46 +36,43 @@ export class NewGardenComponent implements OnInit{
    searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      console.log("city " + this.garden.countryCode);
-      if(this.garden.countryCode != undefined){
-        if(input.value.length==5){
-            this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
-              .subscribe(data=> {
-                let sp=document.querySelector('#ciudad');
-                console.log(data);
-                
-                if(data.length>0){
-                  this.garden.latitude=data[0].lat.toFixed(2);
-                  this.garden.longitude=data[0].lng.toFixed(2);
-                  if(data[0].adminName3!==undefined){
-                    this.garden.city=data[0].adminName3;
-                    sp.innerHTML=data[0].adminName3;
-                  }
-                  else if(data[0].adminName2!==undefined){
-                    this.garden.city=data[0].adminName2;
-                    sp.innerHTML=data[0].adminName2;
-                  }
-                  else if(data[0].adminName1!==undefined){
-                    this.garden.city=data[0].adminName1;
-                    sp.innerHTML=data[0].adminName1;
-                  }
-                  else{
-                    this.garden.city='';
-                    sp.innerHTML='Código postal no encontrado';
-                  }
+      if(input.value.length==5){
+          this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
+            .subscribe(data=> {
+              let sp=document.querySelector('#ciudad');
+              console.log(data);
+
+              if(data.length>0){
+                this.garden.latitude=data[0].lat.toFixed(2);
+                this.garden.longitude=data[0].lng.toFixed(2);
+                if(data[0].adminName3!==undefined){
+                  this.garden.city=data[0].adminName3;
+                  sp.innerHTML=data[0].adminName3;
+                }
+                else if(data[0].adminName2!==undefined){
+                  this.garden.city=data[0].adminName2;
+                  sp.innerHTML=data[0].adminName2;
+                }
+                else if(data[0].adminName1!==undefined){
+                  this.garden.city=data[0].adminName1;
+                  sp.innerHTML=data[0].adminName1;
                 }
                 else{
                   this.garden.city='';
                   sp.innerHTML='Código postal no encontrado';
                 }
-                input.value='';
-                console.log(this.garden);
+              }
+              else{
+                this.garden.city='';
+                sp.innerHTML='Código postal no encontrado';
+              }
+              input.value='';
+              console.log(this.garden);
 
-              },
-              error => {
-                console.log(error);
-              });
-            }
+            },
+            error => {
+              console.log(error);
+            });
           }
         }
 
@@ -88,6 +85,8 @@ export class NewGardenComponent implements OnInit{
               for(let i=0; i<data.geonames.length; i++){
                 aux.push({id:data.geonames[i].countryCode, text:data.geonames[i].countryName});
               }
+
+
 
               this.countryData=Observable.create((obs)=>{
                     obs.next(aux);
@@ -116,7 +115,7 @@ export class NewGardenComponent implements OnInit{
           obs.next(aux);
           obs.complete();
       });
-      if(this.garden.city!=undefined)
+
       document.querySelector('#ciudad').innerHTML=this.garden.city;
 
   }
@@ -128,29 +127,50 @@ export class NewGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          this._route.navigate(['/garden']);
+          console.log(data[0]);
+          this.garden.id=data[0].id;
+          this.garden.title=data[0].title;
+          this.garden.width=data[0].width;
+          this.garden.length=data[0].lenght;
+          this.garden.longitude=data[0].longitude;
+          this.garden.latitude=data[0].latitude;
+          this.garden.soil=data[0].soil;
+          this.garden.user=data[0].user;
+          this.garden.countryCode=data[0].countryCode;
+          this.garden.city=data[0].city;
+
+          this.listarPaises();
+          this.mostrarCiudad();
+
         },
       error => {
-        console.error(JSON.parse(error._body).Mensaje); 
+        console.error(JSON.parse(error._body).Mensaje);
+        this._route.navigate(['/detail']);
       });
 
   }
-  
+
+  delete(){
+    this._gardenService.deleteGarden(this.garden)
+        .subscribe(data=>{
+          this._appComponent.mensajeEmergente("Borrado", "success", "detail");
+        },
+      error => {
+        let v=JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
+  }
 
   ngOnInit(){
   	this.mostrar();
-    //------------------ 
-    this.listarPaises();
-    this.mostrarCiudad();
   }
 
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
-  newGarden(){
+  edit(){
 
-    this._gardenService.insertGarden(this.garden)
+    this._gardenService.modifyGarden(this.garden)
         .subscribe(data=>{
-          console.log("entra?");
-          this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
+          this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
         },
       error => {
         let v=JSON.parse(error._body);

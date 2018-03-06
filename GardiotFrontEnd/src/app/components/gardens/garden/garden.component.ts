@@ -1,9 +1,9 @@
 import { Component} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
-import { GardenService} from "../../services/garden.service";
-import { Garden } from "../../classes/garden.class";
-import { AppComponent } from "../../app.component";
+import { GardenService} from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
+import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -55,9 +55,9 @@ export class GardenComponent {
         if(JSON.parse(error._body).Mensaje == 'No existe'){
           this._route.navigate(['/newgarden']);
         }else{
-          this._route.navigate(['/detail']);  
+          this._route.navigate(['/detail']);
         }
-        
+
       });
 
   }
@@ -67,14 +67,14 @@ export class GardenComponent {
 	        .subscribe(data=>{
 	          console.log(data);
 
-          
+
 		  		this.cielo = data.weather[0].main;
           var aux = data.main.temp - 273;
           this.temperatura = aux.toFixed(2);
           this.humedad = data.main.humidity;
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
-          
+
 
 	        },
 	      error => {

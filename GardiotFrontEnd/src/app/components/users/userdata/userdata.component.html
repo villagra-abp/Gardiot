@@ -6,5 +6,10 @@
 	        type="submit" name="button">Lista de usuarios</button>
 	<button [routerLink] ="['/admin/user']" class="btn btn-outline-primary"
 	                type="submit" name="button">Crear nuevo usuario</button>
+
+
+	<app-admin-listusers> </app-admin-listusers>
+	<app-pagination [count]="this.numeroItems" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+
 </div>
 </div>

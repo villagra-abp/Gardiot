@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../../app.component';
+import { AppComponent } from '../../../app.component';
 import { Router, ActivatedRoute } from "@angular/router";
-import { UserService } from '../../services/user.service';
-import { User } from '../../classes/user.class';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../classes/user.class';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './edituser.component.html',
   styles: []
 })
-export class AdminEditUserComponent implements OnInit {
+export class EdituserComponent implements OnInit {
 
   oldId:String;
   user;
