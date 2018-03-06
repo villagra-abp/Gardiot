@@ -44,9 +44,9 @@ const app_routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'admin/users', component: AdminListUsersComponent,  canActivate: [AuthguardGuard] },
-  { path: 'edituser/:id', component: EdituserComponent,  canActivate: [AuthguardGuard] },
-  { path: 'newuser', component: NewuserComponent,  canActivate: [AuthguardGuard] },
+  { path: 'admin/users', component: AdminListUsersComponent,  canActivate: [AuthguardGuard] },//routerAdmin
+  { path: 'edituser/:id', component: EdituserComponent,  canActivate: [AuthguardGuard] },//routerAdmin
+  { path: 'newuser', component: NewuserComponent,  canActivate: [AuthguardGuard] }, //routerAdmin
   // component: AdminComponent, children: admin_routes,
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
