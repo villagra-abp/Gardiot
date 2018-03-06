@@ -30,7 +30,7 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 	});
 });
 
-router.get('/gardenByUser/', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var user = request.user.id;
 	gardenModel.getGardenByUser(user, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {

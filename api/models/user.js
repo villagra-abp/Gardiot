@@ -11,8 +11,8 @@ user.getUser = function(number, page, order, sort, callback) {
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
 	    if (order === 'name' || order === 'lastName' || order === 'birthDate' || order === 'city')
-	      orderByParam += order + ' ' + orderSentence;
-		connection.query('SELECT id, name, lastName, birthDate, active, city, admin FROM User ORDER BY ' + orderByParam + ' LIMIT ' + minPeak + ',' + number, function(error, rows) {
+	      orderByParam = ' ORDER BY ' + order + ' ' + orderSentence;
+		connection.query('SELECT id, name, lastName, birthDate, active, city, admin FROM User ' + orderByParam + ' LIMIT ' + minPeak + ',' + number, function(error, rows) {
 			if (error)
 				callback(error, null);
 			else
