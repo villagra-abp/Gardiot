@@ -13,7 +13,9 @@ import { NgForm } from '@angular/forms';
 export class EdituserComponent implements OnInit {
 
   oldId:String;
-  user;
+//  user;
+  user=new User();
+  private users:any[]=[];
 
   constructor(private _editUserService:UserService,
   private _appComponent:AppComponent,
@@ -30,23 +32,56 @@ export class EdituserComponent implements OnInit {
 
   }
 
+  getID(){
+    this._router.params.subscribe(params => {
+      if(params['id']!=null){
+        this.user=new User(params['id']);
+        this.mostrar(this.user);
+      }else{
+        this._route.navigate(['/plants']);
+      }
+    });
+  }
+
+  mostrar(User: User){
+    this._editUserService.details(User)
+        .subscribe(data=>{
+          this.user.id=data[0].id;
+          this.user.name=data[0].name;
+          this.user.lastName=data[0].lastName;
+          this.user.active=data[0].active;
+          this.user.admin=data[0].admin;
+        },
+      error => {
+        console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
+      //  this._route.navigate(['/login']);
+      });
+
+    }
+
   ngOnInit() {
     //Coge el ID por parámetro, entonces carga el usuario para mostrarlo
-    this._router.params.subscribe(params => {
-            if(params['id']!=null){
-              this.user=new User(params['id']);
-              console.log(this.user);
-                this._editUserService.details(this.user)
-                .subscribe(data=>{
-                    console.log(data);
-                    this.oldId=data[0].id;
-                    this.user.name=data[0].name;
-                  },
-                error => {
-                  this._route.navigate(['/admin/listusers']);
-                });
-            }
-         });
+    this.getID();
+
+
+
+    // this._router.params.subscribe(params => {
+    //         if(params['id']!=null){
+    //           this.user=new User(params['id']);
+    //           console.log(this.user);
+    //             this._editUserService.details(this.user)
+    //             .subscribe(data=>{
+    //                 console.log(data);
+    //                 this.oldId=data[0].id;
+    //                 this.user.name=data[0].name;
+    //               },
+    //             error => {
+    //               this._route.navigate(['/admin/users']);
+    //             });
+    //         }
+    //      });
   }
 
 }

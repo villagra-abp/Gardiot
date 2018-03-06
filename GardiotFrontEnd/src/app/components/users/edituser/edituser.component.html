@@ -1,7 +1,6 @@
 <div class="vistaAdmin">
   <div class="container main-container">
   <h3>Usuario {{user.name}}</h3>
-  <h3>No edita bien. Los cambios que guardemos se guardarán para el usuario que está navegando</h3>
   <hr>
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
@@ -24,18 +23,7 @@
                 type="text" name="surnames"
                 class="form-control" [(ngModel)]="user.surnames" disabled>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input
-                type="password" name="password"
-                class="form-control" [(ngModel)]="user.password" required>
-        </div>
-        <div class="form-group">
-          <label>Repite el password</label>
-          <input
-                type="password" name="password2"
-                class="form-control" [(ngModel)]="user.password2" required>
-        </div>
+
         <div class="form-group">
           <label>Ciudad</label>
           <input
@@ -59,7 +47,6 @@
             Guardar cambios
           </button>
         </div>
-
       </form>
     </div>
   </div>

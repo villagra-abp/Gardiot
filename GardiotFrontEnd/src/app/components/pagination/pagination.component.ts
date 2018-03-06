@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core'
 import { PlantService } from "../../services/plant.service";
+import { UserService } from "../../services/user.service";
 
 
 
@@ -41,12 +42,10 @@ export class PaginationComponent implements OnInit {
   }
 
   onPrev(): void {
-    console.log("Para atras");
     this.goPrev.emit(true);
   }
 
   onNext(next: boolean): void {
-    console.log("para adelante");
     this.goNext.emit(next);
   }
 

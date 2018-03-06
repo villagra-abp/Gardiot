@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import {TabModule} from 'angular-tabs-component';
-// import {Ng2PaginationModule} from 'ng2-pagination';
+//import {Ng2PaginationModule} from 'ng2-pagination';
 
 //Rutas
 import { APP_ROUTING } from "./app.routes";
@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { Select2Module } from 'ng2-select2';
 import { FileSelectDirective } from 'ng2-file-upload';
 import {Ng2ImgMaxModule} from "ng2-img-max";
+// import {PopupModule} from 'ng2-opd-popup';
 
 
 //services
@@ -108,7 +109,7 @@ import { EditplantComponent } from './components/plants/editplant/editplant.comp
     Select2Module,
     Ng2ImgMaxModule,
     TabModule,
-    // Ng2PaginationModule,
+    //PopupModule.forRoot(),
     APP_ROUTING
   ],
   providers: [

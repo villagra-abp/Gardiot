@@ -87,7 +87,27 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"admin/users/2/1/NAME/ASC", { headers } )
+      return this.http.get(this.apiURL+"admin/users/5/1/name/ASC", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    deleteUser(idUser: number){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.delete(this.apiURL+"/admin/user/"+ idUser, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    getNumberItems(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.get(this.apiURL+"numPlants/", { headers } )
           .map( res =>{
             return res.json();
           })

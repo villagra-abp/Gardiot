@@ -19,12 +19,13 @@ import { EditplantComponent } from './components/plants/editplant/editplant.comp
 //Users
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
+import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 //Admin imports
-import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
+
 import { AdminComponent } from './components/admin/admin.component';
 
 
@@ -44,6 +45,8 @@ const app_routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'admin/users', component: AdminListUsersComponent,  canActivate: [AuthguardGuard] },
+  { path: 'edituser/:id', component: EdituserComponent,  canActivate: [AuthguardGuard] },
+  { path: 'newuser', component: NewuserComponent,  canActivate: [AuthguardGuard] },
   // component: AdminComponent, children: admin_routes,
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
