@@ -10,7 +10,8 @@ import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'app-editgarden',
-  templateUrl: './editgarden.component.html'
+  templateUrl: './editgarden.component.html',
+  styleUrls: ['./editgarden.component.css']
 })
 
 export class EditGardenComponent implements OnInit{

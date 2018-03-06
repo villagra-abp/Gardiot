@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit{
         this.userService.details(this.user).subscribe(data=>{
           this.user.photo=data.photo;
           this.user.name=data.name;
-          console.log(this.user.name);
+          if(this.user.name == ""){
+            this.user.name="Perfil";
+          }
           if(this.user.photo!==undefined){
             document.querySelector('#photoMenu>div').setAttribute('style', `width: 40px; height: 40px;
             background-color: rgba(255, 255, 255, 0.5);

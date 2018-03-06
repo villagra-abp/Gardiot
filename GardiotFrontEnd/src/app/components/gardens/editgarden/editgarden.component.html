@@ -7,7 +7,7 @@
 
 <section class="container">
   <div class="row animated fadeIn fast">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
         <div class="form-group">
           <label  for="title">Título: </label>
@@ -42,10 +42,11 @@
         <button [routerLink]="['/garden']" class="btn btn-outline-danger">Cancelar</button>
 
       </form>
+      <div class="borrar">
+        <button (click)="delete()" class="btn btn-danger" >Borrar</button>
+      </div>
     </div>
-    <div>
-      <button (click)="delete()" class="btn btn-danger" >Borrar</button>
-    </div>
+    
   </div>
 </section>
 </div>
