@@ -9,17 +9,22 @@ import { ConfirmationComponent } from "./components/manage/confirmation.componen
 import { ResendComponent } from "./components/manage/resend.component";
 import { LibraryComponent } from "./components/plants/library/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
+
+
+//Plants
 import { PlantComponent } from "./components/plants/plant/plant.component";
 import { NewplantComponent } from './components/plants/newplant/newplant.component';
 import { EditplantComponent } from './components/plants/editplant/editplant.component';
 
+//Users
+import { NewuserComponent } from './components/users/newuser/newuser.component';
+import { EdituserComponent } from './components/users/edituser/edituser.component';
 
 
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 //Admin imports
 import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
-import { AdminUserComponent } from './components/admin/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 
@@ -28,6 +33,8 @@ import { GardenComponent } from './components/gardens/garden/garden.component';
 import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
 import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
 import { AuthguardGuard } from "./authguard.guard";
+
+//mas rutas
 import { admin_routes } from "./components/admin/admin.routes";
 
 
@@ -36,7 +43,8 @@ const app_routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'admin', component: AdminComponent, children: admin_routes, canActivate: [AuthguardGuard] },
+  { path: 'admin/users', component: AdminComponent,  canActivate: [AuthguardGuard] },
+  // component: AdminComponent, children: admin_routes,
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },

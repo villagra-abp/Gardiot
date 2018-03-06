@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './edituser.component.html',
   styles: []
 })
-export class AdminEditUserComponent implements OnInit {
+export class EdituserComponent implements OnInit {
 
   oldId:String;
   user;
