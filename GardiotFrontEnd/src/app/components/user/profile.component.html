@@ -1,8 +1,14 @@
 <div class="container main-container">
   <h1>Mi perfil</h1>
-
 <section class="container">
-<img src="{{this.imgUrl+user.photo}}" id="photoProfile" alt="Foto de perfil">
+  <div class="divPhoto" (click)="selectPhoto($event)">
+    <div>
+    </div>
+    <i class="material-icons">file_upload</i>
+  </div>
+
+
+<input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
     <dl class="row">
   <dt class="col-sm-3">Nombre</dt>
   <dd class="col-sm-9">{{user.name}} {{user.lastName}}</dd>
@@ -11,7 +17,7 @@
   <dd class="col-sm-9">{{user.id}}</dd>
 
   <dt class="col-sm-3">Cumpleaños</dt>
-  <dd class="col-sm-9">{{user.birthDate}}</dd>
+  <dd class="col-sm-9">{{user.birthDate | date}}</dd>
 
   <dt class="col-sm-3">País</dt>
   <dd class="col-sm-9">{{user.countryCode}}</dd>

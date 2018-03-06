@@ -12,11 +12,14 @@ var mime = require('mime');
 //Storage para las fotos de perfil
 var storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../uploads/avatar/')
+    if (req.hostname == 'gardiot.ovh')
+      cb(null, '../app/assets/images/imgProfile/');
+    else
+      cb(null, '../GardiotFrontEnd/src/assets/images/imgProfile/');
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      cb(null, raw.toString('hex') + Date.now() + '.jpeg');
     });
   }
 });
@@ -24,31 +27,33 @@ var storage1 = multer.diskStorage({
 //Storage para las fotos de plantas
 var storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../uploads/plant/')
+    if (req.hostname == 'gardiot.ovh')
+      cb(null, '../app/assets/images/imgPlants/');
+    else
+      cb(null, '../GardiotFrontEnd/src/assets/images/imgPlants/');
   },
   filename: function (req, file, cb) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+      cb(null, raw.toString('hex') + Date.now() + '.jpeg');
     });
   }
 });
 
-var upload1 = multer({storage: storage1}).single('photo');
-var upload2 = multer({storage: storage2}).single('photo');
+var upload1 = multer({storage: storage1, limits: {fileSize: 1310720}}).single('photo');
+var upload2 = multer({storage: storage2, limits: {fileSize: 1310720}}).single('photo');
 
 router.post('/uploadAvatar', function (req, res, next) {
      var path = '';
      upload1(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          console.log(err);
-          return res.status(422).send("an Error occured")
-        }  
-        console.log(res);
+          return res.status(422).send(err)
+        }
+
        // No error occured.
         path = req.file.path;
-        return res.send("Upload Completed for "+path); 
-  });     
+        return res.send("Upload Completed for "+path);
+  });
 });
 
 router.post('/uploadPlant', function (req, res, next) {
@@ -56,14 +61,12 @@ router.post('/uploadPlant', function (req, res, next) {
      upload2(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          console.log(err);
-          return res.status(422).send("an Error occured")
-        }  
-        console.log(res);
+          return res.status(422).send(err)
+        }
        // No error occured.
         path = req.file.path;
-        return res.send("Upload Completed for "+path); 
-  });     
+        return res.send("Upload Completed for "+path);
+  });
 });
 
 

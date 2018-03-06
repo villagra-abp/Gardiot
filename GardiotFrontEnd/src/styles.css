@@ -1,9 +1,9 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 /* You can add global styles to this file, and also import other style files*/
-.footer{
-  position: relative;
-  bottom:0;
-  width:100%;
+body{
+  padding-bottom: 50px;
 }
+
 button{
   cursor: pointer;
 }
@@ -60,4 +60,67 @@ button{
 }
 .desarrollo>p{
   color: #fff;
+}
+
+
+
+/* MARIANO */
+
+.wrap {
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.card{
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+
+fieldset {
+  border: 1px solid #ced4da;
+	border-radius:8px;
+	box-shadow:0 0 10px #999;
+}
+.tabs__panel[_ngcontent-c2]{
+  background-color: #fff !important;
+}
+
+.upload {
+display: none;
+border: 1px solid #ccc;
+width: 300px;
+position: relative;
+height: 30px;
+display: flex;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.bttn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .vistaAdmin{
+    margin-left: 200px !important;
+  }
 }

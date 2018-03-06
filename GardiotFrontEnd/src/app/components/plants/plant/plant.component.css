@@ -1,0 +1,34 @@
+.iconplant{
+  max-width: 25px;
+  max-height: 25px;
+}
+section{
+  padding: .5%;
+}
+div{
+  margin-top: 0;
+}
+
+img{
+  max-width: 420px;
+  max-height: 400px;
+}
+dl {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0
+}
+dt {
+  float: left;
+  width: 50%;
+  /* adjust the width; make sure the total of both is 100% */
+  padding: 0;
+  margin: 0
+}
+dd{
+  float: left;
+  width: 50%;
+  padding: 0;
+  margin: 0;
+}

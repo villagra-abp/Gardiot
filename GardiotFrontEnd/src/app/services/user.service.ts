@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
 
-  private apiURL:string="";
+  public apiURL:string="";
   public isAdmin:boolean;
   public isAuthenticated:boolean;
 
@@ -70,20 +70,6 @@ export class UserService {
             return res.json();
           })
     }
-    /*loginGoogle(){
-      let headers = new Headers({
-        'Authorization':`Bearer ${localStorage['Bearer']}`,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
-        'Allow': 'GET, POST, OPTIONS, PUT, DELETE'
-      });
-
-      return this.http.get(this.apiURL+"auth/google", { headers } )
-          .map( res =>{
-            return res.json();
-          })
-    }*/
 
     details(user:User){
       let headers = new Headers({
@@ -101,7 +87,39 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"users", { headers } )
+      return this.http.get(this.apiURL+"admin/users/5/1/name/ASC", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    deleteUser(idUser: number){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.delete(this.apiURL+"/admin/user/"+ idUser, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    getNumberItems(){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+      return this.http.get(this.apiURL+"numPlants/", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    savePhotoUser(photo:String){
+      let body=`photo=${photo}`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.put(this.apiURL+"user", body, { headers })
           .map( res =>{
             return res.json();
           })

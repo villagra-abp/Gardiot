@@ -2,11 +2,18 @@ var connection = require('../config/connection');
 
 var plant = {};
 
-plant.getPlants = function(number, page, callback) {
+plant.getPlants = function(number, page, orderBy, sort, callback) {
   if(connection) {
-    let minPeak = (page - 1) * number + 1;
-    let maxPeak = page * number;
-    connection.query('SELECT * FROM Plant WHERE id BETWEEN ' + minPeak  + ' AND ' + maxPeak , function (error, rows){
+    let minPeak = (page - 1) * number;
+    let orderSentence = '';
+    let orderByParam = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    if (orderBy.toUpperCase() === 'NAME')
+      orderByParam = 'commonName ' + orderSentence;
+    else if (orderBy.toUpperCase() === 'FAMILY')
+      orderByParam = 'Family.id ' + orderSentence + ', commonName';
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
       if(error)
         callback(error, null);
       else
@@ -15,11 +22,18 @@ plant.getPlants = function(number, page, callback) {
   }
 }
 
+plant.getPlantsNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS NUMPLANTAS FROM Plant', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
+    });
+  }
+}
 
 plant.getPlantById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Plant WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
+		connection.query('SELECT scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant, Family WHERE Plant.id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -28,10 +42,14 @@ plant.getPlantById = function(id, callback) {
 	}
 }
 
-plant.getPlantsByFamily = function(id, callback) { //HAY QUE AFINAR MAS LOS CAMPOS A DEVOLVER
+plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE AFINAR MAS LOS CAMPOS A DEVOLVER
   if (connection) {
-    var sentence = 'SELECT * FROM Plant, Family WHERE plant.family = family.id AND family.id = ' + id;
-    connection.query(sentence, function(error, row) {
+    let minPeak = (page - 1) * number;
+    let maxPeak = page * number;
+    let orderSentence = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
       if (error)
         callback(error, null);
       else
@@ -47,7 +65,6 @@ plant.insertPlant = function(data, callback) {
       if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    console.log(sql);
     connection.query(sql, function(error, result){
       if(error)
         callback(error, null);
@@ -56,14 +73,14 @@ plant.insertPlant = function(data, callback) {
     });
   }
 }
-plant.updatePlant = function(data, callback) {
+plant.updatePlant = function(data, id, callback) {
   if(connection) {
     var sql = 'UPDATE Plant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined' && key!= 'id')
+      if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    sql += ' WHERE id= "' + data.id +'"';
+    sql += ' WHERE id= "' + id +'"';
     connection.query(sql, function(error, result) {
 			if (error)
 				callback(error, null);
@@ -79,8 +96,7 @@ plant.updatePlant = function(data, callback) {
 
 plant.deletePlant = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Plant WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
+    connection.query('DELETE FROM Plant WHERE id = "' + id + '"', function(error, result) {
 			if (error)
 				callback(error, null);
 			else

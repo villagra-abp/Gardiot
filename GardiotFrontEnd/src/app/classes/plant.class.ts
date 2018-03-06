@@ -2,7 +2,7 @@
 export class Plant {
 
  constructor(
-   public id?: string,
+   public id?: number,
    public scientificName?: string,
    public commonName?: string,
    public description?: string,

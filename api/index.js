@@ -15,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 
 app.use(passport.initialize());
@@ -33,13 +33,15 @@ app.use('/api', require('./routes/geonamesRoutes'));
 app.use('/api', require('./routes/verificationTokenRoutes'));
 app.use('/api', require('./routes/forgetPasswordRoutes'));
 app.use('/api', require('./routes/finderRoutes'));
-//app.use('/api', require('./routes/gardenRoutes'));
+app.use('/api', require('./routes/gardenRoutes'));
 app.use('/api', require('./routes/uploadRoutes'));
+app.use('/api', require('./routes/myPlantRoutes'));
 //app.use('/api', require('./routes/soilRoutes'));
 //app.use('/api', require('./routes/productRoutes'));
 //app.use('/api', require('./routes/feedRoutes'));
 //app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
+app.use('/api', require('./routes/familyRoutes'));
 
 //Start server
 app.listen(config.port, function () {
