@@ -225,6 +225,8 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequi
 	});	
 });
 
+
+
 /***************************
 *		ADMIN ROUTES
 ***************************/
@@ -239,6 +241,16 @@ router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt
 			response.status(200).json(data);
 		});
 	}
+});
+
+router.get('/admin/numUsers', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	userModel.getUsersNumber(function(error, data) {
+		if (typeof data !== 'undefined')
+			response.status(200).json(data);
+		else
+			response.status(404).json({"Mensaje":"No existe"}); 
+	});
+
 });
 
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
