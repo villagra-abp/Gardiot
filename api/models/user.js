@@ -24,18 +24,18 @@ user.getUser = function(number, page, order, sort, callback) {
 }
 
 user.getUserById = function(id, callback) {
-	if (connection) { 
+	if (connection) {
 		var mariasql = 'SELECT * FROM User WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, row);		
+				callback(null, row);
 		});
 	}
 }
 
-user.insertUser = function(userData, callback) { 
+user.insertUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET ';
 		for (var key in userData)
@@ -43,8 +43,8 @@ user.insertUser = function(userData, callback) {
         		mariasql += key + ' = "' + userData[key] + '",';
         		if (key == 'googleId' || key == 'facebookId')
         			mariasql += 'active = 1,';
-      		}		
-		mariasql = mariasql.slice(0, -1); 
+      		}
+		mariasql = mariasql.slice(0, -1);
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
@@ -60,7 +60,7 @@ user.updateUser = function(userData, callback) {
 		for (var key in userData)
       		if (typeof userData[key]!== 'undefined' && key!='oldId')
         		mariasql += key + ' = "' + userData[key] + '",';
-		mariasql = mariasql.slice(0, -1); 
+		mariasql = mariasql.slice(0, -1);
 		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
 			if (error)

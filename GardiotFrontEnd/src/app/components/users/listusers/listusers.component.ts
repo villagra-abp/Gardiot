@@ -20,9 +20,7 @@ export class AdminListUsersComponent {
   mostrar(){
     this._detailService.detailsAll()
         .subscribe(data=>{
-          //console.log(data);
           for(let key$ in data){
-            //console.log(data[key$]);
             this.users.push(data[key$]);
           }
         },

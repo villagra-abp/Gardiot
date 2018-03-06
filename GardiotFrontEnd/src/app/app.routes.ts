@@ -43,7 +43,7 @@ const app_routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'admin/users', component: AdminComponent,  canActivate: [AuthguardGuard] },
+  { path: 'admin/users', component: AdminListUsersComponent,  canActivate: [AuthguardGuard] },
   // component: AdminComponent, children: admin_routes,
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
