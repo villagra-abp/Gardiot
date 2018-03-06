@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebGL</title>
+    <script src="TEntidades.js"></script>
+    <script src="TNodo.js"></script>
+    <script src="TGestorRecursos.js"></script>
+    <script src="TRecurso.js"></script>
+    <script src="TRecursoMalla.js"></script>
+    <script src="TRecursoMaterial.js"></script>
+    <script src="TRecursoTextura.js"></script>
+    <script src="TRecursoShader.js"></script>
+    <script src="TMotor.js"></script>
+    <script src="content/utilities.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
+    <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
+    <!--IMPORTACIÓN DESDE ARCHIVOS
+    <script src="content/gl-matrix-min.js"></script>-->
+
+    <script src="content/gl-matrix.js"></script>
+
+
+</head>
+<body>
+
+    <canvas id="my-canvas" width="600" height="450">
+        Tu navegador no soporta el elemento canvas de HTML5.
+    </canvas>
+
+    <script>
+        var canvas=null;
+
+        //Inicializamos la pila de matriz y la matriz modelo
+        var matrixStack=[];
+        var matrixModel = mat4.create();
+        matrixStack.push(matrixModel);
+        var matrixProjection=[];
+
+        //inicializamos vector de texturas
+        var textureImage=[];
+        //variable que tendrá el programa webgl
+        var gl=null;
+
+
+        //inicializamos el gestor de recursos
+        var gestor=new TGestorRecursos();
+
+        //fachada
+        var motor = new TMotor(gestor);
+
+        var luz = motor.crearNodoLuz("luz1", false, undefined);
+
+        var camara = motor.crearNodoCamara("camara1", true, undefined);
+
+
+
+        
+        var malla2 = motor.crearNodoMalla("malla2", "cubo", undefined);
+
+
+
+
+        motor.moverMalla("malla2", 0, -20, 0);
+        motor.rotarMalla("malla2", 45, "y");
+        motor.escalarMalla("malla2", 50, 1, 50);
+
+
+        motor.moverLuz("luz1", -10, 25, 7);   
+
+
+
+
+
+
+        motor.moverCamara("camara1", 0, 5, 25);
+        motor.rotarCamara("camara1", -20, "x");
+
+        motor.activarCamara("camara1");
+
+        motor.activarLuz("luz1");
+
+
+
+        //plantas
+        motor.crearNodoMalla("maceta1", "maceta", undefined);
+        motor.crearNodoMalla("maceta2", "maceta", undefined);
+        for(let i=0; i<6; i++){
+            for(let j=0; j<4; j++){
+                motor.crearNodoMalla("calabaza"+i+"-"+j, "calabaza", undefined);
+                motor.escalarMalla("calabaza"+i+"-"+j, 3, 3, 3);
+                motor.moverMalla("calabaza"+i+"-"+j, -30+(i*10), -15, -20+(j*10));
+
+            }
+        }
+ 
+
+        motor.moverMalla("maceta1", 6, -18, -35);
+        motor.moverMalla("maceta2", -10, -18, -35);
+
+        
+
+
+
+        
+
+
+
+
+
+
+        //console.log(motor.escena);
+
+
+
+
+
+        //declaramos las variables necesarias para ejecutar el programa
+        //las variables de WebGL empezarán siempre por gl para distinguirlas de
+        //las variables del motor gráfico 
+        var glVertexShader=null, glFragmentShader=null, glProgram=null;
+
+
+        
+
+
+        //CARLOS, TRATA DE ARRANCARLO (WEBGL)
+        motor.draw();
+
+    </script>
+</body>
+</html>
