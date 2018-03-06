@@ -33,6 +33,15 @@ user.getUserById = function(id, callback) {
 	}
 }
 
+user.getUsersNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS numero FROM User', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
+    });
+  }
+}
+
 user.insertUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET ';
