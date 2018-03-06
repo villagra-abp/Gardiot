@@ -33,7 +33,7 @@ export class GardenComponent {
 
 
   mostrar(){
-	this._gardenService.details()
+	 this._gardenService.details()
         .subscribe(data=>{
           this.garden.id=data[0].id;
           this.garden.title=data[0].title;
