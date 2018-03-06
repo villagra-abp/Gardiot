@@ -70,8 +70,9 @@
 	      <legend class="col-md-6 mb-3">Plantación</legend>
 				<div class="form-row">
 					<div class="form-group col-md-6">
+						<p>The time is {{plant.initDatePlant| date:'shortDate'}}</p>
 						<label for="date_initplant">Inicio</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.initDatePlant" name="initplant" id="date_initplant">
+						<input type="date" class="form-control" [(ngModel)]='plant.initDatePlant' name="initplant" id="date_initplant">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="date_endplant">Fin</label>
