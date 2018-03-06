@@ -6,15 +6,13 @@ var user = {};
 user.getUser = function(number, page, order, sort, callback) {
 	if (connection) {
 	    let minPeak = (page - 1) * number;
-	    let maxPeak = page * number;
 	    let orderSentence = '';
 	    let orderByParam = '';
-	    order = order.toUpperCase();
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
-	    if (order === 'NAME' || order === 'LASTNAME' || order === 'BIRTHDATE' || order === 'CITY')
-	      orderByParam = 'commonName ' + orderSentence;
-		connection.query('SELECT id, name, lastName, birthDate, active, ciudad, admin FROM User', function(error, rows) {
+	    if (order === 'name' || order === 'lastName' || order === 'birthDate' || order === 'city')
+	      orderByParam = ' ORDER BY ' + order + ' ' + orderSentence;
+		connection.query('SELECT id, name, lastName, birthDate, active, city, admin FROM User ' + orderByParam + ' LIMIT ' + minPeak + ',' + number, function(error, rows) {
 			if (error)
 				callback(error, null);
 			else
@@ -24,18 +22,18 @@ user.getUser = function(number, page, order, sort, callback) {
 }
 
 user.getUserById = function(id, callback) {
-	if (connection) { 
+	if (connection) {
 		var mariasql = 'SELECT * FROM User WHERE id = "' + id + '"';
 		connection.query(mariasql, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, row);		
+				callback(null, row);
 		});
 	}
 }
 
-user.insertUser = function(userData, callback) { 
+user.insertUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET ';
 		for (var key in userData)
@@ -43,8 +41,8 @@ user.insertUser = function(userData, callback) {
         		mariasql += key + ' = "' + userData[key] + '",';
         		if (key == 'googleId' || key == 'facebookId')
         			mariasql += 'active = 1,';
-      		}		
-		mariasql = mariasql.slice(0, -1); 
+      		}
+		mariasql = mariasql.slice(0, -1);
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
@@ -60,7 +58,7 @@ user.updateUser = function(userData, callback) {
 		for (var key in userData)
       		if (typeof userData[key]!== 'undefined' && key!='oldId')
         		mariasql += key + ' = "' + userData[key] + '",';
-		mariasql = mariasql.slice(0, -1); 
+		mariasql = mariasql.slice(0, -1);
 		mariasql += 'WHERE id = "' + userData.oldId + '"';
 		connection.query(mariasql, function(error, result) {
 			if (error)
