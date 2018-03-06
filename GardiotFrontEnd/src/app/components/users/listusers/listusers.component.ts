@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { AppComponent } from "../../../app.component";
@@ -11,15 +11,20 @@ import { AppComponent } from "../../../app.component";
 export class AdminListUsersComponent {
 
   users:any[] = [];
+  private numeroItems:number;
+  private paginaActual:number=1;
+  private elementosPorPagina:number=5;
 
   constructor(
     private _detailService:UserService,
     private _route:Router,
-    private _appComponent:AppComponent){ }
+    private _appComponent:AppComponent,
+    private user:UserService){ }
 
   mostrar(){
     this._detailService.detailsAll()
         .subscribe(data=>{
+          this.users=[];
           for(let key$ in data){
             this.users.push(data[key$]);
           }
@@ -43,6 +48,16 @@ export class AdminListUsersComponent {
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
           // this._route.navigate(['/login']);
         });
+    }
+
+    deleteuser(idUser:number){
+      this._detailService.deleteUser(idUser)
+      .subscribe(data=>{
+        this.mostrar();
+      },
+      error => {
+        console.error(error);
+      });
     }
 
 

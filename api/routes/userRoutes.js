@@ -20,9 +20,9 @@ var routeRequirements = require('../functions/routeRequirements');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password || !request.body.password2) 
+	if (!request.body.id || !request.body.password || !request.body.password2)
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
-	else if (request.body.password !== request.body.password2)		
+	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
 	else {
 		var userData = {
@@ -35,9 +35,9 @@ router.post('/register', function(request, response) {
 		else {
 			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
-				if (typeof data[0] !== 'undefined') 
+				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
-				else {					
+				else {
 					userModel.genHash(userData.password, function(error, hash) {
 						if (!error) {
 							userData.password = hash;
@@ -55,7 +55,7 @@ router.post('/register', function(request, response) {
 												var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
 												transporter.sendMail(mailOptions, function(err) {
 													if (err) response.status(500).json({"Mensaje": err.message});
-													else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});													
+													else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
 												});
 											}
 											else { //LOCALHOST
@@ -65,7 +65,7 @@ router.post('/register', function(request, response) {
 													subject: userData.id
 												});
 												response.status(201).json({"Token":token});
-											}											
+											}
 										}
 									});
 								}
@@ -84,8 +84,8 @@ router.post('/register', function(request, response) {
 //*** Autenticacion con id, password
 
 router.post('/authenticate', function(request, response) {
-	if (!request.body.id || !request.body.password) 
-		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});	
+	if (!request.body.id || !request.body.password)
+		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	if (!validator.isEmail(request.body.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
@@ -107,7 +107,7 @@ router.post('/authenticate', function(request, response) {
 							}
 							else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
 						});
-					}	
+					}
 				}
 				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
@@ -118,7 +118,7 @@ router.post('/authenticate', function(request, response) {
 
 router.get('/isAuthenticated', function(request, response) {
 	if (request.user)
-		response.status(200).send(true); 
+		response.status(200).send(true);
 	else
 		response.status(200).send(false);
 });
@@ -138,7 +138,7 @@ router.get('/user', passport.authenticate('jwt', {session: false}), routeRequire
 
 router.get('/isAdmin', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (request.user.admin == 1)
-		response.status(200).send(true); 
+		response.status(200).send(true);
 	else
 		response.status(200).send(false);
 });
@@ -169,7 +169,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 			else if (request.body.password !== request.body.password2)
 				response.status(400).json({"Mensaje":"Las contraseñas nuevas no coinciden"});
 			else {
-				userModel.checkPassword(request.body.oldPassword, request.user.password, function(err, isMatch) { 
+				userModel.checkPassword(request.body.oldPassword, request.user.password, function(err, isMatch) {
 					if (isMatch && !err) {
 						userModel.genHash(userData.password, function(error, hash) {
 							if (!error) {
@@ -181,12 +181,12 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 										response.status(500).json({"Mensaje":error.message});
 								});
 							}
-							else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
+							else response.status(500).json({"Mensaje":"Error con la contraseña"});
 						});
 					}
 					else response.status(401).json({"Mensaje":"Contraseña anterior incorrecta"});
-				});				
-			}	
+				});
+			}
 		}
 		else {
 			userModel.updateUser(userData, function(error, data) {
@@ -195,7 +195,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 				else
 					response.status(500).json({"Mensaje":error.message});
 			});
-		}		
+		}
 	}
 });
 
@@ -218,11 +218,11 @@ router.patch('/user', passport.authenticate('jwt', {session: false}), routeRequi
 router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	var token = request.headers.authorization;
 	token = token.slice(7);
-	inactiveTokenModel.insertInactiveToken(token, function (error, data) {	
+	inactiveTokenModel.insertInactiveToken(token, function (error, data) {
 		if (data == 1) { request.logout(); response.status(200).json({"Mensaje":"Desconectado"});  }
 		else if (data == 0) response.status(500).json({"Mensaje":"Error interno"});
 		else  response.status(500).json({"Mensaje":"Error desconectando, pruébalo otra vez."});
-	});	
+	});
 });
 
 /***************************
@@ -235,7 +235,7 @@ router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		userModel.getUser(request.params.number, request.params.page, reques.params.order, request.params.sort, function(error, data) {
+		userModel.getUser(request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data) {
 			response.status(200).json(data);
 		});
 	}
@@ -244,7 +244,7 @@ router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt
 //*** Muestra a un usuario concreto. Pasar usuario como /user/juanito@gmail.com
 
 router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		userModel.getUserById(request.params.id, function(error, data) {
@@ -259,7 +259,7 @@ router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 //*** Da de baja a un usuario. Misma forma que antes
 
 router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		userModel.blockUser(request.params.id, function(error, data) {
@@ -270,14 +270,14 @@ router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), 
 			else if (data == 0)
 				response.status(404).json({"Mensaje":"No existe"});
 		});
-	}	
+	}
 });
 
 
 //*** Inserta un usuario, puede ser admin
 
 router.post('/admin/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.id || !request.body.password) 
+	if (!request.body.id || !request.body.password)
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	else {
 		var userData = {
@@ -291,14 +291,14 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 		else {
 			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
-				if (typeof data[0] !== 'undefined') 
+				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
-				else {					
+				else {
 					userModel.genHash(userData.password, function(error, hash) {
 						if (!error) {
 							userData.password = hash;
 							userModel.insertUser(userData, function(error, data) {
-								if (data == 1) 
+								if (data == 1)
 									response.status(200).json({"Mensaje":"Usuario insertado"});
 								else
 									response.status(500).json({"Mensaje":error.message});
@@ -311,10 +311,10 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 	}
 });
 
-//*** Elimina a un usuario 
+//*** Elimina a un usuario
 
 router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		userModel.deleteUser(request.params.id, function(error, data) {
@@ -334,7 +334,7 @@ router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}),
 //***Actualiza a otro usuario
 
 router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id)) 
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		var userData = {
@@ -364,8 +364,8 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 								response.status(500).json({"Mensaje":error.message});
 						});
 					}
-					else response.status(500).json({"Mensaje":"Error con la contraseña"}); 
-				});						
+					else response.status(500).json({"Mensaje":"Error con la contraseña"});
+				});
 			}
 			else {
 				userModel.updateUser(userData, function(error, data) {
@@ -374,7 +374,7 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 					else
 						response.status(500).json({"Mensaje":error.message});
 				});
-			}		
+			}
 		}
 	}
 });
