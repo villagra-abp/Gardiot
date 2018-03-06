@@ -18,15 +18,15 @@ import { EditplantComponent } from './components/plants/editplant/editplant.comp
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 //Admin imports
-import { AdminListUsersComponent } from './components/admin/listusers.component';
+import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 import { AdminUserComponent } from './components/admin/user.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 
 //GardenComponent
-import { GardenComponent } from './components/user/garden.component';
-import { EditGardenComponent } from './components/user/editgarden.component';
-import { NewGardenComponent } from './components/user/newgarden.component';
+import { GardenComponent } from './components/gardens/garden/garden.component';
+import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
+import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
 import { AuthguardGuard } from "./authguard.guard";
 import { admin_routes } from "./components/admin/admin.routes";
 

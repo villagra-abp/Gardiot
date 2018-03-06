@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { UserService } from "../../services/user.service";
-import { AppComponent } from "../../app.component";
+import { UserService } from "../../../services/user.service";
+import { AppComponent } from "../../../app.component";
 
 @Component({
   selector: 'app-admin-listusers',

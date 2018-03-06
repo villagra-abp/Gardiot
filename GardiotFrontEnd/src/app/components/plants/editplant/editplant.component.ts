@@ -108,19 +108,19 @@ export class EditplantComponent implements OnInit {
           this.plant.distance=data[0].distance;
           this.plant.diseaseResist=data[0].diseaseResist;
           // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
-          this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
-          this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
-          this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
-          this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
-          this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
-          this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
+          // this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
+          // this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
+          // this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
+          // this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
+          // this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
+          // this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
 
           // this.plant.finDatePlant=data[0].finDatePlant;
           // this.plant.initDateBloom=data[0].initDateBloom;
           // this.plant.finDateBloom=data[0].finDateBloom;
           // this.plant.initDateHarvest=data[0].initDateHarvest;
           // this.plant.finDateHarvest=data[0].finDateHarvest;
-          this.plant.leaveType=data[0].leaveType;
+          this.plant.leaveType=data[0].leaveType; 
         },
       error => {
         console.error(error);

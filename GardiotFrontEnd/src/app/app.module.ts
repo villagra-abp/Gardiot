@@ -44,18 +44,18 @@ import { CalendarComponent } from './components/user/calendar.component';
 import { PlantComponent } from './components/plants/plant/plant.component';
 
 //Admin imports
-import { AdminListUsersComponent } from './components/admin/listusers.component';
+import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 import { AdminUserComponent } from './components/admin/user.component';
-import { AdminEditUserComponent } from './components/admin/edituser.component';
+import { AdminEditUserComponent } from './components/users/edituser/edituser.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminDashboardComponent } from './components/admin/dashboard.component';
-import { GardenComponent } from './components/user/garden.component';
-import { EditGardenComponent } from './components/user/editgarden.component';
-import { NewGardenComponent } from './components/user/newgarden.component';
+import { GardenComponent } from './components/gardens/garden/garden.component';
+import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
+import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
 import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { EmailComponent } from './components/admin/email.component';
-import { UserdataComponent } from './components/admin/userdata.component';
+import { UserdataComponent } from './components/users/userdata/userdata.component';
 import { EventdataComponent } from './components/admin/eventdata.component';
 import { ToolComponent } from './components/admin/tool.component';
 import { InvoiceComponent } from './components/admin/invoice.component';
