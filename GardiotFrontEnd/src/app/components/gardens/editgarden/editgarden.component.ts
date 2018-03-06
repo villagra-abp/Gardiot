@@ -1,16 +1,17 @@
 import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
-import { GardenService } from "../../services/garden.service";
-import { Garden } from "../../classes/garden.class";
-import { AppComponent } from "../../app.component";
+import { GardenService } from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
+import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'app-editgarden',
-  templateUrl: './editgarden.component.html'
+  templateUrl: './editgarden.component.html',
+  styleUrls: ['./editgarden.component.css']
 })
 
 export class EditGardenComponent implements OnInit{
@@ -41,7 +42,7 @@ export class EditGardenComponent implements OnInit{
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');
               console.log(data);
-              
+
               if(data.length>0){
                 this.garden.latitude=data[0].lat.toFixed(2);
                 this.garden.longitude=data[0].lng.toFixed(2);
@@ -127,21 +128,24 @@ export class EditGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          console.log(data[0]);
-          this.garden.id=data[0].id;
-          this.garden.title=data[0].title;
-          this.garden.width=data[0].width;
-          this.garden.length=data[0].lenght;
-          this.garden.longitude=data[0].longitude;
-          this.garden.latitude=data[0].latitude;
-          this.garden.soil=data[0].soil;
-          this.garden.user=data[0].user;
-          this.garden.countryCode=data[0].countryCode;
-          this.garden.city=data[0].city;
+          if(data!=null){
+            console.log(data[0]);
+            this.garden.id=data[0].id;
+            this.garden.title=data[0].title;
+            this.garden.width=data[0].width;
+            this.garden.length=data[0].lenght;
+            this.garden.longitude=data[0].longitude;
+            this.garden.latitude=data[0].latitude;
+            this.garden.soil=data[0].soil;
+            this.garden.user=data[0].user;
+            this.garden.countryCode=data[0].countryCode;
+            this.garden.city=data[0].city;
 
-          this.listarPaises();
-          this.mostrarCiudad();
-          
+            this.listarPaises();
+            this.mostrarCiudad();
+          }else{
+            this._route.navigate(['/newgarden']);
+          }
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);

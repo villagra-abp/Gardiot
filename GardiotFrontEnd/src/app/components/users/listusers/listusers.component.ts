@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { UserService } from "../../services/user.service";
-import { AppComponent } from "../../app.component";
+import { UserService } from "../../../services/user.service";
+import { AppComponent } from "../../../app.component";
 
 @Component({
   selector: 'app-admin-listusers',
@@ -20,9 +20,7 @@ export class AdminListUsersComponent {
   mostrar(){
     this._detailService.detailsAll()
         .subscribe(data=>{
-          //console.log(data);
           for(let key$ in data){
-            //console.log(data[key$]);
             this.users.push(data[key$]);
           }
         },

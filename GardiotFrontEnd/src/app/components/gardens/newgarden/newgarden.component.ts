@@ -1,9 +1,9 @@
 import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormsModule, NgForm } from "@angular/forms";
-import { GardenService } from "../../services/garden.service";
-import { Garden } from "../../classes/garden.class";
-import { AppComponent } from "../../app.component";
+import { GardenService } from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
+import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
@@ -43,7 +43,7 @@ export class NewGardenComponent implements OnInit{
               .subscribe(data=> {
                 let sp=document.querySelector('#ciudad');
                 console.log(data);
-                
+
                 if(data.length>0){
                   this.garden.latitude=data[0].lat.toFixed(2);
                   this.garden.longitude=data[0].lng.toFixed(2);
@@ -128,18 +128,21 @@ export class NewGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          this._route.navigate(['/garden']);
+          if(data!=null){
+            this._route.navigate(['/garden']);
+          }
+          
         },
       error => {
-        console.error(JSON.parse(error._body).Mensaje); 
+        console.error(JSON.parse(error._body).Mensaje);
       });
 
   }
-  
+
 
   ngOnInit(){
   	this.mostrar();
-    //------------------ 
+    //------------------
     this.listarPaises();
     this.mostrarCiudad();
   }

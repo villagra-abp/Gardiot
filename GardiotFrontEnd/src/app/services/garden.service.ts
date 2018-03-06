@@ -24,7 +24,7 @@ export class GardenService {
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
 
-      	return this.http.get(this.apiURL+"gardenByUser/", { headers } )
+      	return this.http.get(this.apiURL+"gardenByUser", { headers } )
           .map( res =>{
             return res.json();
           })

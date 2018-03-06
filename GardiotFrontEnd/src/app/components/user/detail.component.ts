@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from '../../classes/user.class';
+import { GardenService } from "../../services/garden.service";
 import { UserService } from "../../services/user.service";
 
 @Component({
@@ -10,9 +11,11 @@ import { UserService } from "../../services/user.service";
 export class DetailComponent implements OnInit{
 
   user=new User("");
+  gardenRoute = "";
 
   constructor(
     private _detailService:UserService,
+    private _gardenService:GardenService,
     private _route:Router ){ }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
@@ -32,9 +35,25 @@ export class DetailComponent implements OnInit{
       });
     }
 
+  checkGarden(){
+    this._gardenService.details()
+        .subscribe(data=>{
+          if(data!=null){
+            this.gardenRoute = '/garden';
+          }else{
+            this.gardenRoute = '/newgarden';
+          }
+        },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+        
+
+      });
+  }
 
   ngOnInit() {
     this.mostrar();
+    this.checkGarden();
   }
 
 

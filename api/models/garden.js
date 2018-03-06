@@ -50,7 +50,6 @@ garden.insertGarden = function(data, callback) {
     if(data.width) {
       sentence +=' width =' + data.width + ',';
     }
-    console.log(data);
     if(data.length) {
       sentence +=' lenght =' + data.length + ',';
     }
@@ -73,7 +72,7 @@ garden.insertGarden = function(data, callback) {
       sentence +='zip ="' + data.zip + '" ';
     }
     sentence = sentence.slice(0, -1);
-    console.log(sentence);
+
     connection.query(sentence, function(error, result){
       if(error)
         throw error;

@@ -6,6 +6,9 @@ import { Family } from "../../../classes/family.class";
 import { AppComponent } from "../../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
+import { DatePipe } from '@angular/common';
+import { DeprecatedDatePipe } from '@angular/common';
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-editplant',
@@ -23,11 +26,14 @@ export class EditplantComponent implements OnInit {
     private _plantService:PlantService,
     private _appComponent:AppComponent,
     private _ng2ImgMax:Ng2ImgMaxService,
+    private datePipe: DatePipe,
+    private _router: ActivatedRoute,
+    private _route:Router
 
     ) { }
 
   guardar(){
-        console.log('pasaba por aqui');
+
     this._plantService.modify(this.plant)
         .subscribe(data=>{
 
@@ -90,25 +96,31 @@ export class EditplantComponent implements OnInit {
          };
   }
 
-  mostrar(){
-    this._plantService.details(10)
+  mostrar(idPlanta: number){
+    this._plantService.details(idPlanta)
         .subscribe(data=>{
-          console.log(data);
-          this.plant.id=data.id;
-          this.plant.scientificName=data.scientificName;
-          this.plant.commonName=data.commonName;
-          this.plant.description=data.description;
-          this.plant.family=data.family;
-          this.plant.depth=data.depth;
-          this.plant.distance=data.distance;
-          this.plant.diseaseResist=data.diseaseResist;
-          this.plant.initDatePlant=data.initDatePlant;
-          this.plant.finDatePlant=data.finDatePlant;
-          this.plant.initDateBloom=data.initDateBloom;
-          this.plant.finDateBloom=data.finDateBloom;
-          this.plant.initDateHarvest=data.initDateHarvest;
-          this.plant.finDateHarvest=data.finDateHarvest;
-          this.plant.leaveType=data.leaveType;
+          this.plant.id=data[0].id;
+          this.plant.scientificName=data[0].scientificName;
+          this.plant.commonName=data[0].commonName;
+          this.plant.description=data[0].description;
+          this.plant.family=data[0].family;
+          this.plant.depth=data[0].depth;
+          this.plant.distance=data[0].distance;
+          this.plant.diseaseResist=data[0].diseaseResist;
+          // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
+          // this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
+          // this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
+          // this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
+          // this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
+          // this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
+          // this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
+
+          // this.plant.finDatePlant=data[0].finDatePlant;
+          // this.plant.initDateBloom=data[0].initDateBloom;
+          // this.plant.finDateBloom=data[0].finDateBloom;
+          // this.plant.initDateHarvest=data[0].initDateHarvest;
+          // this.plant.finDateHarvest=data[0].finDateHarvest;
+          this.plant.leaveType=data[0].leaveType; 
         },
       error => {
         console.error(error);
@@ -119,8 +131,41 @@ export class EditplantComponent implements OnInit {
 
     }
 
+  formatoFecha(fecha){
+    let fech=new Date(fecha);
+    // fech.setDate(fech.getDate()+1);
+    var anno=fech.getFullYear();
+    console.log(anno);
+    var mes= fech.getMonth()+1;
+    console.log(mes);
+    var dia= fech.getDate();
+    console.log(dia);
+
+
+     var tsetDob = this.datePipe.transform(fecha, 'yyyy-MM-dd');
+
+    //var fechaFinal =dia+'/'+mes+'/'+anno;
+    var fechaFinal =anno+'-'+mes+'-'+dia;
+    var fechaGuay = new Date(anno+'/'+mes+'/'+dia);
+    console.log(tsetDob);
+    return (tsetDob);
+    //return fech;
+ }
+
+  getID(){
+    this._router.params.subscribe(params => {
+      if(params['id']!=null){
+        this.plant=new Plant(params['id']);
+        this.mostrar(this.plant.id);
+      }else{
+        this._route.navigate(['/plants']);
+      }
+    });
+  }
+
+
   ngOnInit() {
-    this.mostrar();
+    this.getID();
     this.mostrarFamilias();
     this.managePhoto();
   }
