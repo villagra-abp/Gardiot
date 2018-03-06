@@ -128,7 +128,10 @@ export class NewGardenComponent implements OnInit{
 	mostrar(){
 	this._gardenService.details()
         .subscribe(data=>{
-          this._route.navigate(['/garden']);
+          if(data!=null){
+            this._route.navigate(['/garden']);
+          }
+          
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);

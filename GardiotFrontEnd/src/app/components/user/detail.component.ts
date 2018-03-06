@@ -38,11 +38,15 @@ export class DetailComponent implements OnInit{
   checkGarden(){
     this._gardenService.details()
         .subscribe(data=>{
-          this.gardenRoute = '/garden';
+          if(data!=null){
+            this.gardenRoute = '/garden';
+          }else{
+            this.gardenRoute = '/newgarden';
+          }
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-        this.gardenRoute = '/newgarden';
+        
 
       });
   }

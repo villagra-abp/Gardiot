@@ -37,7 +37,7 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 			response.status(200).json(data);
 		}
 		else {
-			response.status(404).json({"Mensaje":"No existe"});
+			response.status(204).json({"Mensaje":"No existe"});
 		}
 	});
 });

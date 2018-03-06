@@ -35,20 +35,24 @@ export class GardenComponent {
   mostrar(){
 	 this._gardenService.details()
         .subscribe(data=>{
-          this.garden.id=data[0].id;
-          this.garden.title=data[0].title;
-          this.garden.width=data[0].width;
-          this.garden.length=data[0].lenght;
-          this.garden.longitude=data[0].longitude;
-          this.garden.latitude=data[0].latitude;
-          this.garden.soil=data[0].soil;
-          this.garden.user=data[0].user;
-          this.garden.countryCode=data[0].countryCode;
-          this.garden.city=data[0].city;
-          console.log("garden");
-          console.log(this.garden);
+          if(data!=null){
+            this.garden.id=data[0].id;
+            this.garden.title=data[0].title;
+            this.garden.width=data[0].width;
+            this.garden.length=data[0].lenght;
+            this.garden.longitude=data[0].longitude;
+            this.garden.latitude=data[0].latitude;
+            this.garden.soil=data[0].soil;
+            this.garden.user=data[0].user;
+            this.garden.countryCode=data[0].countryCode;
+            this.garden.city=data[0].city;
+            console.log("garden");
+            console.log(this.garden);
 
-          this.getTiempo();
+            this.getTiempo();
+          }else{
+            this._route.navigate(['/newgarden']);
+          }
         },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
