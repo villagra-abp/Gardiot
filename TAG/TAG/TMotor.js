@@ -249,7 +249,7 @@ class TMotor{
 	dibujarLucesActivas(){
 		for(let i=0; i<this.luzRegistro.length; i++){
 			if(this.luzActiva[i]==1){
-				//recorrer al árbol a la inversa desde la luz a la raíz
+				/*//recorrer al árbol a la inversa desde la luz a la raíz
 		        let auxStack=[];
 		        let auxLuz=this.luzRegistro[i];
 		        while(auxLuz=auxLuz.dad){
@@ -269,11 +269,11 @@ class TMotor{
 		        console.log("Dibujando luz activa");
 		        console.log(auxMatrix);
 
-
 		        //Ahora, con la posición de la luz, la dibujaríamos en WebGL
 		        let posLight=gl.createBuffer();
 		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
-				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(auxMatrix), gl.STATIC_DRAW);
+				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([0.0, 0.0, 0.0]), gl.STATIC_DRAW);
+
 
 
 		        let lightPosition = gl.getAttribLocation(glProgram, "aLightPosition");
@@ -283,7 +283,7 @@ class TMotor{
 		        gl.bindBuffer(gl.ARRAY_BUFFER, posLight);
 
 		        gl.vertexAttribPointer(lightPosition, 3, gl.FLOAT, false, 0, 0);
-
+		        */
 			}
 		}
 	}

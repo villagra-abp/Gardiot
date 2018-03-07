@@ -82,6 +82,8 @@ class TRecursoMalla extends TRecurso{
     gl.bindBuffer(gl.ARRAY_BUFFER, textureCoords);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
 
+    
+
 
     //==============CREACIÓN BUFFER DE NORMALES==============
     let normales=gl.createBuffer();
@@ -93,7 +95,7 @@ class TRecursoMalla extends TRecurso{
     //===========TEXTURAS=============
     if(this._textura!==undefined){
       
-      gl.activeTexture(gl.TEXTURE0+this._nombre);
+      gl.activeTexture(gl.TEXTURE0+0);
       let textura = gl.createTexture();
       gl.bindTexture(gl.TEXTURE_2D, textura);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);

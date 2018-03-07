@@ -3,7 +3,6 @@
 
         attribute vec2 aVertexTextureCoord;
         attribute vec3 aVertexNormal;
-        attribute vec3 aLightPosition;
 
 
         uniform mat3 uNormalMatrix;
@@ -25,8 +24,7 @@
             //lighting
  
             vec3 ambientLight = vec3(0.1, 0.1, 0.1);       
- 
-            vec3 pointLightPosition = vec3(1.0, 2.0, -1.0);
+            vec3 pointLightPosition =vec3(0.0, 0.0, 0.0);
  
             vec3 pointLightDirection = normalize(vec3(pointLightPosition.xyz - aVertexPosition.xyz));
  
