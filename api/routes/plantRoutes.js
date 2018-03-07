@@ -31,12 +31,8 @@ router.get('/plant/:id', function(request, response) {
 
 router.get('/numPlants', function(request, response) {
 	plantModel.getPlantsNumber(function(error, data) {
-		if (typeof data !== 'undefined')
-			response.status(200).json(data);
-		else
-			response.status(404).json({"Mensaje":"No existe"}); 
+		response.status(200).json(data);
 	});
-
 });
 
 router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
@@ -90,9 +86,8 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
 });
 
 router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0})) {
+	if (!validator.isInt(request.params.id, {gt: 0})) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
-	}
 	else {
 		var plantData = {
 			scientificName: request.body.scientificName,
@@ -118,9 +113,11 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 		else {
 			plantData = sanitizeInput(plantData);
 			plantModel.updatePlant(plantData, request.params.id, function(error, data) {
-				if (data && data.mensaje)
-					response.status(200).json(data);
-				else
+				if (data == 1) 
+					response.status(200).json({"Mensaje":"Actualizado"});	
+				else if (data == 0)
+					response.status(404).json({"Mensaje":"No existe"});			
+				else 
 					response.status(500).json({"Mensaje":error.message});
 			});
 		}

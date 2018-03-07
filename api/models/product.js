@@ -2,35 +2,73 @@ var connection = require('../config/connection');
 
 var product = {};
 
-product.getProduct = function(callback) {
-  if(connection) {
-    connection.query('SELECT * FROM Product', function(error, rows) {
-      if (error) {
-        throw error;
-      }
-      else {
-        callback(null, rows);
-      }
+product.getProduct = function(number, page, sort, callback) {
+	if(connection) {
+	    let minPeak = (page - 1) * number;
+	    let orderSentence = '';
+	    if (sort.toUpperCase() === 'DESC')
+	      orderSentence = 'DESC';
+	    connection.query('SELECT * FROM Product ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
+	      if(error) 
+	        callback (error, null);
+	      else 
+	        callback(null, rows);
+	    });
+  	}
+}
+
+product.getProductsNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS number FROM Product', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
     });
   }
 }
 
 product.getProductById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Product WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
-				callback(null, row);
-			}
+		connection.query('SELECT name, type, description FROM Product WHERE id = ' + id, function(error, row) {
+			if (error) 
+				callback (error, null);		
+			else 
+				callback(null, row);		
+		});
+	}
+}
+
+product.getProductsByType = function(number, page, sort, type, callback) {
+	if (connection) {
+		let minPeak = (page - 1) * number;
+	    let orderSentence = '';
+	    if (sort.toUpperCase() === 'DESC')
+	      orderSentence = 'DESC';
+		connection.query('SELECT COUNT(*) OVER () AS number, P.* FROM Product P WHERE type = "' + type + '" ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function(error, row) {
+			if (error) 
+				callback (error, null);		
+			else 
+				callback(null, row);		
+		});
+	}
+}
+
+product.getProductsByTreatment = function(number, page, sort, id, callback) {
+	if (connection) {
+		let minPeak = (page - 1) * number;
+	    let orderSentence = '';
+	    if (sort.toUpperCase() === 'DESC')
+	      orderSentence = 'DESC';
+		connection.query('SELECT COUNT(*) OVER () AS number, P.* FROM Product P, TreatmentProduct, Treatment WHERE TreatmentProduct.treatment = Treatment.id AND TreatmentProduct.product = Product.id AND Treatment.id = ' + id + ' ORDER BY Product.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
+			if (error) 
+				callback (error, null);		
+			else 
+				callback(null, row);		
 		});
 	}
 }
 
 // búsqueda por NOMBRE
-product.getProductSearch = function(name, callback) {
+/*product.getProductSearch = function(name, callback) {
 	if (connection) {
 		var sentence = 'SELECT * from Product  where  name like "%'+name+'%" order by name ASC';
 ;
@@ -73,60 +111,50 @@ product.getProductFilterMoreThan = function(price, callback) {
 			}
 		});
 	}
-}
+}*/
 
 product.insertProduct = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Product(name, price) values("'+data.name+'", "'+data.price+'")';
-    connection.query(sentence, function(error, result){
+    sql = 'INSERT INTO Product SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
       else
         callback(null, result.affectedRows);
     });
   }
 }
 
-product.updateProduct = function(data, callback) {
+product.updateProduct = function(data, id, callback) {
   if(connection) {
-    commaCounter=0;
-    var sentence =  'UPDATE Product SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
-      commaCounter++;
-    }
-
-    if(data.price) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='price =' + data.price;
-      commaCounter++;
-    }
-    sentence += ' WHERE id = "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
+    var sql = 'UPDATE Product SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id = ' + id;
+    connection.query(sql, function(error, result) {
+      if (error)
+        callback(error, null);
+      else{
+        callback(null, result.affectedRows);
       }
-			else{
-        if(result.affectedRows < 1){
-          callback(null, {"mensaje":"No existe"});
-        }else{
-  				callback(null, {"mensaje":"Actualizado"});
-        }
-      }
-		});
+    });
   }
 }
 
 product.deleteProduct = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Product WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
-			if (error)
-				throw error;
-			else
-				callback(null, result.affectedRows);
-		});
+    connection.query('DELETE FROM Product WHERE id = ' + id, function(error, result) {
+      if (error)
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    });
   }
 }
 

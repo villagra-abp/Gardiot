@@ -96,9 +96,11 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 						myPlantData = sanitizeInput(myPlantData);
 						myPlantModel.updateMyPlant(request.params.id, myPlantData, function(error, data) {
 							if (data == 1) 
-								response.status(200).json({"Mensaje":"Actualizado"});			
+								response.status(200).json({"Mensaje":"Actualizado"});	
+							else if (data == 0)
+								response.status(404).json({"Mensaje":"No existe"});			
 							else 
-								response.status(500).json({"Mensaje":"Error"});			
+								response.status(500).json({"Mensaje":error.message});			
 						});
 					}				
 				}
