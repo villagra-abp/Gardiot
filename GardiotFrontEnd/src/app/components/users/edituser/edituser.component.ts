@@ -29,7 +29,6 @@ export class EdituserComponent implements OnInit {
       .subscribe(data=>{
         this._appComponent.mensajeEmergente(data.Mensaje, "primary", "admin/listusers");
       })
-
   }
 
   getID(){
@@ -58,30 +57,10 @@ export class EdituserComponent implements OnInit {
         sessionStorage.clear();
       //  this._route.navigate(['/login']);
       });
-
     }
 
   ngOnInit() {
-    //Coge el ID por parámetro, entonces carga el usuario para mostrarlo
     this.getID();
-
-
-
-    // this._router.params.subscribe(params => {
-    //         if(params['id']!=null){
-    //           this.user=new User(params['id']);
-    //           console.log(this.user);
-    //             this._editUserService.details(this.user)
-    //             .subscribe(data=>{
-    //                 console.log(data);
-    //                 this.oldId=data[0].id;
-    //                 this.user.name=data[0].name;
-    //               },
-    //             error => {
-    //               this._route.navigate(['/admin/users']);
-    //             });
-    //         }
-    //      });
   }
 
 }

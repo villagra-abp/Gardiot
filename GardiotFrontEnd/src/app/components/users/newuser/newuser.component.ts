@@ -17,9 +17,12 @@ export class NewuserComponent implements OnInit {
 
   guardarUsuario(forma:NgForm){
     console.log(forma.value);
-    this._newUserServce.register(forma.value)
+    if(forma.value.admin==true){
+      forma.value.admin=1;
+    }
+    this._newUserServce.registerAdmin(forma.value)
       .subscribe(data=>{
-        this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin");
+        this._appComponent.mensajeEmergente("Registrado con exito", "primary", "admin/users");
       })
 
   }
