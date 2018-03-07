@@ -48,6 +48,22 @@ export class UserService {
           })
     }
 
+
+    registerAdmin( user:User ){
+      let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
+      body+= `&name=${user.name}&lastName=${user.lastName}`;
+      body+= `&admin=${user.admin}`;
+      console.log(user);
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+
+      return this.http.post(this.apiURL+"register", body, { headers } )
+          .map( res=>{
+            return res.json();
+          })
+    }
+
     login( user:User ){
       let body = `id=${user.id}&password=${user.password}`;
       let headers = new Headers({

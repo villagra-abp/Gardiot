@@ -28,9 +28,7 @@ export class NewplantComponent implements OnInit {
   guardar(){
     this._plantService.save(this.plant)
         .subscribe(data=>{
-
             this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/plantdata");
-
         },
         error=>{
           let v=JSON.parse(error._body);

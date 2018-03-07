@@ -33,12 +33,10 @@ export class EditplantComponent implements OnInit {
     ) { }
 
   guardar(){
-
+    console.log(this.plant);
     this._plantService.modify(this.plant)
         .subscribe(data=>{
-
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/plantdata");
-
+            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plant/" +this.plant.id);
         },
         error=>{
           let v=JSON.parse(error._body);
@@ -81,6 +79,7 @@ export class EditplantComponent implements OnInit {
   }
 
   managePhoto(){
+
     this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
     this.uploader.onAfterAddingFile = (file)=> {
       file.withCredentials = false;
@@ -92,6 +91,7 @@ export class EditplantComponent implements OnInit {
          url=url.split("\\");
          url=url[url.length-1];
          this.plant.photo='assets/images/imgPlants/'+url;
+         console.log('hola guapa');
          this.guardar();
          };
   }
@@ -99,7 +99,9 @@ export class EditplantComponent implements OnInit {
   mostrar(idPlanta: number){
     this._plantService.details(idPlanta)
         .subscribe(data=>{
-          this.plant.id=data[0].id;
+          //this.plant.id=data[0].id;//El objeto no lleva el id
+          this.plant.id=idPlanta;
+          console.log(this.plant.id);
           this.plant.scientificName=data[0].scientificName;
           this.plant.commonName=data[0].commonName;
           this.plant.description=data[0].description;
@@ -107,20 +109,20 @@ export class EditplantComponent implements OnInit {
           this.plant.depth=data[0].depth;
           this.plant.distance=data[0].distance;
           this.plant.diseaseResist=data[0].diseaseResist;
-          // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
+
           // this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
           // this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
           // this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
           // this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
           // this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
           // this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
-
-          // this.plant.finDatePlant=data[0].finDatePlant;
-          // this.plant.initDateBloom=data[0].initDateBloom;
-          // this.plant.finDateBloom=data[0].finDateBloom;
-          // this.plant.initDateHarvest=data[0].initDateHarvest;
-          // this.plant.finDateHarvest=data[0].finDateHarvest;
-          this.plant.leaveType=data[0].leaveType; 
+          this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
+          this.plant.finDatePlant=data[0].finDatePlant.substring(0, 10);
+          this.plant.initDateBloom=data[0].initDateBloom.substring(0, 10);
+          this.plant.finDateBloom=data[0].finDateBloom.substring(0, 10);
+          this.plant.initDateHarvest=data[0].initDateHarvest.substring(0, 10);
+          this.plant.finDateHarvest=data[0].finDateHarvest.substring(0, 10);
+          this.plant.leaveType=data[0].leaveType;
         },
       error => {
         console.error(error);
