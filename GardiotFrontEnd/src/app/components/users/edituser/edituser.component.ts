@@ -33,10 +33,12 @@ export class EdituserComponent implements OnInit {
 
   getID(){
     this._router.params.subscribe(params => {
+      console.log(params['id']);
       if(params['id']!=null){
         this.user=new User(params['id']);
         this.oldId= this.user.id;
-        console.log(this.oldId); 
+        console.log('Este es el oldid: '+ this.oldId);
+        console.log(this.user);
         this.mostrar(this.user);
       }else{
         this._route.navigate(['/plants']);
@@ -45,7 +47,7 @@ export class EdituserComponent implements OnInit {
   }
 
   mostrar(User: User){
-    this._editUserService.details(User)
+    this._editUserService.detailsByUser(User)
         .subscribe(data=>{
           this.user.id=data[0].id;
           this.user.name=data[0].name;

@@ -34,7 +34,7 @@
       <td>{{user.id}}</td>
       <td>{{user.admin}}</td>
       <td>{{user.active}}</td>
-      <td><button  class="btn btn-outline-primary" [routerLink]="['/edituser/carlos@gmail.com']">Modificar</button></td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/edituser/',user.id]">Modificar</button></td>
       <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" >Eliminar</button></td>
     </tr>
   </tbody>
