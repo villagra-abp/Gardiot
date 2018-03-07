@@ -55,10 +55,11 @@ export class UserService {
       body+= `&admin=${user.admin}`;
       console.log(user);
       let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
 
-      return this.http.post(this.apiURL+"register", body, { headers } )
+      return this.http.post(this.apiURL+"admin/user", body, { headers } )
           .map( res=>{
             return res.json();
           })
