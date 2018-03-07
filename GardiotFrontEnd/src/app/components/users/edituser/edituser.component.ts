@@ -35,6 +35,8 @@ export class EdituserComponent implements OnInit {
     this._router.params.subscribe(params => {
       if(params['id']!=null){
         this.user=new User(params['id']);
+        this.oldId= this.user.id;
+        console.log(this.oldId); 
         this.mostrar(this.user);
       }else{
         this._route.navigate(['/plants']);

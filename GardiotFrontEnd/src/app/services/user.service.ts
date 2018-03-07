@@ -93,7 +93,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"user/"+user.id, { headers } )
+      return this.http.get(this.apiURL+"admin/user/"+user.id, { headers } )
           .map( res =>{
             return res.json();
           })
