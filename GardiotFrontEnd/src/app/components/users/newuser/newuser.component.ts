@@ -16,7 +16,6 @@ export class NewuserComponent implements OnInit {
   private _appComponent:AppComponent) { }
 
   guardarUsuario(forma:NgForm){
-    console.log(forma.value);
     if(forma.value.admin==true){
       forma.value.admin=1;
     }

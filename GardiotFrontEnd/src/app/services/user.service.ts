@@ -191,25 +191,23 @@ export class UserService {
           })
     }
 
-    modifyUserProfileAdmin(user:User, oldId:String){
+    modifyUserProfileAdmin(user:User, oldId:String, user2:User){
       let body = `name=${user.name}`;
+      body+= `&lastName=${user.lastName}`;
+      body+= `&admin=${user.admin}`;
       var country = 0;
 
       if(user.birthDate!=null){
-        //body+=`&birthDate=${user.birthDate}`;
+        body+=`&birthDate=${user.birthDate}`;
       }
-      if(user.oldPassword && user.password){
-        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
-      }
-
-      if(user.countryCode){
-        body+= `&countryCode=${user.countryCode}`;
+      if(user2.countryCode){
+        body+= `&countryCode=${user2.countryCode}`;
         country = 1;
       }
-      if(user.city && country==1){
-        body+=`&city=${user.city}`;
+      if(user2.city && country==1){
+        body+=`&city=${user2.city}`;
       }
-      console.log(body);
+      console.log("guapaaa"+body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
