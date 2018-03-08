@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
+import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
 declare var $:any;
 
@@ -35,6 +36,7 @@ export class EditProfileComponent implements OnInit{
     private _route:Router,
     private _appComponent:AppComponent,
     private _ng2ImgMax:Ng2ImgMaxService,
+    private datePipe: DatePipe,
     private _renderer:Renderer){ }
 
     @HostListener('document:keyup', ['$event'])
@@ -69,7 +71,6 @@ export class EditProfileComponent implements OnInit{
                 sp.innerHTML='Código postal no encontrado';
               }
               input.value='';
-
             },
             error => {
               console.log(error);
@@ -84,7 +85,7 @@ export class EditProfileComponent implements OnInit{
     this._detailService.details(this.user)
         .subscribe(data=>{
           this.user.id=data.id;
-          this.user.birthDate=data.birthDate;
+          this.user.birthDate=this.datePipe.transform(data[0].birthDate, 'yyyy-MM-dd');
           this.user.photo=data.photo;
           this.user.name=data.name;
           this.user.lastName=data.lastName;
@@ -200,7 +201,7 @@ export class EditProfileComponent implements OnInit{
 //Estas dos funciones son para guardar los datos
 //del país y ciudad en el objeto de usuario
   saveCountry(e){
-  console.log("save country"+e.value);
+  console.log(e.value);
     if(e.value!=0 && e.value!==undefined){
       this.user.countryCode=e.value;
     }

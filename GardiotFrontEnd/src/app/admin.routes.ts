@@ -50,6 +50,6 @@ export const admin_routes: Routes = [
   { path: 'feed/:id', component: FeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'editproduct/:id', component: EditfeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'newproduct', component: NewfeedComponent,  canActivate: [AdminguardGuard] },
-  
+
   { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
 ];

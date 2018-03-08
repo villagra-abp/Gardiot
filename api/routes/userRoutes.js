@@ -248,7 +248,7 @@ router.get('/admin/numUsers', passport.authenticate('jwt', {session: false}), ro
 		if (typeof data !== 'undefined')
 			response.status(200).json(data);
 		else
-			response.status(404).json({"Mensaje":"No existe"}); 
+			response.status(404).json({"Mensaje":"No existe"});
 	});
 
 });
@@ -358,6 +358,7 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 			photo: request.body.photo,
 			city: request.body.city,
 			countryCode: request.body.countryCode,
+			admin: request.body.admin,
 			oldId: request.params.id,
 		};
 		var validate = validateInput(userData);
