@@ -21,7 +21,7 @@ class TMotor{
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
-	        configurarShaders('standardShader.vs', 'standardShader.fs');
+	        configurarShaders('shader.vs', 'shader.fs');
 
 	        //iniciamos los parámetros básicos de webGL
 	        setupWebGL();

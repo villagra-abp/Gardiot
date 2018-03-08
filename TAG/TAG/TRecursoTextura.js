@@ -6,6 +6,10 @@ class TRecursoTextura extends TRecurso{
   }
 
   cargarFichero(nombre){
+  	this._img.onload=function(){
+  		console.log(this);
+  		console.log("Textura cargada");
+  	}
     this._img.src="/recursos/texturas/"+nombre;
   }
 }

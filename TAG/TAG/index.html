@@ -56,34 +56,35 @@
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        var malla = motor.crearNodoMalla("malla1", "bote", undefined);
+        //var malla = motor.crearNodoMalla("malla1", "bote", undefined);
         
-        var malla2 = motor.crearNodoMalla("malla2", "cubo", undefined);
+        var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
         //var malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
 
 
-        motor.moverMalla("malla1", -9, -15, -30);
+        //motor.moverMalla("malla1", -9, -15, -30);
 
-        motor.escalarMalla("malla1", 6);
+        motor.escalarMalla("malla2", 6);
 
-        motor.moverMalla("malla2", 5, -2, -10);
+        //motor.moverMalla("malla2", 5, -2, -10);
 
-        motor.escalarMalla("malla2", 5)
+        //motor.escalarMalla("malla2", 5)
 
-        motor.moverMalla("malla3", 0, 0, -7);   
+        //motor.moverMalla("malla3", 0, 0, -7);   
 
         motor.moverLuz("luz1", 0, -2, -7);   
 
 
-        motor.rotarMalla("malla1", 170, "y");  
-        motor.rotarMalla("malla1", 10, "x");
+        motor.rotarMalla("malla2", 180, "z");  
+        motor.rotarMalla("malla2", 90, "x"); 
+        //motor.rotarMalla("malla1", 10, "x");
 
-        motor.escalarMalla("malla2", 0.3);
+        //motor.escalarMalla("malla2", 0.3);
 
 
-        motor.moverCamara("camara1", 0, 0, 7);
+        motor.moverCamara("camara1", 0, 0, 14);
 
         motor.activarCamara("camara1");
 
