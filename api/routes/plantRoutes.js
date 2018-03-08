@@ -6,6 +6,7 @@ var routeRequirements = require('../functions/routeRequirements');
 
 var plantModel = require('../models/plant');
 
+
 router.get('/plants/:number/:page/:order/:sort', function (request, response) {
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -93,7 +94,7 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 			scientificName: request.body.scientificName,
 			commonName: request.body.commonName,
 	    	description: request.body.description,
-	    	photo: request.body.photo, Esto funciona distinto
+	    	photo: request.body.photo,
 	    	_3DModel: request.body._3DModel,
 	    	family: request.body.family,
 	    	depth: request.body.depth,
@@ -145,7 +146,7 @@ function sanitizeInput(data) {
 	if (data.commonName) { data.commonName = validator.trim(data.commonName); data.commonName = validator.stripLow(data.commonName); data.commonName = validator.escape(data.commonName);}
 	if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
 	if (data.photo) data.photo = validator.trim(data.photo);
-	//if (data._3DModel) data._3DModel = validator.trim(data.photo);
+	if (data._3DModel) data._3DModel = validator.trim(data.photo);
 	if (data.family) {  data.family = validator.trim(data.family); data.family = validator.toInt(data.family);}
 	if (data.depth) {  data.depth = validator.trim(data.depth); data.depth = validator.toFloat(data.depth);}
 	if (data.distance) {  data.distance = validator.trim(data.distance); data.distance = validator.toFloat(data.distance);}

@@ -8,7 +8,7 @@ treatment.getTreatments = function(number, page, sort, callback) {
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT T.*, Plant.commonName  FROM Treatment T, Plant WHERE Plant.id = Treatment.plant ORDER BY T.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
+    connection.query('SELECT * FROM Treatment ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
       if(error) 
         callback (error, null);
       else 
@@ -26,57 +26,9 @@ treatment.getTreatmentsNumber = function (callback) {
   }
 }
 
-treatment.getTreatmentsByPlant = function(number, page, sort, plant, callback) {
-  if(connection) {
-    let minPeak = (page - 1) * number;
-    let orderSentence = '';
-    if (sort.toUpperCase() === 'DESC')
-      orderSentence = 'DESC';
-    connection.query('SELECT COUNT(*) OVER () AS number, T.*, Plant.commonName FROM Treatment T, Plant WHERE Plant.id = Treatment.plant AND Plant.id = ' + plant + ' ORDER BY T.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function (error, rows){
-      if (error) 
-        callback (error, null);   
-      else 
-        callback(null, row);  
-    });
-  }
-}
-
-treatment.getTreatmentsByProduct = function(number, page, sort, id, callback) {
-  if (connection) {
-    let minPeak = (page - 1) * number;
-      let orderSentence = '';
-      if (sort.toUpperCase() === 'DESC')
-        orderSentence = 'DESC';
-    connection.query('SELECT COUNT(*) OVER () AS number, T.* FROM Treatment T, TreatmentProduct, Product WHERE TreatmentProduct.treatment = Treatment.id AND TreatmentProduct.product = Product.id AND Product.id = ' + id + ' ORDER BY Treatment.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
-      if (error) 
-        callback (error, null);   
-      else 
-        callback(null, row);    
-    });
-  }
-}
-
-/*treatment.getTreatmentsByGarden = function(garden, callback) {
-  if(connection) {
-    var sentence = 'SELECT Treatment.id, Treatment.name, Treatment.description FROM Garden';
-    sentence += ' INNER JOIN MyPlant on MyPlant.garden=Garden.id INNER JOIN Plant';
-    sentence += ' ON Plant.id=MyPlant.plant INNER JOIN TreatmentPlant ON TreatmentPlant.plant=Plant.id';
-    sentence += ' INNER JOIN Treatment ON Treatment.id=TreatmentPlant.plant where Garden.id=' + garden;
-    connection.query(sentence , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
-        callback(null, rows);
-      }
-    });
-  }
-}*/
-
-
 treatment.getTreatmentById = function(id, callback) {
   if (connection) {
-    connection.query('SELECT T.*, commonName FROM Treatment T, Plant WHERE T.id = ' + id, function(error, row) {
+    connection.query('SELECT name, description FROM Treatment WHERE id = ' + id, function(error, row) {
       if (error) 
         callback (error, null);   
       else 
@@ -100,6 +52,8 @@ if(connection) {
     });
   }
 }
+
+
 
 treatment.updateTreatment = function(data, id, callback) {
   if(connection) {
