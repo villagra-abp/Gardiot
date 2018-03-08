@@ -12,7 +12,7 @@
       <button class="btn btn-default" type="submit">Buscar</button>
     </article>
     <article class="form-group col-md-2">
-      <button  [routerLink]="['/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
+      <button  [routerLink]="['/admin/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
     </article>
   </form>
   <table class="table table-hover">
@@ -34,7 +34,7 @@
       <td>{{user.id}}</td>
       <td>{{user.admin}}</td>
       <td>{{user.active}}</td>
-      <td><button  class="btn btn-outline-primary" [routerLink]="['/edituser/',user.id]">Modificar</button></td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]">Modificar</button></td>
       <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" >Eliminar</button></td>
     </tr>
   </tbody>
