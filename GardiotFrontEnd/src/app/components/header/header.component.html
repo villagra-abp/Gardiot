@@ -23,16 +23,13 @@
 					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}"  href="#">Plantas</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/email']" href="#">Tratamientos</a>
+          <a [routerLink]="['/admin/treatments']" href="#">Tratamientos</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/tool']" href="#">Productos</a>
+					<a [routerLink]="['/admin/products']" href="#">Productos</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/eventdata']" href="#">Tareas</a>
-        </li>
-        <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/invoice']" href="#">Consejos</a>
+          <a [routerLink]="['/admin/feeds']" href="#">Consejos</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
 					<a [routerLink]="['/profile']" href="#">Mi perfil</a>

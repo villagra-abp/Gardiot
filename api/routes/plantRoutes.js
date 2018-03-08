@@ -86,14 +86,14 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
 });
 
 router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0})) 
+	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		var plantData = {
 			scientificName: request.body.scientificName,
 			commonName: request.body.commonName,
 	    	description: request.body.description,
-	    	photo: request.body.photo, Esto funciona distinto
+	    	photo: request.body.photo,
 	    	_3DModel: request.body._3DModel,
 	    	family: request.body.family,
 	    	depth: request.body.depth,
@@ -113,11 +113,11 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 		else {
 			plantData = sanitizeInput(plantData);
 			plantModel.updatePlant(plantData, request.params.id, function(error, data) {
-				if (data == 1) 
-					response.status(200).json({"Mensaje":"Actualizado"});	
+				if (data == 1)
+					response.status(200).json({"Mensaje":"Actualizado"});
 				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});			
-				else 
+					response.status(404).json({"Mensaje":"No existe"});
+				else
 					response.status(500).json({"Mensaje":error.message});
 			});
 		}
