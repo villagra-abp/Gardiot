@@ -48,7 +48,7 @@ user.insertUser = function(userData, callback) {
 		for (var key in userData)
       		if (typeof userData[key]!== 'undefined') {
         		mariasql += key + ' = "' + userData[key] + '",';
-        		if (key == 'googleId' || key == 'facebookId')
+        		if (key == 'googleId' || key == 'facebookId' || key == 'admin')
         			mariasql += 'active = 1,';
       		}
 		mariasql = mariasql.slice(0, -1);
