@@ -132,7 +132,7 @@ export class EdituserComponent implements OnInit {
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      if(input.value.length>=5){
+      if(input.value.length==5){
           this._editUserService.listCitiesByZip(this.user.countryCode, input.value)
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');

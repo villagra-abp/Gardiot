@@ -1,7 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
 
-
+//Profile
+import { AdminProfileComponent } from './components/admin/adminprofile.component';
 //Users
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
@@ -28,6 +29,8 @@ import { ListfeedComponent } from './components/feeds/listfeed/listfeed.componen
 import { AdminguardGuard } from "./components/admin/adminguard.guard";
 
 export const admin_routes: Routes = [
+  //Profile
+  { path: 'profile', component: AdminProfileComponent, canActivate: [AdminguardGuard]},
   //negocio
   { path: 'analytics', component: AnalyticsComponent, canActivate: [AdminguardGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AdminguardGuard] },

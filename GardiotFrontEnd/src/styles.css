@@ -118,9 +118,14 @@ display: flex;
   top: 0;
   opacity: 0;
 }
-
+.vistaAdmin{
+  margin-top: 50px;
+}
 @media (min-width: 768px) {
   .vistaAdmin{
     margin-left: 200px !important;
+  }
+  .vistaAdmin{
+    margin-top: 0;
   }
 }

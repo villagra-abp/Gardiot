@@ -9,7 +9,7 @@
 		</div>
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 				<img src="https://gardiot.ovh/images/light2.png" alt="Gardiot">
-			<ul class="sidebar-nav">
+			<ul class="sidebar-nav" (click)="toggleMenu()">
         <li *ngIf="this.userService.isAuthenticated">
           <a [routerLink]="['/admin/statistics']" href="#">Estadísticas</a>
         </li>
@@ -32,7 +32,7 @@
           <a [routerLink]="['/admin/feeds']" href="#">Consejos</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/profile']" href="#">Mi perfil</a>
+					<a [routerLink]="['/admin/profile']" href="#">Mi perfil</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
           <a [routerLink]="['/logout']" href="#">Log Out</a>

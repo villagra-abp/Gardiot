@@ -19,11 +19,19 @@ export class LoginComponent implements OnInit{
       plan:"",
       birthDate:new Date(),
   }
+  url:string;
+
 
   constructor(
     private _loginService:UserService,
     private _route:Router,
-    private _appComponent:AppComponent){ }
+    private _appComponent:AppComponent){
+      if(window.location.toString().indexOf("localhost")>=0){
+        this.url="http://localhost:4200/";
+      }
+      else if(window.location.toString().indexOf("gardiot")>=0){
+        this.url="https://gardiot.ovh/app/";
+      }}
 
 //logueo de usuario y comprobación de si es admin o no
   guardar(){
@@ -40,11 +48,13 @@ export class LoginComponent implements OnInit{
             }
             else{
               this._loginService.isAdmin=false;
-              this._route.navigate(['/detail']);
+              window.location.href=this.url+"detail";
+              //this._route.navigate(['/detail']);
             }
           },error=>{
             this._loginService.isAdmin=false;
-            this._route.navigate(['/detail']);
+            window.location.href=this.url+"detail";
+            //this._route.navigate(['/detail']);
           });
 
 

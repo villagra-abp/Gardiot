@@ -43,7 +43,7 @@ export class EditProfileComponent implements OnInit{
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      if(input.value.length>=5){
+      if(input.value.length==5){
           this._detailService.listCitiesByZip(this.user.countryCode, input.value)
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');
@@ -77,7 +77,6 @@ export class EditProfileComponent implements OnInit{
             });
           }
         }
-
 
 
     //Cargar usuario para mostrar sus datos en el formulario por defecto

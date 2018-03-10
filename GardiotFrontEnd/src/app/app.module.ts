@@ -16,6 +16,7 @@ import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import {TabModule} from 'angular-tabs-component';
 // import {PopupModule} from 'ng2-opd-popup';
+import { AdminProfileComponent } from './components/admin/adminprofile.component';
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
 //Guards
@@ -85,6 +86,7 @@ import { ListfeedComponent } from './components/feeds/listfeed/listfeed.componen
     ResendComponent,
     AdminComponent,
     AdminListUsersComponent,
+    AdminProfileComponent,
     EdituserComponent,
     NewuserComponent,
     GardenComponent,
