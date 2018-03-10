@@ -365,7 +365,7 @@ class TMotor{
 
 	}
 
-	escalarMalla(nombre, x, y, z){
+	escalarMalla(nombre, q){
 		var pos = -1;
 		
 		for (var i = 0; i< this.mallaRegistro.length; i++){

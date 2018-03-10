@@ -10,31 +10,28 @@ class TRecursoMalla extends TRecurso{
 
   }
   cargarFichero(nombre){
-    let cargado;
     let objeto;
     //cargamos el objeto del directorio
     loadJSONResource('/recursos/mallas/'+nombre+'.json', function (modelErr, modelObj){
       if(modelErr){
-        cargado=false;
+
         alert("fail to cargar malla "+nombre);
       }
       else{
-        cargado=true;
+
         console.log('JSON del objeto '+nombre+':');
         console.log(modelObj);
         objeto=modelObj;
       }
     });
-    if(cargado){
-      let k=0;
-      while(objeto.meshes[k]!==undefined && k<10){
+
       //almacenamos los vértices del objeto
-      this._vertices=objeto.meshes[k].vertices;
+      this._vertices=objeto.meshes[0].vertices;
 
       //almacenamos el índice de caras
-      for(let i=0; i<objeto.meshes[k].faces.length; i++){
-        for(let j=0; j<objeto.meshes[k].faces[i].length; j++){
-          this._verticesIndex.push(objeto.meshes[k].faces[i][j]);
+      for(let i=0; i<objeto.meshes[0].faces.length; i++){
+        for(let j=0; j<objeto.meshes[0].faces[i].length; j++){
+          this._verticesIndex.push(objeto.meshes[0].faces[i][j]);
         }
       }
 
@@ -57,10 +54,9 @@ class TRecursoMalla extends TRecurso{
           this._textura=gestor.getRecurso("SusanTexture.png", "textura");
         }
       }
-    }
-
-    return cargado;
+    
   }
+ 
   
   draw(){
     let vertices, index, textureCoords, normales, textura, vertexPositionAttribute, vertexTexCoordAttribute, vertexNormalAttribute;
