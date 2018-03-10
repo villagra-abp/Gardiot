@@ -17,7 +17,6 @@ class TMotor{
 
 	draw(){
 		if(iniciamosWebGL('my-canvas')){
-			console.log("Start drawing");
 	        //Esto es la inicialización de la librería gráfica
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
@@ -110,7 +109,7 @@ class TMotor{
 		var pos = -1;
 		
 		for (var i = 0; i< this.camaraRegistro.length; i++){
-			console.log(this.camaraRegistro[i].name);
+			//console.log(this.camaraRegistro[i].name);
 			if(nombre == this.camaraRegistro[i].name){
 				pos = i;
 				break;
@@ -156,23 +155,11 @@ class TMotor{
         }
         //el resultado lo invertimos y tenemos la matrix View
         mat4.invert(auxMatrix, auxMatrix);
-
+        invertedMView=auxMatrix.slice(0);
 
         //pasar matrices a WebGL
         gl.uniformMatrix4fv(glProgram.vMatrixUniform, false, auxMatrix);
         gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, matrixProjection);
-
-        //calculo matrix normales
-        let matrixModelView=[];
-        let normalMatrix=[];
-
-        mat4.multiply(matrixModelView, auxMatrix, matrixModel);
-
-        mat3.normalFromMat4(normalMatrix, matrixModelView);
-        console.log(normalMatrix);
-
-        //matrixUniform
-        gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
 	}
 //=================================FIN CÁMARA============================
 

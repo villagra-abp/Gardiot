@@ -31,7 +31,7 @@ void main()
 		vec3 viewDir=normalize(-vertPos);
 
 		float specAngle=max(dot(reflectDir, viewDir), 0.0);
-		specular=pow(specAngle, 4.0);
+		specular=pow(specAngle, 30.0);
 	}
 
 	vec3 vLight=lambertian*uLight[0].color+specular*specColor;
