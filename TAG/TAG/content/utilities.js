@@ -1,6 +1,6 @@
 var loadTextResource=function (url, callback){
 	var request = new XMLHttpRequest();
-    request.open('GET', url+'?dont_cache=', false);
+    request.open('GET', url+'?dont_cache='+new Date().toString(), false);
     request.onload=function(){
       if(request.status<200 || request.status>299){
         callback('Error: HTTP Status ' + request.status);
@@ -95,6 +95,9 @@ function setupWebGL(){
 
     //matriz de normales
     glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
+
+    glProgram.luces=gl.getUniformLocation(glProgram, "uLuces");
+
 
 
 

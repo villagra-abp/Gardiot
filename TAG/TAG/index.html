@@ -56,11 +56,11 @@
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        //var malla = motor.crearNodoMalla("malla1", "bote", undefined);
+        var malla = motor.crearNodoMalla("malla1", "cubo", luz);
         
         var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
-        //var malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
+        var malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
 
 
@@ -68,23 +68,28 @@
 
         motor.escalarMalla("malla2", 6);
 
-        //motor.moverMalla("malla2", 5, -2, -10);
+        motor.moverMalla("malla3", 15, 0, 0);
+        motor.escalarMalla("malla3", 5);
+        motor.rotarMalla("malla3", 40, "x");
 
         //motor.escalarMalla("malla2", 5)
 
         //motor.moverMalla("malla3", 0, 0, -7);   
 
-        motor.moverLuz("luz1", 0, -2, -7);   
+        motor.moverLuz("luz1", -10.0, 0.0, 0.0);   
 
 
-        motor.rotarMalla("malla2", 180, "z");  
-        motor.rotarMalla("malla2", 90, "x"); 
+        //motor.rotarMalla("malla2", 180, "z");
+
+        //motor.rotarMalla("malla2", 180, "y");  
+        //motor.rotarMalla("malla2", 90, "x"); 
         //motor.rotarMalla("malla1", 10, "x");
 
         //motor.escalarMalla("malla2", 0.3);
 
 
-        motor.moverCamara("camara1", 0, 0, 14);
+        motor.moverCamara("camara1", 0, 0, 30);
+        //motor.rotarCamara("camara1", 180, "y");
 
         motor.activarCamara("camara1");
 
@@ -114,7 +119,7 @@
 
 
         //CARLOS, TRATA DE ARRANCARLO (WEBGL)
-        setTimeout(function(){motor.draw();}, 2000);
+        setTimeout(function(){motor.draw();}, 800);
 
     </script>
 </body>

@@ -21,7 +21,7 @@ class TMotor{
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
-	        configurarShaders('shader.vs', 'shader.fs');
+	        configurarShaders('shader2.vs', 'shader2.fs');
 
 	        //iniciamos los parámetros básicos de webGL
 	        setupWebGL();
@@ -232,6 +232,7 @@ class TMotor{
 		}else{
 			return undefined;
 		}
+
 	}
 	//TODO
 	moverLuz(nombre, x, y, z){
@@ -248,7 +249,49 @@ class TMotor{
 	}
 	dibujarLucesActivas(){
 		for(let i=0; i<this.luzRegistro.length; i++){
+			let contLuces=0;
 			if(this.luzActiva[i]==1){
+				console.log("dibuja esta luz");
+				let auxStack=[];
+		        let auxLuz=this.luzRegistro[i];
+		        while(auxLuz=auxLuz.dad){
+		        	if(auxLuz.entity!==undefined)
+		        		auxStack.push(auxLuz.entity.matrix);
+		        	console.log(auxLuz.name);
+		        }
+
+		        //tenemos el recorrido de la cámara a la raíz en auxStack
+        		//console.log(auxStack);
+
+        		//recorremos la lista auxiliar invertida
+		        let auxMatrix=mat4.create();
+		        for(let i=auxStack.length-1; i>=0; i--){
+		        	mat4.multiply(auxMatrix, auxMatrix, auxStack[i]);
+		        }
+		        
+		        console.log(auxMatrix);
+
+				let x=vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+				let y=vec4.fromValues(1.0, 1.0, 1.0, 0.0);
+				console.log(y);
+				vec4.transformMat4(x, x, auxMatrix);
+				
+				vec4.subtract(x, x, y);
+				console.log(x);
+				let z=vec4.fromValues(0.6, 0.6, 0.2, 0.0);
+
+
+				var ambientUniformLocation=gl.getUniformLocation(glProgram, "uAmbientLightIntensity");
+				var sunlightDirUniformLocation=gl.getUniformLocation(glProgram, "uLight[0].position");
+				var sunlightIntUniformLocation=gl.getUniformLocation(glProgram, "uLight[0].color");
+
+				gl.uniform4f(ambientUniformLocation, 0.5, 0.5, 0.5, 0.0);
+				gl.uniform4fv(sunlightDirUniformLocation, x);
+				gl.uniform3f(sunlightIntUniformLocation, 0.9, 0.9, 0.9);
+
+
+				contLuces++;
+
 				/*//recorrer al árbol a la inversa desde la luz a la raíz
 		        let auxStack=[];
 		        let auxLuz=this.luzRegistro[i];
@@ -285,6 +328,7 @@ class TMotor{
 		        gl.vertexAttribPointer(lightPosition, 3, gl.FLOAT, false, 0, 0);
 		        */
 			}
+			gl.uniform1i(glProgram.luces, contLuces);
 		}
 	}
 //=================================FIN LUCES============================
