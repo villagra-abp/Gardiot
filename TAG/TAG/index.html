@@ -38,6 +38,7 @@
         var matrixModel = mat4.create();
         matrixStack.push(matrixModel);
         var matrixProjection=[];
+        var invertedMView;
 
         //inicializamos vector de texturas
         var textureImage=[];
@@ -51,36 +52,56 @@
         //fachada
         var motor = new TMotor(gestor);
 
-        var luz = motor.crearNodoLuz("luz1", false, undefined);
+        var luz = motor.crearNodoLuz("luz1", 1.7, undefined);
+        //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
+        //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
+        //motor.crearNodoMalla("suelo", "cubo");
+        var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
-        
-        var malla2 = motor.crearNodoMalla("malla2", "cubo", undefined);
+        var malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+
+        motor.escalarMalla("suelo", 5);
+        motor.moverMalla("suelo", 0, -10, 0);
+
+        //motor.moverMalla("malla1", -9, -15, -30);
+
+        motor.escalarMalla("malla2", 6);
+        motor.moverMalla("malla2", 0, 0, -20);
+
+        motor.moverMalla("malla3", 15, 0, 0);
+        motor.escalarMalla("malla3", 5);
+        motor.rotarMalla("malla3", 40, "x");
+
+        //motor.escalarMalla("malla2", 5)
+
+        //motor.moverMalla("malla3", 0, 0, -7);   
+
+        motor.moverLuz("luz1", -8.0, 0.0, 10.0);   
+        motor.moverLuz("luz2", 0.0, 10.0, 0.0);  
+        //motor.moverLuz("luz3", 0.0, -10.0, 0.0);  
 
 
+        //motor.rotarMalla("malla2", 180, "z");
+
+        //motor.rotarMalla("malla2", 180, "y");  
+        //motor.rotarMalla("malla2", 90, "x"); 
+        //motor.rotarMalla("malla1", 10, "x");
+
+        //motor.escalarMalla("malla2", 0.3);
 
 
-        motor.moverMalla("malla2", 0, -20, 0);
-        motor.rotarMalla("malla2", 45, "y");
-        motor.escalarMalla("malla2", 50, 1, 50);
-
-
-        motor.moverLuz("luz1", -10, 25, 7);   
-
-
-
-
-
-
-        motor.moverCamara("camara1", 0, 5, 25);
-        motor.rotarCamara("camara1", -20, "x");
+        motor.moverCamara("camara1", 0, 0, 30);
+        //motor.rotarCamara("camara1", 180, "y");
 
         motor.activarCamara("camara1");
 
         motor.activarLuz("luz1");
+        //motor.activarLuz("luz2");
+        //motor.activarLuz("luz3");
 
 
 
@@ -127,7 +148,18 @@
 
 
         //CARLOS, TRATA DE ARRANCARLO (WEBGL)
-        motor.draw();
+        setTimeout(function(){
+
+            (function animLoop(){
+                motor.rotarMalla("malla3", 1, "y");
+                motor.rotarMalla("malla3", 1, "x");
+                motor.rotarMalla("malla3", 1, "z");
+
+                motor.rotarMalla("malla2", 1, "x");
+                motor.draw();
+            requestAnimationFrame(animLoop, canvas);
+        })();
+    }, 800);
 
     </script>
 </body>
