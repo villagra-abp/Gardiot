@@ -38,6 +38,7 @@
         var matrixModel = mat4.create();
         matrixStack.push(matrixModel);
         var matrixProjection=[];
+        var invertedMView;
 
         //inicializamos vector de texturas
         var textureImage=[];
@@ -51,7 +52,7 @@
         //fachada
         var motor = new TMotor(gestor);
 
-        var luz = motor.crearNodoLuz("luz1", 0.7, undefined);
+        var luz = motor.crearNodoLuz("luz1", 1.7, undefined);
         //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
         //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
@@ -129,9 +130,11 @@
         setTimeout(function(){
 
             (function animLoop(){
-                motor.rotarMalla("malla2", 1, "y");
-                //motor.rotarMalla("malla2", 1, "x");
-                //motor.rotarMalla("malla2", 1, "z");
+                motor.rotarMalla("malla3", 1, "y");
+                motor.rotarMalla("malla3", 1, "x");
+                motor.rotarMalla("malla3", 1, "z");
+
+                motor.rotarMalla("malla2", 1, "x");
                 motor.draw();
             requestAnimationFrame(animLoop, canvas);
         })();

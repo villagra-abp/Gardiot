@@ -118,6 +118,19 @@ class TRecursoMalla extends TRecurso{
         }
       }
 
+      //NORMAL MATRIX
+      //calculo matrix normales
+        let matrixModelView=[];
+        let normalMatrix=[];
+
+        mat4.multiply(matrixModelView, invertedMView, matrixModel);
+
+        mat3.normalFromMat4(normalMatrix, matrixModelView);
+        //console.log(normalMatrix);
+
+        //matrixUniform
+        gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
+
 
 
     /*PASARLE LAS COSAS A WEBGL PARA QUE DIBUJE*/
