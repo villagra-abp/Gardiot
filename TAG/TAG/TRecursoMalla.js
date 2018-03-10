@@ -39,7 +39,6 @@ class TRecursoMalla extends TRecurso{
       //almacenamos las coordenadas de textura
       if(objeto.meshes[0].texturecoords!==undefined){
         this._textureCoords=objeto.meshes[0].texturecoords[0];
-        console.log(this._textureCoords);
       }
 
 
@@ -47,9 +46,6 @@ class TRecursoMalla extends TRecurso{
       if(objeto.meshes[0].normals!==undefined){
         this._normales=objeto.meshes[0].normals;
       }
-
-      console.log(this._normales.length);
-      console.log(this._vertices.length);
 
       if(objeto.materials[0]!==undefined){
         if(objeto.materials[1]!==undefined && objeto.materials[1].properties[8]!=undefined){

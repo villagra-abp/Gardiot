@@ -51,22 +51,25 @@
         //fachada
         var motor = new TMotor(gestor);
 
-        var luz = motor.crearNodoLuz("luz1", false, undefined);
+        var luz = motor.crearNodoLuz("luz1", 0.7, undefined);
+        //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
+        //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        var malla = motor.crearNodoMalla("malla1", "cubo", luz);
-        
+        //motor.crearNodoMalla("suelo", "cubo");
         var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
         var malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
-
+        motor.escalarMalla("suelo", 5);
+        motor.moverMalla("suelo", 0, -10, 0);
 
         //motor.moverMalla("malla1", -9, -15, -30);
 
         motor.escalarMalla("malla2", 6);
+        motor.moverMalla("malla2", 0, 0, -20);
 
         motor.moverMalla("malla3", 15, 0, 0);
         motor.escalarMalla("malla3", 5);
@@ -76,7 +79,9 @@
 
         //motor.moverMalla("malla3", 0, 0, -7);   
 
-        motor.moverLuz("luz1", -10.0, 0.0, 0.0);   
+        motor.moverLuz("luz1", -8.0, 0.0, 10.0);   
+        motor.moverLuz("luz2", 0.0, 10.0, 0.0);  
+        //motor.moverLuz("luz3", 0.0, -10.0, 0.0);  
 
 
         //motor.rotarMalla("malla2", 180, "z");
@@ -94,6 +99,8 @@
         motor.activarCamara("camara1");
 
         motor.activarLuz("luz1");
+        //motor.activarLuz("luz2");
+        //motor.activarLuz("luz3");
 
 
         
@@ -119,7 +126,16 @@
 
 
         //CARLOS, TRATA DE ARRANCARLO (WEBGL)
-        setTimeout(function(){motor.draw();}, 800);
+        setTimeout(function(){
+
+            (function animLoop(){
+                motor.rotarMalla("malla2", 1, "y");
+                //motor.rotarMalla("malla2", 1, "x");
+                //motor.rotarMalla("malla2", 1, "z");
+                motor.draw();
+            requestAnimationFrame(animLoop, canvas);
+        })();
+    }, 800);
 
     </script>
 </body>
