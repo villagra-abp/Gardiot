@@ -99,9 +99,6 @@ function setupWebGL(){
     glProgram.luces=gl.getUniformLocation(glProgram, "uLuces");
 
 
-
-
-
 }
 
 
@@ -118,4 +115,23 @@ function iniciamosWebGL(idCanvas){
     catch(e){
         return false;
     }
+}
+
+function animLoop(){
+    now=Date.now();
+    elapsed=now-then;
+
+    if(elapsed>fpsInterval && motor.running){
+        then=now-(elapsed%fpsInterval);
+        motor.rotarMalla("malla3", 1, "y");
+        motor.rotarMalla("malla3", 1, "x");
+        motor.rotarMalla("malla3", 1, "z");
+
+        motor.rotarMalla("malla2", 1, "x");
+        
+        motor.draw();
+        
+    }
+    
+    requestAnimationFrame(animLoop, canvas);
 }

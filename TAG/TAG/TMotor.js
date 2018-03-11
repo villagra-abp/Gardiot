@@ -12,36 +12,55 @@ class TMotor{
         this.camaraRegistro = [];
         this.camaraActiva = -1;
         this.mallaRegistro = [];
+        this.running=false;
     }
-	
 
-	draw(){
-		if(iniciamosWebGL('my-canvas')){
+    //empezamos a dibujar con los fps que le pasemos por parámetro
+    startDrawing(){
+    	this.running=true;
+    	fpsInterval=1000/24;
+    	then=Date.now();
+    	startTime=then;
+
+    	if(iniciamosWebGL('my-canvas')){
 	        //Esto es la inicialización de la librería gráfica
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
 	        configurarShaders('shaderP.vs', 'shaderP.fs');
-
-	        //iniciamos los parámetros básicos de webGL
-	        setupWebGL();
-
-	        //inicializar luces
-	        this.dibujarLucesActivas();
-
-	        //inicializar viewport
-    		gl.viewport(0, 0, canvas.width, canvas.height);
-
-	        //inicializar cámara
-	        this.dibujarCamaraActiva();
 	        
-    		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
-	        this.escena.draw();
-		}
-		else{
+	    	//bucle de animación en utilities.js
+	        animLoop();
+    	}
+    	else{
 			alert("No funciona WebGL");
 		}
+    }
+
+    stopDrawing(){
+    	this.running=false;
+    }
+	
+
+	draw(){
+		//iniciamos los parámetros básicos de webGL
+	    setupWebGL();
+
+        //inicializar luces
+        this.dibujarLucesActivas();
+
+        //inicializar viewport
+		gl.viewport(0, 0, canvas.width, canvas.height);
+
+        //inicializar cámara
+        this.dibujarCamaraActiva();
+        
+		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
+        this.escena.draw();
+		
 	}
+
+
 	    
 
 //=================================INICIO CÁMARA============================
@@ -175,17 +194,18 @@ class TMotor{
 	 * @return {TNodo}            
 	 */
 	crearNodoLuz(nombre, intensidad, hermano){
+		let i=intensidad;
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);	
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(intensidad), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}else{
 			//console.log("crea en raiz");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);	
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(intensidad), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}
 		var malla = motor.crearNodoMalla("malla1", "cubo", luz);
 		this.luzRegistro.push(luz);
@@ -253,8 +273,6 @@ class TMotor{
 	}
 	dibujarLucesActivas(){
 		//dibujar ambient light
-		var ambientUniformLocation=gl.getUniformLocation(glProgram, "uAmbientLightIntensity");
-		gl.uniform4f(ambientUniformLocation, 0.5, 0.5, 0.5, 0.0);
 		let contLuces=0;
 		for(let i=0; i<this.luzRegistro.length; i++){
 			if(this.luzActiva[i]==1){
@@ -286,13 +304,13 @@ class TMotor{
 
 
 				//se la pasamos al shader
-				var sunlightDirUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].position`);
-				var sunlightIntUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].color`);
+				var lightPosUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].position`);
+				var lightIntUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].color`);
+				var lightSpecUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].specColor`);
 
-				let intensity=this.luzRegistro[i].entity.intensidad;
-				
-				gl.uniform4fv(sunlightDirUniformLocation, lPos);
-				gl.uniform3f(sunlightIntUniformLocation, intensity, intensity, intensity);
+				gl.uniform4fv(lightPosUniformLocation, lPos);
+				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
+				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
 
 				contLuces++;
 			}

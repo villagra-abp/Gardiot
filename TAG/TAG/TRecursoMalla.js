@@ -47,14 +47,14 @@ class TRecursoMalla extends TRecurso{
       }
 
       if(objeto.materials[0]!==undefined){
-        if(objeto.materials[1]!==undefined && objeto.materials[1].properties[8]!=undefined){
+        if(this._nombre=='bote'){
           this._textura=gestor.getRecurso("madera.jpg", "textura");
         }
-        else{
+        else if(this._nombre=='Susan'){
           this._textura=gestor.getRecurso("SusanTexture.png", "textura");
         }
       }
-    
+
   }
  
   

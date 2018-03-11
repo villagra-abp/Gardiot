@@ -78,17 +78,26 @@ class TTransf extends TEntidad{
 
 
 class TLuz extends TEntidad {
-    constructor (intensidad) {
+    constructor (r, g, b, specR, specG, specB) {
     	super();
-        this._intensidad = intensidad;
+        this._intensidad = [r, g, b];
+        this._intensidadSpecular=[specR, specG, specB];
     }
 
-    set intensidad (intensidad) {
-        this._intensidad = intensidad;
+    setIntensidad (r, g, b) {
+        this._intensidad = [r, g, b];
+    }
+
+    setIntensidadSpecular (r, g, b){
+        this._intensidadSpecular=[r, g, b];
     }
 
     get intensidad () {
         return this._intensidad;
+    }
+
+    get intensidadSpecular () {
+        return this._intensidadSpecular;
     }
 
     beginDraw(){} //Suelen estar vacios

@@ -30,8 +30,14 @@
         Tu navegador no soporta el elemento canvas de HTML5.
     </canvas>
 
+    <button onclick="motor.stopDrawing()">Pausa</button>
+    <button onclick="motor.startDrawing()">Continuar</button>
+
     <script>
         var canvas=null;
+
+        var frames, fpsInterval, startTime, now, then, elapsed, frameCount;
+
 
         //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];
@@ -59,13 +65,15 @@
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        //motor.crearNodoMalla("suelo", "cubo");
+        //var suelo=motor.crearNodoMalla("suelo", "cubo");
+        console.log("suelo");
         var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
         var malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
         motor.escalarMalla("suelo", 5);
-        motor.moverMalla("suelo", 0, -10, 0);
+        //suelo.dad.entity.escalar(100, 0, 100);
+        motor.moverMalla("suelo", 0, -15, 0);
 
         //motor.moverMalla("malla1", -9, -15, -30);
 
@@ -81,7 +89,7 @@
         //motor.moverMalla("malla3", 0, 0, -7);   
 
         motor.moverLuz("luz1", -8.0, 0.0, 10.0);   
-        motor.moverLuz("luz2", 0.0, 10.0, 0.0);  
+        //motor.moverLuz("luz2", 0.0, 10.0, 0.0);  
         //motor.moverLuz("luz3", 0.0, -10.0, 0.0);  
 
 
@@ -143,23 +151,7 @@
         //las variables del motor gráfico 
         var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
-
-        
-
-
-        //CARLOS, TRATA DE ARRANCARLO (WEBGL)
-        setTimeout(function(){
-
-            (function animLoop(){
-                motor.rotarMalla("malla3", 1, "y");
-                motor.rotarMalla("malla3", 1, "x");
-                motor.rotarMalla("malla3", 1, "z");
-
-                motor.rotarMalla("malla2", 1, "x");
-                motor.draw();
-            requestAnimationFrame(animLoop, canvas);
-        })();
-    }, 800);
+        motor.startDrawing();
 
     </script>
 </body>
