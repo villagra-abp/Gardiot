@@ -1,23 +1,16 @@
 <div class="container">
   <h1>Resetear contraseña</h1>
+
   <section>
-    <p>Estas a punto de resetear tu contraseña. Te enviaremos un link a tu correo electrónico para poder hacerlo.
+    <p>Estas a punto de resetear tu contraseña. Introduce tu email con el que te registraste y te enviaremos un link a tu correo electrónico para poder hacerlo.
      Recuerda que sólo tienes unas pocas horas para ello.</p>
   </section>
 
-
-
-
-
   <form #f="ngForm" (ngSubmit)="resetPass(f)" novalidate>
-
     <div class="form-group">
       <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="first" ngModel required #first="ngModel">
     </div>
-
-    <button class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
     <button [routerLink]="['/profile']" class="btn btn-outline-danger">Cancelar</button>
   </form>
-
-
 </div>
