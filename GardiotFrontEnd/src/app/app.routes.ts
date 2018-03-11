@@ -28,6 +28,7 @@ import { NewGardenComponent } from './components/gardens/newgarden/newgarden.com
 import { AuthguardGuard } from "./authguard.guard";
 //mas rutas
 import { admin_routes } from "./admin.routes";
+import { ResetPassComponent } from './components/manage/reset-pass.component';
 
 
 const app_routes: Routes = [
@@ -49,6 +50,7 @@ const app_routes: Routes = [
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
+  { path: 'resetPass', component: ResetPassComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 

@@ -7,6 +7,7 @@ import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
+// import {PopupModule} from 'ng2-opd-popup'; // VENTANA EMERGENTE
 import { Select2Module } from 'ng2-select2';
 import { FileSelectDirective } from 'ng2-file-upload';
 import {Ng2ImgMaxModule} from "ng2-img-max";
@@ -15,7 +16,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
 import { FormsModule } from "@angular/forms";
 import {TabModule} from 'angular-tabs-component';
-// import {PopupModule} from 'ng2-opd-popup';
 import { AdminProfileComponent } from './components/admin/adminprofile.component';
 //Oauth
 import { OauthConfirmationComponent } from './components/manage/oauthconfirmation.component';
@@ -71,6 +71,7 @@ import { FeedComponent } from './components/feeds/feed/feed.component';
 import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
+import { ResetPassComponent } from './components/manage/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { ListfeedComponent } from './components/feeds/listfeed/listfeed.componen
     FeedComponent,
     NewfeedComponent,
     EditfeedComponent,
-    ListfeedComponent
+    ListfeedComponent,
+    ResetPassComponent
 
   ],
   imports: [
