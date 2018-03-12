@@ -61,3 +61,5 @@ forgetPassword.deleteForgetPasswordTokenByUser = function (id, callback) {
 		});
 	}
 }
+
+module.exports = forgetPassword;

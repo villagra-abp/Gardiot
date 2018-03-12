@@ -127,7 +127,7 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
     Select2Module,
     Ng2ImgMaxModule,
     TabModule,
-    //PopupModule.forRoot(),
+    // PopupModule.forRoot(),
     APP_ROUTING
   ],
   providers: [
