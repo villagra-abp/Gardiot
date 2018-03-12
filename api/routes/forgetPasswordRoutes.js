@@ -6,11 +6,13 @@ var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
 var cors = require('cors'); //CORS standard
+var validator = require('validator');
 
 var userModel = require('../models/user');
 var forgetPasswordModel = require('../models/forgetPassword');
 
 router.post('/forgetPassword', cors(), function (request, response) {
+	console.log("HOAL FORGET PASS");
 	if (!request.body.email)
 		response.status(400).json({"Mensaje":"Introduce el correo electrónico para restablecer tu contraseña"});
 	if (!validator.isEmail(request.body.email))
@@ -36,7 +38,7 @@ router.post('/forgetPassword', cors(), function (request, response) {
 									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
 								});
 							}
-						});	
+						});
 					}
 					else { //Se actualiza
 						forgetPasswordModel.updateForgetPasswordToken(id, tokenNew, function(error, result) {
@@ -51,8 +53,8 @@ router.post('/forgetPassword', cors(), function (request, response) {
 							}
 						});
 					}
-				});					
-			}				
+				});
+			}
 			else response.status(404).json({"Mensaje":"No existe el usuario"});
 		});
 	}
@@ -69,7 +71,7 @@ router.put('/resetPassword/:token', cors(), function (request, response) {
 			else {
 				forgetPasswordModel.getUserByForgetPasswordToken(request.params.token, function (error, user) {
 					if (error) response.status(500).json({"Mensaje":"Error"});
-					else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario o este usuario no ha solicitado un cambio de contraseña."}); 
+					else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario o este usuario no ha solicitado un cambio de contraseña."});
 					else {
 						userModel.genHash(request.body.password, function(error, hash) {
 							if (!error) {
@@ -77,7 +79,7 @@ router.put('/resetPassword/:token', cors(), function (request, response) {
 									if (data) {
 										forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
 											response.status(200).json({"Mensaje":"Contraseña actualizada. Por favor autentícate con tu nueva contraseña."});
-										});									
+										});
 									}
 									else
 										response.status(500).json({"Mensaje":"Error al actualizar la contraseña"});

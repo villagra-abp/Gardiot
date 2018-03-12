@@ -6,7 +6,7 @@
      Recuerda que sólo tienes unas pocas horas para ello.</p>
   </section>
 
-  <form #f="ngForm" (ngSubmit)="resetPass(f)" novalidate>
+  <form #f="ngForm" (ngSubmit)="resetPass(f)">
     <div class="form-group">
       <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="first" ngModel required #first="ngModel">
     </div>
