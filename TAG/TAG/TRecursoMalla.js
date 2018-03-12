@@ -8,6 +8,12 @@ class TRecursoMalla extends TRecurso{
     this._textura;
     this._textureCoords=[];
 
+    this.bufferVertices;
+    this.bufferIndex;
+    this.bufferTextureCoords;
+    this.bufferNormales;
+    this.texTextura;
+
   }
   cargarFichero(nombre){
     let objeto;
@@ -49,72 +55,55 @@ class TRecursoMalla extends TRecurso{
       if(objeto.materials[0]!==undefined){
         if(this._nombre=='bote'){
           this._textura=gestor.getRecurso("madera.jpg", "textura");
+
         }
         else if(this._nombre=='Susan'){
           this._textura=gestor.getRecurso("SusanTexture.png", "textura");
         }
+        else{
+          this._textura=gestor.getRecurso("SusanTexture.png", "textura");
+        }
+
+
       }
+
+      //CREAR BUFFERS
+      //==============CREACIÓN BUFFER DE VÉRTICES==============
+    this.bufferVertices=gl.createBuffer();
+    //se lo pasamos al programa
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
+    //asignamos los vértices leídos al buffer
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
+
+    //==============CREACIÓN BUFFER DE ÍNDICES==============
+    //Ahora vamos a crear el índice de vértices 
+    //(esto es como indicarle a WebGL los vértices que componen cada cara)
+    this.bufferIndex=gl.createBuffer();
+    this.bufferIndex.number_vertex_points=this._verticesIndex.length;
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
+
+    if(this._textureCoords.length>0){
+    //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
+      this.bufferTextureCoords=gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
+    }
+
+
+    if(this._normales.length>0){
+      //==============CREACIÓN BUFFER DE NORMALES==============
+      this.bufferNormales=gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
+    }
+
 
   }
  
   
   draw(){
-    let vertices, index, textureCoords, normales, textura, vertexPositionAttribute, vertexTexCoordAttribute, vertexNormalAttribute;
-
-
-    //==============CREACIÓN BUFFER DE VÉRTICES==============
-    vertices=gl.createBuffer();
-    //se lo pasamos al programa
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertices);
-    //asignamos los vértices leídos al buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
-
-
-
-    //==============CREACIÓN BUFFER DE ÍNDICES==============
-    //Ahora vamos a crear el índice de vértices 
-    //(esto es como indicarle a WebGL los vértices que componen cada cara)
-    index=gl.createBuffer();
-    index.number_vertex_points=this._verticesIndex.length;
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
-    
-    if(this._textureCoords.length>0){
-    //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
-      textureCoords=gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, textureCoords);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
-    }
-
-    
-
-    if(this._normales.length>0){
-      //==============CREACIÓN BUFFER DE NORMALES==============
-      normales=gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, normales);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
-    }
-
-
-    //===========TEXTURAS=============
-    if(this._textura!==undefined){
-      
-      gl.activeTexture(gl.TEXTURE0);
-      textura = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D, textura);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this._textura._img);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-
-      //activar por defecto las texturas activadas
-
-
-      if( !gl.isTexture(textura) )
-        {
-            console.error("Error: Texture is invalid");
-        }
-      }
+    let normales, vertexPositionAttribute, vertexTexCoordAttribute, vertexNormalAttribute;
 
       //NORMAL MATRIX
       //calculo matrix normales
@@ -129,7 +118,15 @@ class TRecursoMalla extends TRecurso{
         //matrixUniform
         gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
 
+        matrixModelView=null;
+        normalMatrix=null;
 
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this._textura._img);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 
     /*PASARLE LAS COSAS A WEBGL PARA QUE DIBUJE*/
 
@@ -140,7 +137,7 @@ class TRecursoMalla extends TRecurso{
     //dibujamos en el canvas
     vertexPositionAttribute=gl.getAttribLocation(glProgram, "aVertPosition");
     gl.enableVertexAttribArray(vertexPositionAttribute);
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertices);
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
 
 
@@ -148,23 +145,24 @@ class TRecursoMalla extends TRecurso{
     if(this._textureCoords.length>0){
       vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
       gl.enableVertexAttribArray(vertexTexCoordAttribute);
-      gl.bindBuffer(gl.ARRAY_BUFFER, textureCoords);
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
     }
 
 
-    //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index);
+    
 
     if(this._normales.length>0){
       //para la iluminación de las mallas
       //calculamos el vector de normales
       vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertNormal");
       gl.enableVertexAttribArray(vertexNormalAttribute);
-      gl.bindBuffer(gl.ARRAY_BUFFER, normales);
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
     }
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 
-    gl.drawElements(gl.TRIANGLES, index.number_vertex_points, gl.UNSIGNED_SHORT, 0);
+    gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
     //gl.drawArrays(gl.TRIANGLES, 0, index.number_vertex_points);
 
 

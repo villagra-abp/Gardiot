@@ -38,6 +38,8 @@
 
         var frames, fpsInterval, startTime, now, then, elapsed, frameCount;
 
+        var texturas=0;
+
 
         //Inicializamos la pila de matriz y la matriz modelo
         var matrixStack=[];
@@ -54,6 +56,9 @@
 
         //inicializamos el gestor de recursos
         var gestor=new TGestorRecursos();
+
+        iniciamosWebGL('my-canvas');
+        configurarShaders('shaderP.vs', 'shaderP.fs');
 
         //fachada
         var motor = new TMotor(gestor);
