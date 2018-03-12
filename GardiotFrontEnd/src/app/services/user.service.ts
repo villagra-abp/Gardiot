@@ -316,5 +316,22 @@ export class UserService {
           return res.json();
         })
     }
+    // reset password2
+    resetPassword(email:String){
+      // console.log("HOLLI");
+      // console.log(email);
+      let body=`email=${email}`;
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+      });
+      console.log(this.apiURL+"forgetPassword", body, { headers });
+      return this.http.post(this.apiURL+"forgetPassword", body, { headers })
+      .map(res=>{
+        return res.json();
+        //console.log("dentro de RES");
+      })
+
+    }
 
 }
