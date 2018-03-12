@@ -20,6 +20,7 @@ export class LibraryComponent implements OnInit {
   private numeroItems:number;
   private paginaActual:number=1;
   private elementosPorPagina:number=6;
+  private estado:boolean=false;// false es listado y true buscador
 
   constructor(
     private _plantService:PlantService,
@@ -30,33 +31,43 @@ export class LibraryComponent implements OnInit {
   ) {}
 
   mostrar(){
-    this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
-        .subscribe(data=>{
+    if(this.estado==false){
+      this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
+          .subscribe(data=>{
+            this.plants=[];
+            for(let key$ in data){
+              this.plants.push(data[key$]);
+            }
+          },
+        error => {
+          console.error(error);
+        });
+    }else{
+      this.searchcontent(this.paginaActual,this.elementosPorPagina);
+    }
 
-          this.plants=[];
-
-          for(let key$ in data){
-            this.plants.push(data[key$]);
-          }
-        },
-      error => {
-        console.error(error);
-      });
   }
 
-
-  searchcontent(){
-    this._plantService.searchAll(this.plant)
+  searchcontent(page:number, items:number){
+    this._plantService.searchAll(this.plant,page,items)
     .subscribe(data=>{
-      this.plants=[];
-      for(let key$ in data){
-        this.plants.push(data[key$]);
+      if(data[0]!=undefined){
+        this.plants=[];
+        this.numeroItems=data[0].number;
+        if(this.estado==false){
+          this.paginaActual=1;
+          this.estado=true;
+        }
+        for(let key$ in data){
+          this.plants.push(data[key$]);
+        }
       }
     },
     error => {
       console.error(error);
     });
   }
+
 
   deleteplant(idPlant:number){
     this._plantService.deletePlant(idPlant)
@@ -71,7 +82,9 @@ export class LibraryComponent implements OnInit {
   getitems(){
     this._plantService.getNumberItems()
     .subscribe(data=>{
-      this.numeroItems=data[0].NUMPLANTAS;
+      if(this.estado==false){
+        this.numeroItems=data[0].NUMPLANTAS;
+      }
       this.mostrar();
     },
     error => {
@@ -96,8 +109,6 @@ export class LibraryComponent implements OnInit {
      }
      this.getitems();
    });
-
-
 }
 
  comprobaciones(){

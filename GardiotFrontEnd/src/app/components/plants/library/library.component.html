@@ -1,9 +1,9 @@
 <div class="vistaAdmin">
   <div class="main-container">
-    <h1>Biblioteca</h1> 
+    <h1>Biblioteca</h1>
     <div class="wrap">
 
-  				<form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
+  				<form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm" >
   					<article class="form-group col-md-4">
   						<input type="text"  [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
   			    </article>
