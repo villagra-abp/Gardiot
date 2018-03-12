@@ -27,7 +27,7 @@ class TMotor{
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
-	        configurarShaders('shaderP.vs', 'shaderP.fs');
+	        
 	        
 	    	//bucle de animación en utilities.js
 	        animLoop();
@@ -43,6 +43,7 @@ class TMotor{
 	
 
 	draw(){
+		configurarShaders('shaderP.vs', 'shaderP.fs');
 		//iniciamos los parámetros básicos de webGL
 	    setupWebGL();
 
