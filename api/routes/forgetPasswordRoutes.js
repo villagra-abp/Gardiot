@@ -12,10 +12,9 @@ var userModel = require('../models/user');
 var forgetPasswordModel = require('../models/forgetPassword');
 
 router.post('/forgetPassword', cors(), function (request, response) {
-	console.log("HOAL FORGET PASS");
 	if (!request.body.email)
 		response.status(400).json({"Mensaje":"Introduce el correo electrónico para restablecer tu contraseña"});
-	if (!validator.isEmail(request.body.email))
+	else if (!validator.isEmail(request.body.email))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
 		var id = validator.trim(request.body.email);
@@ -27,8 +26,21 @@ router.post('/forgetPassword', cors(), function (request, response) {
 				});
 				forgetPasswordModel.getForgetPasswordTokenByUser(id, function(error, token) {
 					if (error) response.status(500).json({"Mensaje":"Imposible recuperar el token de verificacion."});
-					else if (typeof token === 'undefined' || token == null) {
+					else if (typeof token[0] === 'undefined') {
 						forgetPasswordModel.insertForgetPasswordToken(id, tokenNew, function(error, result) {
+							if (error) response.status(500).json({"Mensaje":"Error"});
+							else {
+								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
+								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'};
+								transporter.sendMail(mailOptions, function(err) {
+									if (err) response.status(500).json({"Mensaje": err.message});
+									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
+								});
+							}
+						});	
+					}
+					else { //Se actualiza
+						forgetPasswordModel.updateForgetPasswordToken(id, tokenNew, function(error, result) {
 							if (error) response.status(500).json({"Mensaje":"Error"});
 							else {
 								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
@@ -40,21 +52,8 @@ router.post('/forgetPassword', cors(), function (request, response) {
 							}
 						});
 					}
-					else { //Se actualiza
-						forgetPasswordModel.updateForgetPasswordToken(id, tokenNew, function(error, result) {
-							if (error) response.status(500).json({"Mensaje":"Error"});
-							else {
-								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: request.user.id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'};
-								transporter.sendMail(mailOptions, function(err) {
-									if (err) response.status(500).json({"Mensaje": err.message});
-									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
-								});
-							}
-						});
-					}
-				});
-			}
+				});					
+			}				
 			else response.status(404).json({"Mensaje":"No existe el usuario"});
 		});
 	}
@@ -71,7 +70,7 @@ router.put('/resetPassword/:token', cors(), function (request, response) {
 			else {
 				forgetPasswordModel.getUserByForgetPasswordToken(request.params.token, function (error, user) {
 					if (error) response.status(500).json({"Mensaje":"Error"});
-					else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario o este usuario no ha solicitado un cambio de contraseña."});
+					else if (typeof user[0] === 'undefined') response.status(404).json({"Mensaje":"No existe el usuario o este usuario no ha solicitado un cambio de contraseña."}); 
 					else {
 						userModel.genHash(request.body.password, function(error, hash) {
 							if (!error) {
@@ -79,7 +78,7 @@ router.put('/resetPassword/:token', cors(), function (request, response) {
 									if (data) {
 										forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
 											response.status(200).json({"Mensaje":"Contraseña actualizada. Por favor autentícate con tu nueva contraseña."});
-										});
+										});									
 									}
 									else
 										response.status(500).json({"Mensaje":"Error al actualizar la contraseña"});
