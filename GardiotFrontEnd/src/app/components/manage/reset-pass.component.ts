@@ -25,10 +25,8 @@ export class ResetPassComponent implements OnInit {
       // LLAMADA A LA API
       this._resetPassword.resetPassword(email)
         .subscribe(data=>{
-          console.log(data);
-
     });
-      //this._appComponent.mensajeEmergente("Mensaje enviado. Revisa tu correo", "primary", "login");
+      this._appComponent.mensajeEmergente("Mensaje enviado. Revisa tu correo", "primary", "login");
     }
 
   ngOnInit() {

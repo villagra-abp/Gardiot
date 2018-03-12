@@ -29,6 +29,7 @@ import { AuthguardGuard } from "./authguard.guard";
 //mas rutas
 import { admin_routes } from "./admin.routes";
 import { ResetPassComponent } from './components/manage/reset-pass.component';
+import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 
 
 const app_routes: Routes = [
@@ -51,6 +52,7 @@ const app_routes: Routes = [
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: 'resetPass', component: ResetPassComponent },
+  { path: 'reset-pass-back', component: ResetPassBackComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 
