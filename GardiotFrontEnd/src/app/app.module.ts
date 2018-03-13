@@ -74,6 +74,7 @@ import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
 import { ResetPassComponent } from './components/manage/reset-pass.component';
+import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +120,8 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
     NewfeedComponent,
     EditfeedComponent,
     ListfeedComponent,
-    ResetPassComponent
+    ResetPassComponent,
+    ResetPassBackComponent
 
   ],
   imports: [
