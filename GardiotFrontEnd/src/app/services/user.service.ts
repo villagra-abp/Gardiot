@@ -316,22 +316,33 @@ export class UserService {
           return res.json();
         })
     }
-    // reset password2
+    // reset password
     resetPassword(email:String){
-      // console.log("HOLLI");
-      // console.log(email);
       let body=`email=${email}`;
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded',
-        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        //'Authorization':`Bearer ${localStorage['Bearer']}`,
       });
-      console.log(this.apiURL+"forgetPassword", body, { headers });
+      //console.log(this.apiURL+"forgetPassword", body, { headers });
       return this.http.post(this.apiURL+"forgetPassword", body, { headers })
       .map(res=>{
         return res.json();
-        //console.log("dentro de RES");
       })
-
+    }
+    // reset password2
+    newPassword(pass1:String, pass2:String, token:String){
+      // console.log("Hola New PASS");
+      // console.log(pass1,pass2);
+      let body=`password=${pass1}&password2=${pass2}`;
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+      });
+      // console.log("CAMBIADO:"+this.apiURL+"resetPassword/"+token, body, { headers });
+      return this.http.put(this.apiURL+"resetPassword/"+token, body, { headers })
+      .map(res=>{
+        // console.log("dentro de RES");
+        return res.json();
+      })
     }
 
 }
