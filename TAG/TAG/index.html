@@ -164,7 +164,7 @@
         var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
 
-            motor.startDrawing('shaderPhong+Shadow.vs', 'shaderPhong+Shadow.fs');
+        motor.startDrawing('shaderP.vs', 'shaderP.fs');
 
 
 
@@ -174,7 +174,6 @@
 
 
         $(document).keydown(function(evt){
-            console.log(evt.keyCode);
             switch(evt.keyCode){
                 case 83: //down
                     motor.moverCamara("camara1", 0, -0.5, 0);

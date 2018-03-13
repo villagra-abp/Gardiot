@@ -99,11 +99,6 @@ function setupWebGL(){
     glProgram.luces=gl.getUniformLocation(glProgram, "uLuces");
 
 
-    //shadow
-    glProgram.lightShadowMap=gl.getUniformLocation(glProgram, "uLightShadowMap");
-    glProgram.shadowClipNearFar=gl.getUniformLocation(glProgram, "uShadowClipNearFar");
-
-
 
 
 
