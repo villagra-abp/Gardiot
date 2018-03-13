@@ -6,7 +6,7 @@ var routeRequirements = require('../functions/routeRequirements');
 
 var soilModel = require('../models/soil');
 
-router.get('/soils/:number/:page/:sort', function (request, response) {
+router.get('/soils/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
   if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -16,7 +16,7 @@ router.get('/soils/:number/:page/:sort', function (request, response) {
 	}
 });
 
-router.get('/soil/:id', function(request, response) {
+router.get('/soil/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -29,7 +29,7 @@ router.get('/soil/:id', function(request, response) {
 	}
 });
 
-router.get('/numSoils', function(request, response) {
+router.get('/numSoils', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	soilModel.getSoilNumber(function(error, data) {
 		response.status(200).json(data); 
 	});
