@@ -28,7 +28,6 @@ export class ListtreatmentComponent implements OnInit {
     if(this.estado==false){
       this._treatmentService.detailsAll(this.paginaActual,this.elementosPorPagina)
           .subscribe(data=>{
-            console.log(data);
             this.treatments=[];
             for(let key$ in data){
               this.treatments.push(data[key$]);
