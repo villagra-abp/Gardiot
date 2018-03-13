@@ -17,16 +17,16 @@
           <a [routerLink]="['/admin/analytics']" href="#">Anatítica</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['admin/users']" href="#">Usuarios</a>
+					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" href="#">Usuarios</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
 					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}"  href="#">Plantas</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/treatments']" href="#">Tratamientos</a>
+          <a [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" href="#">Tratamientos</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/products']" href="#">Productos</a>
+					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#">Productos</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
           <a [routerLink]="['/admin/feeds']" href="#">Consejos</a>

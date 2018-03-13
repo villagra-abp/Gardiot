@@ -39,6 +39,16 @@ export class TreatmentService {
           })
     }
 
+		getNumberItems(){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.get(this.apiURL+"/admin/numTreatments", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
 
 	  // details(numplant:number){
 	  // 	let headers = new Headers({
@@ -63,15 +73,7 @@ export class TreatmentService {
     //       })
     // }
 
-		// getNumberItems(){
-		// 	let headers = new Headers({
-		// 		'Authorization':`Bearer ${localStorage['Bearer']}`
-		// 	});
-		// 	return this.http.get(this.apiURL+"numPlants/", { headers } )
-		// 			.map( res =>{
-		// 				return res.json();
-		// 			})
-		// }
+
 
 		// deletePlant(idPlant: number){
 		// 	let headers = new Headers({

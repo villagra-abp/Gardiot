@@ -31,6 +31,5 @@
     </tr>
   </tbody>
 </table>
-  <app-pagination [count]="13" [page]="1" [perPage]="3" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
-</div>
+<app-pagination [count]="this.numeroItems" [type]="2" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 </div>
