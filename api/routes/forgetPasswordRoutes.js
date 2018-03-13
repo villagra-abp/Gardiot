@@ -60,7 +60,7 @@ router.post('/forgetPassword', cors(), function (request, response) {
 });
 
 router.put('/resetPassword/:token', cors(), function (request, response) {
-	if (!request.body.password || request.body.password2)
+	if (!request.body.password || !request.body.password2)
 		response.status(400).json({"Mensaje":"Introduce ambas contraseñas"});
 	else if (!request.params.token)
 		response.status(500).json({"Mensaje":"Error con la petición. Token no encontrado"});
@@ -76,9 +76,9 @@ router.put('/resetPassword/:token', cors(), function (request, response) {
 							if (!error) {
 								userModel.updatePassword (user[0].userId, hash, function(error, data) {
 									if (data) {
-										forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
+										//forgetPasswordModel.deleteForgetPasswordTokenByUser(user[0].userId, function (error, data) {
 											response.status(200).json({"Mensaje":"Contraseña actualizada. Por favor autentícate con tu nueva contraseña."});
-										});									
+										//});									
 									}
 									else
 										response.status(500).json({"Mensaje":"Error al actualizar la contraseña"});
