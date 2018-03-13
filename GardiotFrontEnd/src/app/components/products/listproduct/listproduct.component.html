@@ -24,11 +24,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users">
-      <th scope="row">{{user.name}}</th>
-      <td>{{user.lastName}}</td>
-      <td>{{user.lastName}}</td>
-      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]">Modificar</button></td>
+    <tr *ngFor="let product of products">
+      <th scope="row">{{product.name}}</th>
+      <td>{{product.type}}</td>
+      <td>{{product.description}}</td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/']">Modificar</button></td>
       <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" >Eliminar</button></td>
     </tr>
   </tbody>

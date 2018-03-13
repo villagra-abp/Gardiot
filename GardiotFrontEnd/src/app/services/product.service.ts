@@ -17,4 +17,15 @@ export class ProductService {
 	    }
 	  }
 
+
+		detailsAll(page:number, items:number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.get(this.apiURL+"products"+"/"+items+"/"+page+"/asc", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
 }
