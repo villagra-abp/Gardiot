@@ -2,15 +2,17 @@
   <section class="container">
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
-        <form  (ngSubmit)="newPass()" #forma="ngForm" novalidate="">
+        <form #f="ngForm" (ngSubmit)="newPass(f)">
 
           <h3>Resetea tu contraseña</h3>
           <div class="form-group">
             <label for="password_user" name="first">Introduce tu nueva contraseña</label>
+              <input type="password" class="form-control" placeholder="Enter pass" name="first" ngModel required #first="ngModel">
             <!-- <input [(ngModel)]="user.password" type="password" name="password" id="password_user" > -->
           </div>
           <div class="form-group">
-            <label for="password2_user" name="second">Repite tu contraseña</label>
+            <label>Repite tu contraseña</label>
+            <input type="password" class="form-control" placeholder="Enter pass again" name="second" ngModel required #second="ngModel">
             <!-- <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" > -->
           </div>
           <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>

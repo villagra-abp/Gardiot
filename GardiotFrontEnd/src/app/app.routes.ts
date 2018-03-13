@@ -52,7 +52,7 @@ const app_routes: Routes = [
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: 'resetPass', component: ResetPassComponent },
-  { path: 'reset-pass-back/:key', component: ResetPassBackComponent },
+  { path: 'reset-pass-back/:key', component: ResetPassBackComponent, },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 
