@@ -20,6 +20,7 @@ export class PaginationComponent implements OnInit {
   @Input() perPage: number; // how many items we want to show per page
   @Input() pagesToShow: number; // how many pages between next/prev
   @Input() loading: boolean; // check if content is being loaded
+  @Input() type: number; // saber cual de las paginaciones debe mostrar
 
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();

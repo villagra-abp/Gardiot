@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreatmentService } from '../../../services/treatment.service';
 import { Treatment } from "../../../classes/treatment.class";
+import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-listtreatment',
@@ -18,6 +19,7 @@ export class ListtreatmentComponent implements OnInit {
 
   constructor(
     private _treatmentService:TreatmentService,
+    private activatedRoute: ActivatedRoute,
 
   ) { }
 
@@ -37,12 +39,33 @@ export class ListtreatmentComponent implements OnInit {
           console.error(error);
         });
     }else{
-    //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
+    // this.searchcontent(this.paginaActual,this.elementosPorPagina);
+     console.log("assss");
     }
   }
 
+  ActualizarPagina(){
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+        this.paginaActual = params['pag'];
+        this.getitems();
+      });
+ }
+
+ getitems(){
+   this._treatmentService.getNumberItems()
+   .subscribe(data=>{
+     if(this.estado==false){
+       this.numeroItems=data[0].NUMTREATMENT;
+     }
+     this.mostrar();
+   },
+   error => {
+     console.error(error);
+   });
+ }
+
   ngOnInit() {
-        this.mostrar();
+        this.ActualizarPagina();
   }
 
 }

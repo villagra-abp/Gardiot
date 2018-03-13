@@ -10,7 +10,7 @@
       <button class="btn btn-default" type="submit">Buscar</button>
     </article>
     <article class="form-group col-md-2">
-      <button  [routerLink]="['/admin/newproduct']" class="btn btn-outline-primary">Nuevo Tratamiento</button>
+      <button  [routerLink]="['/admin/newtreatment']" class="btn btn-outline-primary">Nuevo Tratamiento</button>
     </article>
   </form>
   <table class="table table-hover">
@@ -31,6 +31,5 @@
     </tr>
   </tbody>
 </table>
-  <app-pagination [count]="13" [page]="1" [perPage]="3" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
-</div>
+<app-pagination [count]="this.numeroItems" [type]="2" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 </div>

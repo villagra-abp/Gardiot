@@ -40,9 +40,9 @@ export const admin_routes: Routes = [
   { path: 'newuser', component: NewuserComponent,  canActivate: [AdminguardGuard] },
   //treatment
   { path: 'treatments', component: ListtreatmentComponent,  canActivate: [AdminguardGuard] },
-  { path: 'treatment/:id', component: ListtreatmentComponent,  canActivate: [AdminguardGuard] },
+  { path: 'treatment/:id', component: TreatmentComponent,  canActivate: [AdminguardGuard] },
   { path: 'edittreatment/:id', component: EdittreatmentComponent,  canActivate: [AdminguardGuard] },
-  { path: 'newtreatment', component: TreatmentComponent,  canActivate: [AdminguardGuard] },
+  { path: 'newtreatment', component: NewtreatmentComponent,  canActivate: [AdminguardGuard] },
   //product
   { path: 'products', component: ListproductComponent,  canActivate: [AdminguardGuard] },
   { path: 'product/:id', component: ProductComponent,  canActivate: [AdminguardGuard] },

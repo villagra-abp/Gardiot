@@ -30,7 +30,6 @@ export class ProductService {
 
 		save( product:Product ){
 			let body = `name=${product.name}&type=${product.type}&description=${product.description}`;
-			console.log(body);
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
