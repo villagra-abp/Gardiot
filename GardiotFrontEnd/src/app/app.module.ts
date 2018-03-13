@@ -5,6 +5,8 @@ import { DatePipe } from '@angular/common';
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
+import { TreatmentService } from "./services/treatment.service";
+import { ProductService } from "./services/product.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
 // import {PopupModule} from 'ng2-opd-popup'; // VENTANA EMERGENTE
@@ -137,7 +139,8 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
     Ng2ImgMaxService,
     AuthguardGuard,
     AdminguardGuard,
-    PlantService,
+    TreatmentService,
+    ProductService,
     DatePipe
   ],
   bootstrap: [AppComponent]

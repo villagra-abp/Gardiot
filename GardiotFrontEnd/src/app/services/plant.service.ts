@@ -53,7 +53,6 @@ export class PlantService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
 			});
-			console.log(plant.id);
 			return this.http.put(this.apiURL+"admin/plant/"+ plant.id , body, { headers } )
 					.map( res=>{
 						return res.json();
@@ -92,13 +91,13 @@ export class PlantService {
           })
 	  }
 
-		searchAll(plant:Plant){
+		searchAll(plant:Plant,page:number, items:number){
 			let body = `commonName=${plant.commonName}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.post(this.apiURL+"find/Plant/6/1/commonName/ASC", body,  { headers } )
+      return this.http.post(this.apiURL+"find/Plant/"+items+"/"+page+"/commonName/ASC", body,  { headers } )
           .map( res =>{
             return res.json();
           })
