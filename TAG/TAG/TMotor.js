@@ -13,21 +13,26 @@ class TMotor{
         this.camaraActiva = -1;
         this.mallaRegistro = [];
         this.running=false;
+        this.vertexShader;
+        this.fragmentShader;
     }
 
     //empezamos a dibujar con los fps que le pasemos por parámetro
-    startDrawing(){
+    startDrawing(vs, fs){
     	this.running=true;
     	fpsInterval=1000/24;
     	then=Date.now();
     	startTime=then;
-
+    	if(vs!==undefined && fs!==undefined){
+	    	this.vertexShader=vs;
+	    	this.fragmentShader=fs;
+	    }
     	if(iniciamosWebGL('my-canvas')){
 	        //Esto es la inicialización de la librería gráfica
 	        //configuramos los shaders y le pasamos el nombre de los ficheros 
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
-	        
+	        configurarShaders(this.vertexShader, this.fragmentShader);
 	        
 	    	//bucle de animación en utilities.js
 	        animLoop();
@@ -43,7 +48,7 @@ class TMotor{
 	
 
 	draw(){
-		configurarShaders('shaderP.vs', 'shaderP.fs');
+		
 		//iniciamos los parámetros básicos de webGL
 	    setupWebGL();
 
@@ -228,6 +233,9 @@ class TMotor{
 			if(pos>=0){
 				this.luzActiva[pos] = 1;
 				this.lucesActivas++;
+				if(this.running){
+					configurarShaders(this.vertexShader, this.fragmentShader);
+				}
 				return this.luzRegistro[pos];
 			}else{
 				return false;
@@ -251,6 +259,9 @@ class TMotor{
 		if(pos>=0){
 			this.luzActiva[pos] = 0;
 			this.lucesActivas--;
+			if(this.running){
+					configurarShaders(this.vertexShader, this.fragmentShader);
+				}
 			return this.luzRegistro[pos];
 		}else{
 			return false;
@@ -277,7 +288,6 @@ class TMotor{
 		let contLuces=0;
 		for(let i=0; i<this.luzRegistro.length; i++){
 			if(this.luzActiva[i]==1){
-				console.log("Dibuja luz "+contLuces);
 
 				let auxStack=[];
 		        let auxLuz=this.luzRegistro[i];
@@ -395,6 +405,22 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.mallaRegistro[pos].dad.entity.escalar(q, q, q);
+			return true;			
+		}
+
+	}
+
+	escalarMallaxyz(nombre, x, y, z){
+		var pos = -1;
+		
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(nombre == this.mallaRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+			this.mallaRegistro[pos].dad.entity.escalar(x, y, z);
 			return true;			
 		}
 

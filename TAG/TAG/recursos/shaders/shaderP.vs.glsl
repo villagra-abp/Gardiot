@@ -19,10 +19,11 @@ uniform mat3 uNormalMatrix;
 
 
 
+
 void main()
 {
 	gl_Position = uPMatrix * uVMatrix * uMMatrix * vec4(aVertPosition, 1.0);
-
+	
 	vFragTexCoord = aVertTexCoord;
 
 	vec4 vertPos4=uVMatrix*uMMatrix*vec4(aVertPosition, 1.0);

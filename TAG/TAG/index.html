@@ -14,6 +14,7 @@
     <script src="TMotor.js"></script>
     <script src="content/utilities.js"></script>
     <link rel="stylesheet" type="text/css" href="estilo.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
     <!--IMPORTACIÓN DESDE EL CDN <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.4.0/gl-matrix-min.js"></script>-->
@@ -70,13 +71,19 @@
         var camara = motor.crearNodoCamara("camara1", true, undefined);
 
 
-        //var suelo=motor.crearNodoMalla("suelo", "cubo");
-        console.log("suelo");
+        var suelo=motor.crearNodoMalla("suelo", "cubo");
+
         var malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
         var malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
-        motor.escalarMalla("suelo", 5);
+        //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
+
+        motor.escalarMalla("malla4", 0.2);
+
+
+
+        motor.escalarMallaxyz("suelo", 20, 0, 20);
         //suelo.dad.entity.escalar(100, 0, 100);
         motor.moverMalla("suelo", 0, -15, 0);
 
@@ -85,15 +92,15 @@
         motor.escalarMalla("malla2", 6);
         motor.moverMalla("malla2", 0, 0, -20);
 
-        motor.moverMalla("malla3", 15, 0, 0);
-        motor.escalarMalla("malla3", 5);
+        motor.moverMalla("malla3", 15, 10, 0);
+        motor.escalarMalla("malla3", 6);
         motor.rotarMalla("malla3", 40, "x");
 
         //motor.escalarMalla("malla2", 5)
 
         //motor.moverMalla("malla3", 0, 0, -7);   
 
-        motor.moverLuz("luz1", -8.0, 0.0, 10.0);   
+        motor.moverLuz("luz1", 0.0, 80.0, 0.0);   
         //motor.moverLuz("luz2", 0.0, 10.0, 0.0);  
         //motor.moverLuz("luz3", 0.0, -10.0, 0.0);  
 
@@ -156,8 +163,48 @@
         //las variables del motor gráfico 
         var glVertexShader=null, glFragmentShader=null, glProgram=null;
 
-        motor.startDrawing();
 
+            motor.startDrawing('shaderPhong+Shadow.vs', 'shaderPhong+Shadow.fs');
+
+
+
+
+
+
+
+
+        $(document).keydown(function(evt){
+            console.log(evt.keyCode);
+            switch(evt.keyCode){
+                case 83: //down
+                    motor.moverCamara("camara1", 0, -0.5, 0);
+                    break;
+                case 87: //up
+                    motor.moverCamara("camara1", 0, 0.5, 0);
+                    break;
+                case 65: //left
+                    motor.moverCamara("camara1", -0.5, 0, 0);
+                    break;
+                case 68: //right
+                    motor.moverCamara("camara1", 0.5, 0, 0);
+                    break;
+                case 40: //down
+                    motor.rotarCamara("camara1", 2, "x");
+                    break;
+                case 38: //up
+                    motor.rotarCamara("camara1", -2, "x");
+                    break;
+                case 37: //left
+                    motor.rotarCamara("camara1", 2, "y");
+                    break;
+                case 39: //right
+                    motor.rotarCamara("camara1", -2, "y");
+                    break;
+                default:
+
+                    break;
+                }
+            });
     </script>
 </body>
 </html>

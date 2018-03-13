@@ -13,6 +13,7 @@ struct DirectionalLight
 
 uniform DirectionalLight uLight[5];
 uniform sampler2D uSampler;
+uniform int uTextured;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 
@@ -37,7 +38,13 @@ void main()
 
 	vec3 vLight=cAmbientLight+lambertian*uLight[0].color+specular*uLight[0].specColor;
 
-	vec4 texel=texture2D(uSampler, vFragTexCoord);
+	vec4 texel;
+	if(uTextured==1){
+		texel=texture2D(uSampler, vFragTexCoord);
+	}
+	else{
+		texel=vec4(0.1, 0.1, 0.1, 1.0);
+	}
 
 
 

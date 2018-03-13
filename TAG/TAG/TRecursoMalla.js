@@ -60,9 +60,12 @@ class TRecursoMalla extends TRecurso{
         else if(this._nombre=='Susan'){
           this._textura=gestor.getRecurso("SusanTexture.png", "textura");
         }
-        else{
-          this._textura=gestor.getRecurso("SusanTexture.png", "textura");
+        else if(this._nombre=='perejil'){
+          this._textura=gestor.getRecurso("perejil2.jpg", "textura");
         }
+        //else{
+          //this._textura=gestor.getRecurso("SusanTexture.png", "textura");
+        //}
 
 
       }
@@ -113,20 +116,28 @@ class TRecursoMalla extends TRecurso{
         mat4.multiply(matrixModelView, invertedMView, matrixModel);
 
         mat3.normalFromMat4(normalMatrix, matrixModelView);
-        //console.log(normalMatrix);
-
-        //matrixUniform
-        gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
+        if(normalMatrix.length>0){
+          //matrixUniform
+          gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
+        }
 
         matrixModelView=null;
         normalMatrix=null;
 
+
+    if(this._textura!==undefined){
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this._textura._img);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.uniform1i(glProgram.textured, 1);
+    }
+    else{
+      gl.uniform1i(glProgram.textured, 0);
+    }
+
 
     /*PASARLE LAS COSAS A WEBGL PARA QUE DIBUJE*/
 
@@ -142,7 +153,7 @@ class TRecursoMalla extends TRecurso{
 
 
     //texturas
-    if(this._textureCoords.length>0){
+    if(this._textureCoords.length>0 && this._textura!==undefined){
       vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
       gl.enableVertexAttribArray(vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);

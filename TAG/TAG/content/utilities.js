@@ -40,7 +40,7 @@ function makeShader(src, type){
     gl.compileShader(shader);
 
     if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
-        alert("Error compilando el Shader "+gl.getShaderInfoLog(shader));
+        alert("Error compilando el Shader " + gl.getShaderInfoLog(shader));
     }
     return shader;
 }
@@ -92,11 +92,19 @@ function setupWebGL(){
     glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
 
     glProgram.samplerUniform = gl.getUniformLocation(glProgram, "uSampler");
-
+    glProgram.textured=gl.getUniformLocation(glProgram, "uTextured");
     //matriz de normales
     glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
 
     glProgram.luces=gl.getUniformLocation(glProgram, "uLuces");
+
+
+    //shadow
+    glProgram.lightShadowMap=gl.getUniformLocation(glProgram, "uLightShadowMap");
+    glProgram.shadowClipNearFar=gl.getUniformLocation(glProgram, "uShadowClipNearFar");
+
+
+
 
 
 }
