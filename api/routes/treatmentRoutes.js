@@ -8,6 +8,7 @@ var treatmentModel = require('../models/treatment');
 
 
 router.get('/treatments/:number/:page/:sort', function (request, response) {
+  console.log("caballlo locooo");
   if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -16,15 +17,15 @@ router.get('/treatments/:number/:page/:sort', function (request, response) {
 	    });
 	}
 });
-
+ 
 router.get('/treatment/:id', function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentModel.getTreatmentById(request.params.id, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
-			else 
+			else
 				response.status(404).json({"Mensaje":"No existe"});
 		});
 	}
@@ -35,9 +36,9 @@ router.get('/treatmentPlant/:id/:number/:page/:sort', function(request, response
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.id, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
-			else 
+			else
 				response.status(404).json({"Mensaje":"No existe"});
 		});
 	}
@@ -48,9 +49,9 @@ router.get('/treatmentProduct/:id/:number/:page/:sort', function(request, respon
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentModel.getTreatmentsByProduct(request.params.number, request.params.page, request.params.sort, request.params.id, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
-			else 
+			else
 				response.status(404).json({"Mensaje":"No existe"});
 		});
 	}
@@ -58,7 +59,7 @@ router.get('/treatmentProduct/:id/:number/:page/:sort', function(request, respon
 
 router.get('/numTreatments', function(request, response) {
 	treatmentModel.getTreatmentsNumber(function(error, data) {
-		response.status(200).json(data); 
+		response.status(200).json(data);
 	});
 });
 
@@ -80,17 +81,17 @@ router.post('/admin/treatment', passport.authenticate('jwt', {session: false}), 
 		else {
 			treatmentData = sanitizeInput(treatmentData);
 			treatmentModel.insertTreatment(treatmentData, function(error, data) {
-				if (data) 
+				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
-				else 
+				else
 					response.status(500).json({"Mensaje":"Error"});
 			});
-		}	
+		}
 	}
 });
 
 router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0})) 
+	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		var treatmentData = {
@@ -107,15 +108,15 @@ router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}
 		else {
 			treatmentData = sanitizeInput(treatmentData);
 			treatmentModel.updateTreatment(treatmentData, request.params.id, function(error, data) {
-				if (data == 1) 
-					response.status(200).json({"Mensaje":"Actualizado"});	
+				if (data == 1)
+					response.status(200).json({"Mensaje":"Actualizado"});
 				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});			
-				else 
+					response.status(404).json({"Mensaje":"No existe"});
+				else
 					response.status(500).json({"Mensaje":error.message});
 			});
 		}
-	}	
+	}
 });
 
 router.delete('/admin/treatment/:id', function(request, response) {

@@ -45,7 +45,6 @@ export class LibraryComponent implements OnInit {
     }else{
       this.searchcontent(this.paginaActual,this.elementosPorPagina);
     }
-
   }
 
   searchcontent(page:number, items:number){
