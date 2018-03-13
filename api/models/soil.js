@@ -74,7 +74,7 @@ soil.updateSoil = function(data, id, callback) {
       if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    sql += ' WHERE id = "' + id +'"';
+    sql += ' WHERE id = ' + id;
     connection.query(sql, function(error, result) {
       if (error)
         callback(error, null);
@@ -87,7 +87,7 @@ soil.updateSoil = function(data, id, callback) {
 
 soil.deleteSoil = function(id, callback) {
   if(connection) {
-    connection.query('DELETE FROM Soil WHERE id = "' + id + '"', function(error, result) {
+    connection.query('DELETE FROM Soil WHERE id = ' + id, function(error, result) {
       if (error)
         callback(error, null);
       else
