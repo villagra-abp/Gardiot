@@ -17,36 +17,17 @@ export class TreatmentService {
 	    }
 	  }
 
-		// save( treatment:Treatment ){
-    //   let body//  = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
-    //   // body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
-		//
-		//
-    //   let headers = new Headers({
-		// 		'Authorization':`Bearer ${localStorage['Bearer']}`,
-    //     'Content-Type':'application/x-www-form-urlencoded'
-    //   });
-		//
-    //   return this.http.post(this.apiURL+"admin/plant", body, { headers } )
-    //       .map( res=>{
-    //         return res.json();
-    //       })
-    // }
-
-		// modify( treatment:Treatment ){
-		// 	 let body// = `commonName=${plant.commonName}&scientificName=${plant.scientificName}`;
-		// 	// body+= `&description=${plant.description}&family=${plant.family}&depth=${plant.depth}`;
-		//
-		//
-		// 	let headers = new Headers({
-		// 		'Authorization':`Bearer ${localStorage['Bearer']}`,
-		// 		'Content-Type':'application/x-www-form-urlencoded'
-		// 	});
-		// 	return this.http.put(this.apiURL+"admin/plant/", body, { headers } )
-		// 			.map( res=>{
-		// 				return res.json();
-		// 			})
-		// }
+		save( treatment:Treatment ){
+			let body = `name=${treatment.name}&description=${treatment.description}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.post(this.apiURL+"admin/treatment", body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
 
 		detailsAll(page:number, items:number){
       let headers = new Headers({
