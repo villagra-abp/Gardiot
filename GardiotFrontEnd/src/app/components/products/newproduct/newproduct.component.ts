@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from "../../../app.component";
+import { NgForm } from "@angular/forms";
+import { ProductService } from "../../../services/product.service";
+import { Product } from "../../../classes/product.class";
+
 
 @Component({
   selector: 'app-newproduct',
@@ -7,7 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewproductComponent implements OnInit {
 
-  constructor() { }
+  product=new Product();
+  private products:any[]=[];
+
+  constructor(
+    private _productService:ProductService,
+    private _appComponent:AppComponent,
+  ) { }
+
+  guardar(){
+    this._productService.save(this.product)
+        .subscribe(data=>{
+            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/products");
+        },
+        error=>{
+          let v=JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
+  }
+
 
   ngOnInit() {
   }
