@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-reset-pass-back',
   templateUrl: './reset-pass-back.component.html',
@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPassBackComponent implements OnInit {
 
-  constructor() { }
+  token = "";
+  constructor(
+    private router: ActivatedRoute
+
+  ) { }
   //Enviar los nuevos datos del usuario a UserService para guardarlos
   newPass(){
     console.log("NEW PASS");
+    // var valor = f.value;
+    // var email:String = valor.first;
+
     // this._detailService.modifyUserProfile(this.user)
     //     .subscribe(data=>{
     //       this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
@@ -22,6 +29,12 @@ export class ResetPassBackComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.router.params.subscribe(params => {
+      const data: any = params['key'];
+      // Código...
+      this.token = data;
+      console.log("DATOS Token: "+this.token);
+      });
   }
 
 }

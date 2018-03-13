@@ -4,19 +4,14 @@
       <div class="col-md-12">
         <form  (ngSubmit)="newPass()" #forma="ngForm" novalidate="">
 
-          <div class="form-group">
-            <label  for="name_user">Bienvenido: </label>
-            <label for="name_user">{{this.user.id}}</label>
-          </div>
-
           <h3>Resetea tu contraseña</h3>
           <div class="form-group">
-            <label for="password_user">Introduce tu nueva contraseña</label>
-            <input [(ngModel)]="user.password" type="password" name="password" id="password_user" >
+            <label for="password_user" name="first">Introduce tu nueva contraseña</label>
+            <!-- <input [(ngModel)]="user.password" type="password" name="password" id="password_user" > -->
           </div>
           <div class="form-group">
-            <label for="password2_user">Repite tu contraseña</label>
-            <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" >
+            <label for="password2_user" name="second">Repite tu contraseña</label>
+            <!-- <input [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" > -->
           </div>
           <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
           <button [routerLink]="['/reset-pass-back']" class="btn btn-outline-danger">Cancelar</button>

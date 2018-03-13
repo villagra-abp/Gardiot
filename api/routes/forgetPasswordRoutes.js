@@ -30,8 +30,8 @@ router.post('/forgetPassword', cors(), function (request, response) {
 						forgetPasswordModel.insertForgetPasswordToken(id, tokenNew, function(error, result) {
 							if (error) response.status(500).json({"Mensaje":"Error"});
 							else {
-								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/reset-pass-back\/' + tokenNew + '\n'};
+								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero   ***\nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'***
+								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \n localhost:4200\/reset-pass-back\/' + tokenNew + '\n'};
 								transporter.sendMail(mailOptions, function(err) {
 									if (err) response.status(500).json({"Mensaje": err.message});
 									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
@@ -43,8 +43,8 @@ router.post('/forgetPassword', cors(), function (request, response) {
 						forgetPasswordModel.updateForgetPasswordToken(id, tokenNew, function(error, result) {
 							if (error) response.status(500).json({"Mensaje":"Error"});
 							else {
-								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttps:\/\/' + request.hostname + '\/reset-pass-back\/' + tokenNew + '\n'};
+								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero  ***\nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'***
+								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \n localhost:4200\/reset-pass-back\/' + tokenNew + '\n'};
 								transporter.sendMail(mailOptions, function(err) {
 									if (err) response.status(500).json({"Mensaje": err.message});
 									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
