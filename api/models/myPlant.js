@@ -37,7 +37,7 @@ myPlant.insertMyPlant = function(garden, data, callback) {
       if(error)
         callback(error, null);
       else
-        callback(null, result.affectedRows);
+        callback(null, result.insertId);
     });  
   }
 }

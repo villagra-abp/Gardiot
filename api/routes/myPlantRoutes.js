@@ -5,6 +5,7 @@ var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 
 var myPlantModel = require('../models/myPlant');
+var taskModel = require('../models/task');
 
 router.get('/myPlants/:garden', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.garden, {gt: 0}))
@@ -57,11 +58,17 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 						response.status(400).json({"Mensaje": validate});
 					else {
 						myPlantData = sanitizeInput(myPlantData);
-						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, data) {
-							if (data == 1) 
-								response.status(200).json({"Mensaje":"Insertado"});			
+						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
+							if (myPlant) {
+								taskModel.insertTasks(myPlant, myPlantData.plant, function (error, inserted) {
+									if (error)
+										response.status(500).json({"Mensaje":error.message});
+									else
+										response.status(200).json({"Mensaje":"Planta añadida. Insertadas " + inserted + " nuevas tareas."});	
+								});				
+							}
 							else 
-								response.status(500).json({"Mensaje":"Error"});			
+								response.status(500).json({"Mensaje":error.message});			
 						});
 					}
 				}
@@ -120,7 +127,7 @@ router.delete('/myPlant/:garden/:id', passport.authenticate('jwt', {session: fal
 			else {
 				if (owner == true) {
 					myPlantModel.deleteMyPlant(id, function(error, data) {
-						if (data == 1) response.status(200).json({"Mensaje":"Borrado"});						
+						if (data == 1) response.status(200).json({"Mensaje":"Borrado"});					
 						else if (data == 0) response.status(404).json({"Mensaje":"No existe"});						
 						else response.status(500).json({"Mensaje":"Error"});
 					});

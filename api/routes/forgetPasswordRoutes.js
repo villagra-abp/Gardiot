@@ -60,7 +60,6 @@ router.post('/forgetPassword', cors(), function (request, response) {
 });
 
 router.put('/resetPassword/:token', cors(), function (request, response) {
-	// console.log("Estoy en restePassword de la API, en el metodo PUT, Holiiii");
 	if (!request.body.password || !request.body.password2)
 		response.status(400).json({"Mensaje":"Introduce ambas contraseñas"});
 	else if (!request.params.token)
