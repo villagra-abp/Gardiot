@@ -101,7 +101,7 @@ task.insertTasks = function (myPlant, plant, callback) {
 
 task.setTaskDone = function (myPlant, plant, treatment, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
-		connection.query('UPDATE Task SET done = 1, dateDone = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {
+		connection.query('UPDATE Task SET dateDone = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else

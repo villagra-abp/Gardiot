@@ -29,7 +29,7 @@ router.get('/product/:id', passport.authenticate('jwt', {session: false}), route
 	}
 });
 
-router.get('/productType/:type/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.get('/admin/productType/:type/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isAscii(request.params.type, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -42,18 +42,6 @@ router.get('/productType/:type/:number/:page/:sort', passport.authenticate('jwt'
 	}
 });
 
-router.get('/productTreatment/:id/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
-		response.status(400).json({"Mensaje":"Petición incorrecta"});
-	else {
-		productModel.getProductsByTreatment(request.params.number, request.params.page, request.params.sort, request.params.id, function(error, data) {
-			if (typeof data !== 'undefined')
-				response.status(200).json(data);
-			else
-				response.status(404).json({"Mensaje":"No existe"});
-		});
-	}
-});
 
 router.get('/admin/numProducts', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	productModel.getProductsNumber(function(error, data) {

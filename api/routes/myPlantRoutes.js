@@ -34,7 +34,7 @@ router.get('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 });
 
 router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.name || !request.body.seed || !request.body.number || !request.body.plant || !request.body.soil)
+	if (!request.body.xCoordinate || !request.body.yCoordinate || !request.body.plant || !request.body.soil)
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -61,8 +61,12 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
 							if (myPlant) {
 								taskModel.insertTasks(myPlant, myPlantData.plant, function (error, inserted) {
-									if (error)
-										response.status(500).json({"Mensaje":error.message});
+									if (error) {
+										myPlantModel.deleteMyPlant(myPlant, function(error, data) {
+											if (data == 1) response.status(200).json({"Mensaje":"Planta no añadida. Error: " + error.message});										
+											else response.status(500).json({"Mensaje":"Error"});
+										});
+									}
 									else
 										response.status(200).json({"Mensaje":"Planta añadida. Insertadas " + inserted + " nuevas tareas."});	
 								});				
