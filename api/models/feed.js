@@ -8,7 +8,7 @@ feed.getFeeds = function(number, page, sort, callback) {
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT * FROM Feed ORDER BY date ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
+    connection.query('SELECT * FROM Feed ORDER BY dateInit ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
       if(error) 
         callback (error, null);
       else 
@@ -17,12 +17,31 @@ feed.getFeeds = function(number, page, sort, callback) {
   }
 }
 
-feed.getUnseenFeedsForToday = function (callback) {
-
+feed.getUnseenFeedsForToday = function (user, callback) {
+  if (connection) {
+    let TodayDate = new Date();
+    let year = TodayDate.getFullYear();
+    let month = TodayDate.getMonth() + 1;
+    let day = TodayDate.getDate();
+    let rightDate = '' + year + '-' + month + '-' + day;
+    connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND ' + rightDate + ' BETWEEN dateInit AND dateFinal ORDER BY Feed.name', function (error, rows) {
+      if(error) 
+        callback (error, null);
+      else 
+        callback(null, rows);
+    });
+  }
 }
 
-feed.setFeedSeen = function (callback) {
-  
+feed.setFeedSeen = function (feed, user, callback) {
+  if (connection) {
+    connection.query('UPDATE UserFeed SET viewed = 1 WHERE user = "' + user + '" AND feed = ' + feed, function (error, result) {
+        if (error)
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    })
+  }
 }
 
 
@@ -68,10 +87,16 @@ feed.insertFeed = function(data, callback) {
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){
-      if(error)
+      if(error) 
         callback(error, null);
-      else
-        callback(null, result.affectedRows);
+      else {
+        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (error, result) {
+          if(error) 
+            callback(error, null);
+          else
+            callback(null, result.affectedRows);
+        });
+      }
     });
   }
 }
