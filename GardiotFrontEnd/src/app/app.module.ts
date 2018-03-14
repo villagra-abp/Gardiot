@@ -7,6 +7,7 @@ import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
 import { TreatmentService } from "./services/treatment.service";
 import { ProductService } from "./services/product.service";
+import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
 // import {PopupModule} from 'ng2-opd-popup'; // VENTANA EMERGENTE
@@ -75,7 +76,7 @@ import { EditfeedComponent } from './components/feeds/editfeed/editfeed.componen
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
 import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
-import { TreatmentPlantComponent } from './components/plants/treatmentPlant/treatmentPlant.component';
+import { NewtreatmentsplantsComponent } from './components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +124,7 @@ import { TreatmentPlantComponent } from './components/plants/treatmentPlant/trea
     ListfeedComponent,
     ResetPassComponent,
     ResetPassBackComponent,
-    TreatmentPlantComponent
+    NewtreatmentsplantsComponent
 
   ],
   imports: [
@@ -145,6 +146,7 @@ import { TreatmentPlantComponent } from './components/plants/treatmentPlant/trea
     AdminguardGuard,
     TreatmentService,
     ProductService,
+    TreatmentPlantService,
     DatePipe
   ],
   bootstrap: [AppComponent]

@@ -7,13 +7,13 @@ import { ProfileComponent } from "./components/user/profile.component";
 import { EditProfileComponent } from "./components/user/editprofile.component";
 import { ConfirmationComponent } from "./components/manage/confirmation.component";
 import { ResendComponent } from "./components/manage/resend.component";
-import { LibraryComponent } from "./components/plants/library/library.component";
 import { CalendarComponent } from "./components/user/calendar.component";
 //Plants
+import { LibraryComponent } from "./components/plants/library/library.component";
 import { PlantComponent } from "./components/plants/plant/plant.component";
 import { NewplantComponent } from './components/plants/newplant/newplant.component';
 import { EditplantComponent } from './components/plants/editplant/editplant.component';
-import { TreatmentPlantComponent } from './components/plants/treatmentPlant/treatmentPlant.component';
+
 //Users
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
@@ -48,7 +48,6 @@ const app_routes: Routes = [
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'newplant', component: NewplantComponent, canActivate: [AuthguardGuard] },
   { path: 'editplant/:id', component: EditplantComponent, canActivate: [AuthguardGuard] },
-  { path: 'treatmentPlant/:id', component: TreatmentPlantComponent, canActivate: [AuthguardGuard] },
   { path: 'plant/:id', component: PlantComponent, canActivate: [AuthguardGuard] },
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthguardGuard] },
   { path: 'confirmation/:key', component: ConfirmationComponent },

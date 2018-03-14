@@ -1,10 +1,10 @@
 <section class="container isAdmin" >
   <h2>Tratamiento</h2>
-  <form (ngSubmit)="this.uploadPhoto()"  method="post">
+  <form (ngSubmit)="this.guardar()"  method="post">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="treatment_plant">Tratamiento</label>
-         <select class="form-control" id="treatment_plant" [(ngModel)]="treatmentPlant.plant"  required>
+         <select class="form-control" id="treatment_plant" [(ngModel)]="treatmentPlant.treatment" name="treatment"  required>
            <option *ngFor="let treatment of treatments" value="{{treatment.id}}">{{treatment.name}}</option>
          </select>
       </div>
