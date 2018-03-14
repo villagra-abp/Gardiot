@@ -22,7 +22,7 @@ export class ProductService {
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});
-			return this.http.get(this.apiURL+"products"+"/"+items+"/"+page+"/asc", { headers } )
+			return this.http.get(this.apiURL+"admin/products"+"/"+items+"/"+page+"/asc", { headers } )
 					.map( res =>{
 						return res.json();
 					})
@@ -37,6 +37,49 @@ export class ProductService {
 
 			return this.http.post(this.apiURL+"admin/product", body, { headers } )
 					.map( res=>{
+						return res.json();
+					})
+		}
+
+		modify( product:Product ){
+			let body = `name=${product.name}&description=${product.description}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.put(this.apiURL+"admin/product/"+ product.id , body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
+
+		getNumberItems(){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.get(this.apiURL+"/admin/numProducts", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
+		deleteProduct(idProduct: number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.delete(this.apiURL+"admin/product/"+ idProduct, { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
+		details(numproduct:number){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
+
+				return this.http.get(this.apiURL+"product/"+numproduct, { headers } )
+					.map( res =>{
 						return res.json();
 					})
 		}

@@ -29,7 +29,7 @@
 					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#">Productos</a>
 				</li>
         <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/feeds']" href="#">Consejos</a>
+          <a [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" href="#">Consejos</a>
         </li>
 				<li *ngIf="this.userService.isAuthenticated">
 					<a [routerLink]="['/admin/profile']" href="#">Mi perfil</a>

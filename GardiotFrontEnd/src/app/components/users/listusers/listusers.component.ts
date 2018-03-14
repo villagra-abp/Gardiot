@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
 import { AppComponent } from "../../../app.component";
-
-
-
+import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -18,66 +16,65 @@ export class AdminListUsersComponent {
   private numeroItems:number;
   private paginaActual:number=1;
   private elementosPorPagina:number=5;
+  private estado:boolean=false;// false es listado y true buscador
 
   constructor(
     private _detailService:UserService,
     private _route:Router,
     private _appComponent:AppComponent,
-    private user:UserService){ }
+    private activatedRoute: ActivatedRoute){ }
 
-  mostrar(){
-    this._detailService.detailsAll()
-        .subscribe(data=>{
-          this.users=[];
-          for(let key$ in data){
-            this.users.push(data[key$]);
-          }
-        },
-      error => {
-        console.error(error);
-        // this._route.navigate(['/login']);
-      });
 
-    }
-
-    borrarUsuario(id$:string){
-      this._detailService.delete(id$)
-          .subscribe(data=>{
-              this._appComponent.mensajeEmergente(data.Mensaje, "primary", "");
+    mostrar(){
+      if(this.estado==false){
+        this._detailService.detailsAll(this.paginaActual,this.elementosPorPagina)
+            .subscribe(data=>{
               this.users=[];
-              this.mostrar();
+              for(let key$ in data){
+                this.users.push(data[key$]);
+              }
             },
-        error => {
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-          // this._route.navigate(['/login']);
-        });
+          error => {
+            console.error(error);
+          });
+      }else{
+      // this.searchcontent(this.paginaActual,this.elementosPorPagina);
+       console.log("assss");
+      }
     }
 
     deleteuser(idUser:number){
       this._detailService.deleteUser(idUser)
       .subscribe(data=>{
-        this.mostrar();
+        this.ActualizarPagina();
       },
       error => {
         console.error(error);
       });
     }
 
-    getitems(){
-      this._detailService.getNumberItems()
-      .subscribe(data=>{
-        this.numeroItems=data[0].NUMPLANTAS;
-        this.mostrar();
-      },
-      error => {
-        console.error(error);
-      });
-    }
+    ActualizarPagina(){
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+          this.paginaActual = params['pag'];
+          this.getitems();
+        });
+   }
 
+   getitems(){
+     this._detailService.getNumberItems()
+     .subscribe(data=>{
+       if(this.estado==false){
+         this.numeroItems=data[0].NUMUSERS;
+       }
+       this.mostrar();
+     },
+     error => {
+       console.error(error);
+     });
+   }
 
   ngOnInit() {
-    this.mostrar();
+    this.ActualizarPagina();
   }
 
 }

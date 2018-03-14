@@ -20,11 +20,7 @@ export class ListtreatmentComponent implements OnInit {
   constructor(
     private _treatmentService:TreatmentService,
     private activatedRoute: ActivatedRoute,
-
   ) { }
-
-
-
 
   mostrar(){
     if(this.estado==false){
@@ -58,6 +54,16 @@ export class ListtreatmentComponent implements OnInit {
        this.numeroItems=data[0].NUMTREATMENT;
      }
      this.mostrar();
+   },
+   error => {
+     console.error(error);
+   });
+ }
+
+ delete(idTreatment:number){
+   this._treatmentService.deleteTrearment(idTreatment)
+   .subscribe(data=>{
+     this.ActualizarPagina();
    },
    error => {
      console.error(error);

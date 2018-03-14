@@ -35,7 +35,7 @@ user.getUserById = function(id, callback) {
 
 user.getUsersNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) AS numero FROM User', function (error, number) {
+    connection.query('SELECT COUNT(*) AS NUMUSERS FROM User', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
     });

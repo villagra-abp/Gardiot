@@ -28,11 +28,11 @@
       <th scope="row">{{product.name}}</th>
       <td>{{product.type}}</td>
       <td>{{product.description}}</td>
-      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/']">Modificar</button></td>
-      <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" >Eliminar</button></td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/editproduct/',product.id]">Modificar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td>
     </tr>
   </tbody>
 </table>
-  <app-pagination [count]="13" [page]="1" [perPage]="3" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+  <app-pagination [count]="this.numeroItems" [type]="3" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 </div>
 </div>
