@@ -29,6 +29,18 @@ export class TreatmentService {
 					})
 		}
 
+		modify( treatment:Treatment ){
+			let body = `name=${treatment.name}&description=${treatment.description}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.put(this.apiURL+"admin/treatment/"+ treatment.id , body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
+
 		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
@@ -49,41 +61,26 @@ export class TreatmentService {
 					})
 		}
 
+		deleteTrearment(idTrearment: number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			return this.http.delete(this.apiURL+"admin/treatment/"+ idTrearment, { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
 
-	  // details(numplant:number){
-	  // 	let headers = new Headers({
-    //     	'Authorization':`Bearer ${localStorage['Bearer']}`
-    //   	});
-		//
-    //   	return this.http.get(this.apiURL+"plant/"+numplant, { headers } )
-    //       .map( res =>{
-    //         return res.json();
-    //       })
-	  // }
+		details(numtreatment:number){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
 
-		// searchAll(treatment:Treatment,page:number, items:number){
-		// 	let body = `commonName=${treatment.id}`;
-    //   let headers = new Headers({
-    //     'Authorization':`Bearer ${localStorage['Bearer']}`,
-		// 		'Content-Type':'application/x-www-form-urlencoded'
-    //   });
-    //   return this.http.post(this.apiURL+"find/Plant/"+items+"/"+page+"/commonName/ASC", body,  { headers } )
-    //       .map( res =>{
-    //         return res.json();
-    //       })
-    // }
-
-
-
-		// deletePlant(idPlant: number){
-		// 	let headers = new Headers({
-		// 		'Authorization':`Bearer ${localStorage['Bearer']}`
-		// 	});
-		// 	return this.http.delete(this.apiURL+"admin/plant/"+ idPlant, { headers } )
-		// 			.map( res =>{
-		// 				return res.json();
-		// 			})
-		// }
+				return this.http.get(this.apiURL+"treatment/"+numtreatment, { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
 
 
 

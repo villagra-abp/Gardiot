@@ -23,7 +23,7 @@ export class NewproductComponent implements OnInit {
   guardar(){
     this._productService.save(this.product)
         .subscribe(data=>{
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/products");
+            this._appComponent.mensajeEmergente("El producto se ha guardado", "primary", "admin/products?pag=1");
         },
         error=>{
           let v=JSON.parse(error._body);

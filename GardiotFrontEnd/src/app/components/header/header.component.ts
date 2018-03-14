@@ -15,22 +15,24 @@ export class HeaderComponent implements OnInit{
     }
 
     toggleMenu(e){
-      if(e!==undefined){
-        if(e.target.classList.contains('opened'))
-          e.target.classList.remove('opened');
-        else
-          e.target.classList.add('opened');
-        e.preventDefault();
-      }
-  		var elem = document.getElementById("sidebar-wrapper");
-  		let left = window.getComputedStyle(elem,null).getPropertyValue("left");
-  		if(left == "200px"){
-  			(<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="-200px";
-  		}
-  		else if(left == "-200px"){
-  			(<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="200px";
-  		}
-    }
+          if(window.innerWidth < 768){
+          if(e!==undefined){
+            if(e.target.classList.contains('opened'))
+              e.target.classList.remove('opened');
+            else
+              e.target.classList.add('opened');
+            e.preventDefault();
+          }
+              var elem = document.getElementById("sidebar-wrapper");
+              let left = window.getComputedStyle(elem,null).getPropertyValue("left");
+              if(left == "200px"){
+                  (<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="-200px";
+              }
+              else if(left == "-200px"){
+                  (<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="200px";
+              }
+        }
+        }
     ngOnInit(){
 
       if(this.userService.isUserAuthenticated()){

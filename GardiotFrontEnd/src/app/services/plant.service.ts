@@ -53,6 +53,7 @@ export class PlantService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
 			});
+			
 			return this.http.put(this.apiURL+"admin/plant/"+ plant.id , body, { headers } )
 					.map( res=>{
 						return res.json();

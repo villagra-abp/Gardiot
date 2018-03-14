@@ -28,3 +28,29 @@
     </li>
   </ul>
 </nav>
+
+
+<nav aria-label="Page navigation example"  *ngIf="count > 0  && type==3">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/admin/products']" [queryParams]="{pag: previusPage()}" >Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let pageNum of getPages()" ><button class="page-link" (click)="onPage(pageNum)" [routerLink]="['/admin/products']" [queryParams]="{pag: pageNum}">{{pageNum}}</button></li>
+    <li class="page-item">
+      <button class="page-link"  (click)="onNext()"  [routerLink]="['/admin/products']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading">Next</button>
+    </li>
+  </ul>
+</nav>
+
+
+<nav aria-label="Page navigation example"  *ngIf="count > 0  && type==4">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/admin/users']" [queryParams]="{pag: previusPage()}" >Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let pageNum of getPages()" ><button class="page-link" (click)="onPage(pageNum)" [routerLink]="['/admin/users']" [queryParams]="{pag: pageNum}">{{pageNum}}</button></li>
+    <li class="page-item">
+      <button class="page-link"  (click)="onNext()"  [routerLink]="['/admin/users']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading">Next</button>
+    </li>
+  </ul>
+</nav>

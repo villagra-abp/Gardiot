@@ -21,7 +21,7 @@ export class NewtreatmentComponent implements OnInit {
   guardar(){
     this._treatmentService.save(this.treatment)
         .subscribe(data=>{
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/treatments");
+            this._appComponent.mensajeEmergente("El tratamiento se ha guardado", "primary", "admin/treatments?pag=1");
         },
         error=>{
           let v=JSON.parse(error._body);

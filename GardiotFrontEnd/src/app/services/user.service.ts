@@ -110,12 +110,12 @@ export class UserService {
           })
     }
 
-    detailsAll(){
+    detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"admin/users/5/1/name/ASC", { headers } )
+      return this.http.get(this.apiURL+"admin/users/"+items+"/"+page+"/name/asc", { headers } )
           .map( res =>{
             return res.json();
           })
@@ -125,7 +125,7 @@ export class UserService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.delete(this.apiURL+"/admin/user/"+ idUser, { headers } )
+      return this.http.delete(this.apiURL+"admin/user/"+ idUser, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -135,7 +135,7 @@ export class UserService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"numPlants/", { headers } )
+      return this.http.get(this.apiURL+"/admin/numUsers", { headers } )
           .map( res =>{
             return res.json();
           })
