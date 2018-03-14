@@ -100,8 +100,8 @@ function validateInput(data) {
   if (data.plant && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
   if (data.treatment && !validator.isInt(data.treatment)) resp += 'Tratamiento no válida, ';
   if (data.frequency && !validator.isInt(data.frequency)) resp += 'Frecuencia no válida, ';
-  if (data.initDate && !validator.isISO8601(request.params.initDate)) resp += 'Fecha inicio no válida, ';
-  if (data.finalDate && !validator.isISO8601(request.params.finalDate)) resp += 'Fecha final no válida, ';
+  if (data.initDate && !validator.isISO8601(data.initDate)) resp += 'Fecha inicio no válida, ';
+  if (data.finalDate && !validator.isISO8601(data.finalDate)) resp += 'Fecha final no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

@@ -55,8 +55,14 @@ user.insertUser = function(userData, callback) {
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
-			else
-				callback(null, result.affectedRows);
+			else {
+				connection.query('INSERT INTO UserFeed (feed, user) SELECT id, "' + userData.id + '" FROM Feed', function (error, rows) {
+					if (error)
+						callback (error, null);
+					else
+						callback(null, result.affectedRows);
+				})
+			}
 		});
 	}
 }
