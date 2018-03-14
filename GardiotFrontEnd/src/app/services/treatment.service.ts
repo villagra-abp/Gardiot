@@ -41,6 +41,7 @@ export class TreatmentService {
 					})
 		}
 
+
 		detailsAll(page:number, items:number){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`

@@ -1,0 +1,35 @@
+<section class="container isAdmin" >
+  <h2>Tratamiento</h2>
+  <form (ngSubmit)="this.uploadPhoto()"  method="post">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="treatment_plant">Tratamiento</label>
+         <select class="form-control" id="treatment_plant" [(ngModel)]="treatmentPlant.plant"  required>
+           <option *ngFor="let treatment of treatments" value="{{treatment.id}}">{{treatment.name}}</option>
+         </select>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="frequency_treatmentPlant">Frecuencia</label>
+          <input type="text" class="form-control" [(ngModel)]="treatmentPlant.frequency" name="frequency" id="frequency_treatmentPlant" placeholder="Se mide en días">
+        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="date_initDateHarvest">Inicio</label>
+        <input type="date" class="form-control" [(ngModel)]="treatmentPlant.initDate" name="initDateHarvest" id="date_initDateHarvest">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="date_finDateHarvest">Fin</label>
+        <input type="date" class="form-control" [(ngModel)]="treatmentPlant.finalDate" name="finDateHarvest" id="date_finDateHarvest">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+          <button type="submit" class="btn btn-success">Añadir tratamiento</button>
+      </div>
+      <div class="form-group col-md-2">
+          <button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</section>
