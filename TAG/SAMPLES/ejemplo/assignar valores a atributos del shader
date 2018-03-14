@@ -1,4 +1,0 @@
-vertexPositionAttribute=gl.getAttribLocation(glProgram, "aVertexPosition");
-        gl.enableVertexAttribArray(vertexPositionAttribute);
-        gl.bindBuffer(gl.ARRAY_BUFFER, myBuffer);
-        gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
