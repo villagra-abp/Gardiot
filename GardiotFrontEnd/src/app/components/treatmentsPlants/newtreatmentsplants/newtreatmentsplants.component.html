@@ -1,4 +1,4 @@
-<section class="container isAdmin" >
+<section class="container vistaAdmin" >
   <h2>Tratamiento</h2>
   <form (ngSubmit)="this.guardar()"  method="post">
     <div class="form-row">
@@ -26,7 +26,7 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="product_plant">Productos</label>
-         <select class="form-control selectpicker" multiple  id="product_plant" name="product" >
+         <select class="form-control selectpicker" multiple  id="product_plant" [(ngModel)]="productTreatment.product" name="product" >
            <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
          </select>
       </div>

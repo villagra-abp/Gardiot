@@ -34,14 +34,25 @@ export class NewtreatmentsplantsComponent implements OnInit {
   ) { }
 
   guardar(){
-    this._treatmentPlantService.save(this.treatmentPlant,this.idPlant)
+    console.log(this.treatmentPlant.treatment);
+    console.log(this.productTreatment);
+    console.log(this.productTreatment.product);
+    this._treatmentPlantService.savetreatment(this.treatmentPlant,this.idPlant)
         .subscribe(data=>{
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plants?pag=1");
+            this._appComponent.mensajeEmergente("El tratamiento y los productos se han guardado", "primary", "plants?pag=1");
         },
         error=>{
           let v=JSON.parse(error._body);
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
+  for(let cont=0; cont<this.productTreatment.product.length; cont++){
+    this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment,this.productTreatment.product[cont],this.idPlant)
+        .subscribe(data=>{
+        },
+        error=>{
+          let v=JSON.parse(error._body);
+        });
+        }
   }
 
   mostrarTratamientos(){
