@@ -9,9 +9,9 @@ feed.getFeeds = function(number, page, sort, callback) {
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
     connection.query('SELECT * FROM Feed ORDER BY dateInit ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
-      if(error) 
+      if(error)
         callback (error, null);
-      else 
+      else
         callback(null, rows);
     });
   }
@@ -25,9 +25,9 @@ feed.getUnseenFeedsForToday = function (user, callback) {
     let day = TodayDate.getDate();
     let rightDate = '' + year + '-' + month + '-' + day;
     connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND ' + rightDate + ' BETWEEN dateInit AND dateFinal ORDER BY Feed.name', function (error, rows) {
-      if(error) 
+      if(error)
         callback (error, null);
-      else 
+      else
         callback(null, rows);
     });
   }
@@ -57,10 +57,10 @@ feed.getFeedsNumber = function (callback) {
 feed.getFeedById = function(id, callback) {
   if (connection) {
     connection.query('SELECT name, text, date FROM Feed WHERE id = ' + id, function(error, row) {
-      if (error) 
-        callback (error, null);   
-      else 
-        callback(null, row);    
+      if (error)
+        callback (error, null);
+      else
+        callback(null, row);
     });
   }
 }
@@ -83,15 +83,15 @@ feed.insertFeed = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Feed SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){
-      if(error) 
+      if(error)
         callback(error, null);
       else {
         connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (error, result) {
-          if(error) 
+          if(error)
             callback(error, null);
           else
             callback(null, result.affectedRows);
@@ -105,7 +105,7 @@ feed.updateFeed = function(data, id, callback) {
   if(connection) {
     var sql = 'UPDATE Feed SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE id = ' + id;

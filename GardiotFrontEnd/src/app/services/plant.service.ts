@@ -28,6 +28,8 @@ export class PlantService {
 			body+= `&leaveType=${plant.leaveType}`;
 			body+= `&photo=${plant.photo}`;
 
+			console.log(body);
+
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -53,7 +55,7 @@ export class PlantService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
 			});
-			
+
 			return this.http.put(this.apiURL+"admin/plant/"+ plant.id , body, { headers } )
 					.map( res=>{
 						return res.json();

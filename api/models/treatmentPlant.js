@@ -9,10 +9,10 @@ treatmentPlant.getTreatmentsByPlant = function(number, page, sort, plant, callba
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
     connection.query('SELECT COUNT(*) OVER () AS number, T.*, frequency, initDate, finalDate, commonName FROM Treatment T, Plant, TreatmentPlant WHERE Plant.id = TreatmentPlant.plant AND Treatment.id = TreatmentPlant.treatment AND Plant.id = ' + plant + ' ORDER BY T.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function (error, rows){
-      if (error) 
-        callback (error, null);   
-      else 
-        callback(null, row);  
+      if (error)
+        callback (error, null);
+      else
+        callback(null, row);
     });
   }
 }
@@ -21,8 +21,8 @@ treatmentPlant.insertTreatmentPlant = function (data, callback) {
 	if(connection) {
 	    sql = 'INSERT INTO TreatmentPlant SET ';
 	    for (var key in data)
-	      if (typeof data[key]!== 'undefined')
-	        sql += key + ' = "' + data[key] + '",';
+      if (typeof data[key]!=='undefined' && data[key]!='undefined')
+        sql += key + ' = "' + data[key] + '",';
 	    sql = sql.slice(0, -1);
 	    connection.query(sql, function(error, result){
 	      if(error)
@@ -37,7 +37,7 @@ treatmentPlant.updateTreatmentPlant = function(data, plant, treatment, callback)
   if(connection) {
     var sql = 'UPDATE TreatmentPlant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined'  && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE plant = ' + plant + ' AND treatment = ' + treatment;
