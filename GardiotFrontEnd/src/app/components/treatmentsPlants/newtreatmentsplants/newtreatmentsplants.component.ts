@@ -6,6 +6,7 @@ import { TreatmentService } from "../../../services/treatment.service";
 import { Product } from "../../../classes/product.class";
 import { ProductService } from "../../../services/product.service";
 import { TreatmentPlant } from "../../../classes/treatmentplant.class";
+import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -17,12 +18,15 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class NewtreatmentsplantsComponent implements OnInit {
 
   private treatmentPlant=new TreatmentPlant();
+  private productTreatment=new ProductTreatment();
   private treatments:any[]=[];
+  private products:any[]=[];
   private treatmentsPlants:any[]=[];
   private idPlant:number;
 
   constructor(
     private _treatmentService:TreatmentService,
+    private _productService:ProductService,
     private _treatmentPlantService:TreatmentPlantService,
     private _appComponent:AppComponent,
     private _router: ActivatedRoute,
@@ -53,10 +57,10 @@ export class NewtreatmentsplantsComponent implements OnInit {
     }
 
     mostrarProductos(){
-      this._treatmentService.detailsAll(1,10000)
+      this._productService.detailsAll(1,10000)
           .subscribe(data=>{
             for(let key$ in data){
-              this.treatments.push(data[key$]);
+              this.products.push(data[key$]);
             }
           },
         error => {
@@ -76,6 +80,7 @@ export class NewtreatmentsplantsComponent implements OnInit {
 
   ngOnInit() {
       this.mostrarTratamientos();
+      this.mostrarProductos();
       this.getID();
   }
 }
