@@ -28,6 +28,7 @@ var loadJSONResource=function(url, callback){
       callback(err);
     } else{
       try{
+				console.log(JSON.parse(result));
         callback(null, JSON.parse(result));
       } catch(e){
         callback(e);
@@ -99,8 +100,12 @@ function setupWebGL(){
     //matriz de normales
     glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
 
-    glProgram.luces=gl.getUniformLocation(glProgram, "uLuces");
+		glProgram.ka=gl.getUniformLocation(glProgram, "material.Ka");
+		glProgram.kd=gl.getUniformLocation(glProgram, "material.Kd");
+		glProgram.ks=gl.getUniformLocation(glProgram, "material.Ks");
 
+		glProgram.shin=gl.getUniformLocation(glProgram, "propiedades.shininess");
+		glProgram.opac=gl.getUniformLocation(glProgram, "propiedades.opacity");
 
 
 

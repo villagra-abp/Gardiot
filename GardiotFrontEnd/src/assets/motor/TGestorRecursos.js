@@ -32,13 +32,12 @@ class TGestorRecursos {
 
           //lo anyadimos al vector (mapa) de recursos
           this._recursos.set(nombre, newRecurso);
-
         }
         else{
           console.log('El/la '+nombre+' ya estaba en memoria y se sirve');
         }
         //devolvemos recurso
         return this._recursos.get(nombre);
-        
+
     }
   }
