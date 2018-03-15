@@ -37,7 +37,7 @@ treatmentPlant.updateTreatmentPlant = function(data, plant, treatment, callback)
   if(connection) {
     var sql = 'UPDATE TreatmentPlant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined'  && data[key]!='undefined')
+      if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE plant = ' + plant + ' AND treatment = ' + treatment;

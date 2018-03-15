@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var productTreatmentModel = require('../models/productTreatment');
 
@@ -20,24 +21,24 @@ router.get('/productTreatmentPlant/:treatment/:plant/:number/:page/:sort', passp
 });
 
 router.post('/admin/productTreatment', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.plant || !request.body.product || !request.body.treatment)
+	var productTreatment = {
+		plant: request.body.plant,
+		treatment: request.body.treatment,
+		product: request.body.product,
+	};
+	productTreatment = filter(productTreatment); 
+	if (typeof productTreatment.plant!== 'undefined' || typeof productTreatment.product !== 'undefined' || typeof productTreatment.treatment !== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios."});
-	else {
-		var productTreatment = {
-			plant: request.body.plant,
-			treatment: request.body.treatment,
-			product: request.body.product,
-		};
+	else {		
 		var validate = validateInput(productTreatment);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			productTreatment = sanitizeInput(productTreatment);
 			productTreatmentModel.insertProductTreatment(productTreatment, function(error, data) {
 				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
 				else
-					response.status(500).json({"Mensaje":"Error"});
+					response.status(500).json({"Mensaje":error.message});
 			});
 		}
 	}
@@ -58,18 +59,11 @@ router.delete('/admin/productTreatment/:plant/:treatment/:product', passport.aut
 	}
 });
 
-function sanitizeInput(data) {
-  if (data.plant) {  data.plant = validator.trim(data.plant); data.plant = validator.toInt(data.plant);}
-  if (data.treatment) {  data.treatment = validator.trim(data.treatment); data.treatment = validator.toInt(data.treatment);}
-  if (data.product) {  data.product = validator.trim(data.product); data.product = validator.toInt(data.product);}
-  return data;
-}
-
 function validateInput(data) {
   var resp = '';
-  if (data.plant && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
-  if (data.treatment && !validator.isInt(data.treatment)) resp += 'Tratamiento no válida, ';
-  if (data.product && !validator.isInt(data.product)) resp += 'Producto no válida, ';
+  if (typeof data.plant !== 'undefined' && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
+  if (typeof data.treatment !== 'undefined' && !validator.isInt(data.treatment)) resp += 'Tratamiento no válida, ';
+  if (typeof data.product !== 'undefined' && !validator.isInt(data.product)) resp += 'Producto no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

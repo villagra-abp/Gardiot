@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var productModel = require('../models/product');
 
@@ -89,19 +90,19 @@ router.get('/productFilterMoreThan/:price', function(request, response) {
 });*/
 
 router.post('/admin/product', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.name)
+	var productData = {
+		name: request.body.name,
+		type: request.body.type,
+		description: request.body.description,
+	};
+	productData = filter(productData); 
+	if (typeof productData.name !== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
-		var productData = {
-			name: request.body.name,
-			type: request.body.type,
-			description: request.body.description,
-		};
 		var validate = validateInput(productData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			productData = sanitizeInput(productData);
 			productModel.insertProduct(productData, function(error, data) {
 				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
@@ -121,20 +122,24 @@ router.put('/admin/product/:id', passport.authenticate('jwt', {session: false}),
 			type: request.body.type,
 			description: request.body.description,
 		};
+		productData = filter(productData); 
 		var validate = validateInput(productData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
+		if (typeof productData.name !== 'undefined')
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
-			productData = sanitizeInput(productData);
-			productModel.updateProduct(productData, request.params.id, function(error, data) {
-				if (data == 1)
-					response.status(200).json({"Mensaje":"Actualizado"});
-				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});
-				else
-					response.status(500).json({"Mensaje":error.message});
-			});
-		}
+			if (validate.length > 0)
+				response.status(400).json({"Mensaje": validate});
+			else {
+				productModel.updateProduct(productData, request.params.id, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}
+		}	
 	}
 });
 
@@ -153,21 +158,12 @@ router.delete('/admin/product/:id', passport.authenticate('jwt', {session: false
 	}
 });
 
-function sanitizeInput(data) {
-  if (data.id) {  data.id = validator.trim(data.id); data.id = validator.toInt(data.id);}
-  if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-  if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
-  if (data.type) { data.type = validator.trim(data.type); data.type = validator.stripLow(data.type); data.type = validator.escape(data.type);}
-
-  return data;
-}
-
 function validateInput(data) {
   var resp = '';
-  if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
-  if (data.type && !validator.isAscii(data.type)) resp += 'Tipo no válido, ';
+  if (typeof data.id!== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+  if (typeof data.name!== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.description!== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+  if (typeof data.type!== 'undefined' && !validator.isAscii(data.type)) resp += 'Tipo no válido, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

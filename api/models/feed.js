@@ -83,7 +83,7 @@ feed.insertFeed = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Feed SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
+      if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){
@@ -105,7 +105,7 @@ feed.updateFeed = function(data, id, callback) {
   if(connection) {
     var sql = 'UPDATE Feed SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
+      if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE id = ' + id;

@@ -10,6 +10,7 @@ var isEmail = require('isemail');
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
+var filter = require('../functions/filter');
 
 var routeRequirements = require('../functions/routeRequirements');
 
@@ -20,20 +21,20 @@ var routeRequirements = require('../functions/routeRequirements');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password || !request.body.password2)
+	var userData = {
+			id: request.body.id,
+			password: request.body.password,
+	};
+	userData = filter(userData); 
+	if (typeof userData.id!== 'undefined' || typeof userData.password!== 'undefined' || typeof userData.password2!== 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
-	else {
-		var userData = {
-			id: request.body.id,
-			password: request.body.password,
-		};
+	else {	
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
@@ -86,7 +87,7 @@ router.post('/register', function(request, response) {
 router.post('/authenticate', function(request, response) {
 	if (!request.body.id || !request.body.password)
 		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
-	if (!validator.isEmail(request.body.id))
+	if (!validator.isEmail(request.body.id) || !isEmail.validate(data.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
 		var id = validator.trim(request.body.id);
@@ -158,11 +159,11 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 		city: request.body.city,
 		oldId: request.user.id
 	};
+	userData = filter(userData); 
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
-		userData = sanitizeInput(userData);
 		if (userData.password) {
 			if (!request.body.oldPassword)
 				response.status(500).json({"Mensaje":"Introduce tu contraseña anterior para cambiarla"});
@@ -289,19 +290,19 @@ router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), 
 //*** Inserta un usuario, puede ser admin
 
 router.post('/admin/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.id || !request.body.password)
+	var userData = {
+		id: request.body.id,
+		password: request.body.password,
+		admin: request.body.admin
+	};
+	userData = filter(userData); 
+	if (typeof userData.id!=='undefined' || typeof userData.password!=='undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	else {
-		var userData = {
-			id: request.body.id,
-			password: request.body.password,
-			admin: request.body.admin
-		};
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
@@ -326,7 +327,7 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 //*** Elimina a un usuario
 
 router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+	if (!validator.isEmail(request.params.id) || !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		userModel.deleteUser(request.params.id, function(error, data) {
@@ -346,7 +347,7 @@ router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}),
 //***Actualiza a otro usuario
 
 router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+	if (!validator.isEmail(request.params.id) || !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		var userData = {
@@ -361,11 +362,11 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 			admin: request.body.admin,
 			oldId: request.params.id,
 		};
+		userData = filter(userData); 
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			if (userData.password) {
 				userModel.genHash(userData.password, function(error, hash) {
 					if (!error) {
@@ -391,18 +392,6 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 		}
 	}
 });
-
-
-
-function sanitizeInput(data) {
-	if (data.id) {  data.id = validator.trim(data.id);}
-	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	if (data.lastName) { data.lastName = validator.trim(data.lastName); data.lastName = validator.stripLow(data.lastName); data.lastName = validator.escape(data.lastName);}
-	if (data.photo) data.photo = validator.trim(data.photo);
-	if (data.city) { data.city = validator.trim(data.city); data.city = validator.stripLow(data.city); data.city = validator.escape(data.city);}
-	if (data.oldId) {data.oldId = validator.trim(data.oldId);}
-	return data;
-}
 
 function validateInput(data) {
 	var resp = '';

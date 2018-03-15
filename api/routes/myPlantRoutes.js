@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var myPlantModel = require('../models/myPlant');
 var taskModel = require('../models/task');
@@ -34,7 +35,17 @@ router.get('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 });
 
 router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.xCoordinate || !request.body.yCoordinate || !request.body.plant || !request.body.soil)
+	var myPlantData = {
+		name: request.body.name,
+		xCoordinate: request.body.xCoordinate,
+	    yCoordinate: request.body.yCoordinate,
+	    seed: request.body.seed,
+	    number: request.body.number,
+	    plant: request.body.plant,
+	    soil: request.body.soil
+	};
+	myPlantData = filter(myPlantData); 
+	if (typeof myPlantData.xCoordinate!== 'undefined' || typeof myPlantData.yCoordinate!== 'undefined' || typeof myPlantData.plant!== 'undefined' || typeof myPlantData.soil!== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -43,21 +54,11 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 			if (error)
 				response.status(400).json({"Mensaje":"Error: " + error.message});
 			else {
-				if (owner == true) {
-					var myPlantData = {
-						name: request.body.name,
-						xCoordinate: request.body.xCoordinate,
-					    yCoordinate: request.body.yCoordinate,
-					    seed: request.body.seed,
-					    number: request.body.number,
-					    plant: request.body.plant,
-					    soil: request.body.soil
-					};
+				if (owner == true) {					
 					var validate = validateInput(myPlantData);
 					if (validate.length > 0)
 						response.status(400).json({"Mensaje": validate});
 					else {
-						myPlantData = sanitizeInput(myPlantData);
 						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
 							if (myPlant) {
 								taskModel.insertTasks(myPlant, myPlantData.plant, function (error, inserted) {
@@ -86,38 +87,42 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 	if (!validator.isInt(request.params.garden, {gt: 0}) || !validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
-			if (error)
-				response.status(400).json({"Mensaje":"Error: " + error.message});
-			else {
-				if (owner == true) {
-					var myPlantData = {
-						name: request.body.name,
-						xCoordinate: request.body.xCoordinate,
-					    yCoordinate: request.body.yCoordinate,
-					    seed: request.body.seed,
-					    number: request.body.number,
-					    plant: request.body.plant,
-					    soil: request.body.soil
-					};
-					var validate = validateInput(myPlantData);
-					if (validate.length > 0)
-						response.status(400).json({"Mensaje": validate});
-					else {
-						myPlantData = sanitizeInput(myPlantData);
-						myPlantModel.updateMyPlant(request.params.id, myPlantData, function(error, data) {
-							if (data == 1) 
-								response.status(200).json({"Mensaje":"Actualizado"});	
-							else if (data == 0)
-								response.status(404).json({"Mensaje":"No existe"});			
-							else 
-								response.status(500).json({"Mensaje":error.message});			
-						});
-					}				
+		var myPlantData = {
+			name: request.body.name,
+			xCoordinate: request.body.xCoordinate,
+		    yCoordinate: request.body.yCoordinate,
+		    seed: request.body.seed,
+		    number: request.body.number,
+		    plant: request.body.plant,
+		    soil: request.body.soil
+		};
+		myPlantData = filter(myPlantData); 
+		if (typeof myPlantData.xCoordinate!== 'undefined' || typeof myPlantData.yCoordinate!== 'undefined' || typeof myPlantData.plant!== 'undefined' || typeof myPlantData.soil!== 'undefined')
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+		else {
+			myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
+				if (error)
+					response.status(400).json({"Mensaje":"Error: " + error.message});
+				else {
+					if (owner == true) {						
+						var validate = validateInput(myPlantData);
+						if (validate.length > 0)
+							response.status(400).json({"Mensaje": validate});
+						else {
+							myPlantModel.updateMyPlant(request.params.id, myPlantData, function(error, data) {
+								if (data == 1) 
+									response.status(200).json({"Mensaje":"Actualizado"});	
+								else if (data == 0)
+									response.status(404).json({"Mensaje":"No existe"});			
+								else 
+									response.status(500).json({"Mensaje":error.message});			
+							});
+						}				
+					}
+					else response.status(403).json({"Mensaje":"No puedes modificar una planta en el jardin de otro usuario."});
 				}
-				else response.status(403).json({"Mensaje":"No puedes modificar una planta en el jardin de otro usuario."});
-			}
-		});	
+			});
+		}		
 	}
 });
 
@@ -141,18 +146,6 @@ router.delete('/myPlant/:garden/:id', passport.authenticate('jwt', {session: fal
 		});
 	}
 });
-
-function sanitizeInput(data) {
-  if (data.id) {  data.id = validator.trim(data.id); data.id = validator.toInt(data.id);}
-  if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-  if (data.xCoordinate) {  data.xCoordinate = validator.trim(data.xCoordinate); data.xCoordinate = validator.toInt(data.xCoordinate);}
-  if (data.yCoordinate) {  data.yCoordinate = validator.trim(data.yCoordinate); data.yCoordinate = validator.toInt(data.yCoordinate);}
-  if (data.number) {  data.number = validator.trim(data.number); data.number = validator.toInt(data.number);}  
-  if (data.plant) {  data.plant = validator.trim(data.plant); data.plant = validator.toInt(data.plant);}
-  if (data.garden) {  data.garden = validator.trim(data.garden); data.garden = validator.toInt(data.garden);}
-  if (data.soil) {  data.soil = validator.trim(data.soil); data.soil = validator.toInt(data.soil);}
-  return data;
-}
 
 function validateInput(data) {
   var resp = '';
