@@ -20,12 +20,10 @@ treatmentPlant.getTreatmentsByPlant = function(number, page, sort, plant, callba
 treatmentPlant.insertTreatmentPlant = function (data, callback) {
 	if(connection) {
 	    sql = 'INSERT INTO TreatmentPlant SET ';
-      console.log(data);
 	    for (var key in data)
-      if (typeof data[key]!== 'undefined' && data[key]!='')
+      if (typeof data[key]!=='undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
 	    sql = sql.slice(0, -1);
-      console.log(sql);
 	    connection.query(sql, function(error, result){
 	      if(error)
 	        callback(error, null);

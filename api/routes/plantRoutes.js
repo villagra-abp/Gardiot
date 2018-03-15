@@ -156,7 +156,6 @@ function sanitizeInput(data) {
 }
 
 function validateInput(data) {
-	console.log(data);
 	var resp = '';
 	if (data.id && typeof data.id== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
 	if (data.scientificName && typeof data.scientificName== 'undefined' && !validator.isAscii(data.scientificName)) resp += 'Nombre científico no válido, ';

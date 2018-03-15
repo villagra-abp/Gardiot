@@ -61,12 +61,10 @@ plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE
 plant.insertPlant = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Plant SET ';
-    console.log(data);
     for (var key in data)
       if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
-    console.log(sql);
     connection.query(sql, function(error, result){
       if(error)
         callback(error, null);
