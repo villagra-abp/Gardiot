@@ -9,7 +9,7 @@ class TRecursoShader extends TRecurso{
 
   cargarFichero(nombre){
     let cargado, shader;
-  	loadTextResource('/assets/motor/recursos/shaders/'+nombre+'.glsl', function (vsErr, vsText){
+  	loadTextResource('/recursos/shaders/'+nombre+'.glsl', function (vsErr, vsText){
       if(vsErr){
         cargado=false;
       }
@@ -26,3 +26,5 @@ class TRecursoShader extends TRecurso{
     return this._shader;
   }
 }
+
+

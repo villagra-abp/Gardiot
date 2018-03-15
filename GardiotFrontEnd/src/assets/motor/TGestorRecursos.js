@@ -27,7 +27,6 @@ class TGestorRecursos {
             newRecurso=new TRecursoShader(nombre);
           else if(tipo=='textura')
             newRecurso=new TRecursoTextura(nombre);
-
           //cargamos el fichero
           newRecurso.cargarFichero(nombre);
 

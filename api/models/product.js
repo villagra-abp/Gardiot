@@ -43,7 +43,7 @@ product.getProductsByType = function(number, page, sort, type, callback) {
 	    let orderSentence = '';
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
-		connection.query('SELECT COUNT(*) OVER () AS number, P.* FROM Product P WHERE type = "' + type + '" ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function(error, row) {
+		connection.query('SELECT COUNT(*) OVER () AS NUMPRODUCTS, P.* FROM Product P WHERE type = "' + type + '" ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function(error, row) {
 			if (error)
 				callback (error, null);
 			else
@@ -52,20 +52,6 @@ product.getProductsByType = function(number, page, sort, type, callback) {
 	}
 }
 
-product.getProductsByTreatment = function(number, page, sort, id, callback) {
-	if (connection) {
-		let minPeak = (page - 1) * number;
-	    let orderSentence = '';
-	    if (sort.toUpperCase() === 'DESC')
-	      orderSentence = 'DESC';
-		connection.query('SELECT COUNT(*) OVER () AS number, P.* FROM Product P, TreatmentProduct, Treatment WHERE TreatmentProduct.treatment = Treatment.id AND TreatmentProduct.product = Product.id AND Treatment.id = ' + id + ' ORDER BY Product.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
-			if (error)
-				callback (error, null);
-			else
-				callback(null, row);
-		});
-	}
-}
 
 // búsqueda por NOMBRE
 /*product.getProductSearch = function(name, callback) {

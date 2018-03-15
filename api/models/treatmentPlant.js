@@ -17,17 +17,6 @@ treatmentPlant.getTreatmentsByPlant = function(number, page, sort, plant, callba
   }
 }
 
-treatmentPlant.getTreatmentByPlant = function(treatment, plant, callback) {
-  if(connection) {
-    connection.query('SELECT name, description, frequency, initDate, finalDate, commonName FROM Treatment, Plant, TreatmentPlant WHERE Plant.id = TreatmentPlant.plant AND Treatment.id = TreatmentPlant.treatment AND Plant.id = ' + plant + ' AND Treatment.id = ' + treatment, function (error, rows){
-      if (error) 
-        callback (error, null);   
-      else 
-        callback(null, row);  
-    });
-  }
-}
-
 treatmentPlant.insertTreatmentPlant = function (data, callback) {
 	if(connection) {
 	    sql = 'INSERT INTO TreatmentPlant SET ';
@@ -62,7 +51,7 @@ treatmentPlant.updateTreatmentPlant = function(data, plant, treatment, callback)
   }
 }
 
-treatment.deleteTreatmentPlant = function(plant, treatment, callback) {
+treatmentPlant.deleteTreatmentPlant = function(plant, treatment, callback) {
   if(connection) {
     connection.query('DELETE FROM TreatmentPlant WHERE plant = ' + plant + ' AND treatment = ' + treatment, function(error, result) {
       if (error)
@@ -72,6 +61,7 @@ treatment.deleteTreatmentPlant = function(plant, treatment, callback) {
     });
   }
 }
+
 
 
 module.exports = treatmentPlant;
