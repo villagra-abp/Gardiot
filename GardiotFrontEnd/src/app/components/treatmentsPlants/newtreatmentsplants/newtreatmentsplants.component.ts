@@ -3,6 +3,8 @@ import { NgForm } from "@angular/forms";
 import { AppComponent } from "../../../app.component";
 import { Treatment } from "../../../classes/treatment.class";
 import { TreatmentService } from "../../../services/treatment.service";
+import { Product } from "../../../classes/product.class";
+import { ProductService } from "../../../services/product.service";
 import { TreatmentPlant } from "../../../classes/treatmentplant.class";
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -49,6 +51,18 @@ export class NewtreatmentsplantsComponent implements OnInit {
         console.error(error);
       });
     }
+
+    mostrarProductos(){
+      this._treatmentService.detailsAll(1,10000)
+          .subscribe(data=>{
+            for(let key$ in data){
+              this.treatments.push(data[key$]);
+            }
+          },
+        error => {
+          console.error(error);
+        });
+      }
 
     getID(){
       this._router.params.subscribe(params => {
