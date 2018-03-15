@@ -18,6 +18,7 @@ export class TreatmentPlantService {
     }
 
     save( treatmentPlant:TreatmentPlant,idPlant:number ){
+      console.log(treatmentPlant);
       let body = `plant=${idPlant}&treatment=${treatmentPlant.treatment}`;
           body += `&frequency=${treatmentPlant.frequency}&initDate=${treatmentPlant.initDate}`;
           body += `&finalDate=${treatmentPlant.finalDate}`;
@@ -25,7 +26,7 @@ export class TreatmentPlantService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      return this.http.post(this.apiURL+"admin/treatment", body, { headers } )
+      return this.http.post(this.apiURL+"admin/treatmentPlant", body, { headers } )
           .map( res=>{
             return res.json();
           })

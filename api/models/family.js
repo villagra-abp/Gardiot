@@ -41,7 +41,7 @@ family.insertFamily = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Family SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){
@@ -57,7 +57,7 @@ family.updateFamily = function(data, id, callback) {
   if(connection) {
     var sql = 'UPDATE Family SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE id= "' + id +'"';

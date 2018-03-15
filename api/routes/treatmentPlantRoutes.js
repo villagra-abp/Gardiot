@@ -11,20 +11,20 @@ router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
-			if (typeof data !== 'undefined') 
+			if (typeof data !== 'undefined')
 				response.status(200).json(data);
-			else 
+			else
 				response.status(404).json({"Mensaje":"No existe"});
 		});
 	}
 });
 
 router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.body.frequency && (request.body.initDate || request.body.finalDate))
-		response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
-	else if (!request.body.frequency || (!request.body.initDate && !request.body.finalDate))
-		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
-	else {
+	// if (request.body.frequency && (request.body.initDate || request.body.finalDate))
+	// 	response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
+	// else if (!request.body.frequency && (!request.body.initDate && !request.body.finalDate))
+	// 	response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+	// else {
 		var treatmentPlantData = {
 			plant: request.body.plant,
 			treatment: request.body.treatment,
@@ -41,10 +41,10 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
 				else
-					response.status(500).json({"Mensaje":"Error"});
+					response.status(500).json({"Mensaje":error.message});
 			});
 		}
-	}
+	// }
 });
 
 router.put('/admin/treatmentPlant/:plant/:treatment', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {

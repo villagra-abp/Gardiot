@@ -41,6 +41,8 @@ app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
 app.use('/api', require('./routes/familyRoutes'));
 app.use('/api', require('./routes/taskRoutes'));
+app.use('/api', require('./routes/treatmentPlantRoutes'));
+app.use('/api', require('./routes/productTreatmentRoutes'));
 
 //Start server
 app.listen(config.port, function () {

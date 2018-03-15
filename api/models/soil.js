@@ -9,9 +9,9 @@ soil.getSoil = function(number, page, sort, callback) {
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
     connection.query('SELECT * FROM Soil ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
-      if(error) 
+      if(error)
         callback (error, null);
-      else 
+      else
         callback(null, rows);
     });
   }
@@ -29,10 +29,10 @@ soil.getSoilNumber = function (callback) {
 soil.getSoilById = function(id, callback) {
 	if (connection) {
 		connection.query('SELECT name, description, texture FROM Soil WHERE id = ' + id, function(error, row) {
-			if (error) 
-				callback (error, null);		
-			else 
-				callback(null, row);		
+			if (error)
+				callback (error, null);
+			else
+				callback(null, row);
 		});
 	}
 }
@@ -55,7 +55,7 @@ soil.insertSoil = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Soil SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     connection.query(sql, function(error, result){

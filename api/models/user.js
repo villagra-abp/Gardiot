@@ -46,7 +46,7 @@ user.insertUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'INSERT INTO User SET ';
 		for (var key in userData)
-      		if (typeof userData[key]!== 'undefined') {
+      		if (typeof userData[key]!== 'undefined' && data[key]!='undefined') {
         		mariasql += key + ' = "' + userData[key] + '",';
         		if (key == 'googleId' || key == 'facebookId' || key == 'admin')
         			mariasql += 'active = 1,';
@@ -71,7 +71,7 @@ user.updateUser = function(userData, callback) {
 	if (connection) {
 		var mariasql = 'UPDATE User SET ';
 		for (var key in userData)
-      		if (typeof userData[key]!== 'undefined' && key!='oldId')
+      		if (typeof userData[key]!== 'undefined'  && data[key]!='undefined' && key!='oldId')
         		mariasql += key + ' = "' + userData[key] + '",';
 		mariasql = mariasql.slice(0, -1);
 		mariasql += 'WHERE id = "' + userData.oldId + '"';

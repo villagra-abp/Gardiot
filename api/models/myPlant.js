@@ -5,9 +5,9 @@ var myPlant = {};
 myPlant.getMyPlantsByGarden = function(garden, user, callback) {
   if(connection) {
     connection.query('SELECT MyPlant.id, MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name AS soil FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ' , function (error, rows){
-      if(error) 
-        callback (error, null);    
-      else 
+      if(error)
+        callback (error, null);
+      else
         callback(null, rows);
     });
   }
@@ -17,10 +17,10 @@ myPlant.getMyPlantsByGarden = function(garden, user, callback) {
 myPlant.getMyPlantById = function(garden, user, id, callback) {
 	if (connection) {
 		connection.query('SELECT MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id  AND Plant.id = ' + id + ' AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ', function(error, row) {
-			if (error) 
-				callback (error, null);			
-			else 
-				callback(null, row);		
+			if (error)
+				callback (error, null);
+			else
+				callback(null, row);
 		});
 	}
 }
@@ -29,7 +29,7 @@ myPlant.insertMyPlant = function(garden, data, callback) {
   if(connection) {
     sql = 'INSERT INTO MyPlant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ', garden = ' + garden;
@@ -38,7 +38,7 @@ myPlant.insertMyPlant = function(garden, data, callback) {
         callback(error, null);
       else
         callback(null, result.insertId);
-    });  
+    });
   }
 }
 
@@ -46,7 +46,7 @@ myPlant.updateMyPlant = function(id, data, callback) {
   if(connection) {
     var sql = 'UPDATE MyPlant SET ';
     for (var key in data)
-      if (typeof data[key]!== 'undefined')
+      if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';
     sql = sql.slice(0, -1);
     sql += ' WHERE id = "' + id +'"';
@@ -79,7 +79,7 @@ myPlant.isOwner = function (user, garden, callback) {
       else {
         if (result[0].user == user) callback (null, true);
         else callback (null, false);
-      }      
+      }
     });
   }
 }
