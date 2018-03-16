@@ -22,6 +22,8 @@ router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('
 
 router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 		var treatmentPlantData = {
+			treatment: request.body.treatment,
+			plant: request.body.plant,
 			frequency: request.body.frequency,
 			initDate: request.body.initDate,
 			finalDate: request.body.finalDate,
@@ -29,7 +31,7 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 		treatmentPlantData = filter(treatmentPlantData); 
 		if (typeof treatmentPlantData.frequency!== 'undefined' && (typeof treatmentPlantData.initDate!=='undefined' || typeof treatmentPlantData.finalDate!=='undefined'))
 			response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
-		else if (typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
+		else if (typeof treamentPlantData.treatment === 'undefined' || typeof treamentPlantData.plant === 'undefined' || typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
 			var validate = validateInput(treatmentPlantData);
