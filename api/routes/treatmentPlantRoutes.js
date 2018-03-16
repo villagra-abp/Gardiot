@@ -22,13 +22,11 @@ router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('
 
 router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 		var treatmentPlantData = {
-			plant: request.body.plant,
-			treatment: request.body.treatment,
 			frequency: request.body.frequency,
 			initDate: request.body.initDate,
 			finalDate: request.body.finalDate,
 		};
-		treatmentPlantData = filter(treatmentPlantData); //FILTRA. PONEMOS LOS REQUISITOS DEPSUES DEL FILTRADO
+		treatmentPlantData = filter(treatmentPlantData); 
 		if (typeof treatmentPlantData.frequency!== 'undefined' && (typeof treatmentPlantData.initDate!=='undefined' || typeof treatmentPlantData.finalDate!=='undefined'))
 			response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
 		else if (typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
@@ -88,13 +86,6 @@ router.delete('/admin/treatmentPlant/:plant/:treatment', passport.authenticate('
 		});
 	}
 });
-
-/*function sanitizeInput(data) {
-  if (data.plant && typeof data.plant== 'undefined')   {  data.plant = validator.trim(data.plant); data.plant = validator.toInt(data.plant);}
-  if (data.treatment && typeof data.treatment== 'undefined')  {  data.treatment = validator.trim(data.treatment); data.treatment = validator.toInt(data.treatment);}
-  if (data.frequency && typeof data.frequency== 'undefined') {  data.frequency = validator.trim(data.frequency); data.frequency = validator.toInt(data.frequency);}
-  return data;
-}*/
 
 function validateInput(data) {
   var resp = '';

@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var treatmentModel = require('../models/treatment');
 
@@ -38,23 +39,23 @@ router.get('/admin/numTreatments', passport.authenticate('jwt', {session: false}
 });
 
 router.post('/admin/treatment', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.name)
+	var treatmentData = {
+		name: request.body.name,
+		description: request.body.description,
+	};
+	treatmentData = filter(treatmentData); 
+	if (typeof treatmentData.name !== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
-	else {
-		var treatmentData = {
-			name: request.body.name,
-			description: request.body.description,
-		};
+	else {		
 		var validate = validateInput(treatmentData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			treatmentData = sanitizeInput(treatmentData);
 			treatmentModel.insertTreatment(treatmentData, function(error, data) {
 				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
 				else
-					response.status(500).json({"Mensaje":"Error"});
+					response.status(500).json({"Mensaje":error.message});
 			});
 		}
 	}
@@ -68,20 +69,24 @@ router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}
 			name: request.body.name,
 			description: request.body.description,
 		};
-		var validate = validateInput(treatmentData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
-		else {
-			treatmentData = sanitizeInput(treatmentData);
-			treatmentModel.updateTreatment(treatmentData, request.params.id, function(error, data) {
-				if (data == 1)
-					response.status(200).json({"Mensaje":"Actualizado"});
-				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});
-				else
-					response.status(500).json({"Mensaje":error.message});
-			});
-		}
+		treatmentData = filter(treatmentData);		
+		if (typeof treatmentData.name !== 'undefined')
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+		else {	
+			var validate = validateInput(treatmentData);
+			if (validate.length > 0)
+				response.status(400).json({"Mensaje": validate});
+			else {
+				treatmentModel.updateTreatment(treatmentData, request.params.id, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}	
+		}	
 	}
 });
 
@@ -99,13 +104,6 @@ router.delete('/admin/treatment/:id', passport.authenticate('jwt', {session: fal
 		});
 	}
 });
-
-function sanitizeInput(data) {
-  if (data.id) {  data.id = validator.trim(data.id); data.id = validator.toInt(data.id);}
-  if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-  if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
-  return data;
-}
 
 function validateInput(data) {
   var resp = '';

@@ -7,14 +7,16 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var cors = require('cors'); //CORS standard
 var validator = require('validator');
+var isEmail = require('isemail');
+var filter = require('../functions/filter');
 
 var userModel = require('../models/user');
 var forgetPasswordModel = require('../models/forgetPassword');
 
-router.post('/forgetPassword', cors(), function (request, response) {
+router.post('/forgetPassword', function (request, response) {
 	if (!request.body.email)
 		response.status(400).json({"Mensaje":"Introduce el correo electrónico para restablecer tu contraseña"});
-	else if (!validator.isEmail(request.body.email))
+	else if (!validator.isEmail(request.body.email) && !isEmail.validate(request.body.email))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
 		var id = validator.trim(request.body.email);
@@ -59,7 +61,7 @@ router.post('/forgetPassword', cors(), function (request, response) {
 	}
 });
 
-router.put('/resetPassword/:token', cors(), function (request, response) {
+router.put('/resetPassword/:token', function (request, response) {
 	if (!request.body.password || !request.body.password2)
 		response.status(400).json({"Mensaje":"Introduce ambas contraseñas"});
 	else if (!request.params.token)

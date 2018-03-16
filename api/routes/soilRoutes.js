@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var soilModel = require('../models/soil');
 
@@ -53,11 +54,11 @@ router.post('/admin/soil', passport.authenticate('jwt', {session: false}), route
 		description: request.body.description,
     	texture: request.body.texture,
 	};
+	soilData = filter(soilData); 
 	var validate = validateInput(soilData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
-		soilData = sanitizeInput(soilData);
 		soilModel.insertSoil(soilData, function(error, data) {
 			if (data) 
 				response.status(200).json({"Mensaje":"Insertado"});			
@@ -76,18 +77,19 @@ router.put('/admin/soil/:id', passport.authenticate('jwt', {session: false}), ro
 			description: request.body.description,
 	    	texture: request.body.texture,
 		};
+		soilData = filter(soilData);
 		var validate = validateInput(soilData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			soilData = sanitizeInput(soilData);
 			soilModel.updateSoil(soilData, request.params.id, function(error, data) {
-				if (data && data.mensaje) {
-					response.status(200).json(data);
-				}
-				else {
-					response.status(500).json({"Mensaje":"Error"});
-				}
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				
 			});
 		}	
 	}	
@@ -107,14 +109,6 @@ router.delete('/admin/soil/:id', passport.authenticate('jwt', {session: false}),
 		});
 	}	
 });
-
-function sanitizeInput(data) {
-  if (data.id) {  data.id = validator.trim(data.id); data.id = validator.toInt(data.id);}
-  if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-  if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
-
-  return data;
-}
 
 function validateInput(data) {
   var resp = '';

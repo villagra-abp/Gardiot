@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var feedModel = require('../models/feed');
 
@@ -73,27 +74,25 @@ router.patch('/feed/:id', passport.authenticate('jwt', {session: false}), routeR
 });*/
 
 router.post('/admin/feed', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.name || !request.body.dateInit || !request.body.dateFinal)
+	var feedData = {
+		name: request.body.name,
+		text: request.body.text,
+    	dateInit: request.body.dateInit,
+    	dateFinal: request.body.dateFinal
+	};
+	feedData = filter(feedData); 
+	if (typeof feedData.name || typeof feedData.dateInit || typeof feedData.dateFinal)
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
-	else {
-		var feedData = {
-			name: request.body.name,
-			text: request.body.text,
-	    	dateInit: request.body.dateInit,
-	    	dateFinal: request.body.dateFinal
-		};
+	else {	
 		var validate = validateInput(feedData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			feedData = sanitizeInput(feedData);
 			feedModel.insertFeed(feedData, function(error, data) {
-				if (data) {
+				if (data) 
 					response.status(200).json({"Mensaje":"Insertado"});
-				}
-				else {
-					response.status(500).json({"Mensaje":"Error"});
-				}
+				else 
+					response.status(500).json({"Mensaje":error.message});
 			});
 		}
 	}
@@ -109,20 +108,24 @@ router.put('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 	    	dateInit: request.body.dateInit,
 	    	dateFinal: request.body.dateFinal
 		};
+		feedData = filter(feedData); 
 		var validate = validateInput(feedData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
-		else {
-			feedData = sanitizeInput(feedData);
-			feedModel.insertFeed(feedData, request.params.id, function(error, data) {
-				if (data == 1)
-					response.status(200).json({"Mensaje":"Actualizado"});
-				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});
-				else
-					response.status(500).json({"Mensaje":error.message});
-			});
-		}
+		if (typeof feedData.name || typeof feedData.dateInit || typeof feedData.dateFinal)
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+		else {	
+			if (validate.length > 0)
+				response.status(400).json({"Mensaje": validate});
+			else {
+				feedModel.insertFeed(feedData, request.params.id, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}
+		}	
 	}
 });
 
@@ -141,11 +144,6 @@ router.delete('/admin/feed/:id', passport.authenticate('jwt', {session: false}),
 	}
 });
 
-function sanitizeInput(data) {
-  if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-  if (data.text) { data.text = validator.trim(data.text); data.text = validator.stripLow(data.text); data.text = validator.escape(data.text);}
-  return data;
-}
 
 function validateInput(data) {
   var resp = '';
