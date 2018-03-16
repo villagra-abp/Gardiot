@@ -96,7 +96,7 @@ router.post('/admin/product', passport.authenticate('jwt', {session: false}), ro
 		description: request.body.description,
 	};
 	productData = filter(productData); 
-	if (typeof productData.name !== 'undefined')
+	if (typeof productData.name === 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
 		var validate = validateInput(productData);
@@ -124,7 +124,7 @@ router.put('/admin/product/:id', passport.authenticate('jwt', {session: false}),
 		};
 		productData = filter(productData); 
 		var validate = validateInput(productData);
-		if (typeof productData.name !== 'undefined')
+		if (typeof productData.name === 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
 			if (validate.length > 0)

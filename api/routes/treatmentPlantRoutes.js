@@ -57,20 +57,27 @@ router.put('/admin/treatmentPlant/:plant/:treatment', passport.authenticate('jwt
 			initDate: request.body.initDate,
 			finalDate: request.body.finalDate,
 		};
-		var validate = validateInput(treatmentPlantData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
+		treatmentPlantData = filter(treatmentPlantData); 
+		if (typeof treatmentPlantData.frequency!== 'undefined' && (typeof treatmentPlantData.initDate!=='undefined' || typeof treatmentPlantData.finalDate!=='undefined'))
+			response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
+		else if (typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
-			treatmentPlantData = sanitizeInput(treatmentPlantData);
-			treatmentPlantModel.updateTreatmentPlant(treatmentPlantData, request.params.plant, request.params.treatment, function(error, data) {
-				if (data == 1)
-					response.status(200).json({"Mensaje":"Actualizado"});
-				else if (data == 0)
-					response.status(404).json({"Mensaje":"No existe"});
-				else
-					response.status(500).json({"Mensaje":error.message});
-			});
-		}
+			var validate = validateInput(treatmentPlantData);
+			if (validate.length > 0)
+				response.status(400).json({"Mensaje": validate});
+			else {
+				treatmentPlantData = sanitizeInput(treatmentPlantData);
+				treatmentPlantModel.updateTreatmentPlant(treatmentPlantData, request.params.plant, request.params.treatment, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}
+		}		
 	}
 });
 

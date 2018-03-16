@@ -97,7 +97,7 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 		    soil: request.body.soil
 		};
 		myPlantData = filter(myPlantData); 
-		if (typeof myPlantData.xCoordinate!== 'undefined' || typeof myPlantData.yCoordinate!== 'undefined' || typeof myPlantData.plant!== 'undefined' || typeof myPlantData.soil!== 'undefined')
+		if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
 			myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
@@ -149,15 +149,15 @@ router.delete('/myPlant/:garden/:id', passport.authenticate('jwt', {session: fal
 
 function validateInput(data) {
   var resp = '';
-  if (data.id!='undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (data.name!='undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (data.xCoordinate!='undefined' && !validator.isInt(data.xCoordinate)) resp += 'Coordenada X no válida, ';
-  if (data.yCoordinate!='undefined' && !validator.isInt(data.yCoordinate)) resp += 'Coordenada Y no válida, ';
-  if (data.number!='undefined' && !validator.isInt(data.number)) resp += 'Número no válido, ';
-  if (data.plant!='undefined' && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
-  if (data.garden!='undefined' && !validator.isInt(data.garden)) resp += 'Jardín no válido, ';
-  if (data.soil!='undefined' && !validator.isInt(data.soil)) resp += 'Suelo no válido, ';
-  if (data.seed!='undefined' && !validator.isISO8601(data.seed)) resp += 'Fecha no válida, ';
+  if (typeof data.id!=='undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+  if (typeof data.name!=='undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.xCoordinate!=='undefined' && !validator.isInt(data.xCoordinate)) resp += 'Coordenada X no válida, ';
+  if (typeof data.yCoordinate!=='undefined' && !validator.isInt(data.yCoordinate)) resp += 'Coordenada Y no válida, ';
+  if (typeof data.number!=='undefined' && !validator.isInt(data.number)) resp += 'Número no válido, ';
+  if (typeof data.plant!=='undefined' && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
+  if (typeof data.garden!=='undefined' && !validator.isInt(data.garden)) resp += 'Jardín no válido, ';
+  if (typeof data.soil!=='undefined' && !validator.isInt(data.soil)) resp += 'Suelo no válido, ';
+  if (typeof data.seed!=='undefined' && !validator.isISO8601(data.seed)) resp += 'Fecha no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

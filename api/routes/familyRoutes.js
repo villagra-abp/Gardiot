@@ -100,9 +100,9 @@ router.delete('/admin/family/:id', passport.authenticate('jwt', {session: false}
 
 function validateInput(data) {
 	var resp = '';
-	if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+	if (typeof data.id !== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.description !== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }

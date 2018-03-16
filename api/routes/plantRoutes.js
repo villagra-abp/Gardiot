@@ -70,7 +70,7 @@ router.post('/admin/plant', passport.authenticate('jwt', {session: false}), rout
     	leaveType: request.body.leaveType
 	};
 	plantData = filter(plantData); 
-	if (typeof plantData.scientificName!== 'undefined' || typeof plantData.commonName!== 'undefined' || typeof plantData.description!== 'undefined')
+	if (typeof plantData.scientificName=== 'undefined' || typeof plantData.commonName=== 'undefined' || typeof plantData.description=== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {
 		var validate = validateInput(plantData);
@@ -110,7 +110,7 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 	    	leaveType: request.body.leaveType
 		};
 		plantData = filter(plantData);
-		if (typeof plantData.scientificName!== 'undefined' || typeof plantData.commonName!== 'undefined' || typeof plantData.description!== 'undefined')
+		if (typeof plantData.scientificName=== 'undefined' || typeof plantData.commonName=== 'undefined' || typeof plantData.description=== 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
 			var validate = validateInput(plantData);
