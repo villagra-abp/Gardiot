@@ -46,34 +46,34 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 	};
 	myPlantData = filter(myPlantData);
 	if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
-		response.status(413).json({"Mensaje":"Faltan parámetros necesarios"});
+		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
-		response.status(412).json({"Mensaje":"Petición incorrecta"});
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
 			if (error)
-				response.status(411).json({"Mensaje":"Error: " + error.message});
+				response.status(400).json({"Mensaje":"Error: " + error.message});
 			else {
 				if (owner == true) {
 					var validate = validateInput(myPlantData);
 					if (validate.length > 0)
-						response.status(410).json({"Mensaje": validate});
+						response.status(400).json({"Mensaje": validate});
 					else {
 						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
-							if (myPlant) {
+							if (error)
+								response.status(500).json({"Mensaje":error.message});
+							else if (typeof myPlant!== 'undefined') {
 								taskModel.insertTasks(myPlant, myPlantData.plant, function (error, inserted) {
 									if (error) {
 										myPlantModel.deleteMyPlant(myPlant, function(error, data) {
 											if (data == 1) response.status(200).json({"Mensaje":"Planta no añadida. Error: " + error.message});
-											else response.status(500).json({"Mensaje":"Error"});
+											else response.status(500).json({"Mensaje":error.message});
 										});
 									}
 									else
 										response.status(200).json({"Mensaje":"Planta añadida. Insertadas " + inserted + " nuevas tareas."});
 								});
-							}
-							else
-								response.status(500).json({"Mensaje":error.message});
+							}								
 						});
 					}
 				}
