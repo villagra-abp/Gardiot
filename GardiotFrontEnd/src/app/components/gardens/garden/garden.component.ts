@@ -47,9 +47,6 @@ export class GardenComponent {
             this.garden.user=data[0].user;
             this.garden.countryCode=data[0].countryCode;
             this.garden.city=data[0].city;
-            console.log("garden");
-            console.log(this.garden);
-
             this.getTiempo();
           }else{
             this._route.navigate(['/newgarden']);
@@ -70,9 +67,6 @@ export class GardenComponent {
   getTiempo(){
   	this._gardenService.tiempo(this.garden)
 	        .subscribe(data=>{
-	          console.log(data);
-
-
 		  		this.cielo = data.weather[0].main;
           var aux = data.main.temp - 273;
           this.temperatura = aux.toFixed(2);

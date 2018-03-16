@@ -28,6 +28,7 @@ myPlant.getMyPlantById = function(garden, user, id, callback) {
 myPlant.insertMyPlant = function(garden, data, callback) {
   if(connection) {
     sql = 'INSERT INTO MyPlant SET ';
+    console.log(data);
     for (var key in data)
       if (typeof data[key]!== 'undefined' && data[key]!='undefined')
         sql += key + ' = "' + data[key] + '",';

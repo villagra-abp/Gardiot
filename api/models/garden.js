@@ -77,7 +77,7 @@ garden.insertGarden = function(data, callback) {
       if(error)
         throw error;
       else
-        callback(null, result.affectedRows);
+        callback(null, result.insertId);
     });
   }
 }
