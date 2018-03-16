@@ -57,7 +57,8 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
 	};
 	gardenModel.insertGarden(gardenData, function(error, data) {
 		if (data) {
-			response.status(200).json({"Mensaje":"Insertado"});
+			response.status(200).json(data);
+
 		}
 		else {
 			response.status(500).json({"Mensaje":"Error"});
@@ -88,12 +89,12 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequi
 				else {
 					response.status(500).json({"Mensaje":"Error"});
 				}
-			});	
+			});
 		}else{
 			response.status(500).json({"Mensaje":"Error"});
 		}
 	});
-	
+
 });
 
 router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
