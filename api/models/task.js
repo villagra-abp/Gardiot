@@ -70,10 +70,10 @@ task.insertTasks = function (myPlant, plant, callback) {
 							sqlBase = '(' + plant + ',' + row[object][detail] + ',' + myPlant + ',' + plant;
 						else if (detail == 'frequency' && row[object][detail] != null) {
 							todayDate = new Date();
-							for (let i = 0; i < 100; i++) {
-								todayDate.setDate(todayDate.getDate() + row[object][detail])
+							for (let i = 0; i < 100; i++) {								
 								let month = todayDate.getMonth() + 1;
-								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';							
+								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';		
+								todayDate.setDate(todayDate.getDate() + row[object][detail])					
 							}
 						}
 						else if (detail == 'initDate' &&  row[object][detail] != null) 
