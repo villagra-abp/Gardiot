@@ -45,13 +45,15 @@ export class NewtreatmentsplantsComponent implements OnInit {
           let v=JSON.parse(error._body);
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
-  for(let cont=0; cont<this.productTreatment.product.length; cont++){
-    this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment,this.productTreatment.product[cont],this.idPlant)
-        .subscribe(data=>{
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-        });
+        if(this.productTreatment.product.length!=undefined){
+          for(let cont=0; cont<this.productTreatment.product.length; cont++){
+            this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment,this.productTreatment.product[cont],this.idPlant)
+                .subscribe(data=>{
+                },
+                error=>{
+                  let v=JSON.parse(error._body);
+                });
+          }
         }
   }
 
