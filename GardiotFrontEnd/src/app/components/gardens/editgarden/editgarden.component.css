@@ -1,3 +1,37 @@
 .borrar{
 	margin-top: 1em;
 }
+
+.herramienta{
+  width: 100%;
+  display: flex;
+  flex-direction:column;
+  padding: 0;
+  border-radius: 5px;
+}
+  .herramienta>canvas{
+    width: 100%;
+    height: 100%;
+  }
+
+  .selectPlantasMobile{
+    display: flex;
+    justify-content: flex-start;
+  }
+	.selectPlantasMobile>article{
+		width: 55px;
+		height: 180px;
+	}
+	.selectPlantasMobile>article:not(:first-of-type){
+		margin-left: 10px;
+	}
+
+  .selectPlantasMobile>article>.imgPlant{
+    width: 100%;
+    height: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 2px solid #000;
+    cursor: pointer;
+  }

@@ -97,6 +97,9 @@ class TRecursoMalla extends TRecurso{
         else if(this._nombre=='perejil'){
           this._textura=gestor.getRecurso("perejil2.jpg", "textura");
         }
+        else if(this._nombre=='cubo'){
+          //this._textura=gestor.getRecurso("grass.jpg", "textura");
+        }
         //else{
           //this._textura=gestor.getRecurso("SusanTexture.png", "textura");
         //}

@@ -157,7 +157,7 @@ class TMotor{
 		let camaraActiva=this.getCamaraActiva();
 		//crear matriz projection a partir de la info almacenada
 		if(!camaraActiva.entity._isPerspective){
-            mat4.ortho(matrixProjection, camaraActiva.entity._left*90, camaraActiva.entity._right*90, camaraActiva.entity._bottom*90, camaraActiva.entity._top*90, camaraActiva.entity._near*1, camaraActiva.entity._far*1000);
+            mat4.ortho(matrixProjection, camaraActiva.entity._left*90, camaraActiva.entity._right*90, camaraActiva.entity._bottom*90, camaraActiva.entity._top*90, camaraActiva.entity._near, camaraActiva.entity._far*100);
         }
         else{
             mat4.frustum(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
@@ -213,7 +213,7 @@ class TMotor{
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}
-		var malla = motor.crearNodoMalla("malla1", "cubo", luz);
+
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;

@@ -1,0 +1,20 @@
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.title>button{
+  height: 40px;
+}
+.herramienta{
+  width: 100%;
+  display: flex;
+  flex-direction:column;
+  border: 1px solid #234;
+  padding: 0;
+  border-radius: 5px;
+}
+  .herramienta>canvas{
+    width: 100%;
+    height: 100%;
+  }

@@ -1,8 +1,25 @@
 <div class="container main-container">
   <h1>Editar mi jardin</h1>
 
-  <section class="container">
-  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
+  <section class="container herramienta">
+  <canvas id="myCanvas" onmousemove="mouse_move(event);" onclick="mouse_click(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" width="1800" height="1200"></canvas>
+  <aside class="selectPlantasMobile">
+    <article>
+      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+      </div>
+      <span>Margarita lajsdlf</span>
+    </article>
+    <article>
+      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+      </div>
+      <span>Margarita lajsdlf</span>
+    </article>
+    <article>
+      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+      </div>
+      <span>Margarita lajsdlf</span>
+    </article>
+  </aside>
   </section>
 
 <section class="container">
@@ -22,17 +39,17 @@
         </div>
         <div class="form-group  col-md-6" ng-init="listarPaises()">
           <label for="countries">País:</label>
- 
+
           <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
           </select2>
- 
+
         </div>
 
           <div class="form-group  col-md-6">
             <label for="countries">Introduce tu código postal:</label>
             <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
         </div>
- 
+
         <div class="form-group  col-md-6">
             <label for="countries">Ciudad:</label>
             <span id="ciudad"></span>
@@ -46,7 +63,7 @@
         <button (click)="delete()" class="btn btn-danger" >Borrar</button>
       </div>
     </div>
-    
+
   </div>
 </section>
 </div>

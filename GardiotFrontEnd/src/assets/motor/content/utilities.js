@@ -134,15 +134,82 @@ function animLoop(){
 
     if(elapsed>fpsInterval && motor.running){
         then=now-(elapsed%fpsInterval);
-        motor.rotarMalla("malla3", 1, "y");
+        /*motor.rotarMalla("malla3", 1, "y");
         motor.rotarMalla("malla3", 1, "x");
         motor.rotarMalla("malla3", 1, "z");
 
-        motor.rotarMalla("malla2", 1, "x");
+        motor.rotarMalla("malla2", 1, "x");*/
 
         motor.draw();
 
     }
 
     requestAnimationFrame(animLoop, canvas);
+}
+
+
+function mouse_move(e){
+
+    let cv=e.target,
+        x=e.offsetX,
+        y=e.offsetY,
+				dimx=cv.offsetWidth/20,
+				dimy=cv.offsetHeight/20,
+        fila=Math.floor(y/dimy),
+        columna=Math.floor(x/dimx);
+
+    //console.log(`Posición: ${x} - ${y}`);
+    //lo de arriba es igual a
+    // console.log('Posición: '+x+', '+y+');
+
+
+        //ARRASTRANDO FICHA
+        console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
+
+
+}
+
+function mouse_click(e){
+    let cv=e.target,
+        x=e.offsetX,
+        y=e.offsetY,
+        dimx=cv.offsetWidth/20,
+				dimy=cv.offsetHeight/20,
+        fila=Math.floor(y/dimy),
+        columna=Math.floor(x/dimx);
+
+    if(x<1 || x>cv.width-1 || y<1 || y>cv.height-1)
+        return;
+
+    console.log(`Posición: ${fila} - ${columna}`);
+
+
+}
+
+
+
+function mouse_down(e){
+     let cv=e.target,
+        x=e.offsetX,
+        y=e.offsetY,
+				dimx=cv.offsetWidth/20,
+				dimy=cv.offsetHeight/20,
+        fila=Math.floor(y/dimy),
+        columna=Math.floor(x/dimx);
+
+        console.log(`DOWN-> Posición: ${fila} - ${columna}`);
+
+}
+
+function mouse_up(e){
+     let cv=e.target,
+        x=e.offsetX,
+        y=e.offsetY,
+				dimx=cv.offsetWidth/20,
+				dimy=cv.offsetHeight/20,
+        fila=Math.floor(y/dimy),
+        columna=Math.floor(x/dimx);
+
+        console.log(`UP-> Posición: ${fila} - ${columna}`);
+
 }

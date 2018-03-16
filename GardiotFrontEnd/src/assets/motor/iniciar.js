@@ -1,4 +1,4 @@
-function iniciar(){
+function iniciar(accion){
   window.canvas=null;
 
 
@@ -40,7 +40,11 @@ function iniciar(){
   //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
+  //camara de vista
   window.camara = motor.crearNodoCamara("camara1", true, undefined);
+
+  //camara de edición
+  window.camaraEdit=motor.crearNodoCamara("camara2", false, undefined);
 
 
 
@@ -53,10 +57,11 @@ function iniciar(){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-20; i<20; i++){
-    for(let j=-20; j<20; j++){
+  for(let i=-30; i<30; i++){
+    for(let j=-30; j<30; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.moverMalla("suelo"+i+'-'+j, 2*i, -15, 2*j);
+      motor.escalarMallaxyz("suelo"+i+'-'+j, 2, 0, 2);
+      motor.moverMalla("suelo"+i+'-'+j, 4*i, -15, 4*j);
     }
   }
 
@@ -87,10 +92,19 @@ function iniciar(){
   //motor.escalarMalla("malla2", 0.3);
 
 
-  motor.moverCamara("camara1", 0, 0, 80);
-  //motor.rotarCamara("camara1", 180, "y");
+  motor.moverCamara("camara1", -106, 140, 100);
+  motor.rotarCamara("camara1", -45, "y");
+  motor.rotarCamara("camara1", -55, "x");
+  motor.moverCamara("camara2", 0,2000, 0);
+  motor.rotarCamara("camara2", -90, "x");
 
-  motor.activarCamara("camara1");
+  if(accion=='detail'){
+    motor.activarCamara("camara1");
+  }
+  else if(accion=='edit'){
+    motor.activarCamara("camara2");
+  }
+
 
   motor.activarLuz("luz1");
   //motor.activarLuz("luz2");

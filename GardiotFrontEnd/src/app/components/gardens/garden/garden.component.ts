@@ -9,7 +9,8 @@ declare var iniciar:any;
 
 @Component({
   selector: 'app-garden',
-  templateUrl: './garden.component.html'
+  templateUrl: './garden.component.html',
+  styleUrls: ['./garden.component.css']
 })
 export class GardenComponent {
 	garden = new Garden("");
@@ -85,7 +86,7 @@ export class GardenComponent {
   }
 
   inicializar(){
-    new iniciar();
+    new iniciar("detail");
   }
 
 
