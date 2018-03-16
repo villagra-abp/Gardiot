@@ -1,28 +1,57 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var validator = require('validator');
+var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var productModel = require('../models/product');
 
-router.get('/product', function(request, response) {
-	productModel.getProduct (function(error, data) { //Asocia la llamada con la funcion del modelo
+router.get('/admin/products/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		productModel.getProduct(request.params.number, request.params.page, request.params.sort, function(error, data){
+			response.status(200).json(data);
+	    });
+	}
+});
+
+router.get('/product/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.id, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		productModel.getProductById(request.params.id, function(error, data) {
+			if (typeof data !== 'undefined')
+				response.status(200).json(data);
+			else
+				response.status(404).json({"Mensaje":"No existe"});
+		});
+	}
+});
+
+router.get('/admin/productType/:type/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isAscii(request.params.type, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		productModel.getProductsByType(request.params.number, request.params.page, request.params.sort, request.params.type, function(error, data) {
+			if (typeof data !== 'undefined')
+				response.status(200).json(data);
+			else
+				response.status(404).json({"Mensaje":"No existe"});
+		});
+	}
+});
+
+
+router.get('/admin/numProducts', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	productModel.getProductsNumber(function(error, data) {
 		response.status(200).json(data);
 	});
 });
 
-router.get('/product/:id', function(request, response) {
-	var id = request.params.id;
-	productModel.getProductById(id, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0) {
-			response.status(200).json(data);
-		}
-		else {
-			response.status(404).json({"Mensaje":"No existe"});
-		}
-	});
-});
-
 // búsqueda por nombre
-router.get('/productSearch/:name', function(request, response) {
+/*router.get('/productSearch/:name', function(request, response) {
 	var name = request.params.name;
 	productModel.getProductSearch(name, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
@@ -58,54 +87,85 @@ router.get('/productFilterMoreThan/:price', function(request, response) {
 			response.status(404).json({"Mensaje":"No existe"});
 		}
 	});
-});
+});*/
 
-router.post('/product', function(request, response) {
+router.post('/admin/product', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var productData = {
 		name: request.body.name,
-		price: request.body.price,
+		type: request.body.type,
+		description: request.body.description,
 	};
-
-	productModel.insertProduct(productData, function(error, data) {
-		if (data) {
-			response.status(200).json({"Mensaje":"Insertado"});
-		}
+	productData = filter(productData); 
+	if (typeof productData.name === 'undefined')
+		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+	else {
+		var validate = validateInput(productData);
+		if (validate.length > 0)
+			response.status(400).json({"Mensaje": validate});
 		else {
-			response.status(500).json({"Mensaje":"Error"});
+			productModel.insertProduct(productData, function(error, data) {
+				if (data)
+					response.status(200).json({"Mensaje":"Insertado"});
+				else
+					response.status(500).json({"Mensaje":"Error"});
+			});
 		}
-	});
+	}
 });
 
-router.put('/product', function(request, response) {
-	var productData = {
-		id: request.body.id,
-		name: request.body.name,
-		price: request.body.price,
-	};
-
-	productModel.updateProduct(productData, function(error, data) {
-		if (data && data.mensaje) {
-			response.status(200).json(data);
-		}
+router.put('/admin/product/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.id, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		var productData = {
+			name: request.body.name,
+			type: request.body.type,
+			description: request.body.description,
+		};
+		productData = filter(productData); 
+		var validate = validateInput(productData);
+		if (typeof productData.name === 'undefined')
+			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
-			response.status(500).json({"Mensaje":"Error"});
-		}
-	});
+			if (validate.length > 0)
+				response.status(400).json({"Mensaje": validate});
+			else {
+				productModel.updateProduct(productData, request.params.id, function(error, data) {
+					if (data == 1)
+						response.status(200).json({"Mensaje":"Actualizado"});
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
+					else
+						response.status(500).json({"Mensaje":error.message});
+				});
+			}
+		}	
+	}
 });
 
-router.delete('/product/:id', function(request, response) {
-	var id = request.params.id;
-	productModel.deleteProduct(id, function(error, data) {
-		if (data == 1) {
-			response.status(200).json({"Mensaje":"Borrado"});
-		}
-		else if (data == 0) {
-			response.status(404).json({"Mensaje":"No existe"});
-		}
-		else {
-			response.status(500).json({"Mensaje":"Error"});
-		}
-	});
+router.delete('/admin/product/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if (!validator.isInt(request.params.id, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		productModel.deleteProduct(request.params.id, function(error, data) {
+			if (data == 1)
+				response.status(200).json({"Mensaje":"Borrado"});
+			else if (data == 0)
+				response.status(404).json({"Mensaje":"No existe"});
+			else
+				response.status(500).json({"Mensaje":error.message});
+		});
+	}
 });
+
+function validateInput(data) {
+  var resp = '';
+  if (typeof data.id!== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+  if (typeof data.name!== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.description!== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+  if (typeof data.type!== 'undefined' && !validator.isAscii(data.type)) resp += 'Tipo no válido, ';
+  if (resp) resp = resp.slice(0, -2);
+  return resp;
+}
 
 module.exports = router;

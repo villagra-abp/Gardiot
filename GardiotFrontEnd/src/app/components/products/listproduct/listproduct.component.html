@@ -1,0 +1,38 @@
+<div class="vistaAdmin">
+  <div class="container main-container wrap">
+  <h1>Productos</h1>
+
+  <form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
+    <article class="form-group col-md-4">
+      <input type="text"   class="form-control" name="commonName" placeholder="Buscar en gardiot">
+    </article>
+    <article class="form-group col-md-2">
+      <button class="btn btn-default" type="submit">Buscar</button>
+    </article>
+    <article class="form-group col-md-2">
+      <button  [routerLink]="['/admin/newproduct']" class="btn btn-outline-primary">Nuevo Producto</button>
+    </article>
+  </form>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Modificar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <th scope="row">{{product.name}}</th>
+      <td>{{product.type}}</td>
+      <td>{{product.description}}</td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/editproduct/',product.id]">Modificar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+  <app-pagination [count]="this.numeroItems" [type]="3" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+</div>
+</div>

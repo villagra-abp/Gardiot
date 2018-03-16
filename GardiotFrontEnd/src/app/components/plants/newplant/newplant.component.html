@@ -1,4 +1,5 @@
-<section class="container">
+<div class="vistaAdmin">
+	<section class="container main-container">
 	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
 		<h4>Datos Básicos</h4>
 	  <div class="form-row">
@@ -10,7 +11,6 @@
 	    </div>
 	  </div>
 		<br>
-		<!-- https://codepen.io/Sebus059/pen/MwMQbP -->
 		<div class="form-group">
 			  <label for="photo_plant">Foto</label>
 			<div class="upload-btn-wrapper form-control ">
@@ -110,7 +110,40 @@
 				</div>
 	    </div>
 	  </fieldset>
-		<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-		<button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+		<!-- <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+		<button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button> -->
 	</form>
+	<!-- <form (ngSubmit)="this.uploadPhoto()"  method="post">
+		<h4>Tratamiento</h4>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="treatment_plant">Tratamiento</label>
+				 <select class="form-control" id="treatment_plant" [(ngModel)]="treatmentPlant.plant"  required>
+					 <option *ngFor="let treatment of treatments" value="{{treatment.id}}">{{treatment.name}}</option>
+				 </select>
+			</div>
+			<div class="form-group col-md-6">
+					<label for="frequency_treatmentPlant">Frecuencia</label>
+					<input type="text" class="form-control" [(ngModel)]="treatmentPlant.frequency" name="frequency" id="frequency_treatmentPlant" placeholder="Se mide en días">
+				</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="date_initDateHarvest">Inicio</label>
+				<input type="date" class="form-control" [(ngModel)]="treatmentPlant.initDate" name="initDateHarvest" id="date_initDateHarvest">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="date_finDateHarvest">Fin</label>
+				<input type="date" class="form-control" [(ngModel)]="treatmentPlant.finalDate" name="finDateHarvest" id="date_finDateHarvest">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-2">
+					<button type="submit" class="btn btn-success">Añadir tratamiento</button>
+			</div>
+		</div>
+	</form> -->
+<button  (click)="this.uploadPhoto()" class="btn btn-outline-primary">Guardar cambios</button>
+<button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
 </section>
+</div>

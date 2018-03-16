@@ -3,24 +3,35 @@
   top:0;
   left:0;
   right:0;
-  height: 40px;
+  height: 50px;
   background-color: #299654 ;
+  display: flex;
+  align-items: center;
   z-index: 999999;
   }
+  .navbar-header>div{
+    max-height: 46px;
+  }
   .navbar-header>div>i{
-    font-size: 40px;
+    font-size: 46px;
     cursor: pointer;
     color: #fff;
     display:inline-block;
   	transform:rotate(0);
   	transition: transform 0.3s ease-out;
   }
+
+  .navbar-header>img{
+    margin-left: 10px;
+    height: 30px;
+  }
+
   .opened{
     transform:rotate(90deg) !important;
   }
 
   #sidebar-wrapper {
-  top: 40px;
+  top: 50px;
   left: -200px;
   width: 200px;
   background-color: #299654;
@@ -30,17 +41,12 @@
   z-index: 999999;
 }
 #sidebar-wrapper>img{
-  width: 140px;
-  margin: 0 auto;
-  margin-top: 15px;
-  margin-left: 20px;
+  display:none;
 }
-#sidebar-wrapper>span>img{
-  width: 140px;
-}
+
 .sidebar-nav {
   position: absolute;
-  top: 60px;
+  top: 0;
   margin: 0;
   padding: 0;
   width: 200px;
@@ -67,18 +73,6 @@
   transition: all 0.3s ease-out;
   margin-left: -200px;
 }
-@media (min-width: 768px) {
-  #sidebar-wrapper.sidebar-toggle {
-    transition: 0s;
-    left: 200px;
-    top: 0;
-  }
-  .navbar-header{
-    display: none;
-
-    }
-}
-
 
 
 /*HEADER USER*/
@@ -100,11 +94,32 @@ button{
 #navbarSupportedContent > ul{
   margin-right: 0 !important;
 }
+
 @media (min-width: 768px) {
+  .sidebar-nav {
+    top: 60px;
+  }
+
   .limited{
     max-width: 1150px;
     margin: 0 auto;
   }
+  #sidebar-wrapper.sidebar-toggle {
+    transition: 0s;
+    left: 200px;
+    top: 0;
+  }
+  #sidebar-wrapper>img{
+    display: initial;
+    width: 140px;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+  .navbar-header{
+    display: none;
+
+    }
 }
 
 #photoMenu{

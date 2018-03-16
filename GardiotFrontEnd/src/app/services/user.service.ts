@@ -55,10 +55,11 @@ export class UserService {
       body+= `&admin=${user.admin}`;
       console.log(user);
       let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
 
-      return this.http.post(this.apiURL+"register", body, { headers } )
+      return this.http.post(this.apiURL+"admin/user", body, { headers } )
           .map( res=>{
             return res.json();
           })
@@ -98,12 +99,23 @@ export class UserService {
           })
     }
 
-    detailsAll(){
+    detailsByUser(user:User){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
 
-      return this.http.get(this.apiURL+"admin/users/5/1/name/ASC", { headers } )
+      return this.http.get(this.apiURL+"admin/user/"+user.id, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
+    detailsAll(page:number, items:number){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`
+      });
+
+      return this.http.get(this.apiURL+"admin/users/"+items+"/"+page+"/name/asc", { headers } )
           .map( res =>{
             return res.json();
           })
@@ -113,7 +125,7 @@ export class UserService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.delete(this.apiURL+"/admin/user/"+ idUser, { headers } )
+      return this.http.delete(this.apiURL+"admin/user/"+ idUser, { headers } )
           .map( res =>{
             return res.json();
           })
@@ -123,7 +135,7 @@ export class UserService {
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`
       });
-      return this.http.get(this.apiURL+"numPlants/", { headers } )
+      return this.http.get(this.apiURL+"/admin/numUsers", { headers } )
           .map( res =>{
             return res.json();
           })
@@ -179,25 +191,23 @@ export class UserService {
           })
     }
 
-    modifyUserProfileAdmin(user:User, oldId:String){
+    modifyUserProfileAdmin(user:User, oldId:String, user2:User){
       let body = `name=${user.name}`;
+      body+= `&lastName=${user.lastName}`;
+      body+= `&admin=${user.admin}`;
       var country = 0;
 
       if(user.birthDate!=null){
-        //body+=`&birthDate=${user.birthDate}`;
+        body+=`&birthDate=${user.birthDate}`;
       }
-      if(user.oldPassword && user.password){
-        body+=`&password=${user.password}&password2=${user.password2}&oldPassword=${user.oldPassword}`;
-      }
-
-      if(user.countryCode){
-        body+= `&countryCode=${user.countryCode}`;
+      if(user2.countryCode){
+        body+= `&countryCode=${user2.countryCode}`;
         country = 1;
       }
-      if(user.city && country==1){
-        body+=`&city=${user.city}`;
+      if(user2.city && country==1){
+        body+=`&city=${user2.city}`;
       }
-      console.log(body);
+      console.log("guapaaa"+body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -305,6 +315,34 @@ export class UserService {
         .map(res=>{
           return res.json();
         })
+    }
+    // reset password
+    resetPassword(email:String){
+      let body=`email=${email}`;
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+        //'Authorization':`Bearer ${localStorage['Bearer']}`,
+      });
+      //console.log(this.apiURL+"forgetPassword", body, { headers });
+      return this.http.post(this.apiURL+"forgetPassword", body, { headers })
+      .map(res=>{
+        return res.json();
+      })
+    }
+    // reset password2
+    newPassword(pass1:String, pass2:String, token:String){
+      // console.log("Hola New PASS");
+      // console.log(pass1,pass2);
+      let body=`password=${pass1}&password2=${pass2}`;
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+      });
+      // console.log("CAMBIADO:"+this.apiURL+"resetPassword/"+token, body, { headers });
+      return this.http.put(this.apiURL+"resetPassword/"+token, body, { headers })
+      .map(res=>{
+        // console.log("dentro de RES");
+        return res.json();
+      })
     }
 
 }

@@ -44,8 +44,6 @@ export class GardenService {
     insertGarden(garden:Garden){
       garden.soil="1";
 
-      console.log(garden);
-
       let body = `title=${garden.title}`;
       if(garden.width != undefined){
         body += `&width=${garden.width}`;
@@ -68,8 +66,6 @@ export class GardenService {
       if(garden.city != undefined){
         body += `&city=${garden.city}`;
       }
-      console.log("cuerpo");
-    console.log(body);
 
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
@@ -79,8 +75,20 @@ export class GardenService {
           .map( res =>{
             return res.json();
           })
-
     }
+
+		saveplants( plant:number,X:number, garden:number,fecha_actual:string){
+			let body = `plant=${plant}&xCoordinate=${X}&yCoordinate=${0}&seed=${fecha_actual}&soil=${1}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.post(this.apiURL+"myPlant/"+garden, body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+
+		}
 
 
 	  modifyGarden(garden:Garden){
@@ -112,7 +120,6 @@ export class GardenService {
       if(garden.city != "undefined"){
 	  	body += `&city=${garden.city}`;
       }
-	  console.log(body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -128,7 +135,6 @@ export class GardenService {
 	  	let headers = new Headers({
         	'Authorization':`Bearer ${localStorage['Bearer']}`
       	});
-	  	console.log("garden:"+garden.city);
       	return this.http.get(this.apiURL+"weatherCity/"+ garden.city+ "/"+ garden.countryCode, { headers } )
           .map( res =>{
             return res.json();

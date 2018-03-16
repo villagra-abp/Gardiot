@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
+import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
 declare var $:any;
 
@@ -35,13 +36,14 @@ export class EditProfileComponent implements OnInit{
     private _route:Router,
     private _appComponent:AppComponent,
     private _ng2ImgMax:Ng2ImgMaxService,
+    private datePipe: DatePipe,
     private _renderer:Renderer){ }
 
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {
       //aqui vamos cargando las posibles ciudades a elegir
       let input=(<HTMLInputElement>document.querySelector("#zipCode"));
-      if(input.value.length>=5){
+      if(input.value.length==5){
           this._detailService.listCitiesByZip(this.user.countryCode, input.value)
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');
@@ -69,7 +71,6 @@ export class EditProfileComponent implements OnInit{
                 sp.innerHTML='Código postal no encontrado';
               }
               input.value='';
-
             },
             error => {
               console.log(error);
@@ -78,13 +79,12 @@ export class EditProfileComponent implements OnInit{
         }
 
 
-
     //Cargar usuario para mostrar sus datos en el formulario por defecto
   mostrar(){
     this._detailService.details(this.user)
         .subscribe(data=>{
           this.user.id=data.id;
-          this.user.birthDate=data.birthDate;
+          this.user.birthDate=this.datePipe.transform(data[0].birthDate, 'yyyy-MM-dd');
           this.user.photo=data.photo;
           this.user.name=data.name;
           this.user.lastName=data.lastName;
@@ -200,7 +200,7 @@ export class EditProfileComponent implements OnInit{
 //Estas dos funciones son para guardar los datos
 //del país y ciudad en el objeto de usuario
   saveCountry(e){
-  console.log("save country"+e.value);
+  console.log(e.value);
     if(e.value!=0 && e.value!==undefined){
       this.user.countryCode=e.value;
     }
@@ -228,7 +228,7 @@ export class EditProfileComponent implements OnInit{
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.user.photo='assets/images/imgProfile/'+url;
+         this.user.photo=url;
          let img=document.querySelector(".divPhoto");
          this._renderer.setElementStyle(img, 'background-image', `url("${this.user.photo}")`);
          };

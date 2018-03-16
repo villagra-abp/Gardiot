@@ -49,7 +49,7 @@ plant.getPlantsByFamily = function(id, number, page, sort, callback) { //HAY QUE
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
+    connection.query('SELECT COUNT(*) OVER () AS number, Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = family.id AND family.id = ' + id + 'ORDER BY commonName ' + orderSentence + ' LIMIT ' + minPeak + ',' + maxPeak, function(error, row) {
       if (error)
         callback(error, null);
       else
@@ -83,12 +83,9 @@ plant.updatePlant = function(data, id, callback) {
     sql += ' WHERE id= "' + id +'"';
     connection.query(sql, function(error, result) {
 			if (error)
-				callback(error, null);
-			else{
-        if(result.affectedRows < 1)
-          callback(null, {"mensaje":"No existe"});
-        else
-  				callback(null, {"mensaje":"Actualizado"});
+        callback(error, null);
+      else{
+        callback(null, result.affectedRows);
       }
 		});
   }

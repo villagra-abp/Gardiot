@@ -10,7 +10,7 @@ export class User {
    public photo?: string,
    public countryCode?: string,
    public city?: string,
-   public birthDate?: Date,
+   public birthDate?: string,
    public active?: number,
    public admin?: number) {
 

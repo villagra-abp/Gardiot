@@ -2,119 +2,85 @@ var connection = require('../config/connection');
 
 var treatment = {};
 
-treatment.getTreatment = function(callback) {
+treatment.getTreatments = function(number, page, sort, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Treatment' , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
+    let minPeak = (page - 1) * number;
+    let orderSentence = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    connection.query('SELECT * FROM Treatment ORDER BY name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
+      if(error)
+        callback (error, null);
+      else
         callback(null, rows);
-      }
     });
   }
 }
 
-treatment.getTreatmentsByPlant = function(plant, callback) {
-  if(connection) {
-    var sentence = 'SELECT Treatment.id, Treatment.name, Treatment.description';
-    sentence += ' FROM Plant INNER JOIN TreatmentPlant ON TreatmentPlant.plant=Plant.id ';
-    sentence += 'INNER JOIN Treatment ON Treatment.id=TreatmentPlant.plant where Plant.id=' + plant;
-    connection.query(sentence, function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
-        callback(null, rows);
-      }
+treatment.getTreatmentsNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS NUMTREATMENT FROM Treatment', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
     });
   }
 }
-
-treatment.getTreatmentsByGarden = function(garden, callback) {
-  if(connection) {
-    var sentence = 'SELECT Treatment.id, Treatment.name, Treatment.description FROM Garden';
-    sentence += ' INNER JOIN MyPlant on MyPlant.garden=Garden.id INNER JOIN Plant';
-    sentence += ' ON Plant.id=MyPlant.plant INNER JOIN TreatmentPlant ON TreatmentPlant.plant=Plant.id';
-    sentence += ' INNER JOIN Treatment ON Treatment.id=TreatmentPlant.plant where Garden.id=' + garden;
-    connection.query(sentence , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
-        callback(null, rows);
-      }
-    });
-  }
-}
-
 
 treatment.getTreatmentById = function(id, callback) {
-	if (connection) {
-		var sentence = 'SELECT * FROM Treatment WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
-				callback(null, row);
-			}
-		});
-	}
+  if (connection) {
+    connection.query('SELECT name, description FROM Treatment WHERE id = ' + id, function(error, row) {
+      if (error)
+        callback (error, null);
+      else
+        callback(null, row);
+    });
+  }
 }
 
 treatment.insertTreatment = function(data, callback) {
-  if(connection) {
-    var sentence = 'INSERT INTO Treatment(name, description) values("'+data.name+'", "'+data.description+'")';
-    connection.query(sentence, function(error, result){
+if(connection) {
+    sql = 'INSERT INTO Treatment SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
       else
         callback(null, result.affectedRows);
     });
   }
 }
 
-treatment.updateTreatment = function(data, callback) {
+
+
+treatment.updateTreatment = function(data, id, callback) {
   if(connection) {
-    commaCounter=0;
-    var sentence =  'UPDATE Treatment SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
-      commaCounter++;
-    }
-    
-    if(data.description) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='description ="' + data.description + '"';
-      commaCounter++;
-    }
-    sentence += ' WHERE id = "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
+    var sql = 'UPDATE Treatment SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id = ' + id;
+    connection.query(sql, function(error, result) {
+      if (error)
+        callback(error, null);
+      else{
+        callback(null, result.affectedRows);
       }
-			else{
-        if(result.affectedRows < 1){
-          callback(null, {"mensaje":"No existe"});
-        }else{
-  				callback(null, {"mensaje":"Actualizado"});
-        }
-      }
-		});
+    });
   }
 }
 
 treatment.deleteTreatment = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Treatment WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
-			if (error)
-				throw error;
-			else
-				callback(null, result.affectedRows);
-		});
+    connection.query('DELETE FROM Treatment WHERE id = ' + id, function(error, result) {
+      if (error)
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    });
   }
 }
 

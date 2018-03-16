@@ -5,9 +5,9 @@ var myPlant = {};
 myPlant.getMyPlantsByGarden = function(garden, user, callback) {
   if(connection) {
     connection.query('SELECT MyPlant.id, MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name AS soil FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ' , function (error, rows){
-      if(error) 
-        callback (error, null);    
-      else 
+      if(error)
+        callback (error, null);
+      else
         callback(null, rows);
     });
   }
@@ -17,10 +17,10 @@ myPlant.getMyPlantsByGarden = function(garden, user, callback) {
 myPlant.getMyPlantById = function(garden, user, id, callback) {
 	if (connection) {
 		connection.query('SELECT MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id  AND Plant.id = ' + id + ' AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ', function(error, row) {
-			if (error) 
-				callback (error, null);			
-			else 
-				callback(null, row);		
+			if (error)
+				callback (error, null);
+			else
+				callback(null, row);
 		});
 	}
 }
@@ -28,6 +28,7 @@ myPlant.getMyPlantById = function(garden, user, id, callback) {
 myPlant.insertMyPlant = function(garden, data, callback) {
   if(connection) {
     sql = 'INSERT INTO MyPlant SET ';
+    console.log(data);
     for (var key in data)
       if (typeof data[key]!== 'undefined')
         sql += key + ' = "' + data[key] + '",';
@@ -37,8 +38,8 @@ myPlant.insertMyPlant = function(garden, data, callback) {
       if(error)
         callback(error, null);
       else
-        callback(null, result.affectedRows);
-    });  
+        callback(null, result.insertId);
+    });
   }
 }
 
@@ -79,7 +80,7 @@ myPlant.isOwner = function (user, garden, callback) {
       else {
         if (result[0].user == user) callback (null, true);
         else callback (null, false);
-      }      
+      }
     });
   }
 }

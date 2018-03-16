@@ -90,7 +90,7 @@ export class EditplantComponent implements OnInit {
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.plant.photo='assets/images/imgPlants/'+url;
+         this.plant.photo=url;
          console.log('hola guapa');
          this.guardar();
          };
@@ -110,18 +110,13 @@ export class EditplantComponent implements OnInit {
           this.plant.distance=data[0].distance;
           this.plant.diseaseResist=data[0].diseaseResist;
 
-          // this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
-          // this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
-          // this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
-          // this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
-          // this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
-          // this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
-          this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
-          this.plant.finDatePlant=data[0].finDatePlant.substring(0, 10);
-          this.plant.initDateBloom=data[0].initDateBloom.substring(0, 10);
-          this.plant.finDateBloom=data[0].finDateBloom.substring(0, 10);
-          this.plant.initDateHarvest=data[0].initDateHarvest.substring(0, 10);
-          this.plant.finDateHarvest=data[0].finDateHarvest.substring(0, 10);
+          this.plant.initDatePlant=this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
+          this.plant.finDatePlant=this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
+          this.plant.initDateBloom=this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
+          this.plant.finDateBloom=this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
+          this.plant.initDateHarvest=this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
+          this.plant.finDateHarvest=this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
+          // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
           this.plant.leaveType=data[0].leaveType;
         },
       error => {

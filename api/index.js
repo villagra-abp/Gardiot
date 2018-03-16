@@ -22,8 +22,6 @@ app.use(passport.initialize());
 require('./config/passport');
 
 require('./functions/cron'); //Purga tokens
-//Blocker
-//app.use('/api', require('./functions/BLOCK')); //Bloquea rutas
 
 //Routes
 app.use('/api', require('./routes/userRoutes'));
@@ -36,12 +34,15 @@ app.use('/api', require('./routes/finderRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
 app.use('/api', require('./routes/uploadRoutes'));
 app.use('/api', require('./routes/myPlantRoutes'));
-//app.use('/api', require('./routes/soilRoutes'));
-//app.use('/api', require('./routes/productRoutes'));
-//app.use('/api', require('./routes/feedRoutes'));
-//app.use('/api', require('./routes/treatmentRoutes'));
+app.use('/api', require('./routes/soilRoutes'));
+app.use('/api', require('./routes/productRoutes'));
+app.use('/api', require('./routes/feedRoutes'));
+app.use('/api', require('./routes/treatmentRoutes'));
 app.use('/api', require('./routes/plantRoutes'));
 app.use('/api', require('./routes/familyRoutes'));
+app.use('/api', require('./routes/taskRoutes'));
+app.use('/api', require('./routes/treatmentPlantRoutes'));
+app.use('/api', require('./routes/productTreatmentRoutes'));
 
 //Start server
 app.listen(config.port, function () {

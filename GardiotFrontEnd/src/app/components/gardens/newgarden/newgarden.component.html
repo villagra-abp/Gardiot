@@ -13,7 +13,7 @@
           <label  for="title">Título: </label>
           <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6"> 
           <label  for="length">Largo: </label>
           <input  class="form-control" type="number" [(ngModel)]="garden.length" name="length" id="length_garden" required>
           <label  for="width">Ancho: </label>
@@ -21,17 +21,17 @@
         </div>
         <div class="form-group col-md-6" ng-init="listarPaises()">
           <label for="countries">País:</label>
- 
+
           <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
           </select2>
- 
+
         </div>
 
           <div class="form-group col-md-6">
             <label for="countries">Introduce tu código postal:</label>
             <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
         </div>
- 
+
         <div class="form-group col-md-6">
             <label for="countries">Ciudad:</label>
             <span id="ciudad"></span>
@@ -44,13 +44,20 @@
             </select2>
 
         </div>-->
-      
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="name_plant">Plantas</label>
+             <select class="form-control selectpicker" multiple  id="name_plant" [(ngModel)]="plant" name="plant" >
+               <option *ngFor="let plant of plants" value="{{plant.id}}">{{plant.commonName}}</option>
+             </select>
+          </div>
+        </div>
 
 
 
         <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
         <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
-        
+
       </form>
     </div>
   </div>

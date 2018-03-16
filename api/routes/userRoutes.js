@@ -10,6 +10,7 @@ var isEmail = require('isemail');
 var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
+var filter = require('../functions/filter');
 
 var routeRequirements = require('../functions/routeRequirements');
 
@@ -20,20 +21,21 @@ var routeRequirements = require('../functions/routeRequirements');
 //*** Registro de usuario. Registrar solo con id, password de momento
 
 router.post('/register', function(request, response) {
-	if (!request.body.id || !request.body.password || !request.body.password2)
+	var userData = {
+			id: request.body.id,
+			password: request.body.password,
+	};
+	console.log(request.body);
+	userData = filter(userData); 
+	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
-	else {
-		var userData = {
-			id: request.body.id,
-			password: request.body.password,
-		};
+	else {	
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
@@ -86,7 +88,7 @@ router.post('/register', function(request, response) {
 router.post('/authenticate', function(request, response) {
 	if (!request.body.id || !request.body.password)
 		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
-	if (!validator.isEmail(request.body.id))
+	if (!validator.isEmail(request.body.id) || !isEmail.validate(request.body.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
 		var id = validator.trim(request.body.id);
@@ -158,11 +160,11 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 		city: request.body.city,
 		oldId: request.user.id
 	};
+	userData = filter(userData); 
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
-		userData = sanitizeInput(userData);
 		if (userData.password) {
 			if (!request.body.oldPassword)
 				response.status(500).json({"Mensaje":"Introduce tu contraseña anterior para cambiarla"});
@@ -248,7 +250,7 @@ router.get('/admin/numUsers', passport.authenticate('jwt', {session: false}), ro
 		if (typeof data !== 'undefined')
 			response.status(200).json(data);
 		else
-			response.status(404).json({"Mensaje":"No existe"}); 
+			response.status(404).json({"Mensaje":"No existe"});
 	});
 
 });
@@ -289,19 +291,19 @@ router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), 
 //*** Inserta un usuario, puede ser admin
 
 router.post('/admin/user', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!request.body.id || !request.body.password)
+	var userData = {
+		id: request.body.id,
+		password: request.body.password,
+		admin: request.body.admin
+	};
+	userData = filter(userData); 
+	if (typeof userData.id!=='undefined' || typeof userData.password!=='undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	else {
-		var userData = {
-			id: request.body.id,
-			password: request.body.password,
-			admin: request.body.admin
-		};
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			userModel.getUserById(userData.id, function(error, data) {
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
@@ -326,7 +328,7 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 //*** Elimina a un usuario
 
 router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+	if (!validator.isEmail(request.params.id) || !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		userModel.deleteUser(request.params.id, function(error, data) {
@@ -346,7 +348,7 @@ router.delete('/admin/user/:id', passport.authenticate('jwt', {session: false}),
 //***Actualiza a otro usuario
 
 router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+	if (!validator.isEmail(request.params.id) || !isEmail.validate(request.params.id))
 		response.status(400).json({"Mensaje":"Introduce un mail válido"});
 	else {
 		var userData = {
@@ -358,13 +360,14 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 			photo: request.body.photo,
 			city: request.body.city,
 			countryCode: request.body.countryCode,
+			admin: request.body.admin,
 			oldId: request.params.id,
 		};
+		userData = filter(userData); 
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			userData = sanitizeInput(userData);
 			if (userData.password) {
 				userModel.genHash(userData.password, function(error, hash) {
 					if (!error) {
@@ -391,28 +394,16 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 	}
 });
 
-
-
-function sanitizeInput(data) {
-	if (data.id) {  data.id = validator.trim(data.id);}
-	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	if (data.lastName) { data.lastName = validator.trim(data.lastName); data.lastName = validator.stripLow(data.lastName); data.lastName = validator.escape(data.lastName);}
-	if (data.photo) data.photo = validator.trim(data.photo);
-	if (data.city) { data.city = validator.trim(data.city); data.city = validator.stripLow(data.city); data.city = validator.escape(data.city);}
-	if (data.oldId) {data.oldId = validator.trim(data.oldId);}
-	return data;
-}
-
 function validateInput(data) {
 	var resp = '';
-	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
-	if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	if (data.lastName && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
-	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
-	if (data.countryCode && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
-	if (data.city && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
-	if (data.photo && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
-	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
+	if (typeof data.id!== 'undefined' && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
+	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.lastName!== 'undefined' && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
+	if (typeof data.birthDate!== 'undefined' && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
+	if (typeof data.city!=='undefined' && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
+	if (typeof data.photo!=='undefined' && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
+	if (typeof data.oldId!=='undefined' && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }

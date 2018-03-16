@@ -7,6 +7,10 @@ import { AppComponent } from "../../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Ng2ImgMaxService} from 'ng2-img-max';
 
+// import { Treatment } from "../../../classes/treatment.class";
+// import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
+// import { TreatmentService } from "../../../services/treatment.service";
+
 @Component({
   selector: 'app-newplant',
   templateUrl: './newplant.component.html',
@@ -14,12 +18,16 @@ import { Ng2ImgMaxService} from 'ng2-img-max';
 })
 export class NewplantComponent implements OnInit {
   plant=new Plant();
+  // treatmentPlant=new TreatmentPlant();
   private plants:any[]=[];
   private families:any[]=[];
+  // private treatments:any[]=[];
+  // private treatmentsPlants:any[]=[];
   uploader:FileUploader;
 
   constructor(
     private _plantService:PlantService,
+    // private _treatmentService:TreatmentService,
     private _appComponent:AppComponent,
     private _ng2ImgMax:Ng2ImgMaxService,
 
@@ -28,14 +36,13 @@ export class NewplantComponent implements OnInit {
   guardar(){
     this._plantService.save(this.plant)
         .subscribe(data=>{
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "admin/plantdata");
+            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plants?pag=1");
         },
         error=>{
           let v=JSON.parse(error._body);
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
   }
-
 
   mostrarFamilias(){
     this._plantService.detailsAllFamilies()
@@ -47,8 +54,19 @@ export class NewplantComponent implements OnInit {
       error => {
         console.error(error);
       });
-
     }
+    // mostrarTratamientos(){
+    //   this._treatmentService.detailsAll(1,10000)
+    //       .subscribe(data=>{
+    //                       console.log(data);
+    //         for(let key$ in data){
+    //           this.treatments.push(data[key$]);
+    //         }
+    //       },
+    //     error => {
+    //       console.error(error);
+    //     });
+    //   }
 
   uploadPhoto(){
     let imgUpl=<HTMLInputElement>document.querySelector('#photo_plant');
@@ -82,13 +100,14 @@ export class NewplantComponent implements OnInit {
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.plant.photo='assets/images/imgPlants/'+url;
+         this.plant.photo=url;
          this.guardar();
          };
   }
 
   ngOnInit() {
     this.mostrarFamilias();
+    // this.mostrarTratamientos();
     this.managePhoto();
 
 

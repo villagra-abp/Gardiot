@@ -2,35 +2,70 @@ var connection = require('../config/connection');
 
 var feed = {};
 
-feed.getFeed = function(callback) {
+feed.getFeeds = function(number, page, sort, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Feed' , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
+    let minPeak = (page - 1) * number;
+    let orderSentence = '';
+    if (sort.toUpperCase() === 'DESC')
+      orderSentence = 'DESC';
+    connection.query('SELECT * FROM Feed ORDER BY dateInit ' + orderSentence + ' LIMIT ' + minPeak + ',' + number , function (error, rows){
+      if(error)
+        callback (error, null);
+      else
         callback(null, rows);
-      }
     });
   }
 }
 
-
-feed.getFeedById = function(id, callback) {
-	if (connection) {
-		var sentence = 'SELECT * FROM Feed WHERE id = ' + id;
-		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
-				callback(null, row);
-			}
-		});
-	}
+feed.getUnseenFeedsForToday = function (user, callback) {
+  if (connection) {
+    let TodayDate = new Date();
+    let year = TodayDate.getFullYear();
+    let month = TodayDate.getMonth() + 1;
+    let day = TodayDate.getDate();
+    let rightDate = '' + year + '-' + month + '-' + day;
+    connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND ' + rightDate + ' BETWEEN dateInit AND dateFinal ORDER BY Feed.name', function (error, rows) {
+      if(error)
+        callback (error, null);
+      else
+        callback(null, rows);
+    });
+  }
 }
 
-feed.getFeedSearch = function(name, callback) {
+feed.setFeedSeen = function (feed, user, callback) {
+  if (connection) {
+    connection.query('UPDATE UserFeed SET viewed = 1 WHERE user = "' + user + '" AND feed = ' + feed, function (error, result) {
+        if (error)
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    })
+  }
+}
+
+
+feed.getFeedsNumber = function (callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS number FROM Feed', function (error, number) {
+      if (error) callback (error, null);
+      else callback (null, number);
+    });
+  }
+}
+
+feed.getFeedById = function(id, callback) {
+  if (connection) {
+    connection.query('SELECT name, text, date FROM Feed WHERE id = ' + id, function(error, row) {
+      if (error)
+        callback (error, null);
+      else
+        callback(null, row);
+    });
+  }
+}
+
+/*feed.getFeedSearch = function(name, callback) {
 	if (connection) {
 		var sentence = 'SELECT * from Feed where name like "%'+name+'%" order by name ASC';
 		connection.query(sentence, function(error, row) {
@@ -42,67 +77,55 @@ feed.getFeedSearch = function(name, callback) {
 			}
 		});
 	}
-}
+}*/
 
 feed.insertFeed = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Feed(name, text, date) values("'+data.name+'", "'+data.text+'", "'+data.date+'")';
-    connection.query(sentence, function(error, result){
+    sql = 'INSERT INTO Feed SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
+      else {
+        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (error, result) {
+          if(error)
+            callback(error, null);
+          else
+            callback(null, result.affectedRows);
+        });
+      }
+    });
+  }
+}
+
+feed.updateFeed = function(data, id, callback) {
+  if(connection) {
+    var sql = 'UPDATE Feed SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id = ' + id;
+    connection.query(sql, function(error, result) {
+      if (error)
+        callback(error, null);
       else
         callback(null, result.affectedRows);
     });
   }
 }
 
-feed.updateFeed = function(data, callback) {
-  if(connection) {
-    commaCounter=0;
-    var sentence =  'UPDATE Feed SET ';
-    if(data.name){
-      sentence += 'name = "' + data.name + '"' ;
-      commaCounter++;
-    }
-
-    if(data.text) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='text ="' + data.text + '"';
-      commaCounter++;
-    }
-    if(data.date) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='date ="' + data.date + '"';
-      commaCounter++;
-    }
-
-    sentence += ' WHERE id = "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
-      }
-			else{
-        if(result.affectedRows < 1){
-          callback(null, {"mensaje":"No existe"});
-        }else{
-  				callback(null, {"mensaje":"Actualizado"});
-        }
-      }
-		});
-  }
-}
-
 feed.deleteFeed = function(id, callback) {
   if(connection) {
-    var sentence = 'DELETE FROM Feed WHERE id = "' + id + '"';
-    connection.query(sentence, function(error, result) {
-			if (error)
-				throw error;
-			else
-				callback(null, result.affectedRows);
-		});
+    connection.query('DELETE FROM Feed WHERE id = ' + id, function(error, result) {
+      if (error)
+        callback(error, null);
+      else
+        callback(null, result.affectedRows);
+    });
   }
 }
 

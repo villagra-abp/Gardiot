@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
 
 var familyModel = require('../models/family');
 
@@ -43,11 +44,11 @@ router.post('/admin/family', passport.authenticate('jwt', {session: false}), rou
 		name: request.body.name,
     	description: request.body.description,
 	};
+	familyData = filter(familyData); 
 	var validate = validateInput(familyData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
 	else {
-		familyData = sanitizeInput(familyData);
 		familyModel.insertFamily(familyData, function(error, data) {
 			if (data)
 				response.status(200).json({"Mensaje":"Insertado"});
@@ -58,22 +59,23 @@ router.post('/admin/family', passport.authenticate('jwt', {session: false}), rou
 });
 
 router.put('/admin/family/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.id, {gt: 0})) {
+	if (!validator.isInt(request.params.id, {gt: 0})) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
-	}
 	else {
 		var familyData = {
 	    	name: request.body.name,
 	    	description: request.body.description,
 		};
+		familyData = filter(familyData); 
 		var validate = validateInput(familyData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
-			familyData = sanitizeInput(familyData);
 			familyModel.updateFamily(familyData, request.params.id, function(error, data) {
-				if (data && data.mensaje)
-					response.status(200).json(data);
+				if (data == 1)
+					response.status(200).json({"Mensaje":"Actualizado"});
+				else if (data == 0)
+					response.status(404).json({"Mensaje":"No existe"});
 				else
 					response.status(500).json({"Mensaje":error.message});
 			});
@@ -96,18 +98,11 @@ router.delete('/admin/family/:id', passport.authenticate('jwt', {session: false}
 	}
 });
 
-function sanitizeInput(data) {
-	if (data.id) {  data.id = validator.trim(data.id); data.id = validator.toInt(data.id);}
-	if (data.name) { data.name = validator.trim(data.name); data.name = validator.stripLow(data.name); data.name = validator.escape(data.name);}
-	if (data.description) { data.description = validator.trim(data.description); data.description = validator.stripLow(data.description); data.description = validator.escape(data.description);}
-	return data;
-}
-
 function validateInput(data) {
 	var resp = '';
-	if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+	if (typeof data.id !== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.description !== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }

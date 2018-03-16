@@ -12,7 +12,7 @@
       <button class="btn btn-default" type="submit">Buscar</button>
     </article>
     <article class="form-group col-md-2">
-      <button  [routerLink]="['/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
+      <button  [routerLink]="['/admin/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
     </article>
   </form>
   <table class="table table-hover">
@@ -34,11 +34,11 @@
       <td>{{user.id}}</td>
       <td>{{user.admin}}</td>
       <td>{{user.active}}</td>
-      <td><button  class="btn btn-outline-primary" [routerLink]="['/edituser/carlos@gmail.com']">Modificar</button></td>
-      <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" >Eliminar</button></td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]">Modificar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" >Eliminar</button></td>
     </tr>
   </tbody>
 </table>
-  <app-pagination [count]="13" [page]="1" [perPage]="3" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+  <app-pagination [count]="this.numeroItems" [type]="4" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
 </div>
 </div>

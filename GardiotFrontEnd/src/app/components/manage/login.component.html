@@ -18,6 +18,9 @@
 
         <button [disabled]="!forma.valid"
               type="submit" class="btn btn-primary">Log in</button>
+
+        <button [routerLink] ="['/resetPass']" class="btn btn-info" name="button">Reset Pass</button>
+
       </form>
       <br>
       <a href="{{this._loginService.apiURL}}auth/google" class="btn btn-secondary">Inicio de sesión con Google</a>

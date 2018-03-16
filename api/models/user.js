@@ -35,7 +35,7 @@ user.getUserById = function(id, callback) {
 
 user.getUsersNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) AS numero FROM User', function (error, number) {
+    connection.query('SELECT COUNT(*) AS NUMUSERS FROM User', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
     });
@@ -48,15 +48,21 @@ user.insertUser = function(userData, callback) {
 		for (var key in userData)
       		if (typeof userData[key]!== 'undefined') {
         		mariasql += key + ' = "' + userData[key] + '",';
-        		if (key == 'googleId' || key == 'facebookId')
+        		if (key == 'googleId' || key == 'facebookId' || key == 'admin')
         			mariasql += 'active = 1,';
       		}
 		mariasql = mariasql.slice(0, -1);
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
-			else
-				callback(null, result.affectedRows);
+			else {
+				connection.query('INSERT INTO UserFeed (feed, user) SELECT id, "' + userData.id + '" FROM Feed', function (error, rows) {
+					if (error)
+						callback (error, null);
+					else
+						callback(null, result.affectedRows);
+				})
+			}
 		});
 	}
 }

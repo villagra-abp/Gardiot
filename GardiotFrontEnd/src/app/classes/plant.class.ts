@@ -12,12 +12,12 @@ export class Plant {
    public depth?: number,
    public distance?: string,
    public diseaseResist?: string,
-   public initDatePlant?: Date,
-   public finDatePlant?: Date,
-   public initDateBloom?: Date,
-   public finDateBloom?: Date,
-   public initDateHarvest?: Date,
-   public finDateHarvest?: Date,
+   public initDatePlant?: string,
+   public finDatePlant?: string,
+   public initDateBloom?: string,
+   public finDateBloom?: string,
+   public initDateHarvest?: string,
+   public finDateHarvest?: string,
    public leaveType?: string) {
 
  }
