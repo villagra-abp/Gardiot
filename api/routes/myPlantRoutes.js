@@ -47,8 +47,8 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 	myPlantData = filter(myPlantData); 
 	if (typeof myPlantData.xCoordinate!== 'undefined' || typeof myPlantData.yCoordinate!== 'undefined' || typeof myPlantData.plant!== 'undefined' || typeof myPlantData.soil!== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
-	//else if (!validator.isInt(request.params.garden, {gt: 0}))
-		//response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else if (!validator.isInt(request.params.garden, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
 			if (error)
@@ -77,7 +77,7 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 							else
 								response.status(500).json({"Mensaje":error.message});
 						});
-					// }
+					}
 				}
 				else response.status(403).json({"Mensaje":"No puedes insertar una planta en el jardin de otro usuario."});
 			}

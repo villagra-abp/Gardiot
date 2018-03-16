@@ -87,7 +87,7 @@ router.post('/register', function(request, response) {
 router.post('/authenticate', function(request, response) {
 	if (!request.body.id || !request.body.password)
 		return response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
-	if (!validator.isEmail(request.body.id) || !isEmail.validate(data.id))
+	if (!validator.isEmail(request.body.id) || !isEmail.validate(request.body.id))
 		response.status(400).json({"Mensaje":"Introduce un email válido"});
 	else {
 		var id = validator.trim(request.body.id);
@@ -395,14 +395,14 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 
 function validateInput(data) {
 	var resp = '';
-	if (data.id && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
-	if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	if (data.lastName && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
-	if (data.birthDate && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
-	if (data.countryCode && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
-	if (data.city && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
-	if (data.photo && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
-	if (data.oldId && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
+	if (typeof data.id!== 'undefined' && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
+	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.lastName!== 'undefined' && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
+	if (typeof data.birthDate!== 'undefined' && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
+	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
+	if (typeof data.city!=='undefined' && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
+	if (typeof data.photo!=='undefined' && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
+	if (typeof data.oldId!=='undefined' && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }
