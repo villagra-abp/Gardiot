@@ -8,11 +8,19 @@ class TRecursoMalla extends TRecurso{
     this._textura;
     this._textureCoords=[];
 
+    //materiales
+    this.Ka=[];
+    this.Kd=[];
+    this.Ks=[];
+    this.shininess=0.0;
+    this.opacity=1.0;
+
     this.bufferVertices;
     this.bufferIndex;
     this.bufferTextureCoords;
     this.bufferNormales;
     this.texTextura;
+
 
   }
   cargarFichero(nombre){
@@ -46,6 +54,32 @@ class TRecursoMalla extends TRecurso{
         this._textureCoords=objeto.meshes[0].texturecoords[0];
       }
 
+      //almacenamos el material del objeto
+      if(objeto.materials.length>0){
+        for(let i=0; i<objeto.materials[objeto.materials.length-1].properties.length; i++){
+          switch(objeto.materials[objeto.materials.length-1].properties[i].key){
+            case "$clr.ambient":{
+              this.Ka=objeto.materials[objeto.materials.length-1].properties[i].value;
+            }
+            case "$clr.diffuse":{
+              this.Kd=objeto.materials[objeto.materials.length-1].properties[i].value;
+            }
+            case "$clr.specular":{
+              this.Ks=objeto.materials[objeto.materials.length-1].properties[i].value;
+            }
+            case "$mat.shininess":{
+              this.shininess=objeto.materials[objeto.materials.length-1].properties[i].value;
+            }
+            case "$mat.opacity":{
+              this.opacity=objeto.materials[objeto.materials.length-1].properties[i].value;
+            }
+            default: {
+            }
+          }
+        }
+      }
+      console.log(this.nombre);
+      console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
 
       //almacenamos las normales de los vértices
       if(objeto.meshes[0].normals!==undefined){
@@ -79,7 +113,7 @@ class TRecursoMalla extends TRecurso{
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
 
     //==============CREACIÓN BUFFER DE ÍNDICES==============
-    //Ahora vamos a crear el índice de vértices 
+    //Ahora vamos a crear el índice de vértices
     //(esto es como indicarle a WebGL los vértices que componen cada cara)
     this.bufferIndex=gl.createBuffer();
     this.bufferIndex.number_vertex_points=this._verticesIndex.length;
@@ -93,6 +127,10 @@ class TRecursoMalla extends TRecurso{
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
     }
 
+    //================MATERIALES=====================
+    if(this.Ka.length>0 && this.Kd.length>0 && this.Ks>0){
+
+    }
 
     if(this._normales.length>0){
       //==============CREACIÓN BUFFER DE NORMALES==============
@@ -101,10 +139,9 @@ class TRecursoMalla extends TRecurso{
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
     }
 
-
   }
- 
-  
+
+
   draw(){
     let normales, vertexPositionAttribute, vertexTexCoordAttribute, vertexNormalAttribute;
 
@@ -160,8 +197,19 @@ class TRecursoMalla extends TRecurso{
       gl.vertexAttribPointer(vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
     }
 
+    //MATERIALES
+    if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
+      //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
+      gl.uniform3fv(glProgram.ka, this.Ka);
+      gl.uniform3fv(glProgram.kd, this.Kd);
+      gl.uniform3fv(glProgram.ks, this.Ks);
 
-    
+      gl.uniform1f(glProgram.shin, this.shininess);
+      gl.uniform1f(glProgram.opac, this.opacity);
+    }
+
+
+
 
     if(this._normales.length>0){
       //para la iluminación de las mallas
