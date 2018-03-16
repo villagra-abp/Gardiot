@@ -90,7 +90,7 @@ export class EditplantComponent implements OnInit {
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.plant.photo='assets/images/imgPlants/'+url;
+         this.plant.photo=url;
          console.log('hola guapa');
          this.guardar();
          };

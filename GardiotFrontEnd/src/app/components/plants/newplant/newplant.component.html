@@ -1,4 +1,5 @@
-<section class="container">
+<div class="vistaAdmin">
+	<section class="container main-container">
 	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
 		<h4>Datos Básicos</h4>
 	  <div class="form-row">
@@ -145,3 +146,4 @@
 <button  (click)="this.uploadPhoto()" class="btn btn-outline-primary">Guardar cambios</button>
 <button [routerLink] ="['/library']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
 </section>
+</div>
