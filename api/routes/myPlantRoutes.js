@@ -45,7 +45,7 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 	    soil: request.body.soil
 	};
 	myPlantData = filter(myPlantData); 
-	if (typeof myPlantData.xCoordinate!== 'undefined' || typeof myPlantData.yCoordinate!== 'undefined' || typeof myPlantData.plant!== 'undefined' || typeof myPlantData.soil!== 'undefined')
+	if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -60,9 +60,7 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 						response.status(400).json({"Mensaje": validate});
 					else {
 						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
-							console.log('holaaa');
 							if (myPlant) {
-
 								taskModel.insertTasks(myPlant, myPlantData.plant, function (error, inserted) {
 									if (error) {
 										myPlantModel.deleteMyPlant(myPlant, function(error, data) {
