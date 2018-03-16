@@ -44,20 +44,20 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 	    plant: request.body.plant,
 	    soil: request.body.soil
 	};
-	myPlantData = filter(myPlantData); 
+	myPlantData = filter(myPlantData);
 	if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
-		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+		response.status(413).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
-		response.status(400).json({"Mensaje":"Petición incorrecta"});
+		response.status(412).json({"Mensaje":"Petición incorrecta"});
 	else {
 		myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
 			if (error)
-				response.status(400).json({"Mensaje":"Error: " + error.message});
+				response.status(411).json({"Mensaje":"Error: " + error.message});
 			else {
-				if (owner == true) {					
+				if (owner == true) {
 					var validate = validateInput(myPlantData);
 					if (validate.length > 0)
-						response.status(400).json({"Mensaje": validate});
+						response.status(410).json({"Mensaje": validate});
 					else {
 						myPlantModel.insertMyPlant(request.params.garden, myPlantData, function(error, myPlant) {
 							if (myPlant) {
@@ -96,7 +96,7 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 		    plant: request.body.plant,
 		    soil: request.body.soil
 		};
-		myPlantData = filter(myPlantData); 
+		myPlantData = filter(myPlantData);
 		if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
@@ -104,25 +104,25 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 				if (error)
 					response.status(400).json({"Mensaje":"Error: " + error.message});
 				else {
-					if (owner == true) {						
+					if (owner == true) {
 						var validate = validateInput(myPlantData);
 						if (validate.length > 0)
 							response.status(400).json({"Mensaje": validate});
 						else {
 							myPlantModel.updateMyPlant(request.params.id, myPlantData, function(error, data) {
-								if (data == 1) 
-									response.status(200).json({"Mensaje":"Actualizado"});	
+								if (data == 1)
+									response.status(200).json({"Mensaje":"Actualizado"});
 								else if (data == 0)
-									response.status(404).json({"Mensaje":"No existe"});			
-								else 
-									response.status(500).json({"Mensaje":error.message});			
+									response.status(404).json({"Mensaje":"No existe"});
+								else
+									response.status(500).json({"Mensaje":error.message});
 							});
-						}				
+						}
 					}
 					else response.status(403).json({"Mensaje":"No puedes modificar una planta en el jardin de otro usuario."});
 				}
 			});
-		}		
+		}
 	}
 });
 

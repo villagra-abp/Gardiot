@@ -77,12 +77,8 @@ export class GardenService {
           })
     }
 
-		saveplants( plant:number,X:number, garden:number){
-			var f = new Date();
-			f.getDate();
-			f.getMonth() +1;
-			f.getFullYear();
-			let body = `plant=${plant}&xCoordinate=${X}&yCoordinate=${0}&seed=${f}&soil=${1}`;
+		saveplants( plant:number,X:number, garden:number,fecha_actual:string){
+			let body = `plant=${plant}&xCoordinate=${X}&yCoordinate=${0}&seed=${fecha_actual}&soil=${1}`;
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'

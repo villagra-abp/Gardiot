@@ -8,6 +8,7 @@ import { Plant } from "../../../classes/plant.class";
 import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
+import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
 
 @Component({
@@ -37,6 +38,7 @@ export class NewGardenComponent implements OnInit{
 	    private _gardenService:GardenService,
       private _plantService:PlantService,
 	    private _route:Router,
+      private datePipe: DatePipe,
 	    private _appComponent:AppComponent){ }
 
    @HostListener('document:keyup', ['$event'])
@@ -163,9 +165,15 @@ export class NewGardenComponent implements OnInit{
         .subscribe(data=>{
           this.idNewJardin=data;
           let X:number=-20;
+          let f = new Date();
+          let fecha_actual:string;
+          f.getDate();
+          f.getMonth() +1;
+          f.getFullYear();
+          fecha_actual=this.datePipe.transform(f, 'yyyy-MM-dd');
           for(let cont=0; cont<this.plant.length; cont++){
             X=X-cont;
-            this._gardenService.saveplants(this.plant[cont],X,this.idNewJardin)
+            this._gardenService.saveplants(this.plant[cont],X,this.idNewJardin,fecha_actual)
                 .subscribe(data=>{
                 },
                 error=>{
@@ -178,17 +186,6 @@ export class NewGardenComponent implements OnInit{
         let v=JSON.parse(error._body);
         this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
       });
-      // let X:number=-20;
-      // for(let cont=0; cont<this.plant.length; cont++){
-      //   X=X-cont;
-      //   console.log(this.idNewJardin);
-      //   this._gardenService.saveplants(this.plant[cont],X,this.idNewJardin)
-      //       .subscribe(data=>{
-      //       },
-      //       error=>{
-      //         let v=JSON.parse(error._body);
-      //       });
-      // }
   }
 
   saveCountry(e){
