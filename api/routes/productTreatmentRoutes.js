@@ -27,7 +27,7 @@ router.post('/admin/productTreatment', passport.authenticate('jwt', {session: fa
 		product: request.body.product,
 	};
 	productTreatment = filter(productTreatment); 
-	if (typeof productTreatment.plant!== 'undefined' || typeof productTreatment.product !== 'undefined' || typeof productTreatment.treatment !== 'undefined')
+	if (typeof productTreatment.plant=== 'undefined' || typeof productTreatment.product === 'undefined' || typeof productTreatment.treatment === 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios."});
 	else {		
 		var validate = validateInput(productTreatment);
