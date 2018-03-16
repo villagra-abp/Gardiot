@@ -11,6 +11,22 @@ struct DirectionalLight
 	vec3 specColor;
 };
 
+struct Propiedades{
+	float shininess;
+	float opacity;
+};
+
+struct Material
+{
+	vec3 Ka;//reflexión luz ambiente del objeto
+	vec3 Kd;//reflexión luz difusa del objeto
+	vec3 Ks;//reflexión luz especular del objeto
+};
+
+
+
+uniform Material material;
+uniform Propiedades propiedades;
 uniform DirectionalLight uLight[5];
 uniform sampler2D uSampler;
 uniform int uTextured;
@@ -22,21 +38,21 @@ const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 void main()
 {
 
-	vec3 normal=normalize(vNormalInterp);
-	vec3 lightDir=normalize(uLight[0].position.xyz-vVertPosition);
+	vec3 N=normalize(vNormalInterp);
+	vec3 L=normalize(uLight[0].position.xyz-vVertPosition);
 
-	float lambertian=max(dot(lightDir, normal), 0.0);
+	float LN=max(dot(L, N), 0.0);
 	float specular=0.0;
 
-	if(lambertian>0.0){
-		vec3 reflectDir=reflect(-lightDir, normal);
-		vec3 viewDir=normalize(-vVertPosition);
+	if(LN>0.0){
+		vec3 R=reflect(-L, N);
+		vec3 V=normalize(-vVertPosition);
 
-		float specAngle=max(dot(reflectDir, viewDir), 0.0);
-		specular=pow(specAngle, 30.0);
+		float RV=max(dot(R, V), 0.0);
+		specular=pow(RV, propiedades.shininess);
 	}
 
-	vec3 vLight=cAmbientLight+lambertian*uLight[0].color+specular*uLight[0].specColor;
+	vec3 vLight = material.Ka * cAmbientLight + material.Kd * LN * uLight[0].color + material.Ks * specular * uLight[0].specColor;
 
 	vec4 texel;
 	if(uTextured==1){
@@ -48,6 +64,6 @@ void main()
 
 
 
-	gl_FragColor=vec4(texel.rgb*vLight, texel.a);
+	gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 
 }

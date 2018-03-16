@@ -56,7 +56,7 @@ class TMotor{
         this.dibujarLucesActivas();
 
         //inicializar viewport
-		gl.viewport(0, 0, canvas.width, canvas.height);
+		    gl.viewport(0, 0, canvas.width, canvas.height);
 
         //inicializar cámara
         this.dibujarCamaraActiva();
@@ -93,7 +93,7 @@ class TMotor{
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
-		cam.entity.setParams(-10, 10, -10, 10, 1, 100);
+		cam.entity.setParams(-1, 1, -1, 1, 1, 1000);
 		this.camaraRegistro.push(cam);
 		return cam;
 	}
@@ -157,10 +157,10 @@ class TMotor{
 		let camaraActiva=this.getCamaraActiva();
 		//crear matriz projection a partir de la info almacenada
 		if(!camaraActiva.entity._isPerspective){
-            mat4.ortho(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
+            mat4.ortho(matrixProjection, camaraActiva.entity._left*90, camaraActiva.entity._right*90, camaraActiva.entity._bottom*90, camaraActiva.entity._top*90, camaraActiva.entity._near*1, camaraActiva.entity._far*1000);
         }
         else{
-            mat4.frustum(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near*10, camaraActiva.entity._far);
+            mat4.frustum(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
         }
 
         //recorrer al árbol a la inversa desde la cámara a la raíz
