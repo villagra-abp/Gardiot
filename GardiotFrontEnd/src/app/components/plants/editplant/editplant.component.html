@@ -1,4 +1,5 @@
-<section class="container">
+<div class="vistaAdmin">
+	<section class="container main-container">
 	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
 		<h4>Datos Básicos</h4>
 	  <div class="form-row">
@@ -106,7 +107,7 @@
 					<div class="form-group col-md-6">
 						<label for="date_finDateHarvest">Fin</label>
 						<input type="date" class="form-control" [(ngModel)]="plant.finDateHarvest" name="finDateHarvest" id="date_finDateHarvest">
-					</div>  
+					</div>
 				</div>
 	    </div>
 	  </fieldset>
@@ -114,3 +115,4 @@
 		<button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
 	</form>
 </section>
+</div>

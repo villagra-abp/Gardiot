@@ -228,7 +228,7 @@ export class EditProfileComponent implements OnInit{
          url=url[url.length-1];
          url=url.split("\\");
          url=url[url.length-1];
-         this.user.photo='assets/images/imgProfile/'+url;
+         this.user.photo=url;
          let img=document.querySelector(".divPhoto");
          this._renderer.setElementStyle(img, 'background-image', `url("${this.user.photo}")`);
          };

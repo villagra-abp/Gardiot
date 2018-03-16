@@ -41,7 +41,12 @@ export class LoginComponent implements OnInit{
             }
             else{
               this._loginService.isAdmin=false;
-              this._route.navigate(['/detail']);
+              if(window.location.toString().indexOf('gardiot')>=0){
+                window.location.href='https://gardiot.ovh/app/detail';
+              }
+              else{
+                window.location.href='http://localhost:4200/detail';
+              }
             }
           },error=>{
             this._loginService.isAdmin=false;
