@@ -20,7 +20,7 @@ class TMotor{
     //empezamos a dibujar con los fps que le pasemos por parámetro
     startDrawing(vs, fs){
     	this.running=true;
-    	fpsInterval=1000/24;
+    	fpsInterval=1000/60;
     	then=Date.now();
     	startTime=then;
     	if(vs!==undefined && fs!==undefined){
@@ -46,11 +46,35 @@ class TMotor{
     	this.running=false;
     }
 
+    startDrawingStatic(vs, fs){
+    	if(vs!==undefined && fs!==undefined){
+	    	this.vertexShader=vs;
+	    	this.fragmentShader=fs;
+	    }
+    	if(iniciamosWebGL('myCanvas')){
+	        configurarShaders(this.vertexShader, this.fragmentShader);
+          window.interval=setInterval(function(){
+            //Cuando esté todo cargado, dibujamos
+            if(window.loading.length==0){
+              motor.draw();
+              motor.allLoaded();
+            }
+          }, 100);
+    	}
+    	else{
+  			alert("No funciona WebGL");
+  		}
+    }
+
+    allLoaded() {
+        clearInterval(window.interval);
+    }
+
 
 	draw(){
 
 		//iniciamos los parámetros básicos de webGL
-	    setupWebGL();
+	      setupWebGL();
 
         //inicializar luces
         this.dibujarLucesActivas();
@@ -425,6 +449,21 @@ class TMotor{
 		}
 
 	}
+
+  getMallaPos(nombre){
+    var pos = -1;
+
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(nombre == this.mallaRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      console.log(this.mallaRegistro[pos].dad.dad.dad.entity.matrix[12]);
+			 return [this.mallaRegistro[pos].dad.dad.dad.entity.matrix[12], this.mallaRegistro[pos].dad.dad.dad.entity.matrix[14]];
+		}
+  }
 //=================================FIN MALLAS============================
 
 

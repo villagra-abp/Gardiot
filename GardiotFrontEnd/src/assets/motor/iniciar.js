@@ -1,7 +1,8 @@
 function iniciar(accion){
   window.canvas=null;
 
-
+  window.loading=[];
+  window.interval;
   //bucle movimiento
   window.frames=0;
   window.fpsInterval=0;
@@ -98,12 +99,7 @@ function iniciar(accion){
   motor.moverCamara("camara2", 0,2000, 0);
   motor.rotarCamara("camara2", -90, "x");
 
-  if(accion=='detail'){
-    motor.activarCamara("camara1");
-  }
-  else if(accion=='edit'){
-    motor.activarCamara("camara2");
-  }
+
 
 
   motor.activarLuz("luz1");
@@ -140,7 +136,16 @@ function iniciar(accion){
   window.glProgram=null;
 
 
-  motor.startDrawing('shaderP.vs', 'shaderP.fs');
+  if(accion=='detail'){
+    motor.activarCamara("camara1");
+    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+  }
+  else if(accion=='edit'){
+    motor.activarCamara("camara2");
+    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    motor.startDrawing('shaderP.vs', 'shaderP.fs');
+  }
+
 
 
 
