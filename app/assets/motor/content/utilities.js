@@ -1,6 +1,17 @@
 var loadTextResource=function (url, callback){
 	var request = new XMLHttpRequest();
-    request.open('GET', url+'?dont_cache=', false);
+    let resURL='';
+    if(window.location.toString().indexOf('gardiot')>=0){
+        resURL='https://gardiot.ovh/app/assets/motor'+url;
+    }
+    else if(window.location.toString().indexOf('localhost:4200')>=0){
+        resURL='http://localhost:4200/assets/motor'+url;
+    }
+    else if(window.location.toString().indexOf('localhost:8080')>=0){
+        resURL=url;
+    }
+    console.log(resURL);
+    request.open('GET', resURL, false);
     request.onload=function(){
       if(request.status<200 || request.status>299){
         callback('Error: HTTP Status ' + request.status);
@@ -11,20 +22,13 @@ var loadTextResource=function (url, callback){
     request.send();
 };
 
-var loadImage = function (url, callback){
-  let image=new Image();
-    image.onload = function(){
-      callback(null, image);
-    };
-    image.src=url;
-};
-
 var loadJSONResource=function(url, callback){
   loadTextResource(url, function (err, result){
     if(err){
       callback(err);
     } else{
       try{
+				console.log(JSON.parse(result));
         callback(null, JSON.parse(result));
       } catch(e){
         callback(e);
@@ -40,7 +44,7 @@ function makeShader(src, type){
     gl.compileShader(shader);
 
     if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
-        alert("Error compilando el Shader "+gl.getShaderInfoLog(shader));
+        alert("Error compilando el Shader " + gl.getShaderInfoLog(shader));
     }
     return shader;
 }
@@ -79,7 +83,7 @@ function configurarShaders(vertexShader, fragmentShader){
 
 //inicializamos parámetros básicos de WebGL (como el viewport)
 function setupWebGL(){
-    
+
     //establece el clear color a blanco
     gl.clearColor(0.1, 0.8, 0.9, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
@@ -92,9 +96,16 @@ function setupWebGL(){
     glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
 
     glProgram.samplerUniform = gl.getUniformLocation(glProgram, "uSampler");
-
+    glProgram.textured=gl.getUniformLocation(glProgram, "uTextured");
     //matriz de normales
     glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
+
+		glProgram.ka=gl.getUniformLocation(glProgram, "material.Ka");
+		glProgram.kd=gl.getUniformLocation(glProgram, "material.Kd");
+		glProgram.ks=gl.getUniformLocation(glProgram, "material.Ks");
+
+		glProgram.shin=gl.getUniformLocation(glProgram, "propiedades.shininess");
+		glProgram.opac=gl.getUniformLocation(glProgram, "propiedades.opacity");
 
 
 
@@ -115,4 +126,23 @@ function iniciamosWebGL(idCanvas){
     catch(e){
         return false;
     }
+}
+
+function animLoop(){
+    now=Date.now();
+    elapsed=now-then;
+
+    if(elapsed>fpsInterval && motor.running){
+        then=now-(elapsed%fpsInterval);
+        motor.rotarMalla("malla3", 1, "y");
+        motor.rotarMalla("malla3", 1, "x");
+        motor.rotarMalla("malla3", 1, "z");
+
+        motor.rotarMalla("malla2", 1, "x");
+
+        motor.draw();
+
+    }
+
+    requestAnimationFrame(animLoop, canvas);
 }
