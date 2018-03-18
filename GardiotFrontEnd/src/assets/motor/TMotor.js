@@ -11,6 +11,7 @@ class TMotor{
         this.lucesActivas=0;
         this.camaraRegistro = [];
         this.camaraActiva = -1;
+
         this.mallaRegistro = [];
         this.running=false;
         this.vertexShader;
@@ -34,7 +35,7 @@ class TMotor{
 	        //esta función está en content/utilities
 	        configurarShaders(this.vertexShader, this.fragmentShader);
 
-	    	//bucle de animación en utilities.js
+	    	  //bucle de animación en utilities.js
 	        animLoop();
     	}
     	else{
@@ -108,19 +109,24 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-			var traCam = new TNodo(nombre + "_T",  new TTransf(), hermano.dad );
+      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), hermano.dad);
+      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}else{
 			//console.log("crea en raiz");
-			var traCam = new TNodo(nombre + "_T",  new TTransf(), this.escena );
+      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), this.escena);
+      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
-		cam.entity.setParams(-1, 1, -1, 1, 1, 1000);
+		cam.entity.setParams(-1, 1, -0.7, 0.7, 1, 1000);
 		this.camaraRegistro.push(cam);
 		return cam;
 	}
+
 	moverCamara(nombre, x, y, z){
 		var pos = -1;
 
@@ -151,6 +157,29 @@ class TMotor{
 			return true;
 		}
 
+	}
+
+
+  rotarCamaraOrbital(nombre, grados, eje){
+		var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let a=[];
+      mat4.getRotation(a, this.camaraRegistro[pos].dad.dad.dad.entity.matrix);
+      if(eje=="y"){
+			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
+      }
+      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
+        this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
+      }
+			return true;
+		}
 	}
 
 	/** se le pasa el nombre por parametro y activa dicha camara */

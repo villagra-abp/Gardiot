@@ -45,7 +45,7 @@ function iniciar(accion){
   window.camara = motor.crearNodoCamara("camara1", true, undefined);
 
   //camara de edición
-  window.camaraEdit=motor.crearNodoCamara("camara2", false, undefined);
+  window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
 
 
 
@@ -62,16 +62,16 @@ function iniciar(accion){
     for(let j=-30; j<30; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
       motor.escalarMallaxyz("suelo"+i+'-'+j, 2, 0, 2);
-      motor.moverMalla("suelo"+i+'-'+j, 4*i, -15, 4*j);
+      motor.moverMalla("suelo"+i+'-'+j, 4*i, 0, 4*j);
     }
   }
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
   motor.escalarMalla("malla2", 6);
-  motor.moverMalla("malla2", 0, 0, -20);
+  motor.moverMalla("malla2", 40, 0, 40);
 
-  motor.moverMalla("malla3", 15, 10, 0);
+  motor.moverMalla("malla3", 15, 25, 0);
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
 
@@ -96,8 +96,9 @@ function iniciar(accion){
   motor.moverCamara("camara1", -106, 140, 100);
   motor.rotarCamara("camara1", -45, "y");
   motor.rotarCamara("camara1", -55, "x");
-  motor.moverCamara("camara2", 0,2000, 0);
+  motor.moverCamara("camara2", 0,180, 0);
   motor.rotarCamara("camara2", -90, "x");
+  //motor.rotarCamaraOrbital("camara2", -90, "x");
 
 
 

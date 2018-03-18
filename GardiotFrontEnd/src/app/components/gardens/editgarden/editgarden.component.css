@@ -1,37 +1,54 @@
+body{
+	padding: 0 !important;
+}
 .borrar{
 	margin-top: 1em;
 }
-
-.herramienta{
-  width: 100%;
-  display: flex;
-  flex-direction:column;
-  padding: 0;
-  border-radius: 5px;
+.canvasEvolver{
+	position: absolute;
+	top: 61px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	z-index:0;
 }
-  .herramienta>canvas{
-    width: 100%;
-    height: 100%;
-  }
+canvas{
+margin: 0;
+padding: 0;
+width: 100% !important;
+height: 100% !important;
 
-  .selectPlantasMobile{
-    display: flex;
-    justify-content: flex-start;
-  }
-	.selectPlantasMobile>article{
-		width: 55px;
-		height: 180px;
-	}
-	.selectPlantasMobile>article:not(:first-of-type){
-		margin-left: 10px;
-	}
+}
+.selectPlantas{
+	position: absolute;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	top: 61px;
+	left: 0;
+	bottom: 0;
+	width: 150px;
+	padding: 10px;
+	background-color: #fff;
+	z-index:1;
+}
 
-  .selectPlantasMobile>article>.imgPlant{
-    width: 100%;
-    height: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 2px solid #000;
-    cursor: pointer;
-  }
+ .selectPlantas>article{
+	 width: 100%;
+	 height: 200px;
+	 margin-top: 5px;
+ }
+
+ .selectPlantas>article>.imgPlant{
+	 width: 100%;
+	 height: 80%;
+	 background-position: center;
+	 background-repeat: no-repeat;
+	 background-size: contain;
+	 border: 2px solid #000;
+	 cursor: pointer;
+ }

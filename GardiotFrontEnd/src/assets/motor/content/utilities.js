@@ -106,10 +106,6 @@ function setupWebGL(){
 
 		glProgram.shin=gl.getUniformLocation(glProgram, "propiedades.shininess");
 		glProgram.opac=gl.getUniformLocation(glProgram, "propiedades.opacity");
-
-
-
-
 }
 
 
@@ -126,99 +122,4 @@ function iniciamosWebGL(idCanvas){
     catch(e){
         return false;
     }
-}
-
-function animLoop(){
-    now=Date.now();
-    elapsed=now-then;
-
-    if(elapsed>fpsInterval && motor.running){
-        then=now-(elapsed%fpsInterval);
-        motor.draw();
-
-    }
-
-    requestAnimationFrame(animLoop, canvas);
-}
-
-
-function mouse_move(e){
-
-    let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY,
-				dimx=cv.offsetWidth/41,
-				dimy=cv.offsetHeight/27,
-        fila=Math.ceil(y/dimy),
-        columna=Math.ceil(x/dimx);
-
-    //console.log(`Posición: ${x} - ${y}`);
-    //lo de arriba es igual a
-    // console.log('Posición: '+x+', '+y+');
-
-
-				if(cv.getAttribute('data-down')){
-        //ARRASTRANDO FICHA
-	        console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
-					if(window.x === undefined || window.y === undefined){
-						window.x=fila;
-						window.y=columna;
-					}
-	        else if(window.x!=fila || window.y!=columna){
-	            motor.moverMalla("malla2", ((columna-window.y)*4.3), 0, (fila-window.x)*6.8);
-							window.x=fila;
-							window.y=columna;
-	        }
-
-    		}
-
-
-}
-
-function mouse_click(e){
-    let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY,
-        dimx=cv.offsetWidth/41,
-				dimy=cv.offsetHeight/27,
-        fila=Math.ceil(y/dimy),
-        columna=Math.ceil(x/dimx);
-
-
-    if(x<1 || x>cv.width-1 || y<1 || y>cv.height-1)
-        return;
-			window.x=undefined;
-			window.y=undefined;
-    console.log(`Posición: ${fila} - ${columna}`);
-		console.log(motor.getMallaPos("malla2"));
-}
-
-
-
-function mouse_down(e){
-     let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY,
-				dimx=cv.offsetWidth/41,
-				dimy=cv.offsetHeight/27,
-        fila=Math.ceil(y/dimy),
-        columna=Math.ceil(x/dimx);
-
-        console.log(`DOWN-> Posición: ${fila} - ${columna}`);
-				cv.setAttribute('data-down', 'true');
-
-}
-
-function mouse_up(e){
-     let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY,
-				dimx=cv.offsetWidth/41,
-				dimy=cv.offsetHeight/27,
-        fila=Math.ceil(y/dimy),
-        columna=Math.ceil(x/dimx);
-
-        console.log(`UP-> Posición: ${fila} - ${columna}`);
-				cv.removeAttribute('data-down');
-
 }

@@ -1,28 +1,27 @@
-<div class="container main-container">
-  <h1>Editar mi jardin</h1>
 
-  <section class="container herramienta">
-  <canvas id="myCanvas" onmousemove="mouse_move(event);" onclick="mouse_click(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" width="1800" height="1170"></canvas>
-  <aside class="selectPlantasMobile">
-    <article>
-      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
-      </div>
-      <span>Margarita lajsdlf</span>
-    </article>
-    <article>
-      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
-      </div>
-      <span>Margarita lajsdlf</span>
-    </article>
-    <article>
-      <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
-      </div>
-      <span>Margarita lajsdlf</span>
-    </article>
-  </aside>
-  </section>
+    <aside class="selectPlantas">
+      <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 1</span>
+      </article>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 2</span>
+      </article>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 3</span>
+      </article>
+    </aside>
+  <div class="canvasEvolver">
+  <canvas id="myCanvas" onmousemove="mouse_move(event);" onclick="mouse_click(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onscroll="scrolling(event);" width="1800" height="1170"></canvas>
+</div>
 
-<section class="container">
+<section class="container" style="display: none">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
@@ -66,4 +65,3 @@
 
   </div>
 </section>
-</div>
