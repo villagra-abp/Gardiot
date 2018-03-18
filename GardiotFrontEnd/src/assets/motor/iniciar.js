@@ -58,11 +58,11 @@ function iniciar(accion){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-30; i<30; i++){
-    for(let j=-30; j<30; j++){
+  for(let i=-10; i<10; i++){
+    for(let j=-10; j<10; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.escalarMallaxyz("suelo"+i+'-'+j, 2, 0, 2);
-      motor.moverMalla("suelo"+i+'-'+j, 4*i, 0, 4*j);
+      motor.escalarMallaxyz("suelo"+i+'-'+j, 6, 0, 6);
+      motor.moverMalla("suelo"+i+'-'+j, 12*i, 0, 12*j);
     }
   }
 
@@ -155,7 +155,7 @@ function iniciar(accion){
 
 
 
-  $(document).keydown(function(evt){
+  /*$(document).keydown(function(evt){
       switch(evt.keyCode){
           case 83: //down
               motor.moverCamara("camara1", 0, -0.5, 0);
@@ -185,6 +185,6 @@ function iniciar(accion){
 
               break;
           }
-      });
+      });*/
 
 }

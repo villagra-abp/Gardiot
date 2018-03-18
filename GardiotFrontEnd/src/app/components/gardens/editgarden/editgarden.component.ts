@@ -175,7 +175,6 @@ export class EditGardenComponent implements OnInit{
     let canvas=document.querySelector('canvas');
     canvas.width=width;
     canvas.height=height;
-    //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
     window.addEventListener("resize", this.resizeCanvas);
   }
 
@@ -185,7 +184,7 @@ export class EditGardenComponent implements OnInit{
     let canvas=document.querySelector('canvas');
     canvas.width=width;
     canvas.height=height;
-    //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
+
   }
 
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
