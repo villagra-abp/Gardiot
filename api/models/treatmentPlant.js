@@ -3,6 +3,7 @@ var connection = require('../config/connection');
 var treatmentPlant = {};
 
 treatmentPlant.getTreatmentsByPlant = function(number, page, sort, plant, callback) {
+  console.log("entro en la API treatmentPlant getTreatmentsByPlant");
   if(connection) {
     let minPeak = (page - 1) * number;
     let orderSentence = '';

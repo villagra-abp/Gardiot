@@ -3,6 +3,8 @@ import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
 
+import { TreatmentPlantService } from "../../../services/treatmentplant.service";
+import { Treatment } from "../../../classes/treatment.class";
 
 @Component({
   selector: 'app-plant',
@@ -12,6 +14,7 @@ import { PlantService } from "../../../services/plant.service";
 export class PlantComponent implements OnInit {
 
   plant = new Plant();
+  treatment = new Treatment();
 
   iniSiembra:String;
   finSiembra:String;
@@ -22,12 +25,11 @@ export class PlantComponent implements OnInit {
 
   mes:String;
 
-
   constructor(
     private _plantService:PlantService,
+    private _treatmentPlantService:TreatmentPlantService,
     private _router: ActivatedRoute,
     private _route:Router ) { }
-
 
       mostrar(numplant:number){
       this._plantService.details(numplant)
@@ -42,7 +44,6 @@ export class PlantComponent implements OnInit {
               this.plant.depth=data[0].depth;
               this.plant.distance=data[0].distance;
               this.plant.diseaseResist=data[0].diseaseResist;
-
 
               //this.plant.initDatePlant=data[0].initDatePlant;
               this.iniSiembra=this.dameMes(data[0].initDatePlant);
@@ -59,7 +60,6 @@ export class PlantComponent implements OnInit {
 
               this.plant.leaveType=data[0].leaveType;
               // this.plant.commonName=data[0].3DModel;
-              // console.log(data);
 
             },
           error => {
@@ -68,6 +68,20 @@ export class PlantComponent implements OnInit {
           });
 
     }
+    mostrarTratamientos(numplant:number){
+      console.log("Entro en mostrar tratamientos de planta: "+numplant);
+      this._treatmentPlantService.detailsTreatment(numplant)
+          .subscribe(data=>{
+          // this.plant.id=data[0].id;
+          // console.log("data de vuelta: "+data);
+          },
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+
+        });
+
+  }
+
     dameMes(fechas){
       if(fechas != null){
         var fecha = fechas;
@@ -105,14 +119,16 @@ export class PlantComponent implements OnInit {
       return this.mes;
     }
 
-
-
   ngOnInit() {
 
     this._router.params.subscribe(params => {
       if(params['id']!=null){
         this.plant=new Plant(params['id']);
         this.mostrar(this.plant.id);
+        // llamo a mostrarTratamientos y le paso el id de la planta
+        // this.treatment=new Treatment(params['id']);
+        this.mostrarTratamientos(this.plant.id);
+
       }else{
         this._route.navigate(['/library']);
       }

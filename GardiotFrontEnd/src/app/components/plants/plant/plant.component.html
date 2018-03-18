@@ -1,7 +1,10 @@
 <div class="container">
     <h1>{{plant.commonName}}</h1>
     <div class="row">
+
       <section class="card">
+        <button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-primary" name="button">Volver a Biblioteca</button>
+
         <h2>Descripción</h2>
         <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
       </section>
@@ -20,17 +23,8 @@
             <dt *ngIf="plant.family !=undefined">Familia</dt>
             <dd *ngIf="plant.family !=undefined"> {{plant.family}}</dd>
           </dl>
-        </section> 
+        </section>
       </div>
-
-        <!--
-       <p>ID:{{plant.id}}</p>
-        <p *ngIf="plant.commonName !=undefined">Nombre común: {{plant.commonName}}</p>
-        <p *ngIf="plant.scientificName !=undefined">Nombre científico: {{plant.scientificName}}</p>
-        <p *ngIf="plant.family !=undefined">Familia: {{plant.family}}</p>
-      -->
-
-
       <div class="col">
         <section class="card">
             <p *ngIf="plant.depth !=undefined">
@@ -72,5 +66,18 @@
         </section>
       </div>
     </div>
-    <button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-primary" name="button">Volver a Biblioteca</button>
+    <div class="col">
+      <!--delante de la url https://gardiot.ovh/ -->
+      <section class="card">
+        <h2>Tratamientos</h2>
+        <dl>
+          <!-- <dt *ngIf="plant.commonName !=undefined">Nombre común</dt>
+          <dd *ngIf="plant.commonName !=undefined">{{plant.commonName}}</dd>
+          <dt *ngIf="plant.scientificName !=undefined">Nombre científico</dt>
+          <dd *ngIf="plant.scientificName !=undefined">{{plant.scientificName}}</dd>
+          <dt *ngIf="plant.family !=undefined">Familia</dt>
+          <dd *ngIf="plant.family !=undefined"> {{plant.family}}</dd> -->
+        </dl>
+      </section>
+    </div>
 </div>

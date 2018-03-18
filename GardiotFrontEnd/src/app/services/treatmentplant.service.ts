@@ -47,4 +47,18 @@ export class TreatmentPlantService {
 
     }
 
+    // mostrar Tratamientos de una planta
+    detailsTreatment(numplant:number){
+    console.log("Entro en TreatmentPlantService:")
+	  	let headers = new Headers({
+        	//'Authorization':`Bearer ${localStorage['Bearer']}`,
+          'Content-Type':'application/x-www-form-urlencoded'
+      	});
+        console.log("LLamo a la API");
+      	return this.http.get(this.apiURL+"treatmentPlant/"+numplant, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+	  }
+
 }
