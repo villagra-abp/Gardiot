@@ -24,6 +24,7 @@ class TRecursoMalla extends TRecurso{
 
   }
   cargarFichero(nombre){
+    window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
     loadJSONResource('/recursos/mallas/'+nombre+'.json', function (modelErr, modelObj){
@@ -32,10 +33,10 @@ class TRecursoMalla extends TRecurso{
         alert("fail to cargar malla "+nombre);
       }
       else{
-
         console.log('JSON del objeto '+nombre+':');
         console.log(modelObj);
         objeto=modelObj;
+        window.loading.pop();
       }
     });
 
@@ -96,6 +97,9 @@ class TRecursoMalla extends TRecurso{
         }
         else if(this._nombre=='perejil'){
           this._textura=gestor.getRecurso("perejil2.jpg", "textura");
+        }
+        else if(this._nombre=='cubo'){
+          //this._textura=gestor.getRecurso("grass.jpg", "textura");
         }
         //else{
           //this._textura=gestor.getRecurso("SusanTexture.png", "textura");

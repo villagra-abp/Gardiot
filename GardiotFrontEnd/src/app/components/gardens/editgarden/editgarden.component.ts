@@ -7,6 +7,7 @@ import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import 'rxjs/add/operator/delay';
+declare var iniciar:any;
 
 @Component({
   selector: 'app-editgarden',
@@ -167,6 +168,24 @@ export class EditGardenComponent implements OnInit{
 
   ngOnInit(){
   	this.mostrar();
+    this.inicializar();
+
+    let width=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
+    let height=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvas=document.querySelector('canvas');
+    canvas.width=width;
+    canvas.height=height;
+    //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
+    window.addEventListener("resize", this.resizeCanvas);
+  }
+
+  resizeCanvas(){
+    let width=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
+    let height=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvas=document.querySelector('canvas');
+    canvas.width=width;
+    canvas.height=height;
+    //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
   }
 
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
@@ -195,6 +214,10 @@ export class EditGardenComponent implements OnInit{
       this.garden.city=e.value;
       this.mostrarCiudad();
     }
+  }
+
+  inicializar(){
+    new iniciar("edit");
   }
 
 

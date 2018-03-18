@@ -1,3 +1,7 @@
+.navbar{
+  z-index:10;
+  background-color: #299654 !important;
+}
 .navbar-header{
   position: fixed;
   top:0;

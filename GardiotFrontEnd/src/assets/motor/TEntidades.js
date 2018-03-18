@@ -35,19 +35,19 @@ class TTransf extends TEntidad{
     }
 
     rotar(rotation, axis){//rotación en radianes, eje: x, y o z
-        let vec3axis;
         let degrees=rotation * Math.PI / 180;
         if(axis=='x'){
-            vec3axis=vec3.fromValues(1, 0, 0);
+						mat4.rotateX(this._matrix, this._matrix, degrees);
         }
         else if(axis=='y'){
-            vec3axis=vec3.fromValues(0, 1, 0);
+					mat4.rotateY(this._matrix, this._matrix, degrees);
         }
         else if(axis=='z'){
-            vec3axis=vec3.fromValues(0, 0, 1);
+					mat4.rotateZ(this._matrix, this._matrix, degrees);
         }
-        mat4.rotate(this._matrix, this._matrix, degrees, vec3axis);
+        //mat4.rotate(this._matrix, this._matrix, degrees, vec3axis);
     }
+
 
     escalar(x, y, z){
         let vec3scalation=vec3.fromValues(x, y, z);
@@ -115,6 +115,8 @@ class TCamara extends TEntidad {
         this._top;
         this._near;
         this._far;
+				this._rotX=0;
+				this._rotY=0;
     }
 
     setParams (left, right, bottom, top, near, far) { //Estos floats no se para que son
@@ -161,7 +163,7 @@ class TMalla extends TEntidad {
         this._malla=gestor.getRecurso(nombreMalla, 'malla');
     }
 
-    beginDraw () { 
+    beginDraw () {
         this._malla.draw();
     }
     endDraw () {}
