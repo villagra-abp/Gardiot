@@ -1,7 +1,8 @@
-function iniciar(){
+function iniciar(accion){
   window.canvas=null;
 
-
+  window.loading=[];
+  window.interval;
   //bucle movimiento
   window.frames=0;
   window.fpsInterval=0;
@@ -40,7 +41,11 @@ function iniciar(){
   //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
+  //camara de vista
   window.camara = motor.crearNodoCamara("camara1", true, undefined);
+
+  //camara de edición
+  window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
 
 
 
@@ -53,19 +58,20 @@ function iniciar(){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-20; i<20; i++){
-    for(let j=-20; j<20; j++){
+  for(let i=-30; i<30; i++){
+    for(let j=-30; j<30; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.moverMalla("suelo"+i+'-'+j, 2*i, -15, 2*j);
+      motor.escalarMallaxyz("suelo"+i+'-'+j, 2, 0, 2);
+      motor.moverMalla("suelo"+i+'-'+j, 4*i, 0, 4*j);
     }
   }
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
   motor.escalarMalla("malla2", 6);
-  motor.moverMalla("malla2", 0, 0, -20);
+  motor.moverMalla("malla2", 40, 0, 40);
 
-  motor.moverMalla("malla3", 15, 10, 0);
+  motor.moverMalla("malla3", 15, 25, 0);
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
 
@@ -87,10 +93,15 @@ function iniciar(){
   //motor.escalarMalla("malla2", 0.3);
 
 
-  motor.moverCamara("camara1", 0, 0, 80);
-  //motor.rotarCamara("camara1", 180, "y");
+  motor.moverCamara("camara1", -106, 140, 100);
+  motor.rotarCamara("camara1", -45, "y");
+  motor.rotarCamara("camara1", -55, "x");
+  motor.moverCamara("camara2", 0,180, 0);
+  motor.rotarCamara("camara2", -90, "x");
+  //motor.rotarCamaraOrbital("camara2", -90, "x");
 
-  motor.activarCamara("camara1");
+
+
 
   motor.activarLuz("luz1");
   //motor.activarLuz("luz2");
@@ -126,7 +137,16 @@ function iniciar(){
   window.glProgram=null;
 
 
-  motor.startDrawing('shaderP.vs', 'shaderP.fs');
+  if(accion=='detail'){
+    motor.activarCamara("camara1");
+    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+  }
+  else if(accion=='edit'){
+    motor.activarCamara("camara2");
+    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    motor.startDrawing('shaderP.vs', 'shaderP.fs');
+  }
+
 
 
 

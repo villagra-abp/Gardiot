@@ -1337,7 +1337,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".borrar{\n\tmargin-top: 1em;\n}", ""]);
+exports.push([module.i, "body{\n\tpadding: 0 !important;\n}\n.borrar{\n\tmargin-top: 1em;\n}\n.canvasEvolver{\n\tposition: absolute;\n\ttop: 61px;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tmargin: 0;\n\tpadding: 0;\n\toverflow: hidden;\n\tz-index:0;\n}\ncanvas{\nmargin: 0;\npadding: 0;\nwidth: 100% !important;\nheight: 100% !important;\n\n}\n.selectPlantas{\n\tposition: absolute;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-direction: column;\n\tflex-direction: column;\n\ttop: 61px;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 150px;\n\tpadding: 10px;\n\tbackground-color: #fff;\n\tz-index:1;\n}\n\n .selectPlantas>article{\n\t width: 100%;\n\t height: 200px;\n\t margin-top: 5px;\n }\n\n .selectPlantas>article>.imgPlant{\n\t width: 100%;\n\t height: 80%;\n\t background-position: center;\n\t background-repeat: no-repeat;\n\t background-size: contain;\n\t border: 2px solid #000;\n\t cursor: pointer;\n }\n", ""]);
 
 // exports
 
@@ -1350,7 +1350,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/editgarden/editgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\n  <h1>Editar mi jardin</h1>\n\n  <section class=\"container\">\n  <canvas style=\"border:1px solid #000000\" id=\"myCanvas\" width=\"480\" height=\"360\"></canvas>\n  </section>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n \n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n \n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n \n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n    \n  </div>\n</section>\n</div>\n"
+module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onscroll=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\" style=\"display: none\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -1502,6 +1502,22 @@ var EditGardenComponent = (function () {
     };
     EditGardenComponent.prototype.ngOnInit = function () {
         this.mostrar();
+        this.inicializar();
+        var width = document.querySelector(".canvasEvolver").offsetWidth;
+        var height = document.querySelector(".canvasEvolver").offsetHeight;
+        var canvas = document.querySelector('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
+        window.addEventListener("resize", this.resizeCanvas);
+    };
+    EditGardenComponent.prototype.resizeCanvas = function () {
+        var width = document.querySelector(".canvasEvolver").offsetWidth;
+        var height = document.querySelector(".canvasEvolver").offsetHeight;
+        var canvas = document.querySelector('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
     };
     //Envia los nuevos datos del jardin a  a GardenService para guardarlos
     EditGardenComponent.prototype.edit = function () {
@@ -1527,6 +1543,9 @@ var EditGardenComponent = (function () {
             this.mostrarCiudad();
         }
     };
+    EditGardenComponent.prototype.inicializar = function () {
+        new iniciar("edit");
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('document:keyup', ['$event']),
         __metadata("design:type", Function),
@@ -1550,10 +1569,28 @@ var EditGardenComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/gardens/garden/garden.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 100%;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  border: 1px solid #234;\r\n  padding: 0;\r\n  border-radius: 5px;\r\n}\r\n  .herramienta>canvas{\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/gardens/garden/garden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\n <section class=\"container\">\n  <h1>{{garden.title}}</h1>\n  </section>\n  <section class=\"container\">\n  <canvas style=\"border:1px solid #000000\" id=\"myCanvas\" width=\"480\" height=\"360\"></canvas>\n  </section>\n<section class=\"container\">\n\t<h2>Informacion</h2>\n\t<div>\n\t\t<ul>\n\t\t\t<li>Localizacion:{{garden.city}}, {{garden.countryCode}}</li>\n\t\t\t<li>Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>\n\t\t\t<li>Tiempo: {{cielo}}</li>\n\t\t\t<li>Humedad: {{humedad}}%</li>\n\t\t\t<li>Presion: {{presion}} Pa</li>\n\t\t\t<li>Temperatura: {{temperatura}} ºC</li>\n\t\t</ul>\n\t</div>\n</section>\n\n\n<section class=\"container\">\n<h2>Tareas:</h2>\n  <div>\n  \t<ul>\n  \t\t<li>Tarea1</li>\n  \t\t<li>Tarea2</li>\n  \t\t<li>Tarea3</li>\n  \t</ul>\n  </div>\n  <button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\n</section>\n\n\n</div>\n"
+module.exports = "<div class=\"main-container\">\n <section class=\"container title\">\n  <h1>{{garden.title}}</h1><button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\n  </section>\n  <section class=\"container herramienta\">\n  <canvas id=\"myCanvas\" width=\"1800\" height=\"1200\"></canvas>\n  </section>\n<section class=\"container\">\n\t<h2>Informacion</h2>\n\t<div>\n\t\t<ul>\n\t\t\t<li>Localizacion:{{garden.city}}, {{garden.countryCode}}</li>\n\t\t\t<li>Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>\n\t\t\t<li>Tiempo: {{cielo}}</li>\n\t\t\t<li>Humedad: {{humedad}}%</li>\n\t\t\t<li>Presion: {{presion}} Pa</li>\n\t\t\t<li>Temperatura: {{temperatura}} ºC</li>\n\t\t</ul>\n\t</div>\n</section>\n\n<section class=\"container\">\n<h2>Tareas:</h2>\n  <div>\n  \t<ul>\n  \t\t<li>Tarea1</li>\n  \t\t<li>Tarea2</li>\n  \t\t<li>Tarea3</li>\n  \t</ul>\n  </div>\n</section>\n\n\n</div>\n"
 
 /***/ }),
 
@@ -1646,12 +1683,13 @@ var GardenComponent = (function () {
         });
     };
     GardenComponent.prototype.inicializar = function () {
-        new iniciar();
+        new iniciar("detail");
     };
     GardenComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-garden',
-            template: __webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.html")
+            template: __webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_garden_service__["a" /* GardenService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
@@ -1885,7 +1923,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar-header{\n  position: fixed;\n  top:0;\n  left:0;\n  right:0;\n  height: 50px;\n  background-color: #299654 ;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  z-index: 999999;\n  }\n  .navbar-header>div{\n    max-height: 46px;\n  }\n  .navbar-header>div>i{\n    font-size: 46px;\n    cursor: pointer;\n    color: #fff;\n    display:inline-block;\n  \ttransform:rotate(0);\n  \ttransition: transform 0.3s ease-out;\n  }\n\n  .navbar-header>img{\n    margin-left: 10px;\n    height: 30px;\n  }\n\n  .opened{\n    transform:rotate(90deg) !important;\n  }\n\n  #sidebar-wrapper {\n  top: 50px;\n  left: -200px;\n  width: 200px;\n  background-color: #299654;\n  color: white;\n  position: fixed;\n  height: 100%;\n  z-index: 999999;\n}\n#sidebar-wrapper>img{\n  display:none;\n}\n\n.sidebar-nav {\n  position: absolute;\n  top: 0;\n  margin: 0;\n  padding: 0;\n  width: 200px;\n  list-style: none;\n}\n.sidebar-nav li {\n  text-indent: 20px;\n  line-height: 50px;\n}\n.sidebar-nav li a {\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.sidebar-nav li a:hover {\n  background: rgba(255,255,255,0.25);\n  color: white;\n  text-decoration: none;\n}\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\n  text-decoration: none;\n}\n#sidebar-wrapper.sidebar-toggle {\n  transition: all 0.3s ease-out;\n  margin-left: -200px;\n}\n\n\n/*HEADER USER*/\n.header{\n  background-color: #299654 !important;\n}\n.navbar-brand>img{\n  width: 140px;\n}\n#navbarSupportedContent > ul > li > a{\n  color: #fff !important;\n}\nbutton{\n  background: rgba(255, 255, 255, 0.5);\n}\n#navbarSupportedContent{\n  -ms-flex-pack: end;\n      justify-content: flex-end;\n}\n#navbarSupportedContent > ul{\n  margin-right: 0 !important;\n}\n\n@media (min-width: 768px) {\n  .sidebar-nav {\n    top: 60px;\n  }\n\n  .limited{\n    max-width: 1150px;\n    margin: 0 auto;\n  }\n  #sidebar-wrapper.sidebar-toggle {\n    transition: 0s;\n    left: 200px;\n    top: 0;\n  }\n  #sidebar-wrapper>img{\n    display: initial;\n    width: 140px;\n    margin: 0 auto;\n    margin-top: 15px;\n    margin-left: 20px;\n  }\n  .navbar-header{\n    display: none;\n\n    }\n}\n\n#photoMenu{\n  width: auto;\n  display: -ms-flexbox;\n  display: flex;\n}\n@media (max-width: 991px) {\n  #photoMenu>div{\n    display: none;\n  }\n}\n", ""]);
+exports.push([module.i, ".navbar{\n  z-index:10;\n  background-color: #299654 !important;\n}\n.navbar-header{\n  position: fixed;\n  top:0;\n  left:0;\n  right:0;\n  height: 50px;\n  background-color: #299654 ;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  z-index: 999999;\n  }\n  .navbar-header>div{\n    max-height: 46px;\n  }\n  .navbar-header>div>i{\n    font-size: 46px;\n    cursor: pointer;\n    color: #fff;\n    display:inline-block;\n  \ttransform:rotate(0);\n  \ttransition: transform 0.3s ease-out;\n  }\n\n  .navbar-header>img{\n    margin-left: 10px;\n    height: 30px;\n  }\n\n  .opened{\n    transform:rotate(90deg) !important;\n  }\n\n  #sidebar-wrapper {\n  top: 50px;\n  left: -200px;\n  width: 200px;\n  background-color: #299654;\n  color: white;\n  position: fixed;\n  height: 100%;\n  z-index: 999999;\n}\n#sidebar-wrapper>img{\n  display:none;\n}\n\n.sidebar-nav {\n  position: absolute;\n  top: 0;\n  margin: 0;\n  padding: 0;\n  width: 200px;\n  list-style: none;\n}\n.sidebar-nav li {\n  text-indent: 20px;\n  line-height: 50px;\n}\n.sidebar-nav li a {\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.sidebar-nav li a:hover {\n  background: rgba(255,255,255,0.25);\n  color: white;\n  text-decoration: none;\n}\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\n  text-decoration: none;\n}\n#sidebar-wrapper.sidebar-toggle {\n  transition: all 0.3s ease-out;\n  margin-left: -200px;\n}\n\n\n/*HEADER USER*/\n.header{\n  background-color: #299654 !important;\n}\n.navbar-brand>img{\n  width: 140px;\n}\n#navbarSupportedContent > ul > li > a{\n  color: #fff !important;\n}\nbutton{\n  background: rgba(255, 255, 255, 0.5);\n}\n#navbarSupportedContent{\n  -ms-flex-pack: end;\n      justify-content: flex-end;\n}\n#navbarSupportedContent > ul{\n  margin-right: 0 !important;\n}\n\n@media (min-width: 768px) {\n  .sidebar-nav {\n    top: 60px;\n  }\n\n  .limited{\n    max-width: 1150px;\n    margin: 0 auto;\n  }\n  #sidebar-wrapper.sidebar-toggle {\n    transition: 0s;\n    left: 200px;\n    top: 0;\n  }\n  #sidebar-wrapper>img{\n    display: initial;\n    width: 140px;\n    margin: 0 auto;\n    margin-top: 15px;\n    margin-left: 20px;\n  }\n  .navbar-header{\n    display: none;\n\n    }\n}\n\n#photoMenu{\n  width: auto;\n  display: -ms-flexbox;\n  display: flex;\n}\n@media (max-width: 991px) {\n  #photoMenu>div{\n    display: none;\n  }\n}\n", ""]);
 
 // exports
 
