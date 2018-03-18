@@ -52,3 +52,13 @@ height: 100% !important;
 	 border: 2px solid #000;
 	 cursor: pointer;
  }
+
+ .container{
+	 display: none;
+	 background-color: #fff;
+	 position: fixed;
+	 top: 70px;
+	 right: 10px;
+	 height: 80%;
+	 width: 350px;
+ }
