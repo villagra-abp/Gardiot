@@ -58,10 +58,10 @@ task.getTasksByMyPlant = function (number, page, user, myplant, callback) {
 
 task.insertTasks = function (myPlant, plant, callback) {
 	if (connection) {
-		connection.query('SELECT treatment, frequency, initDate, finalDate FROM TreatmentPlant WHERE plant = ' + plant , function(error, row) {
+		connection.query('SELECT treatment, frequency, initDate, finalDate FROM TreatmentPlant, Plant WHERE TreatmentPlant.plant = Plant.id AND Plant.id = ' + plant , function(error, row) {
 			if (error)
 				callback (error, null);
-			else {	
+			else if (typeof row!== 'undefined' && row.length > 0){	
 				sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';	
 				for (var object in row) {
 					let initDate, finalDate, sqlBase;
@@ -95,6 +95,8 @@ task.insertTasks = function (myPlant, plant, callback) {
 						callback(null, result.affectedRows);
 				});
 			}
+			else 
+				callback (null, 0);			
 		});
 	}
 }
