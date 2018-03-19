@@ -12,6 +12,8 @@ class TRecursoTextura extends TRecurso{
   	console.log(this._nombre);
   	this._img.onload=function(){
 	      this.texture = gl.createTexture();
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.texture);
 
   	    window.loading.pop();
 
@@ -30,7 +32,7 @@ class TRecursoTextura extends TRecurso{
         relURL='http://localhost:4200/assets/motor/recursos/texturas/'+nombre;
     }
     else if(window.location.toString().indexOf('localhost:8080')>=0){
-        relURL='/recursos/texturas/'+nombre;;
+        relURL='/recursos/texturas/'+nombre;
     }
     this._img.src=relURL;
   }

@@ -49,20 +49,31 @@ function iniciar(accion){
 
 
 
-  window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
+  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
-  window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+  //window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-10; i<10; i++){
-    for(let j=-10; j<10; j++){
+  for(let i=-1; i<2; i++){
+    for(let j=-1; j<2; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.escalarMallaxyz("suelo"+i+'-'+j, 6, 0, 6);
-      motor.moverMalla("suelo"+i+'-'+j, 12*i, 0, 12*j);
+      motor.escalarMallaxyz("suelo"+i+'-'+j, 60, 0, 60);
+      motor.moverMalla("suelo"+i+'-'+j, 120*i, 0, 120*j);
+    }
+  }
+
+  //perejiles
+  for(let i=-4; i<4; i++){
+    for(let j=-4; j<4; j++){
+      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", undefined);
+      motor.escalarMalla("planta"+i+'-'+j, 0.4);
+      motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      motor.rotarMalla("planta"+i+'-'+j, 180*Math.random(), "z");
+      motor.moverMalla("planta"+i+'-'+j, 40*i, 10, 40*j);
     }
   }
 

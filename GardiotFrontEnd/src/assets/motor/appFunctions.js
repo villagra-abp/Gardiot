@@ -102,6 +102,16 @@ function mouse_up(e){
 				cv.removeAttribute('data-down');
 }
 
+function scrolling(e){
+  let cv=e.target;
+  if(e.deltaY<0){
+    motor.zoomCamara("camara2", -0.1);
+  }
+  else{
+    motor.zoomCamara("camara2", 0.1);
+  }
+}
+
 
 function get2DPoint(point3D, width, height){
   let viewProjectionMatrix=[];
