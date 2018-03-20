@@ -35,7 +35,7 @@ task.getMyTasksByMonth = function (user, date, callback) {
 		let dateM = new Date(date);
 		let month = dateM.getMonth() + 1;
 		let year = dateM.getFullYear();
-		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name, Garden.title, Task.date FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
+		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -53,39 +53,39 @@ task.getTasksByMyPlant = function (number, page, user, myplant, callback) {
 			else
 				callback(null, row);
 		});
-	}	
-} 
+	}
+}
 
 task.insertTasks = function (myPlant, plant, callback) {
 	if (connection) {
-		connection.query('SELECT treatment, frequency, initDate, finalDate FROM TreatmentPlant WHERE plant = ' + plant , function(error, row) {
+		connection.query('SELECT treatment, frequency, initDate, finalDate FROM TreatmentPlant, Plant WHERE TreatmentPlant.plant = Plant.id AND Plant.id = ' + plant , function(error, row) {
 			if (error)
 				callback (error, null);
-			else {	
-				sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';	
+			else if (typeof row!== 'undefined' && row.length > 0){
+				sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';
 				for (var object in row) {
 					let initDate, finalDate, sqlBase;
 					for (var detail in row[object]) {
-						if (detail == 'treatment') 
+						if (detail == 'treatment')
 							sqlBase = '(' + plant + ',' + row[object][detail] + ',' + myPlant + ',' + plant;
 						else if (detail == 'frequency' && row[object][detail] != null) {
 							todayDate = new Date();
-							for (let i = 0; i < 100; i++) {								
+							for (let i = 0; i < 100; i++) {
 								let month = todayDate.getMonth() + 1;
-								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';		
-								todayDate.setDate(todayDate.getDate() + row[object][detail])					
+								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
+								todayDate.setDate(todayDate.getDate() + row[object][detail])
 							}
 						}
-						else if (detail == 'initDate' &&  row[object][detail] != null) 
+						else if (detail == 'initDate' &&  row[object][detail] != null)
 							initDate = new Date(row[object][detail]);
-						else if (detail == 'finalDate' &&  row[object][detail] != null) 
+						else if (detail == 'finalDate' &&  row[object][detail] != null)
 							finalDate = new Date(row[object][detail]);
-						if (typeof initDate !== 'undefined' && typeof finalDate !== 'undefined') 
+						if (typeof initDate !== 'undefined' && typeof finalDate !== 'undefined')
 							for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
 								let month = initDate.getMonth() + 1;
-								sql += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';																			
+								sql += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
 							}
-					}		
+					}
 				}
 				sql = sql.slice(0, -1);
 				connection.query(sql, function(error, result) {
@@ -95,6 +95,8 @@ task.insertTasks = function (myPlant, plant, callback) {
 						callback(null, result.affectedRows);
 				});
 			}
+			else
+				callback (null, 0);
 		});
 	}
 }

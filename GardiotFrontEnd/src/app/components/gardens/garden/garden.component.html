@@ -1,9 +1,9 @@
 <div class="main-container">
- <section class="container">
-  <h1>{{garden.title}}</h1>
+ <section class="container title">
+  <h1>{{garden.title}}</h1><button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
   </section>
-  <section class="container">
-  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
+  <section class="container herramienta">
+  <canvas id="myCanvas" width="1800" height="1200"></canvas>
   </section>
 <section class="container">
 	<h2>Informacion</h2>
@@ -19,7 +19,6 @@
 	</div>
 </section>
 
-
 <section class="container">
 <h2>Tareas:</h2>
   <div>
@@ -29,7 +28,6 @@
   		<li>Tarea3</li>
   	</ul>
   </div>
-  <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
 </section>
 
 

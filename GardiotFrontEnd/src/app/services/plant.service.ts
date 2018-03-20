@@ -125,7 +125,4 @@ export class PlantService {
 						return res.json();
 					})
 		}
-
-
-
 }

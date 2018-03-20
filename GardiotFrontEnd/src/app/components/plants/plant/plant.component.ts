@@ -3,6 +3,12 @@ import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
 
+import { UserService } from '../../../services/user.service';
+import { TreatmentPlantService } from "../../../services/treatmentplant.service";
+import { Treatment } from "../../../classes/treatment.class";
+import { Product } from "../../../classes/product.class";
+import { ProductTreatment } from "../../../classes/producttreatment.class";
+
 
 @Component({
   selector: 'app-plant',
@@ -11,23 +17,30 @@ import { PlantService } from "../../../services/plant.service";
 })
 export class PlantComponent implements OnInit {
 
-  plant = new Plant();
+  private plant = new Plant();
+  private product = new Product();
+  private treatment = new Treatment();
+  private treatments:any[]=[];
+  private products:any[]=[];
+  private productTreatments:any[]=[];
 
-  iniSiembra:String;
-  finSiembra:String;
-  iniFlores:String;
-  finFlores:String;
-  iniRecolectar:String;
-  finRecolectar:String;
+  private producttreatment=new ProductTreatment();
+
+  private iniSiembra:String;
+  private finSiembra:String;
+  private iniFlores:String;
+  private finFlores:String;
+  private iniRecolectar:String;
+  private finRecolectar:String;
 
   mes:String;
 
-
   constructor(
     private _plantService:PlantService,
+    private _treatmentPlantService:TreatmentPlantService,
     private _router: ActivatedRoute,
+    private user: UserService,
     private _route:Router ) { }
-
 
       mostrar(numplant:number){
       this._plantService.details(numplant)
@@ -42,7 +55,6 @@ export class PlantComponent implements OnInit {
               this.plant.depth=data[0].depth;
               this.plant.distance=data[0].distance;
               this.plant.diseaseResist=data[0].diseaseResist;
-
 
               //this.plant.initDatePlant=data[0].initDatePlant;
               this.iniSiembra=this.dameMes(data[0].initDatePlant);
@@ -59,7 +71,7 @@ export class PlantComponent implements OnInit {
 
               this.plant.leaveType=data[0].leaveType;
               // this.plant.commonName=data[0].3DModel;
-              // console.log(data);
+
 
             },
           error => {
@@ -68,6 +80,38 @@ export class PlantComponent implements OnInit {
           });
 
     }
+    mostrarTratamientos(numplant:number){
+      // console.log("Entro en mostrar tratamientos de planta: "+numplant);
+      this._treatmentPlantService.detailsTreatment(numplant)
+          .subscribe(data=>{
+            this.treatments=[];
+            for(let key$ in data){
+              this.treatments.push(data[key$]);
+              this.showProductPlant(data[key$].id, numplant);
+            }
+          },
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+
+        });
+
+  }
+  showProductPlant(treatment:number,idPlant:number){
+    this._treatmentPlantService.showProductPlant(treatment,idPlant)
+        .subscribe(data=>{
+          // this.productTreatments=[];
+          for(let key$ in data){
+            this.productTreatments.push(data[key$]);
+          }
+          console.log(this.productTreatments);
+        },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+
+      });
+
+}
+
     dameMes(fechas){
       if(fechas != null){
         var fecha = fechas;
@@ -104,8 +148,24 @@ export class PlantComponent implements OnInit {
       }
       return this.mes;
     }
-
-
+    comprobaciones(){
+      if(this.user.isUserAuthenticated()){
+        this.user.isAuthenticated=this.user.isUserAuthenticated();
+        this.user.isUserAdmin().subscribe(data=>{
+          if(data){
+            this.user.isAdmin=true;
+          }
+          else{
+            this.user.isAdmin=false;
+          }
+        },error=>{
+          this.user.isAdmin=false;
+        });
+      }
+      else{
+        this.user.isAdmin=false;
+      }
+    }
 
   ngOnInit() {
 
@@ -113,6 +173,10 @@ export class PlantComponent implements OnInit {
       if(params['id']!=null){
         this.plant=new Plant(params['id']);
         this.mostrar(this.plant.id);
+        // llamo a mostrarTratamientos y le paso el id de la planta
+        // this.treatment=new Treatment(params['id']);
+        this.mostrarTratamientos(this.plant.id);
+
       }else{
         this._route.navigate(['/library']);
       }

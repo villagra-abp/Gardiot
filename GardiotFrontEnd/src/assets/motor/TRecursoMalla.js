@@ -22,8 +22,18 @@ class TRecursoMalla extends TRecurso{
     this.texTextura;
 
 
+    //ATTRIBUTES
+    this.vertexPosAttribute;
+
+
+    //auxVar
+    this.matrixModelView=[];
+    this.normalMatrix=[];
+
+
   }
   cargarFichero(nombre){
+    window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
     loadJSONResource('/recursos/mallas/'+nombre+'.json', function (modelErr, modelObj){
@@ -32,10 +42,10 @@ class TRecursoMalla extends TRecurso{
         alert("fail to cargar malla "+nombre);
       }
       else{
-
         console.log('JSON del objeto '+nombre+':');
         console.log(modelObj);
         objeto=modelObj;
+        window.loading.pop();
       }
     });
 
@@ -78,8 +88,7 @@ class TRecursoMalla extends TRecurso{
           }
         }
       }
-      console.log(this.nombre);
-      console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
+
 
       //almacenamos las normales de los vértices
       if(objeto.meshes[0].normals!==undefined){
@@ -89,7 +98,6 @@ class TRecursoMalla extends TRecurso{
       if(objeto.materials[0]!==undefined){
         if(this._nombre=='bote'){
           this._textura=gestor.getRecurso("madera.jpg", "textura");
-
         }
         else if(this._nombre=='Susan'){
           this._textura=gestor.getRecurso("SusanTexture.png", "textura");
@@ -97,9 +105,10 @@ class TRecursoMalla extends TRecurso{
         else if(this._nombre=='perejil'){
           this._textura=gestor.getRecurso("perejil2.jpg", "textura");
         }
-        //else{
-          //this._textura=gestor.getRecurso("SusanTexture.png", "textura");
-        //}
+        else if(this._nombre=='cubo'){
+          //this._textura=gestor.getRecurso("grass.jpg", "textura");
+        }
+
 
 
       }
@@ -139,29 +148,28 @@ class TRecursoMalla extends TRecurso{
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
     }
 
+    //===================GET ATTRIBUTES DEL SHADER===============
+    this.vertexPosAttribute=gl.getAttribLocation(glProgram, "aVertPosition");
+    this.vertexNormAttribute=gl.getAttribLocation(glProgram, "aVertNormal");
+    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
+
+
   }
 
 
   draw(){
-    let normales, vertexPositionAttribute, vertexTexCoordAttribute, vertexNormalAttribute;
 
-      //NORMAL MATRIX
-      //calculo matrix normales
-        let matrixModelView=[];
-        let normalMatrix=[];
+        //Cálculo de matriz normal y paso de matriz al shader
+        mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
 
-        mat4.multiply(matrixModelView, invertedMView, matrixModel);
-
-        mat3.normalFromMat4(normalMatrix, matrixModelView);
-        if(normalMatrix.length>0){
+        mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
+        if(this.normalMatrix.length>0){
           //matrixUniform
-          gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, normalMatrix);
+          gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
         }
 
-        matrixModelView=null;
-        normalMatrix=null;
 
-
+    //Cargar la textura, esto lo podremos optimizar seguro
     if(this._textura!==undefined){
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
@@ -176,28 +184,26 @@ class TRecursoMalla extends TRecurso{
     }
 
 
-    /*PASARLE LAS COSAS A WEBGL PARA QUE DIBUJE*/
 
-    //entonces aquí le vuelvo a pasar las matrices al shader para que se pueda visualizar bien
+
+    //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
 
 
-    //dibujamos en el canvas
-    vertexPositionAttribute=gl.getAttribLocation(glProgram, "aVertPosition");
-    gl.enableVertexAttribArray(vertexPositionAttribute);
+    //Pasamos los buffers de posición de vértices
+    gl.enableVertexAttribArray(this.vertexPosAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
-    gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
 
-    //texturas
+    //Pasamos los buffers de coordenadas de texturas
     if(this._textureCoords.length>0 && this._textura!==undefined){
-      vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
-      gl.enableVertexAttribArray(vertexTexCoordAttribute);
+      gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
-      gl.vertexAttribPointer(vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
     }
 
-    //MATERIALES
+    //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram.ka, this.Ka);
@@ -210,17 +216,16 @@ class TRecursoMalla extends TRecurso{
 
 
 
-
+    //Pasamos el array de normales al shader
     if(this._normales.length>0){
-      //para la iluminación de las mallas
-      //calculamos el vector de normales
-      vertexNormalAttribute=gl.getAttribLocation(glProgram, "aVertNormal");
-      gl.enableVertexAttribArray(vertexNormalAttribute);
+      gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
-      gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
     }
+
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 
+    //dibujamos en el canvas el objeto
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
     //gl.drawArrays(gl.TRIANGLES, 0, index.number_vertex_points);
 

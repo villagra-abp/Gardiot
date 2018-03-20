@@ -1,9 +1,25 @@
-<div class="container main-container">
-  <h1>Editar mi jardin</h1>
 
-  <section class="container">
-  <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
-  </section>
+    <aside class="selectPlantas">
+      <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 1</span>
+      </article>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 2</span>
+      </article>
+      <article>
+        <div class="imgPlant" style='background-image: url("/assets/ejemplo.JPG");'>
+        </div>
+        <span>Margarita 3</span>
+      </article>
+    </aside>
+  <div class="canvasEvolver">
+  <canvas id="myCanvas" onmousemove="mouse_move(event);" onclick="mouse_click(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1170"></canvas>
+</div>
 
 <section class="container">
   <div class="row animated fadeIn fast">
@@ -22,17 +38,17 @@
         </div>
         <div class="form-group  col-md-6" ng-init="listarPaises()">
           <label for="countries">País:</label>
- 
+
           <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
           </select2>
- 
+
         </div>
 
           <div class="form-group  col-md-6">
             <label for="countries">Introduce tu código postal:</label>
             <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
         </div>
- 
+
         <div class="form-group  col-md-6">
             <label for="countries">Ciudad:</label>
             <span id="ciudad"></span>
@@ -46,7 +62,6 @@
         <button (click)="delete()" class="btn btn-danger" >Borrar</button>
       </div>
     </div>
-    
+
   </div>
 </section>
-</div>
