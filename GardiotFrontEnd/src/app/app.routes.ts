@@ -7,7 +7,7 @@ import { ProfileComponent } from "./components/user/profile.component";
 import { EditProfileComponent } from "./components/user/editprofile.component";
 import { ConfirmationComponent } from "./components/manage/confirmation.component";
 import { ResendComponent } from "./components/manage/resend.component";
-import { CalendarComponent } from "./components/user/calendar.component";
+import { CalendarComponent } from "./components/calendar/calendar.component";
 //Plants
 import { LibraryComponent } from "./components/plants/library/library.component";
 import { PlantComponent } from "./components/plants/plant/plant.component";

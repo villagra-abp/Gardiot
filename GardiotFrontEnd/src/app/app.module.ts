@@ -7,6 +7,7 @@ import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
 import { TreatmentService } from "./services/treatment.service";
 import { ProductService } from "./services/product.service";
+import { TaskService } from "./services/task.service";
 import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
@@ -29,7 +30,7 @@ import { AppComponent } from './app.component';
 //header
 import { HeaderComponent } from './components/header/header.component';
 //calendario
-import { CalendarComponent } from './components/user/calendar.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 //manage-App
 import { LoginComponent } from './components/manage/login.component';
 import { LogoutComponent } from './components/manage/logout.component';
@@ -146,6 +147,7 @@ import { NewtreatmentsplantsComponent } from './components/treatmentsPlants/newt
     AdminguardGuard,
     TreatmentService,
     ProductService,
+    TaskService,
     TreatmentPlantService,
     DatePipe
   ],
