@@ -1,0 +1,14 @@
+
+  <div class="container main-container">
+    <h1>Calendario</h1>
+    <div class="wrap">
+    <section class="card-columns">
+        <div *ngFor="let task of tasks" class="card"  style="width: 18rem;" >
+            <h4>{{task.commonName}} </h4>
+            <p>{{task.name}} </p>
+            <p>{{task.date}}</p>
+            <button   class="btn btn-outline-primary">Realizada</button>
+          </div>
+    </section>
+    </div>
+  	</div>
