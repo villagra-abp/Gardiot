@@ -7,18 +7,24 @@ var filter = require('../functions/filter');
 
 var treatmentPlantModel = require('../models/treatmentPlant');
 
+
+
 router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+  if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
-			if (error)
-				response.status(400).json(error.message);
-			else if (typeof data !== 'undefined')
-				response.status(200).json(data);
-			else
-				response.status(404).json({"Mensaje":"No existe"});
-		});
+    treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
+            if (error){
+              console.log("ERROR: "+error.message);
+              response.status(400).json(error.message);
+            }
+
+            else if (typeof data !== 'undefined')
+                response.status(200).json(data);
+
+            else
+                response.status(404).json({"Mensaje":"No existe"});
+        });
 	}
 });
 
@@ -30,7 +36,7 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 			initDate: request.body.initDate,
 			finalDate: request.body.finalDate,
 		};
-		treatmentPlantData = filter(treatmentPlantData); 
+		treatmentPlantData = filter(treatmentPlantData);
 		if (typeof treatmentPlantData.frequency!== 'undefined' && (typeof treatmentPlantData.initDate!=='undefined' || typeof treatmentPlantData.finalDate!=='undefined'))
 			response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
 		else if (typeof treatmentPlantData.treatment === 'undefined' || typeof treatmentPlantData.plant === 'undefined' || typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
@@ -59,7 +65,7 @@ router.put('/admin/treatmentPlant/:plant/:treatment', passport.authenticate('jwt
 			initDate: request.body.initDate,
 			finalDate: request.body.finalDate,
 		};
-		treatmentPlantData = filter(treatmentPlantData); 
+		treatmentPlantData = filter(treatmentPlantData);
 		if (typeof treatmentPlantData.frequency!== 'undefined' && (typeof treatmentPlantData.initDate!=='undefined' || typeof treatmentPlantData.finalDate!=='undefined'))
 			response.status(400).json({"Mensaje":"Imposible crear tarea con frecuencia y periodo."});
 		else if (typeof treatmentPlantData.frequency==='undefined' && (typeof treatmentPlantData.initDate==='undefined' || typeof treatmentPlantData.finalDate==='undefined'))
@@ -79,7 +85,7 @@ router.put('/admin/treatmentPlant/:plant/:treatment', passport.authenticate('jwt
 						response.status(500).json({"Mensaje":error.message});
 				});
 			}
-		}		
+		}
 	}
 });
 
