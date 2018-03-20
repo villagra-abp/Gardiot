@@ -4,6 +4,7 @@ class TNodo {
         this._name=name;
         this._entity=entity;
         this._dad=dad;
+        this._active = 1;
         this._childs=[];
         if(dad!==undefined)
         	this._dad.addChild(this);
@@ -34,6 +35,12 @@ class TNodo {
         this._dad=dad;
     }
 
+    set active ( active ) {
+        if(active == 1 || active == 0){
+            this._active=active;
+        }
+    }
+
     get childs () {
         return this._childs;
     }
@@ -55,14 +62,16 @@ class TNodo {
     }
 
     draw(){
-        if(this._entity!==undefined){
-            this._entity.beginDraw();
-        }
-        for(let i=0; i<this._childs.length; i++){
-            this._childs[i].draw();
-        }
-        if(this._entity!==undefined){
-            this._entity.endDraw(this._name);
+        if(this._active == 1){
+            if(this._entity!==undefined){
+                this._entity.beginDraw();
+            }
+            for(let i=0; i<this._childs.length; i++){
+                this._childs[i].draw();
+            }
+            if(this._entity!==undefined){
+                this._entity.endDraw(this._name);
+            }
         }
     }
 }

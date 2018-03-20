@@ -26,7 +26,7 @@ import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
 //newtreatmentsplants
-import { NewtreatmentsplantsComponent } from './components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component';
+import { NewtreatmentsplantsComponent } from './components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component';
 //otros
 import { AdminguardGuard } from "./components/admin/adminguard.guard";
 
