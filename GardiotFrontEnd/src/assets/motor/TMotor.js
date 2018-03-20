@@ -11,6 +11,7 @@ class TMotor{
         this.lucesActivas=0;
         this.camaraRegistro = [];
         this.camaraActiva = -1;
+        this.camaraPosition=[];
 
         this.mallaRegistro = [];
         this.running=false;
@@ -21,7 +22,7 @@ class TMotor{
     //empezamos a dibujar con los fps que le pasemos por parámetro
     startDrawing(vs, fs){
     	this.running=true;
-    	fpsInterval=1000/60;
+    	fpsInterval=1000/50;
     	then=Date.now();
     	startTime=then;
     	if(vs!==undefined && fs!==undefined){
@@ -143,6 +144,26 @@ class TMotor{
 
 	}
 
+  zoomCamara(nombre, factor){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let a=this.getPosCamaraActiva().slice(0);
+      let traslacion=vec3.fromValues(a[0], a[1], a[2]);
+      vec3.scale(traslacion, traslacion, factor);
+      console.log(traslacion);
+			this.camaraRegistro[pos].dad.dad.entity.trasladar(traslacion[0],traslacion[1],traslacion[2]);
+			return true;
+		}
+
+  }
+
 	rotarCamara(nombre, grados, eje){
 		var pos = -1;
 
@@ -206,6 +227,12 @@ class TMotor{
 		return this.camaraRegistro[this.camaraActiva];
 	}
 
+  getPosCamaraActiva(){
+    let position=vec3.create();
+    vec3.transformMat4(position, position, this.camaraPosition);
+		return position;
+	}
+
 	dibujarCamaraActiva(){
 		let camaraActiva=this.getCamaraActiva();
 		//crear matriz projection a partir de la info almacenada
@@ -231,6 +258,7 @@ class TMotor{
         for(let i=auxStack.length-1; i>=0; i--){
         	mat4.multiply(auxMatrix, auxMatrix, auxStack[i]);
         }
+        this.camaraPosition=auxMatrix.slice(0);
         //el resultado lo invertimos y tenemos la matrix View
         mat4.invert(auxMatrix, auxMatrix);
         invertedMView=auxMatrix.slice(0);
