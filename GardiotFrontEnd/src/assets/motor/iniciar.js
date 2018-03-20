@@ -46,7 +46,9 @@ function iniciar(accion){
 
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
-
+  
+  window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+  //motor.siguienteMallaAnimada("animacion");
 
 
   window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
@@ -71,9 +73,14 @@ function iniciar(accion){
   motor.escalarMalla("malla2", 6);
   motor.moverMalla("malla2", 40, 0, 40);
 
+  motor.escalarMalla("animacion", 6);
+  motor.moverMalla("animacion", 40, 50, 40);
+
   motor.moverMalla("malla3", 15, 25, 0);
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
+
+
 
   //motor.escalarMalla("malla2", 5)
 

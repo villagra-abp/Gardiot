@@ -8,6 +8,7 @@ class TMotor{
         this.gestorRecursos = gestorRecursos;
         this.luzRegistro = [];
         this.luzActiva = [];
+        this.animRegistro = [];
         this.lucesActivas=0;
         this.camaraRegistro = [];
         this.camaraActiva = -1;
@@ -82,6 +83,9 @@ class TMotor{
 
         //inicializar viewport
 		    gl.viewport(0, 0, canvas.width, canvas.height);
+
+		//itera las mallas
+		this.siguienteMallaAnimada("animacion");
 
         //inicializar cámara
         this.dibujarCamaraActiva();
@@ -494,6 +498,97 @@ class TMotor{
 		}
   }
 //=================================FIN MALLAS============================
+//============================Animaciones==========================
+//
+//Nombre, nombre del recurso y si tiene un hermano o no
+//se maneja igual que una malla y tiene el mismo tipo tambien
+crearNodoAnimacion(nombre, arrayRecursos, hermano){
+		console.log(arrayRecursos);
+		if( hermano !== undefined){
+			//console.log("crea un hermano");
+		
 
+			var traMalla = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
+			
+			var animacion = new TNodo(nombre, new TTransf(), escMalla);
+
+			for(var i = 0; i < arrayRecursos.length; i++){
+				var malla = new TNodo(nombre + "_" + i, new TMalla(arrayRecursos[i]), animacion);
+			}
+		}else{
+			//console.log("crea en raiz");
+			
+			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
+			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
+			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
+
+			var animacion = new TNodo(nombre, new TTransf(), escMalla);
+
+			for(var i = 0; i < arrayRecursos.length; i++){
+				var malla = new TNodo(nombre + "_" + i, new TMalla(arrayRecursos[i]), animacion);
+				if(i!=0){
+					console.log("mallas a no poner activa");
+					console.log(malla);
+					malla._active = 0;
+				}
+			}
+
+			
+
+		}
+		this.animRegistro.push(animacion);
+		this.mallaRegistro.push(animacion);
+		console.log(this.animRegistro);
+		return malla;
+	}
+
+	siguienteMallaAnimada(nombre){
+		var pos = -1;
+
+		for (var i = 0; i< this.animRegistro.length; i++){
+			if(nombre == this.animRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		//console.log("mallaAnimada para ver");
+		//console.log(this.animRegistro[pos]);
+		//sacamos la malla que esta activa
+		
+		var numMallas = this.animRegistro[pos]._childs.length;
+		var activa = -1;
+		for (var i = 0; i< numMallas; i++){
+			if(1 ==  this.animRegistro[pos]._childs[i]._active){
+				activa = i;
+				break;
+			}
+		}
+		//console.log("malla activa");
+		this.animRegistro[pos]._childs[activa]._active = 0;
+		//console.log(this.animRegistro[pos]._childs[activa]);
+		activa++;
+		if(activa >= numMallas){
+			activa = 0;
+		}
+
+		this.animRegistro[pos]._childs[activa]._active = 1;
+		//console.log(this.animRegistro[pos]._childs[activa]);
+
+
+
+
+
+
+
+
+
+	}
+
+
+
+	
+//=================================FIN ANIMACION============================
 
 }
