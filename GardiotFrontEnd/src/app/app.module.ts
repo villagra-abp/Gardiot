@@ -79,6 +79,11 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 import { NewtreatmentsplantsComponent } from './components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -135,6 +140,9 @@ import { NewtreatmentsplantsComponent } from './components/treatmentsplants/newt
     Select2Module,
     Ng2ImgMaxModule,
     TabModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(), 
     // PopupModule.forRoot(),
     APP_ROUTING
   ],
