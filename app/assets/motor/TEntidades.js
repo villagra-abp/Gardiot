@@ -1,7 +1,6 @@
 //clase entidad de la que derivarán todas las transformaciones
 class TEntidad {
-	beginDraw(){}
-    endDraw(){}
+
 }
 
 
@@ -60,16 +59,15 @@ class TTransf extends TEntidad{
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
-        let a=matrixModel.slice(0);
 
-        matrixStack.push(a);
+        matrixStack.push(matrixModel.slice(0));
 
         mat4.multiply(matrixModel, matrixModel, this._matrix);
 
 
     }
 
-    endDraw(n){
+    endDraw(){
         matrixModel=matrixStack.pop();
 
     }

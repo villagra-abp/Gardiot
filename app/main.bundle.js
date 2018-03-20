@@ -40,7 +40,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_feeds_newfeed_newfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/newfeed/newfeed.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_feeds_editfeed_editfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/editfeed/editfeed.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_feeds_listfeed_listfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_treatmentsPlants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__ = __webpack_require__("../../../../../src/app/components/admin/adminguard.guard.ts");
 //Profile
 
@@ -96,7 +96,7 @@ var admin_routes = [
     { path: 'editproduct/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_feeds_editfeed_editfeed_component__["a" /* EditfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     { path: 'newproduct', component: __WEBPACK_IMPORTED_MODULE_15__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //newtreatmentsplants
-    { path: 'newtreatmentsplants/:id', component: __WEBPACK_IMPORTED_MODULE_18__components_treatmentsPlants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newtreatmentsplants/:id', component: __WEBPACK_IMPORTED_MODULE_18__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
 ];
 
@@ -144,7 +144,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.url = "";
         this.admin = window.location.href.indexOf('admin') >= 0;
@@ -198,63 +198,66 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_treatment_service__ = __webpack_require__("../../../../../src/app/services/treatment.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_product_service__ = __webpack_require__("../../../../../src/app/services/product.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_treatmentplant_service__ = __webpack_require__("../../../../../src/app/services/treatmentplant.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ng2_img_max__ = __webpack_require__("../../../../ng2-img-max/dist/ng2-img-max.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_select2__ = __webpack_require__("../../../../ng2-select2/ng2-select2.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_ng2_select2__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_file_upload__ = __webpack_require__("../../../../ng2-file-upload/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_ng2_file_upload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular_tabs_component__ = __webpack_require__("../../../../angular-tabs-component/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_admin_adminprofile_component__ = __webpack_require__("../../../../../src/app/components/admin/adminprofile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_manage_oauthconfirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/oauthconfirmation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__authguard_guard__ = __webpack_require__("../../../../../src/app/authguard.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__ = __webpack_require__("../../../../../src/app/components/admin/adminguard.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_header_header_component__ = __webpack_require__("../../../../../src/app/components/header/header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_user_calendar_component__ = __webpack_require__("../../../../../src/app/components/user/calendar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_manage_login_component__ = __webpack_require__("../../../../../src/app/components/manage/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_manage_logout_component__ = __webpack_require__("../../../../../src/app/components/manage/logout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_manage_register_component__ = __webpack_require__("../../../../../src/app/components/manage/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_manage_confirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/confirmation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_admin_analytics_component__ = __webpack_require__("../../../../../src/app/components/admin/analytics.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_admin_statistics_component__ = __webpack_require__("../../../../../src/app/components/admin/statistics.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__desarrollo_desarrollo_component__ = __webpack_require__("../../../../../src/app/desarrollo/desarrollo.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_pagination_pagination_component__ = __webpack_require__("../../../../../src/app/components/pagination/pagination.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_gardens_garden_garden_component__ = __webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_gardens_editgarden_editgarden_component__ = __webpack_require__("../../../../../src/app/components/gardens/editgarden/editgarden.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_gardens_newgarden_newgarden_component__ = __webpack_require__("../../../../../src/app/components/gardens/newgarden/newgarden.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_users_userdata_userdata_component__ = __webpack_require__("../../../../../src/app/components/users/userdata/userdata.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_users_newuser_newuser_component__ = __webpack_require__("../../../../../src/app/components/users/newuser/newuser.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_users_edituser_edituser_component__ = __webpack_require__("../../../../../src/app/components/users/edituser/edituser.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_users_listusers_listusers_component__ = __webpack_require__("../../../../../src/app/components/users/listusers/listusers.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_user_detail_component__ = __webpack_require__("../../../../../src/app/components/user/detail.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_user_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_user_editprofile_component__ = __webpack_require__("../../../../../src/app/components/user/editprofile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_manage_resend_component__ = __webpack_require__("../../../../../src/app/components/manage/resend.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_plants_newplant_newplant_component__ = __webpack_require__("../../../../../src/app/components/plants/newplant/newplant.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_plants_editplant_editplant_component__ = __webpack_require__("../../../../../src/app/components/plants/editplant/editplant.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__components_plants_plant_plant_component__ = __webpack_require__("../../../../../src/app/components/plants/plant/plant.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_plants_library_library_component__ = __webpack_require__("../../../../../src/app/components/plants/library/library.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__components_treatments_newtreatment_newtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/newtreatment/newtreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__components_treatments_edittreatment_edittreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/edittreatment/edittreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__components_treatments_listtreatment_listtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/listtreatment/listtreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__components_treatments_treatment_treatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/treatment/treatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__components_products_newproduct_newproduct_component__ = __webpack_require__("../../../../../src/app/components/products/newproduct/newproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__components_products_editproduct_editproduct_component__ = __webpack_require__("../../../../../src/app/components/products/editproduct/editproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__components_products_listproduct_listproduct_component__ = __webpack_require__("../../../../../src/app/components/products/listproduct/listproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__components_products_product_product_component__ = __webpack_require__("../../../../../src/app/components/products/product/product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__components_feeds_feed_feed_component__ = __webpack_require__("../../../../../src/app/components/feeds/feed/feed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_feeds_newfeed_newfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/newfeed/newfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_feeds_editfeed_editfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/editfeed/editfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_feeds_listfeed_listfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_manage_reset_pass_component__ = __webpack_require__("../../../../../src/app/components/manage/reset-pass.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_manage_reset_pass_back_reset_pass_back_component__ = __webpack_require__("../../../../../src/app/components/manage/reset-pass-back/reset-pass-back.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_treatmentsPlants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_task_service__ = __webpack_require__("../../../../../src/app/services/task.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_treatmentplant_service__ = __webpack_require__("../../../../../src/app/services/treatmentplant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ng2_img_max__ = __webpack_require__("../../../../ng2-img-max/dist/ng2-img-max.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_select2__ = __webpack_require__("../../../../ng2-select2/ng2-select2.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ng2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_ng2_select2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng2_file_upload__ = __webpack_require__("../../../../ng2-file-upload/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_ng2_file_upload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angular_tabs_component__ = __webpack_require__("../../../../angular-tabs-component/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_admin_adminprofile_component__ = __webpack_require__("../../../../../src/app/components/admin/adminprofile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_manage_oauthconfirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/oauthconfirmation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__authguard_guard__ = __webpack_require__("../../../../../src/app/authguard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_admin_adminguard_guard__ = __webpack_require__("../../../../../src/app/components/admin/adminguard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_header_header_component__ = __webpack_require__("../../../../../src/app/components/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_calendar_calendar_component__ = __webpack_require__("../../../../../src/app/components/calendar/calendar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_manage_login_component__ = __webpack_require__("../../../../../src/app/components/manage/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_manage_logout_component__ = __webpack_require__("../../../../../src/app/components/manage/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_manage_register_component__ = __webpack_require__("../../../../../src/app/components/manage/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_manage_confirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/confirmation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_admin_analytics_component__ = __webpack_require__("../../../../../src/app/components/admin/analytics.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_admin_statistics_component__ = __webpack_require__("../../../../../src/app/components/admin/statistics.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__desarrollo_desarrollo_component__ = __webpack_require__("../../../../../src/app/desarrollo/desarrollo.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__components_pagination_pagination_component__ = __webpack_require__("../../../../../src/app/components/pagination/pagination.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_gardens_garden_garden_component__ = __webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_gardens_editgarden_editgarden_component__ = __webpack_require__("../../../../../src/app/components/gardens/editgarden/editgarden.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__components_gardens_newgarden_newgarden_component__ = __webpack_require__("../../../../../src/app/components/gardens/newgarden/newgarden.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__components_users_userdata_userdata_component__ = __webpack_require__("../../../../../src/app/components/users/userdata/userdata.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_users_newuser_newuser_component__ = __webpack_require__("../../../../../src/app/components/users/newuser/newuser.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_users_edituser_edituser_component__ = __webpack_require__("../../../../../src/app/components/users/edituser/edituser.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_users_listusers_listusers_component__ = __webpack_require__("../../../../../src/app/components/users/listusers/listusers.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_user_detail_component__ = __webpack_require__("../../../../../src/app/components/user/detail.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__components_user_profile_component__ = __webpack_require__("../../../../../src/app/components/user/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__components_user_editprofile_component__ = __webpack_require__("../../../../../src/app/components/user/editprofile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__components_manage_resend_component__ = __webpack_require__("../../../../../src/app/components/manage/resend.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_plants_newplant_newplant_component__ = __webpack_require__("../../../../../src/app/components/plants/newplant/newplant.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__components_plants_editplant_editplant_component__ = __webpack_require__("../../../../../src/app/components/plants/editplant/editplant.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_plants_plant_plant_component__ = __webpack_require__("../../../../../src/app/components/plants/plant/plant.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__components_plants_library_library_component__ = __webpack_require__("../../../../../src/app/components/plants/library/library.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__components_treatments_newtreatment_newtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/newtreatment/newtreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__components_treatments_edittreatment_edittreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/edittreatment/edittreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__components_treatments_listtreatment_listtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/listtreatment/listtreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__components_treatments_treatment_treatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/treatment/treatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__components_products_newproduct_newproduct_component__ = __webpack_require__("../../../../../src/app/components/products/newproduct/newproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__components_products_editproduct_editproduct_component__ = __webpack_require__("../../../../../src/app/components/products/editproduct/editproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__components_products_listproduct_listproduct_component__ = __webpack_require__("../../../../../src/app/components/products/listproduct/listproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__components_products_product_product_component__ = __webpack_require__("../../../../../src/app/components/products/product/product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_feeds_feed_feed_component__ = __webpack_require__("../../../../../src/app/components/feeds/feed/feed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__components_feeds_newfeed_newfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/newfeed/newfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__components_feeds_editfeed_editfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/editfeed/editfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__components_feeds_listfeed_listfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__components_manage_reset_pass_component__ = __webpack_require__("../../../../../src/app/components/manage/reset-pass.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__components_manage_reset_pass_back_reset_pass_back_component__ = __webpack_require__("../../../../../src/app/components/manage/reset-pass-back/reset-pass-back.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -265,6 +268,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 //services
+
 
 
 
@@ -340,65 +344,71 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AppModule = (function () {
+
+
+
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_12__angular_core__["NgModule"])({
+        Object(__WEBPACK_IMPORTED_MODULE_13__angular_core__["NgModule"])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_21__components_header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__components_manage_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_manage_logout_component__["a" /* LogoutComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_manage_register_component__["a" /* RegisterComponent */],
-                __WEBPACK_IMPORTED_MODULE_39__components_user_detail_component__["a" /* DetailComponent */],
-                __WEBPACK_IMPORTED_MODULE_40__components_user_profile_component__["a" /* ProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_41__components_user_editprofile_component__["a" /* EditProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_manage_confirmation_component__["a" /* ConfirmationComponent */],
-                __WEBPACK_IMPORTED_MODULE_42__components_manage_resend_component__["a" /* ResendComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__components_admin_admin_component__["a" /* AdminComponent */],
-                __WEBPACK_IMPORTED_MODULE_38__components_users_listusers_listusers_component__["a" /* AdminListUsersComponent */],
-                __WEBPACK_IMPORTED_MODULE_16__components_admin_adminprofile_component__["a" /* AdminProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_37__components_users_edituser_edituser_component__["a" /* EdituserComponent */],
-                __WEBPACK_IMPORTED_MODULE_36__components_users_newuser_newuser_component__["a" /* NewuserComponent */],
-                __WEBPACK_IMPORTED_MODULE_32__components_gardens_garden_garden_component__["a" /* GardenComponent */],
-                __WEBPACK_IMPORTED_MODULE_33__components_gardens_editgarden_editgarden_component__["a" /* EditGardenComponent */],
-                __WEBPACK_IMPORTED_MODULE_34__components_gardens_newgarden_newgarden_component__["a" /* NewGardenComponent */],
-                __WEBPACK_IMPORTED_MODULE_28__components_admin_analytics_component__["a" /* AnalyticsComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__components_admin_statistics_component__["a" /* StatisticsComponent */],
-                __WEBPACK_IMPORTED_MODULE_35__components_users_userdata_userdata_component__["a" /* UserdataComponent */],
-                __WEBPACK_IMPORTED_MODULE_46__components_plants_library_library_component__["a" /* LibraryComponent */],
-                __WEBPACK_IMPORTED_MODULE_22__components_user_calendar_component__["a" /* CalendarComponent */],
-                __WEBPACK_IMPORTED_MODULE_17__components_manage_oauthconfirmation_component__["a" /* OauthConfirmationComponent */],
-                __WEBPACK_IMPORTED_MODULE_30__desarrollo_desarrollo_component__["a" /* DesarrolloComponent */],
-                __WEBPACK_IMPORTED_MODULE_10_ng2_file_upload__["FileSelectDirective"],
-                __WEBPACK_IMPORTED_MODULE_45__components_plants_plant_plant_component__["a" /* PlantComponent */],
-                __WEBPACK_IMPORTED_MODULE_31__components_pagination_pagination_component__["a" /* PaginationComponent */],
-                __WEBPACK_IMPORTED_MODULE_43__components_plants_newplant_newplant_component__["a" /* NewplantComponent */],
-                __WEBPACK_IMPORTED_MODULE_44__components_plants_editplant_editplant_component__["a" /* EditplantComponent */],
-                __WEBPACK_IMPORTED_MODULE_47__components_treatments_newtreatment_newtreatment_component__["a" /* NewtreatmentComponent */],
-                __WEBPACK_IMPORTED_MODULE_48__components_treatments_edittreatment_edittreatment_component__["a" /* EdittreatmentComponent */],
-                __WEBPACK_IMPORTED_MODULE_49__components_treatments_listtreatment_listtreatment_component__["a" /* ListtreatmentComponent */],
-                __WEBPACK_IMPORTED_MODULE_50__components_treatments_treatment_treatment_component__["a" /* TreatmentComponent */],
-                __WEBPACK_IMPORTED_MODULE_51__components_products_newproduct_newproduct_component__["a" /* NewproductComponent */],
-                __WEBPACK_IMPORTED_MODULE_52__components_products_editproduct_editproduct_component__["a" /* EditproductComponent */],
-                __WEBPACK_IMPORTED_MODULE_53__components_products_listproduct_listproduct_component__["a" /* ListproductComponent */],
-                __WEBPACK_IMPORTED_MODULE_54__components_products_product_product_component__["a" /* ProductComponent */],
-                __WEBPACK_IMPORTED_MODULE_55__components_feeds_feed_feed_component__["a" /* FeedComponent */],
-                __WEBPACK_IMPORTED_MODULE_56__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */],
-                __WEBPACK_IMPORTED_MODULE_57__components_feeds_editfeed_editfeed_component__["a" /* EditfeedComponent */],
-                __WEBPACK_IMPORTED_MODULE_58__components_feeds_listfeed_listfeed_component__["a" /* ListfeedComponent */],
-                __WEBPACK_IMPORTED_MODULE_59__components_manage_reset_pass_component__["a" /* ResetPassComponent */],
-                __WEBPACK_IMPORTED_MODULE_60__components_manage_reset_pass_back_reset_pass_back_component__["a" /* ResetPassBackComponent */],
-                __WEBPACK_IMPORTED_MODULE_61__components_treatmentsPlants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */]
+                __WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_22__components_header_header_component__["a" /* HeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_24__components_manage_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_manage_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_manage_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_40__components_user_detail_component__["a" /* DetailComponent */],
+                __WEBPACK_IMPORTED_MODULE_41__components_user_profile_component__["a" /* ProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_42__components_user_editprofile_component__["a" /* EditProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_manage_confirmation_component__["a" /* ConfirmationComponent */],
+                __WEBPACK_IMPORTED_MODULE_43__components_manage_resend_component__["a" /* ResendComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__components_admin_admin_component__["a" /* AdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_39__components_users_listusers_listusers_component__["a" /* AdminListUsersComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__components_admin_adminprofile_component__["a" /* AdminProfileComponent */],
+                __WEBPACK_IMPORTED_MODULE_38__components_users_edituser_edituser_component__["a" /* EdituserComponent */],
+                __WEBPACK_IMPORTED_MODULE_37__components_users_newuser_newuser_component__["a" /* NewuserComponent */],
+                __WEBPACK_IMPORTED_MODULE_33__components_gardens_garden_garden_component__["a" /* GardenComponent */],
+                __WEBPACK_IMPORTED_MODULE_34__components_gardens_editgarden_editgarden_component__["a" /* EditGardenComponent */],
+                __WEBPACK_IMPORTED_MODULE_35__components_gardens_newgarden_newgarden_component__["a" /* NewGardenComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__components_admin_analytics_component__["a" /* AnalyticsComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__components_admin_statistics_component__["a" /* StatisticsComponent */],
+                __WEBPACK_IMPORTED_MODULE_36__components_users_userdata_userdata_component__["a" /* UserdataComponent */],
+                __WEBPACK_IMPORTED_MODULE_47__components_plants_library_library_component__["a" /* LibraryComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_calendar_calendar_component__["a" /* CalendarComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__components_manage_oauthconfirmation_component__["a" /* OauthConfirmationComponent */],
+                __WEBPACK_IMPORTED_MODULE_31__desarrollo_desarrollo_component__["a" /* DesarrolloComponent */],
+                __WEBPACK_IMPORTED_MODULE_11_ng2_file_upload__["FileSelectDirective"],
+                __WEBPACK_IMPORTED_MODULE_46__components_plants_plant_plant_component__["a" /* PlantComponent */],
+                __WEBPACK_IMPORTED_MODULE_32__components_pagination_pagination_component__["a" /* PaginationComponent */],
+                __WEBPACK_IMPORTED_MODULE_44__components_plants_newplant_newplant_component__["a" /* NewplantComponent */],
+                __WEBPACK_IMPORTED_MODULE_45__components_plants_editplant_editplant_component__["a" /* EditplantComponent */],
+                __WEBPACK_IMPORTED_MODULE_48__components_treatments_newtreatment_newtreatment_component__["a" /* NewtreatmentComponent */],
+                __WEBPACK_IMPORTED_MODULE_49__components_treatments_edittreatment_edittreatment_component__["a" /* EdittreatmentComponent */],
+                __WEBPACK_IMPORTED_MODULE_50__components_treatments_listtreatment_listtreatment_component__["a" /* ListtreatmentComponent */],
+                __WEBPACK_IMPORTED_MODULE_51__components_treatments_treatment_treatment_component__["a" /* TreatmentComponent */],
+                __WEBPACK_IMPORTED_MODULE_52__components_products_newproduct_newproduct_component__["a" /* NewproductComponent */],
+                __WEBPACK_IMPORTED_MODULE_53__components_products_editproduct_editproduct_component__["a" /* EditproductComponent */],
+                __WEBPACK_IMPORTED_MODULE_54__components_products_listproduct_listproduct_component__["a" /* ListproductComponent */],
+                __WEBPACK_IMPORTED_MODULE_55__components_products_product_product_component__["a" /* ProductComponent */],
+                __WEBPACK_IMPORTED_MODULE_56__components_feeds_feed_feed_component__["a" /* FeedComponent */],
+                __WEBPACK_IMPORTED_MODULE_57__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */],
+                __WEBPACK_IMPORTED_MODULE_58__components_feeds_editfeed_editfeed_component__["a" /* EditfeedComponent */],
+                __WEBPACK_IMPORTED_MODULE_59__components_feeds_listfeed_listfeed_component__["a" /* ListfeedComponent */],
+                __WEBPACK_IMPORTED_MODULE_60__components_manage_reset_pass_component__["a" /* ResetPassComponent */],
+                __WEBPACK_IMPORTED_MODULE_61__components_manage_reset_pass_back_reset_pass_back_component__["a" /* ResetPassBackComponent */],
+                __WEBPACK_IMPORTED_MODULE_62__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_14__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_13__angular_http__["c" /* HttpModule */],
-                __WEBPACK_IMPORTED_MODULE_9_ng2_select2__["Select2Module"],
-                __WEBPACK_IMPORTED_MODULE_8_ng2_img_max__["a" /* Ng2ImgMaxModule */],
-                __WEBPACK_IMPORTED_MODULE_15_angular_tabs_component__["a" /* TabModule */],
+                __WEBPACK_IMPORTED_MODULE_12__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_15__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_14__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_10_ng2_select2__["Select2Module"],
+                __WEBPACK_IMPORTED_MODULE_9_ng2_img_max__["a" /* Ng2ImgMaxModule */],
+                __WEBPACK_IMPORTED_MODULE_16_angular_tabs_component__["a" /* TabModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+                __WEBPACK_IMPORTED_MODULE_63__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_64_angular_calendar__["a" /* CalendarModule */].forRoot(),
                 // PopupModule.forRoot(),
                 __WEBPACK_IMPORTED_MODULE_0__app_routes__["a" /* APP_ROUTING */]
             ],
@@ -406,15 +416,16 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
                 __WEBPACK_IMPORTED_MODULE_3__services_garden_service__["a" /* GardenService */],
                 __WEBPACK_IMPORTED_MODULE_4__services_plant_service__["a" /* PlantService */],
-                __WEBPACK_IMPORTED_MODULE_8_ng2_img_max__["b" /* Ng2ImgMaxService */],
-                __WEBPACK_IMPORTED_MODULE_18__authguard_guard__["a" /* AuthguardGuard */],
-                __WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */],
+                __WEBPACK_IMPORTED_MODULE_9_ng2_img_max__["b" /* Ng2ImgMaxService */],
+                __WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */],
+                __WEBPACK_IMPORTED_MODULE_20__components_admin_adminguard_guard__["a" /* AdminguardGuard */],
                 __WEBPACK_IMPORTED_MODULE_5__services_treatment_service__["a" /* TreatmentService */],
                 __WEBPACK_IMPORTED_MODULE_6__services_product_service__["a" /* ProductService */],
-                __WEBPACK_IMPORTED_MODULE_7__services_treatmentplant_service__["a" /* TreatmentPlantService */],
+                __WEBPACK_IMPORTED_MODULE_7__services_task_service__["a" /* TaskService */],
+                __WEBPACK_IMPORTED_MODULE_8__services_treatmentplant_service__["a" /* TreatmentPlantService */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["DatePipe"]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_20__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_21__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -438,7 +449,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_user_editprofile_component__ = __webpack_require__("../../../../../src/app/components/user/editprofile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_manage_confirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/confirmation.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_manage_resend_component__ = __webpack_require__("../../../../../src/app/components/manage/resend.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_user_calendar_component__ = __webpack_require__("../../../../../src/app/components/user/calendar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_calendar_calendar_component__ = __webpack_require__("../../../../../src/app/components/calendar/calendar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_plants_library_library_component__ = __webpack_require__("../../../../../src/app/components/plants/library/library.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_plants_plant_plant_component__ = __webpack_require__("../../../../../src/app/components/plants/plant/plant.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_plants_newplant_newplant_component__ = __webpack_require__("../../../../../src/app/components/plants/newplant/newplant.component.ts");
@@ -496,7 +507,7 @@ var app_routes = [
     { path: 'newplant', component: __WEBPACK_IMPORTED_MODULE_12__components_plants_newplant_newplant_component__["a" /* NewplantComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */]] },
     { path: 'editplant/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_plants_editplant_editplant_component__["a" /* EditplantComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */]] },
     { path: 'plant/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_plants_plant_plant_component__["a" /* PlantComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */]] },
-    { path: 'calendar', component: __WEBPACK_IMPORTED_MODULE_9__components_user_calendar_component__["a" /* CalendarComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */]] },
+    { path: 'calendar', component: __WEBPACK_IMPORTED_MODULE_9__components_calendar_calendar_component__["a" /* CalendarComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__authguard_guard__["a" /* AuthguardGuard */]] },
     { path: 'confirmation/:key', component: __WEBPACK_IMPORTED_MODULE_7__components_manage_confirmation_component__["a" /* ConfirmationComponent */] },
     { path: 'oauthconfirmation/:key', component: __WEBPACK_IMPORTED_MODULE_14__components_manage_oauthconfirmation_component__["a" /* OauthConfirmationComponent */] },
     { path: 'resetPass', component: __WEBPACK_IMPORTED_MODULE_21__components_manage_reset_pass_component__["a" /* ResetPassComponent */] },
@@ -528,7 +539,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthguardGuard = (function () {
+var AuthguardGuard = /** @class */ (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -558,7 +569,7 @@ var AuthguardGuard = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Garden; });
-var Garden = (function () {
+var Garden = /** @class */ (function () {
     function Garden(id, title, width, length, latitude, longitude, soil, user, countryCode, city) {
         this.id = id;
         this.title = title;
@@ -583,7 +594,7 @@ var Garden = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Plant; });
-var Plant = (function () {
+var Plant = /** @class */ (function () {
     function Plant(id, scientificName, commonName, description, photo, _3DModel, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType) {
         this.id = id;
         this.scientificName = scientificName;
@@ -615,7 +626,7 @@ var Plant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Product; });
-var Product = (function () {
+var Product = /** @class */ (function () {
     function Product(id, name, type, description) {
         this.id = id;
         this.name = name;
@@ -634,13 +645,37 @@ var Product = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTreatment; });
-var ProductTreatment = (function () {
-    function ProductTreatment(plant, treatment, product) {
+var ProductTreatment = /** @class */ (function () {
+    function ProductTreatment(plant, treatment, product, name) {
         this.plant = plant;
         this.treatment = treatment;
         this.product = product;
+        this.name = name;
     }
     return ProductTreatment;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/classes/task.class.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
+var Task = /** @class */ (function () {
+    function Task(tPlant, treatmentPlant, myPlant, mPlant, date, dateDone, commonName, name) {
+        this.tPlant = tPlant;
+        this.treatmentPlant = treatmentPlant;
+        this.myPlant = myPlant;
+        this.mPlant = mPlant;
+        this.date = date;
+        this.dateDone = dateDone;
+        this.commonName = commonName;
+        this.name = name;
+    }
+    return Task;
 }());
 
 
@@ -652,11 +687,12 @@ var ProductTreatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Treatment; });
-var Treatment = (function () {
-    function Treatment(id, name, description) {
+var Treatment = /** @class */ (function () {
+    function Treatment(id, name, description, icon) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.icon = icon;
     }
     return Treatment;
 }());
@@ -670,7 +706,7 @@ var Treatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreatmentPlant; });
-var TreatmentPlant = (function () {
+var TreatmentPlant = /** @class */ (function () {
     function TreatmentPlant(plant, treatment, frequency, initDate, finalDate) {
         this.plant = plant;
         this.treatment = treatment;
@@ -690,7 +726,7 @@ var TreatmentPlant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-var User = (function () {
+var User = /** @class */ (function () {
     function User(id, name, lastName, password, password2, oldPassword, photo, countryCode, city, birthDate, active, admin) {
         this.id = id;
         this.name = name;
@@ -741,7 +777,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { AdminListUsersComponent } from "./listusers.component";
 //import { AdminUserComponent } from "./user.component";
-var AdminComponent = (function () {
+var AdminComponent = /** @class */ (function () {
     function AdminComponent(_detailService, _route) {
         this._detailService = _detailService;
         this._route = _route;
@@ -784,7 +820,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminguardGuard = (function () {
+var AdminguardGuard = /** @class */ (function () {
     function AdminguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -846,7 +882,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminProfileComponent = (function () {
+var AdminProfileComponent = /** @class */ (function () {
     function AdminProfileComponent(_detailService, _route, _appComponent, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -1024,7 +1060,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AnalyticsComponent = (function () {
+var AnalyticsComponent = /** @class */ (function () {
     function AnalyticsComponent() {
     }
     AnalyticsComponent.prototype.ngOnInit = function () {
@@ -1066,7 +1102,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var StatisticsComponent = (function () {
+var StatisticsComponent = /** @class */ (function () {
     function StatisticsComponent() {
     }
     StatisticsComponent.prototype.ngOnInit = function () {
@@ -1079,6 +1115,225 @@ var StatisticsComponent = (function () {
         __metadata("design:paramtypes", [])
     ], StatisticsComponent);
     return StatisticsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/calendar.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/calendar.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"main-container container\">\n  <div class=\"row text-center\">\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarPreviousView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Anterior\n      </div>\n      <div\n        class=\"btn btn-outline-secondary\"\n        mwlCalendarToday\n        [(viewDate)]=\"viewDate\">\n        Actual\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarNextView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Próximo\n      </div>\n    </div>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\n  </div>\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'month'\"\n        [class.active]=\"view === 'month'\">\n        Month\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'week'\"\n        [class.active]=\"view === 'week'\">\n        Week\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'day'\"\n        [class.active]=\"view === 'day'\">\n        Day\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<div [ngSwitch]=\"view\">\n  <mwl-calendar-month-view\n    *ngSwitchCase=\"'month'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    [activeDayIsOpen]=\"activeDayIsOpen\"\n    (dayClicked)=\"dayClicked($event.day)\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-month-view>\n  <mwl-calendar-week-view\n    *ngSwitchCase=\"'week'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-week-view>\n  <mwl-calendar-day-view\n    *ngSwitchCase=\"'day'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-day-view>\n</div>\n\n<!--\n\n<h3>\n  Edit events\n  <button\n    class=\"btn btn-primary pull-right\"\n    (click)=\"addEvent()\">\n    Add new\n  </button>\n  <div class=\"clearfix\"></div>\n</h3>\n\n<table class=\"table table-bordered\">\n\n  <thead>\n    <tr>\n      <th>Title</th>\n      <th>Primary color</th>\n      <th>Secondary color</th>\n      <th>Starts at</th>\n      <th>Ends at</th>\n      <th>Remove</th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr *ngFor=\"let event of events; let index = index\">\n      <td>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          [(ngModel)]=\"event.title\"\n          (keyup)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.primary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.secondary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td>\n        <button\n          class=\"btn btn-danger\"\n          (click)=\"events.splice(index, 1); refresh.next()\">\n          Delete\n        </button>\n      </td>\n    </tr>\n  </tbody>\n\n</table>\n-->\n</div>\n\n  <div class=\"container main-container\">\n    <h1>Calendario</h1>\n    <div class=\"wrap\">\n    <section class=\"card-columns\">\n        <div *ngFor=\"let task of tasks\" class=\"card\"  style=\"width: 18rem;\" >\n            <h4>{{task.commonName}} </h4>\n            <p>{{task.name}} </p>\n            <p>{{task.date}}</p>\n            <button   class=\"btn btn-outline-primary\">Realizada</button>\n          </div>\n    </section>\n    </div>\n  \t</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/calendar.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_task_service__ = __webpack_require__("../../../../../src/app/services/task.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_task_class__ = __webpack_require__("../../../../../src/app/classes/task.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var colors = {
+    red: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+    },
+    blue: {
+        primary: '#1e90ff',
+        secondary: '#D1E8FF'
+    },
+    yellow: {
+        primary: '#e3bc08',
+        secondary: '#FDF1BA'
+    }
+};
+var CalendarComponent = /** @class */ (function () {
+    function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute) {
+        var _this = this;
+        this._taskService = _taskService;
+        this._route = _route;
+        this._appComponent = _appComponent;
+        this.datePipe = datePipe;
+        this.activatedRoute = activatedRoute;
+        this.view = 'month';
+        this.viewDate = new Date();
+        this.tasks = [];
+        this.task = new __WEBPACK_IMPORTED_MODULE_3__classes_task_class__["a" /* Task */]();
+        this.treatments = [];
+        this.treatment = new __WEBPACK_IMPORTED_MODULE_3__classes_task_class__["a" /* Task */]();
+        this.actions = [
+            {
+                label: '<i class="fa fa-fw fa-pencil"></i>',
+                onClick: function (_a) {
+                    var event = _a.event;
+                    //this.handleEvent('Edited', event);
+                }
+            },
+            {
+                label: '<i class="fa fa-fw fa-times"></i>',
+                onClick: function (_a) {
+                    var event = _a.event;
+                    _this.events = _this.events.filter(function (iEvent) { return iEvent !== event; });
+                    //this.handleEvent('Deleted', event);
+                }
+            }
+        ];
+        this.refresh = new __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__["b" /* Subject */]();
+        this.events = [
+            {
+                start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["subDays"])(Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date()), 1),
+                end: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["addDays"])(new Date(), 1),
+                title: 'Fumigar las margaritas',
+                color: colors.red,
+                actions: this.actions
+            },
+            {
+                start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date()),
+                title: 'Podar el olivo',
+                color: colors.yellow,
+                actions: this.actions
+            },
+            {
+                start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["subDays"])(Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["endOfMonth"])(new Date()), 3),
+                end: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["addDays"])(Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["endOfMonth"])(new Date()), 3),
+                title: 'Próxima poda de los almendros',
+                color: colors.blue
+            },
+            {
+                start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["addHours"])(Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date()), 2),
+                end: new Date(),
+                title: 'Fumigar las rosas',
+                color: colors.yellow,
+                actions: this.actions,
+                resizable: {
+                    beforeStart: true,
+                    afterEnd: true
+                },
+                draggable: true
+            }
+        ];
+        this.activeDayIsOpen = true;
+    }
+    CalendarComponent.prototype.dayClicked = function (_a) {
+        var date = _a.date, events = _a.events;
+        if (Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameMonth"])(date, this.viewDate)) {
+            if ((Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameDay"])(this.viewDate, date) && this.activeDayIsOpen === true) ||
+                events.length === 0) {
+                this.activeDayIsOpen = false;
+            }
+            else {
+                this.activeDayIsOpen = true;
+                this.viewDate = date;
+            }
+        }
+    };
+    CalendarComponent.prototype.eventTimesChanged = function (_a) {
+        var event = _a.event, newStart = _a.newStart, newEnd = _a.newEnd;
+        event.start = newStart;
+        event.end = newEnd;
+        //this.handleEvent('Dropped or resized', event);
+        this.refresh.next();
+    };
+    CalendarComponent.prototype.addEvent = function () {
+        this.events.push({
+            title: 'New event',
+            start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date()),
+            end: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["endOfDay"])(new Date()),
+            color: colors.red,
+            draggable: true,
+            resizable: {
+                beforeStart: true,
+                afterEnd: true
+            }
+        });
+        this.refresh.next();
+    };
+    CalendarComponent.prototype.mostrar = function () {
+        var _this = this;
+        var f = new Date();
+        var fecha_actual;
+        f.getDate();
+        f.getMonth() + 1;
+        f.getFullYear();
+        fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+        this._taskService.detailsAll(fecha_actual)
+            .subscribe(function (data) {
+            _this.tasks = [];
+            for (var key$ in data) {
+                _this.tasks.push(data[key$]);
+            }
+            for (var key$ in data) {
+                _this.treatments.push(data[key$]);
+            }
+            console.log(_this.treatments);
+            console.log(_this.tasks);
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    CalendarComponent.prototype.ngOnInit = function () {
+        this.mostrar();
+    };
+    CalendarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-calendar',
+            changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
+            styles: [__webpack_require__("../../../../../src/app/components/calendar/calendar.component.css")],
+            template: __webpack_require__("../../../../../src/app/components/calendar/calendar.component.html")
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_task_service__["a" /* TaskService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["DatePipe"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
+    ], CalendarComponent);
+    return CalendarComponent;
 }());
 
 
@@ -1126,7 +1381,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var EditfeedComponent = (function () {
+var EditfeedComponent = /** @class */ (function () {
     function EditfeedComponent() {
     }
     EditfeedComponent.prototype.ngOnInit = function () {
@@ -1187,7 +1442,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var FeedComponent = (function () {
+var FeedComponent = /** @class */ (function () {
     function FeedComponent() {
     }
     FeedComponent.prototype.ngOnInit = function () {
@@ -1248,7 +1503,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ListfeedComponent = (function () {
+var ListfeedComponent = /** @class */ (function () {
     function ListfeedComponent() {
     }
     ListfeedComponent.prototype.ngOnInit = function () {
@@ -1309,7 +1564,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var NewfeedComponent = (function () {
+var NewfeedComponent = /** @class */ (function () {
     function NewfeedComponent() {
     }
     NewfeedComponent.prototype.ngOnInit = function () {
@@ -1337,7 +1592,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body{\n\tpadding: 0 !important;\n}\n.borrar{\n\tmargin-top: 1em;\n}\n.canvasEvolver{\n\tposition: absolute;\n\ttop: 61px;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tmargin: 0;\n\tpadding: 0;\n\toverflow: hidden;\n\tz-index:0;\n}\ncanvas{\nmargin: 0;\npadding: 0;\nwidth: 100% !important;\nheight: 100% !important;\n\n}\n.selectPlantas{\n\tposition: absolute;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-direction: column;\n\tflex-direction: column;\n\ttop: 61px;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 150px;\n\tpadding: 10px;\n\tbackground-color: #fff;\n\tz-index:1;\n}\n\n .selectPlantas>article{\n\t width: 100%;\n\t height: 200px;\n\t margin-top: 5px;\n }\n\n .selectPlantas>article>.imgPlant{\n\t width: 100%;\n\t height: 80%;\n\t background-position: center;\n\t background-repeat: no-repeat;\n\t background-size: contain;\n\t border: 2px solid #000;\n\t cursor: pointer;\n }\n", ""]);
+exports.push([module.i, "body{\n\tpadding: 0 !important;\n}\n.borrar{\n\tmargin-top: 1em;\n}\n.canvasEvolver{\n\tposition: absolute;\n\ttop: 61px;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tmargin: 0;\n\tpadding: 0;\n\toverflow: hidden;\n\tz-index:0;\n}\ncanvas{\nmargin: 0;\npadding: 0;\nwidth: 100% !important;\nheight: 100% !important;\n\n}\n.selectPlantas{\n\tposition: absolute;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-direction: column;\n\tflex-direction: column;\n\ttop: 61px;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 150px;\n\tpadding: 10px;\n\tbackground-color: #fff;\n\tz-index:1;\n}\n\n .selectPlantas>article{\n\t width: 100%;\n\t height: 200px;\n\t margin-top: 5px;\n }\n\n .selectPlantas>article>.imgPlant{\n\t width: 100%;\n\t height: 80%;\n\t background-position: center;\n\t background-repeat: no-repeat;\n\t background-size: contain;\n\t border: 2px solid #000;\n\t cursor: pointer;\n }\n\n .container{\n\t display: none;\n\t background-color: #fff;\n\t position: fixed;\n\t top: 70px;\n\t right: 10px;\n\t height: 80%;\n\t width: 350px;\n }\n", ""]);
 
 // exports
 
@@ -1350,7 +1605,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/editgarden/editgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onscroll=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\" style=\"display: none\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
+module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -1382,7 +1637,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditGardenComponent = (function () {
+var EditGardenComponent = /** @class */ (function () {
     function EditGardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1508,7 +1763,6 @@ var EditGardenComponent = (function () {
         var canvas = document.querySelector('canvas');
         canvas.width = width;
         canvas.height = height;
-        //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
         window.addEventListener("resize", this.resizeCanvas);
     };
     EditGardenComponent.prototype.resizeCanvas = function () {
@@ -1517,7 +1771,6 @@ var EditGardenComponent = (function () {
         var canvas = document.querySelector('canvas');
         canvas.width = width;
         canvas.height = height;
-        //canvas.setAttribute("style", "width: "+width+"px; height: "+height+"px;");
     };
     //Envia los nuevos datos del jardin a  a GardenService para guardarlos
     EditGardenComponent.prototype.edit = function () {
@@ -1618,7 +1871,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenComponent = (function () {
+var GardenComponent = /** @class */ (function () {
     function GardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1741,7 +1994,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewGardenComponent = (function () {
+var NewGardenComponent = /** @class */ (function () {
     function NewGardenComponent(_gardenService, _plantService, _route, datePipe, _appComponent) {
         this._gardenService = _gardenService;
         this._plantService = _plantService;
@@ -1960,7 +2213,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HeaderComponent = (function () {
+var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(userService) {
         this.userService = userService;
         this.user = new __WEBPACK_IMPORTED_MODULE_2__classes_user_class__["a" /* User */]("");
@@ -2073,7 +2326,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfirmationComponent = (function () {
+var ConfirmationComponent = /** @class */ (function () {
     function ConfirmationComponent(_comprobationService, _router, _appComponent) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2140,7 +2393,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(_loginService, _route, _appComponent) {
         this._loginService = _loginService;
         this._route = _route;
@@ -2233,7 +2486,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LogoutComponent = (function () {
+var LogoutComponent = /** @class */ (function () {
     function LogoutComponent(_logoutService, _route) {
         this._logoutService = _logoutService;
         this._route = _route;
@@ -2290,7 +2543,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OauthConfirmationComponent = (function () {
+var OauthConfirmationComponent = /** @class */ (function () {
     function OauthConfirmationComponent(_comprobationService, _router, _appComponent, _route) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2358,7 +2611,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(_userService, _route, _appComponent) {
         this._userService = _userService;
         this._route = _route;
@@ -2432,7 +2685,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResendComponent = (function () {
+var ResendComponent = /** @class */ (function () {
     function ResendComponent(_resendService, _route) {
         this._resendService = _resendService;
         this._route = _route;
@@ -2509,7 +2762,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResetPassBackComponent = (function () {
+var ResetPassBackComponent = /** @class */ (function () {
     function ResetPassBackComponent(_appComponent, router, _newPass) {
         this._appComponent = _appComponent;
         this.router = router;
@@ -2611,7 +2864,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { User } from "../../classes/user.class";
 
 
-var ResetPassComponent = (function () {
+var ResetPassComponent = /** @class */ (function () {
     function ResetPassComponent(_appComponent, _resetPassword) {
         this._appComponent = _appComponent;
         this._resetPassword = _resetPassword;
@@ -2687,7 +2940,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var PaginationComponent = (function () {
+var PaginationComponent = /** @class */ (function () {
     function PaginationComponent() {
         this.plants = [];
         this.goPrev = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -2860,7 +3113,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditplantComponent = (function () {
+var EditplantComponent = /** @class */ (function () {
     function EditplantComponent(_plantService, _appComponent, _ng2ImgMax, datePipe, _router, _route) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
@@ -3044,7 +3297,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LibraryComponent = (function () {
+var LibraryComponent = /** @class */ (function () {
     function LibraryComponent(_plantService, _route, _appComponent, activatedRoute, user) {
         this._plantService = _plantService;
         this._route = _route;
@@ -3229,10 +3482,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { Treatment } from "../../../classes/treatment.class";
 // import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
 // import { TreatmentService } from "../../../services/treatment.service";
-var NewplantComponent = (function () {
+var NewplantComponent = /** @class */ (function () {
     function NewplantComponent(_plantService, 
-        // private _treatmentService:TreatmentService,
-        _appComponent, _ng2ImgMax) {
+    // private _treatmentService:TreatmentService,
+    _appComponent, _ng2ImgMax) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
         this._ng2ImgMax = _ng2ImgMax;
@@ -3350,7 +3603,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/plants/plant/plant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h1>{{plant.commonName}}</h1>\n    <div class=\"row\">\n      <section class=\"card\">\n        <h2>Descripción</h2>\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n      </section>\n    </div>\n    <div class=\"row\">\n\n      <div class=\"col\">\n        <!--delante de la url https://gardiot.ovh/ -->\n        <section class=\"card\">\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\n          <dl>\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\n          </dl>\n        </section> \n      </div>\n\n        <!--\n       <p>ID:{{plant.id}}</p>\n        <p *ngIf=\"plant.commonName !=undefined\">Nombre común: {{plant.commonName}}</p>\n        <p *ngIf=\"plant.scientificName !=undefined\">Nombre científico: {{plant.scientificName}}</p>\n        <p *ngIf=\"plant.family !=undefined\">Familia: {{plant.family}}</p>\n      -->\n\n\n      <div class=\"col\">\n        <section class=\"card\">\n            <p *ngIf=\"plant.depth !=undefined\">\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\n            </p>\n\n            <p *ngIf=\"plant.distance !=undefined\">\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\n            </p>\n\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\n            </p>\n\n            <p *ngIf=\"plant.leaveType !=undefined\">\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\n            </p>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\n          </p>\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\n          </p>\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\n          </p>\n        </section>\n      </div>\n    </div>\n    <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\n</div>\n"
+module.exports = "<div class=\"container vistaAdmin\" >\n    <h1>{{plant.commonName}}</h1>\n    <div class=\"row\">\n      <section class=\"card\">\n        <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\n        <h2>Descripción</h2>\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n      </section>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <!--delante de la url https://gardiot.ovh/ -->\n        <section class=\"card\">\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\n          <dl>\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\n          </dl>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n            <p *ngIf=\"plant.depth !=undefined\">\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.distance !=undefined\">\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\n            </p>\n            <p *ngIf=\"plant.leaveType !=undefined\">\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\n            </p>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\n          </p>\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\n          </p>\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\n          </p>\n        </section>\n      </div>\n    </div>\n    \n    <section *ngIf=\"this.user.isAdmin\" class=\"card\">\n      <h2>Tratamientos</h2>\n        <section *ngFor=\"let treatment of treatments\">\n          <img *ngIf=\"treatment.icon !=undefined\" class=\"iconplant\" src=\"{{treatment.icon}}\" alt=\"Tratamiento\">\n          <h5 *ngIf=\"treatment.name !=undefined\">{{treatment.name}}</h5>\n          <p *ngIf=\"treatment.description !=undefined\">{{treatment.description}}</p>\n          <h6 *ngIf=\"productTreatments !=undefined\">Productos</h6>\n          <ul *ngFor=\"let producttreatment of productTreatments\">\n            <li class=\"list-group-item\" *ngIf = \"treatment.id == producttreatment.treatment\">{{producttreatment.name}}</li>\n          </ul>\n        </section>\n    </section>\n\n</div>\n"
 
 /***/ }),
 
@@ -3363,6 +3616,11 @@ module.exports = "<div class=\"container\">\n    <h1>{{plant.commonName}}</h1>\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__classes_plant_class__ = __webpack_require__("../../../../../src/app/classes/plant.class.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_treatmentplant_service__ = __webpack_require__("../../../../../src/app/services/treatmentplant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_treatment_class__ = __webpack_require__("../../../../../src/app/classes/treatment.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_product_class__ = __webpack_require__("../../../../../src/app/classes/product.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__classes_producttreatment_class__ = __webpack_require__("../../../../../src/app/classes/producttreatment.class.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3376,12 +3634,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantComponent = (function () {
-    function PlantComponent(_plantService, _router, _route) {
+
+
+
+
+
+var PlantComponent = /** @class */ (function () {
+    function PlantComponent(_plantService, _treatmentPlantService, _router, user, _route) {
         this._plantService = _plantService;
+        this._treatmentPlantService = _treatmentPlantService;
         this._router = _router;
+        this.user = user;
         this._route = _route;
         this.plant = new __WEBPACK_IMPORTED_MODULE_1__classes_plant_class__["a" /* Plant */]();
+        this.product = new __WEBPACK_IMPORTED_MODULE_7__classes_product_class__["a" /* Product */]();
+        this.treatment = new __WEBPACK_IMPORTED_MODULE_6__classes_treatment_class__["a" /* Treatment */]();
+        this.treatments = [];
+        this.products = [];
+        this.productTreatments = [];
+        this.producttreatment = new __WEBPACK_IMPORTED_MODULE_8__classes_producttreatment_class__["a" /* ProductTreatment */]();
     }
     PlantComponent.prototype.mostrar = function (numplant) {
         var _this = this;
@@ -3411,7 +3682,33 @@ var PlantComponent = (function () {
             _this.finRecolectar = _this.dameMes(data[0].finDateHarvest);
             _this.plant.leaveType = data[0].leaveType;
             // this.plant.commonName=data[0].3DModel;
-            // console.log(data);
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    PlantComponent.prototype.mostrarTratamientos = function (numplant) {
+        var _this = this;
+        // console.log("Entro en mostrar tratamientos de planta: "+numplant);
+        this._treatmentPlantService.detailsTreatment(numplant)
+            .subscribe(function (data) {
+            _this.treatments = [];
+            for (var key$ in data) {
+                _this.treatments.push(data[key$]);
+                _this.showProductPlant(data[key$].id, numplant);
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    PlantComponent.prototype.showProductPlant = function (treatment, idPlant) {
+        var _this = this;
+        this._treatmentPlantService.showProductPlant(treatment, idPlant)
+            .subscribe(function (data) {
+            // this.productTreatments=[];
+            for (var key$ in data) {
+                _this.productTreatments.push(data[key$]);
+            }
+            console.log(_this.productTreatments);
         }, function (error) {
             console.error(JSON.parse(error._body).Mensaje);
         });
@@ -3463,12 +3760,34 @@ var PlantComponent = (function () {
         }
         return this.mes;
     };
+    PlantComponent.prototype.comprobaciones = function () {
+        var _this = this;
+        if (this.user.isUserAuthenticated()) {
+            this.user.isAuthenticated = this.user.isUserAuthenticated();
+            this.user.isUserAdmin().subscribe(function (data) {
+                if (data) {
+                    _this.user.isAdmin = true;
+                }
+                else {
+                    _this.user.isAdmin = false;
+                }
+            }, function (error) {
+                _this.user.isAdmin = false;
+            });
+        }
+        else {
+            this.user.isAdmin = false;
+        }
+    };
     PlantComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._router.params.subscribe(function (params) {
             if (params['id'] != null) {
                 _this.plant = new __WEBPACK_IMPORTED_MODULE_1__classes_plant_class__["a" /* Plant */](params['id']);
                 _this.mostrar(_this.plant.id);
+                // llamo a mostrarTratamientos y le paso el id de la planta
+                // this.treatment=new Treatment(params['id']);
+                _this.mostrarTratamientos(_this.plant.id);
             }
             else {
                 _this._route.navigate(['/library']);
@@ -3482,7 +3801,9 @@ var PlantComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/components/plants/plant/plant.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_plant_service__["a" /* PlantService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_treatmentplant_service__["a" /* TreatmentPlantService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]])
     ], PlantComponent);
     return PlantComponent;
@@ -3541,7 +3862,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditproductComponent = (function () {
+var EditproductComponent = /** @class */ (function () {
     function EditproductComponent(_productService, _appComponent, _router, _route) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -3654,7 +3975,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListproductComponent = (function () {
+var ListproductComponent = /** @class */ (function () {
     function ListproductComponent(_productService, activatedRoute) {
         this._productService = _productService;
         this.activatedRoute = activatedRoute;
@@ -3776,7 +4097,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewproductComponent = (function () {
+var NewproductComponent = /** @class */ (function () {
     function NewproductComponent(_productService, _appComponent) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -3852,7 +4173,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductComponent = (function () {
+var ProductComponent = /** @class */ (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
@@ -3921,7 +4242,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdittreatmentComponent = (function () {
+var EdittreatmentComponent = /** @class */ (function () {
     function EdittreatmentComponent(_treatmentService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4033,7 +4354,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListtreatmentComponent = (function () {
+var ListtreatmentComponent = /** @class */ (function () {
     function ListtreatmentComponent(_treatmentService, activatedRoute) {
         this._treatmentService = _treatmentService;
         this.activatedRoute = activatedRoute;
@@ -4155,7 +4476,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentComponent = (function () {
+var NewtreatmentComponent = /** @class */ (function () {
     function NewtreatmentComponent(_treatmentService, _appComponent) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4231,7 +4552,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var TreatmentComponent = (function () {
+var TreatmentComponent = /** @class */ (function () {
     function TreatmentComponent() {
     }
     TreatmentComponent.prototype.ngOnInit = function () {
@@ -4251,7 +4572,7 @@ var TreatmentComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.css":
+/***/ "../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -4269,14 +4590,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.html":
+/***/ "../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"vistaAdmin\">\n<section class=\"container main-container\" >\n  <h2>Tratamiento</h2>\n  <form (ngSubmit)=\"this.guardar()\"  method=\"post\">\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"treatment_plant\">Tratamiento</label>\n         <select class=\"form-control\" id=\"treatment_plant\" [(ngModel)]=\"treatmentPlant.treatment\" name=\"treatment\"  required>\n           <option *ngFor=\"let treatment of treatments\" value=\"{{treatment.id}}\">{{treatment.name}}</option>\n         </select>\n      </div>\n      <div class=\"form-group col-md-6\">\n          <label for=\"frequency_treatmentPlant\">Frecuencia</label>\n          <input type=\"number\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.frequency\" name=\"frequency\" id=\"frequency_treatmentPlant\" placeholder=\"Se mide en días\">\n        </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"date_initDate\">Inicio</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.initDate\" name=\"initDate\" id=\"date_initDate\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"date_initDate\">Fin</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.finalDate\" name=\"initDate\" id=\"date_initDate\">\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"product_plant\">Productos</label>\n         <select class=\"form-control selectpicker\" multiple  id=\"product_plant\" [(ngModel)]=\"productTreatment.product\" name=\"product\" >\n           <option *ngFor=\"let product of products\" value=\"{{product.id}}\">{{product.name}}</option>\n         </select>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-2\">\n          <button type=\"submit\" class=\"btn btn-success\">Añadir tratamiento</button>\n      </div>\n      <div class=\"form-group col-md-2\">\n          <button [routerLink] =\"['/library']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n      </div>\n    </div>\n  </form>\n</section>\n</div>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.ts":
+/***/ "../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4306,7 +4627,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentsplantsComponent = (function () {
+var NewtreatmentsplantsComponent = /** @class */ (function () {
     function NewtreatmentsplantsComponent(_treatmentService, _productService, _treatmentPlantService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._productService = _productService;
@@ -4383,8 +4704,8 @@ var NewtreatmentsplantsComponent = (function () {
     NewtreatmentsplantsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-newtreatmentsplants',
-            template: __webpack_require__("../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/components/treatmentsPlants/newtreatmentsplants/newtreatmentsplants.component.css")]
+            template: __webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_treatment_service__["a" /* TreatmentService */],
             __WEBPACK_IMPORTED_MODULE_3__services_product_service__["a" /* ProductService */],
@@ -4394,48 +4715,6 @@ var NewtreatmentsplantsComponent = (function () {
             __WEBPACK_IMPORTED_MODULE_7__angular_router__["b" /* Router */]])
     ], NewtreatmentsplantsComponent);
     return NewtreatmentsplantsComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/user/calendar.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"main-container\">\n  <h1>Calendario</h1>\n  <p>calendario works!</p>\n</div>\n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/user/calendar.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var CalendarComponent = (function () {
-    function CalendarComponent() {
-    }
-    CalendarComponent.prototype.ngOnInit = function () {
-    };
-    CalendarComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-calendar',
-            template: __webpack_require__("../../../../../src/app/components/user/calendar.component.html")
-        }),
-        __metadata("design:paramtypes", [])
-    ], CalendarComponent);
-    return CalendarComponent;
 }());
 
 
@@ -4473,7 +4752,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var DetailComponent = (function () {
+var DetailComponent = /** @class */ (function () {
     function DetailComponent(_detailService, _gardenService, _route) {
         this._detailService = _detailService;
         this._gardenService = _gardenService;
@@ -4573,7 +4852,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditProfileComponent = (function () {
+var EditProfileComponent = /** @class */ (function () {
     function EditProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -4824,7 +5103,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfileComponent = (function () {
+var ProfileComponent = /** @class */ (function () {
     function ProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -4958,7 +5237,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdituserComponent = (function () {
+var EdituserComponent = /** @class */ (function () {
     function EdituserComponent(_editUserService, _appComponent, _router, datePipe, _route) {
         this._editUserService = _editUserService;
         this._appComponent = _appComponent;
@@ -5154,7 +5433,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminListUsersComponent = (function () {
+var AdminListUsersComponent = /** @class */ (function () {
     function AdminListUsersComponent(_detailService, _route, _appComponent, activatedRoute) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5261,7 +5540,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewuserComponent = (function () {
+var NewuserComponent = /** @class */ (function () {
     function NewuserComponent(_newUserServce, _appComponent) {
         this._newUserServce = _newUserServce;
         this._appComponent = _appComponent;
@@ -5321,7 +5600,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserdataComponent = (function () {
+var UserdataComponent = /** @class */ (function () {
     function UserdataComponent() {
     }
     UserdataComponent.prototype.ngOnInit = function () {
@@ -5363,7 +5642,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DesarrolloComponent = (function () {
+var DesarrolloComponent = /** @class */ (function () {
     function DesarrolloComponent() {
     }
     DesarrolloComponent.prototype.ngOnInit = function () {
@@ -5404,7 +5683,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenService = (function () {
+var GardenService = /** @class */ (function () {
     function GardenService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5575,7 +5854,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantService = (function () {
+var PlantService = /** @class */ (function () {
     function PlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5713,7 +5992,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProductService = (function () {
+var ProductService = /** @class */ (function () {
     function ProductService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5794,6 +6073,60 @@ var ProductService = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/task.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TaskService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TaskService = /** @class */ (function () {
+    function TaskService(http, _route) {
+        this.http = http;
+        this._route = _route;
+        this.apiURL = "";
+        if (window.location.toString().indexOf("localhost") >= 0) {
+            this.apiURL = "http://localhost:3000/api/";
+        }
+        else if (window.location.toString().indexOf("gardiot") >= 0) {
+            this.apiURL = "https://gardiot.ovh/api/";
+        }
+    }
+    TaskService.prototype.detailsAll = function (fecha_actual) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.get(this.apiURL + "monthTask/" + fecha_actual, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    TaskService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]])
+    ], TaskService);
+    return TaskService;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/treatment.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5816,7 +6149,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentService = (function () {
+var TreatmentService = /** @class */ (function () {
     function TreatmentService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5919,7 +6252,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentPlantService = (function () {
+var TreatmentPlantService = /** @class */ (function () {
     function TreatmentPlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5952,6 +6285,25 @@ var TreatmentPlantService = (function () {
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         return this.http.post(this.apiURL + "admin/productTreatment", body, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    TreatmentPlantService.prototype.showProductPlant = function (treatment, idPlant) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+        });
+        return this.http.get(this.apiURL + "productTreatmentPlant/" + treatment + "/" + idPlant + "/10/1/ASC", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    // mostrar Tratamientos de una planta
+    TreatmentPlantService.prototype.detailsTreatment = function (numplant) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+        });
+        return this.http.get(this.apiURL + "treatmentPlant/" + numplant + "/100/1/ASC", { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -5989,7 +6341,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var UserService = (function () {
+var UserService = /** @class */ (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;

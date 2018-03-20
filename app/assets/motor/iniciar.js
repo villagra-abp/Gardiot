@@ -46,23 +46,36 @@ function iniciar(accion){
 
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
+  
+  window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+  //motor.siguienteMallaAnimada("animacion");
 
 
+  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
-  window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
-
-  window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+  //window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-30; i<30; i++){
-    for(let j=-30; j<30; j++){
+  for(let i=-1; i<2; i++){
+    for(let j=-1; j<2; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.escalarMallaxyz("suelo"+i+'-'+j, 2, 0, 2);
-      motor.moverMalla("suelo"+i+'-'+j, 4*i, 0, 4*j);
+      motor.escalarMallaxyz("suelo"+i+'-'+j, 60, 0, 60);
+      motor.moverMalla("suelo"+i+'-'+j, 120*i, 0, 120*j);
+    }
+  }
+
+  //perejiles
+  for(let i=-4; i<4; i++){
+    for(let j=-4; j<4; j++){
+      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", undefined);
+      motor.escalarMalla("planta"+i+'-'+j, 0.4);
+      motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      motor.rotarMalla("planta"+i+'-'+j, 180*Math.random(), "z");
+      motor.moverMalla("planta"+i+'-'+j, 40*i, 10, 40*j);
     }
   }
 
@@ -71,9 +84,14 @@ function iniciar(accion){
   motor.escalarMalla("malla2", 6);
   motor.moverMalla("malla2", 40, 0, 40);
 
+  motor.escalarMalla("animacion", 6);
+  motor.moverMalla("animacion", 40, 50, 40);
+
   motor.moverMalla("malla3", 15, 25, 0);
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
+
+
 
   //motor.escalarMalla("malla2", 5)
 
@@ -155,7 +173,7 @@ function iniciar(accion){
 
 
 
-  $(document).keydown(function(evt){
+  /*$(document).keydown(function(evt){
       switch(evt.keyCode){
           case 83: //down
               motor.moverCamara("camara1", 0, -0.5, 0);
@@ -185,6 +203,6 @@ function iniciar(accion){
 
               break;
           }
-      });
+      });*/
 
 }
