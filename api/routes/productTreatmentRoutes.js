@@ -11,7 +11,7 @@ router.get('/productTreatmentPlant/:treatment/:plant/:number/:page/:sort', passp
 	if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		productModel.getProductsByTreatmentAndPlant(request.params.number, request.params.page, request.params.sort, request.params.treatment, request.params.plant, function(error, data) {
+		productTreatmentModel.getProductsByTreatmentAndPlant(request.params.number, request.params.page, request.params.sort, request.params.treatment, request.params.plant, function(error, data) {
 			if (typeof data !== 'undefined')
 				response.status(200).json(data);
 			else

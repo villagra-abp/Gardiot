@@ -12,7 +12,9 @@ router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
-			if (typeof data !== 'undefined')
+			if (error)
+				response.status(400).json(error.message);
+			else if (typeof data !== 'undefined')
 				response.status(200).json(data);
 			else
 				response.status(404).json({"Mensaje":"No existe"});
