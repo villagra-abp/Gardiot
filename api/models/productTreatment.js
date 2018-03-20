@@ -3,12 +3,13 @@ var connection = require('../config/connection');
 var productTreatment = {};
 
 productTreatment.getProductsByTreatmentAndPlant = function(number, page, sort, treatment, plant, callback) {
+	console.log("API");
 	if (connection) {
 		let minPeak = (page - 1) * number;
 	    let orderSentence = '';
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
-		connection.query('SELECT COUNT(*) OVER () AS NUMPRODUCTS, P.* FROM Product P, ProductTreatment, TreatmentPlant WHERE ProductTreatment.treatment = TreatmentPlant.treatment AND ProductTreatment.product = Product.id AND ProductTreatment.plant = TreatmentPlant.plant AND ProductTreatment.treatment = ' + treatment + ' AND ProductTreatment.plant = ' + plant + ' ORDER BY Product.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
+		connection.query('SELECT COUNT(*) OVER () AS NUMPRODUCTS, P.*,ProductTreatment.* FROM Product P, ProductTreatment , TreatmentPlant WHERE ProductTreatment.treatment = TreatmentPlant.treatment AND ProductTreatment.product = P.id AND ProductTreatment.plant = TreatmentPlant.plant AND ProductTreatment.treatment = ' + treatment + ' AND ProductTreatment.plant = ' + plant + ' ORDER BY P.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
 			if (error)
 				callback (error, null);
 			else

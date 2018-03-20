@@ -4,6 +4,7 @@ export class ProductTreatment {
    public plant?: number,
    public treatment?: number,
    public product?: number[],
+   public name?: string,
    ) {
 
  }

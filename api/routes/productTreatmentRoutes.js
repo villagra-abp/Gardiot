@@ -8,16 +8,18 @@ var filter = require('../functions/filter');
 var productTreatmentModel = require('../models/productTreatment');
 
 router.get('/productTreatmentPlant/:treatment/:plant/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
-		response.status(400).json({"Mensaje":"Petición incorrecta"});
-	else {
-		productTreatmentModel.getProductsByTreatmentAndPlant(request.params.number, request.params.page, request.params.sort, request.params.treatment, request.params.plant, function(error, data) {
-			if (typeof data !== 'undefined')
-				response.status(200).json(data);
-			else
-				response.status(404).json({"Mensaje":"No existe"});
-		});
-	}
+    if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+        response.status(400).json({"Mensaje":"Petición incorrecta"});
+    else {
+        productTreatmentModel.getProductsByTreatmentAndPlant(request.params.number, request.params.page, request.params.sort, request.params.treatment, request.params.plant, function(error, data) {
+            if (error)
+                response.status(400).json(error.message);
+            else if (typeof data !== 'undefined')
+                response.status(200).json(data);
+            else
+                response.status(404).json({"Mensaje":"No existe"});
+        });
+    }
 });
 
 router.post('/admin/productTreatment', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
@@ -26,10 +28,10 @@ router.post('/admin/productTreatment', passport.authenticate('jwt', {session: fa
 		treatment: request.body.treatment,
 		product: request.body.product,
 	};
-	productTreatment = filter(productTreatment); 
+	productTreatment = filter(productTreatment);
 	if (typeof productTreatment.plant=== 'undefined' || typeof productTreatment.product === 'undefined' || typeof productTreatment.treatment === 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios."});
-	else {		
+	else {
 		var validate = validateInput(productTreatment);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});

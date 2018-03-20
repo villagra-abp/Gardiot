@@ -44,7 +44,28 @@ export class TreatmentPlantService {
           .map( res=>{
             return res.json();
           })
-
     }
+
+    showProductPlant( treatment:number,idPlant:number ){
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+      });
+      return this.http.get(this.apiURL+"productTreatmentPlant/"+treatment+"/"+idPlant+"/10/1/ASC",  { headers } )
+          .map( res=>{
+            return res.json();
+          })
+    }
+
+    // mostrar Tratamientos de una planta
+    detailsTreatment(numplant:number){
+	  	let headers = new Headers({
+        	'Authorization':`Bearer ${localStorage['Bearer']}`,
+          // 'Content-Type':'application/x-www-form-urlencoded'
+      	});
+      	return this.http.get(this.apiURL+"treatmentPlant/"+numplant+"/100/1/ASC", { headers } )
+          .map( res =>{
+            return res.json();
+          })
+	  }
 
 }
