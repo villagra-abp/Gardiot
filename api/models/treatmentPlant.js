@@ -3,13 +3,13 @@ var connection = require('../config/connection');
 var treatmentPlant = {};
 
 treatmentPlant.getTreatmentsByPlant = function(number, page, sort, plant, callback) {
-  console.log("entro en la API treatmentPlant getTreatmentsByPlant");
+
   if(connection) {
     let minPeak = (page - 1) * number;
     let orderSentence = '';
     if (sort.toUpperCase() === 'DESC')
       orderSentence = 'DESC';
-    connection.query('SELECT COUNT(*) OVER () AS number, T.*, frequency, initDate, finalDate, commonName FROM Treatment T, Plant, TreatmentPlant WHERE Plant.id = TreatmentPlant.plant AND Treatment.id = TreatmentPlant.treatment AND Plant.id = ' + plant + ' ORDER BY T.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function (error, rows){
+    connection.query('SELECT COUNT(*) OVER () AS number, T.*, frequency, initDate, finalDate, commonName FROM Treatment T, Plant, TreatmentPlant WHERE Plant.id = TreatmentPlant.plant AND T.id = TreatmentPlant.treatment AND Plant.id = ' + plant + ' ORDER BY T.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function (error, row){
       if (error)
         callback (error, null);
       else

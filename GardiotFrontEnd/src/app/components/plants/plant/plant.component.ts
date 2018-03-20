@@ -3,8 +3,12 @@ import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
 
+import { UserService } from '../../../services/user.service';
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Treatment } from "../../../classes/treatment.class";
+import { Product } from "../../../classes/product.class";
+import { ProductTreatment } from "../../../classes/producttreatment.class";
+
 
 @Component({
   selector: 'app-plant',
@@ -13,15 +17,21 @@ import { Treatment } from "../../../classes/treatment.class";
 })
 export class PlantComponent implements OnInit {
 
-  plant = new Plant();
-  treatment = new Treatment();
+  private plant = new Plant();
+  private product = new Product();
+  private treatment = new Treatment();
+  private treatments:any[]=[];
+  private products:any[]=[];
+  private productTreatments:any[]=[];
 
-  iniSiembra:String;
-  finSiembra:String;
-  iniFlores:String;
-  finFlores:String;
-  iniRecolectar:String;
-  finRecolectar:String;
+  private producttreatment=new ProductTreatment();
+
+  private iniSiembra:String;
+  private finSiembra:String;
+  private iniFlores:String;
+  private finFlores:String;
+  private iniRecolectar:String;
+  private finRecolectar:String;
 
   mes:String;
 
@@ -29,6 +39,7 @@ export class PlantComponent implements OnInit {
     private _plantService:PlantService,
     private _treatmentPlantService:TreatmentPlantService,
     private _router: ActivatedRoute,
+    private user: UserService,
     private _route:Router ) { }
 
       mostrar(numplant:number){
@@ -61,6 +72,7 @@ export class PlantComponent implements OnInit {
               this.plant.leaveType=data[0].leaveType;
               // this.plant.commonName=data[0].3DModel;
 
+
             },
           error => {
             console.error(JSON.parse(error._body).Mensaje);
@@ -69,11 +81,14 @@ export class PlantComponent implements OnInit {
 
     }
     mostrarTratamientos(numplant:number){
-      console.log("Entro en mostrar tratamientos de planta: "+numplant);
+      // console.log("Entro en mostrar tratamientos de planta: "+numplant);
       this._treatmentPlantService.detailsTreatment(numplant)
           .subscribe(data=>{
-          // this.plant.id=data[0].id;
-          // console.log("data de vuelta: "+data);
+            this.treatments=[];
+            for(let key$ in data){
+              this.treatments.push(data[key$]);
+              this.showProductPlant(data[key$].id, numplant);
+            }
           },
         error => {
           console.error(JSON.parse(error._body).Mensaje);
@@ -81,6 +96,21 @@ export class PlantComponent implements OnInit {
         });
 
   }
+  showProductPlant(treatment:number,idPlant:number){
+    this._treatmentPlantService.showProductPlant(treatment,idPlant)
+        .subscribe(data=>{
+          // this.productTreatments=[];
+          for(let key$ in data){
+            this.productTreatments.push(data[key$]);
+          }
+          console.log(this.productTreatments);
+        },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+
+      });
+
+}
 
     dameMes(fechas){
       if(fechas != null){
@@ -117,6 +147,24 @@ export class PlantComponent implements OnInit {
         }
       }
       return this.mes;
+    }
+    comprobaciones(){
+      if(this.user.isUserAuthenticated()){
+        this.user.isAuthenticated=this.user.isUserAuthenticated();
+        this.user.isUserAdmin().subscribe(data=>{
+          if(data){
+            this.user.isAdmin=true;
+          }
+          else{
+            this.user.isAdmin=false;
+          }
+        },error=>{
+          this.user.isAdmin=false;
+        });
+      }
+      else{
+        this.user.isAdmin=false;
+      }
     }
 
   ngOnInit() {

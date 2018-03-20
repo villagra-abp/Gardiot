@@ -1,16 +1,13 @@
-<div class="container">
+<div class="container vistaAdmin" >
     <h1>{{plant.commonName}}</h1>
     <div class="row">
-
       <section class="card">
         <button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-primary" name="button">Volver a Biblioteca</button>
-
         <h2>Descripción</h2>
         <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
       </section>
     </div>
     <div class="row">
-
       <div class="col">
         <!--delante de la url https://gardiot.ovh/ -->
         <section class="card">
@@ -31,17 +28,14 @@
               <img *ngIf="plant.depth !=undefined" class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">
               Profundidad de siembra <strong>{{plant.depth}} cm</strong>
             </p>
-
             <p *ngIf="plant.distance !=undefined">
               <img *ngIf="plant.distance !=undefined" class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">
               Distancia entre plantas <strong>{{plant.distance}} cm</strong>
             </p>
-
             <p *ngIf="plant.diseaseResist !=undefined">
-              <img *ngIf="plant.diseaseResist !=undefined" class="iconplant"src="assets/images/icon/hielo.png" alt="Hielo">
+              <img *ngIf="plant.diseaseResist !=undefined" class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">
               Resistencia al frío <strong>{{plant.diseaseResist}}</strong>
             </p>
-
             <p *ngIf="plant.leaveType !=undefined">
               <img *ngIf="plant.leaveType !=undefined" class="iconplant"src="assets/images/icon/hoja.png" alt="Hoja">
               Tipo de hoja <strong>{{plant.leaveType}}</strong>
@@ -50,7 +44,6 @@
       </div>
       <div class="col">
         <section class="card">
-
           <p *ngIf="iniSiembra !=undefined && finSiembra !=undefined">
             <img *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">
             Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>
@@ -66,18 +59,18 @@
         </section>
       </div>
     </div>
-    <div class="col">
-      <!--delante de la url https://gardiot.ovh/ -->
-      <section class="card">
-        <h2>Tratamientos</h2>
-        <dl>
-          <!-- <dt *ngIf="plant.commonName !=undefined">Nombre común</dt>
-          <dd *ngIf="plant.commonName !=undefined">{{plant.commonName}}</dd>
-          <dt *ngIf="plant.scientificName !=undefined">Nombre científico</dt>
-          <dd *ngIf="plant.scientificName !=undefined">{{plant.scientificName}}</dd>
-          <dt *ngIf="plant.family !=undefined">Familia</dt>
-          <dd *ngIf="plant.family !=undefined"> {{plant.family}}</dd> -->
-        </dl>
-      </section>
-    </div>
+    
+    <section *ngIf="this.user.isAdmin" class="card">
+      <h2>Tratamientos</h2>
+        <section *ngFor="let treatment of treatments">
+          <img *ngIf="treatment.icon !=undefined" class="iconplant" src="{{treatment.icon}}" alt="Tratamiento">
+          <h5 *ngIf="treatment.name !=undefined">{{treatment.name}}</h5>
+          <p *ngIf="treatment.description !=undefined">{{treatment.description}}</p>
+          <h6 *ngIf="productTreatments !=undefined">Productos</h6>
+          <ul *ngFor="let producttreatment of productTreatments">
+            <li class="list-group-item" *ngIf = "treatment.id == producttreatment.treatment">{{producttreatment.name}}</li>
+          </ul>
+        </section>
+    </section>
+
 </div>
