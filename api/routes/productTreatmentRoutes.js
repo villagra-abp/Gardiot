@@ -37,7 +37,11 @@ router.post('/admin/productTreatment', passport.authenticate('jwt', {session: fa
 			response.status(400).json({"Mensaje": validate});
 		else {
 			productTreatmentModel.insertProductTreatment(productTreatment, function(error, data) {
-				if (data)
+				if (error && error.errno == '1062')
+					response.status(400).json({"Mensaje":"Esta asociación ya existe."});
+				else if (error && error.errno == '1452')
+					response.status(400).json({"Mensaje":"Imposible añadir productos a un tratamiento inexistente."});
+				else if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
 				else
 					response.status(500).json({"Mensaje":error.message});

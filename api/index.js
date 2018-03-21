@@ -15,7 +15,12 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(helmet());
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === "production")
+	app.use(morgan('tiny', {
+		skip: function (request, response) {return response.statusCode < 400}
+	}));	
+else
+	app.use(morgan('dev'));
 
 
 app.use(passport.initialize());
