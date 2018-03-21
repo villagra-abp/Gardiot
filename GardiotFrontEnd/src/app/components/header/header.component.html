@@ -44,7 +44,7 @@
 
 <!-- Menú estándar -->
 <nav *ngIf="!this.userService.isAdmin" class=" navbar-light bg-light header">
-	<div class="navbar navbar-expand-lg limited">
+	<div class="navbar user navbar-expand-lg limited">
   <a [routerLink]="['/detail']" class="navbar-brand" href="#"><img src="https://gardiot.ovh/images/light2.png" alt="Gardiot"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

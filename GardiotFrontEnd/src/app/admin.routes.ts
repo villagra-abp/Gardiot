@@ -58,5 +58,5 @@ export const admin_routes: Routes = [
   //newtreatmentsplants
   { path: 'newtreatmentsplants/:id', component: NewtreatmentsplantsComponent,  canActivate: [AdminguardGuard] },
 
-  { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
+  { path: '**', pathMatch: 'full', redirectTo: 'analytics' }
 ];

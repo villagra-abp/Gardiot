@@ -159,28 +159,13 @@ class TRecursoMalla extends TRecurso{
 
   draw(){
 
-        //Cálculo de matriz normal y paso de matriz al shader
-        mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    //Cálculo de matriz normal y paso de matriz al shader
+    mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
 
-        mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
-        if(this.normalMatrix.length>0){
-          //matrixUniform
-          gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
-        }
-
-
-    //Cargar la textura, esto lo podremos optimizar seguro
-    if(this._textura!==undefined){
-      gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this._textura._img);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-      gl.uniform1i(glProgram.textured, 1);
-    }
-    else{
-      gl.uniform1i(glProgram.textured, 0);
+    if(this.normalMatrix.length>0){
+      //matrixUniform
+      gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
     }
 
 
@@ -189,19 +174,25 @@ class TRecursoMalla extends TRecurso{
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
 
-
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
 
-    //Pasamos los buffers de coordenadas de texturas
-    if(this._textureCoords.length>0 && this._textura!==undefined){
+    //Si tenemos textura la activamos
+    if(this._textura!==undefined && this._textureCoords.length>0){
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
+
+      gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
+      gl.uniform1i(glProgram.textured, 1);
     }
+    else{
+      gl.uniform1i(glProgram.textured, 0);
+    }
+
 
     //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){

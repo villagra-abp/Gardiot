@@ -5,6 +5,7 @@ class TRecursoTextura extends TRecurso{
     this._img=new Image();
     this._img.texture;
     this._img.index=JSON.parse(JSON.stringify(texturas++));
+    console.log(this._img.index);
   }
 
   cargarFichero(nombre){
@@ -12,8 +13,13 @@ class TRecursoTextura extends TRecurso{
   	console.log(this._nombre);
   	this._img.onload=function(){
 	      this.texture = gl.createTexture();
-        gl.activeTexture(gl.TEXTURE0);
+        gl.activeTexture(gl.TEXTURE0+this.index);
         gl.bindTexture(gl.TEXTURE_2D, this.texture);
+
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
 
   	    window.loading.pop();
 
