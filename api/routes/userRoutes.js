@@ -49,18 +49,18 @@ router.post('/register', function(request, response) {
 										expiresIn: '1h',
 										subject: userData.id
 									});
-									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, result) {
+									verificationTokenModel.insertVerificationToken(userData.id, token, function(error, token2) {
 										if (error) response.status(500).json({"Mensaje":err.message});
 										else {
 											if (request.hostname == 'gardiot.ovh') {
 												var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-												var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
+												var mailOptions = {from: 'symbiosegardiot@gmail.com', to: userData.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token2 + '\n'};
 												transporter.sendMail(mailOptions, function(err) {
 													if (err) response.status(500).json({"Mensaje": err.message});
 													else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + userData.id + "."});
 												});
 											}
-											else { //LOCALHOST
+											else if (request.hostname == 'localhost') { //LOCALHOST
 												var token = jwt.sign({}, config.secret, {
 													expiresIn: '6h',
 													audience: "gardiot.ovh",

@@ -117,7 +117,6 @@ router.put('/admin/plant/:id', passport.authenticate('jwt', {session: false}), r
 			if (validate.length > 0)
 				response.status(400).json({"Mensaje": validate});
 			else {
-				plantData = sanitizeInput(plantData);
 				plantModel.updatePlant(plantData, request.params.id, function(error, data) {
 					if (data == 1)
 						response.status(200).json({"Mensaje":"Actualizado"});
