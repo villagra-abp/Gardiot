@@ -14,7 +14,6 @@ function iniciar(accion){
 
   window.texturas=0;
 
-
   //Inicializamos la pila de matriz y la matriz modelo
   window.matrixStack=[];
   window.matrixModel = mat4.create();
@@ -46,7 +45,7 @@ function iniciar(accion){
 
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
-  
+
   window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
 

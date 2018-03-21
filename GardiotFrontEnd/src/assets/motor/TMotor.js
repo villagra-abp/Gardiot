@@ -23,7 +23,7 @@ class TMotor{
     //empezamos a dibujar con los fps que le pasemos por parámetro
     startDrawing(vs, fs){
     	this.running=true;
-    	fpsInterval=1000/50;
+    	fpsInterval=1000/60;
     	then=Date.now();
     	startTime=then;
     	if(vs!==undefined && fs!==undefined){
@@ -534,12 +534,12 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 		console.log(arrayRecursos);
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-		
+
 
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
-			
+
 			var animacion = new TNodo(nombre, new TTransf(), escMalla);
 
 			for(var i = 0; i < arrayRecursos.length; i++){
@@ -547,7 +547,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 			}
 		}else{
 			//console.log("crea en raiz");
-			
+
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
@@ -563,7 +563,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 				}
 			}
 
-			
+
 
 		}
 		this.animRegistro.push(animacion);
@@ -584,7 +584,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 		//console.log("mallaAnimada para ver");
 		//console.log(this.animRegistro[pos]);
 		//sacamos la malla que esta activa
-		
+
 		var numMallas = this.animRegistro[pos]._childs.length;
 		var activa = -1;
 		for (var i = 0; i< numMallas; i++){
@@ -616,7 +616,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 
 
 
-	
+
 //=================================FIN ANIMACION============================
 
 }
