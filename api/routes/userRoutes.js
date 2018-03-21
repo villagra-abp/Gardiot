@@ -25,7 +25,6 @@ router.post('/register', function(request, response) {
 			id: request.body.id,
 			password: request.body.password,
 	};
-	console.log(request.body);
 	userData = filter(userData); 
 	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
