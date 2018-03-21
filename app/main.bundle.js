@@ -144,7 +144,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AppComponent = /** @class */ (function () {
+var AppComponent = (function () {
     function AppComponent() {
         this.url = "";
         this.admin = window.location.href.indexOf('admin') >= 0;
@@ -347,7 +347,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AppModule = /** @class */ (function () {
+var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
@@ -539,7 +539,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthguardGuard = /** @class */ (function () {
+var AuthguardGuard = (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -569,7 +569,7 @@ var AuthguardGuard = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Garden; });
-var Garden = /** @class */ (function () {
+var Garden = (function () {
     function Garden(id, title, width, length, latitude, longitude, soil, user, countryCode, city) {
         this.id = id;
         this.title = title;
@@ -594,7 +594,7 @@ var Garden = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Plant; });
-var Plant = /** @class */ (function () {
+var Plant = (function () {
     function Plant(id, scientificName, commonName, description, photo, _3DModel, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType) {
         this.id = id;
         this.scientificName = scientificName;
@@ -626,7 +626,7 @@ var Plant = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Product; });
-var Product = /** @class */ (function () {
+var Product = (function () {
     function Product(id, name, type, description) {
         this.id = id;
         this.name = name;
@@ -645,7 +645,7 @@ var Product = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTreatment; });
-var ProductTreatment = /** @class */ (function () {
+var ProductTreatment = (function () {
     function ProductTreatment(plant, treatment, product, name) {
         this.plant = plant;
         this.treatment = treatment;
@@ -664,7 +664,7 @@ var ProductTreatment = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
-var Task = /** @class */ (function () {
+var Task = (function () {
     function Task(tPlant, treatmentPlant, myPlant, mPlant, date, dateDone, commonName, name) {
         this.tPlant = tPlant;
         this.treatmentPlant = treatmentPlant;
@@ -687,7 +687,7 @@ var Task = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Treatment; });
-var Treatment = /** @class */ (function () {
+var Treatment = (function () {
     function Treatment(id, name, description, icon) {
         this.id = id;
         this.name = name;
@@ -706,7 +706,7 @@ var Treatment = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreatmentPlant; });
-var TreatmentPlant = /** @class */ (function () {
+var TreatmentPlant = (function () {
     function TreatmentPlant(plant, treatment, frequency, initDate, finalDate) {
         this.plant = plant;
         this.treatment = treatment;
@@ -726,7 +726,7 @@ var TreatmentPlant = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-var User = /** @class */ (function () {
+var User = (function () {
     function User(id, name, lastName, password, password2, oldPassword, photo, countryCode, city, birthDate, active, admin) {
         this.id = id;
         this.name = name;
@@ -777,7 +777,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { AdminListUsersComponent } from "./listusers.component";
 //import { AdminUserComponent } from "./user.component";
-var AdminComponent = /** @class */ (function () {
+var AdminComponent = (function () {
     function AdminComponent(_detailService, _route) {
         this._detailService = _detailService;
         this._route = _route;
@@ -820,7 +820,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminguardGuard = /** @class */ (function () {
+var AdminguardGuard = (function () {
     function AdminguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -882,7 +882,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminProfileComponent = /** @class */ (function () {
+var AdminProfileComponent = (function () {
     function AdminProfileComponent(_detailService, _route, _appComponent, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -1060,7 +1060,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AnalyticsComponent = /** @class */ (function () {
+var AnalyticsComponent = (function () {
     function AnalyticsComponent() {
     }
     AnalyticsComponent.prototype.ngOnInit = function () {
@@ -1102,7 +1102,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var StatisticsComponent = /** @class */ (function () {
+var StatisticsComponent = (function () {
     function StatisticsComponent() {
     }
     StatisticsComponent.prototype.ngOnInit = function () {
@@ -1193,7 +1193,7 @@ var colors = {
         secondary: '#FDF1BA'
     }
 };
-var CalendarComponent = /** @class */ (function () {
+var CalendarComponent = (function () {
     function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute) {
         var _this = this;
         this._taskService = _taskService;
@@ -1381,7 +1381,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var EditfeedComponent = /** @class */ (function () {
+var EditfeedComponent = (function () {
     function EditfeedComponent() {
     }
     EditfeedComponent.prototype.ngOnInit = function () {
@@ -1442,7 +1442,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var FeedComponent = /** @class */ (function () {
+var FeedComponent = (function () {
     function FeedComponent() {
     }
     FeedComponent.prototype.ngOnInit = function () {
@@ -1503,7 +1503,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ListfeedComponent = /** @class */ (function () {
+var ListfeedComponent = (function () {
     function ListfeedComponent() {
     }
     ListfeedComponent.prototype.ngOnInit = function () {
@@ -1564,7 +1564,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var NewfeedComponent = /** @class */ (function () {
+var NewfeedComponent = (function () {
     function NewfeedComponent() {
     }
     NewfeedComponent.prototype.ngOnInit = function () {
@@ -1605,7 +1605,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/editgarden/editgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"/assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
+module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -1637,7 +1637,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditGardenComponent = /** @class */ (function () {
+var EditGardenComponent = (function () {
     function EditGardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1871,7 +1871,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenComponent = /** @class */ (function () {
+var GardenComponent = (function () {
     function GardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1994,7 +1994,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewGardenComponent = /** @class */ (function () {
+var NewGardenComponent = (function () {
     function NewGardenComponent(_gardenService, _plantService, _route, datePipe, _appComponent) {
         this._gardenService = _gardenService;
         this._plantService = _plantService;
@@ -2213,7 +2213,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HeaderComponent = /** @class */ (function () {
+var HeaderComponent = (function () {
     function HeaderComponent(userService) {
         this.userService = userService;
         this.user = new __WEBPACK_IMPORTED_MODULE_2__classes_user_class__["a" /* User */]("");
@@ -2326,7 +2326,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfirmationComponent = /** @class */ (function () {
+var ConfirmationComponent = (function () {
     function ConfirmationComponent(_comprobationService, _router, _appComponent) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2393,7 +2393,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = /** @class */ (function () {
+var LoginComponent = (function () {
     function LoginComponent(_loginService, _route, _appComponent) {
         this._loginService = _loginService;
         this._route = _route;
@@ -2486,7 +2486,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LogoutComponent = /** @class */ (function () {
+var LogoutComponent = (function () {
     function LogoutComponent(_logoutService, _route) {
         this._logoutService = _logoutService;
         this._route = _route;
@@ -2543,7 +2543,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OauthConfirmationComponent = /** @class */ (function () {
+var OauthConfirmationComponent = (function () {
     function OauthConfirmationComponent(_comprobationService, _router, _appComponent, _route) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2611,7 +2611,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var RegisterComponent = /** @class */ (function () {
+var RegisterComponent = (function () {
     function RegisterComponent(_userService, _route, _appComponent) {
         this._userService = _userService;
         this._route = _route;
@@ -2685,7 +2685,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResendComponent = /** @class */ (function () {
+var ResendComponent = (function () {
     function ResendComponent(_resendService, _route) {
         this._resendService = _resendService;
         this._route = _route;
@@ -2762,7 +2762,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResetPassBackComponent = /** @class */ (function () {
+var ResetPassBackComponent = (function () {
     function ResetPassBackComponent(_appComponent, router, _newPass) {
         this._appComponent = _appComponent;
         this.router = router;
@@ -2864,7 +2864,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { User } from "../../classes/user.class";
 
 
-var ResetPassComponent = /** @class */ (function () {
+var ResetPassComponent = (function () {
     function ResetPassComponent(_appComponent, _resetPassword) {
         this._appComponent = _appComponent;
         this._resetPassword = _resetPassword;
@@ -2940,7 +2940,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var PaginationComponent = /** @class */ (function () {
+var PaginationComponent = (function () {
     function PaginationComponent() {
         this.plants = [];
         this.goPrev = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3113,7 +3113,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditplantComponent = /** @class */ (function () {
+var EditplantComponent = (function () {
     function EditplantComponent(_plantService, _appComponent, _ng2ImgMax, datePipe, _router, _route) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
@@ -3297,7 +3297,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LibraryComponent = /** @class */ (function () {
+var LibraryComponent = (function () {
     function LibraryComponent(_plantService, _route, _appComponent, activatedRoute, user) {
         this._plantService = _plantService;
         this._route = _route;
@@ -3482,10 +3482,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { Treatment } from "../../../classes/treatment.class";
 // import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
 // import { TreatmentService } from "../../../services/treatment.service";
-var NewplantComponent = /** @class */ (function () {
+var NewplantComponent = (function () {
     function NewplantComponent(_plantService, 
-    // private _treatmentService:TreatmentService,
-    _appComponent, _ng2ImgMax) {
+        // private _treatmentService:TreatmentService,
+        _appComponent, _ng2ImgMax) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
         this._ng2ImgMax = _ng2ImgMax;
@@ -3639,7 +3639,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantComponent = /** @class */ (function () {
+var PlantComponent = (function () {
     function PlantComponent(_plantService, _treatmentPlantService, _router, user, _route) {
         this._plantService = _plantService;
         this._treatmentPlantService = _treatmentPlantService;
@@ -3862,7 +3862,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditproductComponent = /** @class */ (function () {
+var EditproductComponent = (function () {
     function EditproductComponent(_productService, _appComponent, _router, _route) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -3975,7 +3975,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListproductComponent = /** @class */ (function () {
+var ListproductComponent = (function () {
     function ListproductComponent(_productService, activatedRoute) {
         this._productService = _productService;
         this.activatedRoute = activatedRoute;
@@ -4097,7 +4097,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewproductComponent = /** @class */ (function () {
+var NewproductComponent = (function () {
     function NewproductComponent(_productService, _appComponent) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4173,7 +4173,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductComponent = /** @class */ (function () {
+var ProductComponent = (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
@@ -4242,7 +4242,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdittreatmentComponent = /** @class */ (function () {
+var EdittreatmentComponent = (function () {
     function EdittreatmentComponent(_treatmentService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4354,7 +4354,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListtreatmentComponent = /** @class */ (function () {
+var ListtreatmentComponent = (function () {
     function ListtreatmentComponent(_treatmentService, activatedRoute) {
         this._treatmentService = _treatmentService;
         this.activatedRoute = activatedRoute;
@@ -4476,7 +4476,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentComponent = /** @class */ (function () {
+var NewtreatmentComponent = (function () {
     function NewtreatmentComponent(_treatmentService, _appComponent) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4552,7 +4552,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var TreatmentComponent = /** @class */ (function () {
+var TreatmentComponent = (function () {
     function TreatmentComponent() {
     }
     TreatmentComponent.prototype.ngOnInit = function () {
@@ -4627,7 +4627,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentsplantsComponent = /** @class */ (function () {
+var NewtreatmentsplantsComponent = (function () {
     function NewtreatmentsplantsComponent(_treatmentService, _productService, _treatmentPlantService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._productService = _productService;
@@ -4752,7 +4752,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var DetailComponent = /** @class */ (function () {
+var DetailComponent = (function () {
     function DetailComponent(_detailService, _gardenService, _route) {
         this._detailService = _detailService;
         this._gardenService = _gardenService;
@@ -4852,7 +4852,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditProfileComponent = /** @class */ (function () {
+var EditProfileComponent = (function () {
     function EditProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5103,7 +5103,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfileComponent = /** @class */ (function () {
+var ProfileComponent = (function () {
     function ProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5237,7 +5237,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdituserComponent = /** @class */ (function () {
+var EdituserComponent = (function () {
     function EdituserComponent(_editUserService, _appComponent, _router, datePipe, _route) {
         this._editUserService = _editUserService;
         this._appComponent = _appComponent;
@@ -5433,7 +5433,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminListUsersComponent = /** @class */ (function () {
+var AdminListUsersComponent = (function () {
     function AdminListUsersComponent(_detailService, _route, _appComponent, activatedRoute) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5540,7 +5540,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewuserComponent = /** @class */ (function () {
+var NewuserComponent = (function () {
     function NewuserComponent(_newUserServce, _appComponent) {
         this._newUserServce = _newUserServce;
         this._appComponent = _appComponent;
@@ -5600,7 +5600,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserdataComponent = /** @class */ (function () {
+var UserdataComponent = (function () {
     function UserdataComponent() {
     }
     UserdataComponent.prototype.ngOnInit = function () {
@@ -5642,7 +5642,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DesarrolloComponent = /** @class */ (function () {
+var DesarrolloComponent = (function () {
     function DesarrolloComponent() {
     }
     DesarrolloComponent.prototype.ngOnInit = function () {
@@ -5683,7 +5683,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenService = /** @class */ (function () {
+var GardenService = (function () {
     function GardenService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5854,7 +5854,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantService = /** @class */ (function () {
+var PlantService = (function () {
     function PlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5992,7 +5992,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProductService = /** @class */ (function () {
+var ProductService = (function () {
     function ProductService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6095,7 +6095,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TaskService = /** @class */ (function () {
+var TaskService = (function () {
     function TaskService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6149,7 +6149,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentService = /** @class */ (function () {
+var TreatmentService = (function () {
     function TreatmentService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6252,7 +6252,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentPlantService = /** @class */ (function () {
+var TreatmentPlantService = (function () {
     function TreatmentPlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6341,7 +6341,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var UserService = /** @class */ (function () {
+var UserService = (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;
