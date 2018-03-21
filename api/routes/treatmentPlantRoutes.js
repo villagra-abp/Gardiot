@@ -13,15 +13,11 @@ router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('
   if (!validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-    treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
-            if (error){
-              console.log("ERROR: "+error.message);
-              response.status(400).json(error.message);
-            }
-
+    	treatmentPlantModel.getTreatmentsByPlant(request.params.number, request.params.page, request.params.sort, request.params.plant, function(error, data) {
+            if (error)
+                response.status(400).json(error.message);
             else if (typeof data !== 'undefined')
                 response.status(200).json(data);
-
             else
                 response.status(404).json({"Mensaje":"No existe"});
         });
@@ -47,7 +43,11 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 				response.status(400).json({"Mensaje": validate});
 			else {
 				treatmentPlantModel.insertTreatmentPlant(treatmentPlantData, function(error, data) {
-					if (data)
+					if (error && error.errno == '1062')
+						response.status(400).json({"Mensaje":"Esta asociación ya existe."});
+					else if (error && error.errno == '1452')
+						response.status(400).json({"Mensaje":"Imposible añadir esta asociación con valores inexistentes."});
+					else if (data)
 						response.status(200).json({"Mensaje":"Insertado"});
 					else
 						response.status(500).json({"Mensaje":error.message});
