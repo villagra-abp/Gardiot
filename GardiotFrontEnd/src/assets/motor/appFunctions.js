@@ -105,10 +105,10 @@ function mouse_up(e){
 function scrolling(e){
   let cv=e.target;
   if(e.deltaY<0){
-    motor.zoomCamara("camara2", -0.1);
+    motor.moverCamara("camara2", 0, -10, 0);
   }
   else{
-    motor.zoomCamara("camara2", 0.1);
+    motor.moverCamara("camara2", 0, 10, 0);
   }
 }
 
