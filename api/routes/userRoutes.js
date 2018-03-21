@@ -22,10 +22,9 @@ var routeRequirements = require('../functions/routeRequirements');
 
 router.post('/register', function(request, response) {
 	var userData = {
-			id: request.body.id,
-			password: request.body.password,
+		id: request.body.id,
+		password: request.body.password,
 	};
-	userData = filter(userData); 
 	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
@@ -36,6 +35,8 @@ router.post('/register', function(request, response) {
 			response.status(400).json({"Mensaje": validate});
 		else {
 			userModel.getUserById(userData.id, function(error, data) {
+				if (error) 
+					response.status(400).json({"Mensaje":error.message});
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
 				else {
