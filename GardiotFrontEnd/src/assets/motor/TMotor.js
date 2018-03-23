@@ -86,7 +86,7 @@ class TMotor{
 		    gl.viewport(0, 0, canvas.width, canvas.height);
 
 		//itera las mallas
-		this.siguienteMallaAnimada("animacion");
+		//this.siguienteMallaAnimada("animacion");
 
         //inicializar cámara
         this.dibujarCamaraActiva();
