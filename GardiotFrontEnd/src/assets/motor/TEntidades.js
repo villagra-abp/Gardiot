@@ -117,6 +117,10 @@ class TCamara extends TEntidad {
 				this._rotY=0;
     }
 
+    getParams(){
+      return [this._left, this._right, this._bottom, this._top, this._near, this._far];
+    }
+
     setParams (left, right, bottom, top, near, far) { //Estos floats no se para que son
         this._left=left;
         this._right=right;
@@ -124,7 +128,6 @@ class TCamara extends TEntidad {
         this._top=top;
         this._near=near;
         this._far=far;
-        this._esPerspectiva=true;
     }
 
     setPerspectiva(){
@@ -147,9 +150,9 @@ saber que malla es en concreto.*/
 class TMalla extends TEntidad {
     //Al constructor deberemos pasarle un puntero.
     //Para más info ved el archivo readmePunteros.txt
-    constructor (nombreMalla) {
+    constructor (nombreMalla, textura) {
     	super();
-        this._malla=gestor.getRecurso(nombreMalla, 'malla');
+        this._malla=gestor.getRecurso(nombreMalla, 'malla', textura);
     }
 
     get malla(){
@@ -158,7 +161,7 @@ class TMalla extends TEntidad {
 
     //A set malla le pasamos el nombre de la malla para que la carge del gestor
     set malla(nombreMalla){
-        this._malla=gestor.getRecurso(nombreMalla, 'malla');
+        this._malla=gestor.getRecurso(nombreMalla, 'malla', textura);
     }
 
     beginDraw () {

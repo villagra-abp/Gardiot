@@ -86,7 +86,7 @@ class TMotor{
 		    gl.viewport(0, 0, canvas.width, canvas.height);
 
 		//itera las mallas
-		this.siguienteMallaAnimada("animacion");
+		//this.siguienteMallaAnimada("animacion");
 
         //inicializar cámara
         this.dibujarCamaraActiva();
@@ -163,6 +163,26 @@ class TMotor{
       vec3.scale(traslacion, traslacion, factor);
       console.log(traslacion);
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(traslacion[0],traslacion[1],traslacion[2]);
+			return true;
+		}
+
+  }
+
+  zoomCamaraParalela(nombre, factor){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let a=this.camaraRegistro[pos].entity.getParams();
+      console.log(a);
+			this.camaraRegistro[pos].entity.setParams(a[0]-factor, a[1]+factor,
+      a[2]-factor, a[3]+factor, a[4], a[5]);
+      console.log(this.camaraRegistro[pos].entity.getParams());
 			return true;
 		}
 
@@ -423,7 +443,7 @@ class TMotor{
 	 * @param  {TNodo | undefined} hermano
 	 * @return {TNodo}
 	 */
-	crearNodoMalla(nombre, recurso, hermano){
+	crearNodoMalla(nombre, recurso, textura , hermano){
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
@@ -431,13 +451,13 @@ class TMotor{
 			var traMalla = new TNodo(nombre + "_T", new TTransf(),  hermano.dad);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
-			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
+			var malla = new TNodo(nombre, new TMalla(recurso, textura), escMalla);
 		}else{
 			//console.log("crea en raiz");
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
-			var malla = new TNodo(nombre, new TMalla(recurso), escMalla);
+			var malla = new TNodo(nombre, new TMalla(recurso, textura), escMalla);
 		}
 		this.mallaRegistro.push(malla);
 		return malla;
@@ -495,7 +515,7 @@ class TMotor{
 
 	}
 
-	escalarMallaxyz(nombre, x, y, z){
+	escalarMallaXYZ(nombre, x, y, z){
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
@@ -572,7 +592,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 		return malla;
 	}
 
-	siguienteMallaAnimada(nombre){
+	/*siguienteMallaAnimada(nombre){
 		var pos = -1;
 
 		for (var i = 0; i< this.animRegistro.length; i++){
@@ -613,7 +633,7 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 
 
 	}
-
+*/
 
 
 

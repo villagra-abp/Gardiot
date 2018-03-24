@@ -46,13 +46,13 @@ function iniciar(accion){
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
 
-  window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+  //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
 
 
-  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
+  window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
 
-  //window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+  window.malla3 = motor.crearNodoMalla("malla3", "bote", "madera.jpg", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
@@ -61,8 +61,8 @@ function iniciar(accion){
 //suelo
   for(let i=-1; i<2; i++){
     for(let j=-1; j<2; j++){
-      motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.escalarMallaxyz("suelo"+i+'-'+j, 60, 0, 60);
+      motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined, undefined);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 60, 0, 60);
       motor.moverMalla("suelo"+i+'-'+j, 120*i, 0, 120*j);
     }
   }
@@ -70,13 +70,14 @@ function iniciar(accion){
   //perejiles
   for(let i=-4; i<4; i++){
     for(let j=-4; j<4; j++){
-      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", undefined);
+      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", "perejil2.jpg", undefined);
       motor.escalarMalla("planta"+i+'-'+j, 0.4);
       motor.rotarMalla("planta"+i+'-'+j, -70, "x");
       motor.rotarMalla("planta"+i+'-'+j, 180*Math.random(), "z");
       motor.moverMalla("planta"+i+'-'+j, 40*i, 10, 40*j);
     }
   }
+
 
   //motor.moverMalla("malla1", -9, -15, -30);
 

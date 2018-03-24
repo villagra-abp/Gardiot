@@ -32,7 +32,7 @@ class TRecursoMalla extends TRecurso{
 
 
   }
-  cargarFichero(nombre){
+  cargarFichero(nombre, textura){
     window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
@@ -50,7 +50,9 @@ class TRecursoMalla extends TRecurso{
     });
 
       //almacenamos los vértices del objeto
+
       this._vertices=objeto.meshes[0].vertices;
+
 
       //almacenamos el índice de caras
       for(let i=0; i<objeto.meshes[0].faces.length; i++){
@@ -95,22 +97,9 @@ class TRecursoMalla extends TRecurso{
         this._normales=objeto.meshes[0].normals;
       }
 
-      if(objeto.materials[0]!==undefined){
-        if(this._nombre=='bote'){
-          this._textura=gestor.getRecurso("madera.jpg", "textura");
-        }
-        else if(this._nombre=='Susan'){
-          this._textura=gestor.getRecurso("SusanTexture.png", "textura");
-        }
-        else if(this._nombre=='perejil'){
-          this._textura=gestor.getRecurso("perejil2.jpg", "textura");
-        }
-        else if(this._nombre=='cubo'){
-          //this._textura=gestor.getRecurso("grass.jpg", "textura");
-        }
-
-
-
+      //cargamos la textura
+      if(textura!==undefined){
+          this._textura=gestor.getRecurso(textura, "textura");
       }
 
       //CREAR BUFFERS
@@ -187,6 +176,8 @@ class TRecursoMalla extends TRecurso{
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
       gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
+      //gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+
       gl.uniform1i(glProgram.textured, 1);
     }
     else{

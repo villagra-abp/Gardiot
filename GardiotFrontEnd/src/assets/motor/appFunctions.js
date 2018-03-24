@@ -28,14 +28,23 @@ function mouse_move(e){
 
 
 				if(cv.getAttribute('data-down')){
-	        console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
+	        //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
 
-					let rotX=window.originClickY-(y/cv.offsetHeight);
-					let rotY=window.originClickX-(x/cv.offsetWidth);
+					let ejeY=window.originClickY-(y/cv.offsetHeight);
+					let ejeX=window.originClickX-(x/cv.offsetWidth);
 
-					motor.rotarCamaraOrbital("camara2", rotX*150, "x");
-					motor.rotarCamaraOrbital("camara2", rotY*150, "y");
+          let pos=motor.getPosCamaraActiva();
+          let movPosible=pos[1]*0.6;
+          if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
+            motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
+          }
 
+          if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
+            motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
+          }
+
+					/*motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
+          motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
 
@@ -61,13 +70,12 @@ function mouse_click(e){
 			window.y=undefined;
 			window.originClickX=undefined;
 			window.originClickY=undefined;
-      console.log(`Posición: ${fila} - ${columna}`);
+      //console.log(`Posición: ${fila} - ${columna}`);
 
-      console.log(x, y);
-      let origin=vec3.fromValues(40.0, 0.0, 40.0);
-      get2DPoint(origin, cv.offsetWidth, cv.offsetHeight);
+      let origin=vec3.fromValues(180.0, 0.0, 180.0);
+      //get2DPoint(origin, cv.width, cv.height, x, y);
 
-      //get3DPoint([x, y], cv.offsetWidth, cv.offsetHeight);
+      get3DPoint([x, y], cv.offsetWidth, cv.offsetHeight);
 
 }
 
@@ -82,7 +90,7 @@ function mouse_down(e){
         fila=Math.ceil(y/dimy),
         columna=Math.ceil(x/dimx);
 				//console.log(x, y, cv.offsetWidth, cv.offsetHeight);
-        console.log(`DOWN-> Posición: ${fila} - ${columna}`);
+        //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
 				cv.setAttribute('data-down', 'true');
 
 				window.originClickX=x/cv.offsetWidth;
@@ -98,49 +106,83 @@ function mouse_up(e){
         fila=Math.ceil(y/dimy),
         columna=Math.ceil(x/dimx);
 
-        console.log(`UP-> Posición: ${fila} - ${columna}`);
+        //console.log(`UP-> Posición: ${fila} - ${columna}`);
 				cv.removeAttribute('data-down');
 }
 
 function scrolling(e){
   let cv=e.target;
-  if(e.deltaY<0){
-    motor.moverCamara("camara2", 0, -10, 0);
+  let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
+  let camera=motor.getPosCamaraActiva();
+  console.log(point);
+
+  let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);
+  vec3.normalize(vector, vector);
+  vec3.scale(vector, vector, 12);
+  if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>100){
+    motor.moverCamara("camara2", vector[0], vector[1], vector[2]);
   }
-  else{
-    motor.moverCamara("camara2", 0, 10, 0);
+  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<500){
+    motor.moverCamara("camara2", -vector[0], -vector[1], -vector[2]);
   }
 }
 
 
 function get2DPoint(point3D, width, height){
+  //console.log(point3D[0], point3D[1], point3D[2]);
   let viewProjectionMatrix=[];
   mat4.multiply(viewProjectionMatrix, matrixProjection, invertedMView);
+  //console.log(viewProjectionMatrix.slice(0));
 
+  //console.log(point3D.slice(0));
+  let point2=point3D.slice(0);
+
+  let pointaux=[];
   vec3.transformMat4(point3D, point3D, viewProjectionMatrix);
 
-  let winX=Math.round(((point3D[0]+1)/2.0)*width);
-  let winY=Math.round(((1-point3D[1])/2.0)*height);
 
-  console.log(winX, winY);
+let invert=[];
+mat4.invert(invert, viewProjectionMatrix);
+
+vec3.transformMat4(point2, point3D, invert);
+
+  let winX=point3D[0]+1;
+  winX=winX/2.0;
+  winX=winX*width;
+
+  let winY=1-point3D[1];
+  winY=winY/2.0;
+  winY=winY*height;
+
+  //console.log(winX, winY);
+  return [winX, winY];
 }
 
-//función que no va
 function get3DPoint(point2D, width, height){
-  let x=2.0*point2D[0]/width-1;
-  let y=-2.0*point2D[1]/height+1;
+  let x=point2D[0]/width;
+  x=x*2.0;
+  x=x-1;
+
+  let y=point2D[1]/height;
+  y=y*2.0;
+  y=1-y;
+
+
 
   let viewProjectionMatrix=[];
   mat4.multiply(viewProjectionMatrix, matrixProjection, invertedMView);
 
-  let inverted=[];
-  mat4.invert(inverted, viewProjectionMatrix);
+  let invert=[];
+  mat4.invert(invert, viewProjectionMatrix);
 
+  let pointaux=[];
+  vec3.transformMat4(pointaux, [0, 0, 0], viewProjectionMatrix);
 
-  let point=vec3.fromValues(x, y, 0);
-  let point2=[];
-  vec3.transformMat4(point2, point, inverted);
-  console.log(point2);
-  console.log(point);
+  let point=[x, y, pointaux[2]];
+
+  vec3.transformMat4(point, point, invert);
+  //console.log(point);
+  return point;
+
 
 }
