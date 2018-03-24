@@ -15,12 +15,12 @@ class TRecursoMalla extends TRecurso{
     this.shininess=0.0;
     this.opacity=1.0;
 
+    //buffers webGL
     this.bufferVertices;
     this.bufferIndex;
     this.bufferTextureCoords;
     this.bufferNormales;
     this.texTextura;
-
 
     //ATTRIBUTES
     this.vertexPosAttribute;
@@ -148,17 +148,14 @@ class TRecursoMalla extends TRecurso{
 
   draw(){
 
-    //Cálculo de matriz normal y paso de matriz al shader
+    //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
     mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
 
     if(this.normalMatrix.length>0){
-      //matrixUniform
+      //Pasamos matriz normal al shader
       gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
     }
-
-
-
 
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
@@ -168,15 +165,14 @@ class TRecursoMalla extends TRecurso{
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
-
-    //Si tenemos textura la activamos
-    if(this._textura!==undefined && this._textureCoords.length>0){
+    //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
+    if(this._textura!==undefined && this._textureCoords.length>0 && window.loading.length==0){
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
-      gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
-      //gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
 
       gl.uniform1i(glProgram.textured, 1);
     }
@@ -214,6 +210,3 @@ class TRecursoMalla extends TRecurso{
 
   }
 }
-
-
-//http://www.opengl-tutorial.org/es/beginners-tutorials/tutorial-7-model-loading/

@@ -55,7 +55,6 @@ class TTransf extends TEntidad{
 
     //sobreescribiendo métodos de dibujado
     beginDraw(){
-
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
         apliquen todas las transformaciones del árbol*/
@@ -63,13 +62,10 @@ class TTransf extends TEntidad{
         matrixStack.push(matrixModel.slice(0));
 
         mat4.multiply(matrixModel, matrixModel, this._matrix);
-
-
     }
 
     endDraw(){
         matrixModel=matrixStack.pop();
-
     }
 
 }
@@ -102,7 +98,7 @@ class TLuz extends TEntidad {
     endDraw(){}
 }
 
-/*No se todavía bien como se gestiona la clase TCamara*/
+
 class TCamara extends TEntidad {
     constructor (isPerspective) {
     	super();
@@ -113,8 +109,6 @@ class TCamara extends TEntidad {
         this._top;
         this._near;
         this._far;
-				this._rotX=0;
-				this._rotY=0;
     }
 
     getParams(){
@@ -134,7 +128,7 @@ class TCamara extends TEntidad {
         this._isPerspective=true;
     }
 
-    setParalela (left, right, bottom, top, near, far) {
+    setParalela () {
         this._esPerspectiva = false;
     }
 
@@ -143,13 +137,8 @@ class TCamara extends TEntidad {
 }
 
 
-/*La clase TMalla tiene su estructura, solo que el método beginDraw más
-adelante se comunicará con WebGL para que se dibuje en pantalla.
-Ahora mismo el atributo this._malla es un String provisional, así podemos
-saber que malla es en concreto.*/
 class TMalla extends TEntidad {
-    //Al constructor deberemos pasarle un puntero.
-    //Para más info ved el archivo readmePunteros.txt
+  //al constructor le pasamos el nombre de la mlla y el nombre de la textura asociada
     constructor (nombreMalla, textura) {
     	super();
         this._malla=gestor.getRecurso(nombreMalla, 'malla', textura);
@@ -158,7 +147,6 @@ class TMalla extends TEntidad {
     get malla(){
         return this._malla;
     }
-
     //A set malla le pasamos el nombre de la malla para que la carge del gestor
     set malla(nombreMalla){
         this._malla=gestor.getRecurso(nombreMalla, 'malla', textura);

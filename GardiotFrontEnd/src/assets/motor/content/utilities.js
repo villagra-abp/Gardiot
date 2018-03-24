@@ -81,7 +81,7 @@ function configurarShaders(vertexShader, fragmentShader){
 }
 
 
-//inicializamos parámetros básicos de WebGL (como el viewport)
+//inicializamos parámetros básicos de WebGL
 function setupWebGL(){
 
     //establece el clear color a blanco

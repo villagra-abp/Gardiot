@@ -20,7 +20,7 @@ class TMotor{
         this.fragmentShader;
     }
 
-    //empezamos a dibujar con los fps que le pasemos por parámetro
+    //empezamos a dibujar con los shaders que le pasemos por parámetro
     startDrawing(vs, fs){
     	this.running=true;
     	fpsInterval=1000/60;
@@ -41,14 +41,16 @@ class TMotor{
 	        animLoop();
     	}
     	else{
-			alert("No funciona WebGL");
-		}
+  			alert("No funciona WebGL");
+  		}
     }
 
+    //pausa del bucle de dibujado
     stopDrawing(){
     	this.running=false;
     }
 
+    //igual que startDrawing pero solo hace un draw
     startDrawingStatic(vs, fs){
     	if(vs!==undefined && fs!==undefined){
 	    	this.vertexShader=vs;
@@ -75,23 +77,20 @@ class TMotor{
 
 
 	draw(){
-
-		//iniciamos los parámetros básicos de webGL
+		  //parámetros básicos de webGL
 	      setupWebGL();
 
-        //inicializar luces
+        //dibujar las luces
         this.dibujarLucesActivas();
 
         //inicializar viewport
 		    gl.viewport(0, 0, canvas.width, canvas.height);
 
-		//itera las mallas
-		//this.siguienteMallaAnimada("animacion");
 
         //inicializar cámara
         this.dibujarCamaraActiva();
 
-		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
+		      //dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
         this.escena.draw();
 
 	}
@@ -132,6 +131,7 @@ class TMotor{
 		return cam;
 	}
 
+
 	moverCamara(nombre, x, y, z){
 		var pos = -1;
 
@@ -147,7 +147,7 @@ class TMotor{
 		}
 
 	}
-
+  /*
   zoomCamara(nombre, factor){
     var pos = -1;
 
@@ -187,7 +187,8 @@ class TMotor{
 		}
 
   }
-
+  */
+  //Orientación de la cámara
 	rotarCamara(nombre, grados, eje){
 		var pos = -1;
 
@@ -204,7 +205,7 @@ class TMotor{
 
 	}
 
-
+  //rotar respecto al 0, 0, 0
   rotarCamaraOrbital(nombre, grados, eje){
 		var pos = -1;
 
@@ -388,6 +389,7 @@ class TMotor{
 			return true;
 		}
 	}
+
 	dibujarLucesActivas(){
 		//dibujar ambient light
 		let contLuces=0;
@@ -463,10 +465,6 @@ class TMotor{
 		return malla;
 	}
 
-
-
-
-
 	moverMalla(nombre, x, y, z){
 		var pos = -1;
 
@@ -499,6 +497,7 @@ class TMotor{
 
 	}
 
+  //Escalado general de la malla
 	escalarMalla(nombre, q){
 		var pos = -1;
 
@@ -515,6 +514,7 @@ class TMotor{
 
 	}
 
+  //Escalado de la malla especificando los parámetros x, y, z
 	escalarMallaXYZ(nombre, x, y, z){
 		var pos = -1;
 
@@ -531,21 +531,9 @@ class TMotor{
 
 	}
 
-  getMallaPos(nombre){
-    var pos = -1;
-
-		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
-			}
-		}
-		if(pos>=0){
-      console.log(this.mallaRegistro[pos].dad.dad.dad.entity.matrix[12]);
-			 return [this.mallaRegistro[pos].dad.dad.dad.entity.matrix[12], this.mallaRegistro[pos].dad.dad.dad.entity.matrix[14]];
-		}
-  }
 //=================================FIN MALLAS============================
+
+
 //============================Animaciones==========================
 //
 //Nombre, nombre del recurso y si tiene un hermano o no

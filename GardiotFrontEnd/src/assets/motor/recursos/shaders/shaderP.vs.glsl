@@ -15,7 +15,6 @@ uniform mat4 uMMatrix;
 uniform mat4 uPMatrix;
 uniform mat4 uVMatrix;
 uniform mat3 uNormalMatrix;
-//uniform int uTextured;
 
 
 
@@ -25,9 +24,8 @@ void main()
 {
 	gl_Position = uPMatrix * uVMatrix * uMMatrix * vec4(aVertPosition, 1.0);
 
-	//if(uTextured==1){
-		vFragTexCoord = aVertTexCoord;
-	//}
+	vFragTexCoord = aVertTexCoord;
+
 
 
 	vec4 vertPos4=uVMatrix*uMMatrix*vec4(aVertPosition, 1.0);
