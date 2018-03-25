@@ -134,6 +134,6 @@ function get3DPoint(point2D, width, height){
   let point=[x, y, pointaux[2]];
 
   vec3.transformMat4(point, point, invert);
-  //console.log(point);
+  console.log(point);
   return point;
 }
