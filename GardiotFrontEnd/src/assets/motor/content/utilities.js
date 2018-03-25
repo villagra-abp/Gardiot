@@ -51,10 +51,13 @@ function makeShader(src, type){
 
 
 //función para inicializar los shaders
-function configurarShaders(vertexShader, fragmentShader){
+function cargarShaders(){
     //aquí dentro cogemos los recursos del directorio
-    let vs=gestor.getRecurso(vertexShader, 'shader').shader,
-        fs=gestor.getRecurso(fragmentShader, 'shader').shader;
+		let vs=[];
+		let fs=[];
+
+    vs[0]=gestor.getRecurso('shaderP.vs', 'shader').shader,
+  	fs[0]=gestor.getRecurso('shaderP.fs', 'shader').shader;
 
     //Ya tenemos los shaders aquí! (formato texto)
     //console.log(vs);
@@ -62,22 +65,22 @@ function configurarShaders(vertexShader, fragmentShader){
 
     //Aqui viene WebGL
     //compilamos los shaders
-    glVertexShader=makeShader(vs, gl.VERTEX_SHADER);
-    glFragmentShader=makeShader(fs, gl.FRAGMENT_SHADER);
+    glVertexShader[0]=makeShader(vs[0], gl.VERTEX_SHADER);
+    glFragmentShader[0]=makeShader(fs[0], gl.FRAGMENT_SHADER);
 
     //creamos el programa
-    glProgram=gl.createProgram();
+    glProgram[0]=gl.createProgram();
 
     //añadimos los shaders al programa
-    gl.attachShader(glProgram, glVertexShader);
-    gl.attachShader(glProgram, glFragmentShader);
-    gl.linkProgram(glProgram);
+    gl.attachShader(glProgram[0], glVertexShader[0]);
+    gl.attachShader(glProgram[0], glFragmentShader[0]);
+    gl.linkProgram(glProgram[0]);
 
-    if(!gl.getProgramParameter(glProgram, gl.LINK_STATUS)){
+    if(!gl.getProgramParameter(glProgram[0], gl.LINK_STATUS)){
         alert("No se puede inicializar el shader");
     }
 
-    gl.useProgram(glProgram);
+    gl.useProgram(glProgram[0]);
 }
 
 
@@ -91,21 +94,21 @@ function setupWebGL(){
     gl.enable(gl.DEPTH_TEST);
 
     //Nos traemos las matrices, projection, model y view al motor
-    glProgram.pMatrixUniform=gl.getUniformLocation(glProgram, "uPMatrix");
-    glProgram.mMatrixUniform=gl.getUniformLocation(glProgram, "uMMatrix");
-    glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
+    glProgram[0].pMatrixUniform=gl.getUniformLocation(glProgram[0], "uPMatrix");
+    glProgram[0].mMatrixUniform=gl.getUniformLocation(glProgram[0], "uMMatrix");
+    glProgram[0].vMatrixUniform=gl.getUniformLocation(glProgram[0], "uVMatrix");
 
-    glProgram.samplerUniform = gl.getUniformLocation(glProgram, "uSampler");
-    glProgram.textured=gl.getUniformLocation(glProgram, "uTextured");
+    glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
+    glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
     //matriz de normales
-    glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
+    glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
 
-		glProgram.ka=gl.getUniformLocation(glProgram, "material.Ka");
-		glProgram.kd=gl.getUniformLocation(glProgram, "material.Kd");
-		glProgram.ks=gl.getUniformLocation(glProgram, "material.Ks");
+		glProgram[0].ka=gl.getUniformLocation(glProgram[0], "material.Ka");
+		glProgram[0].kd=gl.getUniformLocation(glProgram[0], "material.Kd");
+		glProgram[0].ks=gl.getUniformLocation(glProgram[0], "material.Ks");
 
-		glProgram.shin=gl.getUniformLocation(glProgram, "propiedades.shininess");
-		glProgram.opac=gl.getUniformLocation(glProgram, "propiedades.opacity");
+		glProgram[0].shin=gl.getUniformLocation(glProgram[0], "propiedades.shininess");
+		glProgram[0].opac=gl.getUniformLocation(glProgram[0], "propiedades.opacity");
 }
 
 

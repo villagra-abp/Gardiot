@@ -26,15 +26,18 @@ function iniciar(accion){
   //las variables de WebGL empezarán siempre por gl para distinguirlas de
   //las variables del motor gráfico
   window.gl=null;
-  window.glVertexShader=null;
-  window.glFragmentShader=null;
-  window.glProgram=null;
+  window.glVertexShader=[];
+  window.glFragmentShader=[];
+  window.glProgram=[];
+
+  window.vertexShaders=[];
+  window.fragmentShaders=[];
 
   //inicializamos el gestor de recursos
   window.gestor=new TGestorRecursos();
 
   iniciamosWebGL('myCanvas');
-  configurarShaders('shaderP.vs', 'shaderP.fs');
+  cargarShaders();
 
   //fachada
   window.motor = new TMotor(gestor);

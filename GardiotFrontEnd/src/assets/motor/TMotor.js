@@ -35,7 +35,7 @@ class TMotor{
 	        //configuramos los shaders y le pasamos el nombre de los ficheros
 	        //que tenemos en recursos/shaders
 	        //esta función está en content/utilities
-	        configurarShaders(this.vertexShader, this.fragmentShader);
+	        cargarShaders();
 
 	    	  //bucle de animación en utilities.js
 	        animLoop();
@@ -57,7 +57,7 @@ class TMotor{
 	    	this.fragmentShader=fs;
 	    }
     	if(iniciamosWebGL('myCanvas')){
-	        configurarShaders(this.vertexShader, this.fragmentShader);
+	        cargarShaders();
           window.interval=setInterval(function(){
             //Cuando esté todo cargado, dibujamos
             if(window.loading.length==0){
@@ -289,8 +289,8 @@ class TMotor{
         invertedMView=auxMatrix.slice(0);
 
         //pasar matrices a WebGL
-        gl.uniformMatrix4fv(glProgram.vMatrixUniform, false, auxMatrix);
-        gl.uniformMatrix4fv(glProgram.pMatrixUniform, false, matrixProjection);
+        gl.uniformMatrix4fv(glProgram[0].vMatrixUniform, false, auxMatrix);
+        gl.uniformMatrix4fv(glProgram[0].pMatrixUniform, false, matrixProjection);
 	}
 //=================================FIN CÁMARA============================
 
@@ -422,9 +422,9 @@ class TMotor{
 
 
 				//se la pasamos al shader
-				var lightPosUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].position`);
-				var lightIntUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].color`);
-				var lightSpecUniformLocation=gl.getUniformLocation(glProgram, `uLight[${contLuces}].specColor`);
+				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
+				var lightIntUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].color`);
+				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].specColor`);
 
 				gl.uniform4fv(lightPosUniformLocation, lPos);
 				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
