@@ -179,11 +179,13 @@ export class EditGardenComponent implements OnInit{
   }
 
   resizeCanvas(){
-    let width=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
-    let height=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvasEvolver=(<HTMLElement>document.querySelector('.canvasEvolver'));
+
     let canvas=document.querySelector('canvas');
-    canvas.width=width;
-    canvas.height=height;
+    canvas.width=canvasEvolver.offsetWidth;
+    canvas.height=canvasEvolver.offsetHeight;
+
+    //canvasEvolver.style.transform=`translateX(${(canvas.height*1.5)-(canvas.width)}px)`;
 
   }
 

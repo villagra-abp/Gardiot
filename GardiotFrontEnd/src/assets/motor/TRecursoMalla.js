@@ -15,12 +15,12 @@ class TRecursoMalla extends TRecurso{
     this.shininess=0.0;
     this.opacity=1.0;
 
+    //buffers webGL
     this.bufferVertices;
     this.bufferIndex;
     this.bufferTextureCoords;
     this.bufferNormales;
     this.texTextura;
-
 
     //ATTRIBUTES
     this.vertexPosAttribute;
@@ -32,7 +32,7 @@ class TRecursoMalla extends TRecurso{
 
 
   }
-  cargarFichero(nombre){
+  cargarFichero(nombre, textura){
     window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
@@ -50,7 +50,9 @@ class TRecursoMalla extends TRecurso{
     });
 
       //almacenamos los vértices del objeto
+
       this._vertices=objeto.meshes[0].vertices;
+
 
       //almacenamos el índice de caras
       for(let i=0; i<objeto.meshes[0].faces.length; i++){
@@ -95,22 +97,9 @@ class TRecursoMalla extends TRecurso{
         this._normales=objeto.meshes[0].normals;
       }
 
-      if(objeto.materials[0]!==undefined){
-        if(this._nombre=='bote'){
-          this._textura=gestor.getRecurso("madera.jpg", "textura");
-        }
-        else if(this._nombre=='Susan'){
-          this._textura=gestor.getRecurso("SusanTexture.png", "textura");
-        }
-        else if(this._nombre=='perejil'){
-          this._textura=gestor.getRecurso("perejil2.jpg", "textura");
-        }
-        else if(this._nombre=='cubo'){
-          //this._textura=gestor.getRecurso("grass.jpg", "textura");
-        }
-
-
-
+      //cargamos la textura
+      if(textura!==undefined){
+          this._textura=gestor.getRecurso(textura, "textura");
       }
 
       //CREAR BUFFERS
@@ -149,9 +138,9 @@ class TRecursoMalla extends TRecurso{
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute=gl.getAttribLocation(glProgram, "aVertPosition");
-    this.vertexNormAttribute=gl.getAttribLocation(glProgram, "aVertNormal");
-    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
+    this.vertexPosAttribute=gl.getAttribLocation(glProgram[0], "aVertPosition");
+    this.vertexNormAttribute=gl.getAttribLocation(glProgram[0], "aVertNormal");
+    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[0], "aVertTexCoord");
 
 
   }
@@ -159,50 +148,48 @@ class TRecursoMalla extends TRecurso{
 
   draw(){
 
-    //Cálculo de matriz normal y paso de matriz al shader
+    //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
     mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
 
     if(this.normalMatrix.length>0){
-      //matrixUniform
-      gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
+      //Pasamos matriz normal al shader
+      gl.uniformMatrix3fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
     }
 
-
-
-
     //Pasamos la matriz modelo al shader
-    gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
+    gl.uniformMatrix4fv(glProgram[0].mMatrixUniform, false, matrixModel);
 
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
-
-    //Si tenemos textura la activamos
-    if(this._textura!==undefined && this._textureCoords.length>0){
+    //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
+    if(this._textura!==undefined && this._textureCoords.length>0 && window.loading.length==0){
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
-      gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
-      gl.uniform1i(glProgram.textured, 1);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+
+      gl.uniform1i(glProgram[0].textured, 1);
     }
     else{
-      gl.uniform1i(glProgram.textured, 0);
+      gl.uniform1i(glProgram[0].textured, 0);
     }
 
 
     //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
-      gl.uniform3fv(glProgram.ka, this.Ka);
-      gl.uniform3fv(glProgram.kd, this.Kd);
-      gl.uniform3fv(glProgram.ks, this.Ks);
+      gl.uniform3fv(glProgram[0].ka, this.Ka);
+      gl.uniform3fv(glProgram[0].kd, this.Kd);
+      gl.uniform3fv(glProgram[0].ks, this.Ks);
 
-      gl.uniform1f(glProgram.shin, this.shininess);
-      gl.uniform1f(glProgram.opac, this.opacity);
+      gl.uniform1f(glProgram[0].shin, this.shininess);
+      gl.uniform1f(glProgram[0].opac, this.opacity);
     }
 
 
@@ -223,6 +210,3 @@ class TRecursoMalla extends TRecurso{
 
   }
 }
-
-
-//http://www.opengl-tutorial.org/es/beginners-tutorials/tutorial-7-model-loading/
