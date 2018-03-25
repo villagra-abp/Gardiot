@@ -105,10 +105,11 @@ class TRecursoMalla extends TRecurso{
 
 
       //almacenamos las normales de los vértices
-      if(objeto.meshes[0].normals!==undefined){
-        this._normales=objeto.meshes[0].normals;
+      for(var k = 0; k<objeto.meshes.length; k++){
+        if(objeto.meshes[k].normals!==undefined){
+          this._normales.push(objeto.meshes[k].normals);
+        }
       }
-
       if(objeto.materials[0]!==undefined){
         if(this._nombre=='bote'){
           this._textura=gestor.getRecurso("madera.jpg", "textura");
@@ -155,11 +156,11 @@ class TRecursoMalla extends TRecurso{
 
     }
 
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       //==============CREACIÓN BUFFER DE NORMALES==============
       this.bufferNormales=gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales[0]), gl.STATIC_DRAW);
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
@@ -222,7 +223,7 @@ class TRecursoMalla extends TRecurso{
 
 
     //Pasamos el array de normales al shader
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
