@@ -46,13 +46,13 @@ function iniciar(accion){
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
 
-  window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+  //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
 
 
   //window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
 
-  //window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+  window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 

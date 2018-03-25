@@ -48,19 +48,33 @@ class TRecursoMalla extends TRecurso{
         window.loading.pop();
       }
     });
-
+      //console.log("meshes:");
+      //console.log(objeto.meshes);
       //almacenamos los vértices del objeto
-      this._vertices=objeto.meshes[0].vertices;
+      
+      for(var i = 0; i<objeto.meshes.length; i++){
+
+       //console.log(objeto.meshes[i].vertices);
+       this._vertices.push(objeto.meshes[i].vertices);
+      }
+      //this._vertices=objeto.meshes[0].vertices;
 
       //almacenamos el índice de caras
-      for(let i=0; i<objeto.meshes[0].faces.length; i++){
-        for(let j=0; j<objeto.meshes[0].faces[i].length; j++){
-          this._verticesIndex.push(objeto.meshes[0].faces[i][j]);
+      let auxVertexIndex = [];
+      for(var k = 0; k<objeto.meshes.length; k++){
+        for(let i=0; i<objeto.meshes[k].faces.length; i++){
+          for(let j=0; j<objeto.meshes[k].faces[i].length; j++){
+            auxVertexIndex.push(objeto.meshes[k].faces[i][j]);
+          }
         }
+        this._verticesIndex.push(auxVertexIndex);
       }
+     
 
       //almacenamos las coordenadas de textura
+      console.log("texture");
       if(objeto.meshes[0].texturecoords!==undefined){
+        console.log(objeto.meshes[0].texturecoords);
         this._textureCoords=objeto.meshes[0].texturecoords[0];
       }
 
@@ -91,10 +105,11 @@ class TRecursoMalla extends TRecurso{
 
 
       //almacenamos las normales de los vértices
-      if(objeto.meshes[0].normals!==undefined){
-        this._normales=objeto.meshes[0].normals;
+      for(var k = 0; k<objeto.meshes.length; k++){
+        if(objeto.meshes[k].normals!==undefined){
+          this._normales.push(objeto.meshes[k].normals);
+        }
       }
-
       if(objeto.materials[0]!==undefined){
         if(this._nombre=='bote'){
           this._textura=gestor.getRecurso("madera.jpg", "textura");
@@ -119,15 +134,15 @@ class TRecursoMalla extends TRecurso{
     //se lo pasamos al programa
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     //asignamos los vértices leídos al buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices[0]), gl.STATIC_DRAW);
 
     //==============CREACIÓN BUFFER DE ÍNDICES==============
     //Ahora vamos a crear el índice de vértices
     //(esto es como indicarle a WebGL los vértices que componen cada cara)
     this.bufferIndex=gl.createBuffer();
-    this.bufferIndex.number_vertex_points=this._verticesIndex.length;
+    this.bufferIndex.number_vertex_points=this._verticesIndex[0].length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex[0]), gl.STATIC_DRAW);
 
     if(this._textureCoords.length>0){
     //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
@@ -141,11 +156,11 @@ class TRecursoMalla extends TRecurso{
 
     }
 
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       //==============CREACIÓN BUFFER DE NORMALES==============
       this.bufferNormales=gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales[0]), gl.STATIC_DRAW);
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
@@ -208,7 +223,7 @@ class TRecursoMalla extends TRecurso{
 
 
     //Pasamos el array de normales al shader
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
