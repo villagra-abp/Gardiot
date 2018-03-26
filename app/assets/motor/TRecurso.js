@@ -7,5 +7,4 @@
   get nombre(){
   	return this._nombre;
   }
-
 }
