@@ -38,7 +38,13 @@ class TMotor{
 	        cargarShaders();
 
 	    	  //bucle de animación en utilities.js
-	        animLoop();
+          window.interval=setInterval(function(){
+            //Cuando esté todo cargado, dibujamos
+            if(window.loading.length==0){
+              animLoop();
+              motor.allLoaded();
+            }
+          }, 100);
     	}
     	else{
   			alert("No funciona WebGL");
@@ -94,6 +100,11 @@ class TMotor{
         this.escena.draw();
 
 	}
+
+
+  usarShader(shader){
+    gl.useProgram(glProgram[shader]);
+  }
 
 
 
