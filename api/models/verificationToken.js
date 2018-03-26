@@ -45,7 +45,7 @@ verificationToken.updateVerificationToken = function(id, token, callback) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, result.affectedRows);
+				callback(null, token);
 		});
 	}
 }

@@ -37,19 +37,18 @@ router.post('/confirmation/:token', function(request, response) {
 //*** Reenvio del correo 
 
 router.post('/resend', passport.authenticate('jwt', {session: false}), function(request, response) {
-	var tokenNew = jwt.sign({}, config.secret, {
-		expiresIn: '1h',
-		subject: request.user.id
-	});
-
 	verificationTokenModel.getVerificationTokenByUser(request.user.id, function(error, token) {
+		var tokenNew = jwt.sign({}, config.secret, {
+			expiresIn: '1h',
+			subject: request.user.id
+		});
 		if (error) response.status(500).json({"Mensaje":"Imposible recuperar el token de verificacion."});
 		else if (typeof token === 'undefined' || token == null) { //Se reinserta
-			verificationTokenModel.insertVerificationToken(request.user.id, tokenNew, function(error, result) {
+			verificationTokenModel.insertVerificationToken(request.user.id, tokenNew, function(error, token2) {
 				if (error) response.status(500).json({"Mensaje":"Error"});
 				else {
 					var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-					var mailOptions = {from: 'symbiosegardiot@gmail.com', to: request.user.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
+					var mailOptions = {from: 'symbiosegardiot@gmail.com', to: request.user.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token2 + '\n'};
 					transporter.sendMail(mailOptions, function(err) {
 						if (err) response.status(500).json({"Mensaje": err.message});
 						else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + request.user.id + "."});
@@ -58,11 +57,11 @@ router.post('/resend', passport.authenticate('jwt', {session: false}), function(
 			});
 		}
 		else { //Se actualiza
-			verificationTokenModel.updateVerificationToken(request.user.id, tokenNew, function(error, result) {
+			verificationTokenModel.updateVerificationToken(request.user.id, tokenNew, function(error, token2) {
 				if (error) response.status(500).json({"Mensaje":"Error"});
 				else {
 					var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero
-					var mailOptions = {from: 'symbiosegardiot@gmail.com', to: request.user.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token + '\n'};
+					var mailOptions = {from: 'symbiosegardiot@gmail.com', to: request.user.id, subject: 'Verifica tu dirección de correo electrónico', text: 'Hola,\n\n' + 'Por favor verifica tu cuenta con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/confirmation\/' + token2 + '\n'};
 					transporter.sendMail(mailOptions, function(err) {
 						if (err) response.status(500).json({"Mensaje": err.message});
 						else response.status(201).json({"Mensaje":"Un email de verificación se ha enviado a " + request.user.id + "."});
