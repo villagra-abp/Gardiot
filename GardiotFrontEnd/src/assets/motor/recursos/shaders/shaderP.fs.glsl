@@ -24,7 +24,6 @@ struct Material
 };
 
 
-
 uniform Material material;
 uniform Propiedades propiedades;
 uniform DirectionalLight uLight[5];

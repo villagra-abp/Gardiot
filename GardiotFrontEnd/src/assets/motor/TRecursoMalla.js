@@ -51,7 +51,7 @@ class TRecursoMalla extends TRecurso{
       //console.log("meshes:");
       //console.log(objeto.meshes);
       //almacenamos los vértices del objeto
-      
+
       for(var i = 0; i<objeto.meshes.length; i++){
 
        //console.log(objeto.meshes[i].vertices);
@@ -69,7 +69,7 @@ class TRecursoMalla extends TRecurso{
         }
         this._verticesIndex.push(auxVertexIndex);
       }
-     
+
 
       //almacenamos las coordenadas de textura
       console.log("texture");
@@ -139,10 +139,6 @@ class TRecursoMalla extends TRecurso{
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
     }
 
-    //================MATERIALES=====================
-    if(this.Ka.length>0 && this.Kd.length>0 && this.Ks>0){
-
-    }
 
     if(this._normales[0].length>0){
       //==============CREACIÓN BUFFER DE NORMALES==============

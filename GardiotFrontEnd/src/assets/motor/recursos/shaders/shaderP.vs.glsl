@@ -26,8 +26,6 @@ void main()
 
 	vFragTexCoord = aVertTexCoord;
 
-
-
 	vec4 vertPos4=uVMatrix*uMMatrix*vec4(aVertPosition, 1.0);
 	vVertPosition=vec3(vertPos4)/vertPos4.w;
 	vNormalInterp=vec3(uNormalMatrix*aVertNormal);

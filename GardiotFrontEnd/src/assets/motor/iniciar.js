@@ -30,8 +30,8 @@ function iniciar(accion){
   window.glFragmentShader=[];
   window.glProgram=[];
 
-  window.vertexShaders=[];
-  window.fragmentShaders=[];
+  window.vertexShaders=['shader.vs', 'shaderP.vs'];
+  window.fragmentShaders=['shader.fs', 'shaderP.fs'];
 
   //inicializamos el gestor de recursos
   window.gestor=new TGestorRecursos();
