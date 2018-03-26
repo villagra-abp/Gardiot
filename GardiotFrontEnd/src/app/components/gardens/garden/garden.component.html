@@ -1,34 +1,27 @@
 <div class="main-container">
- <section class="container title">
-  <h1>{{garden.title}}</h1><button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
-  </section>
   <section class="container herramienta">
   <canvas id="myCanvas" width="1800" height="1200"></canvas>
   </section>
+  <section class="container title">
+      <h1>{{garden.title}}</h1>
+      <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
+  </section>
 <section class="container">
-	<h2>Informacion</h2>
-	<div>
-		<ul>
-			<li>Localizacion:{{garden.city}}, {{garden.countryCode}}</li>
-			<li>Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>
-			<li>Tiempo: {{cielo}}</li>
-			<li>Humedad: {{humedad}}%</li>
-			<li>Presion: {{presion}} Pa</li>
-			<li>Temperatura: {{temperatura}} ºC</li>
-		</ul>
-	</div>
+  <article class="row">
+    <div class="col">
+      <ul class="list-group list-group-flush ">
+        <li class="list-group-item">Localización:{{garden.city}}, {{garden.countryCode}}</li>
+        <li class="list-group-item">Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>
+        <li class="list-group-item">Tiempo: {{cielo}}</li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul class="list-group list-group-flush ">
+        <li class="list-group-item">Humedad: {{humedad}}%</li>
+        <li class="list-group-item">Presion: {{presion}} Pa</li>
+        <li class="list-group-item">Temperatura: {{temperatura}} ºC</li>
+      </ul>
+    </div>
+  </article>
 </section>
-
-<section class="container">
-<h2>Tareas:</h2>
-  <div>
-  	<ul>
-  		<li>Tarea1</li>
-  		<li>Tarea2</li>
-  		<li>Tarea3</li>
-  	</ul>
-  </div>
-</section>
-
-
 </div>
