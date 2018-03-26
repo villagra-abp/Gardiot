@@ -15,12 +15,12 @@ class TRecursoMalla extends TRecurso{
     this.shininess=0.0;
     this.opacity=1.0;
 
+    //buffers webGL
     this.bufferVertices;
     this.bufferIndex;
     this.bufferTextureCoords;
     this.bufferNormales;
     this.texTextura;
-
 
     //ATTRIBUTES
     this.vertexPosAttribute;
@@ -32,7 +32,7 @@ class TRecursoMalla extends TRecurso{
 
 
   }
-  cargarFichero(nombre){
+  cargarFichero(nombre, textura){
     window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
@@ -48,19 +48,33 @@ class TRecursoMalla extends TRecurso{
         window.loading.pop();
       }
     });
-
+      //console.log("meshes:");
+      //console.log(objeto.meshes);
       //almacenamos los vértices del objeto
-      this._vertices=objeto.meshes[0].vertices;
+
+      for(var i = 0; i<objeto.meshes.length; i++){
+
+       //console.log(objeto.meshes[i].vertices);
+       this._vertices.push(objeto.meshes[i].vertices);
+      }
+      //this._vertices=objeto.meshes[0].vertices;
 
       //almacenamos el índice de caras
-      for(let i=0; i<objeto.meshes[0].faces.length; i++){
-        for(let j=0; j<objeto.meshes[0].faces[i].length; j++){
-          this._verticesIndex.push(objeto.meshes[0].faces[i][j]);
+      let auxVertexIndex = [];
+      for(var k = 0; k<objeto.meshes.length; k++){
+        for(let i=0; i<objeto.meshes[k].faces.length; i++){
+          for(let j=0; j<objeto.meshes[k].faces[i].length; j++){
+            auxVertexIndex.push(objeto.meshes[k].faces[i][j]);
+          }
         }
+        this._verticesIndex.push(auxVertexIndex);
       }
 
+
       //almacenamos las coordenadas de textura
+      console.log("texture");
       if(objeto.meshes[0].texturecoords!==undefined){
+        console.log(objeto.meshes[0].texturecoords);
         this._textureCoords=objeto.meshes[0].texturecoords[0];
       }
 
@@ -91,26 +105,15 @@ class TRecursoMalla extends TRecurso{
 
 
       //almacenamos las normales de los vértices
-      if(objeto.meshes[0].normals!==undefined){
-        this._normales=objeto.meshes[0].normals;
+      for(var k = 0; k<objeto.meshes.length; k++){
+        if(objeto.meshes[k].normals!==undefined){
+          this._normales.push(objeto.meshes[k].normals);
+        }
       }
 
-      if(objeto.materials[0]!==undefined){
-        if(this._nombre=='bote'){
-          this._textura=gestor.getRecurso("madera.jpg", "textura");
-        }
-        else if(this._nombre=='Susan'){
-          this._textura=gestor.getRecurso("SusanTexture.png", "textura");
-        }
-        else if(this._nombre=='perejil'){
-          this._textura=gestor.getRecurso("perejil2.jpg", "textura");
-        }
-        else if(this._nombre=='cubo'){
-          //this._textura=gestor.getRecurso("grass.jpg", "textura");
-        }
-
-
-
+      //cargamos la textura
+      if(textura!==undefined){
+          this._textura=gestor.getRecurso(textura, "textura");
       }
 
       //CREAR BUFFERS
@@ -119,15 +122,15 @@ class TRecursoMalla extends TRecurso{
     //se lo pasamos al programa
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     //asignamos los vértices leídos al buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices[0]), gl.STATIC_DRAW);
 
     //==============CREACIÓN BUFFER DE ÍNDICES==============
     //Ahora vamos a crear el índice de vértices
     //(esto es como indicarle a WebGL los vértices que componen cada cara)
     this.bufferIndex=gl.createBuffer();
-    this.bufferIndex.number_vertex_points=this._verticesIndex.length;
+    this.bufferIndex.number_vertex_points=this._verticesIndex[0].length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex[0]), gl.STATIC_DRAW);
 
     if(this._textureCoords.length>0){
     //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
@@ -136,22 +139,18 @@ class TRecursoMalla extends TRecurso{
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
     }
 
-    //================MATERIALES=====================
-    if(this.Ka.length>0 && this.Kd.length>0 && this.Ks>0){
 
-    }
-
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       //==============CREACIÓN BUFFER DE NORMALES==============
       this.bufferNormales=gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales), gl.STATIC_DRAW);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales[0]), gl.STATIC_DRAW);
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute=gl.getAttribLocation(glProgram, "aVertPosition");
-    this.vertexNormAttribute=gl.getAttribLocation(glProgram, "aVertNormal");
-    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram, "aVertTexCoord");
+    this.vertexPosAttribute=gl.getAttribLocation(glProgram[0], "aVertPosition");
+    this.vertexNormAttribute=gl.getAttribLocation(glProgram[0], "aVertNormal");
+    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[0], "aVertTexCoord");
 
 
   }
@@ -159,65 +158,56 @@ class TRecursoMalla extends TRecurso{
 
   draw(){
 
-        //Cálculo de matriz normal y paso de matriz al shader
-        mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    //Cálculo de matriz normal
+    mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
 
-        mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
-        if(this.normalMatrix.length>0){
-          //matrixUniform
-          gl.uniformMatrix3fv(glProgram.normalMatrixUniform, false, this.normalMatrix);
-        }
-
-
-    //Cargar la textura, esto lo podremos optimizar seguro
-    if(this._textura!==undefined){
-      gl.activeTexture(gl.TEXTURE0);
-      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this._textura._img);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-      gl.uniform1i(glProgram.textured, 1);
+    if(this.normalMatrix.length>0){
+      //Pasamos matriz normal al shader
+      gl.uniformMatrix3fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
     }
-    else{
-      gl.uniform1i(glProgram.textured, 0);
-    }
-
-
-
 
     //Pasamos la matriz modelo al shader
-    gl.uniformMatrix4fv(glProgram.mMatrixUniform, false, matrixModel);
-
+    gl.uniformMatrix4fv(glProgram[0].mMatrixUniform, false, matrixModel);
 
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
-
-    //Pasamos los buffers de coordenadas de texturas
-    if(this._textureCoords.length>0 && this._textura!==undefined){
+    //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
+    if(this._textura!==undefined && this._textureCoords.length>0 && window.loading.length==0){
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
+
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+      if(this.nombre.indexOf("suelo2")>=0)
+        gl.uniform1i(glProgram[0].textured, 2);
+      else
+        gl.uniform1i(glProgram[0].textured, 1);
     }
+    else{
+      gl.uniform1i(glProgram[0].textured, 0);
+    }
+
 
     //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
-      gl.uniform3fv(glProgram.ka, this.Ka);
-      gl.uniform3fv(glProgram.kd, this.Kd);
-      gl.uniform3fv(glProgram.ks, this.Ks);
+      gl.uniform3fv(glProgram[0].ka, this.Ka);
+      gl.uniform3fv(glProgram[0].kd, this.Kd);
+      gl.uniform3fv(glProgram[0].ks, this.Ks);
 
-      gl.uniform1f(glProgram.shin, this.shininess);
-      gl.uniform1f(glProgram.opac, this.opacity);
+      gl.uniform1f(glProgram[0].shin, this.shininess);
+      gl.uniform1f(glProgram[0].opac, this.opacity);
     }
 
 
 
     //Pasamos el array de normales al shader
-    if(this._normales.length>0){
+    if(this._normales[0].length>0){
       gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
@@ -232,6 +222,3 @@ class TRecursoMalla extends TRecurso{
 
   }
 }
-
-
-//http://www.opengl-tutorial.org/es/beginners-tutorials/tutorial-7-model-loading/

@@ -38,6 +38,7 @@ button{
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.7);
+  z-index:99;
 }
 
 .notification{
@@ -58,6 +59,7 @@ button{
   border-radius: 5px;
   text-align: center;
 }
+
 .desarrollo>p{
   color: #fff;
 }

@@ -97,7 +97,7 @@ var admin_routes = [
     { path: 'newproduct', component: __WEBPACK_IMPORTED_MODULE_15__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //newtreatmentsplants
     { path: 'newtreatmentsplants/:id', component: __WEBPACK_IMPORTED_MODULE_18__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
+    { path: '**', pathMatch: 'full', redirectTo: 'analytics' }
 ];
 
 
@@ -144,7 +144,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.url = "";
         this.admin = window.location.href.indexOf('admin') >= 0;
@@ -347,7 +347,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
@@ -539,7 +539,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthguardGuard = (function () {
+var AuthguardGuard = /** @class */ (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -569,7 +569,7 @@ var AuthguardGuard = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Garden; });
-var Garden = (function () {
+var Garden = /** @class */ (function () {
     function Garden(id, title, width, length, latitude, longitude, soil, user, countryCode, city) {
         this.id = id;
         this.title = title;
@@ -594,7 +594,7 @@ var Garden = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Plant; });
-var Plant = (function () {
+var Plant = /** @class */ (function () {
     function Plant(id, scientificName, commonName, description, photo, _3DModel, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType) {
         this.id = id;
         this.scientificName = scientificName;
@@ -626,7 +626,7 @@ var Plant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Product; });
-var Product = (function () {
+var Product = /** @class */ (function () {
     function Product(id, name, type, description) {
         this.id = id;
         this.name = name;
@@ -645,7 +645,7 @@ var Product = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTreatment; });
-var ProductTreatment = (function () {
+var ProductTreatment = /** @class */ (function () {
     function ProductTreatment(plant, treatment, product, name) {
         this.plant = plant;
         this.treatment = treatment;
@@ -664,7 +664,7 @@ var ProductTreatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
-var Task = (function () {
+var Task = /** @class */ (function () {
     function Task(tPlant, treatmentPlant, myPlant, mPlant, date, dateDone, commonName, name) {
         this.tPlant = tPlant;
         this.treatmentPlant = treatmentPlant;
@@ -687,7 +687,7 @@ var Task = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Treatment; });
-var Treatment = (function () {
+var Treatment = /** @class */ (function () {
     function Treatment(id, name, description, icon) {
         this.id = id;
         this.name = name;
@@ -706,7 +706,7 @@ var Treatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreatmentPlant; });
-var TreatmentPlant = (function () {
+var TreatmentPlant = /** @class */ (function () {
     function TreatmentPlant(plant, treatment, frequency, initDate, finalDate) {
         this.plant = plant;
         this.treatment = treatment;
@@ -726,7 +726,7 @@ var TreatmentPlant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-var User = (function () {
+var User = /** @class */ (function () {
     function User(id, name, lastName, password, password2, oldPassword, photo, countryCode, city, birthDate, active, admin) {
         this.id = id;
         this.name = name;
@@ -777,7 +777,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { AdminListUsersComponent } from "./listusers.component";
 //import { AdminUserComponent } from "./user.component";
-var AdminComponent = (function () {
+var AdminComponent = /** @class */ (function () {
     function AdminComponent(_detailService, _route) {
         this._detailService = _detailService;
         this._route = _route;
@@ -820,7 +820,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminguardGuard = (function () {
+var AdminguardGuard = /** @class */ (function () {
     function AdminguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -882,7 +882,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminProfileComponent = (function () {
+var AdminProfileComponent = /** @class */ (function () {
     function AdminProfileComponent(_detailService, _route, _appComponent, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -1060,7 +1060,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AnalyticsComponent = (function () {
+var AnalyticsComponent = /** @class */ (function () {
     function AnalyticsComponent() {
     }
     AnalyticsComponent.prototype.ngOnInit = function () {
@@ -1102,7 +1102,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var StatisticsComponent = (function () {
+var StatisticsComponent = /** @class */ (function () {
     function StatisticsComponent() {
     }
     StatisticsComponent.prototype.ngOnInit = function () {
@@ -1142,7 +1142,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/calendar/calendar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container container\">\n  <div class=\"row text-center\">\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarPreviousView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Anterior\n      </div>\n      <div\n        class=\"btn btn-outline-secondary\"\n        mwlCalendarToday\n        [(viewDate)]=\"viewDate\">\n        Actual\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarNextView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Próximo\n      </div>\n    </div>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\n  </div>\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'month'\"\n        [class.active]=\"view === 'month'\">\n        Month\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'week'\"\n        [class.active]=\"view === 'week'\">\n        Week\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'day'\"\n        [class.active]=\"view === 'day'\">\n        Day\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<div [ngSwitch]=\"view\">\n  <mwl-calendar-month-view\n    *ngSwitchCase=\"'month'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    [activeDayIsOpen]=\"activeDayIsOpen\"\n    (dayClicked)=\"dayClicked($event.day)\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-month-view>\n  <mwl-calendar-week-view\n    *ngSwitchCase=\"'week'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-week-view>\n  <mwl-calendar-day-view\n    *ngSwitchCase=\"'day'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-day-view>\n</div>\n\n<!--\n\n<h3>\n  Edit events\n  <button\n    class=\"btn btn-primary pull-right\"\n    (click)=\"addEvent()\">\n    Add new\n  </button>\n  <div class=\"clearfix\"></div>\n</h3>\n\n<table class=\"table table-bordered\">\n\n  <thead>\n    <tr>\n      <th>Title</th>\n      <th>Primary color</th>\n      <th>Secondary color</th>\n      <th>Starts at</th>\n      <th>Ends at</th>\n      <th>Remove</th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr *ngFor=\"let event of events; let index = index\">\n      <td>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          [(ngModel)]=\"event.title\"\n          (keyup)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.primary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.secondary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td>\n        <button\n          class=\"btn btn-danger\"\n          (click)=\"events.splice(index, 1); refresh.next()\">\n          Delete\n        </button>\n      </td>\n    </tr>\n  </tbody>\n\n</table>\n-->\n</div>\n\n  <div class=\"container main-container\">\n    <h1>Calendario</h1>\n    <div class=\"wrap\">\n    <section class=\"card-columns\">\n        <div *ngFor=\"let task of tasks\" class=\"card\"  style=\"width: 18rem;\" >\n            <h4>{{task.commonName}} </h4>\n            <p>{{task.name}} </p>\n            <p>{{task.date}}</p>\n            <button   class=\"btn btn-outline-primary\">Realizada</button>\n          </div>\n    </section>\n    </div>\n  \t</div>\n"
+module.exports = "<div class=\"main-container container\">\n  <div class=\"row text-center\">\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarPreviousView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Anterior\n      </div>\n      <div\n        class=\"btn btn-outline-secondary\"\n        mwlCalendarToday\n        [(viewDate)]=\"viewDate\">\n        Actual\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarNextView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Próximo\n      </div>\n    </div>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\n  </div>\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'month'\"\n        [class.active]=\"view === 'month'\">\n        Month\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'week'\"\n        [class.active]=\"view === 'week'\">\n        Week\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'day'\"\n        [class.active]=\"view === 'day'\">\n        Day\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<div [ngSwitch]=\"view\">\n  <mwl-calendar-month-view\n    *ngSwitchCase=\"'month'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    [activeDayIsOpen]=\"activeDayIsOpen\"\n    (dayClicked)=\"dayClicked($event.day)\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-month-view>\n  <mwl-calendar-week-view\n    *ngSwitchCase=\"'week'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-week-view>\n  <mwl-calendar-day-view\n    *ngSwitchCase=\"'day'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-day-view>\n</div>\n\n<!--\n\n<h3>\n  Edit events\n  <button\n    class=\"btn btn-primary pull-right\"\n    (click)=\"addEvent()\">\n    Add new\n  </button>\n  <div class=\"clearfix\"></div>\n</h3>\n\n<table class=\"table table-bordered\">\n\n  <thead>\n    <tr>\n      <th>Title</th>\n      <th>Primary color</th>\n      <th>Secondary color</th>\n      <th>Starts at</th>\n      <th>Ends at</th>\n      <th>Remove</th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr *ngFor=\"let event of events; let index = index\">\n      <td>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          [(ngModel)]=\"event.title\"\n          (keyup)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.primary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.secondary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td>\n        <button\n          class=\"btn btn-danger\"\n          (click)=\"events.splice(index, 1); refresh.next()\">\n          Delete\n        </button>\n      </td>\n    </tr>\n  </tbody>\n\n</table>\n-->\n</div>\n\n<div class=\"container main-container\">\n  <div class=\"wrap\">\n  <section class=\"card-columns\">\n      <div *ngFor=\"let task of tasks\" class=\"card\"  style=\"width: 18rem;\" >\n          <h4>{{task.commonName}} </h4>\n          <p>{{task.name}} </p>\n          <p>{{task.date}}</p>\n          <button   class=\"btn btn-outline-primary\">Realizada</button>\n        </div>\n  </section>\n  </div>\n\t</div>\n"
 
 /***/ }),
 
@@ -1193,7 +1193,7 @@ var colors = {
         secondary: '#FDF1BA'
     }
 };
-var CalendarComponent = (function () {
+var CalendarComponent = /** @class */ (function () {
     function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute) {
         var _this = this;
         this._taskService = _taskService;
@@ -1381,7 +1381,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var EditfeedComponent = (function () {
+var EditfeedComponent = /** @class */ (function () {
     function EditfeedComponent() {
     }
     EditfeedComponent.prototype.ngOnInit = function () {
@@ -1442,7 +1442,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var FeedComponent = (function () {
+var FeedComponent = /** @class */ (function () {
     function FeedComponent() {
     }
     FeedComponent.prototype.ngOnInit = function () {
@@ -1503,7 +1503,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ListfeedComponent = (function () {
+var ListfeedComponent = /** @class */ (function () {
     function ListfeedComponent() {
     }
     ListfeedComponent.prototype.ngOnInit = function () {
@@ -1564,7 +1564,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var NewfeedComponent = (function () {
+var NewfeedComponent = /** @class */ (function () {
     function NewfeedComponent() {
     }
     NewfeedComponent.prototype.ngOnInit = function () {
@@ -1605,7 +1605,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/editgarden/editgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onclick=\"mouse_click(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
+module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n  <canvas id=\"myCanvas\" onmousemove=\"mouse_move(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n</div>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group  col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group  col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n      <div class=\"borrar\">\n        <button (click)=\"delete()\" class=\"btn btn-danger\" >Borrar</button>\n      </div>\n    </div>\n\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -1637,7 +1637,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditGardenComponent = (function () {
+var EditGardenComponent = /** @class */ (function () {
     function EditGardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1766,11 +1766,11 @@ var EditGardenComponent = (function () {
         window.addEventListener("resize", this.resizeCanvas);
     };
     EditGardenComponent.prototype.resizeCanvas = function () {
-        var width = document.querySelector(".canvasEvolver").offsetWidth;
-        var height = document.querySelector(".canvasEvolver").offsetHeight;
+        var canvasEvolver = document.querySelector('.canvasEvolver');
         var canvas = document.querySelector('canvas');
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = canvasEvolver.offsetWidth;
+        canvas.height = canvasEvolver.offsetHeight;
+        //canvasEvolver.style.transform=`translateX(${(canvas.height*1.5)-(canvas.width)}px)`;
     };
     //Envia los nuevos datos del jardin a  a GardenService para guardarlos
     EditGardenComponent.prototype.edit = function () {
@@ -1830,7 +1830,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 100%;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  border: 1px solid #234;\r\n  padding: 0;\r\n  border-radius: 5px;\r\n}\r\n  .herramienta>canvas{\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n", ""]);
+exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 80%;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  border: 1px solid #234;\r\n  padding: 0;\r\n  border-radius: 5px;\r\n}\r\n.herramienta>canvas{\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\nh1, h2{\r\n  text-align: center;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1843,7 +1843,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/garden/garden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\n <section class=\"container title\">\n  <h1>{{garden.title}}</h1><button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\n  </section>\n  <section class=\"container herramienta\">\n  <canvas id=\"myCanvas\" width=\"1800\" height=\"1200\"></canvas>\n  </section>\n<section class=\"container\">\n\t<h2>Informacion</h2>\n\t<div>\n\t\t<ul>\n\t\t\t<li>Localizacion:{{garden.city}}, {{garden.countryCode}}</li>\n\t\t\t<li>Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>\n\t\t\t<li>Tiempo: {{cielo}}</li>\n\t\t\t<li>Humedad: {{humedad}}%</li>\n\t\t\t<li>Presion: {{presion}} Pa</li>\n\t\t\t<li>Temperatura: {{temperatura}} ºC</li>\n\t\t</ul>\n\t</div>\n</section>\n\n<section class=\"container\">\n<h2>Tareas:</h2>\n  <div>\n  \t<ul>\n  \t\t<li>Tarea1</li>\n  \t\t<li>Tarea2</li>\n  \t\t<li>Tarea3</li>\n  \t</ul>\n  </div>\n</section>\n\n\n</div>\n"
+module.exports = "<div class=\"main-container\">\n  <section class=\"container herramienta\">\n  <canvas id=\"myCanvas\" width=\"1800\" height=\"1200\"></canvas>\n  </section>\n  <section class=\"container title\">\n      <h1>{{garden.title}}</h1>\n      <button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\n  </section>\n<section class=\"container\">\n  <article class=\"row\">\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush \">\n        <li class=\"list-group-item\">Localización:{{garden.city}}, {{garden.countryCode}}</li>\n        <li class=\"list-group-item\">Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>\n        <li class=\"list-group-item\">Tiempo: {{cielo}}</li>\n      </ul>\n    </div>\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush \">\n        <li class=\"list-group-item\">Humedad: {{humedad}}%</li>\n        <li class=\"list-group-item\">Presion: {{presion}} Pa</li>\n        <li class=\"list-group-item\">Temperatura: {{temperatura}} ºC</li>\n      </ul>\n    </div>\n  </article>\n</section>\n</div>\n"
 
 /***/ }),
 
@@ -1871,7 +1871,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenComponent = (function () {
+var GardenComponent = /** @class */ (function () {
     function GardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1994,7 +1994,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewGardenComponent = (function () {
+var NewGardenComponent = /** @class */ (function () {
     function NewGardenComponent(_gardenService, _plantService, _route, datePipe, _appComponent) {
         this._gardenService = _gardenService;
         this._plantService = _plantService;
@@ -2176,7 +2176,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar{\n  z-index:10;\n  background-color: #299654 !important;\n}\n.navbar-header{\n  position: fixed;\n  top:0;\n  left:0;\n  right:0;\n  height: 50px;\n  background-color: #299654 ;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  z-index: 999999;\n  }\n  .navbar-header>div{\n    max-height: 46px;\n  }\n  .navbar-header>div>i{\n    font-size: 46px;\n    cursor: pointer;\n    color: #fff;\n    display:inline-block;\n  \ttransform:rotate(0);\n  \ttransition: transform 0.3s ease-out;\n  }\n\n  .navbar-header>img{\n    margin-left: 10px;\n    height: 30px;\n  }\n\n  .opened{\n    transform:rotate(90deg) !important;\n  }\n\n  #sidebar-wrapper {\n  top: 50px;\n  left: -200px;\n  width: 200px;\n  background-color: #299654;\n  color: white;\n  position: fixed;\n  height: 100%;\n  z-index: 999999;\n}\n#sidebar-wrapper>img{\n  display:none;\n}\n\n.sidebar-nav {\n  position: absolute;\n  top: 0;\n  margin: 0;\n  padding: 0;\n  width: 200px;\n  list-style: none;\n}\n.sidebar-nav li {\n  text-indent: 20px;\n  line-height: 50px;\n}\n.sidebar-nav li a {\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.sidebar-nav li a:hover {\n  background: rgba(255,255,255,0.25);\n  color: white;\n  text-decoration: none;\n}\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\n  text-decoration: none;\n}\n#sidebar-wrapper.sidebar-toggle {\n  transition: all 0.3s ease-out;\n  margin-left: -200px;\n}\n\n\n/*HEADER USER*/\n.header{\n  background-color: #299654 !important;\n}\n.navbar-brand>img{\n  width: 140px;\n}\n#navbarSupportedContent > ul > li > a{\n  color: #fff !important;\n}\nbutton{\n  background: rgba(255, 255, 255, 0.5);\n}\n#navbarSupportedContent{\n  -ms-flex-pack: end;\n      justify-content: flex-end;\n}\n#navbarSupportedContent > ul{\n  margin-right: 0 !important;\n}\n\n@media (min-width: 768px) {\n  .sidebar-nav {\n    top: 60px;\n  }\n\n  .limited{\n    max-width: 1150px;\n    margin: 0 auto;\n  }\n  #sidebar-wrapper.sidebar-toggle {\n    transition: 0s;\n    left: 200px;\n    top: 0;\n  }\n  #sidebar-wrapper>img{\n    display: initial;\n    width: 140px;\n    margin: 0 auto;\n    margin-top: 15px;\n    margin-left: 20px;\n  }\n  .navbar-header{\n    display: none;\n\n    }\n}\n\n#photoMenu{\n  width: auto;\n  display: -ms-flexbox;\n  display: flex;\n}\n@media (max-width: 991px) {\n  #photoMenu>div{\n    display: none;\n  }\n}\n", ""]);
+exports.push([module.i, ".navbar.user{\n  z-index:10;\n  background-color: #299654 !important;\n}\n.navbar-header{\n  position: fixed;\n  top:0;\n  left:0;\n  right:0;\n  height: 50px;\n  background-color: #299654 ;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  z-index: 999999;\n  }\n  .navbar-header>div{\n    max-height: 46px;\n  }\n  .navbar-header>div>i{\n    font-size: 46px;\n    cursor: pointer;\n    color: #fff;\n    display:inline-block;\n  \ttransform:rotate(0);\n  \ttransition: transform 0.3s ease-out;\n  }\n\n  .navbar-header>img{\n    margin-left: 10px;\n    height: 30px;\n  }\n\n  .opened{\n    transform:rotate(90deg) !important;\n  }\n\n  #sidebar-wrapper {\n  top: 50px;\n  left: -200px;\n  width: 200px;\n  background-color: #299654;\n  color: white;\n  position: fixed;\n  height: 100%;\n  z-index: 999999;\n}\n#sidebar-wrapper>img{\n  display:none;\n}\n\n.sidebar-nav {\n  position: absolute;\n  top: 0;\n  margin: 0;\n  padding: 0;\n  width: 200px;\n  list-style: none;\n}\n.sidebar-nav li {\n  text-indent: 20px;\n  line-height: 50px;\n}\n.sidebar-nav li a {\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.sidebar-nav li a:hover {\n  background: rgba(255,255,255,0.25);\n  color: white;\n  text-decoration: none;\n}\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\n  text-decoration: none;\n}\n#sidebar-wrapper.sidebar-toggle {\n  transition: all 0.3s ease-out;\n  margin-left: -200px;\n}\n\n\n/*HEADER USER*/\n.header{\n  background-color: #299654 !important;\n}\n.navbar-brand>img{\n  width: 140px;\n}\n#navbarSupportedContent > ul > li > a{\n  color: #fff !important;\n}\nbutton{\n  background: rgba(255, 255, 255, 0.5);\n}\n#navbarSupportedContent{\n  -ms-flex-pack: end;\n      justify-content: flex-end;\n}\n#navbarSupportedContent > ul{\n  margin-right: 0 !important;\n}\n\n@media (min-width: 768px) {\n  .sidebar-nav {\n    top: 60px;\n  }\n\n  .limited{\n    max-width: 1150px;\n    margin: 0 auto;\n  }\n  #sidebar-wrapper.sidebar-toggle {\n    transition: 0s;\n    left: 200px;\n    top: 0;\n  }\n  #sidebar-wrapper>img{\n    display: initial;\n    width: 140px;\n    margin: 0 auto;\n    margin-top: 15px;\n    margin-left: 20px;\n  }\n  .navbar-header{\n    display: none;\n\n    }\n}\n\n#photoMenu{\n  width: auto;\n  display: -ms-flexbox;\n  display: flex;\n}\n@media (max-width: 991px) {\n  #photoMenu>div{\n    display: none;\n  }\n}\n", ""]);
 
 // exports
 
@@ -2189,7 +2189,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Menú admin-->\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\n\t<div class=\"container\">\n\t\t<div class=\"navbar-header\">\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\n\t\t\t\t\t<i class=\"material-icons\">view_headline</i>\n\t\t\t</div>\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t</div>\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\n\t\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\n        </li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/analytics']\" href=\"#\">Anatítica</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\n\t\t\t\t</li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\"  href=\"#\">Plantas</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\n        </li>\n\t\t  </ul>\n\t\t</div>\n  </div>\n</nav>\n\n<!-- Menú estándar -->\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\n\t<div class=\"navbar navbar-expand-lg limited\">\n  <a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\n      </li>\n      <li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t<div>\n\t\t\t  </div>\n\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">{{this.user.name}}</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\n      </li>\n    </ul>\n  </div>\n</div>\n</nav>\n"
+module.exports = "<!--Menú admin-->\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\n\t<div class=\"container\">\n\t\t<div class=\"navbar-header\">\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\n\t\t\t\t\t<i class=\"material-icons\">view_headline</i>\n\t\t\t</div>\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t</div>\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\n\t\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\n        </li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/analytics']\" href=\"#\">Anatítica</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\n\t\t\t\t</li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\"  href=\"#\">Plantas</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\n        </li>\n\t\t  </ul>\n\t\t</div>\n  </div>\n</nav>\n\n<!-- Menú estándar -->\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\n\t<div class=\"navbar user navbar-expand-lg limited\">\n  <a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\n      </li>\n      <li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t<div>\n\t\t\t  </div>\n\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">{{this.user.name}}</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\n      </li>\n    </ul>\n  </div>\n</div>\n</nav>\n"
 
 /***/ }),
 
@@ -2213,7 +2213,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HeaderComponent = (function () {
+var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(userService) {
         this.userService = userService;
         this.user = new __WEBPACK_IMPORTED_MODULE_2__classes_user_class__["a" /* User */]("");
@@ -2326,7 +2326,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfirmationComponent = (function () {
+var ConfirmationComponent = /** @class */ (function () {
     function ConfirmationComponent(_comprobationService, _router, _appComponent) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2393,7 +2393,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(_loginService, _route, _appComponent) {
         this._loginService = _loginService;
         this._route = _route;
@@ -2486,7 +2486,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LogoutComponent = (function () {
+var LogoutComponent = /** @class */ (function () {
     function LogoutComponent(_logoutService, _route) {
         this._logoutService = _logoutService;
         this._route = _route;
@@ -2543,7 +2543,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OauthConfirmationComponent = (function () {
+var OauthConfirmationComponent = /** @class */ (function () {
     function OauthConfirmationComponent(_comprobationService, _router, _appComponent, _route) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2611,7 +2611,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(_userService, _route, _appComponent) {
         this._userService = _userService;
         this._route = _route;
@@ -2685,7 +2685,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResendComponent = (function () {
+var ResendComponent = /** @class */ (function () {
     function ResendComponent(_resendService, _route) {
         this._resendService = _resendService;
         this._route = _route;
@@ -2762,7 +2762,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResetPassBackComponent = (function () {
+var ResetPassBackComponent = /** @class */ (function () {
     function ResetPassBackComponent(_appComponent, router, _newPass) {
         this._appComponent = _appComponent;
         this.router = router;
@@ -2864,7 +2864,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { User } from "../../classes/user.class";
 
 
-var ResetPassComponent = (function () {
+var ResetPassComponent = /** @class */ (function () {
     function ResetPassComponent(_appComponent, _resetPassword) {
         this._appComponent = _appComponent;
         this._resetPassword = _resetPassword;
@@ -2940,7 +2940,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var PaginationComponent = (function () {
+var PaginationComponent = /** @class */ (function () {
     function PaginationComponent() {
         this.plants = [];
         this.goPrev = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3113,7 +3113,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditplantComponent = (function () {
+var EditplantComponent = /** @class */ (function () {
     function EditplantComponent(_plantService, _appComponent, _ng2ImgMax, datePipe, _router, _route) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
@@ -3297,7 +3297,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LibraryComponent = (function () {
+var LibraryComponent = /** @class */ (function () {
     function LibraryComponent(_plantService, _route, _appComponent, activatedRoute, user) {
         this._plantService = _plantService;
         this._route = _route;
@@ -3482,10 +3482,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { Treatment } from "../../../classes/treatment.class";
 // import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
 // import { TreatmentService } from "../../../services/treatment.service";
-var NewplantComponent = (function () {
+var NewplantComponent = /** @class */ (function () {
     function NewplantComponent(_plantService, 
-        // private _treatmentService:TreatmentService,
-        _appComponent, _ng2ImgMax) {
+    // private _treatmentService:TreatmentService,
+    _appComponent, _ng2ImgMax) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
         this._ng2ImgMax = _ng2ImgMax;
@@ -3590,7 +3590,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".iconplant{\n  max-width: 25px;\n  max-height: 25px;\n}\nsection{\n  padding: .5%;\n}\ndiv{\n  margin-top: 0;\n}\n\nimg{\n  max-width: 420px;\n  max-height: 400px;\n}\ndl {\n  width: 100%;\n  overflow: hidden;\n  padding: 0;\n  margin: 0\n}\ndt {\n  float: left;\n  width: 50%;\n  /* adjust the width; make sure the total of both is 100% */\n  padding: 0;\n  margin: 0\n}\ndd{\n  float: left;\n  width: 50%;\n  padding: 0;\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, ".iconplant{\n  max-width: 25px;\n  max-height: 25px;\n}\nsection{\n  margin-top: 2.5%;\n  padding: 2%;\n}\narticle{\n  margin-top: 1%;\n  padding: 2%;\n}\ndiv{\n  margin-top: 0;\n}\n\n\n/* img{\n  max-width: 420px;\n  max-height: 400px;\n} */\n\n/* img{\n  width: 300px;\n  height: 300px;\n} */\ndl {\n  width: 100%;\n  overflow: hidden;\n  padding: 0;\n  margin: 0\n}\ndt {\n  float: left;\n  width: 50%;\n  /* adjust the width; make sure the total of both is 100% */\n  padding: 0;\n  margin: 0\n}\ndd{\n  float: left;\n  width: 50%;\n  padding: 0;\n  margin: 0;\n}\nh1{\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -3603,7 +3603,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/plants/plant/plant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container vistaAdmin\" >\n    <h1>{{plant.commonName}}</h1>\n    <div class=\"row\">\n      <section class=\"card\">\n        <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\n        <h2>Descripción</h2>\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n      </section>\n    </div>\n    <div class=\"row\">\n      <div class=\"col\">\n        <!--delante de la url https://gardiot.ovh/ -->\n        <section class=\"card\">\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\n          <dl>\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\n          </dl>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n            <p *ngIf=\"plant.depth !=undefined\">\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.distance !=undefined\">\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\n            </p>\n            <p *ngIf=\"plant.leaveType !=undefined\">\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\n            </p>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\n          </p>\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\n          </p>\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\n          </p>\n        </section>\n      </div>\n    </div>\n    \n    <section *ngIf=\"this.user.isAdmin\" class=\"card\">\n      <h2>Tratamientos</h2>\n        <section *ngFor=\"let treatment of treatments\">\n          <img *ngIf=\"treatment.icon !=undefined\" class=\"iconplant\" src=\"{{treatment.icon}}\" alt=\"Tratamiento\">\n          <h5 *ngIf=\"treatment.name !=undefined\">{{treatment.name}}</h5>\n          <p *ngIf=\"treatment.description !=undefined\">{{treatment.description}}</p>\n          <h6 *ngIf=\"productTreatments !=undefined\">Productos</h6>\n          <ul *ngFor=\"let producttreatment of productTreatments\">\n            <li class=\"list-group-item\" *ngIf = \"treatment.id == producttreatment.treatment\">{{producttreatment.name}}</li>\n          </ul>\n        </section>\n    </section>\n\n</div>\n"
+module.exports = "<!-- <div class=\"container vistaAdmin\" >\n    <h1>{{plant.commonName}}</h1>\n    <div class=\"row\"> -->\n      <!-- <section class=\"card\">\n        <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\n        <h2>Descripción</h2>\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n      </section> -->\n    <!-- </div>\n    <div class=\"row\">\n      <div class=\"col\"> -->\n        <!--delante de la url https://gardiot.ovh/ -->\n\n        <!-- <section class=\"card\">\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\n          <dl>\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\n          </dl>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n            <p *ngIf=\"plant.depth !=undefined\">\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.distance !=undefined\">\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\n            </p>\n            <p *ngIf=\"plant.leaveType !=undefined\">\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\n            </p>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\n          </p>\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\n          </p>\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\n          </p>\n        </section>\n      </div>\n    </div>\n\n    <section>\n      <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n    </section>\n\n\n\n</div> -->\n\n\n<section class=\"container vistaAdmin\">\n  <h1>{{plant.commonName}}</h1>\n  <article class=\"row\">\n    <div class=\"col\">\n      <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\" class=\"rounded img-fluid\" >\n    </div>\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush\">\n        <li *ngIf=\"plant.depth !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">Profundidad de siembra {{plant.depth}} cm</li>\n        <li *ngIf=\"plant.distance !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">Distancia entre plantas {{plant.distance}} cm</li>\n        <li *ngIf=\"plant.diseaseResist !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">Resistencia al frío {{plant.diseaseResist}}</li>\n      </ul>\n    </div>\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush \">\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-group-item\">  <img class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\n      </ul>\n    </div>\n  </article>\n  <!-- <article class=\"row\">\n      <ul class=\"list-inline \">\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-inline-item\">  <img class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\n      </ul>\n  </article> -->\n  <article class=\"row\">\n    <div class=\"col\">\n    <ul class=\" list-group list-group-flush\">\n      <li *ngIf=\"plant.commonName !=undefined\" class=\"list-group-item\">Nombre común: {{plant.commonName}}</li>\n      <li *ngIf=\"plant.scientificName !=undefined\" class=\"list-group-item\">Nombre científico: {{plant.scientificName}}</li>\n      <li *ngIf=\"plant.family !=undefined\" class=\"list-group-item\">Familia: {{plant.family}}</li>\n    </ul>\n    </div>\n  </article>\n\n  <article class=\"row\">\n    <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n  </article>\n\n  <article>\n    <h2>Tratamientos</h2>\n      <section *ngFor=\"let treatment of treatments\">\n        <img *ngIf=\"treatment.icon !=undefined\" class=\"iconplant\" src=\"{{treatment.icon}}\" alt=\"Tratamiento\">\n        <h5 *ngIf=\"treatment.name !=undefined\">{{treatment.name}}</h5>\n        <p *ngIf=\"treatment.description !=undefined\">{{treatment.description}}</p>\n        <h6 *ngIf=\"productTreatments !=undefined\">Productos</h6>\n        <ul *ngFor=\"let producttreatment of productTreatments\">\n          <li class=\"list-group-item\" *ngIf = \"treatment.id == producttreatment.treatment\">{{producttreatment.name}}</li>\n        </ul>\n      </section>\n  </article>\n</section>\n"
 
 /***/ }),
 
@@ -3639,7 +3639,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantComponent = (function () {
+var PlantComponent = /** @class */ (function () {
     function PlantComponent(_plantService, _treatmentPlantService, _router, user, _route) {
         this._plantService = _plantService;
         this._treatmentPlantService = _treatmentPlantService;
@@ -3862,7 +3862,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditproductComponent = (function () {
+var EditproductComponent = /** @class */ (function () {
     function EditproductComponent(_productService, _appComponent, _router, _route) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -3975,7 +3975,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListproductComponent = (function () {
+var ListproductComponent = /** @class */ (function () {
     function ListproductComponent(_productService, activatedRoute) {
         this._productService = _productService;
         this.activatedRoute = activatedRoute;
@@ -4097,7 +4097,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewproductComponent = (function () {
+var NewproductComponent = /** @class */ (function () {
     function NewproductComponent(_productService, _appComponent) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4173,7 +4173,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductComponent = (function () {
+var ProductComponent = /** @class */ (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
@@ -4242,7 +4242,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdittreatmentComponent = (function () {
+var EdittreatmentComponent = /** @class */ (function () {
     function EdittreatmentComponent(_treatmentService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4354,7 +4354,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListtreatmentComponent = (function () {
+var ListtreatmentComponent = /** @class */ (function () {
     function ListtreatmentComponent(_treatmentService, activatedRoute) {
         this._treatmentService = _treatmentService;
         this.activatedRoute = activatedRoute;
@@ -4476,7 +4476,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentComponent = (function () {
+var NewtreatmentComponent = /** @class */ (function () {
     function NewtreatmentComponent(_treatmentService, _appComponent) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4552,7 +4552,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var TreatmentComponent = (function () {
+var TreatmentComponent = /** @class */ (function () {
     function TreatmentComponent() {
     }
     TreatmentComponent.prototype.ngOnInit = function () {
@@ -4627,7 +4627,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentsplantsComponent = (function () {
+var NewtreatmentsplantsComponent = /** @class */ (function () {
     function NewtreatmentsplantsComponent(_treatmentService, _productService, _treatmentPlantService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._productService = _productService;
@@ -4724,7 +4724,7 @@ var NewtreatmentsplantsComponent = (function () {
 /***/ "../../../../../src/app/components/user/detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"container main-container\">\n  <h1>\n    Bienvenido a Gardiot, tu email es {{this.user.id}}\n  </h1>\n  <div class=\"wrap\">\n    <div class=\"card-columns\">\n      <div class=\"card text-white bg-success mb-3\" [routerLink]=\"[gardenRoute]\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Jardín</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Success card title</h5>\n          <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n        </div>\n      </div>\n      <div class=\"card text-white bg-warning mb-3\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Biblioteca</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Warning card title</h5>\n          <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n        </div>\n      </div>\n      <div class=\"card text-white bg-info mb-3\" [routerLink]=\"['/calendar']\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Calendario</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Info card title</h5>\n          <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "\n\n<div class=\"container main-container\">\n  <h1>\n    Bienvenido a Gardiot, tu email es {{this.user.id}}\n  </h1>\n  <div class=\"wrap\">\n    <div class=\"card-columns\">\n      <div class=\"card text-white bg-success mb-3\" [routerLink]=\"[gardenRoute]\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Jardín</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Visualiza y modifica los detalles de tu jardín 3D</h5>\n        </div>\n      </div>\n      <div class=\"card text-white bg-warning mb-3\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Biblioteca</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Accede a toda nuestra información botánica</h5>\n        </div>\n      </div>\n      <div class=\"card text-white bg-info mb-3\" [routerLink]=\"['/calendar']\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Calendario</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Revisa los cuidados que necesita tu jardín</h5>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -4752,7 +4752,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var DetailComponent = (function () {
+var DetailComponent = /** @class */ (function () {
     function DetailComponent(_detailService, _gardenService, _route) {
         this._detailService = _detailService;
         this._gardenService = _gardenService;
@@ -4852,7 +4852,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditProfileComponent = (function () {
+var EditProfileComponent = /** @class */ (function () {
     function EditProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5103,7 +5103,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfileComponent = (function () {
+var ProfileComponent = /** @class */ (function () {
     function ProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5237,7 +5237,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdituserComponent = (function () {
+var EdituserComponent = /** @class */ (function () {
     function EdituserComponent(_editUserService, _appComponent, _router, datePipe, _route) {
         this._editUserService = _editUserService;
         this._appComponent = _appComponent;
@@ -5433,7 +5433,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminListUsersComponent = (function () {
+var AdminListUsersComponent = /** @class */ (function () {
     function AdminListUsersComponent(_detailService, _route, _appComponent, activatedRoute) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5540,7 +5540,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewuserComponent = (function () {
+var NewuserComponent = /** @class */ (function () {
     function NewuserComponent(_newUserServce, _appComponent) {
         this._newUserServce = _newUserServce;
         this._appComponent = _appComponent;
@@ -5600,7 +5600,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserdataComponent = (function () {
+var UserdataComponent = /** @class */ (function () {
     function UserdataComponent() {
     }
     UserdataComponent.prototype.ngOnInit = function () {
@@ -5642,7 +5642,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DesarrolloComponent = (function () {
+var DesarrolloComponent = /** @class */ (function () {
     function DesarrolloComponent() {
     }
     DesarrolloComponent.prototype.ngOnInit = function () {
@@ -5683,7 +5683,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenService = (function () {
+var GardenService = /** @class */ (function () {
     function GardenService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5854,7 +5854,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantService = (function () {
+var PlantService = /** @class */ (function () {
     function PlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -5992,7 +5992,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProductService = (function () {
+var ProductService = /** @class */ (function () {
     function ProductService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6095,7 +6095,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TaskService = (function () {
+var TaskService = /** @class */ (function () {
     function TaskService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6149,7 +6149,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentService = (function () {
+var TreatmentService = /** @class */ (function () {
     function TreatmentService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6252,7 +6252,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentPlantService = (function () {
+var TreatmentPlantService = /** @class */ (function () {
     function TreatmentPlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6341,7 +6341,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var UserService = (function () {
+var UserService = /** @class */ (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;

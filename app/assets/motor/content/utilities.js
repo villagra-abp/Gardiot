@@ -51,37 +51,42 @@ function makeShader(src, type){
 
 
 //función para inicializar los shaders
-function configurarShaders(vertexShader, fragmentShader){
+function cargarShaders(){
     //aquí dentro cogemos los recursos del directorio
-    let vs=gestor.getRecurso(vertexShader, 'shader').shader,
-        fs=gestor.getRecurso(fragmentShader, 'shader').shader;
+		let vs=[];
+		let fs=[];
 
-    //Ya tenemos los shaders aquí! (formato texto)
-    //console.log(vs);
-    //console.log(fs);
+		for(let i=0; i<vertexShaders.length && i<fragmentShaders.length; i++){
+	    vs[i]=gestor.getRecurso('shaderP.vs', 'shader').shader,
+	  	fs[i]=gestor.getRecurso('shaderP.fs', 'shader').shader;
 
-    //Aqui viene WebGL
-    //compilamos los shaders
-    glVertexShader=makeShader(vs, gl.VERTEX_SHADER);
-    glFragmentShader=makeShader(fs, gl.FRAGMENT_SHADER);
+	    //Ya tenemos los shaders aquí! (formato texto)
+	    //console.log(vs);
+	    //console.log(fs);
 
-    //creamos el programa
-    glProgram=gl.createProgram();
+	    //Aqui viene WebGL
+	    //compilamos los shaders
+	    glVertexShader[i]=makeShader(vs[i], gl.VERTEX_SHADER);
+	    glFragmentShader[i]=makeShader(fs[i], gl.FRAGMENT_SHADER);
 
-    //añadimos los shaders al programa
-    gl.attachShader(glProgram, glVertexShader);
-    gl.attachShader(glProgram, glFragmentShader);
-    gl.linkProgram(glProgram);
+	    //creamos el programa
+	    glProgram[i]=gl.createProgram();
 
-    if(!gl.getProgramParameter(glProgram, gl.LINK_STATUS)){
-        alert("No se puede inicializar el shader");
-    }
+	    //añadimos los shaders al programa
+	    gl.attachShader(glProgram[i], glVertexShader[i]);
+	    gl.attachShader(glProgram[i], glFragmentShader[i]);
+	    gl.linkProgram(glProgram[i]);
 
-    gl.useProgram(glProgram);
+	    if(!gl.getProgramParameter(glProgram[i], gl.LINK_STATUS)){
+	        alert("No se puede inicializar el shader");
+	    }
+		}
+
+    gl.useProgram(glProgram[0]);
 }
 
 
-//inicializamos parámetros básicos de WebGL (como el viewport)
+//inicializamos parámetros básicos de WebGL
 function setupWebGL(){
 
     //establece el clear color a blanco
@@ -91,21 +96,21 @@ function setupWebGL(){
     gl.enable(gl.DEPTH_TEST);
 
     //Nos traemos las matrices, projection, model y view al motor
-    glProgram.pMatrixUniform=gl.getUniformLocation(glProgram, "uPMatrix");
-    glProgram.mMatrixUniform=gl.getUniformLocation(glProgram, "uMMatrix");
-    glProgram.vMatrixUniform=gl.getUniformLocation(glProgram, "uVMatrix");
+    glProgram[0].pMatrixUniform=gl.getUniformLocation(glProgram[0], "uPMatrix");
+    glProgram[0].mMatrixUniform=gl.getUniformLocation(glProgram[0], "uMMatrix");
+    glProgram[0].vMatrixUniform=gl.getUniformLocation(glProgram[0], "uVMatrix");
 
-    glProgram.samplerUniform = gl.getUniformLocation(glProgram, "uSampler");
-    glProgram.textured=gl.getUniformLocation(glProgram, "uTextured");
+    glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
+    glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
     //matriz de normales
-    glProgram.normalMatrixUniform=gl.getUniformLocation(glProgram, "uNormalMatrix");
+    glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
 
-		glProgram.ka=gl.getUniformLocation(glProgram, "material.Ka");
-		glProgram.kd=gl.getUniformLocation(glProgram, "material.Kd");
-		glProgram.ks=gl.getUniformLocation(glProgram, "material.Ks");
+		glProgram[0].ka=gl.getUniformLocation(glProgram[0], "material.Ka");
+		glProgram[0].kd=gl.getUniformLocation(glProgram[0], "material.Kd");
+		glProgram[0].ks=gl.getUniformLocation(glProgram[0], "material.Ks");
 
-		glProgram.shin=gl.getUniformLocation(glProgram, "propiedades.shininess");
-		glProgram.opac=gl.getUniformLocation(glProgram, "propiedades.opacity");
+		glProgram[0].shin=gl.getUniformLocation(glProgram[0], "propiedades.shininess");
+		glProgram[0].opac=gl.getUniformLocation(glProgram[0], "propiedades.opacity");
 }
 
 

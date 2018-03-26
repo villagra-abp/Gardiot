@@ -1,8 +1,8 @@
 function iniciar(accion){
   window.canvas=null;
 
-  window.loading=[];
-  window.interval;
+  window.loading=[];//array que estará vacío si no hay nada cargándose
+
   //bucle movimiento
   window.frames=0;
   window.fpsInterval=0;
@@ -11,31 +11,37 @@ function iniciar(accion){
   window.then=0;
   window.elapsed=0;
   window.frameCount=0;
+  window.interval;
 
-  window.texturas=0;
 
-
-  //Inicializamos la pila de matriz y la matriz modelo
-  window.matrixStack=[];
-  window.matrixModel = mat4.create();
+  //inicialización de matrices
+  window.matrixStack=[];//pila de matrices
+  window.matrixModel = mat4.create();//matriz modelo
   matrixStack.push(matrixModel);
-  window.matrixProjection=[];
-  window.invertedMView=[];
+  window.matrixProjection=[];//matriz proyección
+  window.invertedMView=[];//matriz view
 
-  //inicializamos vector de texturas
-  window.textureImage=[];
-  //variable que tendrá el programa webgl
+
+  //declaramos las variables necesarias para ejecutar el programa
+  //las variables de WebGL empezarán siempre por gl para distinguirlas de
+  //las variables del motor gráfico
   window.gl=null;
+  window.glVertexShader=[];
+  window.glFragmentShader=[];
+  window.glProgram=[];
 
+  window.vertexShaders=['shader.vs', 'shaderP.vs'];
+  window.fragmentShaders=['shader.fs', 'shaderP.fs'];
 
   //inicializamos el gestor de recursos
   window.gestor=new TGestorRecursos();
 
   iniciamosWebGL('myCanvas');
-  configurarShaders('shaderP.vs', 'shaderP.fs');
+  cargarShaders();
 
   //fachada
   window.motor = new TMotor(gestor);
+
 
   window.luz = motor.crearNodoLuz("luz1", 1.7, undefined);
   //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
@@ -46,38 +52,39 @@ function iniciar(accion){
 
   //camara de edición
   window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
-  
-  window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+
+  //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
 
 
-  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", undefined);
+  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
 
-  //window.malla3 = motor.crearNodoMalla("malla3", "bote", undefined);
+  //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-1; i<2; i++){
-    for(let j=-1; j<2; j++){
-      motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined);
-      motor.escalarMallaxyz("suelo"+i+'-'+j, 60, 0, 60);
-      motor.moverMalla("suelo"+i+'-'+j, 120*i, 0, 120*j);
+  for(let i=-6; i<7; i++){
+    for(let j=-6; j<7; j++){
+      motor.crearNodoMalla("suelo"+i+'-'+j, "suelo2", "suelocesped.jpg", undefined);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 5, 0, 5);
+      motor.moverMalla("suelo"+i+'-'+j, 10*i, 0, 10*j);
     }
   }
 
   //perejiles
-  for(let i=-4; i<4; i++){
-    for(let j=-4; j<4; j++){
-      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", undefined);
-      motor.escalarMalla("planta"+i+'-'+j, 0.4);
-      motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-      motor.rotarMalla("planta"+i+'-'+j, 180*Math.random(), "z");
-      motor.moverMalla("planta"+i+'-'+j, 40*i, 10, 40*j);
+  for(let i=-2; i<3; i++){
+    for(let j=-2; j<3; j++){
+      motor.crearNodoMalla("planta"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
+      motor.escalarMalla("planta"+i+'-'+j, 30);
+      //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      motor.moverMalla("planta"+i+'-'+j, 6*Math.random(), 0, 6*Math.random());
+      motor.moverMalla("planta"+i+'-'+j, 20*i, -2, 20*j);
     }
   }
+
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
@@ -93,68 +100,28 @@ function iniciar(accion){
 
 
 
-  //motor.escalarMalla("malla2", 5)
-
-  //motor.moverMalla("malla3", 0, 0, -7);
-
   motor.moverLuz("luz1", 0.0, 80.0, 0.0);
   //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 
 
-  //motor.rotarMalla("malla2", 180, "z");
-
-  //motor.rotarMalla("malla2", 180, "y");
-  //motor.rotarMalla("malla2", 90, "x");
-  //motor.rotarMalla("malla1", 10, "x");
-
-  //motor.escalarMalla("malla2", 0.3);
 
 
-  motor.moverCamara("camara1", -106, 140, 100);
+  motor.moverCamara("camara1", -30, 40, 30);
   motor.rotarCamara("camara1", -45, "y");
   motor.rotarCamara("camara1", -55, "x");
-  motor.moverCamara("camara2", 0,180, 0);
+  motor.moverCamara("camara2", 0,100, 0);
   motor.rotarCamara("camara2", -90, "x");
   //motor.rotarCamaraOrbital("camara2", -90, "x");
-
-
 
 
   motor.activarLuz("luz1");
   //motor.activarLuz("luz2");
   //motor.activarLuz("luz3");
 
-  /*
-
-  //plantas
-  motor.crearNodoMalla("maceta1", "maceta", undefined);
-  motor.crearNodoMalla("maceta2", "maceta", undefined);
-  for(let i=0; i<6; i++){
-      for(let j=0; j<4; j++){
-          motor.crearNodoMalla("calabaza"+i+"-"+j, "calabaza", undefined);
-          motor.escalarMalla("calabaza"+i+"-"+j, 3, 3, 3);
-          motor.moverMalla("calabaza"+i+"-"+j, -30+(i*10), -15, -20+(j*10));
-
-      }
-  }
 
 
-  motor.moverMalla("maceta1", 6, -18, -35);
-  motor.moverMalla("maceta2", -10, -18, -35);
-*/
-
-
-
-
-  //declaramos las variables necesarias para ejecutar el programa
-  //las variables de WebGL empezarán siempre por gl para distinguirlas de
-  //las variables del motor gráfico
-  window.glVertexShader=null;
-  window.glFragmentShader=null;
-  window.glProgram=null;
-
-
+  //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if(accion=='detail'){
     motor.activarCamara("camara1");
     motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
@@ -164,45 +131,4 @@ function iniciar(accion){
     //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
-
-
-
-
-
-
-
-
-
-  /*$(document).keydown(function(evt){
-      switch(evt.keyCode){
-          case 83: //down
-              motor.moverCamara("camara1", 0, -0.5, 0);
-              break;
-          case 87: //up
-              motor.moverCamara("camara1", 0, 0.5, 0);
-              break;
-          case 65: //left
-              motor.moverCamara("camara1", -0.5, 0, 0);
-              break;
-          case 68: //right
-              motor.moverCamara("camara1", 0.5, 0, 0);
-              break;
-          case 40: //down
-              motor.rotarCamara("camara1", 2, "x");
-              break;
-          case 38: //up
-              motor.rotarCamara("camara1", -2, "x");
-              break;
-          case 37: //left
-              motor.rotarCamara("camara1", 2, "y");
-              break;
-          case 39: //right
-              motor.rotarCamara("camara1", -2, "y");
-              break;
-          default:
-
-              break;
-          }
-      });*/
-
 }
