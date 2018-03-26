@@ -57,7 +57,7 @@ function iniciar(accion){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
+  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -66,22 +66,22 @@ function iniciar(accion){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-1; i<2; i++){
-    for(let j=-1; j<2; j++){
-      motor.crearNodoMalla("suelo"+i+'-'+j, "cubo", undefined, undefined);
-      motor.escalarMallaXYZ("suelo"+i+'-'+j, 60, 0, 60);
-      motor.moverMalla("suelo"+i+'-'+j, 120*i, 0, 120*j);
+  for(let i=-6; i<7; i++){
+    for(let j=-6; j<7; j++){
+      motor.crearNodoMalla("suelo"+i+'-'+j, "suelo2", "suelocesped.jpg", undefined);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 5, 0, 5);
+      motor.moverMalla("suelo"+i+'-'+j, 10*i, 0, 10*j);
     }
   }
 
   //perejiles
-  for(let i=-4; i<4; i++){
-    for(let j=-4; j<4; j++){
-      motor.crearNodoMalla("planta"+i+'-'+j, "perejil", "perejil2.jpg", undefined);
-      motor.escalarMalla("planta"+i+'-'+j, 0.4);
-      motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-      motor.rotarMalla("planta"+i+'-'+j, 180*Math.random(), "z");
-      motor.moverMalla("planta"+i+'-'+j, 40*i, 10, 40*j);
+  for(let i=-2; i<3; i++){
+    for(let j=-2; j<3; j++){
+      motor.crearNodoMalla("planta"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
+      motor.escalarMalla("planta"+i+'-'+j, 30);
+      //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      motor.moverMalla("planta"+i+'-'+j, 6*Math.random(), 0, 6*Math.random());
+      motor.moverMalla("planta"+i+'-'+j, 20*i, -2, 20*j);
     }
   }
 
@@ -107,10 +107,10 @@ function iniciar(accion){
 
 
 
-  motor.moverCamara("camara1", -106, 140, 100);
+  motor.moverCamara("camara1", -30, 40, 30);
   motor.rotarCamara("camara1", -45, "y");
   motor.rotarCamara("camara1", -55, "x");
-  motor.moverCamara("camara2", 0,180, 0);
+  motor.moverCamara("camara2", 0,100, 0);
   motor.rotarCamara("camara2", -90, "x");
   //motor.rotarCamaraOrbital("camara2", -90, "x");
 

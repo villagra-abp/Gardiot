@@ -13,7 +13,7 @@ class TGestorRecursos {
 
     //a getRecurso le pasaremos el nombre del recurso (rosa, shader.fs, suelo...)
     //y el tipo, que podrá ser: malla, material, shader o textura
-      getRecurso(nombre, tipo){
+      getRecurso(nombre, tipo, textura){
         //Si no encuentra el recurso (es igual a undefined), lo cargamos de memoria
         if(this._recursos.get(nombre)===undefined){
           console.log('Cargamos fichero '+nombre+' a memoria');
@@ -28,7 +28,11 @@ class TGestorRecursos {
           else if(tipo=='textura')
             newRecurso=new TRecursoTextura(nombre);
           //cargamos el fichero
-          newRecurso.cargarFichero(nombre);
+          if(textura!==undefined)
+            newRecurso.cargarFichero(nombre, textura);
+          else
+            newRecurso.cargarFichero(nombre);
+
 
           //lo anyadimos al vector (mapa) de recursos
           this._recursos.set(nombre, newRecurso);
