@@ -56,29 +56,31 @@ function cargarShaders(){
 		let vs=[];
 		let fs=[];
 
-    vs[0]=gestor.getRecurso('shaderP.vs', 'shader').shader,
-  	fs[0]=gestor.getRecurso('shaderP.fs', 'shader').shader;
+		for(let i=0; i<vertexShaders.length && i<fragmentShaders.length; i++){
+	    vs[i]=gestor.getRecurso('shaderP.vs', 'shader').shader,
+	  	fs[i]=gestor.getRecurso('shaderP.fs', 'shader').shader;
 
-    //Ya tenemos los shaders aquí! (formato texto)
-    //console.log(vs);
-    //console.log(fs);
+	    //Ya tenemos los shaders aquí! (formato texto)
+	    //console.log(vs);
+	    //console.log(fs);
 
-    //Aqui viene WebGL
-    //compilamos los shaders
-    glVertexShader[0]=makeShader(vs[0], gl.VERTEX_SHADER);
-    glFragmentShader[0]=makeShader(fs[0], gl.FRAGMENT_SHADER);
+	    //Aqui viene WebGL
+	    //compilamos los shaders
+	    glVertexShader[i]=makeShader(vs[i], gl.VERTEX_SHADER);
+	    glFragmentShader[i]=makeShader(fs[i], gl.FRAGMENT_SHADER);
 
-    //creamos el programa
-    glProgram[0]=gl.createProgram();
+	    //creamos el programa
+	    glProgram[i]=gl.createProgram();
 
-    //añadimos los shaders al programa
-    gl.attachShader(glProgram[0], glVertexShader[0]);
-    gl.attachShader(glProgram[0], glFragmentShader[0]);
-    gl.linkProgram(glProgram[0]);
+	    //añadimos los shaders al programa
+	    gl.attachShader(glProgram[i], glVertexShader[i]);
+	    gl.attachShader(glProgram[i], glFragmentShader[i]);
+	    gl.linkProgram(glProgram[i]);
 
-    if(!gl.getProgramParameter(glProgram[0], gl.LINK_STATUS)){
-        alert("No se puede inicializar el shader");
-    }
+	    if(!gl.getProgramParameter(glProgram[i], gl.LINK_STATUS)){
+	        alert("No se puede inicializar el shader");
+	    }
+		}
 
     gl.useProgram(glProgram[0]);
 }
