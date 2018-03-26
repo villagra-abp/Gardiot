@@ -3,11 +3,17 @@
   max-height: 25px;
 }
 section{
-  padding: .5%;
+  margin-top: 2.5%;
+  padding: 2%;
+}
+article{
+  margin-top: 1%;
+  padding: 2%;
 }
 div{
   margin-top: 0;
 }
+
 
 /* img{
   max-width: 420px;

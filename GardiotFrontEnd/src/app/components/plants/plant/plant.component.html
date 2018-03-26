@@ -1,17 +1,17 @@
-<div class="container vistaAdmin" >
+<!-- <div class="container vistaAdmin" >
     <h1>{{plant.commonName}}</h1>
-    <div class="row">
+    <div class="row"> -->
       <!-- <section class="card">
         <button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-primary" name="button">Volver a Biblioteca</button>
         <h2>Descripción</h2>
         <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
       </section> -->
-    </div>
+    <!-- </div>
     <div class="row">
-      <div class="col">
+      <div class="col"> -->
         <!--delante de la url https://gardiot.ovh/ -->
 
-        <section class="card">
+        <!-- <section class="card">
           <img *ngIf="plant.photo !=undefined" src="{{plant.photo}}" alt="puerros">
           <dl>
             <dt *ngIf="plant.commonName !=undefined">Nombre común</dt>
@@ -65,20 +65,9 @@
       <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
     </section>
 
-    <section *ngIf="this.user.isAdmin" class="card">
-      <h2>Tratamientos</h2>
-        <section *ngFor="let treatment of treatments">
-          <img *ngIf="treatment.icon !=undefined" class="iconplant" src="{{treatment.icon}}" alt="Tratamiento">
-          <h5 *ngIf="treatment.name !=undefined">{{treatment.name}}</h5>
-          <p *ngIf="treatment.description !=undefined">{{treatment.description}}</p>
-          <h6 *ngIf="productTreatments !=undefined">Productos</h6>
-          <ul *ngFor="let producttreatment of productTreatments">
-            <li class="list-group-item" *ngIf = "treatment.id == producttreatment.treatment">{{producttreatment.name}}</li>
-          </ul>
-        </section>
-    </section>
 
-</div>
+
+</div> -->
 
 
 <section class="container vistaAdmin">
@@ -89,20 +78,50 @@
     </div>
     <div class="col">
       <ul class="list-group list-group-flush">
-        <li *ngIf="plant.depth !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm</li>
-        <li *ngIf="plant.distance !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm</li>
-        <li *ngIf="plant.diseaseResist !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}}</li>
+        <li *ngIf="plant.depth !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">Profundidad de siembra {{plant.depth}} cm</li>
+        <li *ngIf="plant.distance !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">Distancia entre plantas {{plant.distance}} cm</li>
+        <li *ngIf="plant.diseaseResist !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">Resistencia al frío {{plant.diseaseResist}}</li>
       </ul>
     </div>
     <div class="col">
-      <ul class="list-group list-group-flush">
-        <li *ngIf="plant.depth !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm</li>
-        <li *ngIf="plant.distance !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm</li>
-        <li *ngIf="plant.diseaseResist !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}}</li>
+      <ul class="list-group list-group-flush ">
+        <li *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>
+        <li *ngIf="iniFlores !=undefined && finFlores !=undefined" class="list-group-item"><img class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>
+        <li *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="list-group-item">  <img class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>
       </ul>
     </div>
   </article>
+  <!-- <article class="row">
+      <ul class="list-inline ">
+        <li *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="list-inline-item"><img class="iconplant"src="assets/images/icon/siembra.png" alt="Siembra">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>
+        <li *ngIf="iniFlores !=undefined && finFlores !=undefined" class="list-inline-item"><img class="iconplant"src="assets/images/icon/girasol.png" alt="Floración">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>
+        <li *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="list-inline-item">  <img class="iconplant"src="assets/images/icon/cosecha.png" alt="Floración">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>
+      </ul>
+  </article> -->
+  <article class="row">
+    <div class="col">
+    <ul class=" list-group list-group-flush">
+      <li *ngIf="plant.commonName !=undefined" class="list-group-item">Nombre común: {{plant.commonName}}</li>
+      <li *ngIf="plant.scientificName !=undefined" class="list-group-item">Nombre científico: {{plant.scientificName}}</li>
+      <li *ngIf="plant.family !=undefined" class="list-group-item">Familia: {{plant.family}}</li>
+    </ul>
+    </div>
+  </article>
+
   <article class="row">
     <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
+  </article>
+
+  <article>
+    <h2>Tratamientos</h2>
+      <section *ngFor="let treatment of treatments">
+        <img *ngIf="treatment.icon !=undefined" class="iconplant" src="{{treatment.icon}}" alt="Tratamiento">
+        <h5 *ngIf="treatment.name !=undefined">{{treatment.name}}</h5>
+        <p *ngIf="treatment.description !=undefined">{{treatment.description}}</p>
+        <h6 *ngIf="productTreatments !=undefined">Productos</h6>
+        <ul *ngFor="let producttreatment of productTreatments">
+          <li class="list-group-item" *ngIf = "treatment.id == producttreatment.treatment">{{producttreatment.name}}</li>
+        </ul>
+      </section>
   </article>
 </section>
