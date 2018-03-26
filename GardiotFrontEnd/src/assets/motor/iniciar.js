@@ -59,7 +59,7 @@ function iniciar(accion){
 
   window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
 
-  window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
+  //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
