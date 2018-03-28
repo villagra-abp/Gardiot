@@ -17,14 +17,14 @@
         </div>
 
         <button [disabled]="!forma.valid"
-              type="submit" class="btn btn-primary">Log in</button>
+              type="submit"><img src="./assets/buttons/login.png" alt="Iniciar sesión"></button>
 
         <button [routerLink] ="['/resetPass']" class="btn btn-info" name="button">Reset Pass</button>
 
       </form>
       <br>
-      <a href="{{this._loginService.apiURL}}auth/google" class="btn btn-secondary">Inicio de sesión con Google</a>
-      <a href="{{this._loginService.apiURL}}auth/facebook" class="btn btn-success">Inicio de sesión con Facebook</a>
+      <a href="{{this._loginService.apiURL}}auth/google"><img src="./assets/buttons/logingoogle.png" alt="Acceder con Google"></a>
+      <a href="{{this._loginService.apiURL}}auth/facebook"><img src="./assets/buttons/loginfacebook.png" alt="Acceder con Facebook"></a>
     </div>
   </div>
 </div>
