@@ -137,6 +137,7 @@ class TMotor{
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
+
 		cam.entity.setParams(-1, 1, -0.7, 0.7, 1, 1000);
 		this.camaraRegistro.push(cam);
 		return cam;
@@ -158,7 +159,27 @@ class TMotor{
 		}
 
 	}
-  /*
+  moverCamaraA(nombre, x, y, z){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      console.log(this.camaraRegistro[pos].dad.dad.entity.matrix);
+			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix.slice(0);
+      matrix[12]=x;
+      matrix[13]=y;
+      matrix[14]=z;
+      this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
+      console.log(matrix);
+			return true;
+		}
+  }
+/*
   zoomCamara(nombre, factor){
     var pos = -1;
 
@@ -198,7 +219,7 @@ class TMotor{
 		}
 
   }
-  */
+*/
   //Orientación de la cámara
 	rotarCamara(nombre, grados, eje){
 		var pos = -1;

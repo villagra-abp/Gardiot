@@ -24,7 +24,7 @@ function mouse_move(e){
 					let ejeY=window.originClickY-(y/cv.offsetHeight);
 					let ejeX=window.originClickX-(x/cv.offsetWidth);
           //esto será lo bueno
-          /*let pos=motor.getPosCamaraActiva();
+          let pos=motor.getPosCamaraActiva();
           let movPosible=pos[1]*0.6;
           if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
             motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
@@ -33,9 +33,9 @@ function mouse_move(e){
           if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
             motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
           }
-          */
+          /*
 					motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
-          motor.rotarCamaraOrbital("camara2", ejeY*150, "x");
+          motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
     		}

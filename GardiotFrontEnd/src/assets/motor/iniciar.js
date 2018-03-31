@@ -110,7 +110,7 @@ function iniciar(accion){
   motor.moverCamara("camara1", -30, 40, 30);
   motor.rotarCamara("camara1", -45, "y");
   motor.rotarCamara("camara1", -55, "x");
-  motor.moverCamara("camara2", 0,100, 0);
+  //motor.moverCamara("camara2", 0,100, 0);
   motor.rotarCamara("camara2", -90, "x");
   //motor.rotarCamaraOrbital("camara2", -90, "x");
 
