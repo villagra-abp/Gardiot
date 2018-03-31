@@ -116,6 +116,7 @@ export class LibraryComponent implements OnInit {
      this.user.isUserAdmin().subscribe(data=>{
        if(data){
          this.user.isAdmin=true;
+         document.querySelector('.evolver').classList.add('vistaAdmin');
        }
        else{
          this.user.isAdmin=false;
@@ -130,6 +131,7 @@ export class LibraryComponent implements OnInit {
  }
 
   ngOnInit() {
+    this.comprobaciones();
     this.ActualizarPagina();
 
   }

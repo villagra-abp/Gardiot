@@ -37,13 +37,13 @@
   <div class="form">
     <form class="register-form">
       <input [(ngModel)]="user.id" name="id"
-            type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
+            type="email" aria-describedby="emailHelp" placeholder="Email" required>
       <input [(ngModel)]="user.password" name="password"
-            type="password"  id="exampleInputPassword1" placeholder="Contraseña" required>
+            type="password" placeholder="Contraseña" required>
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
-    
+
     <form class="login-form" (ngSubmit)="guardar()" #forma="ngForm">
       <input [(ngModel)]="user.id" name="id"
             type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>

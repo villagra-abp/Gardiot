@@ -142,7 +142,7 @@ import { CommonModule } from '@angular/common';
     TabModule,
     CommonModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot(), 
+    CalendarModule.forRoot(),
     // PopupModule.forRoot(),
     APP_ROUTING
   ],

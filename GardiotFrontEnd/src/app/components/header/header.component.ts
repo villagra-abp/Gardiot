@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../classes/user.class';
 
@@ -9,13 +9,16 @@ import { User } from '../../classes/user.class';
 })
 
 
+
+
 export class HeaderComponent implements OnInit{
     user=new User("");
-    constructor( private userService:UserService ){
+    constructor( private userService:UserService,
+                 private _ngZone: NgZone){
     }
 
     toggleMenu(e){
-          if(window.innerWidth < 768){
+        if(window.innerWidth < 768){
           if(e!==undefined){
             if(e.target.classList.contains('opened'))
               e.target.classList.remove('opened');
@@ -32,10 +35,16 @@ export class HeaderComponent implements OnInit{
                   (<HTMLElement>document.getElementsByClassName("sidebar-toggle")[0]).style.left="200px";
               }
         }
-        }
+
+    }
+
+
+
     ngOnInit(){
 
+
       if(this.userService.isUserAuthenticated()){
+        /*
         this.userService.details(this.user).subscribe(data=>{
           this.user.photo=data.photo;
           this.user.name=data.name;
@@ -56,7 +65,7 @@ export class HeaderComponent implements OnInit{
           }
           else
             document.querySelector('#photoMenu>div').setAttribute('style', 'display: none');
-        });
+        });*/
         this.userService.isAuthenticated=this.userService.isUserAuthenticated();
         this.userService.isUserAdmin().subscribe(data=>{
           if(data){
