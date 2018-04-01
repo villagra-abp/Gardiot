@@ -183,10 +183,8 @@ class TRecursoMalla extends TRecurso{
 
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
-      if(this.nombre.indexOf("suelo2")>=0)
-        gl.uniform1i(glProgram[0].textured, 2);
-      else
-        gl.uniform1i(glProgram[0].textured, 1);
+
+      gl.uniform1i(glProgram[0].textured, 1);
     }
     else{
       gl.uniform1i(glProgram[0].textured, 0);

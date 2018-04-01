@@ -180,7 +180,7 @@ export class EditGardenComponent implements OnInit{
     let desvX=(canvas.width-1200)*0.0008;
     let desvY=(canvas.height-974)*0.00072;
     motor.getCamaraActiva().entity.setParams(-1-desvX, 1+desvX, -0.7-desvY, 0.7+desvY, 1, 1000);
-    motor.moverCamaraA("camara2", 0, 100+(100*-desvY), 0);
+    motor.moverCamaraA("camara2", 0, (100*-desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
   }
 

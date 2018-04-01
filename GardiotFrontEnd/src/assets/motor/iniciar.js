@@ -66,22 +66,22 @@ function iniciar(accion){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-6; i<7; i++){
-    for(let j=-6; j<7; j++){
-      motor.crearNodoMalla("suelo"+i+'-'+j, "suelo2", "suelocesped.jpg", undefined);
-      motor.escalarMallaXYZ("suelo"+i+'-'+j, 5, 0, 5);
-      motor.moverMalla("suelo"+i+'-'+j, 10*i, 0, 10*j);
+  for(let i=-2; i<3; i++){
+    for(let j=-2; j<3; j++){
+      motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "suelocesped.jpg", undefined);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 1, 0.1, 1);
+      motor.moverMalla("suelo"+i+'-'+j, 2*i, 0, 2*j);
     }
   }
 
-  //perejiles
+  //lechuga
   for(let i=-2; i<3; i++){
     for(let j=-2; j<3; j++){
       motor.crearNodoMalla("planta"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-      motor.escalarMalla("planta"+i+'-'+j, 30);
+      motor.escalarMalla("planta"+i+'-'+j, 2);
       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-      motor.moverMalla("planta"+i+'-'+j, 6*Math.random(), 0, 6*Math.random());
-      motor.moverMalla("planta"+i+'-'+j, 20*i, -2, 20*j);
+      motor.moverMalla("planta"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+      motor.moverMalla("planta"+i+'-'+j, 2*i, 0, 2*j);
     }
   }
 
@@ -100,17 +100,17 @@ function iniciar(accion){
 
 
 
-  motor.moverLuz("luz1", 0.0, 80.0, 0.0);
+  motor.moverLuz("luz1", 0.0, 10.0, 30.0);
   //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 
 
 
 
-  motor.moverCamara("camara1", -30, 40, 30);
+  motor.moverCamara("camara1", -3, 4, 3);
   motor.rotarCamara("camara1", -45, "y");
   motor.rotarCamara("camara1", -55, "x");
-  //motor.moverCamara("camara2", 0,100, 0);
+  //motor.moverCamaraA("camara2", 0,10, 0);
   motor.rotarCamara("camara2", -90, "x");
   //motor.rotarCamaraOrbital("camara2", -90, "x");
 

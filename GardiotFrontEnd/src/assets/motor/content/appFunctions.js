@@ -26,6 +26,7 @@ function mouse_move(e){
           //esto será lo bueno
           let pos=motor.getPosCamaraActiva();
           let movPosible=pos[1]*0.6;
+
           if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
             motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
           }
@@ -33,8 +34,8 @@ function mouse_move(e){
           if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
             motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
           }
-          /*
-					motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
+
+					/*motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
           motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
@@ -83,11 +84,11 @@ function scrolling(e){
 
   let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);
   vec3.normalize(vector, vector);
-  vec3.scale(vector, vector, 12);
-  if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>40){
+  vec3.scale(vector, vector, 1);
+  if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>5){
     motor.moverCamara("camara2", 0, vector[1], 0);
   }
-  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<100){
+  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<40){
     motor.moverCamara("camara2", 0, -vector[1], 0);
   }
 }

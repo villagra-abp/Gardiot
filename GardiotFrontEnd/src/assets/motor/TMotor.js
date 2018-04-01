@@ -83,7 +83,7 @@ class TMotor{
 
 
 	draw(){
-		  //parámetros básicos de webGL
+		    //parámetros básicos de webGL
 	      setupWebGL();
 
         //dibujar las luces
