@@ -100,7 +100,7 @@ function iniciar(accion){
 
 
 
-  motor.moverLuz("luz1", 0.0, 2.0, 10.0);
+  motor.moverLuz("luz1", 0.0, 10.0, 10.0);
   //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 
