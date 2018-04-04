@@ -4,6 +4,7 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var plantModel = require('../models/plant');
 
@@ -149,11 +150,11 @@ router.delete('/admin/plant/:id', passport.authenticate('jwt', {session: false})
 function validateInput(data) {
 	var resp = '';
 	if (typeof data.id!== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (typeof data.scientificName!== 'undefined' && !validator.isAscii(data.scientificName)) resp += 'Nombre científico no válido, ';
-	if (typeof data.commonName!== 'undefined' && !validator.isAscii(data.commonName)) resp += 'Nombre común no válido, ';
-	if (typeof data.description!== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
-	if (typeof data.photo!== 'undefined' && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
-	if (typeof data._3DModel!== 'undefined' && !validator.isAscii(data._3DModel)) resp += 'Modelo no válido, ';
+	if (typeof data.scientificName!== 'undefined' && !isASCII(data.scientificName)) resp += 'Nombre científico no válido, ';
+	if (typeof data.commonName!== 'undefined' && !isASCII(data.commonName)) resp += 'Nombre común no válido, ';
+	if (typeof data.description!== 'undefined' && !isASCII(data.description)) resp += 'Descripción no válida, ';
+	if (typeof data.photo!== 'undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
+	if (typeof data._3DModel!== 'undefined' && !isASCII(data._3DModel)) resp += 'Modelo no válido, ';
 	if (typeof data.family!== 'undefined' && !validator.isInt(data.family)) resp += 'Familia no válida, ';
 	if (typeof data.depth!== 'undefined' && !validator.isFloat(data.depth)) resp += 'Profundidad no válida, ';
 	if (typeof data.distance!== 'undefined' && !validator.isFloat(data.distance)) resp += 'Distancia no válida, ';
@@ -164,7 +165,7 @@ function validateInput(data) {
 	if (typeof data.finDateBloom!== 'undefined' && !validator.isISO8601(data.finDateBloom)) resp += 'Fecha fin floración no válida, ';
 	if (typeof data.initDateHarvest!== 'undefined' && !validator.isISO8601(data.initDateHarvest)) resp += 'Fecha inicio cosecha no válida, ';
 	if (typeof data.finDateHarvest!== 'undefined' && !validator.isISO8601(data.finDateHarvest)) resp += 'Fecha fin cosecha no válida, ';
-	if (typeof data.leaveType!== 'undefined' && !validator.isAscii(data.leaveType)) resp += 'Tipo de hoja no válida, ';
+	if (typeof data.leaveType!== 'undefined' && !isASCII(data.leaveType)) resp += 'Tipo de hoja no válida, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }
