@@ -160,7 +160,10 @@ class TRecursoMalla extends TRecurso{
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    //esto es lo correcto
     mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
+    //esto es la ñapa
+    //mat3.normalFromMat4(this.normalMatrix, matrixModel);
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader

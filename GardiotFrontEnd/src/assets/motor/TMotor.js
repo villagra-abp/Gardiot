@@ -351,7 +351,7 @@ class TMotor{
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}
-
+    this.crearNodoMalla("cubo", "cubo", undefined, luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -441,8 +441,10 @@ class TMotor{
         		//recorremos la lista auxiliar invertida
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
-		        	mat4.multiply(auxMatrix, auxMatrix, auxStack[i]);
+              let au=[];
+		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
 		        }
+
 
 		        //calculamos la posición de la luz
 				let lPos=vec4.fromValues(1.0, 1.0, 1.0, 1.0);
@@ -451,7 +453,8 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-
+        vec4.transformMat4(lPos, lPos, invertedMView);
+        console.log(lPos);
 
 				//se la pasamos al shader
 				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);

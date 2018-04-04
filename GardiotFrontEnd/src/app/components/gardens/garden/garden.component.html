@@ -1,7 +1,8 @@
+<section class="herramienta">
+<canvas id="myCanvas" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+</section>
 <div class="main-container">
-  <section class="container herramienta">
-  <canvas id="myCanvas" width="1800" height="1200"></canvas>
-  </section>
+
   <section class="container title">
       <h1>{{garden.title}}</h1>
       <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
