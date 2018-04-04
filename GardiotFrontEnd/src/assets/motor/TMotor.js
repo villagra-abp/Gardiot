@@ -351,7 +351,7 @@ class TMotor{
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}
-
+    this.crearNodoMalla("cubo", "cubo", undefined, luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -451,7 +451,7 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-
+        console.log(lPos);
 
 				//se la pasamos al shader
 				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);

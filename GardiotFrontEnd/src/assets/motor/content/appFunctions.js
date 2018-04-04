@@ -6,13 +6,16 @@ function animLoop(){
     //Si toca dibujar y el motor está corriendo
     if(elapsed>fpsInterval && motor.running){
         then=now-(elapsed%fpsInterval);
+        motor.rotarMalla("malla2", 1, "x");
+        motor.rotarMalla("malla2", 1, "y");
+        motor.rotarMalla("malla2", 1, "z");
         motor.draw();
     }
     requestAnimationFrame(animLoop, canvas);
 }
 
 
-function mouse_move(e){
+function mouse_move(e, view){
     let cv=e.target,
         x=e.offsetX,
         y=e.offsetY;
@@ -20,20 +23,26 @@ function mouse_move(e){
 
 				if(cv.getAttribute('data-down')){
 	        //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
-
-					let ejeY=window.originClickY-(y/cv.offsetHeight);
-					let ejeX=window.originClickX-(x/cv.offsetWidth);
+          let ejeY=window.originClickY-(y/cv.offsetHeight);
+          let ejeX=window.originClickX-(x/cv.offsetWidth);
           //esto será lo bueno
           let pos=motor.getPosCamaraActiva();
           let movPosible=pos[1]*0.6;
 
-          if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
-            motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
+          if(view=='detail'){
+            motor.rotarCamaraOrbital("camara1", ejeX*150, "y");
+            motor.rotarCamaraOrbital("camara1", ejeY*150, "x");
+          }
+          else{
+            if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
+              motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
+            }
+
+            if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
+              motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
+            }
           }
 
-          if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
-            motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
-          }
 
 					/*motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
           motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/

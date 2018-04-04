@@ -57,7 +57,7 @@ function iniciar(accion){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  //window.malla2 = motor.crearNodoMalla("malla2", "Susan", "SusanTexture.png",  undefined);
+  window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -88,8 +88,8 @@ function iniciar(accion){
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
-  motor.escalarMalla("malla2", 6);
-  motor.moverMalla("malla2", 40, 0, 40);
+  motor.escalarMalla("malla2", 0.5);
+  motor.moverMalla("malla2", 0, 1, 0);
 
   motor.escalarMalla("animacion", 6);
   motor.moverMalla("animacion", 40, 50, 40);
@@ -100,17 +100,22 @@ function iniciar(accion){
 
 
 
-  motor.moverLuz("luz1", 0.0, 10.0, 30.0);
+  motor.moverLuz("luz1", 0.0, 2.0, 10.0);
   //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 
 
 
+  //motor.rotarCamaraOrbital("camara1", 45, "y");
+  //motor.rotarCamaraOrbital("camara1", -45, "x");
 
-  motor.moverCamara("camara1", -3, 4, 3);
-  motor.rotarCamara("camara1", -45, "y");
-  motor.rotarCamara("camara1", -55, "x");
   //motor.moverCamaraA("camara2", 0,10, 0);
+  motor.rotarCamara("camara1", -90, "x");
+  motor.moverCamaraA("camara1", 0, 10, 0);
+  motor.rotarCamaraOrbital("camara1", 45, "y");
+  motor.rotarCamaraOrbital("camara1", 25, "x");
+
+
   motor.rotarCamara("camara2", -90, "x");
   //motor.rotarCamaraOrbital("camara2", -90, "x");
 
@@ -124,7 +129,7 @@ function iniciar(accion){
   //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if(accion=='detail'){
     motor.activarCamara("camara1");
-    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
   else if(accion=='edit'){
     motor.activarCamara("camara2");

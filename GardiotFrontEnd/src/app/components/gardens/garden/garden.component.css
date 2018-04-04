@@ -7,12 +7,12 @@
   height: 40px;
 }
 .herramienta{
-  width: 80%;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
   display: flex;
   flex-direction:column;
-  border: 1px solid #234;
   padding: 0;
-  border-radius: 5px;
 }
 .herramienta>canvas{
   width: 100%;
