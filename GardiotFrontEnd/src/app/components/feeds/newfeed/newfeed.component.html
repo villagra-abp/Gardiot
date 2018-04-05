@@ -1,3 +1,28 @@
-<p>
-  newfeed works!
-</p>
+<div class="vistaAdmin">
+	<section class="container main-container">
+	<form (ngSubmit)="this.guardar()" #forma="ngForm">
+	  <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name_feed">Nombre</label>
+        <input type="text" class="form-control" [(ngModel)]="feed.name" name="name" id="name_feed" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" [(ngModel)]="feed.text" name="text" placeholder="Consejo" required rows="3" required></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dateInit">Inicio</label>
+        <input type="date" class="form-control" [(ngModel)]="feed.dateInit" name="dateInit" id="dateInit">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dateFinal">Fin</label>
+        <input type="date" class="form-control" [(ngModel)]="feed.dateFinal" name="dateFinal" id="dateFinal" >
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+    <button [routerLink] ="['/admin/feeds']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+	</form>
+</section>
+</div>

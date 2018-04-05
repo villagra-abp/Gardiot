@@ -54,7 +54,7 @@ export const admin_routes: Routes = [
   { path: 'feeds', component: ListfeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'feed/:id', component: FeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'editproduct/:id', component: EditfeedComponent,  canActivate: [AdminguardGuard] },
-  { path: 'newproduct', component: NewfeedComponent,  canActivate: [AdminguardGuard] },
+  { path: 'newfeed', component: NewfeedComponent,  canActivate: [AdminguardGuard] },
   //newtreatmentsplants
   { path: 'newtreatmentsplants/:id', component: NewtreatmentsplantsComponent,  canActivate: [AdminguardGuard] },
 
