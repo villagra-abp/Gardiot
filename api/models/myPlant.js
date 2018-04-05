@@ -84,4 +84,5 @@ myPlant.isOwner = function (user, garden, callback) {
   }
 }
 
+
 module.exports = myPlant;

@@ -4,11 +4,12 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var soilModel = require('../models/soil');
 
 router.get('/soils/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !isASCII(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		soilModel.getSoil(request.params.number, request.params.page, request.params.sort, function(error, data){
@@ -113,8 +114,8 @@ router.delete('/admin/soil/:id', passport.authenticate('jwt', {session: false}),
 function validateInput(data) {
   var resp = '';
   if (typeof data.id!== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (typeof data.name!== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (typeof data.description!== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+  if (typeof data.name!== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.description!== 'undefined' && !isASCII(data.description)) resp += 'Descripción no válida, ';
 
   if (resp) resp = resp.slice(0, -2);
   return resp;

@@ -4,6 +4,7 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var myPlantModel = require('../models/myPlant');
 var taskModel = require('../models/task');
@@ -150,7 +151,7 @@ router.delete('/myPlant/:garden/:id', passport.authenticate('jwt', {session: fal
 function validateInput(data) {
   var resp = '';
   if (typeof data.id!=='undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (typeof data.name!=='undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.name!=='undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
   if (typeof data.xCoordinate!=='undefined' && !validator.isInt(data.xCoordinate)) resp += 'Coordenada X no válida, ';
   if (typeof data.yCoordinate!=='undefined' && !validator.isInt(data.yCoordinate)) resp += 'Coordenada Y no válida, ';
   if (typeof data.number!=='undefined' && !validator.isInt(data.number)) resp += 'Número no válido, ';

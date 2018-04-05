@@ -4,11 +4,12 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var productModel = require('../models/product');
 
 router.get('/admin/products/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !isASCII(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		productModel.getProduct(request.params.number, request.params.page, request.params.sort, function(error, data){
@@ -31,7 +32,7 @@ router.get('/product/:id', passport.authenticate('jwt', {session: false}), route
 });
 
 router.get('/admin/productType/:type/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isAscii(request.params.type, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+	if (!isASCII(request.params.type, {gt: 0}) || !validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !isASCII(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		productModel.getProductsByType(request.params.number, request.params.page, request.params.sort, request.params.type, function(error, data) {
@@ -161,9 +162,9 @@ router.delete('/admin/product/:id', passport.authenticate('jwt', {session: false
 function validateInput(data) {
   var resp = '';
   if (typeof data.id!== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (typeof data.name!== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (typeof data.description!== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
-  if (typeof data.type!== 'undefined' && !validator.isAscii(data.type)) resp += 'Tipo no válido, ';
+  if (typeof data.name!== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.description!== 'undefined' && !isASCII(data.description)) resp += 'Descripción no válida, ';
+  if (typeof data.type!== 'undefined' && !isASCII(data.type)) resp += 'Tipo no válido, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }
