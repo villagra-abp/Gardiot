@@ -101,6 +101,26 @@ task.insertTasks = function (myPlant, plant, callback) {
 	}
 }
 
+task.insertNewTreatmentTask = function () {
+	if (connection) {
+		connection.query('SELECT id FROM MyPlant WHERE plant = ' + plant, function (error, row) {
+			if (error)
+				callback (error, null);
+			else if (typeof row!== 'undefined' && row.length > 0) {
+				sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';
+				if (frequency!= 0 && initDate == 0 && finalDate == 0) {
+
+				}
+				else if (frequency == 0 && initDate!= 0 && finalDate!= 0) {
+					
+				}
+				for (var mplant in row)
+					row[mplant].id
+			}
+		});
+	}
+}
+
 task.setTaskDone = function (myPlant, plant, treatment, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
 		connection.query('UPDATE Task SET dateDone = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {

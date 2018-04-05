@@ -150,8 +150,8 @@ function validateInput(data) {
   var resp = '';
   if (typeof data.name !== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
   if (typeof data.text !== 'undefined' && !isASCII(data.text)) resp += 'Texto no válido, ';
-  if (typeof data.dateInit !== 'undefined' && !validator.isISO8601(request.params.dateInit)) resp += 'Fecha inicio no válida, ';
-  if (typeof data.dateFinal!== 'undefined' && !validator.isISO8601(request.params.dateFinal)) resp += 'Fecha final no válida, ';
+  if (typeof data.dateInit !== 'undefined' && !validator.isISO8601(data.dateInit)) resp += 'Fecha inicio no válida, ';
+  if (typeof data.dateFinal!== 'undefined' && !validator.isISO8601(data.dateFinal)) resp += 'Fecha final no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

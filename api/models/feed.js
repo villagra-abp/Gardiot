@@ -90,11 +90,11 @@ feed.insertFeed = function(data, callback) {
       if(error)
         callback(error, null);
       else {
-        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (error, result) {
-          if(error)
-            callback(error, null);
+        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (err, row) {
+          if(err)
+            callback(err, null);
           else
-            callback(null, result.affectedRows);
+            callback(null, row.affectedRows);
         });
       }
     });
