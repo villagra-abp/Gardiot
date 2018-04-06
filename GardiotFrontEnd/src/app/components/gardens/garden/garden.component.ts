@@ -27,6 +27,7 @@ export class GardenComponent {
   prevHoy = [];
   prevMan = [];
   prevPas = [];
+  tercerDia:string = "";
 
   constructor(
   	private _gardenService:GardenService,
@@ -77,7 +78,7 @@ export class GardenComponent {
 	        .subscribe(data=>{
 		  		this.cielo = data.weather[0].main;
           var aux = data.main.temp - 273;
-          this.temperatura = aux.toFixed(2);
+          this.temperatura = aux.toFixed(0);
           this.humedad = data.main.humidity;
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
@@ -95,29 +96,21 @@ export class GardenComponent {
   getPrevision(){
     this._gardenService.prevision(this.garden)
           .subscribe(data=>{
-            console.log("data");
-           console.log(data);
-           console.log(data.list[0].dt);
            var date = new Date();
            var today = new Date();
            var todayDay= today.getDate();
-           console.log(date);
-           console.log(date.getDate());
            var auxToday = [];
            var auxTomorrow = [];
            var auxNext = [];
            for(var i = 0; i<data.list.length; i++){
              date.setTime(data.list[i].dt * 1000);
              if(date.getDate() == todayDay){
-               console.log("hoy");
                auxToday.push(data.list[i]);
              }
              if(date.getDate() == todayDay + 1){
-               console.log("mañana");
                auxTomorrow.push(data.list[i]);
              }
              if(date.getDate() == todayDay + 2){
-               console.log("pasao");
                auxNext.push(data.list[i]);
              }
            }
@@ -127,13 +120,31 @@ export class GardenComponent {
            this.prevHoy=auxToday;
            this.prevMan=auxTomorrow;
            this.prevPas=auxNext;
-         /* this.cielo = data.weather[0].main;
-          var aux = data.main.temp - 273;
-          this.temperatura = aux.toFixed(2);
-          this.humedad = data.main.humidity;
-          this.presion =  data.main.pressure;
-          this.viento = data.wind.speed;*/
 
+           var tercero = date.getDay() + 3;
+           switch(tercero%7){
+            case 0:
+              this.tercerDia = "Lunes";
+              break;
+            case 1:
+              this.tercerDia = "Martes";
+              break;
+            case 2:
+              this.tercerDia = "Miércoles";
+              break;
+            case 3:
+              this.tercerDia = "Jueves";
+              break;
+            case 4:
+              this.tercerDia = "Viernes";
+              break;
+            case 5:
+              this.tercerDia = "Sabado";
+              break;
+            case 6:
+              this.tercerDia = "Domingo";
+              break;
+           }
 
           },
         error => {
