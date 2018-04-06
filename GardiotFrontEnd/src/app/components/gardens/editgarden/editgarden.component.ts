@@ -131,18 +131,20 @@ export class EditGardenComponent implements OnInit{
 	this._gardenService.details()
         .subscribe(data=>{
           if(data!=null){
-            console.log(data[0]);
-            this.garden.id=data[0].id;
-            this.garden.title=data[0].title;
-            this.garden.width=data[0].width;
-            this.garden.length=data[0].lenght;
-            this.garden.longitude=data[0].longitude;
-            this.garden.latitude=data[0].latitude;
-            this.garden.soil=data[0].soil;
-            this.garden.user=data[0].user;
-            this.garden.countryCode=data[0].countryCode;
-            this.garden.city=data[0].city;
-
+            console.log(data);
+            this.garden.id=data.id;
+            this.garden.title=data.title;
+            this.garden.width=data.width;
+            this.garden.length=data.length;
+            this.garden.longitude=data.longitude;
+            this.garden.latitude=data.latitude;
+            this.garden.soil=data.soil;
+            this.garden.user=data.user;
+            this.garden.countryCode=data.countryCode;
+            this.garden.city=data.city;
+            this.garden.plants=data.plants;
+            this.inicializar();
+            new iniciar("edit", this.garden);
             this.listarPaises();
             this.mostrarCiudad();
           }else{
@@ -169,19 +171,6 @@ export class EditGardenComponent implements OnInit{
 
   ngOnInit(){
   	this.mostrar();
-    this.inicializar();
-
-    let width=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
-    let height=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
-    let canvas=document.querySelector('canvas');
-    canvas.width=width;
-    canvas.height=height;
-
-    let desvX=(canvas.width-1200)*0.0008;
-    let desvY=(canvas.height-974)*0.00072;
-    motor.getCamaraActiva().entity.setParams(-1-desvX, 1+desvX, -0.7-desvY, 0.7+desvY, 1, 1000);
-    motor.moverCamaraA("camara2", 0, (100*-desvY), 0);
-    window.addEventListener("resize", this.resizeCanvas);
   }
 
   resizeCanvas(){
@@ -230,7 +219,18 @@ export class EditGardenComponent implements OnInit{
   }
 
   inicializar(){
-    new iniciar("edit");
+    new iniciar("edit", this.garden);
+    let width=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
+    let height=(<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvas=document.querySelector('canvas');
+    canvas.width=width;
+    canvas.height=height;
+
+    let desvX=(canvas.width-1200)*0.0008;
+    let desvY=(canvas.height-974)*0.00072;
+    motor.getCamaraActiva().entity.setParams(-1-desvX, 1+desvX, -0.7-desvY, 0.7+desvY, 1, 1000);
+    motor.moverCamaraA("camara2", 0, (100*-desvY), 0);
+    window.addEventListener("resize", this.resizeCanvas);
   }
 
 

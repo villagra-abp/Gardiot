@@ -1,4 +1,5 @@
-function iniciar(accion){
+function iniciar(accion, jardin){
+  console.log(jardin);
   window.canvas=null;
 
   window.loading=[];//array que estará vacío si no hay nada cargándose
@@ -66,14 +67,31 @@ function iniciar(accion){
   motor.escalarMalla("malla4", 0.2);
 
 //suelo
-  for(let i=-2; i<3; i++){
-    for(let j=-2; j<3; j++){
+let adjustX=0, adjustY=0;
+let width=Math.floor(jardin.width/2), length=Math.floor(jardin.length/2);
+if(jardin.width%2==0){
+  adjustX=0.5;
+  width=Math.ceil(jardin.width/2);
+}
+
+if(jardin.length%2==0){
+  adjustY=0.5;
+  length=Math.ceil(jardin.length/2);
+}
+
+  for(let i=-width+adjustX; i<=width; i++){
+    for(let j=-length+adjustY; j<=length; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "suelocesped.jpg", undefined);
-      motor.escalarMallaXYZ("suelo"+i+'-'+j, 1, 0.1, 1);
-      motor.moverMalla("suelo"+i+'-'+j, 2*i, 0, 2*j);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
+      motor.moverMalla("suelo"+i+'-'+j, i, 0, j);
     }
   }
 
+for(let i=0; i<jardin.plants.length; i++){
+  motor.crearNodoMalla(jardin.plants[i].plant, "lechuga", "lechuga.jpg", undefined);
+  motor.moverMalla(jardin.plants[i].plant, jardin.plants[i].x, 0, jardin.plants[i].y);
+}
+/*
   //lechuga
   for(let i=-2; i<3; i++){
     for(let j=-2; j<3; j++){
@@ -84,7 +102,7 @@ function iniciar(accion){
       motor.moverMalla("planta"+i+'-'+j, 2*i, 0, 2*j);
     }
   }
-
+*/
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
@@ -117,6 +135,7 @@ function iniciar(accion){
 
 
   motor.rotarCamara("camara2", -90, "x");
+  motor.moverCamara("camara2", 0, 20, 0);
   //motor.rotarCamaraOrbital("camara2", -90, "x");
 
 
