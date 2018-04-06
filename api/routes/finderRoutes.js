@@ -6,18 +6,17 @@ var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
 
-var openModels = ["PLANT"];
-var userModels = [""];
+var userModels = ["PLANT"];
 var adminModels = ["USER"];
 
 var finderModel = require('../models/finder');
 
-router.post('/find/:model/:number/:page/:order/:sort', function(request, response) {
+router.post('/find/:model/:number/:page/:order/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.model) || !validator.isAscii(request.params.sort) || !validator.isAscii(request.params.order))
 		response.status(400).json({"Mensaje":"Petición errónea."});
 	else {
     if (!checkPrivileges(request, request.params.model))
-      response.status(403).json({"Mensaje":"No tienes privilegios para realizar esa búsqueda"});
+      response.status(401).json({"Mensaje":"No tienes privilegios para realizar esa búsqueda"});
     else {
       var body = filter(request.body);
       finderModel.find(request.params.model, body, request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data) {
@@ -32,8 +31,7 @@ router.post('/find/:model/:number/:page/:order/:sort', function(request, respons
 
 function checkPrivileges (request, model) {
   let modelUp = model.toUpperCase();
-  if (openModels.indexOf(modelUp)!= -1 
-    || (userModels.indexOf(modelUp)!= -1 && request.user)
+  if ((userModels.indexOf(modelUp)!= -1 && request.user)
     || (adminModels.indexOf(modelUp)!= -1 && request.user && request.user.admin == 1)) //Se pasa el request.user sin el passport? Yo creo que no
     return true;
   else

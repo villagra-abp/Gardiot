@@ -1,6 +1,7 @@
 var connection = require('../config/connection');
 var validator = require('validator');
 var isASCII = require('../functions/isASCII');
+var isEmail = require('isemail');
 
 var finder = {};
 
@@ -29,7 +30,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 					else 
 						sql += ' ' + key + ' = ' + data[key] + ' AND';
 				}
-				else if (isASCII(data[key])) 
+				else if (isASCII(data[key]) || isEmail.validate(data[key])) 
 					sql += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
 			}	
 		}		
