@@ -56,7 +56,7 @@ feed.getFeedsNumber = function (callback) {
 
 feed.getFeedById = function(id, callback) {
   if (connection) {
-    connection.query('SELECT name, text, date FROM Feed WHERE id = ' + id, function(error, row) {
+    connection.query('SELECT name, text, dateInit, dateFinal FROM Feed WHERE id = ' + id, function(error, row) {
       if (error)
         callback (error, null);
       else
