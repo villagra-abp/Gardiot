@@ -6,7 +6,8 @@ var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
 
 var treatmentPlantModel = require('../models/treatmentPlant');
-
+var myPlantModel = require('../models/myPlant');
+var taskModel = require('../models/task');
 
 
 router.get('/treatmentPlant/:plant/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
@@ -47,8 +48,23 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 						response.status(400).json({"Mensaje":"Esta asociación ya existe."});
 					else if (error && error.errno == '1452')
 						response.status(400).json({"Mensaje":"Imposible añadir esta asociación con valores inexistentes."});
-					else if (data)
-						response.status(200).json({"Mensaje":"Insertado"});
+					else if (data) {
+						myPlantModel.getMyPlantsByPlant(treatmentPlantData.plant, function(error, data) {
+							if (error)
+								response.status(400).json(error.message);
+							else {
+								for (var row in data) {
+									taskModel.insert
+								}
+								console.log(data.length);
+								response.status(200).json(data);
+								response.status(200).json({"Mensaje":"Insertado"});
+							}
+						});
+					}
+
+					
+						
 					else
 						response.status(500).json({"Mensaje":error.message});
 				});

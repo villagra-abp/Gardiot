@@ -4,6 +4,7 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var familyModel = require('../models/family');
 
@@ -101,8 +102,8 @@ router.delete('/admin/family/:id', passport.authenticate('jwt', {session: false}
 function validateInput(data) {
 	var resp = '';
 	if (typeof data.id !== 'undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
-	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	if (typeof data.description !== 'undefined' && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+	if (typeof data.name !== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.description !== 'undefined' && !isASCII(data.description)) resp += 'Descripción no válida, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
 }

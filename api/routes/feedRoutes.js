@@ -4,6 +4,7 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var feedModel = require('../models/feed');
 
@@ -147,10 +148,10 @@ router.delete('/admin/feed/:id', passport.authenticate('jwt', {session: false}),
 
 function validateInput(data) {
   var resp = '';
-  if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (typeof data.text !== 'undefined' && !validator.isAscii(data.text)) resp += 'Texto no válido, ';
-  if (typeof data.dateInit !== 'undefined' && !validator.isISO8601(request.params.dateInit)) resp += 'Fecha inicio no válida, ';
-  if (typeof data.dateFinal!== 'undefined' && !validator.isISO8601(request.params.dateFinal)) resp += 'Fecha final no válida, ';
+  if (typeof data.name !== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
+  if (typeof data.text !== 'undefined' && !isASCII(data.text)) resp += 'Texto no válido, ';
+  if (typeof data.dateInit !== 'undefined' && !validator.isISO8601(data.dateInit)) resp += 'Fecha inicio no válida, ';
+  if (typeof data.dateFinal!== 'undefined' && !validator.isISO8601(data.dateFinal)) resp += 'Fecha final no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

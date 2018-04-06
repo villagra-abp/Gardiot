@@ -1,4 +1,5 @@
 var connection = require('../config/connection');
+var validator = require('validator');
 
 var plant = {};
 

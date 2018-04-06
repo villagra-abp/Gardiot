@@ -11,6 +11,7 @@ var userModel = require('../models/user');
 var verificationTokenModel = require('../models/verificationToken');
 var inactiveTokenModel = require('../models/inactiveToken');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var routeRequirements = require('../functions/routeRequirements');
 
@@ -236,7 +237,7 @@ router.get('/logout', passport.authenticate('jwt', {session: false}), routeRequi
 //*** Lista todos los usuarios
 
 router.get('/admin/users/:number/:page/:order/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isAscii(request.params.order) || !validator.isAscii(request.params.sort))
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !isASCII(request.params.order) || !isASCII(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		userModel.getUser(request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data) {
@@ -397,12 +398,12 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 function validateInput(data) {
 	var resp = '';
 	if (typeof data.id!== 'undefined' && !validator.isEmail(data.id) && !isEmail.validate(data.id)) resp += 'Email no válido, ';
-	if (typeof data.name !== 'undefined' && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-	//if (typeof data.lastName!== 'undefined' && !validator.isAscii(data.lastName)) resp += 'Apellido no válido, ';
+	if (typeof data.name !== 'undefined' && !isASCII(data.name)) resp += 'Nombre no válido, ';
+	if (typeof data.lastName!== 'undefined' && !isASCII(data.lastName)) resp += 'Apellido no válido, ';
 	if (typeof data.birthDate!== 'undefined' && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
-	if (typeof data.city!=='undefined' && !validator.isAscii(data.city)) resp += 'Ciudad no válida, ';
-	if (typeof data.photo!=='undefined' && !validator.isAscii(data.photo)) resp += 'Foto no válida, ';
+	if (typeof data.city!=='undefined' && !isASCII(data.city)) resp += 'Ciudad no válida, ';
+	if (typeof data.photo!=='undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
 	if (typeof data.oldId!=='undefined' && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
