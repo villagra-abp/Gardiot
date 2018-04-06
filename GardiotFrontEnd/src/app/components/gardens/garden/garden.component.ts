@@ -38,16 +38,17 @@ export class GardenComponent {
 	 this._gardenService.details()
         .subscribe(data=>{
           if(data!=null){
-            this.garden.id=data[0].id;
-            this.garden.title=data[0].title;
-            this.garden.width=data[0].width;
-            this.garden.length=data[0].lenght;
-            this.garden.longitude=data[0].longitude;
-            this.garden.latitude=data[0].latitude;
-            this.garden.soil=data[0].soil;
-            this.garden.user=data[0].user;
-            this.garden.countryCode=data[0].countryCode;
-            this.garden.city=data[0].city;
+            this.garden.id=data.id;
+            this.garden.title=data.title;
+            this.garden.width=data.width;
+            this.garden.length=data.length;
+            this.garden.longitude=data.longitude;
+            this.garden.latitude=data.latitude;
+            this.garden.soil=data.soil;
+            this.garden.user=data.user;
+            this.garden.countryCode=data.countryCode;
+            this.garden.city=data.city;
+            this.garden.plants=data.plants;
             this.getTiempo();
           }else{
             this._route.navigate(['/newgarden']);
@@ -75,6 +76,8 @@ export class GardenComponent {
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
 
+          new iniciar("detail", this.garden);
+
 
 	        },
 	      error => {
@@ -86,7 +89,7 @@ export class GardenComponent {
   }
 
   inicializar(){
-    new iniciar("detail");
+    //new iniciar("detail");
   }
 
 
