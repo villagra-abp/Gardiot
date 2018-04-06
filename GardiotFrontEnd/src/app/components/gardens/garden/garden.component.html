@@ -10,19 +10,24 @@
 <section class="container">
   <article class="row">
     <div class="col">
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item">Localización:{{garden.city}}, {{garden.countryCode}}</li>
-        <li class="list-group-item">Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>
-        <li class="list-group-item">Tiempo: {{cielo}}</li>
-      </ul>
+      <h3 class="list-group-item">Tiempo en: {{garden.city}} </h3>
+      <br>
+      <p class="list-group-item"> Temperatura: {{temperatura}} ºC<p>
+      <p class="list-group-item">Tiempo atmosférico: {{cielo}}</p>
+
     </div>
+    
+  </article>
+
+</section>
+<section class="container">
+  <article class="row">
+    <h4>Tiempo hoy</h4>
     <div class="col">
       <ul class="list-group list-group-flush ">
-        <li class="list-group-item">Humedad: {{humedad}}%</li>
-        <li class="list-group-item">Presion: {{presion}} Pa</li>
-        <li class="list-group-item">Temperatura: {{temperatura}} ºC</li>
+        <li class="list-group-item" *ngFor = "let time of prevHoy">{{time.dt * 1000 | date:'short'}}</li>
       </ul>
     </div>
-  </article>
+    </article>
 </section>
 </div>
