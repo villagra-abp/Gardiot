@@ -62,25 +62,25 @@ export class FeedService {
 					})
 		}
 
-		deleteProduct(idProduct: number){
+		deleteProduct(idFeed: number){
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});
-			return this.http.delete(this.apiURL+"admin/product/"+ idProduct, { headers } )
+			return this.http.delete(this.apiURL+"admin/feed/"+ idFeed, { headers } )
 					.map( res =>{
 						return res.json();
 					})
 		}
 
-		details(numproduct:number){
+		details(numfeed:number){
 			let headers = new Headers({
 					'Authorization':`Bearer ${localStorage['Bearer']}`
 				});
 
-				return this.http.get(this.apiURL+"product/"+numproduct, { headers } )
-					.map( res =>{
-						return res.json();
-					})
+			return this.http.get(this.apiURL+"admin/feed/"+numfeed, { headers } )
+				.map( res =>{
+					return res.json();
+				})
 		}
 
 }
