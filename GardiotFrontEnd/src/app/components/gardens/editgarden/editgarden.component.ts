@@ -144,7 +144,7 @@ export class EditGardenComponent implements OnInit{
             this.garden.city=data.city;
             this.garden.plants=data.plants;
             this.inicializar();
-            new iniciar("edit", this.garden);
+            //new iniciar("edit", this.garden);
             this.listarPaises();
             this.mostrarCiudad();
           }else{

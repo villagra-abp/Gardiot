@@ -45,6 +45,7 @@ export class GardenComponent {
   mostrar(){
 	 this._gardenService.details()
         .subscribe(data=>{
+          console.log(data);
           if(data!=null){
             this.garden.id=data.id;
             this.garden.title=data.title;
