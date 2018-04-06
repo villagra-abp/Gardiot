@@ -52,7 +52,7 @@ export class LibraryComponent implements OnInit {
     .subscribe(data=>{
       if(data[0]!=undefined){
         this.plants=[];
-        this.numeroItems=data[0].number;
+        this.numeroItems=data[0].num;
         if(this.estado==false){
           this.paginaActual=1;
           this.estado=true;
@@ -83,6 +83,7 @@ export class LibraryComponent implements OnInit {
     .subscribe(data=>{
       if(this.estado==false){
         this.numeroItems=data[0].NUMPLANTAS;
+        console.log(this.numeroItems);
       }
       this.mostrar();
     },
