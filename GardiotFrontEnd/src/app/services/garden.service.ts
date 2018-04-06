@@ -141,6 +141,16 @@ export class GardenService {
           })
 	  }
 
+    prevision(garden:Garden){
+      let headers = new Headers({
+          'Authorization':`Bearer ${localStorage['Bearer']}`
+        });
+        return this.http.get(this.apiURL+"forecastCity/"+ garden.city+ "/"+ garden.countryCode, { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
 	  listCoutries(){
       return this.http.get(this.apiURL + "geonamesAllCountries")
         .map(res=>{
