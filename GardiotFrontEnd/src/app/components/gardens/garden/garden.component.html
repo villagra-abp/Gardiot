@@ -20,7 +20,11 @@
   </article>
 
 </section>
-<section class="container">
+<section class="container" >
+  <button class="btn" (click)="mostrarPrevision()">Ver previsión</button>
+</section>
+
+<section class="container" [hidden]="!notVisible">
   <article class="row">
     <div class="col">
         <h4>Tiempo hoy</h4>

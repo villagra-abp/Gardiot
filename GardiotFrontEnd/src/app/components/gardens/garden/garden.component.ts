@@ -28,6 +28,7 @@ export class GardenComponent {
   prevMan = [];
   prevPas = [];
   tercerDia:string = "";
+  notVisible = false;
 
   constructor(
   	private _gardenService:GardenService,
@@ -37,7 +38,7 @@ export class GardenComponent {
 
   ngOnInit() {
   	this.mostrar();
-    //this.inicializar();
+    this.inicializar();
   }
 
 
@@ -153,6 +154,16 @@ export class GardenComponent {
          // sessionStorage.clear();
          // this._route.navigate(['/login']);
         });
+  }
+
+  mostrarPrevision(){
+    console.log(this.notVisible);
+    if(this.notVisible == false){
+      this.notVisible = true;
+    }else{
+      this.notVisible = false;
+    }
+    console.log(this.notVisible);
   }
 
   inicializar(){
