@@ -73,7 +73,7 @@ task.insertTasks = function (myPlant, plant, callback) {
 							for (let i = 0; i < 100; i++) {
 								let month = todayDate.getMonth() + 1;
 								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
-								todayDate.setDate(todayDate.getDate() + row[object][detail])
+								todayDate.setDate(todayDate.getDate() + row[object][detail]);
 							}
 						}
 						else if (detail == 'initDate' &&  row[object][detail] != null)
@@ -101,21 +101,37 @@ task.insertTasks = function (myPlant, plant, callback) {
 	}
 }
 
-task.insertNewTreatmentTask = function () {
+task.insertNewTreatmentTask = function (plant, treatmentPlant, frequency, initDate, finalDate, callback) {
 	if (connection) {
 		connection.query('SELECT id FROM MyPlant WHERE plant = ' + plant, function (error, row) {
 			if (error)
 				callback (error, null);
 			else if (typeof row!== 'undefined' && row.length > 0) {
-				sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';
+				var sqlValues = '';
+				var sqlBase = '(' + plant + ',' + treatmentPlant + ',' + plant + ', IDPlant';
 				if (frequency!= 0 && initDate == 0 && finalDate == 0) {
-
+					todayDate = new Date();
+					for (let i = 0; i < 100; i++) {
+						let month = todayDate.getMonth() + 1;
+						sqlValues += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
+						todayDate.setDate(todayDate.getDate() + frequency);
+					}
 				}
 				else if (frequency == 0 && initDate!= 0 && finalDate!= 0) {
-					
+					for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
+						let month = initDate.getMonth() + 1;
+						sqlValues += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
+					}
 				}
-				for (var mplant in row)
-					row[mplant].id
+				sqlFilled = 'INSERT INTO Task (tPlant, treatmentPlant, mPlant, myPlant, date) VALUES ';
+				for (var mplant in row) 
+					sqlFilled += sqlValues.replace("IDPlant", row[mplant].id);
+				connection.query(sqlFilled, function (error, result) {
+					if (error)
+						callback (error, null);
+					else
+						callback (null, result.affectedRows);
+				});
 			}
 		});
 	}
