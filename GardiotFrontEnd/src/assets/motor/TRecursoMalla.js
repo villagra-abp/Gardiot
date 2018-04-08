@@ -148,9 +148,9 @@ class TRecursoMalla extends TRecurso{
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute=gl.getAttribLocation(glProgram[0], "aVertPosition");
-    this.vertexNormAttribute=gl.getAttribLocation(glProgram[0], "aVertNormal");
-    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[0], "aVertTexCoord");
+    this.vertexPosAttribute=gl.getAttribLocation(glProgram[window.program], "aVertPosition");
+    this.vertexNormAttribute=gl.getAttribLocation(glProgram[window.program], "aVertNormal");
+    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
 
 
   }
@@ -167,11 +167,11 @@ class TRecursoMalla extends TRecurso{
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader
-      gl.uniformMatrix3fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
+      gl.uniformMatrix3fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
     }
 
     //Pasamos la matriz modelo al shader
-    gl.uniformMatrix4fv(glProgram[0].mMatrixUniform, false, matrixModel);
+    gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);
 
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
@@ -187,22 +187,22 @@ class TRecursoMalla extends TRecurso{
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
 
-      gl.uniform1i(glProgram[0].textured, 1);
+      gl.uniform1i(glProgram[window.program].textured, 1);
     }
     else{
-      gl.uniform1i(glProgram[0].textured, 0);
+      gl.uniform1i(glProgram[window.program].textured, 0);
     }
 
 
     //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
-      gl.uniform3fv(glProgram[0].ka, this.Ka);
-      gl.uniform3fv(glProgram[0].kd, this.Kd);
-      gl.uniform3fv(glProgram[0].ks, this.Ks);
+      gl.uniform3fv(glProgram[window.program].ka, this.Ka);
+      gl.uniform3fv(glProgram[window.program].kd, this.Kd);
+      gl.uniform3fv(glProgram[window.program].ks, this.Ks);
 
-      gl.uniform1f(glProgram[0].shin, this.shininess);
-      gl.uniform1f(glProgram[0].opac, this.opacity);
+      gl.uniform1f(glProgram[window.program].shin, this.shininess);
+      gl.uniform1f(glProgram[window.program].opac, this.opacity);
     }
 
 

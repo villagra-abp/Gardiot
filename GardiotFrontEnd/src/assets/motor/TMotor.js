@@ -103,7 +103,9 @@ class TMotor{
 
 
   usarShader(shader){
+    window.program=shader;
     gl.useProgram(glProgram[shader]);
+    return true;
   }
 
 
@@ -321,8 +323,8 @@ class TMotor{
         invertedMView=auxMatrix.slice(0);
 
         //pasar matrices a WebGL
-        gl.uniformMatrix4fv(glProgram[0].vMatrixUniform, false, auxMatrix);
-        gl.uniformMatrix4fv(glProgram[0].pMatrixUniform, false, matrixProjection);
+        gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, auxMatrix);
+        gl.uniformMatrix4fv(glProgram[window.program].pMatrixUniform, false, matrixProjection);
 	}
 //=================================FIN CÁMARA============================
 
@@ -457,9 +459,9 @@ class TMotor{
         //console.log(lPos);
 
 				//se la pasamos al shader
-				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
-				var lightIntUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].color`);
-				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].specColor`);
+				var lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+				var lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
 
 				gl.uniform4fv(lightPosUniformLocation, lPos);
 				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
