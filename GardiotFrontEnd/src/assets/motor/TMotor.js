@@ -454,7 +454,7 @@ class TMotor{
 				vec4.subtract(lPos, lPos, aux);
 
         vec4.transformMat4(lPos, lPos, invertedMView);
-        console.log(lPos);
+        //console.log(lPos);
 
 				//se la pasamos al shader
 				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
