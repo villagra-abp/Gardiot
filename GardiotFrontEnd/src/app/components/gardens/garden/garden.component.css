@@ -19,6 +19,25 @@
   height: 100%;
 }
 
+.tiempo{
+  margin-top : 2em;
+  /*padding: 1em;*/
+}
+
+
+.casilla{
+  padding-top:.5em;
+  padding-bottom:.5em;
+  margin-left, margin-right:.3em;
+  text-align: center;
+}
+.casilla:nth-child(even){
+  background:#cecece;
+}
+.casilla:nth-child(odd){
+  background:#fcfcfc;
+}
+
 h1, h2{
   text-align: center;
 }
