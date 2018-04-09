@@ -30,11 +30,11 @@ export class GardenComponent {
   prevDia4 = [];
   prevDia5 = [];
 
-  fotoHoy = "";
-  fotoMan = "";
-  fotoDia3 = "";
-  fotoDia4 = "";
-  fotoDia5 = "";
+  fotoHoy = "default";
+  fotoMan = "default";
+  fotoDia3 = "default";
+  fotoDia4 = "default";
+  fotoDia5 = "default";
 
   maxMan = 0;
   maxDia3 = 0;
