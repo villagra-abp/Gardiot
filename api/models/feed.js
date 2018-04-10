@@ -47,7 +47,7 @@ feed.setFeedSeen = function (feed, user, callback) {
 
 feed.getFeedsNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) AS number FROM Feed', function (error, number) {
+    connection.query('SELECT COUNT(*) AS NUMFEEDS FROM Feed', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
     });
@@ -117,6 +117,8 @@ feed.updateFeed = function(data, id, callback) {
     });
   }
 }
+
+
 
 feed.deleteFeed = function(id, callback) {
   if(connection) {
