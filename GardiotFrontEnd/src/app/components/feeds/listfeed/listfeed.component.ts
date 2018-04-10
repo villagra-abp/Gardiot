@@ -50,7 +50,7 @@ export class ListfeedComponent implements OnInit {
    this._feedService.getNumberItems()
    .subscribe(data=>{
      if(this.estado==false){
-       this.numeroItems=data[0].NUMPRODUCTS;
+       this.numeroItems=data[0].NUMFEEDS;
      }
      this.mostrar();
    },
