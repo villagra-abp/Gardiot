@@ -35,14 +35,6 @@
 <h2 class="title">Bienvenido a Gardiot</h2>
 
   <div class="form">
-    <form class="register-form">
-      <input [(ngModel)]="user.id" name="id"
-            type="email" aria-describedby="emailHelp" placeholder="Email" required>
-      <input [(ngModel)]="user.password" name="password"
-            type="password" placeholder="Contraseña" required>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
 
     <form class="login-form" (ngSubmit)="guardar()" #forma="ngForm">
       <input [(ngModel)]="user.id" name="id"
