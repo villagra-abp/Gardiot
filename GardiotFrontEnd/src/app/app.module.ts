@@ -85,6 +85,12 @@ import { CalendarModule } from 'angular-calendar';
 
 import { CommonModule } from '@angular/common';
 
+// POP UPS
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +137,8 @@ import { CommonModule } from '@angular/common';
     ListfeedComponent,
     ResetPassComponent,
     ResetPassBackComponent,
-    NewtreatmentsplantsComponent
+    NewtreatmentsplantsComponent,
+    DialogDeleteComponent,
 
   ],
   imports: [
@@ -144,7 +151,9 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
-    // PopupModule.forRoot(),
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
     APP_ROUTING
   ],
   providers: [
@@ -160,6 +169,9 @@ import { CommonModule } from '@angular/common';
     TaskService,
     TreatmentPlantService,
     DatePipe
+  ],
+  entryComponents: [
+    DialogDeleteComponent
   ],
   bootstrap: [AppComponent]
 })
