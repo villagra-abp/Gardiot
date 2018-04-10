@@ -8,49 +8,69 @@
       <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
   </section>
 <section class="container">
-  <article class="row">
+  <article class="row border rounded">
     <div class="col">
-      <h3 class="list-group-item">Tiempo en: {{garden.city}} </h3>
+      <h3>{{garden.city}} </h3>
+      <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png">
+      <p class="hoy"> {{temperatura}}º<p>
       <br>
-      <p class="list-group-item"> Temperatura: {{temperatura}} ºC<p>
-      <p class="list-group-item">{{cielo}}</p>
-
-    </div>
-    
+      </div>
   </article>
 
 </section>
-<section class="container" >
-  <button class="btn" (click)="mostrarPrevision()">Ver previsión</button>
-</section>
-
-<section class="container" [hidden]="!notVisible">
-  <article class="row">
-    <div class="col">
-        <h4>Tiempo hoy</h4>
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item" *ngFor = "let time of prevHoy">
-        {{time.dt * 1000 | date:'shortTime'}} <span>{{time.main.temp - 273 | number:'.0-0'}} ºC</span> <img src="http://openweathermap.com/img/w/{{time.weather[0].icon}}.png" alt="{{time.weather[0].description}}" title="{{time.weather[0].description}}">
-        </li>
-      </ul>
+<!--
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      Mañana {{minMan | number:'.0-0'}}º {{maxMan | number:'.0-0'}}º
     </div>
-    <div class="col">
-        <h4>Tiempo mañana</h4>
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item" *ngFor = "let time of prevMan">
-        {{time.dt * 1000 | date:'shortTime'}} <span>{{time.main.temp - 273 | number:'.0-0'}} ºC</span> <img src="http://openweathermap.com/img/w/{{time.weather[0].icon}}.png" alt="{{time.weather[0].description}}" title="{{time.weather[0].description}}">
-        </li>
-      </ul>
+    <div class="col-sm">
+      {{nombreDia3}} {{minDia3 | number:'.0-0'}}º {{maxDia3 | number:'.0-0'}}º
     </div>
-    <div class="col">
-        <h4>Tiempo {{tercerDia}}</h4>
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item" *ngFor = "let time of prevPas">
-        {{time.dt * 1000 | date:'shortTime'}} <span>{{time.main.temp - 273 | number:'.0-0'}} ºC</span> <img src="http://openweathermap.com/img/w/{{time.weather[0].icon}}.png" alt="{{time.weather[0].description}}" title="{{time.weather[0].description}}">
-        </li>
-      </ul>
+    <div class="col-sm">
+      {{nombreDia4}} {{minDia4 | number:'.0-0'}}º {{maxDia4 | number:'.0-0'}}º
     </div>
-    </article>
-
+    <div class="col-sm">
+      {{nombreDia5}} {{minDia5 | number:'.0-0'}}º {{maxDia5 | number:'.0-0'}}º
+    </div>
+  </div>
+</div>
+-->
+<section class="container">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#prevision" aria-expanded="false" aria-controls="prevision">
+    Mostrar previsión
+    </button>
+    <div class="collapse " id="prevision">
+      <div class="row tiempo border border-light rounded">
+        <div class="col-sm casilla rounded">
+          Mañana 
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png"> 
+          <br>
+           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span> 
+        </div>
+        <div class="col-sm casilla rounded">
+          {{nombreDia3}} 
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia3}}.png"> 
+          <br>
+          <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span> 
+        </div>
+        <div class="col-sm casilla rounded">
+          {{nombreDia4}}
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia4}}.png"> 
+          <br>
+          <span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span>
+        </div>
+        <div class="col-sm casilla rounded">
+          {{nombreDia5}}
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia5}}.png"> 
+          <br>
+           <span class="minima">{{minDia5 | number:'.0-0'}}º</span> <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span>
+        </div>
+      </div>
+    </div>
 </section>
 </div>

@@ -40,23 +40,24 @@ export class FeedService {
 					})
 		}
 
-		// modify( feed:Feed ){
-		// 	let body = `name=${product.name}&description=${product.description}`;
-		// 	let headers = new Headers({
-		// 		'Authorization':`Bearer ${localStorage['Bearer']}`,
-		// 		'Content-Type':'application/x-www-form-urlencoded'
-		// 	});
-		// 	return this.http.put(this.apiURL+"admin/product/"+ product.id , body, { headers } )
-		// 			.map( res=>{
-		// 				return res.json();
-		// 			})
-		// }
+		modify( feed:Feed ){
+			let body = `name=${feed.name}&text=${feed.text}&dateInit=${feed.dateInit}&dateFinal=${feed.dateFinal}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			console.log(feed.id);
+			return this.http.put(this.apiURL+"admin/feed/"+ feed.id , body, { headers } )
+					.map( res=>{
+						return res.json();
+					})
+		}
 
 		getNumberItems(){
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});
-			return this.http.get(this.apiURL+"/admin/numProducts", { headers } )
+			return this.http.get(this.apiURL+"/admin/numFeeds", { headers } )
 					.map( res =>{
 						return res.json();
 					})

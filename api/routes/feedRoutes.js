@@ -31,7 +31,7 @@ router.get('/feed', passport.authenticate('jwt', {session: false}), routeRequire
 });
 
 router.get('/admin/numFeeds', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	treatmentModel.getFeedsNumber(function(error, data) {
+	feedModel.getFeedsNumber(function(error, data) {
 		response.status(200).json(data);
 	});
 });
@@ -117,7 +117,7 @@ router.put('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 			if (validate.length > 0)
 				response.status(400).json({"Mensaje": validate});
 			else {
-				feedModel.insertFeed(feedData, request.params.id, function(error, data) {
+				feedModel.updateFeed(feedData, request.params.id, function(error, data) {
 					if (data == 1)
 						response.status(200).json({"Mensaje":"Actualizado"});
 					else if (data == 0)

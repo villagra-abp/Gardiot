@@ -3,14 +3,41 @@
   <article class="row">
     <div class="col">
 			<h3>Tareas realizadas en los jardines</h3>
-				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=4&from=1521673274610&to=1522855771190&var-planta1=Aloe%20vera&var-planta2=Cactus"
-							width="450" height="250" frameborder="0">
-				</iframe>
+				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=4&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
+         width="400" height="250" frameborder="0">
+       </iframe>
     </div>
     <div class="col">
 			<h3>Comparativa de plantas</h3>
 				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=2&from=1521673274610&to=1522855771190&var-planta1=Aloe%20vera&var-planta2=Cactus"
-										width="450" height="250" frameborder="0">
+										width="400" height="250" frameborder="0">
 				</iframe>
     </div>
+    </article>
+
+    <article class="row">
+    <div class="col">
+			<h3>Usuarios</h3>
+				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=6&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
+                    width="400" height="250" frameborder="0">
+        </iframe>
+    </div>
+    <div class="col">
+			<h3>Mapa de usuarios</h3>
+      <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=8&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
+                  width="450" height="200" frameborder="0">
+      </iframe>
+    </div>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>Demo cuadro de dialogo</h1></mat-card-title>
+      </mat-card-header>
+      <hr>
+      <mat-card-content>
+        <button mat-raise-button (click)="openDialog()">Abrir dialog</button>
+        <hr>
+        <strong>Result: {{dialogResult}}</strong>
+      </mat-card-content>
+    </mat-card> 
   </article>
