@@ -55,7 +55,7 @@ function updateMyPlant(garden, myPlant, plant, soil, x, y){
 	}
 
 
-	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+1;
+	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
 
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
