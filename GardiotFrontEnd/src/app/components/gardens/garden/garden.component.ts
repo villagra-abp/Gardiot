@@ -7,7 +7,7 @@ import { Garden } from "../../../classes/garden.class";
 import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 
-//declare var iniciar:any;
+declare var iniciar:any;
 
 @Component({
   selector: 'app-garden',
@@ -109,7 +109,7 @@ export class GardenComponent {
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
 
-          //new iniciar("detail", this.garden);
+          new iniciar("detail", this.garden);
 
 
 	        },
@@ -142,7 +142,7 @@ export class GardenComponent {
              }
              if(date.getDate() == todayDay + 2){
                auxDia3.push(data.list[i]);
-              
+
                this.nombreDia3 = this.diaSemana(date.getDay() - 1);
              }
              if(date.getDate() == todayDay + 3){
@@ -159,7 +159,7 @@ export class GardenComponent {
            console.log(auxDia3);
            console.log(auxDia4);
            console.log(auxDia5);
-           
+
            this.prevHoy=auxToday;
            this.prevMan=auxTomorrow;
            this.prevDia3=auxDia3;
@@ -203,7 +203,7 @@ export class GardenComponent {
      auxTemp = [];
      auxNum = 0;
 
-     
+
      for(var i=0; i<this.prevDia4.length; i++){
        auxNum = this.prevDia4[i].main.temp -273;
        auxTemp.push(auxNum);
