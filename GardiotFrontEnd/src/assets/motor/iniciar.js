@@ -22,6 +22,13 @@ function iniciar(accion, jardin){
   window.matrixProjection=[];//matriz proyección
   window.invertedMView=[];//matriz view
 
+  //DragAndDrop
+  window.dragging = false;
+  window.plants = [];
+  for (let value of jardin.plants) {
+    value.isDragging = false;
+    window.plants.push(value);
+  }
 
   //declaramos las variables necesarias para ejecutar el programa
   //las variables de WebGL empezarán siempre por gl para distinguirlas de

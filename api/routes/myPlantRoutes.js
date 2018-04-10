@@ -136,13 +136,37 @@ router.delete('/myPlant/:garden/:id', passport.authenticate('jwt', {session: fal
 				response.status(400).json({"Mensaje":"Error: " + error.message});
 			else {
 				if (owner == true) {
-					myPlantModel.deleteMyPlant(id, function(error, data) {
-						if (data == 1) response.status(200).json({"Mensaje":"Borrado"});
+					myPlantModel.deleteMyPlant(request.params.id, function(error, data) {
+						if (error) response.status(500).json({"Mensaje":error.message});
+						else if (data == 1) response.status(200).json({"Mensaje":"Borrado"});
 						else if (data == 0) response.status(404).json({"Mensaje":"No existe"});
 						else response.status(500).json({"Mensaje":"Error"});
 					});
 				}
 				else response.status(403).json({"Mensaje":"No puedes borrar una planta en el jardin de otro usuario."});
+			}
+		});
+	}
+});
+
+router.put('/myPlant/:garden/:id/:x/:y', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) { 
+	if (!validator.isInt(request.params.garden, {gt: 0}) || !validator.isInt(request.params.id, {gt: 0}) || !validator.isInt(request.params.x, {gt: 0}) || !validator.isInt(request.params.y, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
+			if (error)
+				response.status(400).json({"Mensaje":"Error: " + error.message});
+			else {
+				if (owner == true) {
+					myPlantModel.changePosition(request.params.id, request.params.x, request.params.y, function (error, data) {
+						if (error) response.status(500).json({"Mensaje":error.message});
+						else if (data == 1) response.status(200).json({"Mensaje":"Posición actualizada"});
+						else if (data == 0) response.status(404).json({"Mensaje":"No existe"});
+						else response.status(500).json({"Mensaje":"Error"}); 
+					});
+				}
+				else 
+					response.status(403).json({"Mensaje":"No puedes mover una planta en el jardin de otro usuario."});
 			}
 		});
 	}
