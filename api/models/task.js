@@ -108,8 +108,8 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 				callback (error, null);
 			else if (typeof row!== 'undefined' && row.length > 0) {
 				var sqlValues = '';
-				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', IDPlant';
-				if (frequency!= 0 && initDate == 0 && finalDate == 0) {
+				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', X';
+				if (typeof frequency !== 'undefined' && typeof initDate == 'undefined' && typeof finalDate == 'undefined') {
 					todayDate = new Date();
 					for (let i = 0; i < 100; i++) {
 						let month = todayDate.getMonth() + 1;
@@ -117,7 +117,7 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 						todayDate.setDate(todayDate.getDate() + frequency);
 					}
 				}
-				else if (frequency == 0 && initDate!= 0 && finalDate!= 0) {
+				else if (typeof frequency == 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
 					for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
 						let month = initDate.getMonth() + 1;
 						sqlValues += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
@@ -125,7 +125,9 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 				}
 				sqlFilled = 'INSERT INTO Task (tPlant, treatmentPlant, mPlant, myPlant, date) VALUES ';
 				for (var mplant in row) 
-					sqlFilled += sqlValues.replace("IDPlant", row[mplant].id);
+					sqlFilled += sqlValues.replace(new RegExp('X', 'g'), row[mplant].id);	
+							
+				sqlFilled = sqlFilled.slice(0, -1);	
 				connection.query(sqlFilled, function (error, result) {
 					if (error)
 						callback (error, null);
