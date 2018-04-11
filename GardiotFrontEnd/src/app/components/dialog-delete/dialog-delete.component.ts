@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-dialog-delete',
@@ -13,15 +12,28 @@ export class DialogDeleteComponent implements OnInit {
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:string,
+    @Inject(MAT_DIALOG_DATA) public data:number,
+    private _productService:ProductService,
   ) { }
 
   onCloseConfirm(){
-    this.thisDialogRef.close('Confirm');
+    this.delete();
   }
   onCloseCancel(){
     this.thisDialogRef.close('Cancel');
   }
+  delete(){
+    this._productService.deleteProduct(this.data)
+    .subscribe(data=>{
+      window.location.reload();
+      this.thisDialogRef.close('Confirm');
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+
 
   ngOnInit() {
   }
