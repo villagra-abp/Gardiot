@@ -101,14 +101,14 @@ task.insertTasks = function (myPlant, plant, callback) {
 	}
 }
 
-task.insertNewTreatmentTask = function (plant, treatmentPlant, frequency, initDate, finalDate, callback) {
+task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, finalDate, callback) {
 	if (connection) {
 		connection.query('SELECT id FROM MyPlant WHERE plant = ' + plant, function (error, row) {
 			if (error)
 				callback (error, null);
 			else if (typeof row!== 'undefined' && row.length > 0) {
 				var sqlValues = '';
-				var sqlBase = '(' + plant + ',' + treatmentPlant + ',' + plant + ', IDPlant';
+				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', IDPlant';
 				if (frequency!= 0 && initDate == 0 && finalDate == 0) {
 					todayDate = new Date();
 					for (let i = 0; i < 100; i++) {
