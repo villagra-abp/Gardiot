@@ -68,7 +68,6 @@ function mouse_move(e, view){
                 break;
               }
             }
-            //La planta que tenga el isDragging a true actualizo su pos visual
             //Redraw
           }
         }
@@ -136,6 +135,7 @@ function mouse_up(e, view){
             }
             if (!occupied) {
               //Llamo a la API para actualizar la posicion en la BD
+              updateMyPlant(window.jardin.id, plant.plant,)
             }
             break;
           }
