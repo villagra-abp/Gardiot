@@ -1,5 +1,7 @@
-
-    <aside class="selectPlantas">
+    <section class="container"> 
+      <button class="btn btn-primary" (click)="showForm()">Mostrar formulario</button>
+    </section>
+    <aside class="selectPlantas" [ngStyle]="{'visibility':canvasVisible == true ? 'visible' : 'hidden' }">
       <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
       <article>
         <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
@@ -17,11 +19,11 @@
         <span>Margarita 3</span>
       </article>
     </aside>
-  <div class="canvasEvolver">
-  <canvas id="myCanvas" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1170"></canvas>
-</div>
+    <div class="canvasEvolver" [ngStyle]="{'visibility':canvasVisible == true ? 'visible' : 'hidden' }">
+    <canvas id="myCanvas" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1170"></canvas>
+  </div>
 
-<section class="container">
+<section class="container" [ngStyle]="{'visibility':canvasVisible == true ? 'hidden' : 'visible' }">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">

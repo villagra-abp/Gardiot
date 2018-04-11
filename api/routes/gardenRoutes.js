@@ -35,7 +35,7 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 	gardenModel.getGardenByUser(user, function(error, data) {
 		if (typeof data !== 'undefined' && data.length > 0) {
 			let garden={};
-			garden.id=data[0].id;
+			garden.id=data[0].gardenId;
 			garden.title=data[0].title;
 			garden.width=data[0].width;
 			garden.length=data[0].lenght;
@@ -45,8 +45,10 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 			garden.countryCode=data[0].countryCode;
 			garden.city=data[0].city;
 			garden.plants=[];
+			console.log(data);
 			for(let i=0; i<data.length; i++){
-				garden.plants.push({"plant": data[i].plant,
+				garden.plants.push({"id": data[i].id,
+									"plant": data[i].plant,
 									"model": data[i]._3DModel,
 									"x": data[i].xCoordinate,
 									"y": data[i].yCoordinate,
@@ -94,11 +96,12 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequi
     latitude: request.body.latitude,
     longitude: request.body.longitude,
     soil: request.body.soil,
-    //user: request.body.user,
+    user: request.user.id,
     countryCode: request.body.countryCode,
     city: request.body.city,
     zip: request.body.zip,
 	};
+	console.log(request.user);
 	gardenModel.isProprietary(request.user, gardenData.id, function(error, data) {
 		if(data){
 			gardenModel.updateGarden(gardenData, function(error, data) {

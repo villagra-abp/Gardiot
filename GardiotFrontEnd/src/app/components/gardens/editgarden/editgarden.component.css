@@ -6,7 +6,7 @@ body{
 }
 .canvasEvolver{
 	position: absolute;
-	top: 61px;
+	top: 100px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -19,7 +19,7 @@ canvas{
 margin: 0;
 padding: 0;
 width: 100% !important;
-height: 100% !important;
+height: 95% !important;
 
 }
 .selectPlantas{
@@ -28,9 +28,9 @@ height: 100% !important;
 	-webkit-flex-direction: column;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	max-height:100%;
+	max-height:85%;
 	overflow-y: auto;
-	top: 61px;
+	top: 100px;
 	left: 0;
 	bottom: 0;
 	width: 150px;
@@ -56,13 +56,7 @@ height: 100% !important;
  }
 
  .container{
-	 display: none;
 	 background-color: #fff;
-	 position: fixed;
-	 top: 70px;
-	 right: 10px;
-	 height: 80%;
-	 width: 350px;
  }
 
 

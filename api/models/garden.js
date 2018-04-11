@@ -32,7 +32,7 @@ garden.getGardenById = function(id, callback) {
 
 garden.getGardenByUser = function(user, callback) {
   if (connection) {
-    var sentence = 'SELECT * FROM Garden RIGHT JOIN MyPlant ON MyPlant.garden=Garden.id ';
+    var sentence = 'SELECT *, Garden.id as gardenId, MyPlant.id as id FROM Garden RIGHT JOIN MyPlant ON MyPlant.garden=Garden.id ';
     sentence += 'RIGHT JOIN Plant ON Plant.id=MyPlant.plant ';
 
     sentence += 'WHERE Garden.user = "' + user + '" ';
