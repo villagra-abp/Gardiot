@@ -96,11 +96,12 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequi
     latitude: request.body.latitude,
     longitude: request.body.longitude,
     soil: request.body.soil,
-    //user: request.body.user,
+    user: request.user.id,
     countryCode: request.body.countryCode,
     city: request.body.city,
     zip: request.body.zip,
 	};
+	console.log(request.user);
 	gardenModel.isProprietary(request.user, gardenData.id, function(error, data) {
 		if(data){
 			gardenModel.updateGarden(gardenData, function(error, data) {
