@@ -53,7 +53,7 @@ function mouse_move(e, view){
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
         }
-        
+
         if (view != 'detail') {
           if(window.dragging) {
             e.preventDefault();
@@ -65,6 +65,7 @@ function mouse_move(e, view){
             for (let plant of window.plants) {
               if (plant.isDragging) {
                 motor.moverMallaA(plant.id, point[0], 0, point[2]);
+                console.log(point);
                 break;
               }
             }
@@ -81,13 +82,14 @@ function mouse_down(e, view){
       if (view != 'detail') {
         e.preventDefault();
         e.stopPropagation();
-        
+
         let cv=e.target;
         let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
-        let coordX = Math.ceil(point[0]);
-        let coordY = Math.ceil(point[2]);
+        let coordX = Math.round(point[0]);
+        let coordY = Math.round(point[2]);
         for (let plant of window.plants) {
           if (plant.x == coordX && plant.y == coordY) {
+            console.log("SELECCIONADO");
             plant.isDragging = true;
             window.dragging = true;
             break;
@@ -111,16 +113,16 @@ function mouse_down(e, view){
 }
 
 function mouse_up(e, view){
+
   switch (e.which) {
     case 1: //Izquierdo
       if (view != 'detail') {
         e.preventDefault();
         e.stopPropagation();
-
         let cv = e.target;
         let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
-        let coordX = Math.ceil(point[0]);
-        let coordY = Math.ceil(point[2]);
+        let coordX = Math.round(point[0]);
+        let coordY = Math.round(point[2]);
         for (let plant of window.plants) {
           if (plant.isDragging) {
             plant.isDragging = false;
@@ -129,18 +131,18 @@ function mouse_up(e, view){
             let occupied = false;
             for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
               if (value.x == coordX && value.y == coordY) {
-                motor.moverMallaA(plant.id, plant.x, 0, plant.y); 
+                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                 occupied = true;
                 break;
               }
             }
             if (!occupied) {
-              motor.moverMallaA(plant.id, coordX, coordY); //Esta llamada tal vez es innecesaria
+              motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
               updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
             }
             break;
           }
-        }        
+        }
       }
       break;
     case 3: //Derecho
@@ -240,6 +242,6 @@ function get3DPoint(point2D, width, height){
   let point=[x, y, pointaux[2]];
 
   vec3.transformMat4(point, point, invert);
-  //console.log(point);
+  console.log(point);
   return point;
 }
