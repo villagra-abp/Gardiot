@@ -89,6 +89,7 @@ function mouse_down(e, view){
         for (let plant of window.plants) {
           if (plant.x == coordX && plant.y == coordY) {
             plant.isDragging = true;
+            window.dragging = true;
             break;
           }
         }
@@ -128,14 +129,13 @@ function mouse_up(e, view){
             let occupied = false;
             for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
               if (value.x == coordX && value.y == coordY) {
-                motor.moverMallaA(plant.plant, plant.x, 0, plant.y);
+                motor.moverMallaA(plant.plant, plant.x, 0, plant.y); //ESTO NO ESTA CLARO
                 occupied = true;
                 break;
               }
             }
             if (!occupied) {
-              //Llamo a la API para actualizar la posicion en la BD
-              updateMyPlant(window.jardin.id, plant.plant,)
+              updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
             }
             break;
           }
