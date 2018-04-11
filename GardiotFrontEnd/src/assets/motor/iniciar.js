@@ -3,7 +3,7 @@ function iniciar(accion, jardin){
   window.canvas=null;
 
   window.jardin=jardin;
-  console.log(window.plantas);
+  //console.log(window.plantas);
   window.loading=[];//array que estará vacío si no hay nada cargándose
 
   //bucle movimiento
@@ -24,6 +24,13 @@ function iniciar(accion, jardin){
   window.matrixProjection=[];//matriz proyección
   window.invertedMView=[];//matriz view
 
+  //DragAndDrop
+  window.dragging = false;
+  window.plants = [];
+  for (let value of jardin.plants) {
+    value.isDragging = false;
+    window.plants.push(value);
+  }
 
   //declaramos las variables necesarias para ejecutar el programa
   //las variables de WebGL empezarán siempre por gl para distinguirlas de
@@ -90,8 +97,8 @@ if(jardin.length%2==0){
   }
 
 for(let i=0; i<jardin.plants.length; i++){
-  motor.crearNodoMalla(jardin.plants[i].plant, "lechuga", "lechuga.jpg", undefined);
-  motor.moverMalla(jardin.plants[i].plant, jardin.plants[i].x, 0, jardin.plants[i].y);
+  motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
+  motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
 }
 /*
   //lechuga
