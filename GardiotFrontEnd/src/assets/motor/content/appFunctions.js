@@ -64,7 +64,7 @@ function mouse_move(e, view){
 
             for (let plant of window.plants) {
               if (plant.isDragging) {
-                motor.moverMallaA(plant.plant, point[0], 0, point[2]);
+                motor.moverMallaA(plant.id, point[0], 0, point[2]);
                 break;
               }
             }
@@ -129,12 +129,13 @@ function mouse_up(e, view){
             let occupied = false;
             for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
               if (value.x == coordX && value.y == coordY) {
-                motor.moverMallaA(plant.plant, plant.x, 0, plant.y); //ESTO NO ESTA CLARO
+                motor.moverMallaA(plant.id, plant.x, 0, plant.y); 
                 occupied = true;
                 break;
               }
             }
             if (!occupied) {
+              motor.moverMallaA(plant.id, coordX, coordY); //Esta llamada tal vez es innecesaria
               updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
             }
             break;
