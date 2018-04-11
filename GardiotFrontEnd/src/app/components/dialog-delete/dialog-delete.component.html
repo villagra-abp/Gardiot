@@ -1,10 +1,9 @@
-<div>
-  <h2 mat-dialog-title>MY DIALOG</h2>
+<div class="modal-dialog">
+  <div class="modal-content">
+  <h4 mat-dialog-title>Verifica</h4>
   <hr>
   <mat-dialog-content>
-    Lorem ipsum dolor sit amet. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    <br>
-    <br>
+    <p>¿Esta seguro que desea eliminar este elemento?</p>
     <strong>{{data}}</strong>
   </mat-dialog-content>
   <hr>
@@ -12,4 +11,5 @@
     <button mat-raise-button (click)="onCloseConfirm()">CONFIRM</button>
     <button mat-raise-button (click)="onCloseCancel()">CANCEL</button>
   </mat-dialog-actions>
+  </div>
 </div>
