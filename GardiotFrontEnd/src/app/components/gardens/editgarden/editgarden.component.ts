@@ -27,6 +27,7 @@ export class EditGardenComponent implements OnInit{
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
 
+  canvasVisible = true;
 
 
 	 constructor(
@@ -188,6 +189,15 @@ export class EditGardenComponent implements OnInit{
     //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
     motor.getCamaraActiva().entity.setParams(-1-desvX, 1+desvX, -0.7-desvY, 0.7+desvY, 1, 1000);
 
+  }
+
+  //muestra el formulario de edicion y borrado de jardín
+  showForm(){
+    if(this.canvasVisible == true){
+      this.canvasVisible = false;
+    }else{
+      this.canvasVisible = true;
+    }
   }
 
 	//Envia los nuevos datos del jardin a  a GardenService para guardarlos
