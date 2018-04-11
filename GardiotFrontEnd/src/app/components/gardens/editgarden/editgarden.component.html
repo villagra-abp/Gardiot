@@ -1,5 +1,5 @@
-    <section class="container"> 
-      <button class="btn btn-primary" (click)="showForm()">Mostrar formulario</button>
+    <section class="boton-container"> 
+      <button class="btn btn-primary" (click)="showForm()">Editar {{buttonText}}</button>
     </section>
     <aside class="selectPlantas" [ngStyle]="{'visibility':canvasVisible == true ? 'visible' : 'hidden' }">
       <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
@@ -23,7 +23,7 @@
     <canvas id="myCanvas" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1170"></canvas>
   </div>
 
-<section class="container" [ngStyle]="{'visibility':canvasVisible == true ? 'hidden' : 'visible' }">
+<section class="container formulario" [ngStyle]="{'visibility':canvasVisible == true ? 'hidden' : 'visible' }">
   <div class="row animated fadeIn fast">
     <div class="col-md-12">
       <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">

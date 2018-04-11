@@ -6,7 +6,7 @@ body{
 }
 .canvasEvolver{
 	position: absolute;
-	top: 100px;
+	top: 60px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -19,7 +19,7 @@ canvas{
 margin: 0;
 padding: 0;
 width: 100% !important;
-height: 95% !important;
+height: 100% !important;
 
 }
 .selectPlantas{
@@ -55,8 +55,16 @@ height: 95% !important;
 	 cursor: pointer;
  }
 
- .container{
-	 background-color: #fff;
+ .formulario{
+ 	margin-top : 3em;
+ 	margin-left, margin-right: 15%;
+	background-color: #fff;
+
+ }
+
+ .boton-container{
+ 	position: absolute;
+	z-index: 2;
  }
 
 
