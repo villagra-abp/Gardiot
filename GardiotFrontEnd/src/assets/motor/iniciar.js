@@ -60,7 +60,7 @@ function iniciar(accion, jardin){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
+  // window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -89,22 +89,51 @@ if(jardin.length%2==0){
     }
   }
 
-for(let i=0; i<jardin.plants.length; i++){
-  motor.crearNodoMalla(jardin.plants[i].plant, "lechuga", "lechuga.jpg", undefined);
-  motor.moverMalla(jardin.plants[i].plant, jardin.plants[i].x, 0, jardin.plants[i].y);
-}
-/*
-  //lechuga
-  for(let i=-2; i<3; i++){
-    for(let j=-2; j<3; j++){
-      motor.crearNodoMalla("planta"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-      motor.escalarMalla("planta"+i+'-'+j, 2);
+// for(let i=0; i<jardin.plants.length; i++){
+//   motor.crearNodoMalla(jardin.plants[i].plant, "lechuga", "lechuga.jpg", undefined);
+//   motor.moverMalla(jardin.plants[i].plant, jardin.plants[i].x, 0, jardin.plants[i].y);
+// }
+
+  // LECHUGA
+  for(let i=-2; i<0; i++){
+    for(let j=-2; j<0; j++){
+      motor.crearNodoMalla("lechuga"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
+      motor.escalarMalla("lechuga"+i+'-'+j, 1.5);
       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-      motor.moverMalla("planta"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-      motor.moverMalla("planta"+i+'-'+j, 2*i, 0, 2*j);
+      // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+      motor.moverMalla("lechuga"+i+'-'+j, 2*i, 0, 2*j);
     }
   }
-*/
+  // CALABAZA
+  motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
+  motor.escalarMalla("calabaza", 0.3);
+  motor.rotarMalla("calabaza", -90, "x");
+  motor.moverMalla("calabaza", 0, 0.1, 0);
+
+  
+
+  // Tomatera
+  for(let i=1; i<3; i++){
+    for(let j=1; j<3; j++){
+      motor.crearNodoMalla("tomatera"+i+'-'+j, "tomatera", "tomatera.png", undefined);
+      motor.escalarMalla("tomatera"+i+'-'+j, 0.006);
+      //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+      motor.moverMalla("tomatera"+i+'-'+j, 2*i, 0, 2*j);
+    }
+  }
+
+  // MACETAS
+  for(let i=1; i<3; i++){
+    for(let j=1; j<3; j++){
+      motor.crearNodoMalla("maceta"+i+'-'+j, "maceta", "maceta.jpg", undefined);
+      motor.escalarMalla("maceta"+i+'-'+j, 0.05);
+      //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+      // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+      motor.moverMalla("maceta"+i+'-'+j, 2*i, 0.1, 2*j);
+    }
+  }
+
 
   //motor.moverMalla("malla1", -9, -15, -30);
 
