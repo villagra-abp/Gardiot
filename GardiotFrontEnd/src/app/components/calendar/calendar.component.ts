@@ -100,6 +100,12 @@ export class CalendarComponent implements OnInit{
       actions: this.actions
     },
     {
+      start: startOfDay(new Date('2018-04-15')),
+      title: 'tarta espacial',
+      color: colors.yellow,
+      actions: this.actions
+    },
+    {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'Próxima poda de los almendros',

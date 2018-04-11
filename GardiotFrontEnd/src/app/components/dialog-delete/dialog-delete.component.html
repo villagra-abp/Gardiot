@@ -1,15 +1,12 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-  <h4 mat-dialog-title>Verifica</h4>
-  <hr>
-  <mat-dialog-content>
-    <p>¿Esta seguro que desea eliminar este elemento?</p>
-    <strong>{{data}}</strong>
-  </mat-dialog-content>
-  <hr>
+<div>
+  <section >
+  <h4 mat-dialog-title>¿Esta seguro que desea borrar este producto?</h4>
+  <!-- <mat-dialog-content>
+  <strong>{{data}}</strong>
+  </mat-dialog-content> -->
   <mat-dialog-actions>
-    <button mat-raise-button (click)="onCloseConfirm()">CONFIRM</button>
-    <button mat-raise-button (click)="onCloseCancel()">CANCEL</button>
+    <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-success" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#">Aceptar</button>
+    <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-secondary">Cancelar</button>
   </mat-dialog-actions>
-  </div>
+  </section>
 </div>
