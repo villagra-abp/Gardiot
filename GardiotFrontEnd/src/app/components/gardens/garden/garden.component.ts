@@ -61,7 +61,7 @@ export class GardenComponent {
 
   ngOnInit() {
   	this.mostrar();
-    this.inicializar();
+    //this.inicializar();
   }
 
 
@@ -109,7 +109,7 @@ export class GardenComponent {
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
 
-          new iniciar("detail", this.garden);
+          //new iniciar("detail", this.garden);
 
 
 	        },
@@ -225,6 +225,9 @@ export class GardenComponent {
 
   diaSemana(num){
     var dia = "";
+    if(num==-1){
+      num = 6;
+    }
     switch(num%7){
             case 0:
               dia = "Lunes";
@@ -248,6 +251,8 @@ export class GardenComponent {
               dia = "Domingo";
               break;
            }
+           console.log(dia);
+           console.log(num%7);
            return dia;
   }
 

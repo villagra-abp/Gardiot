@@ -25,6 +25,18 @@
   /*padding: 1em;*/
 }
 
+.tarjetaHoy{
+  margin-top : 2em;
+  margin-left, margin-right: 30px%;
+  padding: 1em;
+  width: 50%;
+}
+
+.hoy{
+  font-size : 2em;
+  float: right;
+}
+
 
 .casilla{
   padding-top:.5em;
@@ -47,11 +59,21 @@
   color: gray;
 }
 
-.hoy{
-  font-size : 2em;
-  float: left;
-}
+
+
+
 
 h1, h2{
   text-align: center;
+}
+
+
+@media (max-width: 600px) {
+
+  .tarjetaHoy{
+  width: 100%;
+}
+
+
+
 }
