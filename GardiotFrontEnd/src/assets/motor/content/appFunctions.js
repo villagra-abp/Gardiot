@@ -89,7 +89,6 @@ function mouse_down(e, view){
         let coordY = Math.round(point[2]);
         for (let plant of window.plants) {
           if (plant.x == coordX && plant.y == coordY) {
-            console.log("SELECCIONADO");
             plant.isDragging = true;
             window.dragging = true;
             break;
