@@ -159,6 +159,19 @@ if(jardin.length%2==0){
   // motor.rotarMalla("margarita", 10, "y");
   motor.moverMalla("margarita", 0, 0.5, 3);
 
+  // CICA
+  motor.crearNodoMalla("cica", "cica", "cica.jpg", undefined);
+  motor.escalarMalla("cica", 0.15);
+  motor.rotarMalla("cica", 180, "x");
+  // motor.rotarMalla("margarita", 10, "y");
+  motor.moverMalla("cica", 0, 0.2, 4);
+
+
+
+
+
+
+
   //motor.moverMalla("malla1", -9, -15, -30);
 
   motor.escalarMalla("malla2", 0.5);
