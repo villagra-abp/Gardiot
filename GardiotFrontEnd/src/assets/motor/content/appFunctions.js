@@ -89,6 +89,7 @@ function mouse_down(e, view){
         let coordY = Math.round(point[2]);
         for (let plant of window.plants) {
           if (plant.x == coordX && plant.y == coordY) {
+            console.log("SELECCIONADO!!!!");
             plant.isDragging = true;
             window.dragging = true;
             break;
@@ -142,7 +143,7 @@ function mouse_up(e, view){
                 motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
                 updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
               }
-            }       
+            }
             break;
           }
         }
@@ -245,6 +246,6 @@ function get3DPoint(point2D, width, height){
   let point=[x, y, pointaux[2]];
 
   vec3.transformMat4(point, point, invert);
-  console.log(point);
+  //console.log(point);
   return point;
 }
