@@ -1,5 +1,5 @@
 <section class="herramienta">
-<canvas id="myCanvas" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+<canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
 </section>
 <div class="main-container">
 
@@ -27,30 +27,30 @@
     <div class="collapse " id="prevision">
       <div class="row tiempo border border-light rounded">
         <div class="col-sm casilla rounded">
-          Mañana 
+          Mañana
           <br>
-          <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png"> 
+          <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png">
           <br>
-           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span> 
+           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded">
-          {{nombreDia3}} 
+          {{nombreDia3}}
           <br>
-          <img src="./../../../assets/images/imgWeather/{{fotoDia3}}.png"> 
+          <img src="./../../../assets/images/imgWeather/{{fotoDia3}}.png">
           <br>
-          <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span> 
+          <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded">
           {{nombreDia4}}
           <br>
-          <img src="./../../../assets/images/imgWeather/{{fotoDia4}}.png"> 
+          <img src="./../../../assets/images/imgWeather/{{fotoDia4}}.png">
           <br>
           <span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded">
           {{nombreDia5}}
           <br>
-          <img src="./../../../assets/images/imgWeather/{{fotoDia5}}.png"> 
+          <img src="./../../../assets/images/imgWeather/{{fotoDia5}}.png">
           <br>
            <span class="minima">{{minDia5 | number:'.0-0'}}º</span> <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span>
         </div>
