@@ -163,7 +163,7 @@ export class CalendarComponent implements OnInit{
   }
 
 
-  addEvent(Ttitle:String, Tstart:String, Tend:String): void {
+  addEvent(Ttitle:string, Tstart:string, Tend:string): void {
     this.events.push({
       title: Ttitle,
       start: startOfDay(new Date(Tstart)),
