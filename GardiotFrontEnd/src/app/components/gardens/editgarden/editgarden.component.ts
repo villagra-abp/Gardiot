@@ -28,6 +28,8 @@ export class EditGardenComponent implements OnInit{
   startCity: Observable<string>;
 
   canvasVisible = true;
+  
+  buttonText = "datos";
 
 
 	 constructor(
@@ -195,8 +197,10 @@ export class EditGardenComponent implements OnInit{
   showForm(){
     if(this.canvasVisible == true){
       this.canvasVisible = false;
+      this.buttonText = "canvas"
     }else{
       this.canvasVisible = true;
+      this.buttonText = "datos"
     }
   }
 

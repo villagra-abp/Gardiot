@@ -51,6 +51,13 @@ function updateMyPlant(garden, myPlant, plant, soil, x, y){
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
+		for(let i=0; i<jardin.plants.length; i++){
+			if(jardin.plants[i].id==myPlant){
+				jardin.plants[i].x=x;
+				jardin.plants[i].y=y;
+			}
+
+		}
 		console.log(respuesta.Mensaje);
 	}
 

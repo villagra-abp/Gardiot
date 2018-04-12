@@ -8,34 +8,18 @@
       <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
   </section>
 <section class="container">
-  <article class="row border rounded">
+  <article class="row border rounded tarjetaHoy">
     <div class="col">
       <h3>{{garden.city}} </h3>
       <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png">
-      <p class="hoy"> {{temperatura}}º<p>
+      <span class="hoy"> {{temperatura}}º</span>
       <br>
       </div>
   </article>
 
 </section>
-<!--
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      Mañana {{minMan | number:'.0-0'}}º {{maxMan | number:'.0-0'}}º
-    </div>
-    <div class="col-sm">
-      {{nombreDia3}} {{minDia3 | number:'.0-0'}}º {{maxDia3 | number:'.0-0'}}º
-    </div>
-    <div class="col-sm">
-      {{nombreDia4}} {{minDia4 | number:'.0-0'}}º {{maxDia4 | number:'.0-0'}}º
-    </div>
-    <div class="col-sm">
-      {{nombreDia5}} {{minDia5 | number:'.0-0'}}º {{maxDia5 | number:'.0-0'}}º
-    </div>
-  </div>
-</div>
--->
+
+
 <section class="container">
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#prevision" aria-expanded="false" aria-controls="prevision">
     Mostrar previsión

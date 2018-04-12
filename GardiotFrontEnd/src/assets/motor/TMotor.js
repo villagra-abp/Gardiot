@@ -155,6 +155,7 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+      console.log(this.camaraRegistro[pos].dad.dad.entity);
 			return true;
 		}
 
@@ -515,6 +516,27 @@ class TMotor{
 		}
 
 	}
+
+	moverMallaA(nombre, x, y, z){
+        var pos = -1;
+
+        for (var i = 0; i< this.mallaRegistro.length; i++){
+            if(nombre == this.mallaRegistro[i].name){
+                pos = i;
+                break;
+            }
+        }
+        if(pos>=0){
+            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix.slice(0);
+              matrix[12]=x;
+              matrix[13]=y;
+              matrix[14]=z;
+              this.mallaRegistro[pos].dad.dad.dad.entity.matrix=matrix;
+              console.log(matrix);
+            return true;
+        }
+
+    }
 
 	rotarMalla(nombre, grados, eje){
 		var pos = -1;

@@ -14,6 +14,10 @@ function animLoop(){
     requestAnimationFrame(animLoop, canvas);
 }
 
+function drawGrid() {
+
+}
+
 
 function mouse_move(e, view){
     let cv=e.target,
@@ -48,42 +52,118 @@ function mouse_move(e, view){
           motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
-    		}
+        }
+
+        if (view != 'detail') {
+          if(window.dragging) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            let cv=e.target;
+            let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+
+            for (let plant of window.plants) {
+              if (plant.isDragging) {
+                motor.moverMallaA(plant.id, point[0], 0, point[2]);
+                console.log(point);
+                break;
+              }
+            }
+            //Redraw
+          }
+        }
 }
 
 
 
-function mouse_down(e){
-     let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY;
+function mouse_down(e, view){
+  switch (e.which) {
+    case 1: //Izquierdo
+      if (view != 'detail') {
+        e.preventDefault();
+        e.stopPropagation();
 
-				//console.log(x, y, cv.offsetWidth, cv.offsetHeight);
-        //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
-				cv.setAttribute('data-down', 'true');
+        let cv=e.target;
+        let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+        let coordX = Math.round(point[0]);
+        let coordY = Math.round(point[2]);
+        for (let plant of window.plants) {
+          if (plant.x == coordX && plant.y == coordY) {
+            plant.isDragging = true;
+            window.dragging = true;
+            break;
+          }
+        }
+      }
+      break;
+    case 3: //Derecho
+      let cv=e.target,
+      x=e.offsetX,
+      y=e.offsetY;
 
-				window.originClickX=x/cv.offsetWidth;
-				window.originClickY=y/cv.offsetHeight;
+      console.log(x, y, cv.offsetWidth, cv.offsetHeight);
+      //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
+      cv.setAttribute('data-down', 'true');
+
+      window.originClickX=x/cv.offsetWidth;
+      window.originClickY=y/cv.offsetHeight;
+      break;
+  }
 }
 
-function mouse_up(e){
-     let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY,
-				dimx=cv.offsetWidth/41,
-				dimy=cv.offsetHeight/27,
-        fila=Math.ceil(y/dimy),
-        columna=Math.ceil(x/dimx);
+function mouse_up(e, view){
 
-        window.x=undefined;
-  			window.y=undefined;
-  			window.originClickX=undefined;
-  			window.originClickY=undefined;
+  switch (e.which) {
+    case 1: //Izquierdo
+      if (view != 'detail') {
+        e.preventDefault();
+        e.stopPropagation();
+        let cv = e.target;
+        let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+        let coordX = Math.round(point[0]);
+        let coordY = Math.round(point[2]);
+        for (let plant of window.plants) {
+          if (plant.isDragging) {
+            plant.isDragging = false;
+            window.dragging = false;
 
-        get3DPoint([x, y], cv.offsetWidth, cv.offsetHeight);
+            let occupied = false;
+            for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
+              if (value.x == coordX && value.y == coordY) {
+                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                occupied = true;
+                break;
+              }
+            }
+            if (!occupied) {
+              motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
+              updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
+            }
+            break;
+          }
+        }
+      }
+      break;
+    case 3: //Derecho
+      let cv=e.target,
+      x=e.offsetX,
+      y=e.offsetY,
+      dimx=cv.offsetWidth/41,
+      dimy=cv.offsetHeight/27,
+      fila=Math.ceil(y/dimy),
+      columna=Math.ceil(x/dimx);
 
-        //console.log(`UP-> Posición: ${fila} - ${columna}`);
-				cv.removeAttribute('data-down');
+      window.x=undefined;
+      window.y=undefined;
+      window.originClickX=undefined;
+      window.originClickY=undefined;
+
+      get3DPoint([x, y], cv.offsetWidth, cv.offsetHeight);
+
+      //console.log(`UP-> Posición: ${fila} - ${columna}`);
+      cv.removeAttribute('data-down');
+      break;
+  }
 }
 
 function scrolling(e){
@@ -101,6 +181,7 @@ function scrolling(e){
     motor.moverCamara("camara2", 0, -vector[1], 0);
   }
 }
+
 /*
 function scrolling(e){
   let cv=e.target;
@@ -160,6 +241,6 @@ function get3DPoint(point2D, width, height){
   let point=[x, y, pointaux[2]];
 
   vec3.transformMat4(point, point, invert);
-  //console.log(point);
+  console.log(point);
   return point;
 }

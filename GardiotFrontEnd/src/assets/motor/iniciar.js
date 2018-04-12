@@ -3,7 +3,7 @@ function iniciar(accion, jardin){
   window.canvas=null;
 
   window.jardin=jardin;
-  console.log(window.plantas);
+  //console.log(window.plantas);
   window.loading=[];//array que estará vacío si no hay nada cargándose
 
   //bucle movimiento
@@ -24,6 +24,13 @@ function iniciar(accion, jardin){
   window.matrixProjection=[];//matriz proyección
   window.invertedMView=[];//matriz view
 
+  //DragAndDrop
+  window.dragging = false;
+  window.plants = [];
+  for (let value of jardin.plants) {
+    value.isDragging = false;
+    window.plants.push(value);
+  }
 
   //declaramos las variables necesarias para ejecutar el programa
   //las variables de WebGL empezarán siempre por gl para distinguirlas de

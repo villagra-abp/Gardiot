@@ -84,5 +84,15 @@ myPlant.isOwner = function (user, garden, callback) {
   }
 }
 
+myPlant.changePosition = function (id, x, y, callback) {
+  if (connection) {
+    connection.query('UPDATE MyPlant SET xCoordinate = ' + x + ', yCoordinate = ' + y + ' WHERE id = ' + id, function (error, result) {
+      if (error)
+        callback(error, null);
+      else 
+        callback(null, result.affectedRows);
+    });
+  }
+}
 
 module.exports = myPlant;
