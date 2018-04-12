@@ -45,7 +45,6 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 			garden.countryCode=data[0].countryCode;
 			garden.city=data[0].city;
 			garden.plants=[];
-			console.log(data);
 			for(let i=0; i<data.length; i++){
 				garden.plants.push({"id": data[i].id,
 									"plant": data[i].plant,
@@ -101,7 +100,6 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequi
     city: request.body.city,
     zip: request.body.zip,
 	};
-	console.log(request.user);
 	gardenModel.isProprietary(request.user, gardenData.id, function(error, data) {
 		if(data){
 			gardenModel.updateGarden(gardenData, function(error, data) {
