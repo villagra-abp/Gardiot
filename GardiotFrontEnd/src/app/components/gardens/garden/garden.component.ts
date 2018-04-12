@@ -109,7 +109,7 @@ export class GardenComponent {
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
 
-          //new iniciar("detail", this.garden);
+          new iniciar("detail", this.garden);
 
 
 	        },
