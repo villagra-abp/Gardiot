@@ -83,6 +83,7 @@ import { NewtreatmentsplantsComponent } from './components/treatmentsplants/newt
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 
+
 import { CommonModule } from '@angular/common';
 
 // POP UPS

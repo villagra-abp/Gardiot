@@ -56,7 +56,6 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 								for (var row in data) {
 									taskModel.insert
 								}
-								console.log(data.length);
 								response.status(200).json(data);
 								response.status(200).json({"Mensaje":"Insertado"});
 							}

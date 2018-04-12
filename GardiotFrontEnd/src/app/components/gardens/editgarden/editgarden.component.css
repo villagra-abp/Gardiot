@@ -30,7 +30,7 @@ height: 100% !important;
 	flex-direction: column;
 	max-height:85%;
 	overflow-y: auto;
-	top: 100px;
+	top: 105px;
 	left: 0;
 	bottom: 0;
 	width: 150px;
@@ -56,14 +56,20 @@ height: 100% !important;
  }
 
  .formulario{
- 	margin-top : 3em;
- 	margin-left, margin-right: 15%;
-	background-color: #fff;
+ 	margin-top : 60px;
+ 	margin-left: auto;
+ 	margin-right:auto;
+ 	width:50%;
+	background-color: #lightblue;
 
  }
 
  .boton-container{
  	position: absolute;
+ 	width: 150px;
+ 	text-align:center;
+ 	padding: 5px;
+	background-color: #fff;
 	z-index: 2;
  }
 
@@ -108,6 +114,15 @@ height: 100% !important;
  	 border: 2px solid #000;
  	 cursor: pointer;
   }
+
+  .formulario{
+ 	margin-top : 60px;
+ 	margin-left: auto;
+ 	margin-right:auto;
+ 	width:90%;
+	background-color: #lightblue;
+
+ }
 
 
 }

@@ -28,6 +28,7 @@ export class EditGardenComponent implements OnInit{
   startCity: Observable<string>;
 
   canvasVisible = true;
+  
   buttonText = "datos";
 
 
