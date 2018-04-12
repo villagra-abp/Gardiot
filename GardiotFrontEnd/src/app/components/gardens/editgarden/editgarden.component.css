@@ -6,7 +6,7 @@ body{
 }
 .canvasEvolver{
 	position: absolute;
-	top: 60px;
+	top: 61px;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -22,15 +22,18 @@ width: 100% !important;
 height: 100% !important;
 
 }
+button{
+	min-height: 40px;
+}
 .selectPlantas{
 	position: absolute;
 	display: flex;
 	-webkit-flex-direction: column;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	max-height:85%;
+	max-height:100%;
 	overflow-y: auto;
-	top: 105px;
+	top: 61px;
 	left: 0;
 	bottom: 0;
 	width: 150px;
@@ -56,11 +59,12 @@ height: 100% !important;
  }
 
  .formulario{
- 	margin-top : 60px;
- 	margin-left: auto;
- 	margin-right:auto;
- 	width:50%;
-	background-color: #lightblue;
+ 	position: fixed;
+	top: 81px;
+	right: 20px;
+ 	width:400px;
+	height: 70%;
+	background-color: #fff;
 
  }
 

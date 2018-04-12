@@ -98,8 +98,8 @@ if(jardin.length%2==0){
 
   // lechugas dragables
   for(let i=0; i<jardin.plants.length; i++){
-    motor.crearNodoMalla(jardin.plants[i].plant, "lechuga", "lechuga.jpg", undefined);
-    motor.moverMalla(jardin.plants[i].plant, jardin.plants[i].x, 0, jardin.plants[i].y);
+    motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
+    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
   }
 
   /* OBJETOS DE PRUEBA */
