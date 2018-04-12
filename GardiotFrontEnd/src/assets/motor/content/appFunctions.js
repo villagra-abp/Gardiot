@@ -127,18 +127,22 @@ function mouse_up(e, view){
             plant.isDragging = false;
             window.dragging = false;
 
-            let occupied = false;
-            for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
-              if (value.x == coordX && value.y == coordY) {
-                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
-                occupied = true;
-                break;
+            if (coordX > jardin.width*1.0/2 || coordX < jardin.width*(-1.0)/2 || coordY > jardin.length*1.0/2 || coordY < jardin.length*(-1.0)/2)
+              motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+            else {
+              let occupied = false;
+              for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
+                if (value.x == coordX && value.y == coordY) {
+                  motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                  occupied = true;
+                  break;
+                }
               }
-            }
-            if (!occupied) {
-              motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
-              updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
-            }
+              if (!occupied) {
+                motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
+                updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
+              }
+            }       
             break;
           }
         }
