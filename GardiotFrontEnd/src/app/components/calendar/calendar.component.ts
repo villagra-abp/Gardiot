@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
+import { FeedService } from "../../services/feed.service";
 import { Task } from "../../classes/task.class";
+import { Feed } from "../../classes/feed.class";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
@@ -62,6 +64,9 @@ export class CalendarComponent implements OnInit{
 
   private treatments:any[]=[];
   private treatment= new Task();
+
+  private feeds:any[]=[];
+  private feed= new Feed();
 
 
 
@@ -129,6 +134,7 @@ export class CalendarComponent implements OnInit{
 
   constructor(
     private _taskService:TaskService,
+    private _feedService:FeedService,
     private _route:Router,
     private _appComponent:AppComponent,
     private datePipe: DatePipe,
@@ -209,7 +215,23 @@ export class CalendarComponent implements OnInit{
         });
   }
 
+  cargarfeeds(){
+      this._feedService.showfeeds()
+          .subscribe(data=>{
+            this.feeds=[];
+            for(let key$ in data){
+              this.feeds.push(data[key$]);
+            }
+            console.log("¿cuantos?");
+            console.log(this.feeds);
+          },
+        error => {
+          console.error(error);
+        });
+  }
+
   ngOnInit() {
     this.mostrar();
+    this.cargarfeeds();
   }
 }
