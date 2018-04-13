@@ -74,15 +74,15 @@ export class ListproductComponent implements OnInit {
     });
   }
 
-  openDialog(){
+  openDialog(id:number){
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width:'600px',
-      data: 'Hola Mriano'
+      data: id
     });
-    dialogRef.afterClosed().subscribe(result=> {
-      console.log(`Dialog closed: ${result}`);
-      this.dialogResult = result;
-    })
+    // dialogRef.afterClosed().subscribe(result=> {
+    //   console.log(`Dialog closed: ${result}`);
+    //   this.dialogResult = result;
+    // })
   }
 
   ngOnInit() {
