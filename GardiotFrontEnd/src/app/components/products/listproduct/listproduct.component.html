@@ -30,7 +30,7 @@
       <td>{{product.description}}</td>
       <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/editproduct/',product.id]">Modificar</button></td>
       <!-- <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-      <td><button  class="btn btn-outline-danger" (click)="openDialog()" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="openDialog(product.id)" >Eliminar</button></td>
     </tr>
   </tbody>
 </table>

@@ -1,4 +1,13 @@
 <div class="main-container container">
+  <div class="wrap">
+  <section class="card-columns">
+      <div *ngFor="let feed of feeds" class="card"  style="width: 18rem;" >
+          <h4>{{feed.name}} </h4>
+          <p>{{feed.text}} </p>
+          <button class="btn btn-outline-primary">visto</button>
+        </div>
+  </section>
+  </div>
   <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -148,7 +157,7 @@
 -->
 </div>
 
-<div class="container main-container">
+<!-- <div class="container main-container">
   <div class="wrap">
   <section class="card-columns">
       <div *ngFor="let task of tasks" class="card"  style="width: 18rem;" >
@@ -159,4 +168,4 @@
         </div>
   </section>
   </div>
-	</div>
+	</div> -->
