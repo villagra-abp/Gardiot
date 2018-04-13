@@ -214,6 +214,14 @@ class TRecursoMalla extends TRecurso{
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
     }
 
+    //Decimos si le aplicamos la luz estándar o no al objeto
+    if(this.nombre=='sol'){
+      gl.uniform1i(glProgram[0].lighted, 0);
+    }
+    else {
+      gl.uniform1i(glProgram[0].lighted, 1);
+    }
+
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 
     //dibujamos en el canvas el objeto
