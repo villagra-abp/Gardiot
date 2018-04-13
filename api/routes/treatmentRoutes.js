@@ -45,7 +45,7 @@ router.post('/admin/treatment', passport.authenticate('jwt', {session: false}), 
 		description: request.body.description,
 	};
 	treatmentData = filter(treatmentData); 
-	if (typeof treatmentData.name !== 'undefined')
+	if (typeof treatmentData.name == 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {		
 		var validate = validateInput(treatmentData);
@@ -71,7 +71,7 @@ router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}
 			description: request.body.description,
 		};
 		treatmentData = filter(treatmentData);		
-		if (typeof treatmentData.name !== 'undefined')
+		if (typeof treatmentData.name == 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {	
 			var validate = validateInput(treatmentData);
