@@ -51,6 +51,13 @@ function updateMyPlant(garden, myPlant, plant, soil, x, y){
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
+		for(let i=0; i<jardin.plants.length; i++){
+			if(jardin.plants[i].id==myPlant){
+				jardin.plants[i].x=x;
+				jardin.plants[i].y=y;
+			}
+
+		}
 		console.log(respuesta.Mensaje);
 	}
 
@@ -129,6 +136,7 @@ function setupWebGL(){
 
     glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
     glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
+		glProgram[0].lighted=gl.getUniformLocation(glProgram[0], "uLighted");
     //matriz de normales
     glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
 

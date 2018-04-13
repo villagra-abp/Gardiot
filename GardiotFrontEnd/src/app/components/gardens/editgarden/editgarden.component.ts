@@ -27,7 +27,9 @@ export class EditGardenComponent implements OnInit{
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
 
-  canvasVisible = true;
+  menuVisible = true;
+
+  buttonText = "datos";
 
 
 	 constructor(
@@ -193,10 +195,10 @@ export class EditGardenComponent implements OnInit{
 
   //muestra el formulario de edicion y borrado de jardín
   showForm(){
-    if(this.canvasVisible == true){
-      this.canvasVisible = false;
+    if(this.menuVisible == true){
+      this.menuVisible = false;
     }else{
-      this.canvasVisible = true;
+      this.menuVisible = true;
     }
   }
 

@@ -225,6 +225,9 @@ export class GardenComponent {
 
   diaSemana(num){
     var dia = "";
+    if(num==-1){
+      num = 6;
+    }
     switch(num%7){
             case 0:
               dia = "Lunes";
@@ -248,6 +251,8 @@ export class GardenComponent {
               dia = "Domingo";
               break;
            }
+           console.log(dia);
+           console.log(num%7);
            return dia;
   }
 
@@ -262,7 +267,7 @@ export class GardenComponent {
   }
 
   inicializar(){
-    //new iniciar("detail");
+    new iniciar("detail");
   }
 
 

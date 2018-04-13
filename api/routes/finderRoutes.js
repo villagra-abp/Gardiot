@@ -31,8 +31,8 @@ router.post('/find/:model/:number/:page/:order/:sort', passport.authenticate('jw
 
 function checkPrivileges (request, model) {
   let modelUp = model.toUpperCase();
-  if ((userModels.indexOf(modelUp)!= -1 && request.user)
-    || (adminModels.indexOf(modelUp)!= -1 && request.user && request.user.admin == 1)) //Se pasa el request.user sin el passport? Yo creo que no
+  if (userModels.indexOf(modelUp)!= -1
+    || (adminModels.indexOf(modelUp)!= -1 && request.user.admin == 1)) //Se pasa el request.user sin el passport? Yo creo que no
     return true;
   else
     return false;
