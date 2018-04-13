@@ -84,4 +84,15 @@ export class FeedService {
 				})
 		}
 
+		showfeeds(){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
+
+			return this.http.get(this.apiURL+"feed" ,{ headers } )
+				.map( res =>{
+					return res.json();
+				})
+		}
+
 }
