@@ -1,29 +1,38 @@
 .header {
     color: #25b5aa;
     font-size: 2em;
-    padding: 5px;
-    margin: 2%;
+
 }
 .demo-tab-group {
   border: 1px solid #e8e8e8;
-  padding: 2%;
+
 }
 
 .demo-tab-content {
 
 }
 h1{
-  margin: 1%;
+  padding: 2%;
 }
 
 img{
-  /* border-radius: 50%; */
+  /* border-radius: 20%; */
   border-radius: 26px 26px 26px 26px;
--moz-border-radius: 26px 26px 26px 26px;
--webkit-border-radius: 26px 26px 26px 26px;
-border: 0px solid #eec019;
+  -moz-border-radius: 26px 26px 26px 26px;
+  -webkit-border-radius: 26px 26px 26px 26px;
+  border: 0px solid #eec019;
+
 }
 p{
   color: #2E2E2E;
   font-size: .8em;
+}
+.row{
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  font-size: .9em;
+  border-color: #25b5aa;
 }
