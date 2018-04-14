@@ -61,6 +61,9 @@
       <li class="nav-item" *ngIf="!this.userService.isAuthenticated">
         <a [routerLink]="['/register']" class="nav-link" href="#">Registrarse</a>
       </li>
+			<li class="nav-item">
+        <a [routerLink]="['/help']" class="nav-link" href="#">Ayuda</a>
+      </li>
       <li class="nav-item" id="photoMenu" [routerLink]="['/profile']" *ngIf="this.userService.isAuthenticated">
 				<div>
 			  </div>

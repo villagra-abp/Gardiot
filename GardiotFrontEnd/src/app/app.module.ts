@@ -90,7 +90,11 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { HelpComponent } from './components/help/help.component';
+
 
 @NgModule({
   declarations: [
@@ -140,6 +144,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     ResetPassBackComponent,
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
+    HelpComponent,
 
   ],
   imports: [
@@ -155,6 +160,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatTabsModule,
     APP_ROUTING
   ],
   providers: [

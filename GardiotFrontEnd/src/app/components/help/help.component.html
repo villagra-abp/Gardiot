@@ -1,0 +1,87 @@
+<article class="container">
+    <section class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <h1 class="text-center header">Página de ayuda</h1>
+                  <fieldset>
+
+                    <mat-tab-group class="demo-tab-group">
+                      <section class="demo-tab-content">
+
+                        <mat-tab label="Introduccion">
+                          <h3>Introducción</h3>
+                          <div class="row">
+                            <div class="col">
+                              <p>En esta sección te contamos como disfrutar de nuestra aplicación.
+                                Navega por las direfentes pestañas para conocer cómo funciona cada una de
+                                nuestras secciones.
+                              </p>
+                              <img height="175" width="150" src="assets/images/help/logo.png"
+                              alt="Descipción de la biblioteca Gardiot">
+                            </div>
+                            <div class="col-">
+                              <ul class="list-group list-group-flush ">
+                                <li class="list-group-item">Encuentra información sobre plantas y sus características.</li>
+                                <li class="list-group-item">Diseña tu jardín con nuestra herramienta gráfica.</li>
+                                <li class="list-group-item">Crea tareas de mantenimiento de forma automática en nuestro calendario.</li>
+                                <li class="list-group-item">Recibirás consejos sobre cuidados sobre tu jardín.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </mat-tab>
+
+                        <mat-tab label="Biblioteca">
+                          <h3>¿Qué puedes encontrar en nuestra biblioteca?</h3>
+                          <div class="row">
+                            <div class="col">
+                              <img height="auto" width="250" src="assets/images/help/biblioteca.jpg"
+                              alt="Descipción de la biblioteca Gardiot">
+                            </div>
+                            <div class="col-">
+                              <ul class="list-group list-group-flush ">
+                                <li class="list-group-item">Encuentra información sobre plantas y sus características.</li>
+                                <li class="list-group-item">También encontrarás información sobre cultivos.</li>
+                                <li class="list-group-item">La biblioteca dispone de un buscador y además está en constante crecimiento.</li>
+                                <li class="list-group-item">Iremos añadiendo nueva información muy a menudo. No olvides echarle un ojo de vez en cuando.</li>
+                                <li class="list-group-item"><a [routerLink]="['/plants']">Ir a la biblioteca</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </mat-tab>
+
+                        <mat-tab label="Garden">
+                          <h3>¿Cómo crear tu jardín?</h3>
+                          <p> Añade plantas a tu jardín seleccionando con el ratón la figuras.
+                          Sueltalás en el lienzo y se ajustará automáticamente.</p>
+                        </mat-tab>
+
+                        <mat-tab label="Calendario">
+                          <h3>¿Alguná tarea pendiente?</h3>
+                          <p> Según las necesidades de cada planta, se generan puntitos en el Calendario
+                            con las tareas qeu debes realizar en tu jardin.</p>
+                        </mat-tab>
+
+                        <mat-tab label="Protección de datos">
+                          <h3>¿Qué hacemos con tus datos?</h3>
+                          <p>La LOPD nos obliga a mantener almacenados tus datos hasta dos años despues de
+                            darte de baja de nuestro servicio.</p>
+                          <p>En cuanto a los datos de geolocalización, los usamos para mostrarte
+                            el parte meteorológico en tu zona, no estás compartiendo tu ubicación personal</p>
+                          <p>En cualquier momento puedes desactivar tu cuenta</p>
+                          <p>Puedes ver más detalles sobre nuestra politica de privacidad en
+                            <a href="https://gardiot.ovh/symbiose/" target="blank">Symbiose</a>
+                          </p>
+
+                        </mat-tab>
+
+                      </section>
+                    </mat-tab-group>
+                    <span class="col- text-center">
+                        <button [routerLink]="['/detail']" class="btn btn-primary btn-lg">Volver</button>
+                    </span>
+
+                  </fieldset>
+            </div>
+        </div>
+    </section>
+</article>
