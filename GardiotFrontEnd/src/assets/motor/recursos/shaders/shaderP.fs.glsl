@@ -1,7 +1,7 @@
 precision mediump float;
 
 varying vec2 vFragTexCoord;
-varying vec3 vNormalInterp;
+varying vec4 vNormalInterp;
 varying vec3 vVertPosition;
 
 struct DirectionalLight
@@ -33,12 +33,12 @@ uniform int uLighted;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 
-
+varying mat4 modelView;
 
 void main()
 {
 
-	vec3 N=normalize(vNormalInterp);
+	vec3 N=normalize(vNormalInterp.xyz);
 	vec3 L=normalize(uLight[0].position.xyz-vVertPosition);
 
 	float LN=max(dot(L, N), 0.0);
@@ -52,7 +52,17 @@ void main()
 		specular=pow(RV, propiedades.shininess);
 	}
 
-	vec3 vLight = material.Ka * cAmbientLight + material.Kd * LN * uLight[0].color + material.Ks * specular * uLight[0].specColor;
+	/*highp float spotLimit=0.6;
+	highp vec3 spotDirection=vec3(0.0, 100.0, 0.0);
+	vec4 vS4=modelView*vec4(spotDirection, 1.0);
+	vec3 vS=vec3(vS4)/vS4.w;
+	highp float spotEffect=dot(normalize(vS), L);
+*/
+	vec3 vLight = material.Ka * cAmbientLight;
+	//if(spotEffect>spotLimit){
+		vLight  += material.Kd * LN * uLight[0].color;
+		vLight +=  material.Ks* specular * uLight[0].specColor;
+	//}
 
 	vec4 texel;
 	if(uTextured==1){

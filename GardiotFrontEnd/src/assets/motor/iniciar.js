@@ -67,7 +67,7 @@ function iniciar(accion, jardin){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  // window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
+  window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -117,6 +117,7 @@ if(jardin.length%2==0){
   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
   motor.escalarMalla("calabaza", 0.3);
   motor.rotarMalla("calabaza", -90, "x");
+  motor.rotarMalla("calabaza", 90, "z");
   motor.moverMalla("calabaza", 0, 0.1, 0);
 
   // TOMATERA
@@ -190,7 +191,7 @@ if(jardin.length%2==0){
 
 
 
-  motor.moverLuz("luz1", 0.0, 10.0, 10.0);
+  motor.moverLuz("luz1", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
   //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 

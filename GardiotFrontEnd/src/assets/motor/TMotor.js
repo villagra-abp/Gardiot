@@ -321,6 +321,11 @@ class TMotor{
         mat4.invert(auxMatrix, auxMatrix);
         invertedMView=auxMatrix.slice(0);
 
+        let aux=[];
+        mat4.invert(aux, invertedMView);
+        //gl.uniform3f(glProgram[0].eyePos, aux[12], aux[13], aux[14]);
+        //console.log(aux[12], aux[13], aux[14]);
+
         //pasar matrices a WebGL
         gl.uniformMatrix4fv(glProgram[0].vMatrixUniform, false, auxMatrix);
         gl.uniformMatrix4fv(glProgram[0].pMatrixUniform, false, matrixProjection);

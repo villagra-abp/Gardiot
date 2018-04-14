@@ -61,7 +61,6 @@ export class GardenComponent {
 
   ngOnInit() {
   	this.mostrar();
-    this.inicializar();
   }
 
 

@@ -160,14 +160,17 @@ class TRecursoMalla extends TRecurso{
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+
+    mat4.invert(this.normalMatrix, this.matrixModelView);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
     //esto es lo correcto
-    mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
+    //mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
     //esto es la ñapa
     //mat3.normalFromMat4(this.normalMatrix, matrixModel);
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader
-      gl.uniformMatrix3fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
+      gl.uniformMatrix4fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
     }
 
     //Pasamos la matriz modelo al shader
