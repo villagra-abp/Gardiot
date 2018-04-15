@@ -40,8 +40,12 @@ function iniciar(accion, jardin){
   window.glFragmentShader=[];
   window.glProgram=[];
 
-  window.vertexShaders=['shader.vs', 'shaderP.vs'];
-  window.fragmentShaders=['shader.fs', 'shaderP.fs'];
+
+  //program 0 = cartoon
+  //program 1 = estandar
+  window.program=1;
+  window.vertexShaders=['shaderCartoon.vs', 'shaderP.vs'];
+  window.fragmentShaders=['shaderCartoon.fs', 'shaderP.fs'];
 
   //inicializamos el gestor de recursos
   window.gestor=new TGestorRecursos();
