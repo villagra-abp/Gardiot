@@ -29,12 +29,13 @@
   margin-top : 2em;
   margin-left, margin-right: 30px%;
   padding: 1em;
-  width: 50%;
+  width: 250px;
+  background-color:#63dd63;
 }
 
 .hoy{
   font-size : 2em;
-  float: right;
+
 }
 
 
@@ -44,12 +45,12 @@
   margin-left, margin-right:.3em;
   text-align: center;
 }
-.casilla:nth-child(even){
-  background:#cecece;
+/*.casilla:nth-child(even){
+  background-color:#63dd63;
 }
 .casilla:nth-child(odd){
   background:#fcfcfc;
-}
+}*/
 
 .maxima{
   font-size : 1.5em;
