@@ -1,7 +1,7 @@
 precision mediump float;
 
 varying vec2 vFragTexCoord;
-varying vec3 vNormalInterp;
+varying vec4 vNormalInterp;
 varying vec3 vVertPosition;
 
 struct DirectionalLight
@@ -37,7 +37,7 @@ const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 void main()
 {
 
-	vec3 N=normalize(vNormalInterp);
+	vec3 N=normalize(vNormalInterp.xyz);
 	vec3 L=normalize(uLight[0].position.xyz-vVertPosition);
 
 	float LN=max(dot(L, N), 0.0);

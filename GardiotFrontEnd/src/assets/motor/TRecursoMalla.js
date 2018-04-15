@@ -170,7 +170,7 @@ class TRecursoMalla extends TRecurso{
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader
-      gl.uniformMatrix3fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
+      gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
     }
 
     //Pasamos la matriz modelo al shader
@@ -219,11 +219,12 @@ class TRecursoMalla extends TRecurso{
 
     //Decimos si le aplicamos la luz estándar o no al objeto
     if(this.nombre=='sol'){
-      gl.uniform1i(glProgram[0].lighted, 0);
+      gl.uniform1i(glProgram[window.program].lighted, 0);
     }
     else {
-      gl.uniform1i(glProgram[0].lighted, 1);
+      gl.uniform1i(glProgram[window.program].lighted, 1);
     }
+
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 

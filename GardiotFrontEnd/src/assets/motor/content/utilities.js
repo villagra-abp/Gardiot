@@ -136,7 +136,7 @@ function setupWebGL(){
 
     glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
     glProgram[window.program].textured=gl.getUniformLocation(glProgram[window.program], "uTextured");
-		glProgram[0].lighted=gl.getUniformLocation(glProgram[0], "uLighted");
+		glProgram[window.program].lighted=gl.getUniformLocation(glProgram[window.program], "uLighted");
     //matriz de normales
     glProgram[window.program].normalMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 
