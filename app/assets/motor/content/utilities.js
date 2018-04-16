@@ -37,6 +37,40 @@ var loadJSONResource=function(url, callback){
   });
 };
 
+function updateMyPlant(garden, myPlant, plant, soil, x, y){
+	let xhr=new XMLHttpRequest(),
+			url;
+	if(window.location.toString().indexOf("localhost")>=0){
+		url=`http://localhost:3000/api/myPlant/${garden}/${myPlant}`;
+	}
+	else if(window.location.toString().indexOf("gardiot")>=0){
+		url=`https://gardiot.ovh/api/myPlant/${garden}/${myPlant}`;
+	}
+
+	xhr.open('PUT', url, true);
+
+	xhr.onload=function(){
+		let respuesta=JSON.parse(xhr.responseText);
+		for(let i=0; i<jardin.plants.length; i++){
+			if(jardin.plants[i].id==myPlant){
+				jardin.plants[i].x=x;
+				jardin.plants[i].y=y;
+			}
+
+		}
+		console.log(respuesta.Mensaje);
+	}
+
+
+	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+	xhr.send(params);
+
+}
+
+
 function makeShader(src, type){
     //compilar el vertex shader
     let shader=gl.createShader(type);
@@ -102,6 +136,7 @@ function setupWebGL(){
 
     glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
     glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
+		glProgram[0].lighted=gl.getUniformLocation(glProgram[0], "uLighted");
     //matriz de normales
     glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
 

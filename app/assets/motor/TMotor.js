@@ -83,7 +83,7 @@ class TMotor{
 
 
 	draw(){
-		  //parámetros básicos de webGL
+		    //parámetros básicos de webGL
 	      setupWebGL();
 
         //dibujar las luces
@@ -137,6 +137,7 @@ class TMotor{
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
+
 		cam.entity.setParams(-1, 1, -0.7, 0.7, 1, 1000);
 		this.camaraRegistro.push(cam);
 		return cam;
@@ -154,11 +155,32 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+      console.log(this.camaraRegistro[pos].dad.dad.entity);
 			return true;
 		}
 
 	}
-  /*
+  moverCamaraA(nombre, x, y, z){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      console.log(this.camaraRegistro[pos].dad.dad.entity.matrix);
+			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix.slice(0);
+      matrix[12]=x;
+      matrix[13]=y;
+      matrix[14]=z;
+      this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
+      console.log(matrix);
+			return true;
+		}
+  }
+/*
   zoomCamara(nombre, factor){
     var pos = -1;
 
@@ -198,7 +220,7 @@ class TMotor{
 		}
 
   }
-  */
+*/
   //Orientación de la cámara
 	rotarCamara(nombre, grados, eje){
 		var pos = -1;
@@ -330,7 +352,7 @@ class TMotor{
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
 		}
-
+    this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -420,8 +442,10 @@ class TMotor{
         		//recorremos la lista auxiliar invertida
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
-		        	mat4.multiply(auxMatrix, auxMatrix, auxStack[i]);
+              let au=[];
+		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
 		        }
+
 
 		        //calculamos la posición de la luz
 				let lPos=vec4.fromValues(1.0, 1.0, 1.0, 1.0);
@@ -430,7 +454,8 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-
+        vec4.transformMat4(lPos, lPos, invertedMView);
+        //console.log(lPos);
 
 				//se la pasamos al shader
 				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
@@ -491,6 +516,27 @@ class TMotor{
 		}
 
 	}
+
+	moverMallaA(nombre, x, y, z){
+        var pos = -1;
+
+        for (var i = 0; i< this.mallaRegistro.length; i++){
+            if(nombre == this.mallaRegistro[i].name){
+                pos = i;
+                break;
+            }
+        }
+        if(pos>=0){
+            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix.slice(0);
+              matrix[12]=x;
+              matrix[13]=y;
+              matrix[14]=z;
+              this.mallaRegistro[pos].dad.dad.dad.entity.matrix=matrix;
+              console.log(matrix);
+            return true;
+        }
+
+    }
 
 	rotarMalla(nombre, grados, eje){
 		var pos = -1;
