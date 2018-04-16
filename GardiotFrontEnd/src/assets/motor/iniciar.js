@@ -27,7 +27,7 @@ function iniciar(accion, jardin){
   //DragAndDrop
   window.dragging = false;
   //window.plants = [];
-  for (let value of jardin.plants) {
+  for (let value of window.jardin.plants) {
     value.isDragging = false;
     //window.plants.push(value);
   }
