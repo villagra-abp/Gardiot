@@ -51,13 +51,6 @@ function updateMyPlant(garden, myPlant, plant, soil, x, y){
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
-		for(let i=0; i<jardin.plants.length; i++){
-			if(jardin.plants[i].id==myPlant){
-				jardin.plants[i].x=x;
-				jardin.plants[i].y=y;
-			}
-
-		}
 		console.log(respuesta.Mensaje);
 	}
 
@@ -67,7 +60,48 @@ function updateMyPlant(garden, myPlant, plant, soil, x, y){
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
 	xhr.send(params);
+    if (xhr.status == 200)
+        return true;
+    else
+        return false;
 
+}
+
+function insertMyPlant(garden, plant, soil, x, y){
+    let xhr=new XMLHttpRequest(),
+            url;
+    if(window.location.toString().indexOf("localhost")>=0){
+        url=`http://localhost:3000/api/myPlant/${garden}`;
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+        url=`https://gardiot.ovh/api/myPlant/${garden}`;
+    }
+
+    xhr.open('POST', url, true);
+
+    xhr.onload=function(){
+        let respuesta=JSON.parse(xhr.responseText);
+        for(let i=0; i<jardin.plants.length; i++){
+            if(jardin.plants[i].id==myPlant){
+                jardin.plants[i].x=x;
+                jardin.plants[i].y=y;
+            }
+
+        }
+        console.log(respuesta.Mensaje);
+    }
+
+
+    let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+    xhr.send(params);
+
+    if (xhr.status == 200)
+        return true;
+    else
+        return false;
 }
 
 

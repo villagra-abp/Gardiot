@@ -18,6 +18,40 @@ function drawGrid() {
 
 }
 
+function drag(e) {
+  e.dataTransfer.setData("text", e.target.data-plant);
+}
+
+function allowDrop(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+function drop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    let plant = e.dataTransfer.getData("text");
+    let cv = e.target;
+    let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+    let coordX = Math.round(point[0]);
+    let coordY = Math.round(point[2]);
+
+    if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
+      let occupied = false;
+        for (let value of window.jardin.plants) { 
+          if (value.x == coordX && value.y == coordY) {
+            occupied = true;
+            break;
+          }
+        }
+        if (!occupied) {
+          motor.crearNodoMalla(plant, "lechuga", "lechuga.jpg", undefined);
+          motor.moverMallaA(plant, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
+          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
+        }
+    }
+}
+
 
 function mouse_move(e, view){
     let cv=e.target,
@@ -59,17 +93,14 @@ function mouse_move(e, view){
             e.preventDefault();
             e.stopPropagation();
 
-            let cv=e.target;
             let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
 
-            for (let plant of window.plants) {
+            for (let plant of window.jardin.plants) {
               if (plant.isDragging) {
                 motor.moverMallaA(plant.id, point[0], 0, point[2]);
-                console.log(point);
                 break;
               }
             }
-            //Redraw
           }
         }
 }
@@ -87,9 +118,8 @@ function mouse_down(e, view){
         let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
         let coordX = Math.round(point[0]);
         let coordY = Math.round(point[2]);
-        for (let plant of window.plants) {
+        for (let plant of window.jardin.plants) {
           if (plant.x == coordX && plant.y == coordY) {
-            console.log("SELECCIONADO!!!!");
             plant.isDragging = true;
             window.dragging = true;
             break;
@@ -116,14 +146,14 @@ function mouse_up(e, view){
 
   switch (e.which) {
     case 1: //Izquierdo
-      if (view != 'detail') {
+      if (view != 'detail' && window.dragging) {
         e.preventDefault();
         e.stopPropagation();
         let cv = e.target;
         let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
         let coordX = Math.round(point[0]);
         let coordY = Math.round(point[2]);
-        for (let plant of window.plants) {
+        for (let plant of window.jardin.plants) {
           if (plant.isDragging) {
             plant.isDragging = false;
             window.dragging = false;
@@ -132,7 +162,7 @@ function mouse_up(e, view){
               motor.moverMallaA(plant.id, plant.x, 0, plant.y);
             else {
               let occupied = false;
-              for (let value of window.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
+              for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
                 if (value.x == coordX && value.y == coordY) {
                   motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                   occupied = true;
@@ -141,7 +171,11 @@ function mouse_up(e, view){
               }
               if (!occupied) {
                 motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
-                updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
+                let updated = updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
+                if (updated) {
+                  plant.x = coordX;
+                  plant.y = coordY;
+                }       
               }
             }
             break;

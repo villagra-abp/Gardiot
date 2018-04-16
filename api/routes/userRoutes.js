@@ -298,7 +298,7 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 		admin: request.body.admin
 	};
 	userData = filter(userData); 
-	if (typeof userData.id!=='undefined' || typeof userData.password!=='undefined')
+	if (typeof userData.id=='undefined' || typeof userData.password=='undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	else {
 		var validate = validateInput(userData);

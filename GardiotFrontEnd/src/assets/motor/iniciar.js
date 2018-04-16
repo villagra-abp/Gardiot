@@ -26,10 +26,10 @@ function iniciar(accion, jardin){
 
   //DragAndDrop
   window.dragging = false;
-  window.plants = [];
+  //window.plants = [];
   for (let value of jardin.plants) {
     value.isDragging = false;
-    window.plants.push(value);
+    //window.plants.push(value);
   }
 
   //declaramos las variables necesarias para ejecutar el programa
