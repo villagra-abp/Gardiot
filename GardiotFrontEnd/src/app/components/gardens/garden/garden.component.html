@@ -10,7 +10,8 @@
 
 <section class="container">
     <div id="prevision">
-      <div class="row tiempo border border-light rounded" >
+    <h4>Previsión meteorológica</h4>
+      <div class="row tiempo" >
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Hoy
           <br>
@@ -44,7 +45,7 @@
           <br>
           <img src="./../../../assets/images/imgWeather/{{fotoDia5}}.png">
           <br>
-           <span class="minima">{{minDia5 | number:'.0-0'}}º</span> <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span>
+           <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span> 
         </div>
       </div>
     </div>
