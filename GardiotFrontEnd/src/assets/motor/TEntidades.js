@@ -13,6 +13,9 @@ class TTransf extends TEntidad{
     get matrix(){
         return this._matrix;
     }
+    set matrix(matrix){
+      this._matrix=matrix;
+    }
 
     set cargar(matrix4x4){
         this._matrix=matrix4x4;

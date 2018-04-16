@@ -1,0 +1,38 @@
+.header {
+    color: #25b5aa;
+    font-size: 2em;
+
+}
+.demo-tab-group {
+  border: 1px solid #e8e8e8;
+
+}
+
+.demo-tab-content {
+
+}
+
+h1{
+  padding: 2%;
+}
+
+img{
+  /* border-radius: 20%; */
+  border-radius: 26px 26px 26px 26px;
+  -moz-border-radius: 26px 26px 26px 26px;
+  -webkit-border-radius: 26px 26px 26px 26px;
+  border: 0px solid #eec019;
+
+}
+p{
+  font-size: .8em;
+}
+.row{
+  /* padding: 0;
+  margin: 0; */
+}
+
+li{
+  font-size: .9em;
+  border-color: #25b5aa;
+}

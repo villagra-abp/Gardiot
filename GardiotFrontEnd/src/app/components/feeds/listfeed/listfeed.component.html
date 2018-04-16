@@ -1,3 +1,40 @@
-<p>
-  listfeed works!
-</p>
+<div class="vistaAdmin">
+  <div class="container main-container wrap">
+  <h1>Consejos</h1>
+
+  <form (ngSubmit)="this.searchcontent()" class="form-row" #forma="ngForm" >
+    <article class="form-group col-md-4">
+      <input type="text"   class="form-control" name="commonName" placeholder="Buscar en gardiot">
+    </article>
+    <article class="form-group col-md-2">
+      <button class="btn btn-default" type="submit">Buscar</button>
+    </article>
+    <article class="form-group col-md-2">
+      <button  [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary">Nuevo Consejo</button>
+    </article>
+  </form>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Texto</th>
+      <th scope="col">Fecha Inicial</th>
+      <th scope="col">Fecha Final</th>
+      <th scope="col">Modificar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let feed of feeds">
+      <th scope="row">{{feed.name}}</th>
+      <td>{{feed.text}}</td>
+      <td>{{feed.dateInit}}</td>
+      <td>{{feed.dateFinal}}</td>
+      <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/editfeed/',feed.id]">Modificar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="delete(feed.id)" [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" >Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+  <app-pagination [count]="this.numeroItems" [type]="5" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+</div>
+</div>

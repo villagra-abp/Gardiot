@@ -52,7 +52,7 @@ export class LibraryComponent implements OnInit {
     .subscribe(data=>{
       if(data[0]!=undefined){
         this.plants=[];
-        this.numeroItems=data[0].number;
+        this.numeroItems=data[0].num;
         if(this.estado==false){
           this.paginaActual=1;
           this.estado=true;
@@ -83,6 +83,7 @@ export class LibraryComponent implements OnInit {
     .subscribe(data=>{
       if(this.estado==false){
         this.numeroItems=data[0].NUMPLANTAS;
+        console.log(this.numeroItems);
       }
       this.mostrar();
     },
@@ -116,6 +117,7 @@ export class LibraryComponent implements OnInit {
      this.user.isUserAdmin().subscribe(data=>{
        if(data){
          this.user.isAdmin=true;
+         document.querySelector('.evolver').classList.add('vistaAdmin');
        }
        else{
          this.user.isAdmin=false;
@@ -130,6 +132,7 @@ export class LibraryComponent implements OnInit {
  }
 
   ngOnInit() {
+    this.comprobaciones();
     this.ActualizarPagina();
 
   }

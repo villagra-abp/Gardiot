@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
+import { FeedService } from "../../services/feed.service";
 import { Task } from "../../classes/task.class";
+import { Feed } from "../../classes/feed.class";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
@@ -63,6 +65,9 @@ export class CalendarComponent implements OnInit{
   private treatments:any[]=[];
   private treatment= new Task();
 
+  private feeds:any[]=[];
+  private feed= new Feed();
+
 
 
 
@@ -86,7 +91,7 @@ export class CalendarComponent implements OnInit{
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
-    {
+    /*{
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
       title: 'Fumigar las margaritas',
@@ -96,6 +101,12 @@ export class CalendarComponent implements OnInit{
     {
       start: startOfDay(new Date()),
       title: 'Podar el olivo',
+      color: colors.yellow,
+      actions: this.actions
+    },
+    {
+      start: startOfDay(new Date('2018-04-15')),
+      title: 'tarta espacial',
       color: colors.yellow,
       actions: this.actions
     },
@@ -116,13 +127,14 @@ export class CalendarComponent implements OnInit{
         afterEnd: true
       },
       draggable: true
-    }
+    }*/
   ];
 
   activeDayIsOpen: boolean = true;
 
   constructor(
     private _taskService:TaskService,
+    private _feedService:FeedService,
     private _route:Router,
     private _appComponent:AppComponent,
     private datePipe: DatePipe,
@@ -157,19 +169,24 @@ export class CalendarComponent implements OnInit{
   }
 
 
-  addEvent(): void {
+  addEvent(Ttitle:string, Tstart:string, Tend:string): void {
     this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
+      title: Ttitle,
+      start: startOfDay(new Date(Tstart)),
+      end: endOfDay(new Date(Tend)),
       color: colors.red,
-      draggable: true,
+      draggable: false,
       resizable: {
         beforeStart: true,
         afterEnd: true
       }
     });
     this.refresh.next();
+  }
+
+  handleEvent(c, e){
+    alert("manejar click");
+    console.log(e);
   }
 
   mostrar(){
@@ -183,13 +200,30 @@ export class CalendarComponent implements OnInit{
           .subscribe(data=>{
             this.tasks=[];
             for(let key$ in data){
-              this.tasks.push(data[key$]);
+              //console.log(data[key$]);
+              //this.tasks.push(data[key$]);
+              this.addEvent(data[key$].name+" "+data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
             }
-            for(let key$ in data){
+            /*for(let key$ in data){
               this.treatments.push(data[key$]);
             }
             console.log(this.treatments);
-            console.log(this.tasks);
+            console.log(this.tasks);*/
+          },
+        error => {
+          console.error(error);
+        });
+  }
+
+  cargarfeeds(){
+      this._feedService.showfeeds()
+          .subscribe(data=>{
+            this.feeds=[];
+            for(let key$ in data){
+              this.feeds.push(data[key$]);
+            }
+            console.log("¿cuantos?");
+            console.log(this.feeds);
           },
         error => {
           console.error(error);
@@ -198,5 +232,6 @@ export class CalendarComponent implements OnInit{
 
   ngOnInit() {
     this.mostrar();
+    this.cargarfeeds();
   }
 }

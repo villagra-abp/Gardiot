@@ -4,12 +4,13 @@ var passport = require('passport');
 var validator = require('validator');
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var treatmentModel = require('../models/treatment');
 
 
 router.get('/admin/treatments/:number/:page/:sort', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !validator.isAscii(request.params.sort))
+  if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) ||  !isASCII(request.params.sort))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		treatmentModel.getTreatments(request.params.number, request.params.page, request.params.sort, function(error, data){
@@ -44,7 +45,7 @@ router.post('/admin/treatment', passport.authenticate('jwt', {session: false}), 
 		description: request.body.description,
 	};
 	treatmentData = filter(treatmentData); 
-	if (typeof treatmentData.name !== 'undefined')
+	if (typeof treatmentData.name == 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else {		
 		var validate = validateInput(treatmentData);
@@ -70,7 +71,7 @@ router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}
 			description: request.body.description,
 		};
 		treatmentData = filter(treatmentData);		
-		if (typeof treatmentData.name !== 'undefined')
+		if (typeof treatmentData.name == 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {	
 			var validate = validateInput(treatmentData);
@@ -108,8 +109,8 @@ router.delete('/admin/treatment/:id', passport.authenticate('jwt', {session: fal
 function validateInput(data) {
   var resp = '';
   if (data.id && !validator.isInt(data.id)) resp += 'ID no válido, ';
-  if (data.name && !validator.isAscii(data.name)) resp += 'Nombre no válido, ';
-  if (data.description && !validator.isAscii(data.description)) resp += 'Descripción no válida, ';
+  if (data.name && !isASCII(data.name)) resp += 'Nombre no válido, ';
+  if (data.description && !isASCII(data.description)) resp += 'Descripción no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
 }

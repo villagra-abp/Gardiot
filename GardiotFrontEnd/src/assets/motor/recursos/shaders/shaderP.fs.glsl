@@ -29,6 +29,7 @@ uniform Propiedades propiedades;
 uniform DirectionalLight uLight[5];
 uniform sampler2D uSampler;
 uniform int uTextured;
+uniform int uLighted;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 
@@ -52,18 +53,16 @@ void main()
 	}
 
 	vec3 vLight = material.Ka * cAmbientLight + material.Kd * LN * uLight[0].color + material.Ks * specular * uLight[0].specColor;
-	vec3 aux=vec3(4.4, 4.4, 4.4);
-	vec3 vLight2=material.Ka * cAmbientLight *aux;
+
 	vec4 texel;
-	if(uTextured==2){
+	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-		gl_FragColor=vec4(texel.rgb*vLight2, propiedades.opacity);
+		if(uLighted==1)
+			gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+		else
+			gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}
-	else if(uTextured==1){
-		texel=texture2D(uSampler, vFragTexCoord);
-		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
-	}
-	else if(uTextured==0){
+	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
 		gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}

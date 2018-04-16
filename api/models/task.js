@@ -73,7 +73,7 @@ task.insertTasks = function (myPlant, plant, callback) {
 							for (let i = 0; i < 100; i++) {
 								let month = todayDate.getMonth() + 1;
 								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
-								todayDate.setDate(todayDate.getDate() + row[object][detail])
+								todayDate.setDate(todayDate.getDate() + row[object][detail]);
 							}
 						}
 						else if (detail == 'initDate' &&  row[object][detail] != null)
@@ -97,6 +97,44 @@ task.insertTasks = function (myPlant, plant, callback) {
 			}
 			else
 				callback (null, 0);
+		});
+	}
+}
+
+task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, finalDate, callback) {
+	if (connection) {
+		connection.query('SELECT id FROM MyPlant WHERE plant = ' + plant, function (error, row) {
+			if (error)
+				callback (error, null);
+			else if (typeof row!== 'undefined' && row.length > 0) {
+				var sqlValues = '';
+				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', X';
+				if (typeof frequency !== 'undefined' && typeof initDate == 'undefined' && typeof finalDate == 'undefined') {
+					todayDate = new Date();
+					for (let i = 0; i < 100; i++) {
+						let month = todayDate.getMonth() + 1;
+						sqlValues += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
+						todayDate.setDate(todayDate.getDate() + frequency);
+					}
+				}
+				else if (typeof frequency == 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
+					for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
+						let month = initDate.getMonth() + 1;
+						sqlValues += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
+					}
+				}
+				sqlFilled = 'INSERT INTO Task (tPlant, treatmentPlant, mPlant, myPlant, date) VALUES ';
+				for (var mplant in row) 
+					sqlFilled += sqlValues.replace(new RegExp('X', 'g'), row[mplant].id);	
+							
+				sqlFilled = sqlFilled.slice(0, -1);	
+				connection.query(sqlFilled, function (error, result) {
+					if (error)
+						callback (error, null);
+					else
+						callback (null, result.affectedRows);
+				});
+			}
 		});
 	}
 }

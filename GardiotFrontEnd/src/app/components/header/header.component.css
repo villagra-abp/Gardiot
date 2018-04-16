@@ -2,6 +2,9 @@
   z-index:10;
   background-color: #299654 !important;
 }
+.navbar-light.bg-light.header{
+  z-index:9;
+}
 .navbar-header{
   position: fixed;
   top:0;
