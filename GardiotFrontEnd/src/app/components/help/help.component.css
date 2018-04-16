@@ -11,6 +11,7 @@
 .demo-tab-content {
 
 }
+
 h1{
   padding: 2%;
 }
@@ -24,12 +25,11 @@ img{
 
 }
 p{
-  color: #2E2E2E;
   font-size: .8em;
 }
 .row{
-  padding: 0;
-  margin: 0;
+  /* padding: 0;
+  margin: 0; */
 }
 
 li{
