@@ -7,17 +7,67 @@
   height: 40px;
 }
 .herramienta{
-  width: 80%;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
   display: flex;
   flex-direction:column;
-  border: 1px solid #234;
   padding: 0;
-  border-radius: 5px;
 }
 .herramienta>canvas{
   width: 100%;
   height: 100%;
 }
+
+.prevision{
+  margin-top: 1em;
+}
+
+.tiempo{
+  margin-top : 1em;
+  margin-left, margin-right: 30px%;
+  /*padding: 1em;*/
+}
+
+.tarjetaHoy{
+  margin-top : 2em;
+  margin-left, margin-right: 30px%;
+  padding: 1em;
+  width: 250px;
+  background-color:#63dd63;
+}
+
+.hoy{
+  font-size : 2em;
+
+}
+
+
+.casilla{
+  padding-top:.5em;
+  padding-bottom:.5em;
+  max-width: 100px;
+  margin-left, margin-right:.3em;
+  text-align: center;
+}
+/*.casilla:nth-child(even){
+  background-color:#63dd63;
+}
+.casilla:nth-child(odd){
+  background:#fcfcfc;
+}*/
+
+.maxima{
+  font-size : 1em;
+}
+.minima{
+  font-size : 0.8em;
+  color: gray;
+}
+
+
+
+
 
 h1, h2{
   text-align: center;

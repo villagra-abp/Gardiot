@@ -32,13 +32,29 @@ garden.getGardenById = function(id, callback) {
 
 garden.getGardenByUser = function(user, callback) {
   if (connection) {
-    var sentence = 'SELECT * FROM Garden WHERE user = "' + user + '"';
+    var sentence = 'SELECT *, Garden.id as gardenId, MyPlant.id as id FROM Garden RIGHT JOIN MyPlant ON MyPlant.garden=Garden.id ';
+    sentence += 'RIGHT JOIN Plant ON Plant.id=MyPlant.plant ';
+
+    sentence += 'WHERE Garden.user = "' + user + '" ';
     connection.query(sentence, function(error, row) {
       if (error) {
         throw error;
       }
       else {
-        callback(null, row);
+        if(row.length==0){
+          var shortSentence = 'SELECT * FROM Garden WHERE Garden.user = "' + user + '" ';
+          connection.query(shortSentence, function(shortError, shortRow) {
+            if (shortError) {
+              throw shortError;
+            }
+            else {
+              callback(null, shortRow);
+            }
+          });
+        }
+        else{
+          callback(null, row);
+        }
       }
     });
   }

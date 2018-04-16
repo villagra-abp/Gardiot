@@ -160,7 +160,10 @@ class TRecursoMalla extends TRecurso{
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    //esto es lo correcto
     mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
+    //esto es la ñapa
+    //mat3.normalFromMat4(this.normalMatrix, matrixModel);
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader
@@ -183,10 +186,8 @@ class TRecursoMalla extends TRecurso{
 
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
-      if(this.nombre.indexOf("suelo2")>=0)
-        gl.uniform1i(glProgram[0].textured, 2);
-      else
-        gl.uniform1i(glProgram[0].textured, 1);
+
+      gl.uniform1i(glProgram[0].textured, 1);
     }
     else{
       gl.uniform1i(glProgram[0].textured, 0);
@@ -211,6 +212,14 @@ class TRecursoMalla extends TRecurso{
       gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
+    }
+
+    //Decimos si le aplicamos la luz estándar o no al objeto
+    if(this.nombre=='sol'){
+      gl.uniform1i(glProgram[0].lighted, 0);
+    }
+    else {
+      gl.uniform1i(glProgram[0].lighted, 1);
     }
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);

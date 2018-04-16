@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { Product } from "../../../classes/product.class";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-listproduct',
@@ -16,10 +18,12 @@ export class ListproductComponent implements OnInit {
   private paginaActual:number=1;
   private elementosPorPagina:number=4;
   private estado:boolean=false;// false es listado y true buscador
+  dialogResult = "";
 
   constructor(
     private _productService:ProductService,
     private activatedRoute: ActivatedRoute,
+    public dialog:MatDialog,
   ) { }
 
   mostrar(){
@@ -70,9 +74,18 @@ export class ListproductComponent implements OnInit {
     });
   }
 
+  openDialog(id:number){
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width:'600px',
+      data: id
+    });
+    // dialogRef.afterClosed().subscribe(result=> {
+    //   console.log(`Dialog closed: ${result}`);
+    //   this.dialogResult = result;
+    // })
+  }
 
   ngOnInit() {
-
     this.ActualizarPagina();
   }
 

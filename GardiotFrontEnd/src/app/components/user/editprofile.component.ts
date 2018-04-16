@@ -84,7 +84,7 @@ export class EditProfileComponent implements OnInit{
     this._detailService.details(this.user)
         .subscribe(data=>{
           this.user.id=data.id;
-          this.user.birthDate=this.datePipe.transform(data[0].birthDate, 'yyyy-MM-dd');
+          this.user.birthDate=this.datePipe.transform(data.birthDate, 'yyyy-MM-dd');
           this.user.photo=data.photo;
           this.user.name=data.name;
           this.user.lastName=data.lastName;

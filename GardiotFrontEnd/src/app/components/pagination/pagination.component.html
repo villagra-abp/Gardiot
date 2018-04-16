@@ -54,3 +54,16 @@
     </li>
   </ul>
 </nav>
+
+
+<nav aria-label="Page navigation example"  *ngIf="count > 0  && type==5">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/admin/feeds']" [queryParams]="{pag: previusPage()}" >Previous</button>
+    </li>
+    <li class="page-item" *ngFor="let pageNum of getPages()" ><button class="page-link" (click)="onPage(pageNum)" [routerLink]="['/admin/feeds']" [queryParams]="{pag: pageNum}">{{pageNum}}</button></li>
+    <li class="page-item">
+      <button class="page-link"  (click)="onNext()"  [routerLink]="['/admin/feeds']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading">Next</button>
+    </li>
+  </ul>
+</nav>

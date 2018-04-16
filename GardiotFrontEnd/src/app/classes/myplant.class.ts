@@ -1,5 +1,5 @@
 
-export class Plant {
+export class MyPlant {
 
  constructor(
    public id?: number,

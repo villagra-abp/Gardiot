@@ -171,14 +171,16 @@ export class NewGardenComponent implements OnInit{
           f.getMonth() +1;
           f.getFullYear();
           fecha_actual=this.datePipe.transform(f, 'yyyy-MM-dd');
-          for(let cont=0; cont<this.plant.length; cont++){
-            X=X-1;
-            this._gardenService.saveplants(this.plant[cont],X,this.idNewJardin,fecha_actual)
-                .subscribe(data=>{
-                },
-                error=>{
-                  let v=JSON.parse(error._body);
-                });
+          if(this.plant!==undefined){
+            for(let cont=0; cont<this.plant.length; cont++){
+              X=X-1;
+              this._gardenService.saveplants(this.plant[cont],X,this.idNewJardin,fecha_actual)
+                  .subscribe(data=>{
+                  },
+                  error=>{
+                    let v=JSON.parse(error._body);
+                  });
+            }
           }
           this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
         },

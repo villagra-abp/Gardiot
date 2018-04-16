@@ -24,7 +24,7 @@ feed.getUnseenFeedsForToday = function (user, callback) {
     let month = TodayDate.getMonth() + 1;
     let day = TodayDate.getDate();
     let rightDate = '' + year + '-' + month + '-' + day;
-    connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND ' + rightDate + ' BETWEEN dateInit AND dateFinal ORDER BY Feed.name', function (error, rows) {
+    connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND  dateInit <= "' + rightDate + '"  AND  dateFinal >= "' + rightDate + '"   ORDER BY Feed.name', function (error, rows) {
       if(error)
         callback (error, null);
       else
@@ -47,7 +47,7 @@ feed.setFeedSeen = function (feed, user, callback) {
 
 feed.getFeedsNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) AS number FROM Feed', function (error, number) {
+    connection.query('SELECT COUNT(*) AS NUMFEEDS FROM Feed', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
     });
@@ -56,7 +56,7 @@ feed.getFeedsNumber = function (callback) {
 
 feed.getFeedById = function(id, callback) {
   if (connection) {
-    connection.query('SELECT name, text, date FROM Feed WHERE id = ' + id, function(error, row) {
+    connection.query('SELECT name, text, dateInit, dateFinal FROM Feed WHERE id = ' + id, function(error, row) {
       if (error)
         callback (error, null);
       else
@@ -90,11 +90,11 @@ feed.insertFeed = function(data, callback) {
       if(error)
         callback(error, null);
       else {
-        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (error, result) {
-          if(error)
-            callback(error, null);
+        connection.query('INSERT INTO UserFeed (user, feed) SELECT id, '+ result.insertId + ' FROM User', function (err, row) {
+          if(err)
+            callback(err, null);
           else
-            callback(null, result.affectedRows);
+            callback(null, row.affectedRows);
         });
       }
     });
@@ -117,6 +117,8 @@ feed.updateFeed = function(data, id, callback) {
     });
   }
 }
+
+
 
 feed.deleteFeed = function(id, callback) {
   if(connection) {

@@ -1,27 +1,53 @@
+<section class="herramienta">
+<canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+</section>
 <div class="main-container">
-  <section class="container herramienta">
-  <canvas id="myCanvas" width="1800" height="1200"></canvas>
-  </section>
+
   <section class="container title">
       <h1>{{garden.title}}</h1>
       <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
   </section>
+
 <section class="container">
-  <article class="row">
-    <div class="col">
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item">Localización:{{garden.city}}, {{garden.countryCode}}</li>
-        <li class="list-group-item">Coordenadas: {{garden.latitude}} {{garden.longitude}}</li>
-        <li class="list-group-item">Tiempo: {{cielo}}</li>
-      </ul>
+    <div id="prevision">
+    <h4>Previsión meteorológica</h4>
+      <div class="row tiempo" >
+        <div class="col-sm casilla rounded" [style.background-color]="colorMan">
+          Hoy
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoHoy}}.png">
+          <br>
+           <span class="maxima">{{temperatura | number:'.0-0'}}º</span>
+        </div>
+        <div class="col-sm casilla rounded" [style.background-color]="colorMan">
+          Mañana
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoMan}}.png">
+          <br>
+           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
+        </div>
+        <div class="col-sm casilla rounded" [style.background-color]="colorDia3">
+          {{nombreDia3}}
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia3}}.png">
+          <br>
+          <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span>
+        </div>
+        <div class="col-sm casilla rounded" [style.background-color]="colorDia4">
+          {{nombreDia4}}
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia4}}.png">
+          <br>
+          <span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span>
+        </div>
+        <div class="col-sm casilla rounded" [style.background-color]="colorDia5">
+          {{nombreDia5}}
+          <br>
+          <img src="./../../../assets/images/imgWeather/{{fotoDia5}}.png">
+          <br>
+           <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span> 
+        </div>
+      </div>
     </div>
-    <div class="col">
-      <ul class="list-group list-group-flush ">
-        <li class="list-group-item">Humedad: {{humedad}}%</li>
-        <li class="list-group-item">Presion: {{presion}} Pa</li>
-        <li class="list-group-item">Temperatura: {{temperatura}} ºC</li>
-      </ul>
-    </div>
-  </article>
 </section>
 </div>

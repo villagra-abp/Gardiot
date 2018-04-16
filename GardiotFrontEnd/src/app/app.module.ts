@@ -7,6 +7,7 @@ import { GardenService } from "./services/garden.service";
 import { PlantService } from "./services/plant.service";
 import { TreatmentService } from "./services/treatment.service";
 import { ProductService } from "./services/product.service";
+import { FeedService } from "./services/feed.service";
 import { TaskService } from "./services/task.service";
 import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
@@ -82,7 +83,18 @@ import { NewtreatmentsplantsComponent } from './components/treatmentsplants/newt
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 
+
 import { CommonModule } from '@angular/common';
+
+// POP UPS
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { HelpComponent } from './components/help/help.component';
+
 
 @NgModule({
   declarations: [
@@ -130,7 +142,9 @@ import { CommonModule } from '@angular/common';
     ListfeedComponent,
     ResetPassComponent,
     ResetPassBackComponent,
-    NewtreatmentsplantsComponent
+    NewtreatmentsplantsComponent,
+    DialogDeleteComponent,
+    HelpComponent,
 
   ],
   imports: [
@@ -142,8 +156,11 @@ import { CommonModule } from '@angular/common';
     TabModule,
     CommonModule,
     BrowserAnimationsModule,
-    CalendarModule.forRoot(), 
-    // PopupModule.forRoot(),
+    CalendarModule.forRoot(),
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatTabsModule,
     APP_ROUTING
   ],
   providers: [
@@ -155,9 +172,13 @@ import { CommonModule } from '@angular/common';
     AdminguardGuard,
     TreatmentService,
     ProductService,
+    FeedService,
     TaskService,
     TreatmentPlantService,
     DatePipe
+  ],
+  entryComponents: [
+    DialogDeleteComponent
   ],
   bootstrap: [AppComponent]
 })
