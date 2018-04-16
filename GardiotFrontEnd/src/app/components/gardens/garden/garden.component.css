@@ -19,8 +19,12 @@
   height: 100%;
 }
 
+.prevision{
+  margin-top: 1em;
+}
+
 .tiempo{
-  margin-top : 2em;
+  margin-top : 1em;
   margin-left, margin-right: 30px%;
   /*padding: 1em;*/
 }
@@ -29,33 +33,35 @@
   margin-top : 2em;
   margin-left, margin-right: 30px%;
   padding: 1em;
-  width: 50%;
+  width: 250px;
+  background-color:#63dd63;
 }
 
 .hoy{
   font-size : 2em;
-  float: right;
+
 }
 
 
 .casilla{
   padding-top:.5em;
   padding-bottom:.5em;
+  max-width: 100px;
   margin-left, margin-right:.3em;
   text-align: center;
 }
-.casilla:nth-child(even){
-  background:#cecece;
+/*.casilla:nth-child(even){
+  background-color:#63dd63;
 }
 .casilla:nth-child(odd){
   background:#fcfcfc;
-}
+}*/
 
 .maxima{
-  font-size : 1.5em;
+  font-size : 1em;
 }
 .minima{
-  font-size : 1.2em;
+  font-size : 0.8em;
   color: gray;
 }
 
@@ -65,15 +71,4 @@
 
 h1, h2{
   text-align: center;
-}
-
-
-@media (max-width: 600px) {
-
-  .tarjetaHoy{
-  width: 100%;
-}
-
-
-
 }

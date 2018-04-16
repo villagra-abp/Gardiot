@@ -36,6 +36,12 @@ export class GardenComponent {
   fotoDia4 = "default";
   fotoDia5 = "default";
 
+  colorHoy = "#fcfcfc";
+  colorMan = "#fcfcfc";
+  colorDia3 = "#fcfcfc";
+  colorDia4 = "#fcfcfc";
+  colorDia5 = "#fcfcfc";
+
   maxMan = 0;
   maxDia3 = 0;
   maxDia4 = 0;
@@ -191,6 +197,7 @@ export class GardenComponent {
      }
      this.maxMan = Math.max(...auxTemp);
      this.minMan = Math.min(...auxTemp);
+     this.colorMan = this.colorTemperatura(this.maxMan);
      auxTemp = [];
      auxNum = 0;
 
@@ -200,6 +207,7 @@ export class GardenComponent {
      }
      this.maxDia3 = Math.max(...auxTemp);
      this.minDia3 = Math.min(...auxTemp);
+     this.colorDia3 = this.colorTemperatura(this.maxDia3);
      auxTemp = [];
      auxNum = 0;
 
@@ -210,6 +218,7 @@ export class GardenComponent {
      }
      this.maxDia4 = Math.max(...auxTemp);
      this.minDia4 = Math.min(...auxTemp);
+     this.colorDia4 = this.colorTemperatura(this.maxDia4);
      auxTemp = [];
      auxNum = 0;
 
@@ -219,8 +228,29 @@ export class GardenComponent {
      }
      this.maxDia5 = Math.max(...auxTemp);
      this.minDia5 = Math.min(...auxTemp);
+     this.colorDia5 = this.colorTemperatura(this.maxDia5);
+
      auxTemp = [];
      auxNum = 0;
+
+
+  }
+
+  colorTemperatura(temp){
+    var color = "#fcfcfc";
+    if(temp<10){
+      color = "#99c0ff"
+    }
+    if(temp>=10 && temp<=20){
+      color = "#ffee99"
+    }
+    if(temp>20 && temp<=30){
+      color = "#ffe45e"
+    }
+    if(temp>30){
+      color = "#ff9999"
+    }
+    return color;
   }
 
   diaSemana(num){
@@ -251,8 +281,6 @@ export class GardenComponent {
               dia = "Domingo";
               break;
            }
-           console.log(dia);
-           console.log(num%7);
            return dia;
   }
 

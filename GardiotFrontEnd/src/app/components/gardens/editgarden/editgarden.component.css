@@ -60,10 +60,11 @@ button{
 
  .formulario{
  	position: fixed;
+ 	padding: 10px;
 	top: 81px;
 	right: 20px;
  	width:400px;
-	height: 70%;
+	height: 80%;
 	background-color: #fff;
 
  }
@@ -120,7 +121,7 @@ button{
   }
 
   .formulario{
- 	margin-top : 60px;
+ 	margin-top : -20px;
  	margin-left: auto;
  	margin-right:auto;
  	width:90%;
