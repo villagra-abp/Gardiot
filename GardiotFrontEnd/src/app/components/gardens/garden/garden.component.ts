@@ -18,11 +18,11 @@ export class GardenComponent {
 	garden = new Garden("");
 
 	cielo: string = "Cargando" ;
-  temperatura = "Cargando";
-  humedad = "Cargando";
-  presion ="Cargando";
-  viento = "Cargando";
-  angulo = "0";
+  temperatura = 0;
+  humedad = 0;
+  presion =0;
+  viento = 0;
+  angulo = 0;
 
   prevHoy = [];
   prevMan = [];
@@ -74,7 +74,6 @@ export class GardenComponent {
   mostrar(){
 	 this._gardenService.details()
         .subscribe(data=>{
-          console.log(data);
           if(data!=null){
             this.garden.id=data.id;
             this.garden.title=data.title;
@@ -87,8 +86,13 @@ export class GardenComponent {
             this.garden.countryCode=data.countryCode;
             this.garden.city=data.city;
             this.garden.plants=data.plants;
+            if(this.garden.city !== undefined){
+              console.log("hay localización");
             this.getTiempo();
             this.getPrevision();
+            }else{
+              console.log("no hay localización");
+            }
           }else{
             this._route.navigate(['/newgarden']);
           }
@@ -160,11 +164,6 @@ export class GardenComponent {
                this.nombreDia5 = this.diaSemana(date.getDay() - 1);
              }
            }
-           console.log(auxToday);
-           console.log(auxTomorrow);
-           console.log(auxDia3);
-           console.log(auxDia4);
-           console.log(auxDia5);
 
            this.prevHoy=auxToday;
            this.prevMan=auxTomorrow;
@@ -282,16 +281,6 @@ export class GardenComponent {
               break;
            }
            return dia;
-  }
-
-  mostrarPrevision(){
-    console.log(this.notVisible);
-    if(this.notVisible == false){
-      this.notVisible = true;
-    }else{
-      this.notVisible = false;
-    }
-    console.log(this.notVisible);
   }
 
   inicializar(){
