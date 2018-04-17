@@ -170,11 +170,9 @@ if(jardin.length%2==0){
   motor.rotarMalla("arbol", -90, "x");
   motor.moverMalla("arbol", 0.5, 0.2, 3);
 
-  // Arbol
-  motor.crearNodoMalla("pajaro", "pajaro", undefined, undefined);
-  motor.escalarMalla("pajaro", 1);
-  motor.rotarMalla("pajaro", -90, "x");
-  motor.moverMalla("pajaro", 0.5, 0.2, 3);
+
+
+
 
 
 
