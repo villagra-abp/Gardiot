@@ -160,12 +160,6 @@ export class GardenComponent {
                this.nombreDia5 = this.diaSemana(date.getDay() - 1);
              }
            }
-           console.log(auxToday);
-           console.log(auxTomorrow);
-           console.log(auxDia3);
-           console.log(auxDia4);
-           console.log(auxDia5);
-
            this.prevHoy=auxToday;
            this.prevMan=auxTomorrow;
            this.prevDia3=auxDia3;

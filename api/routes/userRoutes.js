@@ -30,13 +30,13 @@ router.post('/register', function(request, response) {
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
 	else if (request.body.password !== request.body.password2)
 		response.status(400).json({"Mensaje":"Las contraseñas no coinciden"});
-	else {	
+	else {
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
 		else {
 			userModel.getUserById(userData.id, function(error, data) {
-				if (error) 
+				if (error)
 					response.status(400).json({"Mensaje":error.message});
 				if (typeof data[0] !== 'undefined')
 					response.status(400).json({"Mensaje":"Este usuario ya existe"});
@@ -161,7 +161,7 @@ router.put('/user', passport.authenticate('jwt', {session: false}), routeRequire
 		city: request.body.city,
 		oldId: request.user.id
 	};
-	userData = filter(userData); 
+	userData = filter(userData);
 	var validate = validateInput(userData);
 	if (validate.length > 0)
 		response.status(400).json({"Mensaje": validate});
@@ -297,8 +297,8 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 		password: request.body.password,
 		admin: request.body.admin
 	};
-	userData = filter(userData); 
-	if (typeof userData.id!=='undefined' || typeof userData.password!=='undefined')
+	userData = filter(userData);
+	if (typeof userData.id==='undefined' || typeof userData.password==='undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y contraseña"});
 	else {
 		var validate = validateInput(userData);
@@ -364,7 +364,7 @@ router.put('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 			admin: request.body.admin,
 			oldId: request.params.id,
 		};
-		userData = filter(userData); 
+		userData = filter(userData);
 		var validate = validateInput(userData);
 		if (validate.length > 0)
 			response.status(400).json({"Mensaje": validate});
