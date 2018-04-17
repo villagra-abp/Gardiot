@@ -56,7 +56,6 @@ export class CalendarComponent implements OnInit{
 
 
   view: string = 'month';
-
   viewDate: Date = new Date();
 
   private tasks:any[]=[];
