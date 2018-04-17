@@ -91,6 +91,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { HelpComponent } from './components/help/help.component';
@@ -161,6 +162,7 @@ import { HelpComponent } from './components/help/help.component';
     MatButtonModule,
     MatDialogModule,
     MatTabsModule,
+    MatSelectModule,
     APP_ROUTING
   ],
   providers: [

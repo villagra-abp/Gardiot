@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-statistics',
@@ -9,8 +10,13 @@ import { MatDialog } from '@angular/material';
 })
 export class StatisticsComponent implements OnInit {
   dialogResult = "";
-  constructor( public dialog:MatDialog ) { }
- 
+  constructor( public dialog:MatDialog ) {
+    this.minutos=[15,60,120];
+   }
+   capturar(){
+
+   }
+
   ngOnInit() {
   }
   openDialog(){
