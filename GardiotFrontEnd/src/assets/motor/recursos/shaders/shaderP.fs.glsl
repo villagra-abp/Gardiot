@@ -34,35 +34,39 @@ uniform int uLighted;
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
 
 varying mat4 modelView;
+varying mat4 view;
+varying vec3 vVirgin;//Vertex multiplicados por model
+varying vec3 vN;//normales de los vertices sin transformar
 
 void main()
 {
 
-	vec3 N=normalize(vNormalInterp.xyz);
-	vec3 L=normalize(uLight[0].position.xyz-vVertPosition);
+	vec3 N=normalize(vN);
+	vec3 n=normalize(vNormalInterp.xyz);
+	vec3 L=normalize(uLight[0].position.xyz-vVirgin);
 
 	float LN=max(dot(L, N), 0.0);
 	float specular=0.0;
-
-	if(LN>0.0){
-		vec3 R=reflect(-L, N);
+	vec3 l=normalize(vec3(view*vec4(uLight[0].position.xyz, 1.0))-vVertPosition);
+	float ln=max(dot(l, n), 0.0);
+	if(ln>0.0){
+		vec3 R=reflect(-l, n);
 		vec3 V=normalize(-vVertPosition);
 
 		float RV=max(dot(R, V), 0.0);
 		specular=pow(RV, propiedades.shininess);
 	}
 
-	/*highp float spotLimit=0.6;
-	highp vec3 spotDirection=vec3(0.0, 100.0, 0.0);
-	vec4 vS4=modelView*vec4(spotDirection, 1.0);
-	vec3 vS=vec3(vS4)/vS4.w;
-	highp float spotEffect=dot(normalize(vS), L);
-*/
+	highp float spotLimit=0.99;
+	highp vec3 spotDirection=-uLight[0].position.xyz;
+
+	highp float spotEffect=dot(-normalize(spotDirection), L);
+
 	vec3 vLight = material.Ka * cAmbientLight;
-	//if(spotEffect>spotLimit){
-		vLight  += material.Kd * LN * uLight[0].color;
+	if(spotEffect>spotLimit && ln>0.0){
+		vLight  +=  material.Kd * ln * uLight[0].color;
 		vLight +=  material.Ks* specular * uLight[0].specColor;
-	//}
+	}
 
 	vec4 texel;
 	if(uTextured==1){

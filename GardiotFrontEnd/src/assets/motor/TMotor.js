@@ -470,7 +470,7 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-        vec4.transformMat4(lPos, lPos, invertedMView);
+        //vec4.transformMat4(lPos, lPos, invertedMView);
         //console.log(lPos);
 
 				//se la pasamos al shader
