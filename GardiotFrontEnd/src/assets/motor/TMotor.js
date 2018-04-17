@@ -103,9 +103,18 @@ class TMotor{
 
 
   usarShader(shader){
-    window.program=shader;
-    gl.useProgram(glProgram[shader]);
-    return true;
+    let p=-1;
+    if(shader=='cartoon')
+      p=0;
+    else if(shader=='realista')
+      p=1;
+    if(p>=0){
+      window.program=p;
+      gl.useProgram(glProgram[p]);
+
+      return true;
+    }
+    return false;
   }
 
 

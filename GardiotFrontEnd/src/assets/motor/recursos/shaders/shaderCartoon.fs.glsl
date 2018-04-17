@@ -61,28 +61,27 @@ void main()
 		texel=texture2D(uSampler, vFragTexCoord);
     if(texel.x<0.3){
       texel.x=.1;
-    }else{
+    }else if(texel.x<0.6){
+			texel.x=0.5;
+		}else{
       texel.x=.9;
     }
     if(texel.y<0.3){
       texel.y=.1;
-    }else{
+    }else if(texel.y<0.6){
+			texel.y=0.5;
+		}else{
       texel.y=.9;
     }
     if(texel.z<0.3){
       texel.z=.1;
-    }else{
+    }else if(texel.z<0.6){
+			texel.z=0.5;
+		}else{
       texel.z=.9;
     }
 
-    highp vec4 color = vec4( 0.0, 0.1, 0.0, 1.0);
-
-  if (LN > 0.9)  {
-  color = vec4(0.0, 1.0, 0.0, 1.0);  }
-  else if (LN > 0.6){      color = vec4(0.0, 0.5, 0.0, 1.0);  }
-  else if (LN > 0.3){      color = vec4(0.0, 0.3, 0.0, 1.0);  }
-
-		gl_FragColor=color;
+		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 	}
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
