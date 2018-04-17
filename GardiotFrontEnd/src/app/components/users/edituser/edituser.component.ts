@@ -45,7 +45,7 @@ export class EdituserComponent implements OnInit {
     }
     this._editUserService.modifyUserProfileAdmin(forma.value, this.oldId, this.user)
       .subscribe(data=>{
-        this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users");
+        this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users?pag=1");
       })
   }
 
