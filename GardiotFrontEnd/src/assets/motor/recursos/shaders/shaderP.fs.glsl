@@ -18,6 +18,7 @@ struct LightProperties
 	vec4 position;
 	vec3 color;
 	vec3 specColor;
+	vec4 direction;
 };
 
 struct Propiedades{
@@ -48,6 +49,7 @@ void main()
 {
 	vec3 N=normalize(vTVertNormal.xyz);
 	vec3 V=normalize(-vTVertPosition);
+	vec3 vLight = material.Ka * cAmbientLight;
 
 	float diffuse=0.0;
 	float specular=0.0;
@@ -55,7 +57,7 @@ void main()
 
 	for(int i=0; i<cULights; i++){
 		if(uLight[i].isActive==1){
-			vec3 L = normalize(vec3(vView*vec4(uLight[0].position.xyz, 1.0))-vTVertPosition);
+			vec3 L = normalize(vec3(vView*vec4(uLight[i].position.xyz, 1.0))-vTVertPosition);
 			diffuse += max(dot(L, N), 0.0);
 
 			if(diffuse>0.0){
@@ -63,21 +65,37 @@ void main()
 				float RV=max(dot(R, V), 0.0);
 				specular=pow(RV, propiedades.shininess);
 			}
+			vLight +=  material.Kd * diffuse * uLight[i].color;
+			vLight +=  material.Ks* specular * uLight[i].specColor;
 		}
 	}
-	
 
-	//Calculate SpotLight
-	highp float spotLimit=0.99;
-	highp vec3 spotDirection=-uLight[0].position.xyz;
-	highp float spotEffect=dot(-normalize(spotDirection), normalize(uLight[0].position.xyz-vVertPosition));
 
-	//Applicate light if it is inside of the cone
-	vec3 vLight = material.Ka * cAmbientLight;
-	if(spotEffect>spotLimit && diffuse>0.0){
-		vLight  +=  material.Kd * diffuse * uLight[0].color;
-		vLight +=  material.Ks* specular * uLight[0].specColor;
+
+	for(int i=0; i<cUSpotLights; i++){
+		//Calculate SpotLight
+		if(uSpotLight[i].isActive==1){
+			highp float spotLimit=0.99;
+			highp vec3 spotDirection=uSpotLight[i].direction.xyz;
+			highp float spotEffect=dot(-normalize(spotDirection), normalize(uSpotLight[i].position.xyz-vVertPosition));
+
+			vec3 L = normalize(vec3(vView*vec4(uSpotLight[i].position.xyz, 1.0))-vTVertPosition);
+			diffuse += max(dot(L, N), 0.0);
+
+			if(diffuse>0.0){
+				vec3 R=reflect(-L, N);
+				float RV=max(dot(R, V), 0.0);
+				specular=pow(RV, propiedades.shininess);
+			}
+
+			//Applicate light if it is inside of the cone
+			if(spotEffect>spotLimit && diffuse>0.0){
+				vLight  +=  material.Kd * diffuse * uSpotLight[i].color;
+				vLight +=  material.Ks* specular * uSpotLight[i].specColor;
+			}
+		}
 	}
+
 
 	vec4 texel;
 	if(uTextured==1){

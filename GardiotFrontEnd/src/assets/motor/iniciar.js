@@ -57,8 +57,8 @@ function iniciar(accion, jardin){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuz("luz1", "puntual", 1.7, undefined);
-  //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
+  window.luz = motor.crearNodoLuzDirigida("luz1", 20, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -177,7 +177,13 @@ if(jardin.length%2==0){
 
 
 
-
+//luces
+motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+motor.moverLuz("luz2", 0.0, 10.0, 0.0);
+//motor.moverLuz("luz3", 0.0, -10.0, 0.0);
+motor.activarLuz("luz1");
+motor.activarLuz("luz2");
+//motor.activarLuz("luz3");
 
 
 
@@ -195,11 +201,6 @@ if(jardin.length%2==0){
 
 
 
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
-  //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
-
-
 
   //motor.rotarCamaraOrbital("camara1", 45, "y");
   //motor.rotarCamaraOrbital("camara1", -45, "x");
@@ -214,11 +215,6 @@ if(jardin.length%2==0){
   motor.rotarCamara("camara2", -90, "x");
   motor.moverCamara("camara2", 0, 20, 0);
   //motor.rotarCamaraOrbital("camara2", -90, "x");
-
-
-  motor.activarLuz("luz1");
-  //motor.activarLuz("luz2");
-  //motor.activarLuz("luz3");
 
 
 
