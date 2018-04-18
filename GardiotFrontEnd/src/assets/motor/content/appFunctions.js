@@ -19,7 +19,7 @@ function drawGrid() {
 }
 
 function drag(e) {
-  e.dataTransfer.setData("text", e.target.data-plant);
+  e.dataTransfer.setData("text", e.target.id);
 }
 
 function allowDrop(e) {
@@ -44,11 +44,8 @@ function drop(e) {
             break;
           }
         }
-        if (!occupied) {
-          motor.crearNodoMalla(plant, "lechuga", "lechuga.jpg", undefined);
-          motor.moverMallaA(plant, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
-          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
-        }
+        if (!occupied) 
+          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);       
     }
 }
 
@@ -169,14 +166,8 @@ function mouse_up(e, view){
                   break;
                 }
               }
-              if (!occupied) {
-                motor.moverMallaA(plant.id, coordX, 0, coordY); //Esta llamada tal vez es innecesaria
-                let updated = updateMyPlant(window.jardin.id, plant.id, plant.plant, window.jardin.soil, coordX, coordY);
-                if (updated) {
-                  plant.x = coordX;
-                  plant.y = coordY;
-                }       
-              }
+              if (!occupied) 
+                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);                   
             }
             break;
           }

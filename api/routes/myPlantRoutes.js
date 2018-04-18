@@ -72,7 +72,7 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 										});
 									}
 									else
-										response.status(200).json({"Mensaje":"Planta añadida. Insertadas " + inserted + " nuevas tareas."});
+										response.status(200).json({myPlant});
 								});
 							}								
 						});
