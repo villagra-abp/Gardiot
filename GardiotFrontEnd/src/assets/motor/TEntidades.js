@@ -82,8 +82,11 @@ class TLuz extends TEntidad {
         this._intensidadSpecular=[specR, specG, specB];
         if(amplitud !== undefined)
           this._amplitud = (100-amplitud)/100;
-        if(direccion !== undefined)
+        if(direccion !== undefined){
+          this._origin = vec4.fromValues(direccion[0], direccion[1], direccion[2], 1.0);
           this._direccion = vec4.fromValues(direccion[0], direccion[1], direccion[2], 1.0);
+        }
+
     }
 
     setIntensidad (r, g, b) {
@@ -92,6 +95,10 @@ class TLuz extends TEntidad {
 
     setIntensidadSpecular (r, g, b){
         this._intensidadSpecular=[r, g, b];
+    }
+
+    set direccion(direccion){
+      this._direccion=direccion;
     }
 
     get tipo () {
@@ -112,6 +119,10 @@ class TLuz extends TEntidad {
 
     get direccion () {
       return this._direccion;
+    }
+
+    get origin () {
+      return this._origin;
     }
 
     beginDraw(){} //Suelen estar vacios

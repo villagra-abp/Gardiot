@@ -166,7 +166,7 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
-      console.log(this.camaraRegistro[pos].dad.dad.entity);
+
 			return true;
 		}
 
@@ -187,7 +187,7 @@ class TMotor{
       matrix[13]=y;
       matrix[14]=z;
       this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
-      console.log(matrix);
+
 			return true;
 		}
   }
@@ -480,6 +480,13 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.luzRegistro[pos].dad.entity.rotar(grados, eje);
+
+
+
+      let lDir=this.luzRegistro[i].entity.origin.slice(0);
+      vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
+
+      this.luzRegistro[i].entity.direccion=lDir.slice(0);
 			return true;
 		}
 
@@ -511,19 +518,11 @@ class TMotor{
 
 		        //calculamos la posición de la luz
 				let lPos=vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-        let lDir=this.luzRegistro[i].entity.direccion;
-
 				let aux=vec4.fromValues(1.0, 1.0, 1.0, 0.0);
-        let aux2=vec4.fromValues(1.0, 1.0, 1.0, 0.0);
 
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-        //vec4.transformMat4(lDir, lDir, auxMatrix);
-				//vec4.subtract(lDir, lDir, aux2);
-
-		        //vec4.transformMat4(lPos, lPos, invertedMView);
-		        //console.log(lPos);
 
 				//se la pasamos al shader
 				//console.log(this.luzRegistro[i].entity.tipo);
@@ -533,8 +532,6 @@ class TMotor{
 					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
 					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
 					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
-          //lightDirUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].direction`);
-
 				}
 				else if(this.luzRegistro[i].entity.tipo=="dirigida"){
 					isActive=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
