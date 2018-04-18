@@ -177,8 +177,14 @@ var JWTstrategy = new jwtStrategy(jwtOptions, function(payload, next) {
 	userModel.getUserById(payload.sub, function(err, user) {
 		if (err)
 			next(err, false);
-		else if (typeof user[0] !== 'undefined')
-			next(null, user[0]);
+		else if (typeof user[0] !== 'undefined') {
+			userModel.registerConnection(user[0].id, function(error, up) {
+				if (error)
+					next(error, false);
+				else
+					next(null, user[0]);
+			});			
+		}
 		else
 			next(null, false);
 

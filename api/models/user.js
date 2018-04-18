@@ -151,4 +151,15 @@ user.checkPassword = function(pw1, pw2, callback) {
 	});
 }
 
+user.registerConnection = function (email, callback) {
+	if (connection) {
+		connection.query('UPDATE User SET lastConnection = NOW() WHERE id = "' + email + '"', function (error, result) {
+			if (error)
+				callback (error, null);
+			else
+				callback (null, result.affectedRows);
+		});
+	}
+}
+
 module.exports = user;

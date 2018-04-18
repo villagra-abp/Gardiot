@@ -31,6 +31,7 @@ import { AuthguardGuard } from "./authguard.guard";
 import { admin_routes } from "./admin.routes";
 import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
+import { HelpComponent } from './components/help/help.component';
 
 
 const app_routes: Routes = [
@@ -54,6 +55,7 @@ const app_routes: Routes = [
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: 'resetPass', component: ResetPassComponent },
   { path: 'reset-pass-back/:key', component: ResetPassBackComponent, },
+  { path: 'help', component: HelpComponent, },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 

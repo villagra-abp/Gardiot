@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TreatmentService } from '../../../services/treatment.service';
 import { Treatment } from "../../../classes/treatment.class";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-listtreatment',
@@ -20,6 +22,7 @@ export class ListtreatmentComponent implements OnInit {
   constructor(
     private _treatmentService:TreatmentService,
     private activatedRoute: ActivatedRoute,
+    public dialog:MatDialog,
   ) { }
 
   mostrar(){
@@ -67,6 +70,13 @@ export class ListtreatmentComponent implements OnInit {
    },
    error => {
      console.error(error);
+   });
+ }
+
+ openDialog(id:number,tipo:number){
+   let dialogRef = this.dialog.open(DialogDeleteComponent, {
+     width:'600px',
+     data:{idObject: id, typeObject: tipo}
    });
  }
 

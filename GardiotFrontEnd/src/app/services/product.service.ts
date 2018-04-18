@@ -53,6 +53,18 @@ export class ProductService {
 					})
 		}
 
+		searchAll(product:Product,page:number, items:number){
+			let body = `name=${product.name}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.post(this.apiURL+"find/Product/"+items+"/"+page+"/name/ASC", body,  { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
 		getNumberItems(){
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`

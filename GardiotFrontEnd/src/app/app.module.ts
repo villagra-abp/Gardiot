@@ -39,7 +39,6 @@ import { RegisterComponent } from './components/manage/register.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 //Admin imports
 import { AdminComponent } from './components/admin/admin.component';
-import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -90,7 +89,11 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { HelpComponent } from './components/help/help.component';
+
 
 @NgModule({
   declarations: [
@@ -112,7 +115,6 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     GardenComponent,
     EditGardenComponent,
     NewGardenComponent,
-    AnalyticsComponent,
     StatisticsComponent,
     UserdataComponent,
     LibraryComponent,
@@ -140,6 +142,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     ResetPassBackComponent,
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
+    HelpComponent,
 
   ],
   imports: [
@@ -155,6 +158,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatTabsModule,
     APP_ROUTING
   ],
   providers: [

@@ -39,8 +39,7 @@ export class ListproductComponent implements OnInit {
           console.error(error);
         });
     }else{
-    //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
-        console.log("assss");
+    this.searchcontent(this.paginaActual,this.elementosPorPagina);
     }
   }
   ActualizarPagina(){
@@ -74,10 +73,30 @@ export class ListproductComponent implements OnInit {
     });
   }
 
-  openDialog(id:number){
+  searchcontent(page:number, items:number){
+    this._productService.searchAll(this.product,page,items)
+    .subscribe(data=>{
+      if(data[0]!=undefined){
+        this.products=[];
+        this.numeroItems=data[0].num;
+        if(this.estado==false){
+          this.paginaActual=1;
+          this.estado=true;
+        }
+        for(let key$ in data){
+          this.products.push(data[key$]);
+        }
+      }
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  openDialog(id:number,tipo:number){
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width:'600px',
-      data: id
+      data:{idObject: id, typeObject: tipo}
     });
     // dialogRef.afterClosed().subscribe(result=> {
     //   console.log(`Dialog closed: ${result}`);

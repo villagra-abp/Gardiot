@@ -1,10 +1,64 @@
-
-
 <div class="container main-container">
-  <h1>
-    Bienvenido a Gardiot, tu email es {{this.user.id}}
-  </h1>
-  <div class="wrap">
+<section *ngFor="let feed of feeds" class="alert alert-success" role="alert">
+  <article class="form-row">
+    <div class="form-group col-md-2">
+        <h4>{{feed.name}}: </h4>
+    </div>
+    <div class="form-group col-md-9">
+        <p>{{feed.text}} </p>
+      </div>
+      <div class="form-group col-md-1">
+        <button class="btn btn-outline-primary">visto</button>
+      </div>
+  </article>
+</section>
+<section class="herramienta">
+  <article class="form-row">
+    <div class="form-group col-md-6">
+      <canvas [routerLink]="[gardenRoute]" id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="450" height="350" ></canvas>
+    </div>
+    <div [routerLink]="['/calendar']" class="form-group col-md-6">
+      <div class="row text-center">
+      <div  class="col-md-12">
+        <h3 >{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+      </div>
+    </div>
+    <br>
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)">
+      </mwl-calendar-day-view>
+    </div>
+    </div>
+  </article>
+
+</section>
+
+
+  <!-- <div class="wrap">
     <div class="card-columns">
       <div class="card text-white bg-success mb-3" [routerLink]="[gardenRoute]" style="max-width: 25rem;">
         <div class="card-header">Jardín</div>
@@ -25,5 +79,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

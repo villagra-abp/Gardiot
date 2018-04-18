@@ -166,7 +166,7 @@ if(jardin.length%2==0){
   // CICA
   motor.crearNodoMalla("cyca2", "cyca2", "cyca2.jpg", undefined);
   motor.escalarMalla("cyca2", 0.1);
-  motor.rotarMalla("cyca2", 180, "x");
+  motor.rotarMalla("cyca2", -90, "x");
   motor.moverMalla("cyca2", -1, 0.2, 6);
 
   // Arbol

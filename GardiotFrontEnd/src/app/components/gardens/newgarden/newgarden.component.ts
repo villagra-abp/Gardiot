@@ -79,7 +79,7 @@ export class NewGardenComponent implements OnInit{
 
               },
               error => {
-                console.log(error);
+                console.error(error);
               });
             }
           }
@@ -106,7 +106,7 @@ export class NewGardenComponent implements OnInit{
 
             },
             error => {
-              console.log(error);
+              console.error(error);
             });
 
         }
