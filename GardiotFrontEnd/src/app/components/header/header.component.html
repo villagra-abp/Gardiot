@@ -62,7 +62,7 @@
         <a [routerLink]="['/help']" class="nav-link" href="#">Ayuda</a>
       </li>
 			<li class="nav-item" *ngIf="this.userService.isAuthenticated">
-				<a [routerLink]="['/plants']" class="nav-link" href="#">Biblioteca</a>
+				<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="nav-link" href="#">Biblioteca</a>
 			</li>
       <li class="nav-item" id="photoMenu" [routerLink]="['/profile']" *ngIf="this.userService.isAuthenticated">
 				<div>

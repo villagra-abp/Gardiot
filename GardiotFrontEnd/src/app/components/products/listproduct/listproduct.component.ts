@@ -39,8 +39,7 @@ export class ListproductComponent implements OnInit {
           console.error(error);
         });
     }else{
-    //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
-        console.log("assss");
+    this.searchcontent(this.paginaActual,this.elementosPorPagina);
     }
   }
   ActualizarPagina(){
@@ -68,6 +67,26 @@ export class ListproductComponent implements OnInit {
     this._productService.deleteProduct(idProduct)
     .subscribe(data=>{
       this.ActualizarPagina();
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  searchcontent(page:number, items:number){
+    this._productService.searchAll(this.product,page,items)
+    .subscribe(data=>{
+      if(data[0]!=undefined){
+        this.products=[];
+        this.numeroItems=data[0].num;
+        if(this.estado==false){
+          this.paginaActual=1;
+          this.estado=true;
+        }
+        for(let key$ in data){
+          this.products.push(data[key$]);
+        }
+      }
     },
     error => {
       console.error(error);
