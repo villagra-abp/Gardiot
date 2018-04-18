@@ -1,4 +1,5 @@
 var connection = require('../config/connection');
+var geo = require('geo-hash');
 
 var garden = {};
 
@@ -85,7 +86,11 @@ garden.insertGarden = function(data, callback) {
       sentence +='city ="' + data.city + '",';
     }
     if(data.zip) {
-      sentence +='zip ="' + data.zip + '" ';
+      sentence +='zip ="' + data.zip + '",';
+    }
+    if(data.longitude && data.latitude) {
+      var geohash = geo.encode(data.latitude, data.longitude, 8);
+      sentence +='geoHash ="' + geohash + '" ';
     }
     sentence = sentence.slice(0, -1);
 
