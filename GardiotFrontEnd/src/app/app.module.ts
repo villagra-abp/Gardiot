@@ -39,7 +39,6 @@ import { RegisterComponent } from './components/manage/register.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 //Admin imports
 import { AdminComponent } from './components/admin/admin.component';
-import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -116,7 +115,6 @@ import { HelpComponent } from './components/help/help.component';
     GardenComponent,
     EditGardenComponent,
     NewGardenComponent,
-    AnalyticsComponent,
     StatisticsComponent,
     UserdataComponent,
     LibraryComponent,

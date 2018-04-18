@@ -67,7 +67,6 @@ export class GardenComponent {
 
   ngOnInit() {
   	this.mostrar();
-    this.inicializar();
   }
 
 
@@ -86,7 +85,8 @@ export class GardenComponent {
             this.garden.user=data.user;
             this.garden.countryCode=data.countryCode;
             this.garden.city=data.city;
-            this.garden.plants=data.plants;
+            this.garden.plants=data.plants;  
+            new iniciar("detail", this.garden);
             if(this.garden.city){
               this.visible = true;
               this.getTiempo();
@@ -120,7 +120,6 @@ export class GardenComponent {
           this.presion =  data.main.pressure;
           this.viento = data.wind.speed;
 
-          new iniciar("detail", this.garden);
 
 
 	        },
@@ -282,7 +281,7 @@ export class GardenComponent {
            }
            return dia;
   }
-  
+
   inicializar(){
     new iniciar("detail");
   }

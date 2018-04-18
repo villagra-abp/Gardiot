@@ -13,9 +13,6 @@
         <li *ngIf="this.userService.isAuthenticated">
           <a [routerLink]="['/admin/statistics']" href="#">Estadísticas</a>
         </li>
-        <li *ngIf="this.userService.isAuthenticated">
-          <a [routerLink]="['/admin/analytics']" href="#">Anatítica</a>
-        </li>
 				<li *ngIf="this.userService.isAuthenticated">
 					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" href="#">Usuarios</a>
 				</li>

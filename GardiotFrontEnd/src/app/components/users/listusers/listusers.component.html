@@ -33,7 +33,8 @@
       <td>{{user.admin}}</td>
       <td>{{user.active}}</td>
       <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]">Modificar</button></td>
-      <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" >Eliminar</button></td>
+      <!-- <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
+      <td><button  class="btn btn-outline-danger" (click)="openDialog(user.id,5)" >Eliminar</button></td>
     </tr>
   </tbody>
 </table>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
-import { AppComponent } from "../../../app.component";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -21,8 +22,9 @@ export class AdminListUsersComponent {
   constructor(
     private _detailService:UserService,
     private _route:Router,
-    private _appComponent:AppComponent,
-    private activatedRoute: ActivatedRoute){ }
+    private activatedRoute: ActivatedRoute,
+    private dialog:MatDialog,
+    ){ }
 
 
     mostrar(){
@@ -70,6 +72,12 @@ export class AdminListUsersComponent {
      },
      error => {
        console.error(error);
+     });
+   }
+   openDialog(id:number,tipo:number){
+     let dialogRef = this.dialog.open(DialogDeleteComponent, {
+       width:'600px',
+       data:{idObject: id, typeObject: tipo}
      });
    }
 
