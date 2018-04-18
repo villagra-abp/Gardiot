@@ -42,7 +42,7 @@ garden.getGardenByUser = function(user, callback) {
       }
       else {
         if(row.length==0){
-          var shortSentence = 'SELECT * FROM Garden WHERE Garden.user = "' + user + '" ';
+          var shortSentence = 'SELECT *, Garden.id as gardenId FROM Garden WHERE Garden.user = "' + user + '" ';
           connection.query(shortSentence, function(shortError, shortRow) {
             if (shortError) {
               throw shortError;

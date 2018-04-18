@@ -46,7 +46,6 @@ export class EditGardenComponent implements OnInit{
           this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
             .subscribe(data=> {
               let sp=document.querySelector('#ciudad');
-              console.log(data);
 
               if(data.length>0){
                 this.garden.latitude=data[0].lat.toFixed(2);
@@ -73,11 +72,10 @@ export class EditGardenComponent implements OnInit{
                 sp.innerHTML='Código postal no encontrado';
               }
               input.value='';
-              console.log(this.garden);
 
             },
             error => {
-              console.log(error);
+              console.error(error);
             });
           }
         }
@@ -85,7 +83,6 @@ export class EditGardenComponent implements OnInit{
         listarPaises() {
           this._gardenService.listCoutries()
             .subscribe(data=> {
-              console.log(data.geonames);
               let aux=[];
               aux.push({id:0, text:"Selecciona un país"});
               for(let i=0; i<data.geonames.length; i++){
@@ -106,7 +103,7 @@ export class EditGardenComponent implements OnInit{
 
             },
             error => {
-              console.log(error);
+              console.error(error);
             });
 
         }
@@ -134,7 +131,6 @@ export class EditGardenComponent implements OnInit{
 	this._gardenService.details()
         .subscribe(data=>{
           if(data!=null){
-            console.log(data);
             this.garden.id=data.id;
             this.garden.title=data.title;
             this.garden.width=data.width;
@@ -187,7 +183,6 @@ export class EditGardenComponent implements OnInit{
     let desvX=(canvas.width-1200)*0.0008;
     let desvY=(canvas.height-974)*0.00072;
     let pos=motor.getPosCamaraActiva();
-    console.log(pos);
     //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
     motor.getCamaraActiva().entity.setParams(-1-desvX, 1+desvX, -0.7-desvY, 0.7+desvY, 1, 1000);
 
@@ -216,14 +211,12 @@ export class EditGardenComponent implements OnInit{
   }
 
   saveCountry(e){
-  console.log("save country "+e.value);
     if(e.value!=0 && e.value!==undefined){
       this.garden.countryCode=e.value;
     }
   }
 
   saveCity(e){
-    console.log("save city "+e.value);
     if(e.value!=0 && e.value!==undefined){
       this.garden.city=e.value;
       this.mostrarCiudad();

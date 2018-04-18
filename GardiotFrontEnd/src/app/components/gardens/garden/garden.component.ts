@@ -57,7 +57,7 @@ export class GardenComponent {
   nombreDia5 = "";
 
   tercerDia:string = "";
-  notVisible = false;
+  visible = false;
 
   constructor(
   	private _gardenService:GardenService,
@@ -87,8 +87,13 @@ export class GardenComponent {
             this.garden.countryCode=data.countryCode;
             this.garden.city=data.city;
             this.garden.plants=data.plants;
-            this.getTiempo();
-            this.getPrevision();
+            if(this.garden.city){
+              this.visible = true;
+              this.getTiempo();
+              this.getPrevision();
+            }else{
+              this.visible = false;
+            }
           }else{
             this._route.navigate(['/newgarden']);
           }
@@ -277,17 +282,7 @@ export class GardenComponent {
            }
            return dia;
   }
-
-  mostrarPrevision(){
-    console.log(this.notVisible);
-    if(this.notVisible == false){
-      this.notVisible = true;
-    }else{
-      this.notVisible = false;
-    }
-    console.log(this.notVisible);
-  }
-
+  
   inicializar(){
     new iniciar("detail");
   }
