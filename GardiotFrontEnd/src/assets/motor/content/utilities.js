@@ -140,12 +140,12 @@ function setupWebGL(){
     //matriz de normales
     glProgram[window.program].normalMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 
-		glProgram[window.program].ka=gl.getUniformLocation(glProgram[window.program], "material.Ka");
-		glProgram[window.program].kd=gl.getUniformLocation(glProgram[window.program], "material.Kd");
-		glProgram[window.program].ks=gl.getUniformLocation(glProgram[window.program], "material.Ks");
+	glProgram[window.program].ka=gl.getUniformLocation(glProgram[window.program], "material.Ka");
+	glProgram[window.program].kd=gl.getUniformLocation(glProgram[window.program], "material.Kd");
+	glProgram[window.program].ks=gl.getUniformLocation(glProgram[window.program], "material.Ks");
 
-		glProgram[window.program].shin=gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
-		glProgram[window.program].opac=gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
+	glProgram[window.program].shin=gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
+	glProgram[window.program].opac=gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
 }
 
 

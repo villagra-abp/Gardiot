@@ -354,21 +354,21 @@ class TMotor{
 	 * @param  {TNodo | undefined} hermano
 	 * @return {TNodo}
 	 */
-	crearNodoLuz(nombre, intensidad, hermano){
+	crearNodoLuz(nombre, tipo, intensidad, hermano){
 		let i=intensidad;
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(tipo, i, i, i, i, i, i), rotLuz);
 		}else{
 			//console.log("crea en raiz");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz(tipo, i, i, i, i, i, i), rotLuz);
 		}
-    this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+    	this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -458,7 +458,7 @@ class TMotor{
         		//recorremos la lista auxiliar invertida
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
-              let au=[];
+              		let au=[];
 		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
 		        }
 
@@ -470,18 +470,31 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-        //vec4.transformMat4(lPos, lPos, invertedMView);
-        //console.log(lPos);
+		        //vec4.transformMat4(lPos, lPos, invertedMView);
+		        //console.log(lPos);
 
 				//se la pasamos al shader
-				var lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
-				var lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
-				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
+				//console.log(this.luzRegistro[i].entity.tipo);
+				let isActive, lightPosUniformLocation, lightIntUniformLocation, lightSpecUniformLocation;
+				if(this.luzRegistro[i].tipo=="puntual"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
 
+				}
+				else if(this.luzRegistro[i].tipo=="dirigida"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
+				}
+
+				gl.uniform1i(isActive, 1);
 				gl.uniform4fv(lightPosUniformLocation, lPos);
 				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
 				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
-
+				
 				contLuces++;
 			}
 		}

@@ -57,7 +57,7 @@ function iniciar(accion, jardin){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuz("luz1", 1.7, undefined);
+  window.luz = motor.crearNodoLuz("luz1", "puntual", 1.7, undefined);
   //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 

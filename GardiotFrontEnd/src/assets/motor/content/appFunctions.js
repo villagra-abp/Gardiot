@@ -9,6 +9,7 @@ function animLoop(){
         motor.rotarMalla("malla2", 1, "x");
         motor.rotarMalla("malla2", 1, "y");
         motor.rotarMalla("malla2", 1, "z");
+
         motor.draw();
     }
     requestAnimationFrame(animLoop, canvas);
