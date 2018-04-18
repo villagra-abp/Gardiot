@@ -7,7 +7,7 @@ var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
 
 var userModels = ["PLANT"];
-var adminModels = ["USER"];
+var adminModels = ["USER","PRODUCT","TREATMENT","FEED"];
 
 var finderModel = require('../models/finder');
 
@@ -23,9 +23,9 @@ router.post('/find/:model/:number/:page/:order/:sort', passport.authenticate('jw
         if (error)
           response.status(400).json({"Mensaje":"Error al buscar los datos: " + error.message});
         else if (data)
-          response.status(200).json(data);				
+          response.status(200).json(data);
       });
-    }	
+    }
 	}
 });
 
