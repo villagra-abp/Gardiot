@@ -63,7 +63,7 @@ export class FeedService {
 					})
 		}
 
-		deleteProduct(idFeed: number){
+		deleteFeed(idFeed: number){
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});

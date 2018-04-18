@@ -31,7 +31,8 @@
       <td>{{feed.dateInit}}</td>
       <td>{{feed.dateFinal}}</td>
       <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/editfeed/',feed.id]">Modificar</button></td>
-      <td><button  class="btn btn-outline-danger" (click)="delete(feed.id)" [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" >Eliminar</button></td>
+      <!-- <td><button  class="btn btn-outline-danger" (click)="delete(feed.id)" [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
+      <td><button  class="btn btn-outline-danger" (click)="openDialog(feed.id,3)" >Eliminar</button></td>
     </tr>
   </tbody>
 </table>

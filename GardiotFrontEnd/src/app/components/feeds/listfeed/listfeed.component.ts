@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FeedService } from '../../../services/feed.service';
 import { Feed } from "../../../classes/feed.class";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
-
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-listfeed',
   templateUrl: './listfeed.component.html',
@@ -20,6 +21,7 @@ export class ListfeedComponent implements OnInit {
   constructor(
     private _feedService:FeedService,
     private activatedRoute: ActivatedRoute,
+    private dialog:MatDialog,
   ) { }
 
   mostrar(){
@@ -61,12 +63,19 @@ export class ListfeedComponent implements OnInit {
 
 
   delete(idProduct:number){
-    this._feedService.deleteProduct(idProduct)
+    this._feedService.deleteFeed(idProduct)
     .subscribe(data=>{
       this.ActualizarPagina();
     },
     error => {
       console.error(error);
+    });
+  }
+
+  openDialog(id:number,tipo:number){
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width:'600px',
+      data:{idObject: id, typeObject: tipo}
     });
   }
 
