@@ -77,7 +77,7 @@ export class ListproductComponent implements OnInit {
   openDialog(id:number,tipo:number){
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width:'600px',
-      data:{idObject: id, tipoObject: tipo}
+      data:{idObject: id, typeObject: tipo}
     });
     // dialogRef.afterClosed().subscribe(result=> {
     //   console.log(`Dialog closed: ${result}`);

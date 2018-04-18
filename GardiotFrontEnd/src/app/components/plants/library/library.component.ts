@@ -5,8 +5,9 @@ import { PlantService } from "../../../services/plant.service";
 import { UserService } from '../../../services/user.service';
 import { Plant } from "../../../classes/plant.class";
 import { Family } from "../../../classes/family.class";
-import { AppComponent } from "../../../app.component";
 import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -25,9 +26,9 @@ export class LibraryComponent implements OnInit {
   constructor(
     private _plantService:PlantService,
     private _route:Router,
-    private _appComponent:AppComponent,
     private activatedRoute: ActivatedRoute,
-    private user:UserService
+    private user:UserService,
+    private dialog:MatDialog,
   ) {}
 
   mostrar(){
@@ -129,6 +130,13 @@ export class LibraryComponent implements OnInit {
    else{
      this.user.isAdmin=false;
    }
+ }
+
+ openDialog(id:number,tipo:number){
+   let dialogRef = this.dialog.open(DialogDeleteComponent, {
+     width:'600px',
+     data:{idObject: id, typeObject: tipo}
+   });
  }
 
   ngOnInit() {

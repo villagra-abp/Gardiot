@@ -28,7 +28,7 @@
       <td>{{treatment.description}}</td>
       <td><button  class="btn btn-outline-primary" [routerLink]="['/admin/edittreatment/',treatment.id]" >Modificar</button></td>
       <!-- <td><button  class="btn btn-outline-danger" (click)="delete(treatment.id)" [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-      <td><button  class="btn btn-outline-danger" (click)="openDialog(treatment.id)" >Eliminar</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="openDialog(treatment.id,2)" >Eliminar</button></td>
 
     </tr>
   </tbody>
