@@ -1,4 +1,4 @@
-<section class="container vistaAdmin">
+ <section class="container vistaAdmin">
   <h1>Estadisticas</h1>
   <article>
       <section class="row">
@@ -23,13 +23,13 @@
                               <div class="col">
                                 <h4>Usuarios conectados</h4>
                                 <br>
-                                <mat-form-field>
+                                 <!-- <mat-form-field>
                                   <mat-select placeholder="Usuarios conectados" [(ngModel)]="selectedValue">
                                     <mat-option *ngFor="let minuto of minutos" [value]="minuto.value">
                                       {{ minuto.viewValue }}
                                     </mat-option>
                                   </mat-select>
-                                </mat-form-field>
+                                </mat-form-field> -->
                                 <p> Valor seleccionado: {{selectedValue}}</p>
                                 <br>
                                 <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-planta1=Aloe%20vera&var-planta2=Cactus&var-tiempo=120&from=1523972498658&to=1523973398658&panelId=10"
@@ -79,3 +79,4 @@
       </iframe>
     </div>
   </article>
+</section>

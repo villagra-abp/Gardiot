@@ -23,7 +23,7 @@ export class DialogDeleteComponent implements OnInit {
     this.thisDialogRef.close('Cancel');
   }
   delete(){
-    this._productService.deleteProduct(this.data)
+    this._productService.deleteProduct(this.data[0])
     .subscribe(data=>{
       window.location.reload();
       this.thisDialogRef.close('Confirm');

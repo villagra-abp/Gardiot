@@ -74,10 +74,10 @@ export class ListproductComponent implements OnInit {
     });
   }
 
-  openDialog(id:number){
+  openDialog(id:number,tipo:number){
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width:'600px',
-      data: id
+      data:{idObject: id, tipoObject: tipo}
     });
     // dialogRef.afterClosed().subscribe(result=> {
     //   console.log(`Dialog closed: ${result}`);
