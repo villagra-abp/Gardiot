@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { TreatmentService } from '../../services/treatment.service';
 import { FeedService } from '../../services/feed.service';
 import { PlantService } from "../../services/plant.service";
+import { UserService } from "../../services/user.service";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class DialogDeleteComponent implements OnInit {
     private _treatmentService:TreatmentService,
     private _feedService:FeedService,
     private _plantService:PlantService,
+    private _userService:UserService,
   ) { }
 
   onCloseConfirm(){
@@ -64,8 +66,19 @@ export class DialogDeleteComponent implements OnInit {
     if(this.data.typeObject==4){
       this._plantService.deletePlant(this.data.idObject)
       .subscribe(data=>{
-        // window.location.reload();
-        // this.thisDialogRef.close('Confirm');
+        window.location.reload();
+        this.thisDialogRef.close('Confirm');
+    },
+    error => {
+      console.error(error);
+    });
+    }
+
+    if(this.data.typeObject==5){
+      this._userService.deleteUser(this.data.idObject)
+      .subscribe(data=>{
+        window.location.reload();
+        this.thisDialogRef.close('Confirm');
     },
     error => {
       console.error(error);

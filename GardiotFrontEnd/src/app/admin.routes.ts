@@ -9,7 +9,6 @@ import { EdituserComponent } from './components/users/edituser/edituser.componen
 import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 //negocio
 import { StatisticsComponent } from './components/admin/statistics.component';
-import { AnalyticsComponent } from './components/admin/analytics.component';
 //treatment
 import { NewtreatmentComponent } from './components/treatments/newtreatment/newtreatment.component';
 import { EdittreatmentComponent } from './components/treatments/edittreatment/edittreatment.component';
@@ -34,7 +33,6 @@ export const admin_routes: Routes = [
   //Profile
   { path: 'profile', component: AdminProfileComponent, canActivate: [AdminguardGuard]},
   //negocio
-  { path: 'analytics', component: AnalyticsComponent, canActivate: [AdminguardGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AdminguardGuard] },
   //user
   { path: 'users', component: AdminListUsersComponent,  canActivate: [AdminguardGuard] },
