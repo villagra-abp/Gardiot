@@ -35859,7 +35859,7 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 3
-					,"value": "blinn1SG"
+					,"value": "Default"
 				}
 				,{
 					 "key": "$clr.diffuse"
@@ -35867,9 +35867,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.8
-						,0.296
-						,0.104
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -35889,9 +35889,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0
-						,0
-						,0
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -35900,9 +35900,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.09
-						,0.09
-						,0.09
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -35910,14 +35910,41 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 2.94118
+					,"value": 9.41177
 				}
 				,{
 					 "key": "$mat.shininess"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 2.94118
+					,"value": 9.41177
+				}
+				,{
+					 "key": "$tex.file"
+					,"semantic": 1
+					,"index": 0
+					,"type": 3
+					,"value": "C:\\Users\\Julian\\Desktop\\TAG-Modelos\\descargados\\lechuga\\cabbage.jpg"
+				}
+				,{
+					 "key": "$tex.uvtrafo"
+					,"semantic": 1
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,1
+						,1
+						,0
+					]
+				}
+				,{
+					 "key": "$tex.uvwsrc"
+					,"semantic": 1
+					,"index": 0
+					,"type": 4
+					,"value": 0
 				}
 			]
 		}

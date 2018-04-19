@@ -40,8 +40,12 @@ function iniciar(accion, jardin){
   window.glFragmentShader=[];
   window.glProgram=[];
 
-  window.vertexShaders=['shader.vs', 'shaderP.vs'];
-  window.fragmentShaders=['shader.fs', 'shaderP.fs'];
+
+  //program 0 = cartoon
+  //program 1 = estandar
+  window.program=1;
+  window.vertexShaders=['shaderCartoon.vs', 'shaderP.vs'];
+  window.fragmentShaders=['shaderCartoon.fs', 'shaderP.fs'];
 
   //inicializamos el gestor de recursos
   window.gestor=new TGestorRecursos();
@@ -53,8 +57,8 @@ function iniciar(accion, jardin){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuz("luz1", 1.7, undefined);
-  //var luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
+  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -67,7 +71,7 @@ function iniciar(accion, jardin){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  // window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
+  window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -117,6 +121,7 @@ if(jardin.length%2==0){
   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
   motor.escalarMalla("calabaza", 0.3);
   motor.rotarMalla("calabaza", -90, "x");
+  motor.rotarMalla("calabaza", 90, "z");
   motor.moverMalla("calabaza", 0, 0.1, 0);
 
   // TOMATERA
@@ -179,7 +184,13 @@ if(jardin.length%2==0){
   // motor.rotarMalla("pajaro2_000000", -90, "x");
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
-
+//luces
+motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+motor.moverLuz("luz2", 0.0, 10.0, 0.0);
+//motor.moverLuz("luz3", 0.0, -10.0, 0.0);
+motor.activarLuz("luz1");
+motor.activarLuz("luz2");
+//motor.activarLuz("luz3");
 
 
 
@@ -197,11 +208,6 @@ if(jardin.length%2==0){
 
 
 
-  motor.moverLuz("luz1", 0.0, 10.0, 10.0);
-  //motor.moverLuz("luz2", 0.0, 10.0, 0.0);
-  //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
-
-
 
   //motor.rotarCamaraOrbital("camara1", 45, "y");
   //motor.rotarCamaraOrbital("camara1", -45, "x");
@@ -216,11 +222,6 @@ if(jardin.length%2==0){
   motor.rotarCamara("camara2", -90, "x");
   motor.moverCamara("camara2", 0, 20, 0);
   //motor.rotarCamaraOrbital("camara2", -90, "x");
-
-
-  motor.activarLuz("luz1");
-  //motor.activarLuz("luz2");
-  //motor.activarLuz("luz3");
 
 
 
