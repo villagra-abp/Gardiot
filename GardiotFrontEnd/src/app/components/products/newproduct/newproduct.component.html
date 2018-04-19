@@ -1,25 +1,25 @@
 <div class="vistaAdmin">
 	<section class="container main-container">
-	<form (ngSubmit)="this.guardar()" #forma="ngForm">
-	  <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="name_product">Nombre</label>
-        <input type="text" class="form-control" [(ngModel)]="product.name" name="name" id="name_product" required>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="type_product">Tipo</label>
-         <select class="form-control" id="type_product" [(ngModel)]="product.type" name="type" required>
+		<form (ngSubmit)="this.guardar()" #forma="ngForm">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="name_product">Nombre</label>
+					<input type="text" class="form-control" [(ngModel)]="product.name" name="name" id="name_product" required>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="type_product">Tipo</label>
+					<select class="form-control" id="type_product" [(ngModel)]="product.type" name="type" required>
            <option>Fungicida</option>
            <option>Abono</option>
            <option>Plaguicida</option>
          </select>
-      </div>
-    </div>
-		<div class="form-group">
-			<textarea class="form-control" [(ngModel)]="product.description" name="description" placeholder="Descripción" required rows="3" required></textarea>
-		</div>
-    <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-    <button [routerLink] ="['/admin/products']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
-	</form>
-</section>
+				</div>
+			</div>
+			<div class="form-group">
+				<textarea class="form-control" [(ngModel)]="product.description" name="description" placeholder="Descripción" required rows="3" required></textarea>
+			</div>
+			<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+			<button [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+		</form>
+	</section>
 </div>

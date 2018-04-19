@@ -1,30 +1,30 @@
 <section class="herramienta">
-<canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
 </section>
 <div class="main-container">
 
   <section class="container title">
-      <h1>{{garden.title}}</h1>
-      <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
+    <h1>{{garden.title}}</h1>
+    <button [routerLink]="['/editgarden']" class="btn btn-outline-primary">Editar</button>
   </section>
 
-<section class="container" *ngIf = "visible == true">
+  <section class="container" *ngIf="visible == true">
     <div id="prevision">
-    <h4>Previsión meteorológica</h4>
-      <div class="row tiempo" >
+      <h4>Previsión meteorológica</h4>
+      <div class="row tiempo">
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Hoy
           <br>
           <img src="/assets/images/imgWeather/{{fotoHoy}}.png">
           <br>
-           <span class="maxima">{{temperatura | number:'.0-0'}}º</span>
+          <span class="maxima">{{temperatura | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Mañana
           <br>
           <img src="/assets/images/imgWeather/{{fotoMan}}.png">
           <br>
-           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
+          <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia3">
           {{nombreDia3}}
@@ -45,9 +45,9 @@
           <br>
           <img src="/assets/images/imgWeather/{{fotoDia5}}.png">
           <br>
-           <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span> 
+          <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span>
         </div>
       </div>
     </div>
-</section>
+  </section>
 </div>

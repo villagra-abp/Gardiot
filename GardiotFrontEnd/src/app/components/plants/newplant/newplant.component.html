@@ -1,117 +1,117 @@
 <div class="vistaAdmin">
 	<section class="container main-container">
-	<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
-		<h4>Datos Básicos</h4>
-	  <div class="form-row">
-	    <div class="col">
-	      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Nombre común" required>
-	    </div>
-	    <div class="col">
-	      <input type="text" [(ngModel)]="plant.scientificName" class="form-control" name="scientificName" placeholder="Nombre científico" required>
-	    </div>
-	  </div>
-		<br>
-		<div class="form-group">
-			  <label for="photo_plant">Foto</label>
-			<div class="upload-btn-wrapper form-control ">
-			  <button class="bttn">Selecionar imagen</button>
-			  <input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
+		<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
+			<h4>Datos Básicos</h4>
+			<div class="form-row">
+				<div class="col">
+					<input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Nombre común" required>
+				</div>
+				<div class="col">
+					<input type="text" [(ngModel)]="plant.scientificName" class="form-control" name="scientificName" placeholder="Nombre científico" required>
+				</div>
 			</div>
-	  </div>
+			<br>
+			<div class="form-group">
+				<label for="photo_plant">Foto</label>
+				<div class="upload-btn-wrapper form-control ">
+					<button class="bttn">Selecionar imagen</button>
+					<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
+				</div>
+			</div>
 
-		<div class="form-group">
-			<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
-		</div>
-		<h4>Datos Técnicos</h4>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="family_plant">Familia</label>
-				 <select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" required>
+			<div class="form-group">
+				<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
+			</div>
+			<h4>Datos Técnicos</h4>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="family_plant">Familia</label>
+					<select class="form-control" id="family_plant" [(ngModel)]="plant.family" name="family" required>
 					 <option *ngFor="let family of families" value="{{family.id}}">{{family.name}}</option>
 				 </select>
-	    </div>
+				</div>
 
-	    <div class="form-group col-md-6">
-	      <label for="resist_plant">Resistencia</label>
-	      <input type="text" class="form-control" [(ngModel)]="plant.diseaseResist" name="diseaseResist" id="resist_plant" placeholder="Se mide en ºC" required>
-	    </div>
-  	</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="depth_plant">Profundidad</label>
-				<input type="text" class="form-control" [(ngModel)]="plant.depth" name="depth" id="depth_plant" placeholder="Se mide en cm" required >
+				<div class="form-group col-md-6">
+					<label for="resist_plant">Resistencia</label>
+					<input type="text" class="form-control" [(ngModel)]="plant.diseaseResist" name="diseaseResist" id="resist_plant" placeholder="Se mide en ºC" required>
+				</div>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="depth_plant">Profundidad</label>
+					<input type="text" class="form-control" [(ngModel)]="plant.depth" name="depth" id="depth_plant" placeholder="Se mide en cm" required>
+				</div>
+				<div class="form-group col-md-6">
 					<label for="distance_plant">Distancia</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.distance" name="distance" id="distance_plant" placeholder="Se mide en cm" required>
 				</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="photo_plant">Modelo 3D</label>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="photo_plant">Modelo 3D</label>
 
-			<div class="upload-btn-wrapper form-control ">
-				<button class="bttn">Selecionar</button>
-				<input type="file" name="myfile" id="photo_plant" />
-			</div>
-			</div>
-			<div class="form-group col-md-6">
+					<div class="upload-btn-wrapper form-control ">
+						<button class="bttn">Selecionar</button>
+						<input type="file" name="myfile" id="photo_plant" />
+					</div>
+				</div>
+				<div class="form-group col-md-6">
 					<label for="leaveType">Tipo hoja</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.leaveType" name="leaveType" id="leaveType" placeholder="Caduca o perenne" required>
 				</div>
-		</div>
-		<div class="form-group">
+			</div>
+			<div class="form-group">
 
-	  </div>
+			</div>
 
-	<h4>Calendario</h4>
-	<fieldset class="form-group">
-	    <div class="row">
-	      <legend class="col-md-6 mb-3">Plantación</legend>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="date_initplant">Inicio</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.initDatePlant" name="initplant" id="date_initplant">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="date_endplant">Fin</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.finDatePlant" name="endplant" id="date_endplant" >
-					</div>
-				</div>
-	    </div>
-  </fieldset>
-	<fieldset class="form-group">
-	    <div class="row">
-	      <legend class="col-md-6 mb-3">Floración</legend>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="date_initDateBloom">Inicio</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.initDateBloom" name="initDateBloom" id="date_initDateBloom" >
-					</div>
-					<div class="form-group col-md-6">
-						<label for="date_finDateBloom">Fin</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.finDateBloom" name="finDateBloom" id="date_finDateBloom" >
+			<h4>Calendario</h4>
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-md-6 mb-3">Plantación</legend>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="date_initplant">Inicio</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.initDatePlant" name="initplant" id="date_initplant">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="date_endplant">Fin</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.finDatePlant" name="endplant" id="date_endplant">
+						</div>
 					</div>
 				</div>
-	    </div>
-	  </fieldset>
-		<fieldset class="form-group">
-	    <div class="row">
-	      <legend class="col-md-6 mb-3">Cosecha</legend>
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="date_initDateHarvest">Inicio</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.initDateHarvest" name="initDateHarvest" id="date_initDateHarvest">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="date_finDateHarvest">Fin</label>
-						<input type="date" class="form-control" [(ngModel)]="plant.finDateHarvest" name="finDateHarvest" id="date_finDateHarvest">
+			</fieldset>
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-md-6 mb-3">Floración</legend>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="date_initDateBloom">Inicio</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.initDateBloom" name="initDateBloom" id="date_initDateBloom">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="date_finDateBloom">Fin</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.finDateBloom" name="finDateBloom" id="date_finDateBloom">
+						</div>
 					</div>
 				</div>
-	    </div>
-	  </fieldset>
-	</form>
-<button  (click)="this.uploadPhoto()" class="btn btn-outline-primary">Guardar cambios</button>
-<button [routerLink] ="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
-</section>
+			</fieldset>
+			<fieldset class="form-group">
+				<div class="row">
+					<legend class="col-md-6 mb-3">Cosecha</legend>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="date_initDateHarvest">Inicio</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.initDateHarvest" name="initDateHarvest" id="date_initDateHarvest">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="date_finDateHarvest">Fin</label>
+							<input type="date" class="form-control" [(ngModel)]="plant.finDateHarvest" name="finDateHarvest" id="date_finDateHarvest">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<button (click)="this.uploadPhoto()" class="btn btn-outline-primary">Guardar cambios</button>
+		<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+	</section>
 </div>
