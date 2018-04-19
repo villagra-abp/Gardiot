@@ -20,22 +20,28 @@
                                               width="450" height="250" frameborder="0">
                                   </iframe>
                               </div>
+                              <br>
                               <div class="col">
                                 <h4>Usuarios conectados</h4>
-                                <br>
-                                 <!-- <mat-form-field>
-
-                                  <mat-select placeholder="Usuarios conectados" [(ngModel)]="selectedValue">
-                                    <mat-option *ngFor="let minuto of minutos" [value]="minuto.value">
-                                      {{ minuto.viewValue }}
+                                <!-- <mat-form-field>
+                                  <mat-select placeholder="Intervalos">
+                                    <mat-option *ngFor="let dato of datos" [value]="dato.value">
+                                      {{ dato.viewValue }}
                                     </mat-option>
                                   </mat-select>
                                 </mat-form-field> -->
-                                <p> Valor seleccionado: {{selectedValue}}</p>
+                                <mat-form-field>
+                                  <mat-select placeholder="Intervalos" [(value)]="selected">
+                                    <mat-option *ngFor="let dato of datos" [value]="dato.value">
+                                      {{ dato.viewValue }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
                                 <br>
                                 <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-planta1=Aloe%20vera&var-planta2=Cactus&var-tiempo=120&from=1523972498658&to=1523973398658&panelId=10"
                                         width="450" height="200" frameborder="0">
                                 </iframe>
+                                <p>Selected: {{selected}}</p>
                               </div>
                             </article>
                           </mat-tab>
