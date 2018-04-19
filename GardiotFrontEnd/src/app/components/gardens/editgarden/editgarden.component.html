@@ -1,67 +1,66 @@
-
-    <aside class="selectPlantas">
-      <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
-      <button class="btn btn-primary" (click)="showForm()">Editar datos</button>
-      <article id="8" draggable="true" ondragstart="drag(event);">
-        <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
-        </div>
-        <span>Margarita 1</span>
-      </article>
-      <article>
-        <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
-        </div>
-        <span>Margarita 2</span>
-      </article>
-      <article>
-        <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
-        </div>
-        <span>Margarita 3</span>
-      </article>
-    </aside>
-  <div class="canvasEvolver">
-    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
-  </div>
-
-  <section class="formulario rounded border border-secondary" [hidden]="menuVisible">
-    <div class="row animated fadeIn fast">
-      <div class="col-md-12">
-        <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
-          <div class="form-group">
-            <div>
-              <label  for="title">Título: </label>
-              <input  class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
-            </div>
-            <div>
-              <label  for="length">Largo: </label>
-              <input  class="form-control" type="number" [(ngModel)]="garden.length" name="length" id="length_garden" required>
-            </div>
-            <div>
-              <label  for="width">Ancho: </label>
-              <input  class="form-control" type="number" [(ngModel)]="garden.width" name="width" id="width_garden" required>
-            </div>
-            <div>
-              <label for="countries">País:</label>
-              <br>
-              <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-              </select2>
-            </div>
-            <div>
-              <label for="countries">Introduce tu código postal:</label>
-              <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
-            </div>
-          </div>
-
-            <div class="form-group  col-md-6">
-                <label for="countries">Ciudad:</label>
-                <span id="ciudad"></span>
-            </div>
-
-          <button type="submit" class="btn btn-outline-primary">Guardar</button>
-          <button [routerLink]="['/garden']" class="btn btn-outline-danger">Cancelar</button>
-          <button (click)="delete()" class="btn btn-danger float-right" >Borrar</button>
-
-        </form>
-      </div>
-
+<aside class="selectPlantas">
+  <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
+  <button class="btn btn-primary" (click)="showForm()">Editar datos</button>
+  <article id="8" draggable="true" ondragstart="drag(event);">
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
     </div>
-  </section>
+    <span>Margarita 1</span>
+  </article>
+  <article>
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
+    </div>
+    <span>Margarita 2</span>
+  </article>
+  <article>
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
+    </div>
+    <span>Margarita 3</span>
+  </article>
+</aside>
+<div class="canvasEvolver">
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
+</div>
+
+<section class="formulario rounded border border-secondary" [hidden]="menuVisible">
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12">
+      <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
+        <div class="form-group">
+          <div>
+            <label for="title">Título: </label>
+            <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
+          </div>
+          <div>
+            <label for="length">Largo: </label>
+            <input class="form-control" type="number" [(ngModel)]="garden.length" name="length" id="length_garden" required>
+          </div>
+          <div>
+            <label for="width">Ancho: </label>
+            <input class="form-control" type="number" [(ngModel)]="garden.width" name="width" id="width_garden" required>
+          </div>
+          <div>
+            <label for="countries">País:</label>
+            <br>
+            <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+            </select2>
+          </div>
+          <div>
+            <label for="countries">Introduce tu código postal:</label>
+            <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
+          </div>
+        </div>
+
+        <div class="form-group  col-md-6">
+          <label for="countries">Ciudad:</label>
+          <span id="ciudad"></span>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        <button [routerLink]="['/garden']" class="btn btn-outline-danger">Cancelar</button>
+        <button (click)="delete()" class="btn btn-danger float-right">Borrar</button>
+
+      </form>
+    </div>
+
+  </div>
+</section>

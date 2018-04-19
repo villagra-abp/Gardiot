@@ -1,34 +1,34 @@
 <div class="container main-container">
   <h1>Mi perfil</h1>
-<section class="container">
-  <div class="divPhoto" (click)="selectPhoto($event)">
-    <div>
+  <section class="container">
+    <div class="divPhoto" (click)="selectPhoto($event)">
+      <div>
+      </div>
+      <i class="material-icons">file_upload</i>
     </div>
-    <i class="material-icons">file_upload</i>
-  </div>
 
 
-<input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
+    <input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
     <dl class="row">
-  <dt class="col-sm-3">Nombre</dt>
-  <dd class="col-sm-9">{{user.name}} {{user.lastName}}</dd>
+      <dt class="col-sm-3">Nombre</dt>
+      <dd class="col-sm-9">{{user.name}} {{user.lastName}}</dd>
 
-  <dt class="col-sm-3">Email</dt>
-  <dd class="col-sm-9">{{user.id}}</dd>
+      <dt class="col-sm-3">Email</dt>
+      <dd class="col-sm-9">{{user.id}}</dd>
 
-  <dt class="col-sm-3">Cumpleaños</dt>
-  <dd class="col-sm-9">{{user.birthDate | date}}</dd>
+      <dt class="col-sm-3">Cumpleaños</dt>
+      <dd class="col-sm-9">{{user.birthDate | date}}</dd>
 
-  <dt class="col-sm-3">País</dt>
-  <dd class="col-sm-9">{{user.countryCode}}</dd>
+      <dt class="col-sm-3">País</dt>
+      <dd class="col-sm-9">{{user.countryCode}}</dd>
 
-  <dt class="col-sm-3">Ciudad</dt>
-  <dd class="col-sm-9">{{user.city}}</dd>
+      <dt class="col-sm-3">Ciudad</dt>
+      <dd class="col-sm-9">{{user.city}}</dd>
 
-</dl>
+    </dl>
 
-        <button [routerLink]="['/editprofile']" class="btn btn-outline-primary">Editar perfil</button>
+    <button [routerLink]="['/editprofile']" class="btn btn-outline-primary">Editar perfil</button>
 
 
-</section>
+  </section>
 </div>

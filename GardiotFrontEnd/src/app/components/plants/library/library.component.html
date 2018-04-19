@@ -3,11 +3,11 @@
     <h1>Biblioteca</h1>
     <div class="wrap">
 
-  				<form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm" >
-  					<article class="form-group col-md-4">
-  						<input type="text"  [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
-  			    </article>
-  					 <!-- <article class="form-group col-md-2">
+      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+        <article class="form-group col-md-4">
+          <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
+        </article>
+        <!-- <article class="form-group col-md-2">
   						 <select class="form-control"  name="family">
   							 <option  value="nombre">nombre</option>
   							 <option  value="familia">familia</option>
@@ -19,27 +19,27 @@
   							 <option  value="DES">Z-A</option>
   						 </select>
   					</article> -->
-  					<article class="form-group col-md-2">
-  						<button class="btn btn-default" type="submit">Buscar</button>
-  					</article>
-            <article class="form-group col-md-2">
-              <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary">Nueva planta</button>
-            </article>
-  				</form>
+        <article class="form-group col-md-2">
+          <button class="btn btn-default" type="submit">Buscar</button>
+        </article>
+        <article class="form-group col-md-2">
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary">Nueva planta</button>
+        </article>
+      </form>
 
-    <section class="card-columns">
-        <div *ngFor="let plant of plants" class="card"  style="width: 18rem;" >
+      <section class="card-columns">
+        <div *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
-          <div class="card-body" >
+          <div class="card-body">
             <h4>{{plant.commonName}} </h4>
-            <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]"  class="btn btn-outline-primary">Modificar</button>
-            <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]"  class="btn btn-outline-secondary">Tratamientos</button>
-            <button  class="btn btn-outline-danger" (click)="openDialog(plant.id,4)" >Eliminar</button>
+            <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary">Modificar</button>
+            <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-secondary">Tratamientos</button>
+            <button class="btn btn-outline-danger" (click)="openDialog(plant.id,4)">Eliminar</button>
             <!-- <button *ngIf="this.user.isAdmin" (click)="deleteplant(plant.id)" [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Eliminar</button> -->
           </div>
         </div>
-    </section>
-  	<app-pagination [count]="this.numeroItems" [type]="1" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
-  	</div>
+      </section>
+      <app-pagination [count]="this.numeroItems" [type]="1" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+    </div>
   </div>
 </div>
