@@ -401,7 +401,7 @@ class TMotor{
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
 		}
-    this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+    //this.crearNodoMalla("cubo", "cubo", undefined, luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
