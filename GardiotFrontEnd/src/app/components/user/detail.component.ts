@@ -190,10 +190,10 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.checkGarden();
     this.mostrar();
-    this.cargarfeeds();
     this.mostrar2();
     this.inicializar();
     this.mostrartask();
+    this.cargarfeeds();
 
   }
 
