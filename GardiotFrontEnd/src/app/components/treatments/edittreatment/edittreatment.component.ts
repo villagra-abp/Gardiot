@@ -12,54 +12,54 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class EdittreatmentComponent implements OnInit {
 
-  treatment=new Treatment();
-  private treatments:any[]=[];
+  treatment = new Treatment();
+  private treatments: any[] = [];
 
   constructor(
-    private _treatmentService:TreatmentService,
-    private _appComponent:AppComponent,
+    private _treatmentService: TreatmentService,
+    private _appComponent: AppComponent,
     private _router: ActivatedRoute,
-    private _route:Router,
+    private _route: Router,
   ) { }
 
-  guardar(){
+  guardar() {
     this._treatmentService.modify(this.treatment)
-        .subscribe(data=>{
-            this._appComponent.mensajeEmergente("El tratamiento se ha modificado", "primary", "admin/treatments?pag=1");
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("El tratamiento se ha modificado", "primary", "admin/treatments?pag=1");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
-  getID(){
+  getID() {
     this._router.params.subscribe(params => {
-      if(params['id']!=null){
-        this.treatment=new Treatment(params['id']);
+      if (params['id'] != null) {
+        this.treatment = new Treatment(params['id']);
         this.mostrar(this.treatment.id);
-      }else{
+      } else {
         this._route.navigate(['/treatments']);
       }
     });
   }
 
-  mostrar(idTreatment: number){
+  mostrar(idTreatment: number) {
     this._treatmentService.details(idTreatment)
-        .subscribe(data=>{
-          this.treatment.id=idTreatment;
-          this.treatment.name=data[0].name;
-          this.treatment.description=data[0].description;
+      .subscribe(data => {
+        this.treatment.id = idTreatment;
+        this.treatment.name = data[0].name;
+        this.treatment.description = data[0].description;
 
 
-        },
+      },
       error => {
         console.error(error);
         localStorage.clear();
         sessionStorage.clear();
       });
 
-    }
+  }
 
   ngOnInit() {
     this.getID();

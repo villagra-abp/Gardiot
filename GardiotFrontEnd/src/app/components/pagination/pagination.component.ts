@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Input, Output, EventEmitter} from '@angular/core'
+import { Input, Output, EventEmitter } from '@angular/core'
 import { PlantService } from "../../services/plant.service";
 import { UserService } from "../../services/user.service";
 
@@ -11,7 +11,7 @@ import { UserService } from "../../services/user.service";
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  private plants:any[]=[];
+  private plants: any[] = [];
 
   constructor() { }
 
@@ -27,7 +27,7 @@ export class PaginationComponent implements OnInit {
   @Output() goPage = new EventEmitter<number>();
 
   getMin(): number {
-  return ((this.perPage * this.page) - this.perPage) + 1;
+    return ((this.perPage * this.page) - this.perPage) + 1;
   }
 
   getMax(): number {
@@ -61,10 +61,10 @@ export class PaginationComponent implements OnInit {
     return this.page == 1;
   }
   nextPage(): number {
-    return ((1 * this.page) ) + 1;
+    return ((1 * this.page)) + 1;
   }
   previusPage(): number {
-    return this.page- 1;
+    return this.page - 1;
   }
 
   getPages(): number[] {

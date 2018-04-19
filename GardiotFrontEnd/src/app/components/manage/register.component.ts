@@ -10,35 +10,35 @@ import { AppComponent } from "../../app.component";
   templateUrl: './register.component.html',
   styleUrls: ['./login.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
 
-  user=new User("");
+  user = new User("");
 
   constructor(
-    private _userService:UserService,
-    private _route:Router,
-    private _appComponent:AppComponent){}
+    private _userService: UserService,
+    private _route: Router,
+    private _appComponent: AppComponent) { }
 
-  guardar(){
+  guardar() {
     console.log(this.user);
     this._userService.register(this.user)
-        .subscribe(data=>{
-          if(window.location.toString().indexOf("gardiot")>=0){
-            this._appComponent.mensajeEmergente("Te has registrado correctamente, confirma tu correo para poder iniciar sesión", "primary", "login");
-          }
-          else{
-            this._route.navigate(['/detail']);
-          }
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          console.log(v.Mensaje);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        if (window.location.toString().indexOf("gardiot") >= 0) {
+          this._appComponent.mensajeEmergente("Te has registrado correctamente, confirma tu correo para poder iniciar sesión", "primary", "login");
+        }
+        else {
+          this._route.navigate(['/detail']);
+        }
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        console.log(v.Mensaje);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
   ngOnInit() {
-    if(this._userService.isUserAuthenticated()){
+    if (this._userService.isUserAuthenticated()) {
       this._route.navigate(['/detail']);
     }
   }
