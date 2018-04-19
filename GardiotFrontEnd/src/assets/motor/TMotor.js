@@ -97,7 +97,7 @@ class TMotor{
         this.dibujarCamaraActiva();
 
 		      //dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
-        this.escena.draw();
+		this.escena.draw();
 
 	}
 

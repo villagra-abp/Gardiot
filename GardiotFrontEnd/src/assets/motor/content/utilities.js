@@ -37,39 +37,99 @@ var loadJSONResource=function(url, callback){
   });
 };
 
-function updateMyPlant(garden, myPlant, plant, soil, x, y){
+function updateMyPlant(garden, plant, soil, x, y){
 	let xhr=new XMLHttpRequest(),
 			url;
 	if(window.location.toString().indexOf("localhost")>=0){
-		url=`http://localhost:3000/api/myPlant/${garden}/${myPlant}`;
+		url=`http://localhost:3000/api/myPlant/${garden}/${plant.id}`;
 	}
 	else if(window.location.toString().indexOf("gardiot")>=0){
-		url=`https://gardiot.ovh/api/myPlant/${garden}/${myPlant}`;
+		url=`https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
 	}
 
 	xhr.open('PUT', url, true);
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
-		for(let i=0; i<jardin.plants.length; i++){
-			if(jardin.plants[i].id==myPlant){
-				jardin.plants[i].x=x;
-				jardin.plants[i].y=y;
-			}
-
-		}
-		console.log(respuesta.Mensaje);
+        
+        if (xhr.status == "200") {
+            motor.moverMallaA(plant.id, x, 0, y); //Esta llamada tal vez es innecesaria
+            plant.x = x;
+            plant.y = y;
+        }       
 	}
 
 
-	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant.plant+'&soil='+soil;
 
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
 	xhr.send(params);
-
 }
 
+function insertMyPlant(garden, plant, soil, x, y){
+    let xhr=new XMLHttpRequest(),
+            url;
+    if(window.location.toString().indexOf("localhost")>=0){
+        url=`http://localhost:3000/api/myPlant/${garden}`;
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+        url=`https://gardiot.ovh/api/myPlant/${garden}`;
+    }
+
+    xhr.open('POST', url, true);
+
+    xhr.onload=function(){
+        let respuesta=JSON.parse(xhr.responseText);
+        //console.log(respuesta.Mensaje);    
+        if (xhr.status == 200) {
+            let value = {
+                id: respuesta.myPlant,
+                isDragging: false,
+                plant: plant,
+                x: x,
+                y: y,
+                model: undefined,
+                seed: undefined
+            };
+            window.jardin.plants.push(value);
+            motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
+            motor.moverMallaA(respuesta.myPlant, x, 0, y); 
+        }
+    }
+
+    let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+    xhr.send(params);  
+}
+
+function deleteMyPlant(garden, plant){
+	let xhr=new XMLHttpRequest(),
+			url;
+	if(window.location.toString().indexOf("localhost")>=0){
+		url=`http://localhost:3000/api/myPlant/${garden}/${plant.id}`;
+	}
+	else if(window.location.toString().indexOf("gardiot")>=0){
+		url=`https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
+	}
+
+	xhr.open('DELETE', url, true);
+
+	xhr.onload=function(){
+		let respuesta=JSON.parse(xhr.responseText);
+        
+        if (xhr.status == "200") {
+            //LLAMADA PARA BORRAR LA MALLA
+            let index = window.jardin.plants.indexOf(plant);
+            window.jardin.plants.splice(index, 1);
+        }       
+	}
+
+	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+	xhr.send(null);
+}
 
 function makeShader(src, type){
     //compilar el vertex shader

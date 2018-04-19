@@ -2,7 +2,7 @@
     <aside class="selectPlantas">
       <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
       <button class="btn btn-primary" (click)="showForm()">Editar datos</button>
-      <article>
+      <article id="8" draggable="true" ondragstart="drag(event);">
         <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
         </div>
         <span>Margarita 1</span>
@@ -19,7 +19,7 @@
       </article>
     </aside>
   <div class="canvasEvolver">
-    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1170"></canvas>
+    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   </div>
 
   <section class="formulario rounded border border-secondary" [hidden]="menuVisible">
