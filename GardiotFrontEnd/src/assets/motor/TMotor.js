@@ -264,7 +264,7 @@ class TMotor{
       if(eje=="y"){
 			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
       }
-      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
+      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.50)){
         this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
       }
 			return true;
