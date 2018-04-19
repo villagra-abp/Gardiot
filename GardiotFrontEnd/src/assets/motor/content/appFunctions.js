@@ -14,9 +14,6 @@ function animLoop(){
     requestAnimationFrame(animLoop, canvas);
 }
 
-function drawGrid() {
-
-}
 
 function drag(e) {
   e.dataTransfer.setData("text", e.target.id);
@@ -129,7 +126,7 @@ function mouse_down(e, view){
       x=e.offsetX,
       y=e.offsetY;
 
-      console.log(x, y, cv.offsetWidth, cv.offsetHeight);
+      //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
       //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
       cv.setAttribute('data-down', 'true');
 
@@ -153,11 +150,8 @@ function mouse_up(e, view){
         for (let plant of window.jardin.plants) {
           if (plant.isDragging) {
             plant.isDragging = false;
-            window.dragging = false;
-
-            if (coordX > jardin.width*1.0/2 || coordX < jardin.width*(-1.0)/2 || coordY > jardin.length*1.0/2 || coordY < jardin.length*(-1.0)/2)
-              motor.moverMallaA(plant.id, plant.x, 0, plant.y);
-            else {
+            window.dragging = false; 
+            if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
               let occupied = false;
               for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
                 if (value.x == coordX && value.y == coordY) {
@@ -169,6 +163,15 @@ function mouse_up(e, view){
               if (!occupied) 
                 updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);                   
             }
+            else {
+              let rect = cv.getBoundingClientRect();
+              let xPos = e.clientX - rect.left;
+              let yPos = e.clientY - rect.top;
+              if (xPos >= 90*cv.offsetWidth/100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10*cv.offsetHeight/100)
+                deleteMyPlant(window.jardin.id, plant);
+              else 
+                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+            }       
             break;
           }
         }
