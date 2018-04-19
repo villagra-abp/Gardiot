@@ -170,9 +170,9 @@ if(jardin.length%2==0){
   motor.rotarMalla("arbol", -90, "x");
   motor.moverMalla("arbol", 0.5, 0.2, 3);
   // bandera
-  motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
-  motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
-  motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
+ // motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
+  //motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
+  //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
