@@ -505,9 +505,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -521,10 +523,12 @@ class TMotor{
         var pos = -1;
 
         for (var i = 0; i< this.mallaRegistro.length; i++){
-            if(nombre == this.mallaRegistro[i].name){
-                pos = i;
-                break;
-            }
+            if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
+			}
         }
         if(pos>=0){
             let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix.slice(0);
@@ -542,9 +546,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -559,9 +565,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i]!= undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -576,9 +584,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i]!= undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -586,6 +596,26 @@ class TMotor{
 			return true;
 		}
 
+	}
+
+
+	borrarMalla(nombre){
+		var pos = -1;
+
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
+			}
+		}
+
+		if(pos>=0){
+			console.log("borrado");
+			this.mallaRegistro[pos].dad.dad.dad.dad.removeChild(this.mallaRegistro[pos].dad.dad.dad);
+			this.mallaRegistro[pos] = undefined;
+		}
 	}
 
 //=================================FIN MALLAS============================
