@@ -1,14 +1,25 @@
 precision mediump float;
 
-varying vec2 vFragTexCoord;
-varying vec3 vNormalInterp;
-varying vec3 vVertPosition;
+const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
+const int cULights=2;
+const int cUSpotLights=5;
 
-struct DirectionalLight
+varying vec2 vFragTexCoord;
+varying vec3 vVertPosition;
+varying mat4 vView;
+varying vec3 vTVertPosition;
+varying vec4 vTVertNormal;
+varying vec3 vVertNormal;
+
+
+struct LightProperties
 {
+	int isActive;
 	vec4 position;
 	vec3 color;
 	vec3 specColor;
+	vec4 direction;
+	float amplitude;
 };
 
 struct Propiedades{
@@ -26,33 +37,66 @@ struct Material
 
 uniform Material material;
 uniform Propiedades propiedades;
-uniform DirectionalLight uLight[5];
+uniform LightProperties uLight[cULights];
+uniform LightProperties uSpotLight[cUSpotLights];
 uniform sampler2D uSampler;
 uniform int uTextured;
 uniform int uLighted;
-
-const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
+uniform int uNLights;
 
 
 
 void main()
 {
+	vec3 N=normalize(vTVertNormal.xyz);
+	vec3 V=normalize(-vTVertPosition);
+	vec3 vLight = material.Ka * cAmbientLight;
 
-	vec3 N=normalize(vNormalInterp);
-	vec3 L=normalize(uLight[0].position.xyz-vVertPosition);
-
-	float LN=max(dot(L, N), 0.0);
+	float diffuse=0.0;
 	float specular=0.0;
 
-	if(LN>0.0){
-		vec3 R=reflect(-L, N);
-		vec3 V=normalize(-vVertPosition);
 
-		float RV=max(dot(R, V), 0.0);
-		specular=pow(RV, propiedades.shininess);
+	for(int i=0; i<cULights; i++){
+		if(uLight[i].isActive==1){
+			vec3 L = normalize(vec3(vView*vec4(uLight[i].position.xyz, 1.0))-vTVertPosition);
+			diffuse += max(dot(L, N), 0.0);
+
+			if(diffuse>0.0){
+				vec3 R=reflect(-L, N);
+				float RV=max(dot(R, V), 0.0);
+				specular=pow(RV, propiedades.shininess);
+			}
+			vLight +=  material.Kd * diffuse * uLight[i].color;
+			vLight +=  material.Ks* specular * uLight[i].specColor;
+		}
 	}
 
-	vec3 vLight = material.Ka * cAmbientLight + material.Kd * LN * uLight[0].color + material.Ks * specular * uLight[0].specColor;
+
+
+	for(int i=0; i<cUSpotLights; i++){
+		//Calculate SpotLight
+		if(uSpotLight[i].isActive==1){
+			highp float spotLimit=uSpotLight[i].amplitude;
+			highp vec3 spotDirection=uSpotLight[i].direction.xyz;
+			highp float spotEffect=dot(-normalize(spotDirection), normalize(uSpotLight[i].position.xyz-vVertPosition));
+
+			vec3 L = normalize(vec3(vView*vec4(uSpotLight[i].position.xyz, 1.0))-vTVertPosition);
+			diffuse += max(dot(L, N), 0.0);
+
+			if(diffuse>0.0){
+				vec3 R=reflect(-L, N);
+				float RV=max(dot(R, V), 0.0);
+				specular=pow(RV, propiedades.shininess);
+			}
+
+			//Applicate light if it is inside of the cone
+			if(spotEffect>spotLimit && diffuse>0.0){
+				vLight  +=  material.Kd * diffuse * uSpotLight[i].color;
+				vLight +=  material.Ks* specular * uSpotLight[i].specColor;
+			}
+		}
+	}
+
 
 	vec4 texel;
 	if(uTextured==1){
@@ -66,9 +110,4 @@ void main()
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
 		gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}
-
-
-
-
-
 }
