@@ -169,12 +169,26 @@ if(jardin.length%2==0){
   motor.escalarMalla("arbol", 0.3);
   motor.rotarMalla("arbol", -90, "x");
   motor.moverMalla("arbol", 0.5, 0.2, 3);
+  // bandera
+  motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
+  motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
+  motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
-  // Arbol
-  motor.crearNodoMalla("pajaro", "pajaro", undefined, undefined);
-  motor.escalarMalla("pajaro", 1);
-  motor.rotarMalla("pajaro", -90, "x");
-  motor.moverMalla("pajaro", 0.5, 0.2, 3);
+  // motor.crearNodoMalla("pajaro2_000000", "pajaro2_000000", undefined, undefined);
+  // motor.crearNodoMalla("ala_000000", "ala_000000", undefined, undefined);
+  // motor.crearNodoMalla("ala2_000000", "ala2_000000", undefined, undefined);
+  //
+  // motor.crearNodoMalla("pajaro2_000064", "pajaro2_000064", undefined, undefined);
+  // motor.crearNodoMalla("ala_000064", "ala_000064", undefined, undefined);
+  // motor.crearNodoMalla("ala2_000064", "ala2_000064", undefined, undefined);
+  //
+  // motor.crearNodoMalla("pajaro2_000144", "pajaro2_000144", undefined, undefined);
+  // motor.crearNodoMalla("ala_000144", "ala_000144", undefined, undefined);
+  // motor.crearNodoMalla("ala2_0000144", "ala2_000144", undefined, undefined);
+
+  // motor.escalarMalla("pajaro2_000000", 2.1);
+  // motor.rotarMalla("pajaro2_000000", -90, "x");
+  // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
 
 
