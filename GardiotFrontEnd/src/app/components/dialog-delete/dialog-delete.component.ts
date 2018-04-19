@@ -17,77 +17,75 @@ export class DialogDeleteComponent implements OnInit {
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any,
-    private _productService:ProductService,
-    private _treatmentService:TreatmentService,
-    private _feedService:FeedService,
-    private _plantService:PlantService,
-    private _userService:UserService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _productService: ProductService,
+    private _treatmentService: TreatmentService,
+    private _feedService: FeedService,
+    private _plantService: PlantService,
+    private _userService: UserService,
   ) { }
 
-  onCloseConfirm(){
+  onCloseConfirm() {
     this.delete();
   }
-  onCloseCancel(){
+  onCloseCancel() {
     this.thisDialogRef.close('Cancel');
   }
-  delete(){
-    if(this.data.typeObject==1){
+  delete() {
+    if (this.data.typeObject == 1) {
       this._productService.deleteProduct(this.data.idObject)
-      .subscribe(data=>{
-        window.location.reload();
-        this.thisDialogRef.close('Confirm');
-    },
-    error => {
-      console.error(error);
-    });
+        .subscribe(data => {
+          window.location.reload();
+          this.thisDialogRef.close('Confirm');
+        },
+        error => {
+          console.error(error);
+        });
     }
-    if(this.data.typeObject==2){
+    if (this.data.typeObject == 2) {
       this._treatmentService.deleteTrearment(this.data.idObject)
-      .subscribe(data=>{
-        window.location.reload();
-        this.thisDialogRef.close('Confirm');
-    },
-    error => {
-      console.error(error);
-    });
+        .subscribe(data => {
+          window.location.reload();
+          this.thisDialogRef.close('Confirm');
+        },
+        error => {
+          console.error(error);
+        });
     }
-    if(this.data.typeObject==3){
+    if (this.data.typeObject == 3) {
       this._feedService.deleteFeed(this.data.idObject)
-      .subscribe(data=>{
-        window.location.reload();
-        this.thisDialogRef.close('Confirm');
-    },
-    error => {
-      console.error(error);
-    });
+        .subscribe(data => {
+          window.location.reload();
+          this.thisDialogRef.close('Confirm');
+        },
+        error => {
+          console.error(error);
+        });
     }
 
-    if(this.data.typeObject==4){
+    if (this.data.typeObject == 4) {
       this._plantService.deletePlant(this.data.idObject)
-      .subscribe(data=>{
-        window.location.reload();
-        this.thisDialogRef.close('Confirm');
-    },
-    error => {
-      console.error(error);
-    });
+        .subscribe(data => {
+          window.location.reload();
+          this.thisDialogRef.close('Confirm');
+        },
+        error => {
+          console.error(error);
+        });
     }
 
-    if(this.data.typeObject==5){
+    if (this.data.typeObject == 5) {
       this._userService.deleteUser(this.data.idObject)
-      .subscribe(data=>{
-        window.location.reload();
-        this.thisDialogRef.close('Confirm');
-    },
-    error => {
-      console.error(error);
-    });
+        .subscribe(data => {
+          window.location.reload();
+          this.thisDialogRef.close('Confirm');
+        },
+        error => {
+          console.error(error);
+        });
     }
 
   }
-
-
 
   ngOnInit() {
   }

@@ -6,7 +6,7 @@ import { TaskService } from "../../services/task.service";
 import { FeedService } from "../../services/feed.service";
 import { Task } from "../../classes/task.class";
 import { Feed } from "../../classes/feed.class";
-import { GardenService} from "../../services/garden.service";
+import { GardenService } from "../../services/garden.service";
 import { Garden } from "../../classes/garden.class";
 import { DatePipe } from '@angular/common';
 import {
@@ -46,133 +46,133 @@ const colors: any = {
   }
 };
 
-declare var iniciar:any;
+declare var iniciar: any;
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html'
 })
-export class DetailComponent implements OnInit{
+export class DetailComponent implements OnInit {
   view: string = 'week';
   viewDate: Date = new Date();
-  private user=new User("");
+  private user = new User("");
   private gardenRoute = "";
-  private feeds:any[]=[];
-  private feed= new Feed();
+  private feeds: any[] = [];
+  private feed = new Feed();
   private garden = new Garden("");
-  private tasks:any[]=[];
-  private task= new Task();
+  private tasks: any[] = [];
+  private task = new Task();
   private refresh: Subject<any> = new Subject();
   private events: CalendarEvent[] = [];
 
   constructor(
-    private _detailService:UserService,
-    private _gardenService:GardenService,
-    private _route:Router,
-    private _taskService:TaskService,
-    private _feedService:FeedService,
+    private _detailService: UserService,
+    private _gardenService: GardenService,
+    private _route: Router,
+    private _taskService: TaskService,
+    private _feedService: FeedService,
     private datePipe: DatePipe,
 
-  ){ }
+  ) { }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
-  mostrar(){
+  mostrar() {
     this._detailService.details(this.user)
-        .subscribe(data=>{
-          this.user.id=data.id;
-          this.user.birthDate=data.birthDate;
-          this.user.photo=data.photo;
-          this.user.name=data.name;
-        },
+      .subscribe(data => {
+        this.user.id = data.id;
+        this.user.birthDate = data.birthDate;
+        this.user.photo = data.photo;
+        this.user.name = data.name;
+      },
       error => {
         console.error(error);
         localStorage.clear();
         sessionStorage.clear();
         this._route.navigate(['/login']);
       });
-    }
+  }
 
-    mostrar2(){
-     this._gardenService.details()
-          .subscribe(data=>{
-            if(data!=null){
-              this.garden.id=data.id;
-              this.garden.title=data.title;
-              this.garden.width=data.width;
-              this.garden.length=data.length;
-              this.garden.longitude=data.longitude;
-              this.garden.latitude=data.latitude;
-              this.garden.soil=data.soil;
-              this.garden.user=data.user;
-              this.garden.countryCode=data.countryCode;
-              this.garden.city=data.city;
-              this.garden.plants=data.plants;
-                            new iniciar("detail", this.garden);
-            }else{
-              this._route.navigate(['/newgarden']);
-            }
-
-          },
-        error => {
-          console.error(JSON.parse(error._body).Mensaje);
-          if(JSON.parse(error._body).Mensaje == 'No existe'){
-            this._route.navigate(['/newgarden']);
-          }else{
-            this._route.navigate(['/detail']);
-          }
-        });
-    }
-
-    inicializar(){
-        // new iniciar("detail", this.garden);
-    }
-
-  checkGarden(){
+  mostrar2() {
     this._gardenService.details()
-        .subscribe(data=>{
-          if(data!=null){
-            this.gardenRoute = '/garden';
-          }else{
-            this.gardenRoute = '/newgarden';
-          }
-        },
+      .subscribe(data => {
+        if (data != null) {
+          this.garden.id = data.id;
+          this.garden.title = data.title;
+          this.garden.width = data.width;
+          this.garden.length = data.length;
+          this.garden.longitude = data.longitude;
+          this.garden.latitude = data.latitude;
+          this.garden.soil = data.soil;
+          this.garden.user = data.user;
+          this.garden.countryCode = data.countryCode;
+          this.garden.city = data.city;
+          this.garden.plants = data.plants;
+          new iniciar("detail", this.garden);
+        } else {
+          this._route.navigate(['/newgarden']);
+        }
+
+      },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+        if (JSON.parse(error._body).Mensaje == 'No existe') {
+          this._route.navigate(['/newgarden']);
+        } else {
+          this._route.navigate(['/detail']);
+        }
+      });
+  }
+
+  inicializar() {
+    // new iniciar("detail", this.garden);
+  }
+
+  checkGarden() {
+    this._gardenService.details()
+      .subscribe(data => {
+        if (data != null) {
+          this.gardenRoute = '/garden';
+        } else {
+          this.gardenRoute = '/newgarden';
+        }
+      },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
   }
 
-  cargarfeeds(){
-      this._feedService.showfeeds()
-          .subscribe(data=>{
-            this.feeds=[];
-            for(let key$ in data){
-              this.feeds.push(data[key$]);
-            }
-          },
-        error => {
-          console.error(error);
-        });
+  cargarfeeds() {
+    this._feedService.showfeeds()
+      .subscribe(data => {
+        this.feeds = [];
+        for (let key$ in data) {
+          this.feeds.push(data[key$]);
+        }
+      },
+      error => {
+        console.error(error);
+      });
   }
 
-  mostrartask(){
+  mostrartask() {
     let f = new Date();
-    let fecha_actual:string;
+    let fecha_actual: string;
     f.getDate();
-    f.getMonth() +1;
+    f.getMonth() + 1;
     f.getFullYear();
-    fecha_actual=this.datePipe.transform(f, 'yyyy-MM-dd');
-      this._taskService.detailsAll(fecha_actual)
-          .subscribe(data=>{
-            this.tasks=[];
-            for(let key$ in data){
-              this.addEvent(data[key$].name+" "+data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-            }
-          },
-        error => {
-          console.error(error);
-        });
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this._taskService.detailsAll(fecha_actual)
+      .subscribe(data => {
+        this.tasks = [];
+        for (let key$ in data) {
+          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+        }
+      },
+      error => {
+        console.error(error);
+      });
   }
-  addEvent(Ttitle:string, Tstart:string, Tend:string): void {
+  addEvent(Ttitle: string, Tstart: string, Tend: string): void {
     this.events.push({
       title: Ttitle,
       start: startOfDay(new Date(Tstart)),
