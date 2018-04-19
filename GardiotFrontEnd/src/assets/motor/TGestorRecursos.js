@@ -16,7 +16,6 @@ class TGestorRecursos {
       getRecurso(nombre, tipo, textura){
         //Si no encuentra el recurso (es igual a undefined), lo cargamos de memoria
         if(this._recursos.get(nombre)===undefined){
-          console.log('Cargamos fichero '+nombre+' a memoria');
           //creamos el recurso, del tipo que sea
           let newRecurso;
           if(tipo=='malla')
@@ -36,9 +35,6 @@ class TGestorRecursos {
 
           //lo anyadimos al vector (mapa) de recursos
           this._recursos.set(nombre, newRecurso);
-        }
-        else{
-          console.log('El/la '+nombre+' ya estaba en memoria y se sirve');
         }
         //devolvemos recurso
         return this._recursos.get(nombre);

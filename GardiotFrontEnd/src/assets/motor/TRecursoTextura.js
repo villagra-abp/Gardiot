@@ -9,7 +9,6 @@ class TRecursoTextura extends TRecurso{
 
   cargarFichero(nombre){
     window.loading.push(1);
-  	console.log(this._nombre);
   	this._img.onload=function(){
 	      this.texture = gl.createTexture();
         gl.activeTexture(gl.TEXTURE0);

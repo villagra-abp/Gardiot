@@ -108,6 +108,6 @@ void main()
 	}
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
-		gl_FragColor=vec4(texel.rgb, propiedades.opacity);
+		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 	}
 }
