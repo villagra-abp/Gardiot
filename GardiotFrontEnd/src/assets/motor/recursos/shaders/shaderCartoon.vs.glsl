@@ -7,9 +7,10 @@ attribute vec3 aVertNormal;
 
 varying vec2 vFragTexCoord;
 varying vec3 vVertPosition;
-varying vec4 vNormalInterp;
-
-
+varying mat4 vView;
+varying vec3 vTVertPosition;
+varying vec4 vTVertNormal;
+varying vec3 vVertNormal;
 
 uniform mat4 uMMatrix;
 uniform mat4 uPMatrix;
@@ -20,14 +21,24 @@ uniform mat4 uNormalMatrix;
 
 
 
+
 void main()
 {
-	gl_Position = uPMatrix * uVMatrix * uMMatrix * vec4(aVertPosition, 1.0);
+	vView=uVMatrix;
+	mat4 vModelView=uVMatrix * uMMatrix;
+	mat4 vModelViewProjection= uPMatrix * vModelView;
+
+	gl_Position = vModelViewProjection * vec4(aVertPosition, 1.0);
 
 	vFragTexCoord = aVertTexCoord;
 
-	vec4 vertPos4=uVMatrix*uMMatrix*vec4(aVertPosition, 1.0);
-	vVertPosition=vec3(vertPos4)/vertPos4.w;
-	vNormalInterp=uNormalMatrix*vec4(aVertNormal, 1.0);
+	//Transformed vertex positions and vertex normals
+	vTVertPosition = vec3(vModelView * vec4(aVertPosition, 1.0));
+	vTVertNormal = uNormalMatrix*vec4(aVertNormal, 1.0);
+
+	//Untransformed vertex positions and vertex normals
+	//this is for light calculations
+	vVertPosition = vec3(uMMatrix*vec4(aVertPosition, 1.0));
+	vVertNormal = aVertNormal;
 
 }

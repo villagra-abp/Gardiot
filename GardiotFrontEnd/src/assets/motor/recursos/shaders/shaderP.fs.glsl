@@ -19,6 +19,7 @@ struct LightProperties
 	vec3 color;
 	vec3 specColor;
 	vec4 direction;
+	float amplitude;
 };
 
 struct Propiedades{
@@ -75,7 +76,7 @@ void main()
 	for(int i=0; i<cUSpotLights; i++){
 		//Calculate SpotLight
 		if(uSpotLight[i].isActive==1){
-			highp float spotLimit=0.99;
+			highp float spotLimit=uSpotLight[i].amplitude;
 			highp vec3 spotDirection=uSpotLight[i].direction.xyz;
 			highp float spotEffect=dot(-normalize(spotDirection), normalize(uSpotLight[i].position.xyz-vVertPosition));
 

@@ -57,7 +57,7 @@ function iniciar(accion, jardin){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuzDirigida("luz1", 20, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 

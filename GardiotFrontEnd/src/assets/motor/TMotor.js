@@ -526,7 +526,8 @@ class TMotor{
 
 				//se la pasamos al shader
 				//console.log(this.luzRegistro[i].entity.tipo);
-				let isActive, lightPosUniformLocation, lightIntUniformLocation, lightSpecUniformLocation, lightDirUniformLocation;
+				let isActive, lightPosUniformLocation, lightIntUniformLocation,
+            lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 				if(this.luzRegistro[i].entity.tipo=="puntual"){
 					isActive=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
 					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
@@ -539,7 +540,9 @@ class TMotor{
 					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
 					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
           lightDirUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
+          lightAmpUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
           gl.uniform4fv(lightDirUniformLocation, this.luzRegistro[i].entity.direccion);
+          gl.uniform1f(lightAmpUniformLocation, this.luzRegistro[i].entity.amplitud);
 				}
 
 				gl.uniform1i(isActive, 1);
@@ -618,7 +621,6 @@ class TMotor{
               matrix[13]=y;
               matrix[14]=z;
               this.mallaRegistro[pos].dad.dad.dad.entity.matrix=matrix;
-              console.log(matrix);
             return true;
         }
 
