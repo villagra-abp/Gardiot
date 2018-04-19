@@ -121,7 +121,7 @@ function deleteMyPlant(garden, plant){
 		let respuesta=JSON.parse(xhr.responseText);
         
         if (xhr.status == "200") {
-            //LLAMADA PARA BORRAR LA MALLA
+            motor.borrarMalla(plant.id);
             let index = window.jardin.plants.indexOf(plant);
             window.jardin.plants.splice(index, 1);
         }       
