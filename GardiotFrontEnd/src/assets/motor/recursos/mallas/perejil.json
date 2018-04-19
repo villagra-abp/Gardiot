@@ -19346,7 +19346,7 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 3
-					,"value": "01 - Default"
+					,"value": "Default"
 				}
 				,{
 					 "key": "$clr.diffuse"
@@ -19354,9 +19354,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.105882
-						,0.313726
-						,0.0392157
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -19376,9 +19376,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.105882
-						,0.313726
-						,0.0392157
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -19387,45 +19387,31 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0
-						,0
-						,0
+						 0.64
+						,0.64
+						,0.64
 					]
-				}
-				,{
-					 "key": "$mat.opacity"
-					,"semantic": 0
-					,"index": 0
-					,"type": 1
-					,"value": 1
-				}
-				,{
-					 "key": "$mat.reflectivity"
-					,"semantic": 0
-					,"index": 0
-					,"type": 1
-					,"value": 0
 				}
 				,{
 					 "key": "$mat.shinpercent"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 2
+					,"value": 9.41177
 				}
 				,{
 					 "key": "$mat.shininess"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 2
+					,"value": 9.41177
 				}
 				,{
 					 "key": "$tex.file"
 					,"semantic": 1
 					,"index": 0
 					,"type": 3
-					,"value": "..\\..\\..\\Downloads\\Modelos Gardiot\\Plant_B090127732\\archmodels52_020_leaf.jpg"
+					,"value": "C:\\Users\\Julian\\Desktop\\TAG-Modelos\\descargados\\lechuga\\cabbage.jpg"
 				}
 				,{
 					 "key": "$tex.uvtrafo"

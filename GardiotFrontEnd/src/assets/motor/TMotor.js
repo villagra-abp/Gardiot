@@ -103,7 +103,18 @@ class TMotor{
 
 
   usarShader(shader){
-    gl.useProgram(glProgram[shader]);
+    let p=-1;
+    if(shader=='cartoon')
+      p=0;
+    else if(shader=='realista')
+      p=1;
+    if(p>=0){
+      window.program=p;
+      gl.useProgram(glProgram[p]);
+
+      return true;
+    }
+    return false;
   }
 
 
@@ -155,7 +166,7 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
-      console.log(this.camaraRegistro[pos].dad.dad.entity);
+
 			return true;
 		}
 
@@ -176,7 +187,7 @@ class TMotor{
       matrix[13]=y;
       matrix[14]=z;
       this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
-      console.log(matrix);
+
 			return true;
 		}
   }
@@ -321,9 +332,14 @@ class TMotor{
         mat4.invert(auxMatrix, auxMatrix);
         invertedMView=auxMatrix.slice(0);
 
+        let aux=[];
+        mat4.invert(aux, invertedMView);
+        //gl.uniform3f(glProgram[0].eyePos, aux[12], aux[13], aux[14]);
+        //console.log(aux[12], aux[13], aux[14]);
+
         //pasar matrices a WebGL
-        gl.uniformMatrix4fv(glProgram[0].vMatrixUniform, false, auxMatrix);
-        gl.uniformMatrix4fv(glProgram[0].pMatrixUniform, false, matrixProjection);
+        gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, auxMatrix);
+        gl.uniformMatrix4fv(glProgram[window.program].pMatrixUniform, false, matrixProjection);
 	}
 //=================================FIN CÁMARA============================
 
@@ -345,18 +361,51 @@ class TMotor{
 			//console.log("crea un hermano");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}else{
 			//console.log("crea en raiz");
 			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}
     this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
 	}
+
+  /**
+	 * Crea una luz dirigida (spotlight), se tiene que definir su nombre,
+	 * intensidad y si quieres que cuelgue de un hermano
+	 * si no, se deja en undefined
+   * También se le pasa la amplitud del foco (de 0 a 100) y
+   * la dirección de la luz, en forma de vec3
+	 * @param  {string} nombre
+	 * @param  {double} intensidad
+   * @param  {int} amplitud
+   * @param  {[double, double, double]} direccion
+	 * @param  {TNodo | undefined} hermano
+	 * @return {TNodo}
+	 */
+  crearNodoLuzDirigida(nombre, amplitud, direccion, intensidad, hermano){
+    let i=intensidad;
+
+		if( hermano !== undefined){
+			//console.log("crea un hermano");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
+		}else{
+			//console.log("crea en raiz");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
+		}
+    this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+		this.luzRegistro.push(luz);
+		this.luzActiva.push(0);
+		return luz;
+  }
 
 	//True if can activate, false otherwise
 	activarLuz(nombre){
@@ -372,9 +421,6 @@ class TMotor{
 			if(pos>=0){
 				this.luzActiva[pos] = 1;
 				this.lucesActivas++;
-				if(this.running){
-					configurarShaders(this.vertexShader, this.fragmentShader);
-				}
 				return this.luzRegistro[pos];
 			}else{
 				return false;
@@ -423,6 +469,29 @@ class TMotor{
 		}
 	}
 
+  rotarLuz(nombre, grados, eje){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+			this.luzRegistro[pos].dad.entity.rotar(grados, eje);
+
+
+
+      let lDir=this.luzRegistro[i].entity.origin.slice(0);
+      vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
+
+      this.luzRegistro[i].entity.direccion=lDir.slice(0);
+			return true;
+		}
+
+	}
+
 	dibujarLucesActivas(){
 		//dibujar ambient light
 		let contLuces=0;
@@ -442,7 +511,7 @@ class TMotor{
         		//recorremos la lista auxiliar invertida
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
-              let au=[];
+              		let au=[];
 		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
 		        }
 
@@ -454,17 +523,33 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-        vec4.transformMat4(lPos, lPos, invertedMView);
-        //console.log(lPos);
 
 				//se la pasamos al shader
-				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
-				var lightIntUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].color`);
-				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].specColor`);
+				//console.log(this.luzRegistro[i].entity.tipo);
+				let isActive, lightPosUniformLocation, lightIntUniformLocation,
+            lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
+				if(this.luzRegistro[i].entity.tipo=="puntual"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
+				}
+				else if(this.luzRegistro[i].entity.tipo=="dirigida"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
+          lightDirUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
+          lightAmpUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
+          gl.uniform4fv(lightDirUniformLocation, this.luzRegistro[i].entity.direccion);
+          gl.uniform1f(lightAmpUniformLocation, this.luzRegistro[i].entity.amplitud);
+				}
 
+				gl.uniform1i(isActive, 1);
 				gl.uniform4fv(lightPosUniformLocation, lPos);
 				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
 				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
+
 
 				contLuces++;
 			}
@@ -536,7 +621,6 @@ class TMotor{
               matrix[13]=y;
               matrix[14]=z;
               this.mallaRegistro[pos].dad.dad.dad.entity.matrix=matrix;
-              console.log(matrix);
             return true;
         }
 

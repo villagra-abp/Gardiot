@@ -75,10 +75,18 @@ class TTransf extends TEntidad{
 
 
 class TLuz extends TEntidad {
-    constructor (r, g, b, specR, specG, specB) {
+    constructor (tipo, r, g, b, specR, specG, specB, amplitud, direccion) {
     	super();
+        this._tipo = tipo;
         this._intensidad = [r, g, b];
         this._intensidadSpecular=[specR, specG, specB];
+        if(amplitud !== undefined)
+          this._amplitud = (100-amplitud)/100;
+        if(direccion !== undefined){
+          this._origin = vec4.fromValues(direccion[0], direccion[1], direccion[2], 1.0);
+          this._direccion = vec4.fromValues(direccion[0], direccion[1], direccion[2], 1.0);
+        }
+
     }
 
     setIntensidad (r, g, b) {
@@ -89,12 +97,32 @@ class TLuz extends TEntidad {
         this._intensidadSpecular=[r, g, b];
     }
 
+    set direccion(direccion){
+      this._direccion=direccion;
+    }
+
+    get tipo () {
+        return this._tipo;
+    }
+
     get intensidad () {
         return this._intensidad;
     }
 
     get intensidadSpecular () {
         return this._intensidadSpecular;
+    }
+
+    get amplitud () {
+      return this._amplitud;
+    }
+
+    get direccion () {
+      return this._direccion;
+    }
+
+    get origin () {
+      return this._origin;
     }
 
     beginDraw(){} //Suelen estar vacios

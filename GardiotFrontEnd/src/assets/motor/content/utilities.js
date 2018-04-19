@@ -151,8 +151,8 @@ function cargarShaders(){
 		let fs=[];
 
 		for(let i=0; i<vertexShaders.length && i<fragmentShaders.length; i++){
-	    vs[i]=gestor.getRecurso('shaderP.vs', 'shader').shader,
-	  	fs[i]=gestor.getRecurso('shaderP.fs', 'shader').shader;
+	    vs[i]=gestor.getRecurso(vertexShaders[i], 'shader').shader,
+	  	fs[i]=gestor.getRecurso(fragmentShaders[i], 'shader').shader;
 
 	    //Ya tenemos los shaders aquí! (formato texto)
 	    //console.log(vs);
@@ -176,7 +176,7 @@ function cargarShaders(){
 	    }
 		}
 
-    gl.useProgram(glProgram[0]);
+    gl.useProgram(glProgram[window.program]);
 }
 
 
@@ -190,22 +190,22 @@ function setupWebGL(){
     gl.enable(gl.DEPTH_TEST);
 
     //Nos traemos las matrices, projection, model y view al motor
-    glProgram[0].pMatrixUniform=gl.getUniformLocation(glProgram[0], "uPMatrix");
-    glProgram[0].mMatrixUniform=gl.getUniformLocation(glProgram[0], "uMMatrix");
-    glProgram[0].vMatrixUniform=gl.getUniformLocation(glProgram[0], "uVMatrix");
+    glProgram[window.program].pMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uPMatrix");
+    glProgram[window.program].mMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uMMatrix");
+    glProgram[window.program].vMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uVMatrix");
 
-    glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
-    glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
-		glProgram[0].lighted=gl.getUniformLocation(glProgram[0], "uLighted");
+    glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
+    glProgram[window.program].textured=gl.getUniformLocation(glProgram[window.program], "uTextured");
+		glProgram[window.program].lighted=gl.getUniformLocation(glProgram[window.program], "uLighted");
     //matriz de normales
-    glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
+    glProgram[window.program].normalMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 
-		glProgram[0].ka=gl.getUniformLocation(glProgram[0], "material.Ka");
-		glProgram[0].kd=gl.getUniformLocation(glProgram[0], "material.Kd");
-		glProgram[0].ks=gl.getUniformLocation(glProgram[0], "material.Ks");
+	glProgram[window.program].ka=gl.getUniformLocation(glProgram[window.program], "material.Ka");
+	glProgram[window.program].kd=gl.getUniformLocation(glProgram[window.program], "material.Kd");
+	glProgram[window.program].ks=gl.getUniformLocation(glProgram[window.program], "material.Ks");
 
-		glProgram[0].shin=gl.getUniformLocation(glProgram[0], "propiedades.shininess");
-		glProgram[0].opac=gl.getUniformLocation(glProgram[0], "propiedades.opacity");
+	glProgram[window.program].shin=gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
+	glProgram[window.program].opac=gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
 }
 
 
