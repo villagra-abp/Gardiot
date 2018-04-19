@@ -30,7 +30,7 @@ family.getFamilyById = function(id, callback) {
 
 family.getFamiliesNumber = function (callback) {
   if (connection) {
-    connection.query('SELECT COUNT(*) FROM Family', function (error, number) {
+    connection.query('SELECT COUNT(*) as NUMFAMILIES FROM Family', function (error, number) {
       if (error) callback (error, null);
       else callback (null, number);
     });
