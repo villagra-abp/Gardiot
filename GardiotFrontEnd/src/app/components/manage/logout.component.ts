@@ -8,25 +8,25 @@ import { UserService } from "../../services/user.service";
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private _logoutService:UserService,
-    private _route:Router) {}
+    private _logoutService: UserService,
+    private _route: Router) { }
 
   ngOnInit() {
     this._logoutService.logout()
-        .subscribe(data=>{
-          if(data.Mensaje=="Desconectado"){
-            localStorage.removeItem('Bearer');
-            this._route.navigate(['/login']);
-          }
-        },
-        error=>{
-          localStorage.clear();
+      .subscribe(data => {
+        if (data.Mensaje == "Desconectado") {
+          localStorage.removeItem('Bearer');
           this._route.navigate(['/login']);
-        });
-        
-        sessionStorage.clear();
-        this._logoutService.isAdmin=false;
-        this._logoutService.isAuthenticated=false;
+        }
+      },
+      error => {
+        localStorage.clear();
+        this._route.navigate(['/login']);
+      });
+
+    sessionStorage.clear();
+    this._logoutService.isAdmin = false;
+    this._logoutService.isAuthenticated = false;
 
 
   }

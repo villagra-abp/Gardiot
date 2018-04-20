@@ -32,7 +32,7 @@ router.get('/family/:id', function(request, response) {
 });
 
 router.get('/numFamilies', function(request, response) {
-	plantModel.getFamiliesNumber(function(error, data) {
+	familyModel.getFamiliesNumber(function(error, data) {
 		if (typeof data !== 'undefined')
 			response.status(200).json(data);
 		else

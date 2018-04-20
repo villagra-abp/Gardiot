@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
-import { FeedService } from "../../services/feed.service";
 import { Task } from "../../classes/task.class";
-import { Feed } from "../../classes/feed.class";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
-import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -52,20 +50,18 @@ const colors: any = {
   styleUrls: ['calendar.component.css'],
   templateUrl: 'calendar.component.html'
 })
-export class CalendarComponent implements OnInit{
+export class CalendarComponent implements OnInit {
 
 
   view: string = 'month';
   viewDate: Date = new Date();
 
-  private tasks:any[]=[];
-  private task= new Task();
+  private tasks: any[] = [];
+  private task = new Task();
 
-  private treatments:any[]=[];
-  private treatment= new Task();
+  private treatments: any[] = [];
+  private treatment = new Task();
 
-  private feeds:any[]=[];
-  private feed= new Feed();
 
 
 
@@ -132,14 +128,13 @@ export class CalendarComponent implements OnInit{
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService:TaskService,
-    private _feedService:FeedService,
-    private _route:Router,
-    private _appComponent:AppComponent,
+    private _taskService: TaskService,
+    private _route: Router,
+    private _appComponent: AppComponent,
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
 
-  ) {}
+  ) { }
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -168,7 +163,7 @@ export class CalendarComponent implements OnInit{
   }
 
 
-  addEvent(Ttitle:string, Tstart:string, Tend:string): void {
+  addEvent(Ttitle: string, Tstart: string, Tend: string): void {
     this.events.push({
       title: Ttitle,
       start: startOfDay(new Date(Tstart)),
@@ -183,54 +178,37 @@ export class CalendarComponent implements OnInit{
     this.refresh.next();
   }
 
-  handleEvent(c, e){
+  handleEvent(c, e) {
     alert("manejar click");
     console.log(e);
   }
 
-  mostrar(){
+  mostrar() {
     let f = new Date();
-    let fecha_actual:string;
+    let fecha_actual: string;
     f.getDate();
-    f.getMonth() +1;
+    f.getMonth() + 1;
     f.getFullYear();
-    fecha_actual=this.datePipe.transform(f, 'yyyy-MM-dd');
-      this._taskService.detailsAll(fecha_actual)
-          .subscribe(data=>{
-            this.tasks=[];
-            for(let key$ in data){
-              //console.log(data[key$]);
-              //this.tasks.push(data[key$]);
-              this.addEvent(data[key$].name+" "+data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-            }
-            /*for(let key$ in data){
-              this.treatments.push(data[key$]);
-            }
-            console.log(this.treatments);
-            console.log(this.tasks);*/
-          },
-        error => {
-          console.error(error);
-        });
-  }
-
-  cargarfeeds(){
-      this._feedService.showfeeds()
-          .subscribe(data=>{
-            this.feeds=[];
-            for(let key$ in data){
-              this.feeds.push(data[key$]);
-            }
-            console.log("¿cuantos?");
-            console.log(this.feeds);
-          },
-        error => {
-          console.error(error);
-        });
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this._taskService.detailsAll(fecha_actual)
+      .subscribe(data => {
+        this.tasks = [];
+        for (let key$ in data) {
+          //this.tasks.push(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+        }
+        /*for(let key$ in data){
+          this.treatments.push(data[key$]);
+        }
+        console.log(this.treatments);
+        console.log(this.tasks);*/
+      },
+      error => {
+        console.error(error);
+      });
   }
 
   ngOnInit() {
     this.mostrar();
-    this.cargarfeeds();
   }
 }

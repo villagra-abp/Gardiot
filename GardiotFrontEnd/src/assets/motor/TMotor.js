@@ -181,12 +181,11 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
-      console.log(this.camaraRegistro[pos].dad.dad.entity.matrix);
-			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix.slice(0);
+			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix;
       matrix[12]=x;
       matrix[13]=y;
       matrix[14]=z;
-      this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
+      //this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
 
 			return true;
 		}
@@ -265,7 +264,7 @@ class TMotor{
       if(eje=="y"){
 			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
       }
-      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
+      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.50)){
         this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
       }
 			return true;
@@ -330,7 +329,7 @@ class TMotor{
         this.camaraPosition=auxMatrix.slice(0);
         //el resultado lo invertimos y tenemos la matrix View
         mat4.invert(auxMatrix, auxMatrix);
-        invertedMView=auxMatrix.slice(0);
+        invertedMView=auxMatrix;
 
         let aux=[];
         mat4.invert(aux, invertedMView);
@@ -486,7 +485,7 @@ class TMotor{
       let lDir=this.luzRegistro[i].entity.origin.slice(0);
       vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
 
-      this.luzRegistro[i].entity.direccion=lDir.slice(0);
+      this.luzRegistro[i].entity.direccion=lDir;
 			return true;
 		}
 
@@ -512,7 +511,7 @@ class TMotor{
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
               		let au=[];
-		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
+		        	mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 		        }
 
 
@@ -616,7 +615,7 @@ class TMotor{
 			}
         }
         if(pos>=0){
-            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix.slice(0);
+            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix;
               matrix[12]=x;
               matrix[13]=y;
               matrix[14]=z;

@@ -1,8 +1,8 @@
-function iniciar(accion, jardin){
-  console.log(jardin);
+function iniciar(accion, jardinBBDD){
+  console.log(jardinBBDD);
   window.canvas=null;
 
-  window.jardin=jardin;
+  window.jardin=jardinBBDD;
   //console.log(window.plantas);
   window.loading=[];//array que estará vacío si no hay nada cargándose
 
@@ -71,7 +71,7 @@ function iniciar(accion, jardin){
   //motor.siguienteMallaAnimada("animacion");
 
 
-  window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
+  //window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
 
   //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
 
@@ -92,9 +92,12 @@ if(jardin.length%2==0){
   length=Math.ceil(jardin.length/2);
 }
 
+motor.crearNodoMalla("around", "around", undefined, undefined);
+motor.escalarMallaXYZ("around", 500, 0.1, 500);
+motor.moverMalla("around", 0, -0.01, 0);
   for(let i=-width+adjustX; i<=width; i++){
     for(let j=-length+adjustY; j<=length; j++){
-      motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "suelocesped.jpg", undefined);
+      motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo"+i+'-'+j, i, 0, j);
     }
@@ -103,6 +106,7 @@ if(jardin.length%2==0){
   // lechugas dragables
   for(let i=0; i<jardin.plants.length; i++){
     motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
+    motor.escalarMalla(jardin.plants[i].id, 2.5);
     motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
   }
 
@@ -186,7 +190,7 @@ if(jardin.length%2==0){
 
 //luces
 motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-motor.moverLuz("luz2", 0.0, 10.0, 0.0);
+motor.moverLuz("luz2", 0.0, 500.0, 0.0);
 //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 motor.activarLuz("luz1");
 motor.activarLuz("luz2");

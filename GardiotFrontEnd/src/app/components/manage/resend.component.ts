@@ -7,23 +7,23 @@ import { UserService } from "../../services/user.service";
   selector: 'app-resend',
   templateUrl: './resend.component.html'
 })
-export class ResendComponent implements OnInit{
+export class ResendComponent implements OnInit {
 
-  user=new User("");
+  user = new User("");
 
   constructor(
-    private _resendService:UserService,
-    private _route:Router ){ }
+    private _resendService: UserService,
+    private _route: Router) { }
 
-    enviarEmail(){
-      this._resendService.resendConfirmation()
-        .subscribe(data=>{
-          console.log(data);
-        },
-        error=>{
+  enviarEmail() {
+    this._resendService.resendConfirmation()
+      .subscribe(data => {
+        console.log(data);
+      },
+      error => {
 
-        });
-    }
+      });
+  }
 
   ngOnInit() {
 

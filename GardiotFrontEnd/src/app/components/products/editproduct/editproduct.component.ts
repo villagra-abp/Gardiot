@@ -12,52 +12,52 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class EditproductComponent implements OnInit {
 
-    product=new Product();
-    private products:any[]=[];
+  product = new Product();
+  private products: any[] = [];
   constructor(
-    private _productService:ProductService,
-    private _appComponent:AppComponent,
+    private _productService: ProductService,
+    private _appComponent: AppComponent,
     private _router: ActivatedRoute,
-    private _route:Router,
+    private _route: Router,
   ) { }
 
-  guardar(){
+  guardar() {
     this._productService.modify(this.product)
-        .subscribe(data=>{
-            this._appComponent.mensajeEmergente("El producto se ha modificado", "primary", "admin/products?pag=1");
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("El producto se ha modificado", "primary", "admin/products?pag=1");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
-  getID(){
+  getID() {
     this._router.params.subscribe(params => {
-      if(params['id']!=null){
-        this.product=new Product(params['id']);
+      if (params['id'] != null) {
+        this.product = new Product(params['id']);
         this.mostrar(this.product.id);
-      }else{
+      } else {
         this._route.navigate(['/treatments']);
       }
     });
   }
 
-  mostrar(idTreatment: number){
+  mostrar(idTreatment: number) {
     this._productService.details(idTreatment)
-        .subscribe(data=>{
-          this.product.id=idTreatment;
-          this.product.name=data[0].name;
-          this.product.type=data[0].type;
-          this.product.description=data[0].description;
-        },
+      .subscribe(data => {
+        this.product.id = idTreatment;
+        this.product.name = data[0].name;
+        this.product.type = data[0].type;
+        this.product.description = data[0].description;
+      },
       error => {
         console.error(error);
         localStorage.clear();
         sessionStorage.clear();
       });
 
-    }
+  }
 
   ngOnInit() {
     this.getID();

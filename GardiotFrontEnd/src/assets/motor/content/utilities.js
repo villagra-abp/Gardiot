@@ -10,7 +10,6 @@ var loadTextResource=function (url, callback){
     else if(window.location.toString().indexOf('localhost:8080')>=0){
         resURL=url;
     }
-    console.log(resURL);
     request.open('GET', resURL, false);
     request.onload=function(){
       if(request.status<200 || request.status>299){
@@ -28,7 +27,6 @@ var loadJSONResource=function(url, callback){
       callback(err);
     } else{
       try{
-				console.log(JSON.parse(result));
         callback(null, JSON.parse(result));
       } catch(e){
         callback(e);
@@ -51,12 +49,12 @@ function updateMyPlant(garden, plant, soil, x, y){
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
-        
+
         if (xhr.status == "200") {
             motor.moverMallaA(plant.id, x, 0, y); //Esta llamada tal vez es innecesaria
             plant.x = x;
             plant.y = y;
-        }       
+        }
 	}
 
 
@@ -81,7 +79,7 @@ function insertMyPlant(garden, plant, soil, x, y){
 
     xhr.onload=function(){
         let respuesta=JSON.parse(xhr.responseText);
-        //console.log(respuesta.Mensaje);    
+        //console.log(respuesta.Mensaje);
         if (xhr.status == 200) {
             let value = {
                 id: respuesta.myPlant,
@@ -94,7 +92,7 @@ function insertMyPlant(garden, plant, soil, x, y){
             };
             window.jardin.plants.push(value);
             motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
-            motor.moverMallaA(respuesta.myPlant, x, 0, y); 
+            motor.moverMallaA(respuesta.myPlant, x, 0, y);
         }
     }
 
@@ -102,7 +100,7 @@ function insertMyPlant(garden, plant, soil, x, y){
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
-    xhr.send(params);  
+    xhr.send(params);
 }
 
 function deleteMyPlant(garden, plant){
@@ -119,12 +117,12 @@ function deleteMyPlant(garden, plant){
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
-        
+
         if (xhr.status == "200") {
             motor.borrarMalla(plant.id);
             let index = window.jardin.plants.indexOf(plant);
             window.jardin.plants.splice(index, 1);
-        }       
+        }
 	}
 
 	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);

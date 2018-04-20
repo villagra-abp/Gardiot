@@ -10,23 +10,23 @@ import { Treatment } from "../../../classes/treatment.class";
 })
 export class NewtreatmentComponent implements OnInit {
 
-  treatment=new Treatment();
-  private treatments:any[]=[];
+  treatment = new Treatment();
+  private treatments: any[] = [];
 
   constructor(
-    private _treatmentService:TreatmentService,
-    private _appComponent:AppComponent,
+    private _treatmentService: TreatmentService,
+    private _appComponent: AppComponent,
   ) { }
 
-  guardar(){
+  guardar() {
     this._treatmentService.save(this.treatment)
-        .subscribe(data=>{
-            this._appComponent.mensajeEmergente("El tratamiento se ha guardado", "primary", "admin/treatments?pag=1");
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("El tratamiento se ha guardado", "primary", "admin/treatments?pag=1");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
   ngOnInit() {

@@ -1,93 +1,54 @@
- <section class="container vistaAdmin">
+<section class="container vistaAdmin">
   <h1>Estadisticas</h1>
   <article>
-      <section class="row">
-          <div class="col-md-12">
-              <div class="well well-sm">
-                    <fieldset>
-                      <mat-tab-group class="demo-tab-group">
-                          <mat-tab class="demo-tab-content" label="Estadísticas de usuario">
-                            <article class="row">
-                              <div class="col">
-                          			<h4>Usuarios</h4>
-                          				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=6&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                                              width="450" height="250" frameborder="0">
-                                  </iframe>
-                              </div>
-                              <div class="col">
-                          			<h4>Mapa de usuarios</h4>
-                                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=8&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                                              width="450" height="250" frameborder="0">
-                                  </iframe>
-                              </div>
-                              <br>
-                              <div class="col">
-                                <h4>Usuarios conectados</h4>
-                                <!-- <mat-form-field>
+    <section class="row">
+      <div class="col-md-12">
+        <div class="well well-sm">
+          <fieldset>
+            <mat-tab-group class="demo-tab-group">
+              <mat-tab class="one" label="Estadísticas de usuario">
+                <article class="row">
+                  <div class="col">
+                    <h4>Usuarios</h4>
+                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe> </div>
+                  <div class="col">
+                    <h4>Mapa de usuarios</h4>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                  </div>
+                  <br>
+                  <div class="col">
+                    <h4>Usuarios conectados</h4>
+                    <!-- <mat-form-field>
                                   <mat-select placeholder="Intervalos">
                                     <mat-option *ngFor="let dato of datos" [value]="dato.value">
                                       {{ dato.viewValue }}
                                     </mat-option>
                                   </mat-select>
                                 </mat-form-field> -->
-<<<<<<< HEAD
-                                <!-- <mat-form-field>
-=======
-                               <!-- <mat-form-field>
->>>>>>> develop
-                                  <mat-select placeholder="Intervalos" [(value)]="selected">
-                                    <mat-option *ngFor="let dato of datos" [value]="dato.value">
-                                      {{ dato.viewValue }}
-                                    </mat-option>
-                                  </mat-select>
-                                </mat-form-field> -->
-                                <br>
-                                <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-planta1=Aloe%20vera&var-planta2=Cactus&var-tiempo=120&from=1523972498658&to=1523973398658&panelId=10"
-                                        width="450" height="200" frameborder="0">
-                                </iframe>
-                                <p>Selected: {{selected}}</p>
-                              </div>
-                            </article>
-                          </mat-tab>
+                    <br>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light" width="450" height="250" frameborder="0"></iframe>
+                    <p>Selected: {{selected}}</p>
+                  </div>
+                </article>
+              </mat-tab>
 
+              <mat-tab label="Estadísticas de jardín">
+                <article class="row">
+                  <div class="col">
+                    <h4>Tareas realizadas en los jardines</h4>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=4&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                  </div>
+                  <div class="col">
+                    <h4>Comparativa de plantas</h4>
+                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=2&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                  </div>
+                </article>
+              </mat-tab>
 
-
-                          <mat-tab label="Estadísticas de jardín">
-                            <article class="row">
-                              <div class="col">
-                          			<h4>Tareas realizadas en los jardines</h4>
-                          				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=4&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                                   width="450" height="250" frameborder="0">
-                                 </iframe>
-                              </div>
-                              <div class="col">
-                          			<h4>Comparativa de plantas</h4>
-                          				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=2&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                                              width="450" height="250" frameborder="0">
-                                  </iframe>
-                              </div>
-                            </article>
-                          </mat-tab>
-
-                      </mat-tab-group>
-                  </fieldset>
-              </div>
-          </div>
-      </section>
-    </article>
-
-    <article class="row">
-    <div class="col">
-			<h3>Usuarios</h3>
-				<iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=6&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                    width="450" height="250" frameborder="0">
-        </iframe>
-    </div>
-    <div class="col">
-			<h3>Mapa de usuarios</h3>
-      <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=8&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus"
-                  width="450" height="250" frameborder="0">
-      </iframe>
-    </div>
+            </mat-tab-group>
+          </fieldset>
+        </div>
+      </div>
+    </section>
   </article>
 </section>
