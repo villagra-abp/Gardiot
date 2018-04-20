@@ -40,7 +40,7 @@ feed.setFeedSeen = function (feed, user, callback) {
         callback(error, null);
       else
         callback(null, result.affectedRows);
-    })
+    });
   }
 }
 
