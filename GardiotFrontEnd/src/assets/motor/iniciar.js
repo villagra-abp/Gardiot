@@ -57,8 +57,8 @@ function iniciar(accion, jardinBBDD){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.luz2 = motor.crearNodoLuz("luz2", 0.7, undefined);
+  //window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 0.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -190,10 +190,10 @@ motor.moverMalla("around", 0, -0.01, 0);
 
 //luces
 motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-motor.moverLuz("luz2", 0.0, 500.0, 0.0);
+motor.moverLuz("sol", 0.0, 500.0, 0.0);
 //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 motor.activarLuz("luz1");
-motor.activarLuz("luz2");
+motor.activarLuz("sol");
 //motor.activarLuz("luz3");
 
 

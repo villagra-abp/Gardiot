@@ -42,9 +42,13 @@ input{
 
 }*/
 
+body{
+  background-color: #299654 !important;
+}
+
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 2% 0 0;
   margin: auto;
 }
 .form {
@@ -140,7 +144,7 @@ input{
   color: #EF3B3A;
 }
 .fondo {
-  position:absolute;
+  position:fixed;
   z-index: -1;
   top: 61px;
   bottom: 0;
@@ -153,4 +157,14 @@ input{
   background: linear-gradient(to bottom, #299654, #8DC26F);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.fondofinal{
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #299654;
 }

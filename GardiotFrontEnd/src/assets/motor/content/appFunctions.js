@@ -6,9 +6,6 @@ function animLoop(){
     //Si toca dibujar y el motor está corriendo
     if(elapsed>fpsInterval && motor.running){
         then=now-(elapsed%fpsInterval);
-        motor.rotarMalla("malla2", 1, "x");
-        motor.rotarMalla("malla2", 1, "y");
-        motor.rotarMalla("malla2", 1, "z");
 
         motor.draw();
     }
@@ -54,7 +51,7 @@ function mouse_move(e, view){
         y=e.offsetY;
 
 
-				if(cv.getAttribute('data-down')){
+				if(cv.getAttribute('moviendo-camara')){
 	        //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
           let ejeY=window.originClickY-(y/cv.offsetHeight);
           let ejeX=window.originClickX-(x/cv.offsetWidth);
@@ -78,8 +75,8 @@ function mouse_move(e, view){
           }
 
 
-					/*motor.rotarCamaraOrbital("camara2", ejeX*150, "y");
-          motor.rotarCamaraOrbital("camara2", ejeY*150, "x");*/
+					//Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
+          //de mouse_move
 					window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
         }
@@ -130,8 +127,11 @@ function mouse_down(e, view){
 
       //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
       //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
-      cv.setAttribute('data-down', 'true');
+      cv.setAttribute('moviendo-camara', 'true');
 
+
+      //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
+      //de mouse_move
       window.originClickX=x/cv.offsetWidth;
       window.originClickY=y/cv.offsetHeight;
       break;
@@ -180,27 +180,17 @@ function mouse_up(e, view){
       }
       break;
     case 3: //Derecho
-      let cv=e.target,
-      x=e.offsetX,
-      y=e.offsetY,
-      dimx=cv.offsetWidth/41,
-      dimy=cv.offsetHeight/27,
-      fila=Math.ceil(y/dimy),
-      columna=Math.ceil(x/dimx);
-
-      window.x=undefined;
-      window.y=undefined;
+    //No se hace nada al soltar el botón derecho
       window.originClickX=undefined;
       window.originClickY=undefined;
 
-      get3DPoint([x, y], cv.offsetWidth, cv.offsetHeight);
-
       //console.log(`UP-> Posición: ${fila} - ${columna}`);
-      cv.removeAttribute('data-down');
+      e.target.removeAttribute('moviendo-camara');
       break;
   }
 }
 
+//Esto es solo para el zoom de la cámara en el modo edición
 function scrolling(e){
   let cv=e.target;
   let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
@@ -210,29 +200,14 @@ function scrolling(e){
   vec3.normalize(vector, vector);
   vec3.scale(vector, vector, 1);
   if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>5){
-    motor.moverCamara("camara2", 0, vector[1], 0);
-  }
-  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<10){
-    motor.moverCamara("camara2", 0, -vector[1], 0);
-  }
-}
-
-/*
-function scrolling(e){
-  let cv=e.target;
-  let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
-  let camera=motor.getPosCamaraActiva();
-
-  let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);
-  vec3.normalize(vector, vector);
-  vec3.scale(vector, vector, 12);
-  if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>100){
     motor.moverCamara("camara2", vector[0], vector[1], vector[2]);
   }
-  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<500){
+
+  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<10){
     motor.moverCamara("camara2", -vector[0], -vector[1], -vector[2]);
   }
-}*/
+
+}
 
 
 function get2DPoint(point3D, width, height){
