@@ -264,7 +264,7 @@ class TMotor{
       if(eje=="y"){
 			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
       }
-      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.50)){
+      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
         this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
       }
 			return true;
@@ -358,16 +358,19 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
+      var rotOrb = new TNodo(nombre + "_RO", new TTransf(), hermano.dad);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}else{
 			//console.log("crea en raiz");
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
+      var rotOrb = new TNodo(nombre + "_RO", new TTransf(), this.escena);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}
     this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+    motor.escalarMalla("sol", 10);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -490,6 +493,39 @@ class TMotor{
 		}
 
 	}
+  rotarLuzOrbital(nombre, grados){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+
+			this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
+
+			return true;
+		}
+  }
+  rotarLuzOrbitalA(nombre, grados){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let mat=this.luzRegistro[pos].dad.dad.dad.entity.matrix;
+			mat4.fromRotation(mat, grados * Math.PI / 180, [0.0, 0.0, 1.0]);
+      //this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
+
+			return true;
+		}
+  }
 
 	dibujarLucesActivas(){
 		//dibujar ambient light
