@@ -172,6 +172,16 @@ export class DetailComponent implements OnInit {
         console.error(error);
       });
   }
+
+  cerrarfeed(id:number) {
+    this._feedService.closefeed(id)
+      .subscribe(data => {
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
   addEvent(Ttitle: string, Tstart: string, Tend: string): void {
     this.events.push({
       title: Ttitle,
