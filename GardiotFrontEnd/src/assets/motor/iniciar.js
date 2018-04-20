@@ -97,12 +97,13 @@ if(jardin.length%2==0){
 
 motor.crearNodoMalla("around", "around", undefined, undefined);
 motor.escalarMallaXYZ("around", 500, 0.1, 500);
-motor.moverMalla("around", 0, -0.01, 0);
+motor.moverMalla("around", 0, -0.11, 0);
   for(let i=-width+adjustX; i<=width; i++){
     for(let j=-length+adjustY; j<=length; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
-      motor.moverMalla("suelo"+i+'-'+j, i, 0, j);
+      motor.moverMalla("suelo"+i+'-'+j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+      //HACEDLO CON LAS PLANTAS
     }
   }
 
