@@ -17,6 +17,9 @@ function iniciar(accion, jardinBBDD){
   window.interval;
 
 
+  window.hovered=-1;
+  window.colorCell=[];
+
   //inicialización de matrices
   window.matrixStack=[];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
@@ -103,8 +106,10 @@ motor.moverMalla("around", 0, -0.01, 0);
     }
   }
 
-  // lechugas dragables
+  // plantas dragables
+  window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
+    plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
     motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
     motor.escalarMalla(jardin.plants[i].id, 2.5);
     motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);

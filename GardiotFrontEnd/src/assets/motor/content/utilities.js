@@ -52,8 +52,10 @@ function updateMyPlant(garden, plant, soil, x, y){
 
         if (xhr.status == "200") {
             motor.moverMallaA(plant.id, x, 0, y); //Esta llamada tal vez es innecesaria
+						plantsMap.delete(plant.x+'-'+plant.y);
             plant.x = x;
             plant.y = y;
+						plantsMap.set(x+'-'+y, plant.id)
         }
 	}
 
@@ -195,6 +197,7 @@ function setupWebGL(){
     glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
     glProgram[window.program].textured=gl.getUniformLocation(glProgram[window.program], "uTextured");
 		glProgram[window.program].lighted=gl.getUniformLocation(glProgram[window.program], "uLighted");
+		glProgram[window.program].hovered=gl.getUniformLocation(glProgram[window.program], "uHovered");
     //matriz de normales
     glProgram[window.program].normalMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 

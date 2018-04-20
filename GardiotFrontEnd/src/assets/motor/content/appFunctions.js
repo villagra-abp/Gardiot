@@ -50,7 +50,6 @@ function mouse_move(e, view){
         x=e.offsetX,
         y=e.offsetY;
 
-
 				if(cv.getAttribute('moviendo-camara')){
 	        //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
           let ejeY=window.originClickY-(y/cv.offsetHeight);
@@ -82,11 +81,16 @@ function mouse_move(e, view){
         }
 
         if (view != 'detail') {
+          let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+          let p=[Math.round(point[0]), Math.round(point[2])];
           if(window.dragging) {
             e.preventDefault();
             e.stopPropagation();
 
-            let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+            if(plantsMap.has(p[0]+'-'+p[1]))
+              colorCell=["suelo"+p[0]+'-'+p[1], "red"];
+            else
+              colorCell=["suelo"+p[0]+'-'+p[1], "green"];
 
             for (let plant of window.jardin.plants) {
               if (plant.isDragging) {
@@ -94,6 +98,14 @@ function mouse_move(e, view){
                 break;
               }
             }
+          }
+          else if(plantsMap.has(p[0]+'-'+p[1])){
+            document.body.style.cursor = 'pointer';
+            hovered=plantsMap.get(Math.round(point[0])+'-'+Math.round(point[2]));
+          }
+          else{
+            document.body.style.cursor = 'default';
+            hovered=-1;
           }
         }
 }
@@ -139,7 +151,7 @@ function mouse_down(e, view){
 }
 
 function mouse_up(e, view){
-
+  colorCell=[];
   switch (e.which) {
     case 1: //Izquierdo
       if (view != 'detail' && window.dragging) {
@@ -192,6 +204,7 @@ function mouse_up(e, view){
 
 //Esto es solo para el zoom de la cámara en el modo edición
 function scrolling(e){
+
   let cv=e.target;
   let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
   let camera=motor.getPosCamaraActiva();
