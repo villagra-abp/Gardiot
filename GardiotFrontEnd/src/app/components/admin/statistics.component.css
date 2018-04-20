@@ -1,0 +1,19 @@
+/******* ESTILO ESTADISTICAS *******/
+/******* Julián Sánchez García *******/
+
+h1{
+  color:  #fbb200;
+}
+
+h4{
+  /* padding-left: 1%;*/
+}
+fieldset{
+  border-color: #fbb200;
+}
+.mat-tab{
+    /* height:unset!important; */
+    width: unset!important;
+    height: unset!important;
+}
+/******* FIN ESTILO ESTADISTICAS *******/

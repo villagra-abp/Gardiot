@@ -1,6 +1,6 @@
 <section class="container vistaAdmin">
   <h1>Estadisticas</h1>
-  <article>
+  <article class="statistics">
     <section class="row">
       <div class="col-md-12">
         <div class="well well-sm">
@@ -10,14 +10,22 @@
                 <article class="row">
                   <div class="col">
                     <h4>Usuarios</h4>
-                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe> </div>
+                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light"
+                  width="450" height="350" frameborder="0"></iframe> </div>
                   <div class="col">
                     <h4>Mapa de usuarios</h4>
-                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light"
+                    width="450" height="350" frameborder="0"></iframe>
                   </div>
                   <br>
                   <div class="col">
                     <h4>Usuarios conectados</h4>
+                    <!-- <select  name="" placeholder="Intervalos">
+                      <option class="selectpicker" *ngFor="let dato of datos" value="dato.value">{{ dato.viewValue }}</option>
+                       <p>Selected: {{dato.value}}</p>
+                    </select> -->
+                    <br>
+
                     <!-- <mat-form-field>
                                   <mat-select placeholder="Intervalos">
                                     <mat-option *ngFor="let dato of datos" [value]="dato.value">
@@ -26,8 +34,9 @@
                                   </mat-select>
                                 </mat-form-field> -->
                     <br>
-                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light" width="450" height="250" frameborder="0"></iframe>
-                    <p>Selected: {{selected}}</p>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light"
+                    width="450" height="350" frameborder="0"></iframe>
+
                   </div>
                 </article>
               </mat-tab>
@@ -36,11 +45,13 @@
                 <article class="row">
                   <div class="col">
                     <h4>Tareas realizadas en los jardines</h4>
-                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=4&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                    <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=4&var-tiempo=120&theme=light"
+                    width="450" height="350" frameborder="0"></iframe>
                   </div>
                   <div class="col">
                     <h4>Comparativa de plantas</h4>
-                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=2&var-tiempo=120&theme=light" width="450" height="250" frameborder="0"></iframe>
+                  <iframe src="https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=2&var-tiempo=120&theme=light"
+                  width="450" height="350" frameborder="0"></iframe>
                   </div>
                 </article>
               </mat-tab>
