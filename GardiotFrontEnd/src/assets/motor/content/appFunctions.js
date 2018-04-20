@@ -36,14 +36,14 @@ function drop(e) {
 
     if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
       let occupied = false;
-        for (let value of window.jardin.plants) { 
+        for (let value of window.jardin.plants) {
           if (value.x == coordX && value.y == coordY) {
             occupied = true;
             break;
           }
         }
-        if (!occupied) 
-          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);       
+        if (!occupied)
+          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
     }
 }
 
@@ -67,11 +67,12 @@ function mouse_move(e, view){
             motor.rotarCamaraOrbital("camara1", ejeY*150, "x");
           }
           else{
-            if((pos[0]<movPosible || ejeX<0) && (pos[0]>-movPosible || ejeX>0)){
+            //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
+            if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
               motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
             }
 
-            if((pos[2]<movPosible || ejeY<0) && (pos[2]>-movPosible || ejeY>0)){
+            if((pos[2] <= jardin.length*1.0/2 || ejeY<0) && (pos[2] >= jardin.length*(-1.0)/2 || ejeY>0)){
               motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
             }
           }
@@ -151,7 +152,7 @@ function mouse_up(e, view){
         for (let plant of window.jardin.plants) {
           if (plant.isDragging) {
             plant.isDragging = false;
-            window.dragging = false; 
+            window.dragging = false;
             if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
               let occupied = false;
               for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
@@ -161,8 +162,8 @@ function mouse_up(e, view){
                   break;
                 }
               }
-              if (!occupied) 
-                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);                   
+              if (!occupied)
+                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
             }
             else {
               let rect = cv.getBoundingClientRect();
@@ -170,9 +171,9 @@ function mouse_up(e, view){
               let yPos = e.clientY - rect.top;
               if (xPos >= 90*cv.offsetWidth/100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10*cv.offsetHeight/100)
                 deleteMyPlant(window.jardin.id, plant);
-              else 
+              else
                 motor.moverMallaA(plant.id, plant.x, 0, plant.y);
-            }       
+            }
             break;
           }
         }
@@ -211,7 +212,7 @@ function scrolling(e){
   if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>5){
     motor.moverCamara("camara2", 0, vector[1], 0);
   }
-  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<40){
+  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<10){
     motor.moverCamara("camara2", 0, -vector[1], 0);
   }
 }
