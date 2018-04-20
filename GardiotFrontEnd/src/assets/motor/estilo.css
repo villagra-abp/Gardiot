@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-    
+
 }
 
 body{
@@ -12,8 +12,6 @@ body{
     text-align: center;
 
 }
-
-
 
 canvas{
     background-color: #fff;
