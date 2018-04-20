@@ -95,4 +95,15 @@ export class FeedService {
 				})
 		}
 
+		closefeed(id:number){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
+
+			return this.http.patch(this.apiURL+"feed/"+id ,{ headers } )
+				.map( res =>{
+					return res.json();
+				})
+		}
+
 }
