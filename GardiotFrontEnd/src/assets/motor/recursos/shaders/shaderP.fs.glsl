@@ -43,6 +43,7 @@ uniform sampler2D uSampler;
 uniform int uTextured;
 uniform int uLighted;
 uniform int uNLights;
+uniform int uHovered;
 
 
 
@@ -101,8 +102,20 @@ void main()
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-		if(uLighted==1)
-			gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+		if(uLighted==1){
+			if(uHovered==1){
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0), propiedades.opacity);
+			}
+			else if(uHovered==2){
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0), propiedades.opacity);
+			}
+			else if(uHovered==3){
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
+			}
+			else{
+				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+			}
+		}
 		else
 			gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}
@@ -110,4 +123,6 @@ void main()
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
 		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 	}
+
+
 }

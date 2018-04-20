@@ -305,7 +305,7 @@ class TMotor{
 		let camaraActiva=this.getCamaraActiva();
 		//crear matriz projection a partir de la info almacenada
 		if(!camaraActiva.entity._isPerspective){
-            mat4.ortho(matrixProjection, camaraActiva.entity._left*90, camaraActiva.entity._right*90, camaraActiva.entity._bottom*90, camaraActiva.entity._top*90, camaraActiva.entity._near, camaraActiva.entity._far*100);
+            mat4.ortho(matrixProjection, camaraActiva.entity._left*10, camaraActiva.entity._right*10, camaraActiva.entity._bottom*10, camaraActiva.entity._top*10, camaraActiva.entity._near, camaraActiva.entity._far*100);
         }
         else{
             mat4.frustum(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
@@ -736,6 +736,7 @@ class TMotor{
 			this.mallaRegistro[pos] = undefined;
 		}
 	}
+
 
 //=================================FIN MALLAS============================
 

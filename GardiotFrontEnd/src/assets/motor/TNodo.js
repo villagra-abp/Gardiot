@@ -9,11 +9,11 @@ class TNodo {
         if(dad!==undefined)
         	this._dad.addChild(this);
     }
- 
+
     get name () {
         return this._name;
     }
- 
+
     set name ( name ) {
         this._name=name;
     }
@@ -21,7 +21,7 @@ class TNodo {
     get entity () {
         return this._entity;
     }
- 
+
     set entity ( entity ) {
         this._entity=entity;
         return true;
@@ -30,7 +30,7 @@ class TNodo {
     get dad () {
         return this._dad;
     }
- 
+
     set dad ( dad ) {
         this._dad=dad;
     }
@@ -44,7 +44,7 @@ class TNodo {
     get childs () {
         return this._childs;
     }
- 
+
     //añade un nodo hijo, actualiza el padre del hijo y devuelve el número de nodos hijo
     addChild(child){
         child.dad=this;
@@ -64,7 +64,13 @@ class TNodo {
     draw(){
         if(this._active == 1){
             if(this._entity!==undefined){
-                this._entity.beginDraw();
+                if(this.name==hovered)
+                  this._entity.beginDraw(true);
+                else if(this.name==colorCell[0])
+                  this._entity.beginDraw(colorCell[1]);
+                else
+                  this._entity.beginDraw();
+
             }
             for(let i=0; i<this._childs.length; i++){
                 this._childs[i].draw();
@@ -75,4 +81,3 @@ class TNodo {
         }
     }
 }
-

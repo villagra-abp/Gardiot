@@ -30,6 +30,7 @@ class TRecursoMalla extends TRecurso{
     this.matrixModelView=[];
     this.normalMatrix=[];
 
+    this.hovered=false;
 
   }
   cargarFichero(nombre, textura){
@@ -151,10 +152,11 @@ class TRecursoMalla extends TRecurso{
     this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
 
 
+
   }
 
 
-  draw(){
+  draw(variable){
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
@@ -221,6 +223,19 @@ class TRecursoMalla extends TRecurso{
     }
     else {
       gl.uniform1i(glProgram[window.program].lighted, 1);
+    }
+
+    if(variable==true){
+      gl.uniform1i(glProgram[window.program].hovered, 1);
+    }
+    else if(variable=="green"){
+      gl.uniform1i(glProgram[window.program].hovered, 2);
+    }
+    else if(variable=="red"){
+      gl.uniform1i(glProgram[window.program].hovered, 3);
+    }
+    else {
+      gl.uniform1i(glProgram[window.program].hovered, 0);
     }
 
 

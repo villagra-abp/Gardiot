@@ -183,8 +183,8 @@ class TMalla extends TEntidad {
         this._malla=gestor.getRecurso(nombreMalla, 'malla', textura);
     }
 
-    beginDraw () {
-        this._malla.draw();
+    beginDraw (variable) {
+        this._malla.draw(variable);
     }
     endDraw () {}
 }
