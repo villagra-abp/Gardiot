@@ -52,10 +52,10 @@ function updateMyPlant(garden, plant, soil, x, y){
 
         if (xhr.status == "200") {
             motor.moverMallaA(plant.id, x, 0, y); //Esta llamada tal vez es innecesaria
-						plantsMap.delete(plant.x+'-'+plant.y);
+						plantsMap.delete(plant.x+'-'+plant.y);//Para la iluminación
             plant.x = x;
             plant.y = y;
-						plantsMap.set(x+'-'+y, plant.id)
+						plantsMap.set(x+'-'+y, plant.id);//Para la iluminación
         }
 	}
 
@@ -92,6 +92,9 @@ function insertMyPlant(garden, plant, soil, x, y){
                 model: undefined,
                 seed: undefined
             };
+
+						plantsMap.set(x+'-'+y, respuesta.myPlant);//Para la iluminación
+
             window.jardin.plants.push(value);
             motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
             motor.moverMallaA(respuesta.myPlant, x, 0, y);
@@ -123,6 +126,9 @@ function deleteMyPlant(garden, plant){
         if (xhr.status == "200") {
             motor.borrarMalla(plant.id);
             let index = window.jardin.plants.indexOf(plant);
+
+						plantsMap.delete(plant.x+'-'+plant.y);//Para la iluminación
+
             window.jardin.plants.splice(index, 1);
         }
 	}
