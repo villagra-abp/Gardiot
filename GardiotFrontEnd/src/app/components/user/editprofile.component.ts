@@ -200,14 +200,13 @@ export class EditProfileComponent implements OnInit {
   //Estas dos funciones son para guardar los datos
   //del país y ciudad en el objeto de usuario
   saveCountry(e) {
-    console.log(e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.user.countryCode = e.value;
     }
   }
 
   saveCity(e) {
-    console.log("save city" + e.value);
+
     if (e.value != 0 && e.value !== undefined) {
       this.user.city = e.value;
       this.mostrarCiudad();
