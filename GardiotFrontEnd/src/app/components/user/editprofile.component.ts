@@ -135,8 +135,6 @@ export class EditProfileComponent implements OnInit {
           aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
         }
 
-
-
         this.countryData = Observable.create((obs) => {
           obs.next(aux);
           obs.complete();
@@ -145,7 +143,6 @@ export class EditProfileComponent implements OnInit {
           obs.next(this.user.countryCode);
           obs.complete();
         }).delay(1000);
-
 
       },
       error => {

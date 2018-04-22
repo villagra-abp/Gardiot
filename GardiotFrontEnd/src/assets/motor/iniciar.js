@@ -61,7 +61,7 @@ function iniciar(accion, jardinBBDD){
 
 
   //window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.sol = motor.crearNodoLuz("sol", 0.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista

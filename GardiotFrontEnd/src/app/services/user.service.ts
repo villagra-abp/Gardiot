@@ -147,6 +147,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
+      console.log(body);
       return this.http.put(this.apiURL+"user", body, { headers })
           .map( res =>{
             return res.json();
@@ -159,13 +160,12 @@ export class UserService {
         body+=`&lastName=${user.lastName}`;
       }
       if(user.photo!==undefined){
-        console.log(user.photo);
         body+=`&photo=${user.photo}`;
       }
       var country = 0;
 
       if(user.birthDate!=null){
-        console.log(user.birthDate);
+
         body+=`&birthDate=${user.birthDate}`;
       }
       if(user.oldPassword && user.password){
@@ -177,7 +177,7 @@ export class UserService {
         country = 1;
       }
       if(user.city!==undefined && country==1){
-        console.log(user.city);
+
         body+=`&city=${user.city}`;
       }
       console.log(body);

@@ -25,8 +25,11 @@ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from 'angular-calendar';
+import { CustomDateFormatter } from './customdate.provider';
 
 
 const colors: any = {
@@ -48,13 +51,24 @@ const colors: any = {
   selector: 'app-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['calendar.component.css'],
-  templateUrl: 'calendar.component.html'
+  templateUrl: 'calendar.component.html',
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class CalendarComponent implements OnInit {
 
-
   view: string = 'month';
   viewDate: Date = new Date();
+
+  locale: string = 'es';
+
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   private tasks: any[] = [];
   private task = new Task();
@@ -68,17 +82,17 @@ export class CalendarComponent implements OnInit {
 
 
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
+    /*{
+      label: '<i class="fa fa-fw fa-pencil">Detalles</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        //this.handleEvent('Edited', event);
+      this.handleEvent('Edited', event);
       }
-    },
+    },*/
     {
-      label: '<i class="fa fa-fw fa-times"></i>',
+      label: '<i class="fa fa-fw fa-times">Marcar como hecho</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
-        //this.handleEvent('Deleted', event);
+        this.handleEvent('Done', event);
       }
     }
   ];
@@ -158,7 +172,7 @@ export class CalendarComponent implements OnInit {
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    //this.handleEvent('Dropped or resized', event);
+    this.handleEvent('Changed', event);
     this.refresh.next();
   }
 
@@ -169,18 +183,31 @@ export class CalendarComponent implements OnInit {
       start: startOfDay(new Date(Tstart)),
       end: endOfDay(new Date(Tend)),
       color: colors.red,
-      draggable: false,
+      actions: this.actions,
+      draggable: true,
       resizable: {
         beforeStart: true,
         afterEnd: true
       }
     });
     this.refresh.next();
+
   }
 
-  handleEvent(c, e) {
-    alert("manejar click");
-    console.log(e);
+  handleEvent(action:string, event:CalendarEvent) {
+    if(action=='Edited'){
+      alert("detalles");
+    }
+    else if(action=='Done'){
+      alert("hecho");
+    }
+    else if(action=='Changed'){
+      alert("Movido");
+    }
+    else{
+      alert("click standar");
+    }
+
   }
 
   mostrar() {
