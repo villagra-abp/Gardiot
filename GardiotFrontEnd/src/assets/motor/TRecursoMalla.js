@@ -229,7 +229,6 @@ class TRecursoMalla extends TRecurso{
       gl.uniform1i(glProgram[window.program].hovered, 1);
     }
     else if(variable=="green"){
-      console.log("green");
       gl.uniform1i(glProgram[window.program].hovered, 2);
     }
     else if(variable=="red"){
