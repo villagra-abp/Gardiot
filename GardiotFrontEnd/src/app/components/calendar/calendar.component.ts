@@ -177,9 +177,10 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  addEvent(Ttitle: string, Tstart: string, Tend: string): void {
+  addEvent(Ttitle: string, Tstart: string, Tend: string, idT: number): void {
     this.events.push({
       title: Ttitle,
+      id: idT,
       start: startOfDay(new Date(Tstart)),
       end: endOfDay(new Date(Tend)),
       color: colors.red,
@@ -202,7 +203,12 @@ export class CalendarComponent implements OnInit {
       alert("hecho");
     }
     else if(action=='Changed'){
-      alert("Movido");
+      console.log();
+      let task=this.tasks[event.id];
+      this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
+        .subscribe(data => {
+
+        });
     }
     else{
       alert("click standar");
@@ -221,8 +227,9 @@ export class CalendarComponent implements OnInit {
       .subscribe(data => {
         this.tasks = [];
         for (let key$ in data) {
-          //this.tasks.push(data[key$]);
-          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          this.tasks.push(data[key$]);
+          console.log(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), parseInt(key$));
         }
         /*for(let key$ in data){
           this.treatments.push(data[key$]);

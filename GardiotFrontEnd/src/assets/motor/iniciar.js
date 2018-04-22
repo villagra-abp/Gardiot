@@ -85,21 +85,12 @@ function iniciar(accion, jardinBBDD){
 //suelo
 let adjustX=0, adjustY=0;
 let width=Math.floor(jardin.width/2), length=Math.floor(jardin.length/2);
-if(jardin.width%2==0){
-  adjustX=0.5;
-  width=Math.ceil(jardin.width/2);
-}
-
-if(jardin.length%2==0){
-  adjustY=0.5;
-  length=Math.ceil(jardin.length/2);
-}
 
 motor.crearNodoMalla("around", "around", undefined, undefined);
 motor.escalarMallaXYZ("around", 500, 0.1, 500);
 motor.moverMalla("around", 0, -0.11, 0);
-  for(let i=-width+adjustX; i<=width; i++){
-    for(let j=-length+adjustY; j<=length; j++){
+  for(let i=-width; i<=width; i++){
+    for(let j=-length; j<=length; j++){
       motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo"+i+'-'+j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS

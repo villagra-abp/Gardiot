@@ -31,12 +31,28 @@
             <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
           </div>
           <div>
-            <label for="length">Largo: </label>
-            <input class="form-control" type="number" [(ngModel)]="garden.length" name="length" id="length_garden" required>
+            <label for="length">Largo: {{garden.length}}</label>
+            <input class="form-control"
+                    type="range"
+                    [(ngModel)]="garden.length"
+                    min="7"
+                    max="31"
+                    step="2"
+                    name="length"
+                    id="length_garden"
+                    required>
           </div>
           <div>
-            <label for="width">Ancho: </label>
-            <input class="form-control" type="number" [(ngModel)]="garden.width" name="width" id="width_garden" required>
+            <label for="width">Ancho: {{garden.width}}</label>
+            <input class="form-control"
+                    type="range"
+                    [(ngModel)]="garden.width"
+                    min="7"
+                    max="31"
+                    step="2"
+                    name="width"
+                    id="width_garden"
+                    required>
           </div>
           <div>
             <label for="countries">País:</label>

@@ -139,6 +139,17 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 	}
 }
 
+task.moveTask = function (myPlant, plant, treatment, date, callback) { //Mover tarea de sitio
+	if (connection) {
+		connection.query('UPDATE Task SET date = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {
+			if (error)
+				callback(error, null);
+			else
+				callback(null, result.affectedRows);
+		});
+	}
+}
+
 task.setTaskDone = function (myPlant, plant, treatment, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
 		connection.query('UPDATE Task SET dateDone = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {

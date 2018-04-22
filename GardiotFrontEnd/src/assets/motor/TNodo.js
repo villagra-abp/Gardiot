@@ -63,11 +63,14 @@ class TNodo {
 
     draw(){
         if(this._active == 1){
+
             if(this._entity!==undefined){
                 if(this.name==hovered)
                   this._entity.beginDraw(true);
-                else if(this.name==colorCell[0])
+                else if(this.name==colorCell[0] || this.name==colorCell[2]){
+                  //console.log(this.name, colorCell[1]);
                   this._entity.beginDraw(colorCell[1]);
+                }
                 else
                   this._entity.beginDraw();
 
