@@ -18,7 +18,7 @@ export class GardenComponent {
   garden = new Garden("");
 
   cielo: string = "Cargando";
-  temperatura = "Cargando";
+  temperatura = 0;
   humedad = "Cargando";
   presion = "Cargando";
   viento = "Cargando";
