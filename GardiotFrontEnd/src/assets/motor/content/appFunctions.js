@@ -92,6 +92,7 @@ function mouse_move(e, view){
             else
               colorCell=["suelo"+p[0]+'-'+p[1], "green"];
 
+
             for (let plant of window.jardin.plants) {
               if (plant.isDragging) {
                 motor.moverMallaA(plant.id, point[0], 0, point[2]);

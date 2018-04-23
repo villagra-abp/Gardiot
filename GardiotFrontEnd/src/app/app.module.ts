@@ -1,6 +1,6 @@
 //Rutas
 import { APP_ROUTING } from "./app.routes";
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
@@ -32,6 +32,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 //calendario
 import { CalendarComponent } from './components/calendar/calendar.component';
+import localeEs from '@angular/common/locales/es';
 //manage-App
 import { LoginComponent } from './components/manage/login.component';
 import { LogoutComponent } from './components/manage/logout.component';
@@ -93,6 +94,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { HelpComponent } from './components/help/help.component';
+
+registerLocaleData(localeEs);
 
 
 @NgModule({

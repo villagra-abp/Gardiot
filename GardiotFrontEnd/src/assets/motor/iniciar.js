@@ -60,8 +60,8 @@ function iniciar(accion, jardinBBDD){
   window.motor = new TMotor(gestor);
 
 
-  //window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.sol = motor.crearNodoLuz("sol", 0.7, undefined);
+  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -85,48 +85,39 @@ function iniciar(accion, jardinBBDD){
 //suelo
 let adjustX=0, adjustY=0;
 let width=Math.floor(jardin.width/2), length=Math.floor(jardin.length/2);
-if(jardin.width%2==0){
-  adjustX=0.5;
-  width=Math.ceil(jardin.width/2);
-}
-
-if(jardin.length%2==0){
-  adjustY=0.5;
-  length=Math.ceil(jardin.length/2);
-}
 
 motor.crearNodoMalla("around", "around", undefined, undefined);
 motor.escalarMallaXYZ("around", 500, 0.1, 500);
-// motor.moverMalla("around", 0, -0.11, 0);
-//   for(let i=-width+adjustX; i<=width; i++){
-//     for(let j=-length+adjustY; j<=length; j++){
-//       motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "cespedDef.jpg", undefined);
-//       motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
-//       motor.moverMalla("suelo"+i+'-'+j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
-//       //HACEDLO CON LAS PLANTAS
-//     }
-//   }
+motor.moverMalla("around", 0, -0.11, 0);
+  for(let i=-width; i<=width; i++){
+    for(let j=-length; j<=length; j++){
+      motor.crearNodoMalla("suelo"+i+'-'+j, "sueloPolly", "cespedDef.jpg", undefined);
+      motor.escalarMallaXYZ("suelo"+i+'-'+j, 0.5, 0.1, 0.5);
+      motor.moverMalla("suelo"+i+'-'+j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+      //HACEDLO CON LAS PLANTAS
+    }
+  }
 
-//   // plantas dragables
-//   window.plantsMap=new Map();
-//   for(let i=0; i<jardin.plants.length; i++){
-//     plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
-//     motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
-//     motor.escalarMalla(jardin.plants[i].id, 2.5);
-//     motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
-//   }
+  // plantas dragables
+  window.plantsMap=new Map();
+  for(let i=0; i<jardin.plants.length; i++){
+    plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
+    motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
+    motor.escalarMalla(jardin.plants[i].id, 2.5);
+    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
+  }
 
-//   /* OBJETOS DE PRUEBA */
-//   // LECHUGA
-//   for(let i=-2; i<0; i++){
-//     for(let j=-2; j<0; j++){
-//       motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-//       motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
-//     }
-//   }
+  /* OBJETOS DE PRUEBA */
+  // LECHUGA
+  // for(let i=-2; i<0; i++){
+  //   for(let j=-2; j<0; j++){
+  //     motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
+  //     motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
+  //     //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+  //     // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+  //     motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
+  //   }
+  // }
 //   // CALABAZA
 //   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
 //   motor.escalarMalla("calabaza", 0.3);
@@ -186,10 +177,10 @@ motor.escalarMallaXYZ("around", 500, 0.1, 500);
 //   motor.rotarMalla("arbol", -90, "x");
 //   motor.moverMalla("arbol", 0.5, 0.2, 3);
 
-  //ANIMACION 
-  motor.crearNodoAnimacion("pajaro", "pajaro", 50, undefined);
-  motor.crearNodoAnimacion("alaA", "ala", 50, undefined);
-  motor.crearNodoAnimacion("alaB", "alab", 50, undefined);
+  //ANIMACION
+  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
+  motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
+  motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
 
     motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
     motor.moverMalla("alaA", 0.2, 0.2, 0.2);
