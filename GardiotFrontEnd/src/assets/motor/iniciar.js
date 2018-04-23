@@ -60,7 +60,7 @@ function iniciar(accion, jardinBBDD){
   window.motor = new TMotor(gestor);
 
 
-  //window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
@@ -98,26 +98,26 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
-//   // plantas dragables
-//   window.plantsMap=new Map();
-//   for(let i=0; i<jardin.plants.length; i++){
-//     plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
-//     motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
-//     motor.escalarMalla(jardin.plants[i].id, 2.5);
-//     motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
-//   }
+  // plantas dragables
+  window.plantsMap=new Map();
+  for(let i=0; i<jardin.plants.length; i++){
+    plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
+    motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
+    motor.escalarMalla(jardin.plants[i].id, 2.5);
+    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
+  }
 
-//   /* OBJETOS DE PRUEBA */
-//   // LECHUGA
-//   for(let i=-2; i<0; i++){
-//     for(let j=-2; j<0; j++){
-//       motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-//       motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
-//     }
-//   }
+  /* OBJETOS DE PRUEBA */
+  // LECHUGA
+  // for(let i=-2; i<0; i++){
+  //   for(let j=-2; j<0; j++){
+  //     motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
+  //     motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
+  //     //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
+  //     // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
+  //     motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
+  //   }
+  // }
 //   // CALABAZA
 //   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
 //   motor.escalarMalla("calabaza", 0.3);
@@ -177,10 +177,10 @@ motor.moverMalla("around", 0, -0.11, 0);
 //   motor.rotarMalla("arbol", -90, "x");
 //   motor.moverMalla("arbol", 0.5, 0.2, 3);
 
-  //ANIMACION 
-  motor.crearNodoAnimacion("pajaro", "pajaro", 50, undefined);
-  motor.crearNodoAnimacion("alaA", "ala", 50, undefined);
-  motor.crearNodoAnimacion("alaB", "alab", 50, undefined);
+  //ANIMACION
+  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
+  motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
+  motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
 
     motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
     motor.moverMalla("alaA", 0.2, 0.2, 0.2);

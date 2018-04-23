@@ -89,14 +89,21 @@ export class CalendarComponent implements OnInit {
       }
     },*/
     {
-      label: '<i class="fa fa-fw fa-times">Marcar como hecho</i>',
+      label: '<i class="material-icons">check</i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.handleEvent('Done', event);
+      }
+    },
+    {
+      label: '<i class="material-icons">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event);
       }
     }
   ];
-
+// '<i class="fa fa-fw fa-times">Marcar como hecho</i>'
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
