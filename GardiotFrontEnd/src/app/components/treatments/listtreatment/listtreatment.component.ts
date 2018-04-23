@@ -73,6 +73,26 @@ export class ListtreatmentComponent implements OnInit {
       });
   }
 
+  searchcontent(page: number, items: number) {
+    this._treatmentService.searchAll(this.treatment, page, items)
+      .subscribe(data => {
+        if (data[0] != undefined) {
+          this.treatments = [];
+          this.numeroItems = data[0].num;
+          if (this.estado == false) {
+            this.paginaActual = 1;
+            this.estado = true;
+          }
+          for (let key$ in data) {
+            this.treatments.push(data[key$]);
+          }
+        }
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '600px',

@@ -72,6 +72,26 @@ export class ListfeedComponent implements OnInit {
       });
   }
 
+  searchcontent(page: number, items: number) {
+    this._feedService.searchAll(this.feed, page, items)
+      .subscribe(data => {
+        if (data[0] != undefined) {
+          this.feeds = [];
+          this.numeroItems = data[0].num;
+          if (this.estado == false) {
+            this.paginaActual = 1;
+            this.estado = true;
+          }
+          for (let key$ in data) {
+            this.feeds.push(data[key$]);
+          }
+        }
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '600px',
