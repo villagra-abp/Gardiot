@@ -345,4 +345,16 @@ export class UserService {
       })
     }
 
+    searchAll(user:User,page:number, items:number){
+      let body = `id=${user.id}`;
+      let headers = new Headers({
+        'Authorization':`Bearer ${localStorage['Bearer']}`,
+        'Content-Type':'application/x-www-form-urlencoded'
+      });
+      return this.http.post(this.apiURL+"find/User/"+items+"/"+page+"/id/ASC", body,  { headers } )
+          .map( res =>{
+            return res.json();
+          })
+    }
+
 }

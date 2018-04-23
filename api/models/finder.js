@@ -30,7 +30,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 					else
 						sql += ' ' + key + ' = ' + data[key] + ' AND';
 				}
-				else if (isASCII(data[key]) || isEmail.validate(data[key])) 
+				else if (isASCII(data[key]) || isEmail.validate(data[key]))
 					sql += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
 			}
 		}
@@ -47,6 +47,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 				callback(null, rows);
 		});
 	}
+	console.log(sql);
 }
 
 

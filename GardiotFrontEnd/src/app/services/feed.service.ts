@@ -52,6 +52,17 @@ export class FeedService {
 						return res.json();
 					})
 		}
+		searchAll(feed:Feed,page:number, items:number){
+			let body = `name=${feed.name}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.post(this.apiURL+"find/Feed/"+items+"/"+page+"/name/ASC", body,  { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
 
 		getNumberItems(){
 			let headers = new Headers({

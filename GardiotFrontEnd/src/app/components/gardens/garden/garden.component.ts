@@ -15,49 +15,49 @@ declare var iniciar: any;
   styleUrls: ['./garden.component.css']
 })
 export class GardenComponent {
-  garden = new Garden("");
+  private garden = new Garden("");
 
-  cielo: string = "Cargando";
-  temperatura = "Cargando";
-  humedad = "Cargando";
-  presion = "Cargando";
-  viento = "Cargando";
-  angulo = "0";
+  private cielo: string = "Cargando";
+  private temperatura = 0;
+  private humedad = "Cargando";
+  private presion = "Cargando";
+  private viento = "Cargando";
+  private angulo = "0";
 
-  prevHoy = [];
-  prevMan = [];
-  prevDia3 = [];
-  prevDia4 = [];
-  prevDia5 = [];
+  private prevHoy = [];
+  private prevMan = [];
+  private prevDia3 = [];
+  private prevDia4 = [];
+  private prevDia5 = [];
 
-  fotoHoy = "default";
-  fotoMan = "default";
-  fotoDia3 = "default";
-  fotoDia4 = "default";
-  fotoDia5 = "default";
+  private fotoHoy = "default";
+  private fotoMan = "default";
+  private fotoDia3 = "default";
+  private fotoDia4 = "default";
+  private fotoDia5 = "default";
 
-  colorHoy = "#fcfcfc";
-  colorMan = "#fcfcfc";
-  colorDia3 = "#fcfcfc";
-  colorDia4 = "#fcfcfc";
-  colorDia5 = "#fcfcfc";
+  private colorHoy = "#fcfcfc";
+  private colorMan = "#fcfcfc";
+  private colorDia3 = "#fcfcfc";
+  private colorDia4 = "#fcfcfc";
+  private colorDia5 = "#fcfcfc";
 
-  maxMan = 0;
-  maxDia3 = 0;
-  maxDia4 = 0;
-  maxDia5 = 0;
+  private maxMan = 0;
+  private maxDia3 = 0;
+  private maxDia4 = 0;
+  private maxDia5 = 0;
 
-  minMan = 0;
-  minDia3 = 0;
-  minDia4 = 0;
-  minDia5 = 0;
+  private minMan = 0;
+  private minDia3 = 0;
+  private minDia4 = 0;
+  private minDia5 = 0;
 
-  nombreDia3 = "";
-  nombreDia4 = "";
-  nombreDia5 = "";
+  private nombreDia3 = "";
+  private nombreDia4 = "";
+  private nombreDia5 = "";
 
-  tercerDia: string = "";
-  visible = false;
+  private tercerDia: string = "";
+  private visible = false;
 
   constructor(
     private _gardenService: GardenService,

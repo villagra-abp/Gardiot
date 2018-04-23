@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { UserService } from "../../../services/user.service";
+import { User } from "../../../classes/user.class";
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
@@ -13,7 +14,8 @@ import { MatDialog } from '@angular/material';
 })
 export class AdminListUsersComponent {
 
-  users: any[] = [];
+  private users: any[] = [];
+  private user = new User();
   private numeroItems: number;
   private paginaActual: number = 1;
   private elementosPorPagina: number = 5;
@@ -69,6 +71,27 @@ export class AdminListUsersComponent {
           this.numeroItems = data[0].NUMUSERS;
         }
         this.mostrar();
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+  searchcontent(page: number, items: number) {
+    console.log('blablabla');
+    this._detailService.searchAll(this.user, page, items)
+      .subscribe(data => {
+        if (data[0] != undefined) {
+          this.users = [];
+          this.numeroItems = data[0].num;
+          if (this.estado == false) {
+            this.paginaActual = 1;
+            this.estado = true;
+          }
+          for (let key$ in data) {
+            this.users.push(data[key$]);
+          }
+        }
       },
       error => {
         console.error(error);

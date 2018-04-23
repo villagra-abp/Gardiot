@@ -62,6 +62,7 @@ router.patch('/feed/:id', passport.authenticate('jwt', {session: false}), routeR
 	}
 });
 
+
 /*router.get('/feedSearch/:name', function(request, response) {
 	var name = request.params.name;
 	feedModel.getFeedSearch(name, function(error, data) {
