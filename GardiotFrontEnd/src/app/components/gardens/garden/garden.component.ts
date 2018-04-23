@@ -17,12 +17,8 @@ declare var iniciar: any;
 export class GardenComponent {
   private garden = new Garden("");
 
-  private cielo: string = "Cargando";
   private temperatura = 0;
-  private humedad = "Cargando";
-  private presion = "Cargando";
-  private viento = "Cargando";
-  private angulo = "0";
+
 
   private prevHoy = [];
   private prevMan = [];
@@ -113,12 +109,10 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        this.cielo = data.weather[0].main;
+ 
         var aux = data.main.temp - 273;
-        this.temperatura = aux.toFixed(0);
-        this.humedad = data.main.humidity;
-        this.presion = data.main.pressure;
-        this.viento = data.wind.speed;
+        this.temperatura = aux;
+      
 
 
 
