@@ -93,6 +93,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { HelpComponent } from './components/help/help.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -159,6 +161,8 @@ import { HelpComponent } from './components/help/help.component';
     MatButtonModule,
     MatDialogModule,
     MatTabsModule,
+    MatTooltipModule,
+    MatExpansionModule,
     APP_ROUTING
   ],
   providers: [

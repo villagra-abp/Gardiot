@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-help',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./help.component.css']
 })
 export class HelpComponent implements OnInit {
+  panelOpenState: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

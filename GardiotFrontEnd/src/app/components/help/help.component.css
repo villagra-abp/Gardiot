@@ -36,3 +36,18 @@ li{
   font-size: .9em;
   border-color: #25b5aa;
 }
+mat-panel-description{
+  font-size: .8em;
+  /* float: left; */
+}
+.llave{
+  margin-left: -15px;
+}
+.llave2{
+  margin-left: -20px;
+}
+
+mat-panel-title{
+  font-weight: bold;
+  font-size: 1em;
+}
