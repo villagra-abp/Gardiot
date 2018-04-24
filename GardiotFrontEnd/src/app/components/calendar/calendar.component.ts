@@ -103,7 +103,6 @@ export class CalendarComponent implements OnInit {
       }
     }
   ];
-// '<i class="fa fa-fw fa-times">Marcar como hecho</i>'
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
@@ -203,14 +202,25 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(action:string, event:CalendarEvent) {
+    let f = new Date();
+    let fecha_actual: string;
+    f.getDate();
+    f.getMonth() + 1;
+    f.getFullYear();
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+
     if(action=='Edited'){
       alert("detalles");
     }
     else if(action=='Done'){
-      alert("hecho");
+      let task=this.tasks[event.id];
+      this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant,fecha_actual )
+        .subscribe(data => {
+
+        });
+
     }
     else if(action=='Changed'){
-      console.log();
       let task=this.tasks[event.id];
       this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
         .subscribe(data => {
