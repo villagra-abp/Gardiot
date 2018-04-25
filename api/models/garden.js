@@ -103,20 +103,14 @@ garden.insertGarden = function(data, callback) {
   }
 }
 
-garden.isProprietary = function(user, id, callback) {
-  if(connection){
-    var sentence = 'select user from Garden where id =' + id;
-
-    connection.query(sentence, function(error, row) {
-      if (error) {
-      }
+garden.isPropietary = function (user, garden, callback) {
+  if (connection) {
+    connection.query('SELECT user FROM Garden WHERE id = ' + garden, function (error, result) {
+      if (error)
+        callback(error, null);
       else {
-        if(user.id == row[0].user){
-          callback(null, true);
-        }else{
-          callback(null, false);
-        }
-
+        if (result[0].user == user) callback (null, true);
+        else callback (null, false);
       }
     });
   }
