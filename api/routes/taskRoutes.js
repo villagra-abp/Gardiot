@@ -73,7 +73,7 @@ router.put('/moveTask/:myPlant/:plant/:treatment/:date', passport.authenticate('
 	}
 });
 
-router.patch('/taskDone/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+router.put('/taskDone/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
