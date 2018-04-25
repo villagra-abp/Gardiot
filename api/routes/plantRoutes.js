@@ -51,6 +51,17 @@ router.get('/plantFamily/:id/:number/:page/:sort', function(request, response) {
 	}
 });
 
+router.get('/updateViewPlant/:id', function(request, response) {
+	plantModel.updateViews(request.params.id, function(error, data){
+		console.log("entra");
+		if (typeof data !== 'undefined'){
+			response.status(200).json(data);
+		}else{
+			response.status(404).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
 router.post('/admin/plant', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var plantData = {
 		scientificName: request.body.scientificName,
