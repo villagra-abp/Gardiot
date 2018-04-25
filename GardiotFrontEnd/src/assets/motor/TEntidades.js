@@ -50,20 +50,6 @@ class TTransf extends TEntidad{
         //mat4.rotate(this._matrix, this._matrix, degrees, vec3axis);
     }
 
-    rotarA(rotation, axis){
-      let degrees=rotation * Math.PI / 180;
-      if(axis=='x'){
-          mat4.fromRotation(this._matrix, degrees, [1.0, 0.0, 0.0]);
-      }
-      else if(axis=='y'){
-          mat4.fromRotation(this._matrix, degrees, [0.0, 1.0, 0.0]);
-      }
-      else if(axis=='z'){
-        mat4.rotateZ(this._matrix, this._matrix, degrees);
-      }
-      //mat4.rotate(this._matrix, this._matrix, degrees, vec3axis);
-    }
-
 
     escalar(x, y, z){
         let vec3scalation=vec3.fromValues(x, y, z);

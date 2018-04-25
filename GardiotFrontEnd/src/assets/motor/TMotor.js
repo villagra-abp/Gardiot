@@ -69,7 +69,7 @@ class TMotor{
             if(window.loading.length==0){
               motor.draw();
               motor.allLoaded();
-
+              
             }
           }, 100);
     	}
@@ -264,19 +264,12 @@ class TMotor{
 		if(pos>=0){
       let a=[];
       mat4.getRotation(a, this.camaraRegistro[pos].dad.dad.dad.entity.matrix);
-      if(grados<0 && a[0]<=0 && eje=='x'){
-        grados=Math.max(0, grados);
-      }
-      else if(grados>0 && a[0]>=0.67 && eje=='x'){
-        grados=Math.min(0.67, grados);
-      }
-      else if(eje=="y"){
+      if(eje=="y"){
 			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
       }
-      else if(eje=="x"){
+      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
         this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
       }
-
 			return true;
 		}
 	}
@@ -756,7 +749,7 @@ class TMotor{
 //Nombre, nombre del recurso y si tiene un hermano o no
 //se maneja igual que una malla y tiene el mismo tipo tambien
 crearNodoAnimacion(nombre, recurso, numeroFrames, hermano){
-
+		
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
 
