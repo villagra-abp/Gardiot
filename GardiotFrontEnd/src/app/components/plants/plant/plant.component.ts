@@ -71,9 +71,9 @@ export class PlantComponent implements OnInit {
 
         this.plant.leaveType = data[0].leaveType;
         // this.plant.commonName=data[0].3DModel;
-        
 
-        
+
+
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
@@ -100,15 +100,12 @@ export class PlantComponent implements OnInit {
   showProductPlant(treatment: number, idPlant: number) {
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        // this.productTreatments=[];
         for (let key$ in data) {
           this.productTreatments.push(data[key$]);
         }
-        console.log(this.productTreatments);
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-
       });
 
   }
@@ -167,6 +164,13 @@ export class PlantComponent implements OnInit {
       this.user.isAdmin = false;
     }
   }
+  contShowPlant(){
+    this._plantService.updateViews(this.plant.id).subscribe(data => {
+          },
+          error => {
+            console.error(JSON.parse(error._body).Mensaje);
+          });
+  }
 
   ngOnInit() {
 
@@ -174,7 +178,7 @@ export class PlantComponent implements OnInit {
       if (params['id'] != null) {
         this.plant = new Plant(params['id']);
         this.mostrar(this.plant.id);
-        this._plantService.updateViews(this.plant.id);
+        this.contShowPlant();
         // llamo a mostrarTratamientos y le paso el id de la planta
         // this.treatment=new Treatment(params['id']);
         this.mostrarTratamientos(this.plant.id);
