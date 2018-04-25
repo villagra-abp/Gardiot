@@ -28,8 +28,6 @@ export class PlantService {
 			body+= `&leaveType=${plant.leaveType}`;
 			body+= `&photo=${plant.photo}`;
 
-			console.log(body);
-
       let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -71,7 +69,6 @@ export class PlantService {
             return res.json();
           })
     }
-
 
 		detailsAllFamilies(){
       let headers = new Headers({
@@ -120,7 +117,6 @@ export class PlantService {
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`
 			});
-			console.log(this.apiURL+"updateViewPlant/" + idPlant);
 				return this.http.get(this.apiURL+"updateViewPlant/" + idPlant , { headers })
 					.map( res =>{
 						return res.json();
