@@ -46889,10 +46889,21 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 3
-					,"value": "lambert4SG"
+					,"value": "Default"
 				}
 				,{
 					 "key": "$clr.diffuse"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0.64
+						,0.64
+						,0.64
+					]
+				}
+				,{
+					 "key": "$clr.emissive"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
@@ -46908,9 +46919,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0
-						,0
-						,0
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -46919,9 +46930,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.25
-						,0.25
-						,0.25
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -46929,21 +46940,21 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 9.60784
+					,"value": 9.41177
 				}
 				,{
 					 "key": "$mat.shininess"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 9.60784
+					,"value": 9.41177
 				}
 				,{
 					 "key": "$tex.file"
 					,"semantic": 1
 					,"index": 0
 					,"type": 3
-					,"value": "TAG-Modelos\\tomatera\\source\\tomato albedo2.png"
+					,"value": "C:\\Users\\Julian\\Desktop\\TAG-Modelos\\descargados\\lechuga\\cabbage.jpg"
 				}
 				,{
 					 "key": "$tex.uvtrafo"

@@ -10,32 +10,33 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		let minPeak = (page - 1) * number;
 		var sql = 'SELECT COUNT(*) OVER () AS num, Q.* FROM ' + model + ' Q ';
 
-		if (Object.keys(data).length > 0) 
-			sql += ' WHERE ';			
+		let sqlParams = '';
 		for (var key in data) {
 			if (typeof data[key]!== 'undefined') {
 				if (validator.isISO8601(data[key])) {
 					if (key.toUpperCase().indexOf('INIT')!= -1)
-						sql += ' ' + key + ' >= ' + data[key] + ' AND';
+						sqlParams += ' ' + key + ' >= ' + data[key] + ' AND';
 					else if (key.toUpperCase().indexOf('FIN')!= -1)
-						sql += ' ' + key + ' <= ' + data[key] + ' AND';
-					else 
-						sql += ' ' + key + ' = ' + data[key] + ' AND';
+						sqlParams += ' ' + key + ' <= ' + data[key] + ' AND';
+					else
+						sqlParams += ' ' + key + ' = ' + data[key] + ' AND';
 				}
 				else if (Number.isInteger(data[key]) || validator.isFloat(data[key])) {
 					if (key.toUpperCase().indexOf('GT')!= -1)
-						sql += ' ' + key.slice(2) + ' >= ' + data[key] + ' AND';
+						sqlParams += ' ' + key.slice(2) + ' >= ' + data[key] + ' AND';
 					else if (key.toUpperCase().indexOf('LT')!= -1)
-						sql += ' ' + key.slice(2) + ' <= ' + data[key] + ' AND';
-					else 
-						sql += ' ' + key + ' = ' + data[key] + ' AND';
+						sqlParams += ' ' + key.slice(2) + ' <= ' + data[key] + ' AND';
+					else
+						sqlParams += ' ' + key + ' = ' + data[key] + ' AND';
 				}
-				else if (isASCII(data[key]) || isEmail.validate(data[key])) 
-					sql += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
-			}	
-		}		
-		if (Object.keys(data).length > 0) 
+				else if (isASCII(data[key]) || isEmail.validate(data[key]))
+					sqlParams += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
+			}
+		}
+		if (Object.keys(data).length > 0 && sqlParams != '') {
+			sql += ' WHERE ' + sqlParams;
 			sql = sql.slice(0, -3); //Cut the last AND
+		}	
 		sql += ' ORDER BY ' + order + ' ';
 		if(sort.toUpperCase() === 'DESC')
 			sql += 'DESC ';

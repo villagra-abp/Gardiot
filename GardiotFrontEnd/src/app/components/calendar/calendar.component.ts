@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
-import { FeedService } from "../../services/feed.service";
 import { Task } from "../../classes/task.class";
-import { Feed } from "../../classes/feed.class";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
-import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -27,8 +25,11 @@ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from 'angular-calendar';
+import { CustomDateFormatter } from './customdate.provider';
 
 
 const colors: any = {
@@ -50,44 +51,58 @@ const colors: any = {
   selector: 'app-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['calendar.component.css'],
-  templateUrl: 'calendar.component.html'
+  templateUrl: 'calendar.component.html',
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
-export class CalendarComponent implements OnInit{
-
+export class CalendarComponent implements OnInit {
 
   view: string = 'month';
-
   viewDate: Date = new Date();
 
-  private tasks:any[]=[];
-  private task= new Task();
+  locale: string = 'es';
 
-  private treatments:any[]=[];
-  private treatment= new Task();
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
 
-  private feeds:any[]=[];
-  private feed= new Feed();
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+
+  private tasks: any[] = [];
+  private task = new Task();
+
+  private treatments: any[] = [];
+  private treatment = new Task();
+
 
 
 
 
 
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
+    /*{
+      label: '<i class="fa fa-fw fa-pencil">Detalles</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        //this.handleEvent('Edited', event);
+      this.handleEvent('Edited', event);
+      }
+    },*/
+    {
+      label: '<i class="material-icons">check</i>',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.handleEvent('Done', event);
       }
     },
     {
-      label: '<i class="fa fa-fw fa-times"></i>',
+      label: '<i class="material-icons">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
-        //this.handleEvent('Deleted', event);
+        this.handleEvent('Done', event);
       }
     }
   ];
-
   refresh: Subject<any> = new Subject();
 
   events: CalendarEvent[] = [
@@ -133,14 +148,13 @@ export class CalendarComponent implements OnInit{
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService:TaskService,
-    private _feedService:FeedService,
-    private _route:Router,
-    private _appComponent:AppComponent,
+    private _taskService: TaskService,
+    private _route: Router,
+    private _appComponent: AppComponent,
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
 
-  ) {}
+  ) { }
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -164,74 +178,88 @@ export class CalendarComponent implements OnInit{
   }: CalendarEventTimesChangedEvent): void {
     event.start = newStart;
     event.end = newEnd;
-    //this.handleEvent('Dropped or resized', event);
+    this.handleEvent('Changed', event);
     this.refresh.next();
   }
 
 
-  addEvent(Ttitle:string, Tstart:string, Tend:string): void {
+  addEvent(Ttitle: string, Tstart: string, Tend: string, idT: number): void {
     this.events.push({
       title: Ttitle,
+      id: idT,
       start: startOfDay(new Date(Tstart)),
       end: endOfDay(new Date(Tend)),
       color: colors.red,
-      draggable: false,
+      actions: this.actions,
+      draggable: true,
       resizable: {
         beforeStart: true,
         afterEnd: true
       }
     });
     this.refresh.next();
+
   }
 
-  handleEvent(c, e){
-    alert("manejar click");
-    console.log(e);
-  }
-
-  mostrar(){
+  handleEvent(action:string, event:CalendarEvent) {
     let f = new Date();
-    let fecha_actual:string;
+    let fecha_actual: string;
     f.getDate();
-    f.getMonth() +1;
+    f.getMonth() + 1;
     f.getFullYear();
-    fecha_actual=this.datePipe.transform(f, 'yyyy-MM-dd');
-      this._taskService.detailsAll(fecha_actual)
-          .subscribe(data=>{
-            this.tasks=[];
-            for(let key$ in data){
-              //console.log(data[key$]);
-              //this.tasks.push(data[key$]);
-              this.addEvent(data[key$].name+" "+data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-            }
-            /*for(let key$ in data){
-              this.treatments.push(data[key$]);
-            }
-            console.log(this.treatments);
-            console.log(this.tasks);*/
-          },
-        error => {
-          console.error(error);
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+
+    if(action=='Edited'){
+      alert("detalles");
+    }
+    else if(action=='Done'){
+      let task=this.tasks[event.id];
+      this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant,fecha_actual )
+        .subscribe(data => {
+
         });
+
+    }
+    else if(action=='Changed'){
+      let task=this.tasks[event.id];
+      this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
+        .subscribe(data => {
+
+        });
+    }
+    else{
+      alert("click standar");
+    }
+
   }
 
-  cargarfeeds(){
-      this._feedService.showfeeds()
-          .subscribe(data=>{
-            this.feeds=[];
-            for(let key$ in data){
-              this.feeds.push(data[key$]);
-            }
-            console.log("¿cuantos?");
-            console.log(this.feeds);
-          },
-        error => {
-          console.error(error);
-        });
+  mostrar() {
+    let f = new Date();
+    let fecha_actual: string;
+    f.getDate();
+    f.getMonth() + 1;
+    f.getFullYear();
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this._taskService.detailsAll(fecha_actual)
+      .subscribe(data => {
+        this.tasks = [];
+        for (let key$ in data) {
+          this.tasks.push(data[key$]);
+          console.log(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), parseInt(key$));
+        }
+        /*for(let key$ in data){
+          this.treatments.push(data[key$]);
+        }
+        console.log(this.treatments);
+        console.log(this.tasks);*/
+      },
+      error => {
+        console.error(error);
+      });
   }
 
   ngOnInit() {
     this.mostrar();
-    this.cargarfeeds();
   }
 }

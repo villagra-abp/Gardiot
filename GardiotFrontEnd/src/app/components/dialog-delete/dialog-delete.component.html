@@ -1,12 +1,9 @@
 <div>
-  <section >
-  <h4 mat-dialog-title>¿Esta seguro que desea borrar este producto?</h4>
-  <!-- <mat-dialog-content>
-  <strong>{{data}}</strong>
-  </mat-dialog-content> -->
-  <mat-dialog-actions>
-    <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#">Aceptar</button>
-    <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-secondary">Cancelar</button>
-  </mat-dialog-actions>
+  <section>
+    <h4 mat-dialog-title>¿Esta seguro que desea borrar este elemento?</h4>
+    <mat-dialog-actions>
+      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Aceptar</button>
+      <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-secondary">Cancelar</button>
+    </mat-dialog-actions>
   </section>
 </div>

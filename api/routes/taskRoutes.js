@@ -58,15 +58,32 @@ router.get('/plantTask/:number/:page/:myPlant', passport.authenticate('jwt', {se
 	}
 });
 
-router.patch('/taskDone/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+router.put('/moveTask/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		taskModel.setTaskDone (request.params.number, request.params.page, request.user.id, function (error, data) {
+		taskModel.moveTask (request.params.myPlant, request.params.plant, request.params.treatment, request.params.date, function (error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
+			else if (data == 1)
+				response.status(200).json({"Mensaje":"Actualizado."});
 			else
-				response.status(200).json(data);
+				response.status(400).json({"Mensaje":"No actualizado"});
+		})
+	}
+});
+
+router.put('/taskDone/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isISO8601(request.params.date)) 
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		taskModel.setTaskDone (request.params.myPlant, request.params.plant, request.params.treatment, request.params.date, function (error, data) {
+			if (error)
+				response.status(500).json({"Mensaje":error.message});
+			else if (data == 1)
+				response.status(200).json({"Mensaje":"Actualizado."});
+			else
+				response.status(400).json({"Mensaje":"No actualizado"});
 		})
 	}
 });

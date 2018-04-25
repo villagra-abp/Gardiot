@@ -10,7 +10,6 @@ var loadTextResource=function (url, callback){
     else if(window.location.toString().indexOf('localhost:8080')>=0){
         resURL=url;
     }
-    console.log(resURL);
     request.open('GET', resURL, false);
     request.onload=function(){
       if(request.status<200 || request.status>299){
@@ -28,7 +27,6 @@ var loadJSONResource=function(url, callback){
       callback(err);
     } else{
       try{
-				console.log(JSON.parse(result));
         callback(null, JSON.parse(result));
       } catch(e){
         callback(e);
@@ -37,39 +35,107 @@ var loadJSONResource=function(url, callback){
   });
 };
 
-function updateMyPlant(garden, myPlant, plant, soil, x, y){
+function updateMyPlant(garden, plant, soil, x, y){
 	let xhr=new XMLHttpRequest(),
 			url;
 	if(window.location.toString().indexOf("localhost")>=0){
-		url=`http://localhost:3000/api/myPlant/${garden}/${myPlant}`;
+		url=`http://localhost:3000/api/myPlant/${garden}/${plant.id}`;
 	}
 	else if(window.location.toString().indexOf("gardiot")>=0){
-		url=`https://gardiot.ovh/api/myPlant/${garden}/${myPlant}`;
+		url=`https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
 	}
 
 	xhr.open('PUT', url, true);
 
 	xhr.onload=function(){
 		let respuesta=JSON.parse(xhr.responseText);
-		for(let i=0; i<jardin.plants.length; i++){
-			if(jardin.plants[i].id==myPlant){
-				jardin.plants[i].x=x;
-				jardin.plants[i].y=y;
-			}
 
-		}
-		console.log(respuesta.Mensaje);
+        if (xhr.status == "200") {
+            motor.moverMallaA(plant.id, x, 0, y); //Esta llamada tal vez es innecesaria
+						plantsMap.delete(plant.x+'-'+plant.y);//Para la iluminación
+            plant.x = x;
+            plant.y = y;
+						plantsMap.set(x+'-'+y, plant.id);//Para la iluminación
+        }
 	}
 
 
-	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+	let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant.plant+'&soil='+soil;
 
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
 	xhr.send(params);
-
 }
 
+function insertMyPlant(garden, plant, soil, x, y){
+    let xhr=new XMLHttpRequest(),
+            url;
+    if(window.location.toString().indexOf("localhost")>=0){
+        url=`http://localhost:3000/api/myPlant/${garden}`;
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+        url=`https://gardiot.ovh/api/myPlant/${garden}`;
+    }
+
+    xhr.open('POST', url, true);
+
+    xhr.onload=function(){
+        let respuesta=JSON.parse(xhr.responseText);
+        //console.log(respuesta.Mensaje);
+        if (xhr.status == 200) {
+            let value = {
+                id: respuesta.myPlant,
+                isDragging: false,
+                plant: plant,
+                x: x,
+                y: y,
+                model: undefined,
+                seed: undefined
+            };
+
+						plantsMap.set(x+'-'+y, respuesta.myPlant);//Para la iluminación
+
+            window.jardin.plants.push(value);
+            motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
+            motor.moverMallaA(respuesta.myPlant, x, 0, y);
+        }
+    }
+
+    let params='xCoordinate='+x+'&yCoordinate='+y+'&plant='+plant+'&soil='+soil;
+
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+    xhr.send(params);
+}
+
+function deleteMyPlant(garden, plant){
+	let xhr=new XMLHttpRequest(),
+			url;
+	if(window.location.toString().indexOf("localhost")>=0){
+		url=`http://localhost:3000/api/myPlant/${garden}/${plant.id}`;
+	}
+	else if(window.location.toString().indexOf("gardiot")>=0){
+		url=`https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
+	}
+
+	xhr.open('DELETE', url, true);
+
+	xhr.onload=function(){
+		let respuesta=JSON.parse(xhr.responseText);
+
+        if (xhr.status == "200") {
+            motor.borrarMalla(plant.id);
+            let index = window.jardin.plants.indexOf(plant);
+
+						plantsMap.delete(plant.x+'-'+plant.y);//Para la iluminación
+
+            window.jardin.plants.splice(index, 1);
+        }
+	}
+
+	xhr.setRequestHeader('Authorization', 'Bearer '+localStorage['Bearer']);
+	xhr.send(null);
+}
 
 function makeShader(src, type){
     //compilar el vertex shader
@@ -91,8 +157,8 @@ function cargarShaders(){
 		let fs=[];
 
 		for(let i=0; i<vertexShaders.length && i<fragmentShaders.length; i++){
-	    vs[i]=gestor.getRecurso('shaderP.vs', 'shader').shader,
-	  	fs[i]=gestor.getRecurso('shaderP.fs', 'shader').shader;
+	    vs[i]=gestor.getRecurso(vertexShaders[i], 'shader').shader,
+	  	fs[i]=gestor.getRecurso(fragmentShaders[i], 'shader').shader;
 
 	    //Ya tenemos los shaders aquí! (formato texto)
 	    //console.log(vs);
@@ -116,7 +182,7 @@ function cargarShaders(){
 	    }
 		}
 
-    gl.useProgram(glProgram[0]);
+    gl.useProgram(glProgram[window.program]);
 }
 
 
@@ -130,22 +196,23 @@ function setupWebGL(){
     gl.enable(gl.DEPTH_TEST);
 
     //Nos traemos las matrices, projection, model y view al motor
-    glProgram[0].pMatrixUniform=gl.getUniformLocation(glProgram[0], "uPMatrix");
-    glProgram[0].mMatrixUniform=gl.getUniformLocation(glProgram[0], "uMMatrix");
-    glProgram[0].vMatrixUniform=gl.getUniformLocation(glProgram[0], "uVMatrix");
+    glProgram[window.program].pMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uPMatrix");
+    glProgram[window.program].mMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uMMatrix");
+    glProgram[window.program].vMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uVMatrix");
 
-    glProgram[0].samplerUniform = gl.getUniformLocation(glProgram[0], "uSampler");
-    glProgram[0].textured=gl.getUniformLocation(glProgram[0], "uTextured");
-		glProgram[0].lighted=gl.getUniformLocation(glProgram[0], "uLighted");
+    glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
+    glProgram[window.program].textured=gl.getUniformLocation(glProgram[window.program], "uTextured");
+		glProgram[window.program].lighted=gl.getUniformLocation(glProgram[window.program], "uLighted");
+		glProgram[window.program].hovered=gl.getUniformLocation(glProgram[window.program], "uHovered");
     //matriz de normales
-    glProgram[0].normalMatrixUniform=gl.getUniformLocation(glProgram[0], "uNormalMatrix");
+    glProgram[window.program].normalMatrixUniform=gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 
-		glProgram[0].ka=gl.getUniformLocation(glProgram[0], "material.Ka");
-		glProgram[0].kd=gl.getUniformLocation(glProgram[0], "material.Kd");
-		glProgram[0].ks=gl.getUniformLocation(glProgram[0], "material.Ks");
+	glProgram[window.program].ka=gl.getUniformLocation(glProgram[window.program], "material.Ka");
+	glProgram[window.program].kd=gl.getUniformLocation(glProgram[window.program], "material.Kd");
+	glProgram[window.program].ks=gl.getUniformLocation(glProgram[window.program], "material.Ks");
 
-		glProgram[0].shin=gl.getUniformLocation(glProgram[0], "propiedades.shininess");
-		glProgram[0].opac=gl.getUniformLocation(glProgram[0], "propiedades.opacity");
+	glProgram[window.program].shin=gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
+	glProgram[window.program].opac=gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
 }
 
 

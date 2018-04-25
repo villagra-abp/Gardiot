@@ -12,23 +12,23 @@ import { Product } from "../../../classes/product.class";
 })
 export class NewproductComponent implements OnInit {
 
-  product=new Product();
-  private products:any[]=[];
+  product = new Product();
+  private products: any[] = [];
 
   constructor(
-    private _productService:ProductService,
-    private _appComponent:AppComponent,
+    private _productService: ProductService,
+    private _appComponent: AppComponent,
   ) { }
 
-  guardar(){
+  guardar() {
     this._productService.save(this.product)
-        .subscribe(data=>{
-            this._appComponent.mensajeEmergente("El producto se ha guardado", "primary", "admin/products?pag=1");
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("El producto se ha guardado", "primary", "admin/products?pag=1");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
 

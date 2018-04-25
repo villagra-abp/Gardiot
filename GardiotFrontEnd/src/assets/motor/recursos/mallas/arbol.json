@@ -313162,22 +313162,96 @@
 		{
 			 "properties": [
 				{
+					 "key": "?mat.name"
+					,"semantic": 0
+					,"index": 0
+					,"type": 3
+					,"value": "Default"
+				}
+				,{
 					 "key": "$clr.diffuse"
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.8
-						,0.8
-						,0.8
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
-					 "key": "?mat.name"
+					 "key": "$clr.emissive"
 					,"semantic": 0
 					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,0
+					]
+				}
+				,{
+					 "key": "$clr.ambient"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0.64
+						,0.64
+						,0.64
+					]
+				}
+				,{
+					 "key": "$clr.specular"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0.64
+						,0.64
+						,0.64
+					]
+				}
+				,{
+					 "key": "$mat.shinpercent"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": 9.41177
+				}
+				,{
+					 "key": "$mat.shininess"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": 9.41177
+				}
+				,{
+					 "key": "$tex.file"
+					,"semantic": 1
+					,"index": 0
 					,"type": 3
-					,"value": "DefaultMaterial"
+					,"value": "C:\\Users\\Julian\\Desktop\\TAG-Modelos\\descargados\\lechuga\\cabbage.jpg"
+				}
+				,{
+					 "key": "$tex.uvtrafo"
+					,"semantic": 1
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,1
+						,1
+						,0
+					]
+				}
+				,{
+					 "key": "$tex.uvwsrc"
+					,"semantic": 1
+					,"index": 0
+					,"type": 4
+					,"value": 0
 				}
 			]
 		}

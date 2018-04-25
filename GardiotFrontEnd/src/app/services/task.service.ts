@@ -30,4 +30,24 @@ export class TaskService {
           return res.json();
         })
   }
+
+  moveTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number){
+    let headers = new Headers({
+      'Authorization':`Bearer ${localStorage['Bearer']}`
+    });
+    return this.http.put(`${this.apiURL}moveTask/${myPlant}/${mPlant}/${tPlant}/2018-04-01`, { headers } )
+        .map( res =>{
+          return res.json();
+        })
+  }
+
+  DoneTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, date:string){
+    let headers = new Headers({
+      'Authorization':`Bearer ${localStorage['Bearer']}`
+    });
+    return this.http.patch(this.apiURL+"taskDone/"+myPlant+"/"+mPlant+"/"+tPlant+"/"+date, { headers } )
+        .map( res =>{
+          return res.json();
+        })
+  }
 }

@@ -5,11 +5,7 @@ import { Plant } from "../../../classes/plant.class";
 import { Family } from "../../../classes/family.class";
 import { AppComponent } from "../../../app.component";
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { Ng2ImgMaxService} from 'ng2-img-max';
-
-// import { Treatment } from "../../../classes/treatment.class";
-// import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
-// import { TreatmentService } from "../../../services/treatment.service";
+import { Ng2ImgMaxService } from 'ng2-img-max';
 
 @Component({
   selector: 'app-newplant',
@@ -17,92 +13,92 @@ import { Ng2ImgMaxService} from 'ng2-img-max';
   styleUrls: ['./newplant.component.css']
 })
 export class NewplantComponent implements OnInit {
-  plant=new Plant();
+  plant = new Plant();
   // treatmentPlant=new TreatmentPlant();
-  private plants:any[]=[];
-  private families:any[]=[];
+  private plants: any[] = [];
+  private families: any[] = [];
   // private treatments:any[]=[];
   // private treatmentsPlants:any[]=[];
-  uploader:FileUploader;
+  uploader: FileUploader;
 
   constructor(
-    private _plantService:PlantService,
+    private _plantService: PlantService,
     // private _treatmentService:TreatmentService,
-    private _appComponent:AppComponent,
-    private _ng2ImgMax:Ng2ImgMaxService,
+    private _appComponent: AppComponent,
+    private _ng2ImgMax: Ng2ImgMaxService,
 
-    ) { }
+  ) { }
 
-  guardar(){
+  guardar() {
     this._plantService.save(this.plant)
-        .subscribe(data=>{
-            this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plants?pag=1");
-        },
-        error=>{
-          let v=JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plants?pag=1");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
   }
 
-  mostrarFamilias(){
+  mostrarFamilias() {
     this._plantService.detailsAllFamilies()
-        .subscribe(data=>{
-          for(let key$ in data){
-            this.families.push(data[key$]);
-          }
-        },
+      .subscribe(data => {
+        for (let key$ in data) {
+          this.families.push(data[key$]);
+        }
+      },
       error => {
         console.error(error);
       });
-    }
-    // mostrarTratamientos(){
-    //   this._treatmentService.detailsAll(1,10000)
-    //       .subscribe(data=>{
-    //                       console.log(data);
-    //         for(let key$ in data){
-    //           this.treatments.push(data[key$]);
-    //         }
-    //       },
-    //     error => {
-    //       console.error(error);
-    //     });
-    //   }
+  }
+  // mostrarTratamientos(){
+  //   this._treatmentService.detailsAll(1,10000)
+  //       .subscribe(data=>{
+  //                       console.log(data);
+  //         for(let key$ in data){
+  //           this.treatments.push(data[key$]);
+  //         }
+  //       },
+  //     error => {
+  //       console.error(error);
+  //     });
+  //   }
 
-  uploadPhoto(){
-    let imgUpl=<HTMLInputElement>document.querySelector('#photo_plant');
-    if(this.uploader.getNotUploadedItems().length){
+  uploadPhoto() {
+    let imgUpl = <HTMLInputElement>document.querySelector('#photo_plant');
+    if (this.uploader.getNotUploadedItems().length) {
       console.log(imgUpl.files);
-      let file=[];
+      let file = [];
       file.push(imgUpl.files[0]);
-      file.forEach(function(){
+      file.forEach(function() {
         console.log(file);
       });
       this._ng2ImgMax.compress(file, 1.25).subscribe(
-        result=>{
-          const newImage=new File([result], result.name);
+        result => {
+          const newImage = new File([result], result.name);
           this.uploader.clearQueue();
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error=> console.log(error)
+        error => console.log(error)
       );
     }
   }
 
-  managePhoto(){
-    this.uploader=new FileUploader({url: this._plantService.apiURL+'uploadPlant', itemAlias: 'photo'});
-    this.uploader.onAfterAddingFile = (file)=> {
+  managePhoto() {
+    this.uploader = new FileUploader({ url: this._plantService.apiURL + 'uploadPlant', itemAlias: 'photo' });
+    this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
     };
 
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-         let url=response.split(" ");
-         url=url[url.length-1];
-         url=url.split("\\");
-         url=url[url.length-1];
-         this.plant.photo=url;
-         this.guardar();
-         };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      let url = response.split(" ");
+      url = url[url.length - 1];
+      url = url.split("\\");
+      url = url[url.length - 1];
+      this.plant.photo = url;
+      this.guardar();
+    };
   }
 
   ngOnInit() {

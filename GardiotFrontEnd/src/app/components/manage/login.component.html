@@ -32,26 +32,25 @@
 -->
 
 <div class="login-page">
-<h2 class="title">Bienvenido a Gardiot</h2>
+  <h2 class="title">Bienvenido a Gardiot</h2>
 
   <div class="form">
 
     <form class="login-form" (ngSubmit)="guardar()" #forma="ngForm">
-      <input [(ngModel)]="user.id" name="id"
-            type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
-      <input [(ngModel)]="user.password" name="password"
-            type="password"  id="exampleInputPassword1" placeholder="Contraseña" required>
-      <button [disabled]="!forma.valid"
-            type="submit"><img src="./assets/buttons/login.png" alt="Iniciar sesión"></button>
+      <input [(ngModel)]="user.id" name="id" type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
+      <input [(ngModel)]="user.password" name="password" type="password" id="exampleInputPassword1" placeholder="Contraseña" required>
+      <button [disabled]="!forma.valid" type="submit"><img src="./assets/buttons/login.png" alt="Iniciar sesión"></button>
 
       <a href="{{this._loginService.apiURL}}auth/google"><img src="./assets/buttons/logingoogle.png" alt="Acceder con Google"></a>
 
-        <a href="{{this._loginService.apiURL}}auth/facebook"><img src="./assets/buttons/loginfacebook.png" alt="Acceder con Facebook"></a>
+      <a href="{{this._loginService.apiURL}}auth/facebook"><img src="./assets/buttons/loginfacebook.png" alt="Acceder con Facebook"></a>
 
-      <p class="message">¿Olvidaste tu contraseña? <a href="#" [routerLink] ="['/resetPass']">Recordar contraseña</a></p>
+      <p class="message">¿Olvidaste tu contraseña? <a href="#" [routerLink]="['/resetPass']">Recordar contraseña</a></p>
     </form>
   </div>
 </div>
 
 <div class="fondo">
+</div>
+<div class="fondofinal">
 </div>

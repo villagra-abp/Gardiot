@@ -5,8 +5,9 @@ import { PlantService } from "../../../services/plant.service";
 import { UserService } from '../../../services/user.service';
 import { Plant } from "../../../classes/plant.class";
 import { Family } from "../../../classes/family.class";
-import { AppComponent } from "../../../app.component";
-import { RouterLink,ActivatedRoute, Params } from '@angular/router';
+import { RouterLink, ActivatedRoute, Params } from '@angular/router';
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -15,121 +16,128 @@ import { RouterLink,ActivatedRoute, Params } from '@angular/router';
 })
 export class LibraryComponent implements OnInit {
 
-  private plants:any[]=[];
-  private plant=new Plant();
-  private numeroItems:number;
-  private paginaActual:number=1;
-  private elementosPorPagina:number=6;
-  private estado:boolean=false;// false es listado y true buscador
+  private plants: any[] = [];
+  private plant = new Plant();
+  private numeroItems: number;
+  private paginaActual: number = 1;
+  private elementosPorPagina: number = 6;
+  private estado: boolean = false;// false es listado y true buscador
 
   constructor(
-    private _plantService:PlantService,
-    private _route:Router,
-    private _appComponent:AppComponent,
+    private _plantService: PlantService,
+    private _route: Router,
     private activatedRoute: ActivatedRoute,
-    private user:UserService
-  ) {}
+    private user: UserService,
+    private dialog: MatDialog,
+  ) { }
 
-  mostrar(){
-    if(this.estado==false){
-      this._plantService.detailsAll(this.paginaActual,this.elementosPorPagina)
-          .subscribe(data=>{
-            this.plants=[];
-            for(let key$ in data){
-              this.plants.push(data[key$]);
-            }
-          },
+  mostrar() {
+    if (this.estado == false) {
+      this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+        .subscribe(data => {
+          this.plants = [];
+          for (let key$ in data) {
+            this.plants.push(data[key$]);
+          }
+        },
         error => {
           console.error(error);
         });
-    }else{
-      this.searchcontent(this.paginaActual,this.elementosPorPagina);
+    } else {
+      this.searchcontent(this.paginaActual, this.elementosPorPagina);
     }
   }
 
-  searchcontent(page:number, items:number){
-    this._plantService.searchAll(this.plant,page,items)
-    .subscribe(data=>{
-      if(data[0]!=undefined){
-        this.plants=[];
-        this.numeroItems=data[0].num;
-        if(this.estado==false){
-          this.paginaActual=1;
-          this.estado=true;
+  searchcontent(page: number, items: number) {
+    this._plantService.searchAll(this.plant, page, items)
+      .subscribe(data => {
+        if (data[0] != undefined) {
+          this.plants = [];
+          this.numeroItems = data[0].num;
+          if (this.estado == false) {
+            this.paginaActual = 1;
+            this.estado = true;
+          }
+          for (let key$ in data) {
+            this.plants.push(data[key$]);
+          }
         }
-        for(let key$ in data){
-          this.plants.push(data[key$]);
-        }
-      }
-    },
-    error => {
-      console.error(error);
-    });
-  }
-
-
-  deleteplant(idPlant:number){
-    this._plantService.deletePlant(idPlant)
-    .subscribe(data=>{
-      this.ActualizarPagina();
-    },
-    error => {
-      console.error(error);
-    });
-  }
-
-  getitems(){
-    this._plantService.getNumberItems()
-    .subscribe(data=>{
-      if(this.estado==false){
-        this.numeroItems=data[0].NUMPLANTAS;
-        console.log(this.numeroItems);
-      }
-      this.mostrar();
-    },
-    error => {
-      console.error(error);
-    });
-  }
-
-  ActualizarPagina(){
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-        this.paginaActual = params['pag'];
-        this.getitems();
+      },
+      error => {
+        console.error(error);
       });
- }
+  }
 
-//actualmente no se usa
- ActualizarPagina2(){
-   this.activatedRoute.params.subscribe(params => {
-     if(params['pag']!=null){
-       this.paginaActual = params['pag'];
-     }else{
-       this._route.navigate(['/library/1']);
-     }
-     this.getitems();
-   });
-}
 
- comprobaciones(){
-   if(this.user.isUserAuthenticated()){
-     this.user.isAuthenticated=this.user.isUserAuthenticated();
-     this.user.isUserAdmin().subscribe(data=>{
-       if(data){
-         this.user.isAdmin=true;
-         document.querySelector('.evolver').classList.add('vistaAdmin');
-       }
-       else{
-         this.user.isAdmin=false;
-       }
-     },error=>{
-       this.user.isAdmin=false;
-     });
-   }
-   else{
-     this.user.isAdmin=false;
-   }
- }
+  deleteplant(idPlant: number) {
+    this._plantService.deletePlant(idPlant)
+      .subscribe(data => {
+        this.ActualizarPagina();
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+  getitems() {
+    this._plantService.getNumberItems()
+      .subscribe(data => {
+        if (this.estado == false) {
+          this.numeroItems = data[0].NUMPLANTAS;
+          console.log(this.numeroItems);
+        }
+        this.mostrar();
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+  ActualizarPagina() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.paginaActual = params['pag'];
+      this.getitems();
+    });
+  }
+
+  //actualmente no se usa
+  ActualizarPagina2() {
+    this.activatedRoute.params.subscribe(params => {
+      if (params['pag'] != null) {
+        this.paginaActual = params['pag'];
+      } else {
+        this._route.navigate(['/library/1']);
+      }
+      this.getitems();
+    });
+  }
+
+  comprobaciones() {
+    if (this.user.isUserAuthenticated()) {
+      this.user.isAuthenticated = this.user.isUserAuthenticated();
+      this.user.isUserAdmin().subscribe(data => {
+        if (data) {
+          this.user.isAdmin = true;
+          document.querySelector('.evolver').classList.add('vistaAdmin');
+        }
+        else {
+          this.user.isAdmin = false;
+        }
+      }, error => {
+        this.user.isAdmin = false;
+      });
+    }
+    else {
+      this.user.isAdmin = false;
+    }
+  }
+
+  openDialog(id: number, tipo: number) {
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '600px',
+      data: { idObject: id, typeObject: tipo }
+    });
+  }
 
   ngOnInit() {
     this.comprobaciones();

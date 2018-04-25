@@ -11,19 +11,19 @@ import { NgForm } from '@angular/forms';
 })
 export class NewuserComponent implements OnInit {
 
-  user=new User();
-  constructor(private _newUserServce:UserService,
-  private _appComponent:AppComponent) { }
+  user = new User();
+  constructor(private _newUserServce: UserService,
+    private _appComponent: AppComponent) { }
 
-  guardarUsuario(forma:NgForm){
-    if(forma.value.admin==true){
-      forma.value.admin=1;
-    }else{
-      forma.value.admin=0;
+  guardarUsuario(forma: NgForm) {
+    if (forma.value.admin == true) {
+      forma.value.admin = 1;
+    } else {
+      forma.value.admin = 0;
     }
     this._newUserServce.registerAdmin(forma.value)
-      .subscribe(data=>{
-        this._appComponent.mensajeEmergente("Registrado con exito", "primary", "admin/users?pag=1" );
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("Registrado con exito", "primary", "admin/users?pag=1");
       })
 
   }

@@ -1,4 +1,5 @@
 var connection = require('../config/connection');
+var geo = require('geo-hash');
 
 var garden = {};
 
@@ -42,7 +43,7 @@ garden.getGardenByUser = function(user, callback) {
       }
       else {
         if(row.length==0){
-          var shortSentence = 'SELECT * FROM Garden WHERE Garden.user = "' + user + '" ';
+          var shortSentence = 'SELECT *, Garden.id as gardenId FROM Garden WHERE Garden.user = "' + user + '" ';
           connection.query(shortSentence, function(shortError, shortRow) {
             if (shortError) {
               throw shortError;
@@ -85,7 +86,11 @@ garden.insertGarden = function(data, callback) {
       sentence +='city ="' + data.city + '",';
     }
     if(data.zip) {
-      sentence +='zip ="' + data.zip + '" ';
+      sentence +='zip ="' + data.zip + '",';
+    }
+    if(data.longitude && data.latitude) {
+      var geohash = geo.encode(data.latitude, data.longitude, 8);
+      sentence +='geoHash ="' + geohash + '" ';
     }
     sentence = sentence.slice(0, -1);
 
@@ -119,67 +124,36 @@ garden.isProprietary = function(user, id, callback) {
 
 garden.updateGarden = function(data, callback) {
   if(connection) {
-    commaCounter=0;
     var sentence =  'UPDATE Garden SET ';
-    if(data.title){
-      sentence += 'title = "' + data.title + '"' ;
-      commaCounter++;
-    }
-
-    if(data.width) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='width ="' + data.width + '"';
-      commaCounter++;
+   if(data.width) {
+      sentence +=' width =' + data.width + ',';
     }
     if(data.length) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='lenght ="' + data.length + '"';
-      commaCounter++;
-    }
-    if(data.longitude) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='longitude ="' + data.longitude + '"';
-      commaCounter++;
-    }
-    if(data.latitude) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='latitude ="' + data.latitude + '"';
-      commaCounter++;
+      sentence +=' lenght =' + data.length + ',';
     }
     if(data.soil) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='soil ="' + data.soil + '"';
-      commaCounter++;
+      sentence +=' soil =' + data.soil + ',';
     }
-    if(data.user) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='user ="' + data.user + '"';
-      commaCounter++;
+    if(data.longitude) {
+      sentence +=' longitude =' + data.longitude + ',';
+    }
+    if(data.latitude) {
+      sentence +='latitude =' + data.latitude + ',';
     }
     if(data.countryCode) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='countryCode ="' + data.countryCode + '"';
-      commaCounter++;
+      sentence +='countryCode ="' + data.countryCode + '",';
     }
     if(data.city) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='city ="' + data.city + '"';
-      commaCounter++;
+      sentence +='city ="' + data.city + '",';
     }
     if(data.zip) {
-      if(commaCounter>0)
-        sentence +=', ';
-      sentence +='zip ="' + data.zip + '"';
-      commaCounter++;
+      sentence +='zip ="' + data.zip + '",';
     }
+    if(data.longitude && data.latitude) {
+      var geohash = geo.encode(data.latitude, data.longitude, 8);
+      sentence +='geoHash ="' + geohash + '" ';
+    }
+    sentence = sentence.slice(0, -1);
     sentence += ' WHERE id = "' + data.id +'"';
     connection.query(sentence, function(error, result) {
 			if (error){

@@ -1,6 +1,6 @@
 //Rutas
 import { APP_ROUTING } from "./app.routes";
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 //services
 import { UserService } from "./services/user.service";
 import { GardenService } from "./services/garden.service";
@@ -32,6 +32,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 //calendario
 import { CalendarComponent } from './components/calendar/calendar.component';
+import localeEs from '@angular/common/locales/es';
 //manage-App
 import { LoginComponent } from './components/manage/login.component';
 import { LogoutComponent } from './components/manage/logout.component';
@@ -39,7 +40,6 @@ import { RegisterComponent } from './components/manage/register.component';
 import { ConfirmationComponent } from './components/manage/confirmation.component';
 //Admin imports
 import { AdminComponent } from './components/admin/admin.component';
-import { AnalyticsComponent } from './components/admin/analytics.component';
 import { StatisticsComponent } from './components/admin/statistics.component';
 import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -94,6 +94,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { HelpComponent } from './components/help/help.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+registerLocaleData(localeEs);
 
 
 @NgModule({
@@ -116,7 +120,6 @@ import { HelpComponent } from './components/help/help.component';
     GardenComponent,
     EditGardenComponent,
     NewGardenComponent,
-    AnalyticsComponent,
     StatisticsComponent,
     UserdataComponent,
     LibraryComponent,
@@ -161,6 +164,8 @@ import { HelpComponent } from './components/help/help.component';
     MatButtonModule,
     MatDialogModule,
     MatTabsModule,
+    MatTooltipModule,
+    MatExpansionModule,
     APP_ROUTING
   ],
   providers: [
