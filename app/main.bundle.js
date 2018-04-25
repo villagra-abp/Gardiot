@@ -27,21 +27,20 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_users_edituser_edituser_component__ = __webpack_require__("../../../../../src/app/components/users/edituser/edituser.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_users_listusers_listusers_component__ = __webpack_require__("../../../../../src/app/components/users/listusers/listusers.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_admin_statistics_component__ = __webpack_require__("../../../../../src/app/components/admin/statistics.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_admin_analytics_component__ = __webpack_require__("../../../../../src/app/components/admin/analytics.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_treatments_newtreatment_newtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/newtreatment/newtreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_treatments_edittreatment_edittreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/edittreatment/edittreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_treatments_listtreatment_listtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/listtreatment/listtreatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_treatments_treatment_treatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/treatment/treatment.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_products_newproduct_newproduct_component__ = __webpack_require__("../../../../../src/app/components/products/newproduct/newproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_products_editproduct_editproduct_component__ = __webpack_require__("../../../../../src/app/components/products/editproduct/editproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_products_listproduct_listproduct_component__ = __webpack_require__("../../../../../src/app/components/products/listproduct/listproduct.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_products_product_product_component__ = __webpack_require__("../../../../../src/app/components/products/product/product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_feeds_feed_feed_component__ = __webpack_require__("../../../../../src/app/components/feeds/feed/feed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_feeds_newfeed_newfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/newfeed/newfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_feeds_editfeed_editfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/editfeed/editfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_feeds_listfeed_listfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__ = __webpack_require__("../../../../../src/app/components/admin/adminguard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_treatments_newtreatment_newtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/newtreatment/newtreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_treatments_edittreatment_edittreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/edittreatment/edittreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_treatments_listtreatment_listtreatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/listtreatment/listtreatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_treatments_treatment_treatment_component__ = __webpack_require__("../../../../../src/app/components/treatments/treatment/treatment.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_products_newproduct_newproduct_component__ = __webpack_require__("../../../../../src/app/components/products/newproduct/newproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_products_editproduct_editproduct_component__ = __webpack_require__("../../../../../src/app/components/products/editproduct/editproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_products_listproduct_listproduct_component__ = __webpack_require__("../../../../../src/app/components/products/listproduct/listproduct.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_products_product_product_component__ = __webpack_require__("../../../../../src/app/components/products/product/product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_feeds_feed_feed_component__ = __webpack_require__("../../../../../src/app/components/feeds/feed/feed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_feeds_newfeed_newfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/newfeed/newfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_feeds_editfeed_editfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/editfeed/editfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_feeds_listfeed_listfeed_component__ = __webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__ = __webpack_require__("../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__ = __webpack_require__("../../../../../src/app/components/admin/adminguard.guard.ts");
 //Profile
 
 //Users
@@ -49,7 +48,6 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 
 //negocio
-
 
 //treatment
 
@@ -72,31 +70,30 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 var admin_routes = [
     //Profile
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_0__components_admin_adminprofile_component__["a" /* AdminProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_0__components_admin_adminprofile_component__["a" /* AdminProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //negocio
-    { path: 'analytics', component: __WEBPACK_IMPORTED_MODULE_5__components_admin_analytics_component__["a" /* AnalyticsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'statistics', component: __WEBPACK_IMPORTED_MODULE_4__components_admin_statistics_component__["a" /* StatisticsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'statistics', component: __WEBPACK_IMPORTED_MODULE_4__components_admin_statistics_component__["a" /* StatisticsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //user
-    { path: 'users', component: __WEBPACK_IMPORTED_MODULE_3__components_users_listusers_listusers_component__["a" /* AdminListUsersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'edituser/:id', component: __WEBPACK_IMPORTED_MODULE_2__components_users_edituser_edituser_component__["a" /* EdituserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'newuser', component: __WEBPACK_IMPORTED_MODULE_1__components_users_newuser_newuser_component__["a" /* NewuserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'users', component: __WEBPACK_IMPORTED_MODULE_3__components_users_listusers_listusers_component__["a" /* AdminListUsersComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'edituser/:id', component: __WEBPACK_IMPORTED_MODULE_2__components_users_edituser_edituser_component__["a" /* EdituserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newuser', component: __WEBPACK_IMPORTED_MODULE_1__components_users_newuser_newuser_component__["a" /* NewuserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //treatment
-    { path: 'treatments', component: __WEBPACK_IMPORTED_MODULE_8__components_treatments_listtreatment_listtreatment_component__["a" /* ListtreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'treatment/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_treatments_treatment_treatment_component__["a" /* TreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'edittreatment/:id', component: __WEBPACK_IMPORTED_MODULE_7__components_treatments_edittreatment_edittreatment_component__["a" /* EdittreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'newtreatment', component: __WEBPACK_IMPORTED_MODULE_6__components_treatments_newtreatment_newtreatment_component__["a" /* NewtreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'treatments', component: __WEBPACK_IMPORTED_MODULE_7__components_treatments_listtreatment_listtreatment_component__["a" /* ListtreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'treatment/:id', component: __WEBPACK_IMPORTED_MODULE_8__components_treatments_treatment_treatment_component__["a" /* TreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'edittreatment/:id', component: __WEBPACK_IMPORTED_MODULE_6__components_treatments_edittreatment_edittreatment_component__["a" /* EdittreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newtreatment', component: __WEBPACK_IMPORTED_MODULE_5__components_treatments_newtreatment_newtreatment_component__["a" /* NewtreatmentComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //product
-    { path: 'products', component: __WEBPACK_IMPORTED_MODULE_12__components_products_listproduct_listproduct_component__["a" /* ListproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'product/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_products_product_product_component__["a" /* ProductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'editproduct/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_products_editproduct_editproduct_component__["a" /* EditproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'newproduct', component: __WEBPACK_IMPORTED_MODULE_10__components_products_newproduct_newproduct_component__["a" /* NewproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'products', component: __WEBPACK_IMPORTED_MODULE_11__components_products_listproduct_listproduct_component__["a" /* ListproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'product/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_products_product_product_component__["a" /* ProductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'editproduct/:id', component: __WEBPACK_IMPORTED_MODULE_10__components_products_editproduct_editproduct_component__["a" /* EditproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newproduct', component: __WEBPACK_IMPORTED_MODULE_9__components_products_newproduct_newproduct_component__["a" /* NewproductComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //feed
-    { path: 'feeds', component: __WEBPACK_IMPORTED_MODULE_17__components_feeds_listfeed_listfeed_component__["a" /* ListfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'feed/:id', component: __WEBPACK_IMPORTED_MODULE_14__components_feeds_feed_feed_component__["a" /* FeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'editfeed/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_feeds_editfeed_editfeed_component__["a" /* EditfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
-    { path: 'newfeed', component: __WEBPACK_IMPORTED_MODULE_15__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'feeds', component: __WEBPACK_IMPORTED_MODULE_16__components_feeds_listfeed_listfeed_component__["a" /* ListfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'feed/:id', component: __WEBPACK_IMPORTED_MODULE_13__components_feeds_feed_feed_component__["a" /* FeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'editfeed/:id', component: __WEBPACK_IMPORTED_MODULE_15__components_feeds_editfeed_editfeed_component__["a" /* EditfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newfeed', component: __WEBPACK_IMPORTED_MODULE_14__components_feeds_newfeed_newfeed_component__["a" /* NewfeedComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     //newtreatmentsplants
-    { path: 'newtreatmentsplants/:id', component: __WEBPACK_IMPORTED_MODULE_18__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
+    { path: 'newtreatmentsplants/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_18__components_admin_adminguard_guard__["a" /* AdminguardGuard */]] },
     { path: '**', pathMatch: 'full', redirectTo: 'analytics' }
 ];
 
@@ -111,7 +108,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\nH1{\n  font-size: 30px;\n}\nH2{\n  font-size: 25px;\n}\n\nH3{\n  font-size: 20px;\n}\n\nH4{\n  font-size: 17px;\n}\n\np{\n  font-size: 14px;\n  -webkit-text-decoration-color: #333333;\n          text-decoration-color: #333333;\n}\nlink{\n  font-size: 14px;\n  -webkit-text-decoration-color: #0073bb;\n          text-decoration-color: #0073bb;\n}\n\nSmall{\n  font-size: 12px;\n}\n", ""]);
+exports.push([module.i, "\r\nH1{\r\n  font-size: 30px;\r\n}\r\nH2{\r\n  font-size: 25px;\r\n}\r\n\r\nH3{\r\n  font-size: 20px;\r\n}\r\n\r\nH4{\r\n  font-size: 17px;\r\n}\r\n\r\np{\r\n  font-size: 14px;\r\n  -webkit-text-decoration-color: #333333;\r\n          text-decoration-color: #333333;\r\n}\r\nlink{\r\n  font-size: 14px;\r\n  -webkit-text-decoration-color: #0073bb;\r\n          text-decoration-color: #0073bb;\r\n}\r\n\r\nSmall{\r\n  font-size: 12px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -124,7 +121,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <app-header></app-header>\n  <router-outlet></router-outlet>\n  <app-desarrollo></app-desarrollo>\n"
+module.exports = "  <app-header></app-header>\r\n  <router-outlet></router-outlet>\r\n  <app-desarrollo></app-desarrollo>\r\n"
 
 /***/ }),
 
@@ -144,7 +141,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.url = "";
         this.admin = window.location.href.indexOf('admin') >= 0;
@@ -218,12 +215,12 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_header_header_component__ = __webpack_require__("../../../../../src/app/components/header/header.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_calendar_calendar_component__ = __webpack_require__("../../../../../src/app/components/calendar/calendar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_manage_login_component__ = __webpack_require__("../../../../../src/app/components/manage/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_manage_logout_component__ = __webpack_require__("../../../../../src/app/components/manage/logout.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_manage_register_component__ = __webpack_require__("../../../../../src/app/components/manage/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_manage_confirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/confirmation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_admin_analytics_component__ = __webpack_require__("../../../../../src/app/components/admin/analytics.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__angular_common_locales_es__ = __webpack_require__("../../../common/locales/es.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_manage_login_component__ = __webpack_require__("../../../../../src/app/components/manage/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_manage_logout_component__ = __webpack_require__("../../../../../src/app/components/manage/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_manage_register_component__ = __webpack_require__("../../../../../src/app/components/manage/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__components_manage_confirmation_component__ = __webpack_require__("../../../../../src/app/components/manage/confirmation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__components_admin_admin_component__ = __webpack_require__("../../../../../src/app/components/admin/admin.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__components_admin_statistics_component__ = __webpack_require__("../../../../../src/app/components/admin/statistics.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__desarrollo_desarrollo_component__ = __webpack_require__("../../../../../src/app/desarrollo/desarrollo.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_pagination_pagination_component__ = __webpack_require__("../../../../../src/app/components/pagination/pagination.component.ts");
@@ -265,6 +262,8 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__angular_material_tabs__ = __webpack_require__("../../../material/esm5/tabs.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__components_dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__components_help_help_component__ = __webpack_require__("../../../../../src/app/components/help/help.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__angular_material_expansion__ = __webpack_require__("../../../material/esm5/expansion.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -305,13 +304,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 //calendario
 
+
 //manage-App
 
 
 
 
 //Admin imports
-
 
 
 
@@ -362,7 +361,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AppModule = (function () {
+
+
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["registerLocaleData"])(__WEBPACK_IMPORTED_MODULE_25__angular_common_locales_es__["a" /* default */]);
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
@@ -370,15 +372,15 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_22__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_23__components_header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_manage_login_component__["a" /* LoginComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_manage_logout_component__["a" /* LogoutComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__components_manage_register_component__["a" /* RegisterComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_manage_login_component__["a" /* LoginComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_manage_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__components_manage_register_component__["a" /* RegisterComponent */],
                 __WEBPACK_IMPORTED_MODULE_41__components_user_detail_component__["a" /* DetailComponent */],
                 __WEBPACK_IMPORTED_MODULE_42__components_user_profile_component__["a" /* ProfileComponent */],
                 __WEBPACK_IMPORTED_MODULE_43__components_user_editprofile_component__["a" /* EditProfileComponent */],
-                __WEBPACK_IMPORTED_MODULE_28__components_manage_confirmation_component__["a" /* ConfirmationComponent */],
+                __WEBPACK_IMPORTED_MODULE_29__components_manage_confirmation_component__["a" /* ConfirmationComponent */],
                 __WEBPACK_IMPORTED_MODULE_44__components_manage_resend_component__["a" /* ResendComponent */],
-                __WEBPACK_IMPORTED_MODULE_29__components_admin_admin_component__["a" /* AdminComponent */],
+                __WEBPACK_IMPORTED_MODULE_30__components_admin_admin_component__["a" /* AdminComponent */],
                 __WEBPACK_IMPORTED_MODULE_40__components_users_listusers_listusers_component__["a" /* AdminListUsersComponent */],
                 __WEBPACK_IMPORTED_MODULE_18__components_admin_adminprofile_component__["a" /* AdminProfileComponent */],
                 __WEBPACK_IMPORTED_MODULE_39__components_users_edituser_edituser_component__["a" /* EdituserComponent */],
@@ -386,7 +388,6 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_34__components_gardens_garden_garden_component__["a" /* GardenComponent */],
                 __WEBPACK_IMPORTED_MODULE_35__components_gardens_editgarden_editgarden_component__["a" /* EditGardenComponent */],
                 __WEBPACK_IMPORTED_MODULE_36__components_gardens_newgarden_newgarden_component__["a" /* NewGardenComponent */],
-                __WEBPACK_IMPORTED_MODULE_30__components_admin_analytics_component__["a" /* AnalyticsComponent */],
                 __WEBPACK_IMPORTED_MODULE_31__components_admin_statistics_component__["a" /* StatisticsComponent */],
                 __WEBPACK_IMPORTED_MODULE_37__components_users_userdata_userdata_component__["a" /* UserdataComponent */],
                 __WEBPACK_IMPORTED_MODULE_48__components_plants_library_library_component__["a" /* LibraryComponent */],
@@ -425,11 +426,13 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_17_angular_tabs_component__["a" /* TabModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
                 __WEBPACK_IMPORTED_MODULE_64__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_65_angular_calendar__["a" /* CalendarModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_65_angular_calendar__["b" /* CalendarModule */].forRoot(),
                 __WEBPACK_IMPORTED_MODULE_66__angular_material_card__["a" /* MatCardModule */],
                 __WEBPACK_IMPORTED_MODULE_67__angular_material_button__["a" /* MatButtonModule */],
                 __WEBPACK_IMPORTED_MODULE_68__angular_material_dialog__["c" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_69__angular_material_tabs__["a" /* MatTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_72__angular_material_tooltip__["a" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_73__angular_material_expansion__["a" /* MatExpansionModule */],
                 __WEBPACK_IMPORTED_MODULE_0__app_routes__["a" /* APP_ROUTING */]
             ],
             providers: [
@@ -566,7 +569,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthguardGuard = (function () {
+var AuthguardGuard = /** @class */ (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -596,7 +599,7 @@ var AuthguardGuard = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Feed; });
-var Feed = (function () {
+var Feed = /** @class */ (function () {
     function Feed(id, name, text, dateInit, dateFinal) {
         this.id = id;
         this.name = name;
@@ -616,7 +619,7 @@ var Feed = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Garden; });
-var Garden = (function () {
+var Garden = /** @class */ (function () {
     function Garden(id, title, width, length, latitude, longitude, soil, user, countryCode, city, plants) {
         this.id = id;
         this.title = title;
@@ -642,7 +645,7 @@ var Garden = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Plant; });
-var Plant = (function () {
+var Plant = /** @class */ (function () {
     function Plant(id, scientificName, commonName, description, photo, _3DModel, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType) {
         this.id = id;
         this.scientificName = scientificName;
@@ -674,7 +677,7 @@ var Plant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Product; });
-var Product = (function () {
+var Product = /** @class */ (function () {
     function Product(id, name, type, description) {
         this.id = id;
         this.name = name;
@@ -693,7 +696,7 @@ var Product = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTreatment; });
-var ProductTreatment = (function () {
+var ProductTreatment = /** @class */ (function () {
     function ProductTreatment(plant, treatment, product, name) {
         this.plant = plant;
         this.treatment = treatment;
@@ -712,7 +715,7 @@ var ProductTreatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
-var Task = (function () {
+var Task = /** @class */ (function () {
     function Task(tPlant, treatmentPlant, myPlant, mPlant, date, dateDone, commonName, name) {
         this.tPlant = tPlant;
         this.treatmentPlant = treatmentPlant;
@@ -735,7 +738,7 @@ var Task = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Treatment; });
-var Treatment = (function () {
+var Treatment = /** @class */ (function () {
     function Treatment(id, name, description, icon) {
         this.id = id;
         this.name = name;
@@ -754,7 +757,7 @@ var Treatment = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreatmentPlant; });
-var TreatmentPlant = (function () {
+var TreatmentPlant = /** @class */ (function () {
     function TreatmentPlant(plant, treatment, frequency, initDate, finalDate) {
         this.plant = plant;
         this.treatment = treatment;
@@ -774,7 +777,7 @@ var TreatmentPlant = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-var User = (function () {
+var User = /** @class */ (function () {
     function User(id, name, lastName, password, password2, oldPassword, photo, countryCode, city, birthDate, active, admin) {
         this.id = id;
         this.name = name;
@@ -799,7 +802,7 @@ var User = (function () {
 /***/ "../../../../../src/app/components/admin/admin.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -825,7 +828,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { AdminListUsersComponent } from "./listusers.component";
 //import { AdminUserComponent } from "./user.component";
-var AdminComponent = (function () {
+var AdminComponent = /** @class */ (function () {
     function AdminComponent(_detailService, _route) {
         this._detailService = _detailService;
         this._route = _route;
@@ -868,7 +871,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminguardGuard = (function () {
+var AdminguardGuard = /** @class */ (function () {
     function AdminguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -930,7 +933,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminProfileComponent = (function () {
+var AdminProfileComponent = /** @class */ (function () {
     function AdminProfileComponent(_detailService, _route, _appComponent, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -1085,52 +1088,28 @@ var AdminProfileComponent = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/admin/analytics.component.html":
-/***/ (function(module, exports) {
+/***/ "../../../../../src/app/components/admin/statistics.component.css":
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<div class=\"container main-container\">\n\t<h1>Analítica</h1>\n  <p>En esta sección tendremos los estudios que nos ayuden a mejorar la aplicación (tiempos en cada sitio, uso de ciertas funcionalidades...)</p>\n</div>\n</div> \n"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/admin/analytics.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnalyticsComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var AnalyticsComponent = (function () {
-    function AnalyticsComponent() {
-    }
-    AnalyticsComponent.prototype.ngOnInit = function () {
-    };
-    AnalyticsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-analytics',
-            template: __webpack_require__("../../../../../src/app/components/admin/analytics.component.html")
-        }),
-        __metadata("design:paramtypes", [])
-    ], AnalyticsComponent);
-    return AnalyticsComponent;
-}());
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
 
 
+// module
+exports.push([module.i, "/******* ESTILO ESTADISTICAS *******/\r\n/******* Julián Sánchez García *******/\r\n*{\r\n  margin: 0;\r\n}\r\nh1{\r\n  color:  #fbb200;\r\n  font-size: 1.6em;\r\n}\r\ni{\r\n  float: left;\r\n}\r\n\r\nh4{\r\n}\r\nfieldset{\r\n  border-color: #fbb200;\r\n}\r\n.mat-tab{\r\n    /* height:unset!important; */\r\n    width: unset!important;\r\n    /* height: unset!important; */\r\n}\r\n/******* FIN ESTILO ESTADISTICAS *******/\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/admin/statistics.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container vistaAdmin\">\n  <h1>Estadisticas</h1>\n  <article class=\"row\">\n    <div class=\"col\">\n\t\t\t<h3>Tareas realizadas en los jardines</h3>\n\t\t\t\t<iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=4&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus\"\n         width=\"450\" height=\"250\" frameborder=\"0\">\n       </iframe>\n    </div>\n    <div class=\"col\">\n\t\t\t<h3>Comparativa de plantas</h3>\n\t\t\t\t<iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=2&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus\"\n        width=\"450\" height=\"250\" frameborder=\"0\">\n      </iframe>\n    </div>\n    </article>\n\n    <article class=\"row\">\n    <div class=\"col\">\n\t\t\t<h3>Usuarios</h3>\n\t\t\t\t<iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=6&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus\"\n                    width=\"450\" height=\"250\" frameborder=\"0\">\n        </iframe>\n    </div>\n    <div class=\"col\">\n\t\t\t<h3>Mapa de usuarios</h3>\n      <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&panelId=8&from=1522533600000&to=1525125599999&var-planta1=Aloe%20vera&var-planta2=Cactus\"\n                  width=\"450\" height=\"250\" frameborder=\"0\">\n      </iframe>\n    </div>\n  </article>\n"
+module.exports = "<section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <section class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"well well-sm\">\r\n          <fieldset>\r\n            <mat-tab-group class=\"demo-tab-group\">\r\n              <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n                <article class=\"row\">\r\n                  <div class=\"col\">\r\n                    <h4>Usuarios</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light\"\r\n                      width=\"450\" height=\"350\" frameborder=\"0\">\r\n                    </iframe>\r\n                  </div>\r\n                  <div class=\"col\">\r\n                    <h4>Mapa de usuarios</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light\"\r\n                    width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                    </article>\r\n                  <br>\r\n                  <article class=\"row\">\r\n                    <div id=\"header\" class=\"col\">\r\n                      <div class=\"row\">\r\n                        <h4 class=\"col\">Usuarios conectados</h4>\r\n                        <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i>\r\n                      </div>\r\n\r\n                      <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light\"\r\n                              width=\"450\" height=\"350\" frameborder=\"0\" class=\"col\">\r\n                      </iframe>\r\n                      </div>\r\n                  </article>\r\n\r\n\r\n\r\n              </mat-tab>\r\n\r\n              <mat-tab label=\"Estadísticas de jardín\">\r\n                <article class=\"row\">\r\n                  <div class=\"col\">\r\n                    <h4>Tareas realizadas en los jardines</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=4&var-tiempo=120&theme=light\"\r\n                    width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                  <div class=\"col\">\r\n                    <h4>Comparativa de plantas</h4>\r\n                  <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=2&var-tiempo=120&theme=light\"\r\n                  width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                </article>\r\n              </mat-tab>\r\n\r\n            </mat-tab-group>\r\n          </fieldset>\r\n        </div>\r\n      </div>\r\n    </section>\r\n  </article>\r\n</section>\r\n\r\n\r\n\r\n<!-- <section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <mat-tab-group class=\"demo-tab-group\">\r\n      <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4>Usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n            <h4>Mapa de usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n        </article>\r\n        <br>\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4 class=\"col\">Usuarios conectados</h4>\r\n            <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i>\r\n                <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light\"\r\n                  width=\"450\" height=\"350\" frameborder=\"0\" class=\"col\">\r\n                </iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n\r\n          </div>\r\n        </article>\r\n      </mat-tab>\r\n    </mat-tab-group>\r\n  </article>\r\n</section> -->\r\n"
 
 /***/ }),
 
@@ -1140,8 +1119,7 @@ module.exports = "<section class=\"container vistaAdmin\">\n  <h1>Estadisticas</
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatisticsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1153,31 +1131,43 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-var StatisticsComponent = (function () {
+var StatisticsComponent = /** @class */ (function () {
     function StatisticsComponent(dialog) {
         this.dialog = dialog;
         this.dialogResult = "";
+        this.datos = [
+            { value: '15', viewValue: 'Últimos 15 minutos' },
+            { value: '60', viewValue: 'Últimos 60 minutos' },
+            { value: '120', viewValue: 'Últimos 120 minutos' },
+            { value: '1440', viewValue: 'Últimas 24 horas' },
+            { value: '10080', viewValue: 'Últimos 7 días' },
+            { value: '44640', viewValue: 'Último mes' },
+            { value: '525600', viewValue: 'Último año' },
+            { value: '1051200', viewValue: 'Últimos dos años' },
+        ];
+        // this.datos = [15,60,120,1440,10080,525600,1051200];
+        // this.datos = [
+        //   {value: '15', viewValue: 'Últimos 15 minutos'},
+        //   {value: '60', viewValue: 'Últimos 60 minutos'},
+        //   {value: '120', viewValue: 'Últimos 120 minutos'},
+        //   {value: '1440', viewValue: 'Últimas 24 horas'},
+        //   {value: '10080', viewValue: 'Últimos 7 días'},
+        //   {value: '44640', viewValue: 'Último mes'},
+        //   {value: '525600', viewValue: 'Último año'},
+        //   {value: '1051200', viewValue: 'Últimos dos años'},
+        // ];
     }
+    // captura(){
+    // }
     StatisticsComponent.prototype.ngOnInit = function () {
-    };
-    StatisticsComponent.prototype.openDialog = function () {
-        var _this = this;
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_1__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
-            width: '600px',
-            data: 'Hola Mriano'
-        });
-        dialogRef.afterClosed().subscribe(function (result) {
-            console.log("Dialog closed: " + result);
-            _this.dialogResult = result;
-        });
     };
     StatisticsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-statistics',
-            template: __webpack_require__("../../../../../src/app/components/admin/statistics.component.html")
+            template: __webpack_require__("../../../../../src/app/components/admin/statistics.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/admin/statistics.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_material__["a" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatDialog */]])
     ], StatisticsComponent);
     return StatisticsComponent;
 }());
@@ -1207,7 +1197,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/calendar/calendar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container container\">\n  <div class=\"wrap\">\n  <section class=\"card-columns\">\n      <div *ngFor=\"let feed of feeds\" class=\"card\"  style=\"width: 18rem;\" >\n          <h4>{{feed.name}} </h4>\n          <p>{{feed.text}} </p>\n          <button class=\"btn btn-outline-primary\">visto</button>\n        </div>\n  </section>\n  </div>\n  <div class=\"row text-center\">\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarPreviousView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Anterior\n      </div>\n      <div\n        class=\"btn btn-outline-secondary\"\n        mwlCalendarToday\n        [(viewDate)]=\"viewDate\">\n        Actual\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        mwlCalendarNextView\n        [view]=\"view\"\n        [(viewDate)]=\"viewDate\"\n        (viewDateChange)=\"activeDayIsOpen = false\">\n        Próximo\n      </div>\n    </div>\n  </div>\n  <div class=\"col-md-4\">\n    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\n  </div>\n  <div class=\"col-md-4\">\n    <div class=\"btn-group\">\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'month'\"\n        [class.active]=\"view === 'month'\">\n        Month\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'week'\"\n        [class.active]=\"view === 'week'\">\n        Week\n      </div>\n      <div\n        class=\"btn btn-primary\"\n        (click)=\"view = 'day'\"\n        [class.active]=\"view === 'day'\">\n        Day\n      </div>\n    </div>\n  </div>\n</div>\n<br>\n<div [ngSwitch]=\"view\">\n  <mwl-calendar-month-view\n    *ngSwitchCase=\"'month'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    [activeDayIsOpen]=\"activeDayIsOpen\"\n    (dayClicked)=\"dayClicked($event.day)\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-month-view>\n  <mwl-calendar-week-view\n    *ngSwitchCase=\"'week'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-week-view>\n  <mwl-calendar-day-view\n    *ngSwitchCase=\"'day'\"\n    [viewDate]=\"viewDate\"\n    [events]=\"events\"\n    [refresh]=\"refresh\"\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\n  </mwl-calendar-day-view>\n</div>\n\n<!--\n\n<h3>\n  Edit events\n  <button\n    class=\"btn btn-primary pull-right\"\n    (click)=\"addEvent()\">\n    Add new\n  </button>\n  <div class=\"clearfix\"></div>\n</h3>\n\n<table class=\"table table-bordered\">\n\n  <thead>\n    <tr>\n      <th>Title</th>\n      <th>Primary color</th>\n      <th>Secondary color</th>\n      <th>Starts at</th>\n      <th>Ends at</th>\n      <th>Remove</th>\n    </tr>\n  </thead>\n\n  <tbody>\n    <tr *ngFor=\"let event of events; let index = index\">\n      <td>\n        <input\n          type=\"text\"\n          class=\"form-control\"\n          [(ngModel)]=\"event.title\"\n          (keyup)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.primary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n        <input\n          type=\"color\"\n          [(ngModel)]=\"event.color.secondary\"\n          (change)=\"refresh.next()\">\n      </td>\n      <td>\n\n      </td>\n      <td>\n\n      </td>\n      <td>\n        <button\n          class=\"btn btn-danger\"\n          (click)=\"events.splice(index, 1); refresh.next()\">\n          Delete\n        </button>\n      </td>\n    </tr>\n  </tbody>\n\n</table>\n-->\n</div>\n\n<!-- <div class=\"container main-container\">\n  <div class=\"wrap\">\n  <section class=\"card-columns\">\n      <div *ngFor=\"let task of tasks\" class=\"card\"  style=\"width: 18rem;\" >\n          <h4>{{task.commonName}} </h4>\n          <p>{{task.name}} </p>\n          <p>{{task.date}}</p>\n          <button   class=\"btn btn-outline-primary\">Realizada</button>\n        </div>\n  </section>\n  </div>\n\t</div> -->\n"
+module.exports = "<div class=\"main-container container\">\r\n  <div class=\"row text-center\">\r\n    <div class=\"col-md-4\">\r\n      <div class=\"btn-group\">\r\n        <div class=\"btn btn-primary\" mwlCalendarPreviousView [view]=\"view\" [(viewDate)]=\"viewDate\" (viewDateChange)=\"activeDayIsOpen = false\">\r\n          Anterior\r\n        </div>\r\n        <div class=\"btn btn-outline-secondary\" mwlCalendarToday [(viewDate)]=\"viewDate\">\r\n          Actual\r\n        </div>\r\n        <div class=\"btn btn-primary\" mwlCalendarNextView [view]=\"view\" [(viewDate)]=\"viewDate\" (viewDateChange)=\"activeDayIsOpen = false\">\r\n          Próximo\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div class=\"btn-group\">\r\n        <div class=\"btn btn-primary\" (click)=\"view = 'month'\" [class.active]=\"view === 'month'\">\r\n          Mes\r\n        </div>\r\n        <div class=\"btn btn-primary\" (click)=\"view = 'week'\" [class.active]=\"view === 'week'\">\r\n          Semana\r\n        </div>\r\n        <div class=\"btn btn-primary\" (click)=\"view = 'day'\" [class.active]=\"view === 'day'\">\r\n          Día\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <div [ngSwitch]=\"view\">\r\n    <mwl-calendar-month-view\r\n    *ngSwitchCase=\"'month'\"\r\n    [viewDate]=\"viewDate\"\r\n    [events]=\"events\"\r\n    [locale]=\"locale\"\r\n    [refresh]=\"refresh\"\r\n    [weekStartsOn]=\"weekStartsOn\"\r\n    [weekendDays]=\"weekendDays\"\r\n    [activeDayIsOpen]=\"activeDayIsOpen\"\r\n    (dayClicked)=\"dayClicked($event.day)\"\r\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\r\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n    </mwl-calendar-month-view>\r\n    <mwl-calendar-week-view\r\n    *ngSwitchCase=\"'week'\"\r\n    [viewDate]=\"viewDate\"\r\n    [events]=\"events\"\r\n    [locale]=\"locale\"\r\n    [refresh]=\"refresh\"\r\n    [weekStartsOn]=\"weekStartsOn\"\r\n    [weekendDays]=\"weekendDays\"\r\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\r\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n    </mwl-calendar-week-view>\r\n    <mwl-calendar-day-view\r\n    *ngSwitchCase=\"'day'\"\r\n    [viewDate]=\"viewDate\"\r\n    [events]=\"events\"\r\n    [locale]=\"locale\"\r\n    [refresh]=\"refresh\"\r\n    (eventClicked)=\"handleEvent('Clicked', $event.event)\"\r\n    (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n    </mwl-calendar-day-view>\r\n  </div>\r\n\r\n  <!--\r\n\r\n<h3>\r\n  Edit events\r\n  <button\r\n    class=\"btn btn-primary pull-right\"\r\n    (click)=\"addEvent()\">\r\n    Add new\r\n  </button>\r\n  <div class=\"clearfix\"></div>\r\n</h3>\r\n\r\n<table class=\"table table-bordered\">\r\n\r\n  <thead>\r\n    <tr>\r\n      <th>Title</th>\r\n      <th>Primary color</th>\r\n      <th>Secondary color</th>\r\n      <th>Starts at</th>\r\n      <th>Ends at</th>\r\n      <th>Remove</th>\r\n    </tr>\r\n  </thead>\r\n\r\n  <tbody>\r\n    <tr *ngFor=\"let event of events; let index = index\">\r\n      <td>\r\n        <input\r\n          type=\"text\"\r\n          class=\"form-control\"\r\n          [(ngModel)]=\"event.title\"\r\n          (keyup)=\"refresh.next()\">\r\n      </td>\r\n      <td>\r\n        <input\r\n          type=\"color\"\r\n          [(ngModel)]=\"event.color.primary\"\r\n          (change)=\"refresh.next()\">\r\n      </td>\r\n      <td>\r\n        <input\r\n          type=\"color\"\r\n          [(ngModel)]=\"event.color.secondary\"\r\n          (change)=\"refresh.next()\">\r\n      </td>\r\n      <td>\r\n\r\n      </td>\r\n      <td>\r\n\r\n      </td>\r\n      <td>\r\n        <button\r\n          class=\"btn btn-danger\"\r\n          (click)=\"events.splice(index, 1); refresh.next()\">\r\n          Delete\r\n        </button>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n\r\n</table>\r\n-->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1219,14 +1209,14 @@ module.exports = "<div class=\"main-container container\">\n  <div class=\"wrap\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_task_service__ = __webpack_require__("../../../../../src/app/services/task.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_feed_service__ = __webpack_require__("../../../../../src/app/services/feed.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_task_class__ = __webpack_require__("../../../../../src/app/classes/task.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_feed_class__ = __webpack_require__("../../../../../src/app/classes/feed.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_date_fns__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_task_class__ = __webpack_require__("../../../../../src/app/classes/task.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__customdate_provider__ = __webpack_require__("../../../../../src/app/components/calendar/customdate.provider.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1262,48 +1252,55 @@ var colors = {
         secondary: '#FDF1BA'
     }
 };
-var CalendarComponent = (function () {
-    function CalendarComponent(_taskService, _feedService, _route, _appComponent, datePipe, activatedRoute) {
+var CalendarComponent = /** @class */ (function () {
+    function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute) {
         var _this = this;
         this._taskService = _taskService;
-        this._feedService = _feedService;
         this._route = _route;
         this._appComponent = _appComponent;
         this.datePipe = datePipe;
         this.activatedRoute = activatedRoute;
         this.view = 'month';
         this.viewDate = new Date();
+        this.locale = 'es';
+        this.weekStartsOn = __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].MONDAY;
+        this.weekendDays = [__WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].SATURDAY, __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].SUNDAY];
         this.tasks = [];
-        this.task = new __WEBPACK_IMPORTED_MODULE_4__classes_task_class__["a" /* Task */]();
+        this.task = new __WEBPACK_IMPORTED_MODULE_3__classes_task_class__["a" /* Task */]();
         this.treatments = [];
-        this.treatment = new __WEBPACK_IMPORTED_MODULE_4__classes_task_class__["a" /* Task */]();
-        this.feeds = [];
-        this.feed = new __WEBPACK_IMPORTED_MODULE_5__classes_feed_class__["a" /* Feed */]();
+        this.treatment = new __WEBPACK_IMPORTED_MODULE_3__classes_task_class__["a" /* Task */]();
         this.actions = [
+            /*{
+              label: '<i class="fa fa-fw fa-pencil">Detalles</i>',
+              onClick: ({ event }: { event: CalendarEvent }): void => {
+              this.handleEvent('Edited', event);
+              }
+            },*/
             {
-                label: '<i class="fa fa-fw fa-pencil"></i>',
-                onClick: function (_a) {
-                    var event = _a.event;
-                    //this.handleEvent('Edited', event);
-                }
-            },
-            {
-                label: '<i class="fa fa-fw fa-times"></i>',
+                label: '<i class="material-icons">check</i>',
                 onClick: function (_a) {
                     var event = _a.event;
                     _this.events = _this.events.filter(function (iEvent) { return iEvent !== event; });
-                    //this.handleEvent('Deleted', event);
+                    _this.handleEvent('Done', event);
+                }
+            },
+            {
+                label: '<i class="material-icons">close</i>',
+                onClick: function (_a) {
+                    var event = _a.event;
+                    _this.events = _this.events.filter(function (iEvent) { return iEvent !== event; });
+                    _this.handleEvent('Done', event);
                 }
             }
         ];
-        this.refresh = new __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__["b" /* Subject */]();
+        this.refresh = new __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__["b" /* Subject */]();
         this.events = [];
         this.activeDayIsOpen = true;
     }
     CalendarComponent.prototype.dayClicked = function (_a) {
         var date = _a.date, events = _a.events;
-        if (Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["isSameMonth"])(date, this.viewDate)) {
-            if ((Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["isSameDay"])(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        if (Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameMonth"])(date, this.viewDate)) {
+            if ((Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameDay"])(this.viewDate, date) && this.activeDayIsOpen === true) ||
                 events.length === 0) {
                 this.activeDayIsOpen = false;
             }
@@ -1317,16 +1314,18 @@ var CalendarComponent = (function () {
         var event = _a.event, newStart = _a.newStart, newEnd = _a.newEnd;
         event.start = newStart;
         event.end = newEnd;
-        //this.handleEvent('Dropped or resized', event);
+        this.handleEvent('Changed', event);
         this.refresh.next();
     };
-    CalendarComponent.prototype.addEvent = function (Ttitle, Tstart, Tend) {
+    CalendarComponent.prototype.addEvent = function (Ttitle, Tstart, Tend, idT) {
         this.events.push({
             title: Ttitle,
-            start: Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["startOfDay"])(new Date(Tstart)),
-            end: Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["endOfDay"])(new Date(Tend)),
+            id: idT,
+            start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date(Tstart)),
+            end: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["endOfDay"])(new Date(Tend)),
             color: colors.red,
-            draggable: false,
+            actions: this.actions,
+            draggable: true,
             resizable: {
                 beforeStart: true,
                 afterEnd: true
@@ -1334,9 +1333,31 @@ var CalendarComponent = (function () {
         });
         this.refresh.next();
     };
-    CalendarComponent.prototype.handleEvent = function (c, e) {
-        alert("manejar click");
-        console.log(e);
+    CalendarComponent.prototype.handleEvent = function (action, event) {
+        var f = new Date();
+        var fecha_actual;
+        f.getDate();
+        f.getMonth() + 1;
+        f.getFullYear();
+        fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+        if (action == 'Edited') {
+            alert("detalles");
+        }
+        else if (action == 'Done') {
+            var task = this.tasks[event.id];
+            this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, fecha_actual)
+                .subscribe(function (data) {
+            });
+        }
+        else if (action == 'Changed') {
+            var task = this.tasks[event.id];
+            this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
+                .subscribe(function (data) {
+            });
+        }
+        else {
+            alert("click standar");
+        }
     };
     CalendarComponent.prototype.mostrar = function () {
         var _this = this;
@@ -1350,9 +1371,9 @@ var CalendarComponent = (function () {
             .subscribe(function (data) {
             _this.tasks = [];
             for (var key$ in data) {
-                //console.log(data[key$]);
-                //this.tasks.push(data[key$]);
-                _this.addEvent(data[key$].name + " " + data[key$].commonName, _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+                _this.tasks.push(data[key$]);
+                console.log(data[key$]);
+                _this.addEvent(data[key$].name + " " + data[key$].commonName, _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), parseInt(key$));
             }
             /*for(let key$ in data){
               this.treatments.push(data[key$]);
@@ -1363,40 +1384,70 @@ var CalendarComponent = (function () {
             console.error(error);
         });
     };
-    CalendarComponent.prototype.cargarfeeds = function () {
-        var _this = this;
-        this._feedService.showfeeds()
-            .subscribe(function (data) {
-            _this.feeds = [];
-            for (var key$ in data) {
-                _this.feeds.push(data[key$]);
-            }
-            console.log("¿cuantos?");
-            console.log(_this.feeds);
-        }, function (error) {
-            console.error(error);
-        });
-    };
     CalendarComponent.prototype.ngOnInit = function () {
         this.mostrar();
-        this.cargarfeeds();
     };
     CalendarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-calendar',
             changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
             styles: [__webpack_require__("../../../../../src/app/components/calendar/calendar.component.css")],
-            template: __webpack_require__("../../../../../src/app/components/calendar/calendar.component.html")
+            template: __webpack_require__("../../../../../src/app/components/calendar/calendar.component.html"),
+            providers: [
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["a" /* CalendarDateFormatter */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_9__customdate_provider__["a" /* CustomDateFormatter */]
+                }
+            ]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_task_service__["a" /* TaskService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_feed_service__["a" /* FeedService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"],
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["DatePipe"],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], CalendarComponent);
     return CalendarComponent;
 }());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/customdate.provider.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomDateFormatter; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+var CustomDateFormatter = /** @class */ (function (_super) {
+    __extends(CustomDateFormatter, _super);
+    function CustomDateFormatter() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomDateFormatter.prototype.weekViewTitle = function (_a) {
+        var date = _a.date, locale = _a.locale;
+        var year = new __WEBPACK_IMPORTED_MODULE_2__angular_common__["DatePipe"](locale).transform(date, 'y', locale);
+        var weekNumber = Object(__WEBPACK_IMPORTED_MODULE_1_date_fns__["getISOWeek"])(date);
+        return "Semana " + weekNumber + " de " + year;
+    };
+    return CustomDateFormatter;
+}(__WEBPACK_IMPORTED_MODULE_0_angular_calendar__["a" /* CalendarDateFormatter */]));
 
 
 
@@ -1410,7 +1461,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "div{\n  width: 100%;\n    margin: 0 auto;\n    background: rgba(255,255,255,0.1);\n    padding: 35px;\n    border: 2px solid #fff;\n    border-radius: 20px/50px;\n    background-clip: padding-box;\n    text-align: center;\n}\nsection{\n  margin-top: -26px;\n}\n\nmat-dialog-actions{\npadding: 2.5px;\n}\nbutton{\nmargin: auto;\n}\n", ""]);
+exports.push([module.i, "div{\r\n  width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1423,7 +1474,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dialog-delete/dialog-delete.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <section >\n  <h4 mat-dialog-title>¿Esta seguro que desea borrar este producto?</h4>\n  <!-- <mat-dialog-content>\n  <strong>{{data}}</strong>\n  </mat-dialog-content> -->\n  <mat-dialog-actions>\n    <button mat-raise-button (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Aceptar</button>\n    <button mat-raise-button (click)=\"onCloseCancel()\" type=\"button\" class=\"btn btn-secondary\">Cancelar</button>\n  </mat-dialog-actions>\n  </section>\n</div>\n"
+module.exports = "<div>\r\n  <section>\r\n    <h4 mat-dialog-title>¿Esta seguro que desea borrar este elemento?</h4>\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Aceptar</button>\r\n      <button mat-raise-button (click)=\"onCloseCancel()\" type=\"button\" class=\"btn btn-secondary\">Cancelar</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1435,6 +1486,10 @@ module.exports = "<div>\n  <section >\n  <h4 mat-dialog-title>¿Esta seguro que 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_product_service__ = __webpack_require__("../../../../../src/app/services/product.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_treatment_service__ = __webpack_require__("../../../../../src/app/services/treatment.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_feed_service__ = __webpack_require__("../../../../../src/app/services/feed.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1451,11 +1506,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
-var DialogDeleteComponent = (function () {
-    function DialogDeleteComponent(thisDialogRef, data, _productService) {
+
+
+
+
+var DialogDeleteComponent = /** @class */ (function () {
+    function DialogDeleteComponent(thisDialogRef, data, _productService, _treatmentService, _feedService, _plantService, _userService) {
         this.thisDialogRef = thisDialogRef;
         this.data = data;
         this._productService = _productService;
+        this._treatmentService = _treatmentService;
+        this._feedService = _feedService;
+        this._plantService = _plantService;
+        this._userService = _userService;
     }
     DialogDeleteComponent.prototype.onCloseConfirm = function () {
         this.delete();
@@ -1465,13 +1528,51 @@ var DialogDeleteComponent = (function () {
     };
     DialogDeleteComponent.prototype.delete = function () {
         var _this = this;
-        this._productService.deleteProduct(this.data)
-            .subscribe(function (data) {
-            window.location.reload();
-            _this.thisDialogRef.close('Confirm');
-        }, function (error) {
-            console.error(error);
-        });
+        if (this.data.typeObject == 1) {
+            this._productService.deleteProduct(this.data.idObject)
+                .subscribe(function (data) {
+                window.location.reload();
+                _this.thisDialogRef.close('Confirm');
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        if (this.data.typeObject == 2) {
+            this._treatmentService.deleteTrearment(this.data.idObject)
+                .subscribe(function (data) {
+                window.location.reload();
+                _this.thisDialogRef.close('Confirm');
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        if (this.data.typeObject == 3) {
+            this._feedService.deleteFeed(this.data.idObject)
+                .subscribe(function (data) {
+                window.location.reload();
+                _this.thisDialogRef.close('Confirm');
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        if (this.data.typeObject == 4) {
+            this._plantService.deletePlant(this.data.idObject)
+                .subscribe(function (data) {
+                window.location.reload();
+                _this.thisDialogRef.close('Confirm');
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        if (this.data.typeObject == 5) {
+            this._userService.deleteUser(this.data.idObject)
+                .subscribe(function (data) {
+                window.location.reload();
+                _this.thisDialogRef.close('Confirm');
+            }, function (error) {
+                console.error(error);
+            });
+        }
     };
     DialogDeleteComponent.prototype.ngOnInit = function () {
     };
@@ -1482,7 +1583,11 @@ var DialogDeleteComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.css")]
         }),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Number, __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */],
+            __WEBPACK_IMPORTED_MODULE_3__services_treatment_service__["a" /* TreatmentService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_feed_service__["a" /* FeedService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_plant_service__["a" /* PlantService */],
+            __WEBPACK_IMPORTED_MODULE_6__services_user_service__["a" /* UserService */]])
     ], DialogDeleteComponent);
     return DialogDeleteComponent;
 }());
@@ -1512,7 +1617,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/feeds/editfeed/editfeed.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_feed\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"feed.name\" name=\"name\" id=\"name_feed\" required>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <textarea class=\"form-control\" [(ngModel)]=\"feed.text\" name=\"text\" placeholder=\"Consejo\" required rows=\"3\" required></textarea>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"dateInit\">Inicio</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateInit\" name=\"dateInit\" id=\"dateInit\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"dateFinal\">Fin</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateFinal\" name=\"dateFinal\" id=\"dateFinal\" >\n      </div>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_feed\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"feed.name\" name=\"name\" id=\"name_feed\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"feed.text\" name=\"text\" placeholder=\"Consejo\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"dateInit\">Inicio</label>\r\n\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateInit\" name=\"dateInit\" id=\"dateInit\">\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"dateFinal\">Fin</label>\r\n\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateFinal\" name=\"dateFinal\" id=\"dateFinal\">\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1542,7 +1647,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditfeedComponent = (function () {
+var EditfeedComponent = /** @class */ (function () {
     function EditfeedComponent(_feedService, _appComponent, _router, _route, datePipe) {
         this._feedService = _feedService;
         this._appComponent = _appComponent;
@@ -1635,7 +1740,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/feeds/feed/feed.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  feed works!\n</p>\n"
+module.exports = "<p>\r\n  feed works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1655,7 +1760,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var FeedComponent = (function () {
+var FeedComponent = /** @class */ (function () {
     function FeedComponent() {
     }
     FeedComponent.prototype.ngOnInit = function () {
@@ -1696,7 +1801,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/feeds/listfeed/listfeed.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-container wrap\">\n  <h1>Consejos</h1>\n\n  <form (ngSubmit)=\"this.searchcontent()\" class=\"form-row\" #forma=\"ngForm\" >\n    <article class=\"form-group col-md-4\">\n      <input type=\"text\"   class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button  [routerLink]=\"['/admin/newfeed']\" class=\"btn btn-outline-primary\">Nuevo Consejo</button>\n    </article>\n  </form>\n  <table class=\"table table-hover\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Nombre</th>\n      <th scope=\"col\">Texto</th>\n      <th scope=\"col\">Fecha Inicial</th>\n      <th scope=\"col\">Fecha Final</th>\n      <th scope=\"col\">Modificar</th>\n      <th scope=\"col\">Eliminar</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let feed of feeds\">\n      <th scope=\"row\">{{feed.name}}</th>\n      <td>{{feed.text}}</td>\n      <td>{{feed.dateInit}}</td>\n      <td>{{feed.dateFinal}}</td>\n      <td><button  class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editfeed/',feed.id]\">Modificar</button></td>\n      <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(feed.id)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td>\n    </tr>\n  </tbody>\n</table>\n  <app-pagination [count]=\"this.numeroItems\" [type]=\"5\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Consejos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"feed.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newfeed']\" class=\"btn btn-outline-primary\">Nuevo Consejo</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Texto</th>\r\n          <th scope=\"col\">Fecha Inicial</th>\r\n          <th scope=\"col\">Fecha Final</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let feed of feeds\">\r\n          <th scope=\"row\">{{feed.name}}</th>\r\n          <td>{{feed.text}}</td>\r\n          <td>{{feed.dateInit}}</td>\r\n          <td>{{feed.dateFinal}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editfeed/',feed.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(feed.id)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(feed.id,3)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"5\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1709,6 +1814,8 @@ module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-cont
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_feed_service__ = __webpack_require__("../../../../../src/app/services/feed.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_feed_class__ = __webpack_require__("../../../../../src/app/classes/feed.class.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1722,10 +1829,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListfeedComponent = (function () {
-    function ListfeedComponent(_feedService, activatedRoute) {
+
+
+var ListfeedComponent = /** @class */ (function () {
+    function ListfeedComponent(_feedService, activatedRoute, dialog) {
         this._feedService = _feedService;
         this.activatedRoute = activatedRoute;
+        this.dialog = dialog;
         this.feeds = [];
         this.feed = new __WEBPACK_IMPORTED_MODULE_2__classes_feed_class__["a" /* Feed */]();
         this.paginaActual = 1;
@@ -1771,11 +1881,36 @@ var ListfeedComponent = (function () {
     };
     ListfeedComponent.prototype.delete = function (idProduct) {
         var _this = this;
-        this._feedService.deleteProduct(idProduct)
+        this._feedService.deleteFeed(idProduct)
             .subscribe(function (data) {
             _this.ActualizarPagina();
         }, function (error) {
             console.error(error);
+        });
+    };
+    ListfeedComponent.prototype.searchcontent = function (page, items) {
+        var _this = this;
+        this._feedService.searchAll(this.feed, page, items)
+            .subscribe(function (data) {
+            if (data[0] != undefined) {
+                _this.feeds = [];
+                _this.numeroItems = data[0].num;
+                if (_this.estado == false) {
+                    _this.paginaActual = 1;
+                    _this.estado = true;
+                }
+                for (var key$ in data) {
+                    _this.feeds.push(data[key$]);
+                }
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    ListfeedComponent.prototype.openDialog = function (id, tipo) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
+            width: '600px',
+            data: { idObject: id, typeObject: tipo }
         });
     };
     ListfeedComponent.prototype.ngOnInit = function () {
@@ -1788,7 +1923,8 @@ var ListfeedComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/components/feeds/listfeed/listfeed.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_feed_service__["a" /* FeedService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */]])
     ], ListfeedComponent);
     return ListfeedComponent;
 }());
@@ -1818,7 +1954,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/feeds/newfeed/newfeed.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_feed\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"feed.name\" name=\"name\" id=\"name_feed\" required>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <textarea class=\"form-control\" [(ngModel)]=\"feed.text\" name=\"text\" placeholder=\"Consejo\" required rows=\"3\" required></textarea>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"dateInit\">Inicio</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateInit\" name=\"dateInit\" id=\"dateInit\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"dateFinal\">Fin</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateFinal\" name=\"dateFinal\" id=\"dateFinal\" >\n      </div>\n    </div>\n\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_feed\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"feed.name\" name=\"name\" id=\"name_feed\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"feed.text\" name=\"text\" placeholder=\"Consejo\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"dateInit\">Inicio</label>\r\n\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateInit\" name=\"dateInit\" id=\"dateInit\">\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"dateFinal\">Fin</label>\r\n\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"feed.dateFinal\" name=\"dateFinal\" id=\"dateFinal\">\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1844,7 +1980,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewfeedComponent = (function () {
+var NewfeedComponent = /** @class */ (function () {
     function NewfeedComponent(_feedService, _appComponent) {
         this._feedService = _feedService;
         this._appComponent = _appComponent;
@@ -1887,7 +2023,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body{\n\tpadding: 0 !important;\n}\n.borrar{\n\tmargin-top: 1em;\n}\n.canvasEvolver{\n\tposition: absolute;\n\ttop: 61px;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tmargin: 0;\n\tpadding: 0;\n\toverflow: hidden;\n\tz-index:0;\n}\ncanvas{\nmargin: 0;\npadding: 0;\nwidth: 100% !important;\nheight: 100% !important;\n\n}\nbutton{\n\tmin-height: 40px;\n}\n.selectPlantas{\n\tposition: absolute;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-direction: column;\n\tflex-direction: column;\n\tmax-height:100%;\n\toverflow-y: auto;\n\ttop: 61px;\n\tleft: 0;\n\tbottom: 0;\n\twidth: 150px;\n\tpadding: 10px;\n\tbackground-color: #fff;\n\tz-index:1;\n}\n\n .selectPlantas>article{\n\t min-width: 110px;\n\t min-height: 200px;\n\t margin-top: 5px;\n }\n\n .selectPlantas>article>.imgPlant{\n\t width: 100%;\n\t height: 180px;\n\t background-position: center;\n\t background-repeat: no-repeat;\n\t background-size: contain;\n\t border: 2px solid #000;\n\t cursor: pointer;\n }\n\n .formulario{\n \tposition: fixed;\n \tpadding: 10px;\n\ttop: 81px;\n\tright: 20px;\n \twidth:400px;\n\theight: 80%;\n\tbackground-color: #fff;\n\n }\n\n .boton-container{\n \tposition: absolute;\n \twidth: 150px;\n \ttext-align:center;\n \tpadding: 5px;\n\tbackground-color: #fff;\n\tz-index: 2;\n }\n\n\n\n@media (max-width: 768px) {\n\n\t.selectPlantas{\n\t\tposition: absolute;\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-direction: row;\n\t\tflex-direction: row;\n\t\t-ms-flex-pack: start;\n\t\t    justify-content: flex-start;\n\t\theight:120px;\n\t\twidth: 100%;\n\t\toverflow-x: auto;\n\t\toverflow-y: hidden;\n\t\ttop: auto;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tpadding: 10px;\n\t\tbackground-color: #fff;\n\t\tz-index:1;\n\t}\n\n\t.selectPlantas>article{\n\t min-width: 60px;\n\t min-height: 100px;\n \t max-width: 60px;\n \t max-height: 100px;\n \t margin: 0 10px 0 10px;\n  }\n\n  .selectPlantas>article>.imgPlant{\n \t width: 100%;\n \t height: 80px;\n \t background-position: center;\n \t background-repeat: no-repeat;\n \t background-size: contain;\n \t border: 2px solid #000;\n \t cursor: pointer;\n  }\n\n  .formulario{\n \tmargin-top : -20px;\n \tmargin-left: auto;\n \tmargin-right:auto;\n \twidth:90%;\n\tbackground-color: #lightblue;\n\n }\n\n\n}\n", ""]);
+exports.push([module.i, "body{\r\n\tpadding: 0 !important;\r\n}\r\n.borrar{\r\n\tmargin-top: 1em;\r\n}\r\n.canvasEvolver{\r\n\tposition: absolute;\r\n\ttop: 61px;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\toverflow: hidden;\r\n\tz-index:0;\r\n}\r\ncanvas{\r\nmargin: 0;\r\npadding: 0;\r\nwidth: 100% !important;\r\nheight: 100% !important;\r\n\r\n}\r\nbutton{\r\n\tmin-height: 40px;\r\n}\r\n.selectPlantas{\r\n\tposition: absolute;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-ms-flex-direction: column;\r\n\tflex-direction: column;\r\n\tmax-height:100%;\r\n\toverflow-y: auto;\r\n\ttop: 61px;\r\n\tleft: 0;\r\n\tbottom: 0;\r\n\twidth: 150px;\r\n\tpadding: 10px;\r\n\tbackground-color: #fff;\r\n\tz-index:1;\r\n}\r\n\r\n .selectPlantas>article{\r\n\t min-width: 110px;\r\n\t min-height: 200px;\r\n\t margin-top: 5px;\r\n }\r\n\r\n .selectPlantas>article>.imgPlant{\r\n\t width: 100%;\r\n\t height: 180px;\r\n\t background-position: center;\r\n\t background-repeat: no-repeat;\r\n\t background-size: contain;\r\n\t border: 2px solid #000;\r\n\t cursor: pointer;\r\n }\r\n\r\n .formulario{\r\n \tposition: fixed;\r\n \tpadding: 10px;\r\n\ttop: 81px;\r\n\tright: 20px;\r\n \twidth:400px;\r\n\theight: 80%;\r\n\tbackground-color: #fff;\r\n\r\n }\r\n\r\n .boton-container{\r\n \tposition: absolute;\r\n \twidth: 150px;\r\n \ttext-align:center;\r\n \tpadding: 5px;\r\n\tbackground-color: #fff;\r\n\tz-index: 2;\r\n }\r\n\r\n\r\n\r\n@media (max-width: 768px) {\r\n\r\n\t.selectPlantas{\r\n\t\tposition: absolute;\r\n\t\tdisplay: -ms-flexbox;\r\n\t\tdisplay: flex;\r\n\t\t-ms-flex-direction: row;\r\n\t\tflex-direction: row;\r\n\t\t-ms-flex-pack: start;\r\n\t\t    justify-content: flex-start;\r\n\t\theight:120px;\r\n\t\twidth: 100%;\r\n\t\toverflow-x: auto;\r\n\t\toverflow-y: hidden;\r\n\t\ttop: auto;\r\n\t\tleft: 0;\r\n\t\tright: 0;\r\n\t\tbottom: 0;\r\n\t\tpadding: 10px;\r\n\t\tbackground-color: #fff;\r\n\t\tz-index:1;\r\n\t}\r\n\r\n\t.selectPlantas>article{\r\n\t min-width: 60px;\r\n\t min-height: 100px;\r\n \t max-width: 60px;\r\n \t max-height: 100px;\r\n \t margin: 0 10px 0 10px;\r\n  }\r\n\r\n  .selectPlantas>article>.imgPlant{\r\n \t width: 100%;\r\n \t height: 80px;\r\n \t background-position: center;\r\n \t background-repeat: no-repeat;\r\n \t background-size: contain;\r\n \t border: 2px solid #000;\r\n \t cursor: pointer;\r\n  }\r\n\r\n  .formulario{\r\n \tmargin-top : -20px;\r\n \tmargin-left: auto;\r\n \tmargin-right:auto;\r\n \twidth:90%;\r\n\tbackground-color: #lightblue;\r\n\r\n }\r\n\r\n\r\n}\r\n", ""]);
 
 // exports
 
@@ -1900,7 +2036,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/editgarden/editgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n    <aside class=\"selectPlantas\">\n      <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\n      <button class=\"btn btn-primary\" (click)=\"showForm()\">Editar datos</button>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 1</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 2</span>\n      </article>\n      <article>\n        <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\n        </div>\n        <span>Margarita 3</span>\n      </article>\n    </aside>\n  <div class=\"canvasEvolver\">\n    <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" width=\"1800\" height=\"1170\"></canvas>\n  </div>\n\n  <section class=\"formulario rounded border border-secondary\" [hidden]=\"menuVisible\">\n    <div class=\"row animated fadeIn fast\">\n      <div class=\"col-md-12\">\n        <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n          <div class=\"form-group\">\n            <div>\n              <label  for=\"title\">Título: </label>\n              <input  class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n            </div>\n            <div>\n              <label  for=\"length\">Largo: </label>\n              <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n            </div>\n            <div>\n              <label  for=\"width\">Ancho: </label>\n              <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n            </div>\n            <div>\n              <label for=\"countries\">País:</label>\n              <br>\n              <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n              </select2>\n            </div>\n            <div>\n              <label for=\"countries\">Introduce tu código postal:</label>\n              <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n            </div>\n          </div>\n\n            <div class=\"form-group  col-md-6\">\n                <label for=\"countries\">Ciudad:</label>\n                <span id=\"ciudad\"></span>\n            </div>\n\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\n          <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\n          <button (click)=\"delete()\" class=\"btn btn-danger float-right\" >Borrar</button>\n\n        </form>\n      </div>\n\n    </div>\n  </section>\n"
+module.exports = "<aside class=\"selectPlantas\">\r\n  <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Volver</button>\r\n  <button class=\"btn btn-primary\" (click)=\"showForm()\">Editar datos</button>\r\n  <article id=\"8\" draggable=\"true\" ondragstart=\"drag(event);\">\r\n    <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\r\n    </div>\r\n    <span>Margarita 1</span>\r\n  </article>\r\n  <article>\r\n    <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\r\n    </div>\r\n    <span>Margarita 2</span>\r\n  </article>\r\n  <article>\r\n    <div class=\"imgPlant\" style='background-image: url(\"./assets/ejemplo.JPG\");'>\r\n    </div>\r\n    <span>Margarita 3</span>\r\n  </article>\r\n</aside>\r\n<div class=\"canvasEvolver\">\r\n  <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event);\" onmousedown=\"mouse_down(event);\" onmouseup=\"mouse_up(event);\" onmousewheel=\"scrolling(event);\" ondrop=\"drop(event);\" ondragover=\"allowDrop(event);\" width=\"1800\" height=\"1170\"></canvas>\r\n</div>\r\n\r\n<section class=\"formulario rounded border border-secondary\" [hidden]=\"menuVisible\">\r\n  <div class=\"row animated fadeIn fast\">\r\n    <div class=\"col-md-12\">\r\n      <form (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\r\n        <div class=\"form-group\">\r\n          <div>\r\n            <label for=\"title\">Título: </label>\r\n            <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\r\n          </div>\r\n          <div>\r\n            <label for=\"length\">Largo: {{garden.length}}</label>\r\n            <input class=\"form-control\"\r\n                    type=\"range\"\r\n                    [(ngModel)]=\"garden.length\"\r\n                    min=\"7\"\r\n                    max=\"31\"\r\n                    step=\"2\"\r\n                    name=\"length\"\r\n                    id=\"length_garden\"\r\n                    required>\r\n          </div>\r\n          <div>\r\n            <label for=\"width\">Ancho: {{garden.width}}</label>\r\n            <input class=\"form-control\"\r\n                    type=\"range\"\r\n                    [(ngModel)]=\"garden.width\"\r\n                    min=\"7\"\r\n                    max=\"31\"\r\n                    step=\"2\"\r\n                    name=\"width\"\r\n                    id=\"width_garden\"\r\n                    required>\r\n          </div>\r\n          <div>\r\n            <label for=\"countries\">País:</label>\r\n            <br>\r\n            <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n            </select2>\r\n          </div>\r\n          <div>\r\n            <label for=\"countries\">Introduce tu código postal:</label>\r\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"form-group  col-md-6\">\r\n          <label for=\"countries\">Ciudad:</label>\r\n          <span id=\"ciudad\"></span>\r\n        </div>\r\n\r\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar</button>\r\n        <button [routerLink]=\"['/garden']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n        <button (click)=\"delete()\" class=\"btn btn-danger float-right\">Borrar</button>\r\n\r\n      </form>\r\n    </div>\r\n\r\n  </div>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -1932,7 +2068,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditGardenComponent = (function () {
+var EditGardenComponent = /** @class */ (function () {
     function EditGardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -1952,7 +2088,6 @@ var EditGardenComponent = (function () {
             this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
                 .subscribe(function (data) {
                 var sp = document.querySelector('#ciudad');
-                console.log(data);
                 if (data.length > 0) {
                     _this.garden.latitude = data[0].lat.toFixed(2);
                     _this.garden.longitude = data[0].lng.toFixed(2);
@@ -1978,9 +2113,8 @@ var EditGardenComponent = (function () {
                     sp.innerHTML = 'Código postal no encontrado';
                 }
                 input.value = '';
-                console.log(_this.garden);
             }, function (error) {
-                console.log(error);
+                console.error(error);
             });
         }
     };
@@ -1988,7 +2122,6 @@ var EditGardenComponent = (function () {
         var _this = this;
         this._gardenService.listCoutries()
             .subscribe(function (data) {
-            console.log(data.geonames);
             var aux = [];
             aux.push({ id: 0, text: "Selecciona un país" });
             for (var i = 0; i < data.geonames.length; i++) {
@@ -2003,7 +2136,7 @@ var EditGardenComponent = (function () {
                 obs.complete();
             }).delay(1000);
         }, function (error) {
-            console.log(error);
+            console.error(error);
         });
     };
     EditGardenComponent.prototype.mostrarCiudad = function () {
@@ -2020,7 +2153,6 @@ var EditGardenComponent = (function () {
         this._gardenService.details()
             .subscribe(function (data) {
             if (data != null) {
-                console.log(data);
                 _this.garden.id = data.id;
                 _this.garden.title = data.title;
                 _this.garden.width = data.width;
@@ -2066,7 +2198,6 @@ var EditGardenComponent = (function () {
         var desvX = (canvas.width - 1200) * 0.0008;
         var desvY = (canvas.height - 974) * 0.00072;
         var pos = motor.getPosCamaraActiva();
-        console.log(pos);
         //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
         motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     };
@@ -2091,13 +2222,11 @@ var EditGardenComponent = (function () {
         });
     };
     EditGardenComponent.prototype.saveCountry = function (e) {
-        console.log("save country " + e.value);
         if (e.value != 0 && e.value !== undefined) {
             this.garden.countryCode = e.value;
         }
     };
     EditGardenComponent.prototype.saveCity = function (e) {
-        console.log("save city " + e.value);
         if (e.value != 0 && e.value !== undefined) {
             this.garden.city = e.value;
             this.mostrarCiudad();
@@ -2160,7 +2289,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/garden/garden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"herramienta\">\n<canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"1800\" height=\"1200\"></canvas>\n</section>\n<div class=\"main-container\">\n\n  <section class=\"container title\">\n      <h1>{{garden.title}}</h1>\n      <button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\n  </section>\n\n<section class=\"container\">\n    <div id=\"prevision\">\n    <h4>Previsión meteorológica</h4>\n      <div class=\"row tiempo\" >\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\n          Hoy\n          <br>\n          <img src=\"./../../../assets/images/imgWeather/{{fotoHoy}}.png\">\n          <br>\n           <span class=\"maxima\">{{temperatura | number:'.0-0'}}º</span>\n        </div>\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\n          Mañana\n          <br>\n          <img src=\"./../../../assets/images/imgWeather/{{fotoMan}}.png\">\n          <br>\n           <span class=\"maxima\">{{maxMan | number:'.0-0'}}º</span> <span class=\"minima\">{{minMan | number:'.0-0'}}º</span>\n        </div>\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia3\">\n          {{nombreDia3}}\n          <br>\n          <img src=\"./../../../assets/images/imgWeather/{{fotoDia3}}.png\">\n          <br>\n          <span class=\"maxima\">{{maxDia3 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia3 | number:'.0-0'}}º</span>\n        </div>\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia4\">\n          {{nombreDia4}}\n          <br>\n          <img src=\"./../../../assets/images/imgWeather/{{fotoDia4}}.png\">\n          <br>\n          <span class=\"maxima\">{{maxDia4 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia4 | number:'.0-0'}}º</span>\n        </div>\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia5\">\n          {{nombreDia5}}\n          <br>\n          <img src=\"./../../../assets/images/imgWeather/{{fotoDia5}}.png\">\n          <br>\n           <span class=\"maxima\">{{maxDia5 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia5 | number:'.0-0'}}º</span> \n        </div>\n      </div>\n    </div>\n</section>\n</div>\n"
+module.exports = "<section class=\"herramienta\">\r\n  <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"1800\" height=\"1200\"></canvas>\r\n</section>\r\n<div class=\"main-container\">\r\n\r\n  <section class=\"container title\">\r\n    <h1>{{garden.title}}</h1>\r\n    <button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\r\n  </section>\r\n\r\n  <section class=\"container\" *ngIf=\"visible == true\">\r\n    <div id=\"prevision\">\r\n      <h4>Previsión meteorológica</h4>\r\n      <div class=\"row tiempo\">\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\r\n          Hoy\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoHoy}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{temperatura | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\r\n          Mañana\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoMan}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxMan | number:'.0-0'}}º</span> <span class=\"minima\">{{minMan | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia3\">\r\n          {{nombreDia3}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia3}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia3 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia3 | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia4\">\r\n          {{nombreDia4}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia4}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia4 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia4 | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia5\">\r\n          {{nombreDia5}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia5}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia5 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia5 | number:'.0-0'}}º</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2188,18 +2317,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenComponent = (function () {
+var GardenComponent = /** @class */ (function () {
     function GardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
         this._appComponent = _appComponent;
         this.garden = new __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__["a" /* Garden */]("");
-        this.cielo = "Cargando";
-        this.temperatura = "Cargando";
-        this.humedad = "Cargando";
-        this.presion = "Cargando";
-        this.viento = "Cargando";
-        this.angulo = "0";
+        this.temperatura = 0;
         this.prevHoy = [];
         this.prevMan = [];
         this.prevDia3 = [];
@@ -2227,11 +2351,10 @@ var GardenComponent = (function () {
         this.nombreDia4 = "";
         this.nombreDia5 = "";
         this.tercerDia = "";
-        this.notVisible = false;
+        this.visible = false;
     }
     GardenComponent.prototype.ngOnInit = function () {
         this.mostrar();
-        this.inicializar();
     };
     GardenComponent.prototype.mostrar = function () {
         var _this = this;
@@ -2250,8 +2373,15 @@ var GardenComponent = (function () {
                 _this.garden.countryCode = data.countryCode;
                 _this.garden.city = data.city;
                 _this.garden.plants = data.plants;
-                _this.getTiempo();
-                _this.getPrevision();
+                new iniciar("detail", _this.garden);
+                if (_this.garden.city) {
+                    _this.visible = true;
+                    _this.getTiempo();
+                    _this.getPrevision();
+                }
+                else {
+                    _this.visible = false;
+                }
             }
             else {
                 _this._route.navigate(['/newgarden']);
@@ -2270,13 +2400,8 @@ var GardenComponent = (function () {
         var _this = this;
         this._gardenService.tiempo(this.garden)
             .subscribe(function (data) {
-            _this.cielo = data.weather[0].main;
             var aux = data.main.temp - 273;
-            _this.temperatura = aux.toFixed(0);
-            _this.humedad = data.main.humidity;
-            _this.presion = data.main.pressure;
-            _this.viento = data.wind.speed;
-            new iniciar("detail", _this.garden);
+            _this.temperatura = aux;
         }, function (error) {
             console.error(error);
             localStorage.clear();
@@ -2317,11 +2442,6 @@ var GardenComponent = (function () {
                     _this.nombreDia5 = _this.diaSemana(date.getDay() - 1);
                 }
             }
-            console.log(auxToday);
-            console.log(auxTomorrow);
-            console.log(auxDia3);
-            console.log(auxDia4);
-            console.log(auxDia5);
             _this.prevHoy = auxToday;
             _this.prevMan = auxTomorrow;
             _this.prevDia3 = auxDia3;
@@ -2426,16 +2546,6 @@ var GardenComponent = (function () {
         }
         return dia;
     };
-    GardenComponent.prototype.mostrarPrevision = function () {
-        console.log(this.notVisible);
-        if (this.notVisible == false) {
-            this.notVisible = true;
-        }
-        else {
-            this.notVisible = false;
-        }
-        console.log(this.notVisible);
-    };
     GardenComponent.prototype.inicializar = function () {
         new iniciar("detail");
     };
@@ -2459,7 +2569,7 @@ var GardenComponent = (function () {
 /***/ "../../../../../src/app/components/gardens/newgarden/newgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\n  <h1>Crear mi jardin</h1>\n\n  <section class=\"container\">\n  <canvas style=\"border:1px solid #000000\" id=\"myCanvas\" width=\"480\" height=\"360\"></canvas>\n  </section>\n\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"form-group  col-md-6\">\n          <label  for=\"title\">Título: </label>\n          <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\n        </div>\n        <div class=\"form-group col-md-6\"> \n          <label  for=\"length\">Largo: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.length\" name=\"length\" id=\"length_garden\" required>\n          <label  for=\"width\">Ancho: </label>\n          <input  class=\"form-control\" type=\"number\" [(ngModel)]=\"garden.width\" name=\"width\" id=\"width_garden\" required>\n        </div>\n        <div class=\"form-group col-md-6\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n          </select2>\n\n        </div>\n\n          <div class=\"form-group col-md-6\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group col-md-6\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n       <!-- <div class=\"form-group\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n            <select2 [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.changeCities($event)\">\n            </select2>\n\n        </div>-->\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label for=\"name_plant\">Plantas</label>\n             <select class=\"form-control selectpicker\" multiple  id=\"name_plant\" [(ngModel)]=\"plant\" name=\"plant\" >\n               <option *ngFor=\"let plant of plants\" value=\"{{plant.id}}\">{{plant.commonName}}</option>\n             </select>\n          </div>\n        </div>\n\n\n\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n        <button [routerLink]=\"['/detail']\" class=\"btn btn-outline-danger\">Cancelar</button>\n\n      </form>\n    </div>\n  </div>\n</section>\n</div>\n"
+module.exports = "<div class=\"container main-container\">\r\n  <h1>Crear mi jardin</h1>\r\n\r\n  <section class=\"container\">\r\n    <canvas style=\"border:1px solid #000000\" id=\"myCanvas\" width=\"480\" height=\"360\"></canvas>\r\n  </section>\r\n\r\n  <section class=\"container\">\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" novalidate=\"\">\r\n          <div class=\"form-group  col-md-6\">\r\n            <label for=\"title\">Título: </label>\r\n            <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\r\n          </div>\r\n          <div class=\"form-group col-md-6\">\r\n              <label for=\"length\">Largo: {{garden.length===undefined ? 19 : garden.length}}</label>\r\n              <input class=\"form-control\"\r\n                      type=\"range\"\r\n                      [(ngModel)]=\"garden.length\"\r\n                      min=\"7\"\r\n                      max=\"31\"\r\n                      step=\"2\"\r\n                      name=\"length\"\r\n                      id=\"length_garden\"\r\n                      required>\r\n\r\n              <label for=\"width\">Ancho: {{garden.width===undefined ? 19 : garden.width}}</label>\r\n              <input class=\"form-control\"\r\n                      type=\"range\"\r\n                      [(ngModel)]=\"garden.width\"\r\n                      min=\"7\"\r\n                      max=\"31\"\r\n                      step=\"2\"\r\n                      name=\"width\"\r\n                      id=\"width_garden\"\r\n                      required>\r\n\r\n          </div>\r\n          <div class=\"form-group col-md-6\" ng-init=\"listarPaises()\">\r\n            <label for=\"countries\">País:</label>\r\n\r\n            <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n            </select2>\r\n\r\n          </div>\r\n\r\n          <div class=\"form-group col-md-6\">\r\n            <label for=\"countries\">Introduce tu código postal:</label>\r\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n          </div>\r\n\r\n          <div class=\"form-group col-md-6\">\r\n            <label for=\"countries\">Ciudad:</label>\r\n            <span id=\"ciudad\"></span>\r\n          </div>\r\n\r\n          <!-- <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n          <label for=\"countries\">País:</label>\r\n\r\n            <select2 [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.changeCities($event)\">\r\n            </select2>\r\n\r\n        </div>-->\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"name_plant\">Plantas</label>\r\n              <select class=\"form-control selectpicker\" multiple id=\"name_plant\" [(ngModel)]=\"plant\" name=\"plant\">\r\n               <option *ngFor=\"let plant of plants\" value=\"{{plant.id}}\">{{plant.commonName}}</option>\r\n             </select>\r\n            </div>\r\n          </div>\r\n\r\n\r\n\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n          <button [routerLink]=\"['/detail']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2495,7 +2605,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewGardenComponent = (function () {
+var NewGardenComponent = /** @class */ (function () {
     function NewGardenComponent(_gardenService, _plantService, _route, datePipe, _appComponent) {
         this._gardenService = _gardenService;
         this._plantService = _plantService;
@@ -2543,7 +2653,7 @@ var NewGardenComponent = (function () {
                     }
                     input.value = '';
                 }, function (error) {
-                    console.log(error);
+                    console.error(error);
                 });
             }
         }
@@ -2566,7 +2676,7 @@ var NewGardenComponent = (function () {
                 obs.complete();
             }).delay(1000);
         }, function (error) {
-            console.log(error);
+            console.error(error);
         });
     };
     NewGardenComponent.prototype.mostrarCiudad = function () {
@@ -2679,7 +2789,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar.user{\n  z-index:10;\n  background-color: #299654 !important;\n}\n.navbar-light.bg-light.header{\n  z-index:9;\n}\n.navbar-header{\n  position: fixed;\n  top:0;\n  left:0;\n  right:0;\n  height: 50px;\n  background-color: #299654 ;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  z-index: 999999;\n  }\n  .navbar-header>div{\n    max-height: 46px;\n  }\n  .navbar-header>div>i{\n    font-size: 46px;\n    cursor: pointer;\n    color: #fff;\n    display:inline-block;\n  \ttransform:rotate(0);\n  \ttransition: transform 0.3s ease-out;\n  }\n\n  .navbar-header>img{\n    margin-left: 10px;\n    height: 30px;\n  }\n\n  .opened{\n    transform:rotate(90deg) !important;\n  }\n\n  #sidebar-wrapper {\n  top: 50px;\n  left: -200px;\n  width: 200px;\n  background-color: #299654;\n  color: white;\n  position: fixed;\n  height: 100%;\n  z-index: 999999;\n}\n#sidebar-wrapper>img{\n  display:none;\n}\n\n.sidebar-nav {\n  position: absolute;\n  top: 0;\n  margin: 0;\n  padding: 0;\n  width: 200px;\n  list-style: none;\n}\n.sidebar-nav li {\n  text-indent: 20px;\n  line-height: 50px;\n}\n.sidebar-nav li a {\n  color: white;\n  display: block;\n  text-decoration: none;\n}\n.sidebar-nav li a:hover {\n  background: rgba(255,255,255,0.25);\n  color: white;\n  text-decoration: none;\n}\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\n  text-decoration: none;\n}\n#sidebar-wrapper.sidebar-toggle {\n  transition: all 0.3s ease-out;\n  margin-left: -200px;\n}\n\n\n/*HEADER USER*/\n.header{\n  background-color: #299654 !important;\n}\n.navbar-brand>img{\n  width: 140px;\n}\n#navbarSupportedContent > ul > li > a{\n  color: #fff !important;\n}\nbutton{\n  background: rgba(255, 255, 255, 0.5);\n}\n#navbarSupportedContent{\n  -ms-flex-pack: end;\n      justify-content: flex-end;\n}\n#navbarSupportedContent > ul{\n  margin-right: 0 !important;\n}\n\n@media (min-width: 768px) {\n  .sidebar-nav {\n    top: 60px;\n  }\n\n  .limited{\n    max-width: 1150px;\n    margin: 0 auto;\n  }\n  #sidebar-wrapper.sidebar-toggle {\n    transition: 0s;\n    left: 200px;\n    top: 0;\n  }\n  #sidebar-wrapper>img{\n    display: initial;\n    width: 140px;\n    margin: 0 auto;\n    margin-top: 15px;\n    margin-left: 20px;\n  }\n  .navbar-header{\n    display: none;\n\n    }\n}\n\n#photoMenu{\n  width: auto;\n  display: -ms-flexbox;\n  display: flex;\n}\n@media (max-width: 991px) {\n  #photoMenu>div{\n    display: none;\n  }\n}\n", ""]);
+exports.push([module.i, ".navbar.user{\r\n  z-index:10;\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-light.bg-light.header{\r\n  z-index:9;\r\n}\r\n.navbar-header{\r\n  position: fixed;\r\n  top:0;\r\n  left:0;\r\n  right:0;\r\n  height: 50px;\r\n  background-color: #299654 ;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-align: center;\r\n      align-items: center;\r\n  z-index: 999999;\r\n  }\r\n  .navbar-header>div{\r\n    max-height: 46px;\r\n  }\r\n  .navbar-header>div>i{\r\n    font-size: 46px;\r\n    cursor: pointer;\r\n    color: #fff;\r\n    display:inline-block;\r\n  \ttransform:rotate(0);\r\n  \ttransition: transform 0.3s ease-out;\r\n  }\r\n\r\n  .navbar-header>img{\r\n    margin-left: 10px;\r\n    height: 30px;\r\n  }\r\n\r\n  .opened{\r\n    transform:rotate(90deg) !important;\r\n  }\r\n\r\n  #sidebar-wrapper {\r\n  top: 50px;\r\n  left: -200px;\r\n  width: 200px;\r\n  background-color: #299654;\r\n  color: white;\r\n  position: fixed;\r\n  height: 100%;\r\n  z-index: 999999;\r\n}\r\n#sidebar-wrapper>img{\r\n  display:none;\r\n}\r\n\r\n.sidebar-nav {\r\n  position: absolute;\r\n  top: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 200px;\r\n  list-style: none;\r\n}\r\n.sidebar-nav li {\r\n  text-indent: 20px;\r\n  line-height: 50px;\r\n}\r\n.sidebar-nav li a {\r\n  color: white;\r\n  display: block;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:hover {\r\n  background: rgba(255,255,255,0.25);\r\n  color: white;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\r\n  text-decoration: none;\r\n}\r\n#sidebar-wrapper.sidebar-toggle {\r\n  transition: all 0.3s ease-out;\r\n  margin-left: -200px;\r\n}\r\n\r\n\r\n/*HEADER USER*/\r\n.header{\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-brand>img{\r\n  width: 140px;\r\n}\r\n#navbarSupportedContent > ul > li > a{\r\n  color: #fff !important;\r\n}\r\nbutton{\r\n  background: rgba(255, 255, 255, 0.5);\r\n}\r\n#navbarSupportedContent{\r\n  -ms-flex-pack: end;\r\n      justify-content: flex-end;\r\n}\r\n#navbarSupportedContent > ul{\r\n  margin-right: 0 !important;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n  .sidebar-nav {\r\n    top: 60px;\r\n  }\r\n\r\n  .limited{\r\n    max-width: 1150px;\r\n    margin: 0 auto;\r\n  }\r\n  #sidebar-wrapper.sidebar-toggle {\r\n    transition: 0s;\r\n    left: 200px;\r\n    top: 0;\r\n  }\r\n  #sidebar-wrapper>img{\r\n    display: initial;\r\n    width: 140px;\r\n    margin: 0 auto;\r\n    margin-top: 15px;\r\n    margin-left: 20px;\r\n  }\r\n  .navbar-header{\r\n    display: none;\r\n\r\n    }\r\n}\r\n\r\n#photoMenu{\r\n  width: auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n@media (max-width: 991px) {\r\n  #photoMenu>div{\r\n    display: none;\r\n  }\r\n}\r\n", ""]);
 
 // exports
 
@@ -2692,7 +2802,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Menú admin-->\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\n\t<div class=\"container\">\n\t\t<div class=\"navbar-header\">\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\n\t\t\t\t\t<i class=\"material-icons\">view_headline</i>\n\t\t\t</div>\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t</div>\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\n\t\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\n        </li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/analytics']\" href=\"#\">Anatítica</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\n\t\t\t\t</li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\"  href=\"#\">Plantas</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\n        </li>\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\n\t\t\t\t</li>\n        <li *ngIf=\"this.userService.isAuthenticated\">\n          <a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\n        </li>\n\t\t  </ul>\n\t\t</div>\n  </div>\n</nav>\n\n<!-- Menú estándar -->\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\n\t<div class=\"navbar user navbar-expand-lg limited\">\n  <a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\n      </li>\n\t\t\t<li class=\"nav-item\">\n        <a [routerLink]=\"['/help']\" class=\"nav-link\" href=\"#\">Ayuda</a>\n      </li>\n      <li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\n\t\t\t\t<div>\n\t\t\t  </div>\n\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Mi perfil</a>\n      </li>\n      <li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\n        <a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\n      </li>\n    </ul>\n  </div>\n</div>\n</nav>\n"
+module.exports = "<!--Menú admin-->\r\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"navbar-header\">\r\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\r\n\t\t\t\t<i class=\"material-icons\">view_headline</i>\r\n\t\t\t</div>\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t</div>\r\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" href=\"#\">Plantas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n\r\n<!-- Menú estándar -->\r\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\r\n\t<div class=\"navbar user navbar-expand-lg limited\">\r\n\t\t<a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\r\n\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/help']\" class=\"nav-link\" href=\"#\">Ayuda</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"nav-link\" href=\"#\">Biblioteca</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -2716,7 +2826,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HeaderComponent = (function () {
+var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(userService, _ngZone) {
         this.userService = userService;
         this._ngZone = _ngZone;
@@ -2827,7 +2937,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".header {\n    color: #25b5aa;\n    font-size: 2em;\n\n}\n.demo-tab-group {\n  border: 1px solid #e8e8e8;\n\n}\n\n.demo-tab-content {\n\n}\n\nh1{\n  padding: 2%;\n}\n\nimg{\n  /* border-radius: 20%; */\n  border-radius: 26px 26px 26px 26px;\n  -moz-border-radius: 26px 26px 26px 26px;\n  -webkit-border-radius: 26px 26px 26px 26px;\n  border: 0px solid #eec019;\n\n}\np{\n  font-size: .8em;\n}\n.row{\n  /* padding: 0;\n  margin: 0; */\n}\n\nli{\n  font-size: .9em;\n  border-color: #25b5aa;\n}\n", ""]);
+exports.push([module.i, ".header {\r\n    color: #25b5aa;\r\n    font-size: 2em;\r\n\r\n}\r\n.demo-tab-group {\r\n  border: 1px solid #e8e8e8;\r\n\r\n}\r\n\r\n.demo-tab-content {\r\n\r\n}\r\n\r\nh1{\r\n  padding: 2%;\r\n}\r\n\r\nimg{\r\n  /* border-radius: 20%; */\r\n  border-radius: 26px 26px 26px 26px;\r\n  -moz-border-radius: 26px 26px 26px 26px;\r\n  -webkit-border-radius: 26px 26px 26px 26px;\r\n  border: 0px solid #eec019;\r\n\r\n}\r\np{\r\n  font-size: .8em;\r\n}\r\n.row{\r\n  /* padding: 0;\r\n  margin: 0; */\r\n}\r\n\r\nli{\r\n  font-size: .9em;\r\n  border-color: #25b5aa;\r\n}\r\nmat-panel-description{\r\n  font-size: .8em;\r\n  /* float: left; */\r\n}\r\n.llave{\r\n  margin-left: -15px;\r\n}\r\n.llave2{\r\n  margin-left: -20px;\r\n}\r\n\r\nmat-panel-title{\r\n  font-weight: bold;\r\n  font-size: 1em;\r\n}\r\n", ""]);
 
 // exports
 
@@ -2840,7 +2950,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/help/help.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<article class=\"container\">\n    <section class=\"row\">\n        <div class=\"col-md-12\">\n            <div class=\"well well-sm\">\n                <h1 class=\"text-center header\">Página de ayuda</h1>\n                  <fieldset>\n                    <mat-tab-group class=\"demo-tab-group\">\n                      <section class=\"demo-tab-content\">\n\n                        <mat-tab label=\"Introduccion\">\n                          <h3>Introducción</h3>\n                          <div class=\"row\">\n                            <div class=\"col\">\n                              <p>En esta sección te contamos como disfrutar de nuestra aplicación.\n                                Navega por las direfentes pestañas para conocer cómo funciona cada una de\n                                nuestras secciones.\n                              </p>\n                              <img height=\"175\" width=\"150\" src=\"assets/images/help/logo.png\"\n                              alt=\"Descipción de la biblioteca Gardiot\">\n                            </div>\n                            <div class=\"col\">\n                              <ul class=\"list-group list-group-flush \">\n                                <li class=\"list-group-item\">Encuentra información sobre <strong>plantas</strong> y sus características.</li>\n                                <li class=\"list-group-item\">Diseña tu jardín con nuestra <strong>herramienta gráfica</strong>.</li>\n                                <li class=\"list-group-item\">Crea tareas de mantenimiento de forma automática en nuestro <strong>calendario</strong>.</li>\n                                <li class=\"list-group-item\">Recibirás <strong>consejos</strong> sobre cuidados sobre tu jardín.</li>\n                              </ul>\n                            </div>\n                          </div>\n                          <p>Si aun tienes dudas ponte en contacto con nosotros en\n                            <a href=\"https://gardiot.ovh/symbiose/contacto/\" target=\"blank\">Symbiose Gardiot</a>.</p>\n                        </mat-tab>\n\n                        <mat-tab label=\"Biblioteca\">\n                          <h3>¿Qué puedes encontrar en nuestra biblioteca?</h3>\n                          <div class=\"row\">\n                            <div class=\"col\">\n                              <img height=\"auto\" width=\"500\" src=\"assets/images/help/biblioteca.jpg\"\n                              alt=\"Descipción de la biblioteca Gardiot\">\n                            </div>\n                            <div class=\"col\">\n                              <ul class=\"list-group list-group-flush \">\n                                <li class=\"list-group-item\">Encuentra información sobre <strong>plantas</strong> y sus características.</li>\n                                <li class=\"list-group-item\">También encontrarás información sobre cultivos.</li>\n                                <li class=\"list-group-item\">La biblioteca dispone de un <strong>buscador</strong> y además está en constante crecimiento.</li>\n                                <li class=\"list-group-item\">Iremos añadiendo nueva información muy a menudo. No olvides echarle un ojo de vez en cuando.</li>\n                                <li class=\"list-group-item\"><a [routerLink]=\"['/plants']\">Ir a la biblioteca</a></li>\n                              </ul>\n                            </div>\n                          </div>\n                        </mat-tab>\n\n                        <mat-tab label=\"Garden\">\n                          <h3>¿Cómo crear tu jardín?</h3>\n                          <div class=\"row\">\n                            <div class=\"col\">\n                              <img height=\"auto\" width=\"500\" src=\"assets/images/help/jardin1.png\"\n                              alt=\"Descipción del jardin Gardiot\">\n                            </div>\n                            <div class=\"col\">\n                              <ul class=\"list-group list-group-flush \">\n                                <li class=\"list-group-item\">Introduce nombre y dimensiones del jardín.</li>\n                                <li class=\"list-group-item\">Introduce el país y código postal para la <strong>información meteorológica</strong>.</li>\n                                <li class=\"list-group-item\">Puedes añadir plantas mediante el formulario o hacerlo más tarde.</li>\n                                <li class=\"list-group-item\"><strong>Guarda</strong> el jardín.</li>\n                              </ul>\n                            </div>\n                          </div>\n                          <hr>\n                          <div class=\"row\">\n                            <div class=\"col\">\n                              <img height=\"auto\" width=\"500\" src=\"assets/images/help/jardin2.png\"\n                              alt=\"Descipción del jardin Gardiot\">\n                            </div>\n                            <div class=\"col\">\n                              <ul class=\"list-group list-group-flush \">\n                                <li class=\"list-group-item\">Selecciona las plantas en el lado izd.</li>\n                                <li class=\"list-group-item\">Pincha con el <strong>ratón</strong> y sin soltar arrastra hast el lienzo.</li>\n                                <li class=\"list-group-item\">Suelta la planta en el lienzo y esta se ajustará automáticamente.</li>\n                                <li class=\"list-group-item\">Repite la operación tantas veces quieres y <strong>guarda</strong> el jardín.</li>\n                              </ul>\n                            </div>\n                          </div>\n                          <hr>\n                          <div class=\"row\">\n                            <div class=\"col\">\n                              <img height=\"auto\" width=\"500\" src=\"assets/images/help/jardin3.png\"\n                              alt=\"Descipción del jardin Gardiot\">\n                            </div>\n                            <div class=\"col\">\n                              <ul class=\"list-group list-group-flush \">\n                                <li class=\"list-group-item\">Visualización del jardín.</li>\n                                <li class=\"list-group-item\">Datos <strong>meteorologicos</strong> y previsión de lluvias.</li>\n                                <li class=\"list-group-item\"><strong>Consejos</strong> y recomendaciones para cuidar tu jardín o huerto.</li>\n                                <li class=\"list-group-item\"><a [routerLink]=\"['/garden']\">Crea tu jardín</a></li>\n                              </ul>\n                            </div>\n                          </div>\n                        </mat-tab>\n\n                        <mat-tab label=\"Calendario\">\n                          <h3>¿Alguná tarea pendiente?</h3>\n                          <p> Según las necesidades de cada planta, se generan puntitos en el Calendario\n                            con las tareas qeu debes realizar en tu jardin.</p>\n                        </mat-tab>\n\n                        <mat-tab label=\"Protección de datos\">\n                          <h3>¿Qué hacemos con tus datos?</h3>\n                          <p>La LOPD nos obliga a mantener almacenados tus datos hasta dos años despues de\n                            darte de baja de nuestro servicio.</p>\n                          <p>En cuanto a los datos de geolocalización, los usamos para mostrarte\n                            el parte meteorológico en tu zona, no estás compartiendo tu ubicación personal</p>\n                          <p>En cualquier momento puedes desactivar tu cuenta</p>\n                          <p>Puedes ver más detalles sobre nuestra politica de privacidad en\n                            <a href=\"https://gardiot.ovh/symbiose/\" target=\"blank\">Symbiose</a>\n                          </p>\n\n                        </mat-tab>\n\n                        <mat-tab label=\"Api abierta\">\n                          <h3>API abierta</h3>\n                          <p>Ponemos a tu disposición nuestra API con toda la documentación sobre plantas\n                            A continuación te explicamos com funciona.</p>\n                        </mat-tab>\n\n                      </section>\n                    </mat-tab-group>\n                    <span class=\"col- text-center\">\n                        <button [routerLink]=\"['/detail']\" class=\"btn btn-primary btn-lg\">Volver</button>\n                    </span>\n\n                  </fieldset>\n            </div>\n        </div>\n    </section>\n</article>\n"
+module.exports = "<article class=\"container\">\r\n    <section class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <div class=\"well well-sm\">\r\n                <h1 class=\"text-center header\">Página de ayuda</h1>\r\n                  <fieldset>\r\n                    <mat-tab-group class=\"demo-tab-group\">\r\n                      <section class=\"demo-tab-content\">\r\n\r\n                        <mat-tab label=\"Introduccion\">\r\n                          <h3>Introducción</h3>\r\n                          <div class=\"row\">\r\n                            <div class=\"col\">\r\n                              <p>En esta sección te contamos como disfrutar de nuestra aplicación.\r\n                                Navega por las direfentes pestañas para conocer cómo funciona cada una de\r\n                                nuestras secciones.\r\n                              </p>\r\n                              <img height=\"175\" width=\"150\" src=\"assets/images/help/logo.png\"\r\n                              alt=\"Descipción de la biblioteca Gardiot\">\r\n                            </div>\r\n                            <div class=\"col\">\r\n                              <ul class=\"list-group list-group-flush \">\r\n                                <li class=\"list-group-item\">Encuentra información sobre <strong>plantas</strong> y sus características.</li>\r\n                                <li class=\"list-group-item\">Diseña tu jardín con nuestra <strong>herramienta gráfica</strong>.</li>\r\n                                <li class=\"list-group-item\">Crea tareas de mantenimiento de forma automática en nuestro <strong>calendario</strong>.</li>\r\n                                <li class=\"list-group-item\">Recibirás <strong>consejos</strong> sobre cuidados sobre tu jardín.</li>\r\n                              </ul>\r\n                            </div>\r\n                          </div>\r\n                          <p>Si aun tienes dudas ponte en contacto con nosotros en\r\n                            <a href=\"https://gardiot.ovh/symbiose/contacto/\" target=\"blank\">Symbiose Gardiot</a>.</p>\r\n                        </mat-tab>\r\n\r\n                        <mat-tab label=\"Biblioteca\">\r\n                          <h3>¿Qué puedes encontrar en nuestra biblioteca?</h3>\r\n                          <div class=\"row\">\r\n                            <div class=\"col\">\r\n                              <img height=\"auto\" width=\"200\" src=\"assets/images/help/biblioteca.jpg\"\r\n                              alt=\"Descipción de la biblioteca Gardiot\">\r\n                            </div>\r\n                            <div class=\"col\">\r\n                              <ul class=\"list-group list-group-flush \">\r\n                                <li class=\"list-group-item\">Encuentra información sobre <strong>plantas</strong> y sus características.</li>\r\n                                <li class=\"list-group-item\">También encontrarás información sobre cultivos.</li>\r\n                                <li class=\"list-group-item\">La biblioteca dispone de un <strong>buscador</strong> y además está en constante crecimiento.</li>\r\n                                <li class=\"list-group-item\">Iremos añadiendo nueva información muy a menudo. No olvides echarle un ojo de vez en cuando.</li>\r\n                                <li class=\"list-group-item\"><a [routerLink]=\"['/plants']\">Ir a la biblioteca</a></li>\r\n                              </ul>\r\n                            </div>\r\n                          </div>\r\n                        </mat-tab>\r\n\r\n                        <mat-tab label=\"Garden\">\r\n                          <h3>¿Cómo crear tu jardín?</h3>\r\n                          <div class=\"row\">\r\n                            <div class=\"col\">\r\n                              <img height=\"auto\" width=\"200\" src=\"assets/images/help/jardin1.png\"\r\n                              alt=\"Descipción del jardin Gardiot\">\r\n                            </div>\r\n                            <div class=\"col\">\r\n                              <ul class=\"list-group list-group-flush \">\r\n                                <li class=\"list-group-item\">Introduce nombre y dimensiones del jardín.</li>\r\n                                <li class=\"list-group-item\">Introduce el país y código postal para la <strong>información meteorológica</strong>.</li>\r\n                                <li class=\"list-group-item\">Puedes añadir plantas mediante el formulario o hacerlo más tarde.</li>\r\n                                <li class=\"list-group-item\"><strong>Guarda</strong> el jardín.</li>\r\n                              </ul>\r\n                            </div>\r\n                          </div>\r\n                          <hr>\r\n                          <div class=\"row\">\r\n                            <div class=\"col\">\r\n                              <img height=\"auto\" width=\"200\" src=\"assets/images/help/jardin2.png\"\r\n                              alt=\"Descipción del jardin Gardiot\">\r\n                            </div>\r\n                            <div class=\"col\">\r\n                              <ul class=\"list-group list-group-flush \">\r\n                                <li class=\"list-group-item\">Selecciona las plantas en el lado izd.</li>\r\n                                <li class=\"list-group-item\">Pincha con el <strong>ratón</strong> y sin soltar arrastra hast el lienzo.</li>\r\n                                <li class=\"list-group-item\">Suelta la planta en el lienzo y esta se ajustará automáticamente.</li>\r\n                                <li class=\"list-group-item\">Repite la operación tantas veces quieres y <strong>guarda</strong> el jardín.</li>\r\n                              </ul>\r\n                            </div>\r\n                          </div>\r\n                          <hr>\r\n                          <div class=\"row\">\r\n                            <div class=\"col\">\r\n                              <img height=\"auto\" width=\"200\" src=\"assets/images/help/jardin3.png\"\r\n                              alt=\"Descipción del jardin Gardiot\">\r\n                            </div>\r\n                            <div class=\"col\">\r\n                              <ul class=\"list-group list-group-flush \">\r\n                                <li class=\"list-group-item\">Visualización del jardín.</li>\r\n                                <li class=\"list-group-item\">Datos <strong>meteorologicos</strong> y previsión de lluvias.</li>\r\n                                <li class=\"list-group-item\"><strong>Consejos</strong> y recomendaciones para cuidar tu jardín o huerto.</li>\r\n                                <li class=\"list-group-item\"><a [routerLink]=\"['/garden']\">Crea tu jardín</a></li>\r\n                              </ul>\r\n                            </div>\r\n                          </div>\r\n                        </mat-tab>\r\n\r\n                        <mat-tab label=\"Calendario\">\r\n                          <h3>¿Alguná tarea pendiente?</h3>\r\n                          <p> Según las necesidades de cada planta, se generan puntitos en el Calendario\r\n                            con las tareas qeu debes realizar en tu jardin.</p>\r\n                        </mat-tab>\r\n\r\n                        <mat-tab label=\"Protección de datos\">\r\n                          <h3>¿Qué hacemos con tus datos?</h3>\r\n                          <p>La LOPD nos obliga a mantener almacenados tus datos hasta dos años despues de\r\n                            darte de baja de nuestro servicio.</p>\r\n                          <p>En cuanto a los datos de geolocalización, los usamos para mostrarte\r\n                            el parte meteorológico en tu zona, no estás compartiendo tu ubicación personal</p>\r\n                          <p>En cualquier momento puedes desactivar tu cuenta</p>\r\n                          <p>Puedes ver más detalles sobre nuestra politica de privacidad en\r\n                            <a href=\"https://gardiot.ovh/symbiose/\" target=\"blank\">Symbiose</a>\r\n                          </p>\r\n                        </mat-tab>\r\n\r\n                        <mat-tab label=\"Api\">\r\n                          <h3>API</h3>\r\n                          <p>Ponemos a tu disposición nuestra API con toda la documentación sobre plantas\r\n                            A continuación te explicamos com funciona.</p>\r\n                            <span class=\"btn btn-success\">GET</span>\r\n                            <mat-accordion>\r\n                              <mat-expansion-panel>\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /plants/:number/:page/:order/:sort\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve un número de elementos de una página especificada.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <ul>\r\n                                  <li>number: número de elementos por página.</li>\r\n                                  <li>page: página.</li>\r\n                                  <li>order: ordenar por nombre o familia de la planta (NAME o FAMILY).</li>\r\n                                  <li>sort: ordenar descendentemente, por defecto ascendente (DESC).</li>\r\n                                </ul>\r\n                                <pre>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"id\": number,</span>\r\n                                  <span>\"family\": number,</span>\r\n                                  <span>\"commonName\": \"string\",</span>\r\n                                  <span>\"photo\": \"string\",</span>\r\n                                  <span>\"name\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '},' }}</span>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"id\": number,</span>\r\n                                  <span>\"family\": number,</span>\r\n                                  <span>\"commonName\": \"string\",</span>\r\n                                  <span>\"photo\": \"string\",</span>\r\n                                  <span>\"name\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '},' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n\r\n                              <mat-expansion-panel>\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /plant/:id\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve los datos de la planta del identificador que se pasa por parámetro.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <ul>\r\n                                  <li>id: identificador de la planta que se desean sus datos.</li>\r\n                                </ul>\r\n                                <pre>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"scientificName\": \"string\",</span>\r\n                                  <span>\"commonName\": \"string\",</span>\r\n                                  <span>\"description\": \"string\",</span>\r\n                                  <span>\"photo\": \"string\",</span>\r\n                                  <span>\"family\": number,</span>\r\n                                  <span>\"depth\": number,</span>\r\n                                  <span>\"distance\": number,</span>\r\n                                  <span>\"diseaseResist\": number</span>\r\n                                  <span>\"initDatePlant\": \"date\",</span>\r\n                                  <span>\"finDatePlant\": \"date\",</span>\r\n                                  <span>\"initDateBloom\": \"date\",</span>\r\n                                  <span>\"finDateBloom\": \"date\",</span>\r\n                                  <span>\"initDateHarvest\": date,</span>\r\n                                  <span>\"finDateHarvest\": date,</span>\r\n                                  <span>\"leaveType\": \"string\",</span>\r\n                                  <span>\"name\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '},' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n\r\n                              <mat-expansion-panel>\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /numPlants\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve el número de plantas existentes en el sistema.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <pre>\r\n                                  <span class=\"llave2\">\"{{ '[' }}</span>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"NUMPLANTAS\": 10</span>\r\n                                  <span class=\"llave\">\"{{ '}' }}</span>\r\n                                  <span class=\"llave2\">\"{{ ']' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n\r\n                              <mat-expansion-panel>\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /families/:number/:page/:sort\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve un número de elementos de una página especificada, se pueden ordenar los elementos de manera ascendente y descendente.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <ul>\r\n                                  <li>number: número de elementos por página.</li>\r\n                                  <li>page: página.</li>\r\n                                  <li>sort: ordenar descendentemente, por defecto ascendente.(DESC).</li>\r\n                                </ul>\r\n                                <pre>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"id\": number,</span>\r\n                                  <span>\"name\": \"string\",</span>\r\n                                  <span>\"description\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '}' }}</span>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"id\": number,</span>\r\n                                  <span>\"name\": \"string\",</span>\r\n                                  <span>\"description\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '}' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n\r\n                              <mat-expansion-panel>\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /family/:id\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve los datos de la familia del identificador que se pasa por parámetro.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <ul>\r\n                                  <li>id: identificador de la familia que se desean sus datos.</li>\r\n                                </ul>\r\n                                <pre>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"id\": number,</span>\r\n                                  <span>\"name\": \"string\",</span>\r\n                                  <span>\"description\": \"string\"</span>\r\n                                  <span class=\"llave\">\"{{ '}' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n\r\n                              <mat-expansion-panel (opened)=\"panelOpenState = true\" (closed)=\"panelOpenState = false\">\r\n                                <mat-expansion-panel-header>\r\n                                  <mat-panel-title>\r\n                                    /numFamilies\r\n                                  </mat-panel-title>\r\n                                  <mat-panel-description>\r\n                                    Devuelve el número de familias dentro del sistema.\r\n                                  </mat-panel-description>\r\n                                </mat-expansion-panel-header>\r\n                                <ul>\r\n                                  <li>id: identificador de la familia que se desean sus datos.</li>\r\n                                </ul>\r\n                                <pre>\r\n                                  <span class=\"llave\">\"{{ '{' }}</span>\r\n                                  <span>\"NUMFAMILIES\": 28</span>\r\n                                  <span class=\"llave\">\"{{ '}' }}</span>\r\n                                </pre>\r\n                              </mat-expansion-panel>\r\n                            </mat-accordion>\r\n\r\n                        </mat-tab>\r\n                      </section>\r\n                    </mat-tab-group>\r\n                    <!-- <span class=\"col- text-center\">\r\n                        <button [routerLink]=\"['/detail']\" class=\"btn btn-primary btn-lg\">Volver</button>\r\n                    </span> -->\r\n\r\n                  </fieldset>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</article>\r\n"
 
 /***/ }),
 
@@ -2860,8 +2970,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var HelpComponent = (function () {
+var HelpComponent = /** @class */ (function () {
     function HelpComponent() {
+        this.panelOpenState = false;
     }
     HelpComponent.prototype.ngOnInit = function () {
     };
@@ -2902,7 +3013,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfirmationComponent = (function () {
+var ConfirmationComponent = /** @class */ (function () {
     function ConfirmationComponent(_comprobationService, _router, _appComponent) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -2948,7 +3059,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*.container{\n  border-radius: 5px;\n  box-shadow: 5px 5px 20px #d3d3d3;\n  background-color: #299654;\n  padding: 10px;\n  max-width: 700px;\n}\n.form-group{\n  text-align: center;\n}\ninput{\n  background-color: #299654;\n  color: #fff;\n  border: none;\n  border-bottom: 1px solid #fff;\n  outline: none;\n  width: 80%;\n  max-width: 400px;\n  height: 40px;\n  font-size: 20px;\n  margin: 0 auto;\n}\n::placeholder{\n  color: #fff;\n}\n\n.form-group>button{\n  border: none;\n  background: none;\n  width: 80%;\n  max-width: 400px;\n}\n.form-group>a{\n  border: none;\n  background: none;\n  width: 80%;\n  max-width: 400px;\n}\n\n@media (min-width: 768px) {\n\n\n}*/\n\n.login-page {\n  width: 360px;\n  padding: 8% 0 0;\n  margin: auto;\n}\n.form {\n  position: relative;\n  z-index: 1;\n  background: #FFFFFF;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 45px;\n  text-align: center;\n  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);\n}\n.form input {\n  font-family: \"Roboto\", sans-serif;\n  outline: 0;\n  background: #f2f2f2;\n  width: 100%;\n  border: 0;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  font-size: 14px;\n}\n.form button>img {\n\n  width: 100%;\n}\n.form button {\n  background: none;\n  border: none;\n  padding: 0;\n}\n\n.form a>img{\n  width: 100%;\n  margin-top: 10px;\n}\n.form a{\n  margin-top: 10px;\n  cursor: pointer;\n}\n.title{\n  display: block;\n  text-align: center;\n  color: #fff !important;\n  margin-bottom: 1em;\n\n}\n\n.form .message {\n  margin: 15px 0 0;\n  color: #b3b3b3;\n  font-size: 12px;\n}\n.form .message a {\n  color: #4CAF50;\n  text-decoration: none;\n}\n.form .register-form {\n  display: none;\n}\n.container {\n  position: relative;\n  z-index: 1;\n  max-width: 300px;\n  margin: 0 auto;\n}\n.container:before, .container:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.container .info {\n  margin: 50px auto;\n  text-align: center;\n}\n.container .info h1 {\n  margin: 0 0 15px;\n  padding: 0;\n  font-size: 36px;\n  font-weight: 300;\n  color: #1a1a1a;\n}\n.container .info span {\n  color: #4d4d4d;\n  font-size: 12px;\n}\n.container .info span a {\n  color: #000000;\n  text-decoration: none;\n}\n.container .info span .fa {\n  color: #EF3B3A;\n}\n.fondo {\n  position:absolute;\n  z-index: -1;\n  top: 61px;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: #299654; /* fallback for old browsers */\n  background: linear-gradient(to bottom, #299654, #8DC26F);\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n", ""]);
+exports.push([module.i, "/*.container{\r\n  border-radius: 5px;\r\n  box-shadow: 5px 5px 20px #d3d3d3;\r\n  background-color: #299654;\r\n  padding: 10px;\r\n  max-width: 700px;\r\n}\r\n.form-group{\r\n  text-align: center;\r\n}\r\ninput{\r\n  background-color: #299654;\r\n  color: #fff;\r\n  border: none;\r\n  border-bottom: 1px solid #fff;\r\n  outline: none;\r\n  width: 80%;\r\n  max-width: 400px;\r\n  height: 40px;\r\n  font-size: 20px;\r\n  margin: 0 auto;\r\n}\r\n::placeholder{\r\n  color: #fff;\r\n}\r\n\r\n.form-group>button{\r\n  border: none;\r\n  background: none;\r\n  width: 80%;\r\n  max-width: 400px;\r\n}\r\n.form-group>a{\r\n  border: none;\r\n  background: none;\r\n  width: 80%;\r\n  max-width: 400px;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n\r\n\r\n}*/\r\n\r\nbody{\r\n  background-color: #299654 !important;\r\n}\r\n\r\n.login-page {\r\n  width: 360px;\r\n  padding: 2% 0 0;\r\n  margin: auto;\r\n}\r\n.form {\r\n  position: relative;\r\n  z-index: 1;\r\n  background: #FFFFFF;\r\n  max-width: 360px;\r\n  margin: 0 auto 100px;\r\n  padding: 45px;\r\n  text-align: center;\r\n  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);\r\n}\r\n.form input {\r\n  font-family: \"Roboto\", sans-serif;\r\n  outline: 0;\r\n  background: #f2f2f2;\r\n  width: 100%;\r\n  border: 0;\r\n  margin: 0 0 15px;\r\n  padding: 15px;\r\n  box-sizing: border-box;\r\n  font-size: 14px;\r\n}\r\n.form button>img {\r\n\r\n  width: 100%;\r\n}\r\n.form button {\r\n  background: none;\r\n  border: none;\r\n  padding: 0;\r\n}\r\n\r\n.form a>img{\r\n  width: 100%;\r\n  margin-top: 10px;\r\n}\r\n.form a{\r\n  margin-top: 10px;\r\n  cursor: pointer;\r\n}\r\n.title{\r\n  display: block;\r\n  text-align: center;\r\n  color: #fff !important;\r\n  margin-bottom: 1em;\r\n\r\n}\r\n\r\n.form .message {\r\n  margin: 15px 0 0;\r\n  color: #b3b3b3;\r\n  font-size: 12px;\r\n}\r\n.form .message a {\r\n  color: #4CAF50;\r\n  text-decoration: none;\r\n}\r\n.form .register-form {\r\n  display: none;\r\n}\r\n.container {\r\n  position: relative;\r\n  z-index: 1;\r\n  max-width: 300px;\r\n  margin: 0 auto;\r\n}\r\n.container:before, .container:after {\r\n  content: \"\";\r\n  display: block;\r\n  clear: both;\r\n}\r\n.container .info {\r\n  margin: 50px auto;\r\n  text-align: center;\r\n}\r\n.container .info h1 {\r\n  margin: 0 0 15px;\r\n  padding: 0;\r\n  font-size: 36px;\r\n  font-weight: 300;\r\n  color: #1a1a1a;\r\n}\r\n.container .info span {\r\n  color: #4d4d4d;\r\n  font-size: 12px;\r\n}\r\n.container .info span a {\r\n  color: #000000;\r\n  text-decoration: none;\r\n}\r\n.container .info span .fa {\r\n  color: #EF3B3A;\r\n}\r\n.fondo {\r\n  position:fixed;\r\n  z-index: -1;\r\n  top: 61px;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  background: #299654; /* fallback for old browsers */\r\n  background: linear-gradient(to bottom, #299654, #8DC26F);\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\n.fondofinal{\r\n  position: absolute;\r\n  z-index: -2;\r\n  top: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  background-color: #299654;\r\n}\r\n", ""]);
 
 // exports
 
@@ -2961,7 +3072,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/manage/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<h1>Bienvenido otra vez!</h1>\n<div class=\"container main-container\">\n  <div class=\"row\">\n\n    <div class=\"col-md-12\">\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n\n        </div>\n        <div class=\"form-group\">\n\n          <input [(ngModel)]=\"user.password\" name=\"password\"\n                type=\"password\"  id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\n        </div>\n        <div class=\"form-group\">\n        <button [disabled]=\"!forma.valid\"\n              type=\"submit\"><img src=\"./assets/buttons/login.png\" alt=\"Iniciar sesión\"></button>\n        </div>\n        <button [routerLink] =\"['/resetPass']\" class=\"btn btn-info\" name=\"button\">Reset Pass</button>\n\n      </form>\n      <div class=\"form-group\">\n      <a href=\"{{this._loginService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\n    </div>\n    <div class=\"form-group\">\n      <a href=\"{{this._loginService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\n    </div>\n    </div>\n  </div>\n</div>\n-->\n\n<div class=\"login-page\">\n<h2 class=\"title\">Bienvenido a Gardiot</h2>\n\n  <div class=\"form\">\n\n    <form class=\"login-form\" (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\n      <input [(ngModel)]=\"user.id\" name=\"id\"\n            type=\"email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Email\" required>\n      <input [(ngModel)]=\"user.password\" name=\"password\"\n            type=\"password\"  id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\n      <button [disabled]=\"!forma.valid\"\n            type=\"submit\"><img src=\"./assets/buttons/login.png\" alt=\"Iniciar sesión\"></button>\n\n      <a href=\"{{this._loginService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\n\n        <a href=\"{{this._loginService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\n\n      <p class=\"message\">¿Olvidaste tu contraseña? <a href=\"#\" [routerLink] =\"['/resetPass']\">Recordar contraseña</a></p>\n    </form>\n  </div>\n</div>\n\n<div class=\"fondo\">\n</div>\n"
+module.exports = "<!--\r\n<h1>Bienvenido otra vez!</h1>\r\n<div class=\"container main-container\">\r\n  <div class=\"row\">\r\n\r\n    <div class=\"col-md-12\">\r\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n        <div class=\"form-group\">\r\n\r\n        </div>\r\n        <div class=\"form-group\">\r\n\r\n          <input [(ngModel)]=\"user.password\" name=\"password\"\r\n                type=\"password\"  id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n        <button [disabled]=\"!forma.valid\"\r\n              type=\"submit\"><img src=\"./assets/buttons/login.png\" alt=\"Iniciar sesión\"></button>\r\n        </div>\r\n        <button [routerLink] =\"['/resetPass']\" class=\"btn btn-info\" name=\"button\">Reset Pass</button>\r\n\r\n      </form>\r\n      <div class=\"form-group\">\r\n      <a href=\"{{this._loginService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <a href=\"{{this._loginService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\r\n    </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n-->\r\n\r\n<div class=\"login-page\">\r\n  <h2 class=\"title\">Bienvenido a Gardiot</h2>\r\n\r\n  <div class=\"form\">\r\n\r\n    <form class=\"login-form\" (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n      <input [(ngModel)]=\"user.id\" name=\"id\" type=\"email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Email\" required>\r\n      <input [(ngModel)]=\"user.password\" name=\"password\" type=\"password\" id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\r\n      <button [disabled]=\"!forma.valid\" type=\"submit\"><img src=\"./assets/buttons/login.png\" alt=\"Iniciar sesión\"></button>\r\n\r\n      <a href=\"{{this._loginService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\r\n\r\n      <a href=\"{{this._loginService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\r\n\r\n      <p class=\"message\">¿Olvidaste tu contraseña? <a href=\"#\" [routerLink]=\"['/resetPass']\">Recordar contraseña</a></p>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"fondo\">\r\n</div>\r\n<div class=\"fondofinal\">\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2987,7 +3098,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(_loginService, _route, _appComponent) {
         this._loginService = _loginService;
         this._route = _route;
@@ -3076,7 +3187,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LogoutComponent = (function () {
+var LogoutComponent = /** @class */ (function () {
     function LogoutComponent(_logoutService, _route) {
         this._logoutService = _logoutService;
         this._route = _route;
@@ -3133,7 +3244,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OauthConfirmationComponent = (function () {
+var OauthConfirmationComponent = /** @class */ (function () {
     function OauthConfirmationComponent(_comprobationService, _router, _appComponent, _route) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -3173,7 +3284,7 @@ var OauthConfirmationComponent = (function () {
 /***/ "../../../../../src/app/components/manage/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<div class=\"container main-container\">\n  <div class=\"row\">\n    <div class=\"col-md-12\">\n      <h2>Formulario de registro</h2>\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n          <label>Email</label>\n          <input\n                type=\"text\" name=\"id\"\n                class=\"form-control\" [(ngModel)]=\"user.id\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Password</label>\n          <input\n                type=\"password\" name=\"password\"\n                class=\"form-control\" [(ngModel)]=\"user.password\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Repite el password</label>\n          <input\n                type=\"password\" name=\"password2\"\n                class=\"form-control\" [(ngModel)]=\"user.password2\" required>\n        </div>\n\n        <button [disabled]=\"!forma.valid\"\n        type=\"submit\" class=\"btn btn-primary\">Registrarse</button>\n        <a href=\"{{this._userService.apiURL}}auth/google\" class=\"btn btn-secondary\">Registro con Google</a>\n        <a href=\"{{this._userService.apiURL}}auth/facebook\" class=\"btn btn-success\">Registro con Facebook</a>\n      </form>\n    </div>\n  </div>\n</div>-->\n\n<div class=\"login-page\">\n<h2 class=\"title\">Únete a Gardiot</h2>\n\n  <div class=\"form\">\n\n    <form class=\"login-form\" (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\n      <input [(ngModel)]=\"user.id\" name=\"id\"\n            type=\"email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Email\" required>\n      <input [(ngModel)]=\"user.password\" name=\"password\"\n            type=\"password\"  id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\n      <input [(ngModel)]=\"user.password2\" name=\"password2\"\n              type=\"password\"  id=\"exampleInputPassword2\" placeholder=\"Repetir contraseña\" required>\n      <button [disabled]=\"!forma.valid\"\n            type=\"submit\"><img src=\"./assets/buttons/register.png\" alt=\"Registrarse\"></button>\n\n      <a href=\"{{this._userService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\n\n        <a href=\"{{this._userService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\n\n      <p class=\"message\">¿Ya tienes cuenta? <a href=\"#\" [routerLink] =\"['/login']\">Iniciar sesión</a></p>\n    </form>\n  </div>\n</div>\n\n<div class=\"fondo\">\n</div>\n"
+module.exports = "<!--\r\n<div class=\"container main-container\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-12\">\r\n      <h2>Formulario de registro</h2>\r\n      <form (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n        <div class=\"form-group\">\r\n          <label>Email</label>\r\n          <input\r\n                type=\"text\" name=\"id\"\r\n                class=\"form-control\" [(ngModel)]=\"user.id\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Password</label>\r\n          <input\r\n                type=\"password\" name=\"password\"\r\n                class=\"form-control\" [(ngModel)]=\"user.password\" required>\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label>Repite el password</label>\r\n          <input\r\n                type=\"password\" name=\"password2\"\r\n                class=\"form-control\" [(ngModel)]=\"user.password2\" required>\r\n        </div>\r\n\r\n        <button [disabled]=\"!forma.valid\"\r\n        type=\"submit\" class=\"btn btn-primary\">Registrarse</button>\r\n        <a href=\"{{this._userService.apiURL}}auth/google\" class=\"btn btn-secondary\">Registro con Google</a>\r\n        <a href=\"{{this._userService.apiURL}}auth/facebook\" class=\"btn btn-success\">Registro con Facebook</a>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>-->\r\n\r\n<div class=\"login-page\">\r\n  <h2 class=\"title\">Únete a Gardiot</h2>\r\n\r\n  <div class=\"form\">\r\n\r\n    <form class=\"login-form\" (ngSubmit)=\"guardar()\" #forma=\"ngForm\">\r\n      <input [(ngModel)]=\"user.id\" name=\"id\" type=\"email\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Email\" required>\r\n      <input [(ngModel)]=\"user.password\" name=\"password\" type=\"password\" id=\"exampleInputPassword1\" placeholder=\"Contraseña\" required>\r\n      <input [(ngModel)]=\"user.password2\" name=\"password2\" type=\"password\" id=\"exampleInputPassword2\" placeholder=\"Repetir contraseña\" required>\r\n      <button [disabled]=\"!forma.valid\" type=\"submit\"><img src=\"./assets/buttons/register.png\" alt=\"Registrarse\"></button>\r\n\r\n      <a href=\"{{this._userService.apiURL}}auth/google\"><img src=\"./assets/buttons/logingoogle.png\" alt=\"Acceder con Google\"></a>\r\n\r\n      <a href=\"{{this._userService.apiURL}}auth/facebook\"><img src=\"./assets/buttons/loginfacebook.png\" alt=\"Acceder con Facebook\"></a>\r\n\r\n      <p class=\"message\">¿Ya tienes cuenta? <a href=\"#\" [routerLink]=\"['/login']\">Iniciar sesión</a></p>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"fondo\">\r\n</div>\r\n<div class=\"fondofinal\">\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3201,7 +3312,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var RegisterComponent = (function () {
+var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(_userService, _route, _appComponent) {
         this._userService = _userService;
         this._route = _route;
@@ -3276,7 +3387,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResendComponent = (function () {
+var ResendComponent = /** @class */ (function () {
     function ResendComponent(_resendService, _route) {
         this._resendService = _resendService;
         this._route = _route;
@@ -3327,7 +3438,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/manage/reset-pass-back/reset-pass-back.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\n  <section class=\"container\">\n    <div class=\"row animated fadeIn fast\">\n      <div class=\"col-md-12\">\n        <form #f=\"ngForm\" (ngSubmit)=\"newPass(f)\">\n\n          <h3>Resetea tu contraseña</h3>\n          <div class=\"form-group\">\n            <label for=\"password_user\" name=\"first\">Introduce tu nueva contraseña</label>\n              <input type=\"password\" class=\"form-control\" placeholder=\"Enter pass\" name=\"first\" ngModel required #first=\"ngModel\">\n            <!-- <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" id=\"password_user\" > -->\n          </div>\n          <div class=\"form-group\">\n            <label>Repite tu contraseña</label>\n            <input type=\"password\" class=\"form-control\" placeholder=\"Enter pass again\" name=\"second\" ngModel required #second=\"ngModel\">\n            <!-- <input [(ngModel)]=\"user.password2\" type=\"password\" name=\"password2\" id=\"password2_user\" > -->\n          </div>\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n          <button [routerLink]=\"['/reset-pass-back']\" class=\"btn btn-outline-danger\">Cancelar</button>\n        </form>\n      </div>\n    </div>\n  </section>\n\n</div>\n"
+module.exports = "<div class=\"container main-container\">\r\n  <section class=\"container\">\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form #f=\"ngForm\" (ngSubmit)=\"newPass(f)\">\r\n\r\n          <h3>Resetea tu contraseña</h3>\r\n          <div class=\"form-group\">\r\n            <label for=\"password_user\" name=\"first\">Introduce tu nueva contraseña</label>\r\n              <input type=\"password\" class=\"form-control\" placeholder=\"Enter pass\" name=\"first\" ngModel required #first=\"ngModel\">\r\n            <!-- <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" id=\"password_user\" > -->\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label>Repite tu contraseña</label>\r\n            <input type=\"password\" class=\"form-control\" placeholder=\"Enter pass again\" name=\"second\" ngModel required #second=\"ngModel\">\r\n            <!-- <input [(ngModel)]=\"user.password2\" type=\"password\" name=\"password2\" id=\"password2_user\" > -->\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n          <button [routerLink]=\"['/reset-pass-back']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </section>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3353,7 +3464,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResetPassBackComponent = (function () {
+var ResetPassBackComponent = /** @class */ (function () {
     function ResetPassBackComponent(_appComponent, router, _newPass) {
         this._appComponent = _appComponent;
         this.router = router;
@@ -3430,7 +3541,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/manage/reset-pass.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Resetear contraseña</h1>\n\n  <section>\n    <p>Estas a punto de resetear tu contraseña. Introduce tu email con el que te registraste y te enviaremos un link a tu correo electrónico para poder hacerlo.\n     Recuerda que sólo tienes unas pocas horas para ello.</p>\n  </section>\n\n  <form #f=\"ngForm\" (ngSubmit)=\"resetPass(f)\">\n    <div class=\"form-group\">\n      <input type=\"email\" class=\"form-control\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" name=\"first\" ngModel required #first=\"ngModel\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\">Enviar</button>\n    <button [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\n  </form>\n  <br>\n  <!-- <button [routerLink]=\"['/reset-pass-back']\"  class=\"btn btn-primary\">passBack</button> -->\n</div>\n"
+module.exports = "<div class=\"container\">\r\n  <h1>Resetear contraseña</h1>\r\n\r\n  <section>\r\n    <p>Estas a punto de resetear tu contraseña. Introduce tu email con el que te registraste y te enviaremos un link a tu correo electrónico para poder hacerlo. Recuerda que sólo tienes unas pocas horas para ello.</p>\r\n  </section>\r\n\r\n  <form #f=\"ngForm\" (ngSubmit)=\"resetPass(f)\">\r\n    <div class=\"form-group\">\r\n      <input type=\"email\" class=\"form-control\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" name=\"first\" ngModel required #first=\"ngModel\">\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\">Enviar</button>\r\n    <button [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n  </form>\r\n  <br>\r\n  <!-- <button [routerLink]=\"['/reset-pass-back']\"  class=\"btn btn-primary\">passBack</button> -->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3455,7 +3566,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { User } from "../../classes/user.class";
 
 
-var ResetPassComponent = (function () {
+var ResetPassComponent = /** @class */ (function () {
     function ResetPassComponent(_appComponent, _resetPassword) {
         this._appComponent = _appComponent;
         this._resetPassword = _resetPassword;
@@ -3510,7 +3621,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/pagination/pagination.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- https://www.npmjs.com/package/ng2-paginate -->\n<!-- https://embed.plnkr.co/oyFWJe/ -->\n<!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->\n<nav aria-label=\"Page navigation example\"  *ngIf=\"count > 0 && type==1\">\n  <ul class=\"pagination justify-content-end\">\n    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>\n    <span> hay {{ totalPages() }} paginas totales </span> -->\n    <li class=\"page-item\">\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: previusPage()}\" >Previous</button>\n    </li>\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\" ><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\n    <li class=\"page-item\">\n      <button class=\"page-link\"  (click)=\"onNext()\"  [routerLink]=\"['/plants']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\n    </li>\n  </ul>\n</nav>\n\n\n\n<nav aria-label=\"Page navigation example\"  *ngIf=\"count > 0 && type==2\">\n  <ul class=\"pagination justify-content-end\">\n    <li class=\"page-item\">\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: previusPage()}\" >Previous</button>\n    </li>\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\" ><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\n    <li class=\"page-item\">\n      <button class=\"page-link\"  (click)=\"onNext()\"  [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\n    </li>\n  </ul>\n</nav>\n\n\n<nav aria-label=\"Page navigation example\"  *ngIf=\"count > 0  && type==3\">\n  <ul class=\"pagination justify-content-end\">\n    <li class=\"page-item\">\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: previusPage()}\" >Previous</button>\n    </li>\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\" ><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\n    <li class=\"page-item\">\n      <button class=\"page-link\"  (click)=\"onNext()\"  [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\n    </li>\n  </ul>\n</nav>\n\n\n<nav aria-label=\"Page navigation example\"  *ngIf=\"count > 0  && type==4\">\n  <ul class=\"pagination justify-content-end\">\n    <li class=\"page-item\">\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: previusPage()}\" >Previous</button>\n    </li>\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\" ><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\n    <li class=\"page-item\">\n      <button class=\"page-link\"  (click)=\"onNext()\"  [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\n    </li>\n  </ul>\n</nav>\n\n\n<nav aria-label=\"Page navigation example\"  *ngIf=\"count > 0  && type==5\">\n  <ul class=\"pagination justify-content-end\">\n    <li class=\"page-item\">\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: previusPage()}\" >Previous</button>\n    </li>\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\" ><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\n    <li class=\"page-item\">\n      <button class=\"page-link\"  (click)=\"onNext()\"  [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\n    </li>\n  </ul>\n</nav>\n"
+module.exports = "<!-- https://www.npmjs.com/package/ng2-paginate -->\r\n<!-- https://embed.plnkr.co/oyFWJe/ -->\r\n<!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==1\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>\r\n    <span> hay {{ totalPages() }} paginas totales </span> -->\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==2\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==3\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==4\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==5\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -3531,7 +3642,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var PaginationComponent = (function () {
+var PaginationComponent = /** @class */ (function () {
     function PaginationComponent() {
         this.plants = [];
         this.goPrev = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3669,7 +3780,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/plants/editplant/editplant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.uploadPhoto()\" #forma=\"ngForm\">\n\t\t<h4>Datos Básicos</h4>\n\t  <div class=\"form-row\">\n\t    <div class=\"col\">\n\t      <input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Nombre común\" required>\n\t    </div>\n\t    <div class=\"col\">\n\t      <input type=\"text\" [(ngModel)]=\"plant.scientificName\" class=\"form-control\" name=\"scientificName\" placeholder=\"Nombre científico\" required>\n\t    </div>\n\t  </div>\n\t\t<br>\n\t\t<!-- https://codepen.io/Sebus059/pen/MwMQbP -->\n\t\t<div class=\"form-group\">\n\t\t\t  <label for=\"photo_plant\">Foto</label>\n\t\t\t<div class=\"upload-btn-wrapper form-control \">\n\t\t\t  <button class=\"bttn\">Selecionar imagen</button>\n\t\t\t  <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\n\t\t\t</div>\n\t  </div>\n\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"plant.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\"></textarea>\n\t\t</div>\n\t\t<h4>Datos Técnicos</h4>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"family_plant\">Familia</label>\n\t\t\t\t <select class=\"form-control\" id=\"family_plant\" [(ngModel)]=\"plant.family\" name=\"family\" required>\n\t\t\t\t\t <option *ngFor=\"let family of families\" value=\"{{family.id}}\">{{family.name}}</option>\n\t\t\t\t </select>\n\t    </div>\n\n\t    <div class=\"form-group col-md-6\">\n\t      <label for=\"resist_plant\">Resistencia</label>\n\t      <input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.diseaseResist\" name=\"diseaseResist\" id=\"resist_plant\" placeholder=\"Se mide en ºC\" required>\n\t    </div>\n  \t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"depth_plant\">Profundidad</label>\n\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.depth\" name=\"depth\" id=\"depth_plant\" placeholder=\"Se mide en cm\" required >\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"distance_plant\">Distancia</label>\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.distance\" name=\"distance\" id=\"distance_plant\" placeholder=\"Se mide en cm\" required>\n\t\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"photo_plant\">Modelo 3D</label>\n\n\t\t\t<div class=\"upload-btn-wrapper form-control \">\n\t\t\t\t<button class=\"bttn\">Selecionar</button>\n\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" />\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"leaveType\">Tipo hoja</label>\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.leaveType\" name=\"leaveType\" id=\"leaveType\" placeholder=\"Caduca o perenne\" required>\n\t\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-group\">\n\n\t  </div>\n\n\t<h4>Calendario</h4>\n\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Plantación</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initplant\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]='plant.initDatePlant' name=\"initplant\" id=\"date_initplant\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_endplant\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDatePlant\" name=\"endplant\" id=\"date_endplant\" >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n  </fieldset>\n\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Floración</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initDateBloom\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateBloom\" name=\"initDateBloom\" id=\"date_initDateBloom\" >\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_finDateBloom\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateBloom\" name=\"finDateBloom\" id=\"date_finDateBloom\" >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n\t  </fieldset>\n\t\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Cosecha</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initDateHarvest\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateHarvest\" name=\"initDateHarvest\" id=\"date_initDateHarvest\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_finDateHarvest\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateHarvest\" name=\"finDateHarvest\" id=\"date_finDateHarvest\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n\t  </fieldset>\n\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n\t\t<button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.uploadPhoto()\" #forma=\"ngForm\">\r\n\t\t\t<h4>Datos Básicos</h4>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Nombre común\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"plant.scientificName\" class=\"form-control\" name=\"scientificName\" placeholder=\"Nombre científico\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<br>\r\n\t\t\t<!-- https://codepen.io/Sebus059/pen/MwMQbP -->\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"photo_plant\">Foto</label>\r\n\t\t\t\t<div class=\"upload-btn-wrapper form-control \">\r\n\t\t\t\t\t<button class=\"bttn\">Selecionar imagen</button>\r\n\t\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"plant.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\"></textarea>\r\n\t\t\t</div>\r\n\t\t\t<h4>Datos Técnicos</h4>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"family_plant\">Familia</label>\r\n\t\t\t\t\t<select class=\"form-control\" id=\"family_plant\" [(ngModel)]=\"plant.family\" name=\"family\" required>\r\n\t\t\t\t\t <option *ngFor=\"let family of families\" value=\"{{family.id}}\">{{family.name}}</option>\r\n\t\t\t\t </select>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"resist_plant\">Resistencia</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.diseaseResist\" name=\"diseaseResist\" id=\"resist_plant\" placeholder=\"Se mide en ºC\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"depth_plant\">Profundidad</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.depth\" name=\"depth\" id=\"depth_plant\" placeholder=\"Se mide en cm\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"distance_plant\">Distancia</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.distance\" name=\"distance\" id=\"distance_plant\" placeholder=\"Se mide en cm\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"photo_plant\">Modelo 3D</label>\r\n\r\n\t\t\t\t\t<div class=\"upload-btn-wrapper form-control \">\r\n\t\t\t\t\t\t<button class=\"bttn\">Selecionar</button>\r\n\t\t\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" />\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"leaveType\">Tipo hoja</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.leaveType\" name=\"leaveType\" id=\"leaveType\" placeholder=\"Caduca o perenne\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\r\n\t\t\t</div>\r\n\r\n\t\t\t<h4>Calendario</h4>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Plantación</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initplant\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]='plant.initDatePlant' name=\"initplant\" id=\"date_initplant\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_endplant\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDatePlant\" name=\"endplant\" id=\"date_endplant\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Floración</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initDateBloom\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateBloom\" name=\"initDateBloom\" id=\"date_initDateBloom\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_finDateBloom\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateBloom\" name=\"finDateBloom\" id=\"date_finDateBloom\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Cosecha</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initDateHarvest\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateHarvest\" name=\"initDateHarvest\" id=\"date_initDateHarvest\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_finDateHarvest\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateHarvest\" name=\"finDateHarvest\" id=\"date_finDateHarvest\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3704,7 +3815,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditplantComponent = (function () {
+var EditplantComponent = /** @class */ (function () {
     function EditplantComponent(_plantService, _appComponent, _ng2ImgMax, datePipe, _router, _route) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
@@ -3857,7 +3968,7 @@ var EditplantComponent = (function () {
 /***/ "../../../../../src/app/components/plants/library/library.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"evolver\">\n  <div class=\"container main-container\">\n    <h1>Biblioteca</h1>\n    <div class=\"wrap\">\n\n  \t\t\t\t<form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\" >\n  \t\t\t\t\t<article class=\"form-group col-md-4\">\n  \t\t\t\t\t\t<input type=\"text\"  [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\n  \t\t\t    </article>\n  \t\t\t\t\t <!-- <article class=\"form-group col-md-2\">\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"family\">\n  \t\t\t\t\t\t\t <option  value=\"nombre\">nombre</option>\n  \t\t\t\t\t\t\t <option  value=\"familia\">familia</option>\n  \t\t\t\t\t\t </select>\n  \t\t\t\t\t</article>\n  \t\t\t\t\t<article class=\"form-group col-md-2\">\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"order\">\n  \t\t\t\t\t\t\t <option  value=\"ASC\">A-Z</option>\n  \t\t\t\t\t\t\t <option  value=\"DES\">Z-A</option>\n  \t\t\t\t\t\t </select>\n  \t\t\t\t\t</article> -->\n  \t\t\t\t\t<article class=\"form-group col-md-2\">\n  \t\t\t\t\t\t<button class=\"btn btn-default\" type=\"submit\">Buscar</button>\n  \t\t\t\t\t</article>\n            <article class=\"form-group col-md-2\">\n              <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/newplant']\" class=\"btn btn-outline-primary\">Nueva planta</button>\n            </article>\n  \t\t\t\t</form>\n\n    <section class=\"card-columns\">\n        <div *ngFor=\"let plant of plants\" class=\"card\"  style=\"width: 18rem;\" >\n          <img class=\"card-img-top\" src=\"{{plant.photo}}\" alt=\"no sale la imagen\" width=\"100px\" height=\"200px\" [routerLink]=\"['/plant', plant.id]\">\n          <div class=\"card-body\" >\n            <h4>{{plant.commonName}} </h4>\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/editplant/',plant.id]\"  class=\"btn btn-outline-primary\">Modificar</button>\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/admin/newtreatmentsplants/',plant.id]\"  class=\"btn btn-outline-secondary\">Tratamientos</button>\n            <button *ngIf=\"this.user.isAdmin\" (click)=\"deleteplant(plant.id)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Eliminar</button>\n          </div>\n        </div>\n    </section>\n  \t<app-pagination [count]=\"this.numeroItems\" [type]=\"1\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n  \t</div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"evolver\">\r\n  <div class=\"container main-container\">\r\n    <h1>Biblioteca</h1>\r\n    <div class=\"wrap\">\r\n\r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n        <article class=\"form-group col-md-4\">\r\n          <input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\r\n        </article>\r\n        <!-- <article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"family\">\r\n  \t\t\t\t\t\t\t <option  value=\"nombre\">nombre</option>\r\n  \t\t\t\t\t\t\t <option  value=\"familia\">familia</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article>\r\n  \t\t\t\t\t<article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"order\">\r\n  \t\t\t\t\t\t\t <option  value=\"ASC\">A-Z</option>\r\n  \t\t\t\t\t\t\t <option  value=\"DES\">Z-A</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article> -->\r\n        <article class=\"form-group col-md-2\">\r\n          <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        </article>\r\n        <article class=\"form-group col-md-2\">\r\n          <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/newplant']\" class=\"btn btn-outline-primary\">Nueva planta</button>\r\n        </article>\r\n      </form>\r\n\r\n      <section class=\"card-columns\">\r\n        <div *ngFor=\"let plant of plants\" class=\"card\" style=\"width: 18rem;\">\r\n          <img class=\"card-img-top\" src=\"{{plant.photo}}\" alt=\"no sale la imagen\" width=\"100px\" height=\"200px\" [routerLink]=\"['/plant', plant.id]\">\r\n          <div class=\"card-body\">\r\n            <h4>{{plant.commonName}} </h4>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/editplant/',plant.id]\" class=\"btn btn-outline-primary\">Modificar</button>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/admin/newtreatmentsplants/',plant.id]\" class=\"btn btn-outline-secondary\">Tratamientos</button>\r\n            <button class=\"btn btn-outline-danger\" (click)=\"openDialog(plant.id,4)\">Eliminar</button>\r\n            <!-- <button *ngIf=\"this.user.isAdmin\" (click)=\"deleteplant(plant.id)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Eliminar</button> -->\r\n          </div>\r\n        </div>\r\n      </section>\r\n      <app-pagination [count]=\"this.numeroItems\" [type]=\"1\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3871,7 +3982,8 @@ module.exports = "<div class=\"evolver\">\n  <div class=\"container main-contain
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_plant_class__ = __webpack_require__("../../../../../src/app/classes/plant.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3888,13 +4000,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LibraryComponent = (function () {
-    function LibraryComponent(_plantService, _route, _appComponent, activatedRoute, user) {
+
+var LibraryComponent = /** @class */ (function () {
+    function LibraryComponent(_plantService, _route, activatedRoute, user, dialog) {
         this._plantService = _plantService;
         this._route = _route;
-        this._appComponent = _appComponent;
         this.activatedRoute = activatedRoute;
         this.user = user;
+        this.dialog = dialog;
         this.plants = [];
         this.plant = new __WEBPACK_IMPORTED_MODULE_4__classes_plant_class__["a" /* Plant */]();
         this.paginaActual = 1;
@@ -3999,6 +4112,12 @@ var LibraryComponent = (function () {
             this.user.isAdmin = false;
         }
     };
+    LibraryComponent.prototype.openDialog = function (id, tipo) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
+            width: '600px',
+            data: { idObject: id, typeObject: tipo }
+        });
+    };
     LibraryComponent.prototype.ngOnInit = function () {
         this.comprobaciones();
         this.ActualizarPagina();
@@ -4010,9 +4129,9 @@ var LibraryComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_plant_service__["a" /* PlantService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
-            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */]])
+            __WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatDialog */]])
     ], LibraryComponent);
     return LibraryComponent;
 }());
@@ -4042,7 +4161,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/plants/newplant/newplant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.uploadPhoto()\" #forma=\"ngForm\">\n\t\t<h4>Datos Básicos</h4>\n\t  <div class=\"form-row\">\n\t    <div class=\"col\">\n\t      <input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Nombre común\" required>\n\t    </div>\n\t    <div class=\"col\">\n\t      <input type=\"text\" [(ngModel)]=\"plant.scientificName\" class=\"form-control\" name=\"scientificName\" placeholder=\"Nombre científico\" required>\n\t    </div>\n\t  </div>\n\t\t<br>\n\t\t<div class=\"form-group\">\n\t\t\t  <label for=\"photo_plant\">Foto</label>\n\t\t\t<div class=\"upload-btn-wrapper form-control \">\n\t\t\t  <button class=\"bttn\">Selecionar imagen</button>\n\t\t\t  <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\n\t\t\t</div>\n\t  </div>\n\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"plant.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\"></textarea>\n\t\t</div>\n\t\t<h4>Datos Técnicos</h4>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"family_plant\">Familia</label>\n\t\t\t\t <select class=\"form-control\" id=\"family_plant\" [(ngModel)]=\"plant.family\" name=\"family\" required>\n\t\t\t\t\t <option *ngFor=\"let family of families\" value=\"{{family.id}}\">{{family.name}}</option>\n\t\t\t\t </select>\n\t    </div>\n\n\t    <div class=\"form-group col-md-6\">\n\t      <label for=\"resist_plant\">Resistencia</label>\n\t      <input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.diseaseResist\" name=\"diseaseResist\" id=\"resist_plant\" placeholder=\"Se mide en ºC\" required>\n\t    </div>\n  \t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"depth_plant\">Profundidad</label>\n\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.depth\" name=\"depth\" id=\"depth_plant\" placeholder=\"Se mide en cm\" required >\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"distance_plant\">Distancia</label>\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.distance\" name=\"distance\" id=\"distance_plant\" placeholder=\"Se mide en cm\" required>\n\t\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"photo_plant\">Modelo 3D</label>\n\n\t\t\t<div class=\"upload-btn-wrapper form-control \">\n\t\t\t\t<button class=\"bttn\">Selecionar</button>\n\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" />\n\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"leaveType\">Tipo hoja</label>\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.leaveType\" name=\"leaveType\" id=\"leaveType\" placeholder=\"Caduca o perenne\" required>\n\t\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-group\">\n\n\t  </div>\n\n\t<h4>Calendario</h4>\n\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Plantación</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initplant\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDatePlant\" name=\"initplant\" id=\"date_initplant\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_endplant\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDatePlant\" name=\"endplant\" id=\"date_endplant\" >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n  </fieldset>\n\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Floración</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initDateBloom\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateBloom\" name=\"initDateBloom\" id=\"date_initDateBloom\" >\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_finDateBloom\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateBloom\" name=\"finDateBloom\" id=\"date_finDateBloom\" >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n\t  </fieldset>\n\t\t<fieldset class=\"form-group\">\n\t    <div class=\"row\">\n\t      <legend class=\"col-md-6 mb-3\">Cosecha</legend>\n\t\t\t\t<div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initDateHarvest\">Inicio</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateHarvest\" name=\"initDateHarvest\" id=\"date_initDateHarvest\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_finDateHarvest\">Fin</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateHarvest\" name=\"finDateHarvest\" id=\"date_finDateHarvest\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t    </div>\n\t  </fieldset>\n\t\t<!-- <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n\t\t<button [routerLink] =\"['/library']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button> -->\n\t</form>\n\t<!-- <form (ngSubmit)=\"this.uploadPhoto()\"  method=\"post\">\n\t\t<h4>Tratamiento</h4>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"treatment_plant\">Tratamiento</label>\n\t\t\t\t <select class=\"form-control\" id=\"treatment_plant\" [(ngModel)]=\"treatmentPlant.plant\"  required>\n\t\t\t\t\t <option *ngFor=\"let treatment of treatments\" value=\"{{treatment.id}}\">{{treatment.name}}</option>\n\t\t\t\t </select>\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t<label for=\"frequency_treatmentPlant\">Frecuencia</label>\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.frequency\" name=\"frequency\" id=\"frequency_treatmentPlant\" placeholder=\"Se mide en días\">\n\t\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"date_initDateHarvest\">Inicio</label>\n\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.initDate\" name=\"initDateHarvest\" id=\"date_initDateHarvest\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t<label for=\"date_finDateHarvest\">Fin</label>\n\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.finalDate\" name=\"finDateHarvest\" id=\"date_finDateHarvest\">\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"form-row\">\n\t\t\t<div class=\"form-group col-md-2\">\n\t\t\t\t\t<button type=\"submit\" class=\"btn btn-success\">Añadir tratamiento</button>\n\t\t\t</div>\n\t\t</div>\n\t</form> -->\n<button  (click)=\"this.uploadPhoto()\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n<button [routerLink] =\"['/library']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.uploadPhoto()\" #forma=\"ngForm\">\r\n\t\t\t<h4>Datos Básicos</h4>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Nombre común\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"col\">\r\n\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"plant.scientificName\" class=\"form-control\" name=\"scientificName\" placeholder=\"Nombre científico\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<br>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<label for=\"photo_plant\">Foto</label>\r\n\t\t\t\t<div class=\"upload-btn-wrapper form-control \">\r\n\t\t\t\t\t<button class=\"bttn\">Selecionar imagen</button>\r\n\t\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"plant.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\"></textarea>\r\n\t\t\t</div>\r\n\t\t\t<h4>Datos Técnicos</h4>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"family_plant\">Familia</label>\r\n\t\t\t\t\t<select class=\"form-control\" id=\"family_plant\" [(ngModel)]=\"plant.family\" name=\"family\" required>\r\n\t\t\t\t\t <option *ngFor=\"let family of families\" value=\"{{family.id}}\">{{family.name}}</option>\r\n\t\t\t\t </select>\r\n\t\t\t\t</div>\r\n\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"resist_plant\">Resistencia</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.diseaseResist\" name=\"diseaseResist\" id=\"resist_plant\" placeholder=\"Se mide en ºC\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"depth_plant\">Profundidad</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.depth\" name=\"depth\" id=\"depth_plant\" placeholder=\"Se mide en cm\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"distance_plant\">Distancia</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.distance\" name=\"distance\" id=\"distance_plant\" placeholder=\"Se mide en cm\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"photo_plant\">Modelo 3D</label>\r\n\r\n\t\t\t\t\t<div class=\"upload-btn-wrapper form-control \">\r\n\t\t\t\t\t\t<button class=\"bttn\">Selecionar</button>\r\n\t\t\t\t\t\t<input type=\"file\" name=\"myfile\" id=\"photo_plant\" />\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"leaveType\">Tipo hoja</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"plant.leaveType\" name=\"leaveType\" id=\"leaveType\" placeholder=\"Caduca o perenne\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\r\n\t\t\t</div>\r\n\r\n\t\t\t<h4>Calendario</h4>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Plantación</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initplant\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDatePlant\" name=\"initplant\" id=\"date_initplant\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_endplant\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDatePlant\" name=\"endplant\" id=\"date_endplant\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Floración</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initDateBloom\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateBloom\" name=\"initDateBloom\" id=\"date_initDateBloom\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_finDateBloom\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateBloom\" name=\"finDateBloom\" id=\"date_finDateBloom\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<legend class=\"col-md-6 mb-3\">Cosecha</legend>\r\n\t\t\t\t\t<div class=\"form-row\">\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_initDateHarvest\">Inicio</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.initDateHarvest\" name=\"initDateHarvest\" id=\"date_initDateHarvest\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t\t\t<label for=\"date_finDateHarvest\">Fin</label>\r\n\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"plant.finDateHarvest\" name=\"finDateHarvest\" id=\"date_finDateHarvest\">\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</fieldset>\r\n\t\t</form>\r\n\t\t<button (click)=\"this.uploadPhoto()\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t<button [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4073,13 +4192,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { Treatment } from "../../../classes/treatment.class";
-// import { TreatmentPlant } from "../../../classes/treatmentPlant.class";
-// import { TreatmentService } from "../../../services/treatment.service";
-var NewplantComponent = (function () {
+var NewplantComponent = /** @class */ (function () {
     function NewplantComponent(_plantService, 
-        // private _treatmentService:TreatmentService,
-        _appComponent, _ng2ImgMax) {
+    // private _treatmentService:TreatmentService,
+    _appComponent, _ng2ImgMax) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
         this._ng2ImgMax = _ng2ImgMax;
@@ -4184,7 +4300,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".iconplant{\n  max-width: 25px;\n  max-height: 25px;\n}\nsection{\n  margin-top: 2.5%;\n  padding: 2%;\n}\narticle{\n  margin-top: 1%;\n  padding: 2%;\n}\ndiv{\n  margin-top: 0;\n}\n\n\n/* img{\n  max-width: 420px;\n  max-height: 400px;\n} */\n\n/* img{\n  width: 300px;\n  height: 300px;\n} */\ndl {\n  width: 100%;\n  overflow: hidden;\n  padding: 0;\n  margin: 0\n}\ndt {\n  float: left;\n  width: 50%;\n  /* adjust the width; make sure the total of both is 100% */\n  padding: 0;\n  margin: 0\n}\ndd{\n  float: left;\n  width: 50%;\n  padding: 0;\n  margin: 0;\n}\nh1{\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, ".iconplant{\r\n  max-width: 25px;\r\n  max-height: 25px;\r\n}\r\nsection{\r\n  margin-top: 2.5%;\r\n  padding: 2%;\r\n}\r\narticle{\r\n  margin-top: 1%;\r\n  padding: 2%;\r\n}\r\ndiv{\r\n  margin-top: 0;\r\n}\r\n\r\n\r\n/* img{\r\n  max-width: 420px;\r\n  max-height: 400px;\r\n} */\r\n\r\n/* img{\r\n  width: 300px;\r\n  height: 300px;\r\n} */\r\ndl {\r\n  width: 100%;\r\n  overflow: hidden;\r\n  padding: 0;\r\n  margin: 0\r\n}\r\ndt {\r\n  float: left;\r\n  width: 50%;\r\n  /* adjust the width; make sure the total of both is 100% */\r\n  padding: 0;\r\n  margin: 0\r\n}\r\ndd{\r\n  float: left;\r\n  width: 50%;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\nh1{\r\n  text-align: center;\r\n}\r\n", ""]);
 
 // exports
 
@@ -4197,7 +4313,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/plants/plant/plant.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"container vistaAdmin\" >\n    <h1>{{plant.commonName}}</h1>\n    <div class=\"row\"> -->\n      <!-- <section class=\"card\">\n        <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\n        <h2>Descripción</h2>\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n      </section> -->\n    <!-- </div>\n    <div class=\"row\">\n      <div class=\"col\"> -->\n        <!--delante de la url https://gardiot.ovh/ -->\n\n        <!-- <section class=\"card\">\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\n          <dl>\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\n          </dl>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n            <p *ngIf=\"plant.depth !=undefined\">\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.distance !=undefined\">\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\n            </p>\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\n            </p>\n            <p *ngIf=\"plant.leaveType !=undefined\">\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\n            </p>\n        </section>\n      </div>\n      <div class=\"col\">\n        <section class=\"card\">\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\n          </p>\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\n          </p>\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\n          </p>\n        </section>\n      </div>\n    </div>\n\n    <section>\n      <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n    </section>\n\n\n\n</div> -->\n\n\n<section class=\"container vistaAdmin\">\n  <h1>{{plant.commonName}}</h1>\n  <article class=\"row\">\n    <div class=\"col\">\n      <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\" class=\"rounded img-fluid\" >\n    </div>\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush\">\n        <li *ngIf=\"plant.depth !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">Profundidad de siembra {{plant.depth}} cm</li>\n        <li *ngIf=\"plant.distance !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">Distancia entre plantas {{plant.distance}} cm</li>\n        <li *ngIf=\"plant.diseaseResist !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">Resistencia al frío {{plant.diseaseResist}}</li>\n      </ul>\n    </div>\n    <div class=\"col\">\n      <ul class=\"list-group list-group-flush \">\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-group-item\"><img class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-group-item\">  <img class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\n      </ul>\n    </div>\n  </article>\n  <!-- <article class=\"row\">\n      <ul class=\"list-inline \">\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-inline-item\">  <img class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\n      </ul>\n  </article> -->\n  <article class=\"row\">\n    <div class=\"col\">\n    <ul class=\" list-group list-group-flush\">\n      <li *ngIf=\"plant.commonName !=undefined\" class=\"list-group-item\">Nombre común: {{plant.commonName}}</li>\n      <li *ngIf=\"plant.scientificName !=undefined\" class=\"list-group-item\">Nombre científico: {{plant.scientificName}}</li>\n      <li *ngIf=\"plant.family !=undefined\" class=\"list-group-item\">Familia: {{plant.family}}</li>\n    </ul>\n    </div>\n  </article>\n\n  <article class=\"row\">\n    <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\n  </article>\n\n  <article>\n    <h2>Tratamientos</h2>\n      <section *ngFor=\"let treatment of treatments\">\n        <img *ngIf=\"treatment.icon !=undefined\" class=\"iconplant\" src=\"{{treatment.icon}}\" alt=\"Tratamiento\">\n        <h5 *ngIf=\"treatment.name !=undefined\">{{treatment.name}}</h5>\n        <p *ngIf=\"treatment.description !=undefined\">{{treatment.description}}</p>\n        <h6 *ngIf=\"productTreatments !=undefined\">Productos</h6>\n        <ul *ngFor=\"let producttreatment of productTreatments\">\n          <li class=\"list-group-item\" *ngIf = \"treatment.id == producttreatment.treatment\">{{producttreatment.name}}</li>\n        </ul>\n      </section>\n  </article>\n</section>\n"
+module.exports = "<!-- <div class=\"container vistaAdmin\" >\r\n    <h1>{{plant.commonName}}</h1>\r\n    <div class=\"row\"> -->\r\n<!-- <section class=\"card\">\r\n        <button [routerLink] =\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-primary\" name=\"button\">Volver a Biblioteca</button>\r\n        <h2>Descripción</h2>\r\n        <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\r\n      </section> -->\r\n<!-- </div>\r\n    <div class=\"row\">\r\n      <div class=\"col\"> -->\r\n<!--delante de la url https://gardiot.ovh/ -->\r\n\r\n<!-- <section class=\"card\">\r\n          <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\">\r\n          <dl>\r\n            <dt *ngIf=\"plant.commonName !=undefined\">Nombre común</dt>\r\n            <dd *ngIf=\"plant.commonName !=undefined\">{{plant.commonName}}</dd>\r\n            <dt *ngIf=\"plant.scientificName !=undefined\">Nombre científico</dt>\r\n            <dd *ngIf=\"plant.scientificName !=undefined\">{{plant.scientificName}}</dd>\r\n            <dt *ngIf=\"plant.family !=undefined\">Familia</dt>\r\n            <dd *ngIf=\"plant.family !=undefined\"> {{plant.family}}</dd>\r\n          </dl>\r\n        </section>\r\n      </div>\r\n      <div class=\"col\">\r\n        <section class=\"card\">\r\n            <p *ngIf=\"plant.depth !=undefined\">\r\n              <img *ngIf=\"plant.depth !=undefined\" class=\"iconplant\"src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">\r\n              Profundidad de siembra <strong>{{plant.depth}} cm</strong>\r\n            </p>\r\n            <p *ngIf=\"plant.distance !=undefined\">\r\n              <img *ngIf=\"plant.distance !=undefined\" class=\"iconplant\"src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">\r\n              Distancia entre plantas <strong>{{plant.distance}} cm</strong>\r\n            </p>\r\n            <p *ngIf=\"plant.diseaseResist !=undefined\">\r\n              <img *ngIf=\"plant.diseaseResist !=undefined\" class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">\r\n              Resistencia al frío <strong>{{plant.diseaseResist}}</strong>\r\n            </p>\r\n            <p *ngIf=\"plant.leaveType !=undefined\">\r\n              <img *ngIf=\"plant.leaveType !=undefined\" class=\"iconplant\"src=\"assets/images/icon/hoja.png\" alt=\"Hoja\">\r\n              Tipo de hoja <strong>{{plant.leaveType}}</strong>\r\n            </p>\r\n        </section>\r\n      </div>\r\n      <div class=\"col\">\r\n        <section class=\"card\">\r\n          <p *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\">\r\n            <img *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">\r\n            Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong>\r\n          </p>\r\n          <p *ngIf=\"iniFlores !=undefined && finFlores !=undefined\">\r\n            <img *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">\r\n            Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong>\r\n          </p>\r\n          <p *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\">\r\n            <img *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">\r\n            Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong>\r\n          </p>\r\n        </section>\r\n      </div>\r\n    </div>\r\n\r\n    <section>\r\n      <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\r\n    </section>\r\n\r\n\r\n\r\n</div> -->\r\n\r\n\r\n<section class=\"container vistaAdmin\">\r\n  <h1>{{plant.commonName}}</h1>\r\n  <article class=\"row\">\r\n    <div class=\"col\">\r\n      <img *ngIf=\"plant.photo !=undefined\" src=\"{{plant.photo}}\" alt=\"puerros\" class=\"rounded img-fluid\">\r\n    </div>\r\n    <div class=\"col\">\r\n      <ul class=\"list-group list-group-flush\">\r\n        <li *ngIf=\"plant.depth !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/descargar.png\" alt=\"Profundidad de siembra\">Profundidad de siembra {{plant.depth}} cm</li>\r\n        <li *ngIf=\"plant.distance !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/separacion.png\" alt=\"Separación de siembra\">Distancia entre plantas {{plant.distance}} cm</li>\r\n        <li *ngIf=\"plant.diseaseResist !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/hielo.png\" alt=\"Hielo\">Resistencia al frío {{plant.diseaseResist}}</li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"col\">\r\n      <ul class=\"list-group list-group-flush \">\r\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\r\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-group-item\"><img class=\"iconplant\" src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\r\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-group-item\"> <img class=\"iconplant\" src=\"assets/images/icon/cosecha.png\" alt=\"Floración\"> Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\r\n      </ul>\r\n    </div>\r\n  </article>\r\n  <!-- <article class=\"row\">\r\n      <ul class=\"list-inline \">\r\n        <li *ngIf=\"iniSiembra !=undefined && finSiembra !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/siembra.png\" alt=\"Siembra\">Se siembra entre <strong>{{iniSiembra}}</strong> y <strong>{{finSiembra}}</strong></li>\r\n        <li *ngIf=\"iniFlores !=undefined && finFlores !=undefined\" class=\"list-inline-item\"><img class=\"iconplant\"src=\"assets/images/icon/girasol.png\" alt=\"Floración\">Florece entre <strong>{{iniFlores}}</strong> y <strong>{{finFlores}}</strong></li>\r\n        <li *ngIf=\"iniRecolectar !=undefined && finRecolectar !=undefined\" class=\"list-inline-item\">  <img class=\"iconplant\"src=\"assets/images/icon/cosecha.png\" alt=\"Floración\">  Se recolecta entre <strong>{{iniRecolectar}}</strong> y <strong>{{finRecolectar}}</strong></li>\r\n      </ul>\r\n  </article> -->\r\n  <article class=\"row\">\r\n    <div class=\"col\">\r\n      <ul class=\" list-group list-group-flush\">\r\n        <li *ngIf=\"plant.commonName !=undefined\" class=\"list-group-item\">Nombre común: {{plant.commonName}}</li>\r\n        <li *ngIf=\"plant.scientificName !=undefined\" class=\"list-group-item\">Nombre científico: {{plant.scientificName}}</li>\r\n        <li *ngIf=\"plant.family !=undefined\" class=\"list-group-item\">Familia: {{plant.family}}</li>\r\n      </ul>\r\n    </div>\r\n  </article>\r\n\r\n  <article class=\"row\">\r\n    <p *ngIf=\"plant.description !=undefined\">{{plant.description}}</p>\r\n  </article>\r\n\r\n  <article>\r\n    <h2>Tratamientos</h2>\r\n    <section *ngFor=\"let treatment of treatments\">\r\n      <img *ngIf=\"treatment.icon !=undefined\" class=\"iconplant\" src=\"{{treatment.icon}}\" alt=\"Tratamiento\">\r\n      <h5 *ngIf=\"treatment.name !=undefined\">{{treatment.name}}</h5>\r\n      <p *ngIf=\"treatment.description !=undefined\">{{treatment.description}}</p>\r\n      <h6 *ngIf=\"productTreatments !=undefined\">Productos</h6>\r\n      <ul *ngFor=\"let producttreatment of productTreatments\">\r\n        <li class=\"list-group-item\" *ngIf=\"treatment.id == producttreatment.treatment\">{{producttreatment.name}}</li>\r\n      </ul>\r\n    </section>\r\n  </article>\r\n</section>\r\n"
 
 /***/ }),
 
@@ -4233,7 +4349,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantComponent = (function () {
+var PlantComponent = /** @class */ (function () {
     function PlantComponent(_plantService, _treatmentPlantService, _router, user, _route) {
         this._plantService = _plantService;
         this._treatmentPlantService = _treatmentPlantService;
@@ -4428,7 +4544,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/editproduct/editproduct.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_product\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"product.name\" name=\"name\" id=\"name_product\" required>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"type_product\">Tipo</label>\n         <select class=\"form-control\" id=\"type_product\" [(ngModel)]=\"product.type\" name=\"type\" required>\n           <option>Fungicida</option>\n           <option>Abono</option>\n           <option>Plaguicida</option>\n         </select>\n      </div>\n    </div>\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"product.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\n\t\t</div>\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/products']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_product\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"product.name\" name=\"name\" id=\"name_product\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"type_product\">Tipo</label>\r\n\t\t\t\t\t<select class=\"form-control\" id=\"type_product\" [(ngModel)]=\"product.type\" name=\"type\" required>\r\n           <option>Fungicida</option>\r\n           <option>Abono</option>\r\n           <option>Plaguicida</option>\r\n         </select>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"product.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4456,7 +4572,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditproductComponent = (function () {
+var EditproductComponent = /** @class */ (function () {
     function EditproductComponent(_productService, _appComponent, _router, _route) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4543,7 +4659,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/listproduct/listproduct.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-container wrap\">\n  <h1>Productos</h1>\n\n  <form (ngSubmit)=\"this.searchcontent()\" class=\"form-row\" #forma=\"ngForm\" >\n    <article class=\"form-group col-md-4\">\n      <input type=\"text\"   class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button  [routerLink]=\"['/admin/newproduct']\" class=\"btn btn-outline-primary\">Nuevo Producto</button>\n    </article>\n  </form>\n  <table class=\"table table-hover\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Nombre</th>\n      <th scope=\"col\">Tipo</th>\n      <th scope=\"col\">Descripción</th>\n      <th scope=\"col\">Modificar</th>\n      <th scope=\"col\">Eliminar</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let product of products\">\n      <th scope=\"row\">{{product.name}}</th>\n      <td>{{product.type}}</td>\n      <td>{{product.description}}</td>\n      <td><button  class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editproduct/',product.id]\">Modificar</button></td>\n      <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(product.id)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\n      <td><button  class=\"btn btn-outline-danger\" (click)=\"openDialog(product.id)\" >Eliminar</button></td>\n    </tr>\n  </tbody>\n</table>\n  <app-pagination [count]=\"this.numeroItems\" [type]=\"3\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Productos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"product.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newproduct']\" class=\"btn btn-outline-primary\">Nuevo Producto</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let product of products\">\r\n          <th scope=\"row\">{{product.name}}</th>\r\n          <td>{{product.type}}</td>\r\n          <td>{{product.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editproduct/',product.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(product.id)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(product.id,1)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"3\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4573,7 +4689,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListproductComponent = (function () {
+var ListproductComponent = /** @class */ (function () {
     function ListproductComponent(_productService, activatedRoute, dialog) {
         this._productService = _productService;
         this.activatedRoute = activatedRoute;
@@ -4599,8 +4715,7 @@ var ListproductComponent = (function () {
             });
         }
         else {
-            //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
-            console.log("assss");
+            this.searchcontent(this.paginaActual, this.elementosPorPagina);
         }
     };
     ListproductComponent.prototype.ActualizarPagina = function () {
@@ -4631,10 +4746,29 @@ var ListproductComponent = (function () {
             console.error(error);
         });
     };
-    ListproductComponent.prototype.openDialog = function (id) {
+    ListproductComponent.prototype.searchcontent = function (page, items) {
+        var _this = this;
+        this._productService.searchAll(this.product, page, items)
+            .subscribe(function (data) {
+            if (data[0] != undefined) {
+                _this.products = [];
+                _this.numeroItems = data[0].num;
+                if (_this.estado == false) {
+                    _this.paginaActual = 1;
+                    _this.estado = true;
+                }
+                for (var key$ in data) {
+                    _this.products.push(data[key$]);
+                }
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    ListproductComponent.prototype.openDialog = function (id, tipo) {
         var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
             width: '600px',
-            data: id
+            data: { idObject: id, typeObject: tipo }
         });
         // dialogRef.afterClosed().subscribe(result=> {
         //   console.log(`Dialog closed: ${result}`);
@@ -4682,7 +4816,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/newproduct/newproduct.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_product\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"product.name\" name=\"name\" id=\"name_product\" required>\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"type_product\">Tipo</label>\n         <select class=\"form-control\" id=\"type_product\" [(ngModel)]=\"product.type\" name=\"type\" required>\n           <option>Fungicida</option>\n           <option>Abono</option>\n           <option>Plaguicida</option>\n         </select>\n      </div>\n    </div>\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"product.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\n\t\t</div>\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/products']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_product\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"product.name\" name=\"name\" id=\"name_product\" required>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"type_product\">Tipo</label>\r\n\t\t\t\t\t<select class=\"form-control\" id=\"type_product\" [(ngModel)]=\"product.type\" name=\"type\" required>\r\n           <option>Fungicida</option>\r\n           <option>Abono</option>\r\n           <option>Plaguicida</option>\r\n         </select>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"product.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4708,7 +4842,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewproductComponent = (function () {
+var NewproductComponent = /** @class */ (function () {
     function NewproductComponent(_productService, _appComponent) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4764,7 +4898,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/product/product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  product works!\n</p>\n"
+module.exports = "<p>\r\n  product works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -4784,7 +4918,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductComponent = (function () {
+var ProductComponent = /** @class */ (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
@@ -4825,7 +4959,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatments/edittreatment/edittreatment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_product\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"treatment.name\" name=\"name\" id=\"name_product\" required>\n      </div>\n    </div>\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"treatment.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\n\t\t</div>\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_product\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"treatment.name\" name=\"name\" id=\"name_product\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"treatment.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4853,7 +4987,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdittreatmentComponent = (function () {
+var EdittreatmentComponent = /** @class */ (function () {
     function EdittreatmentComponent(_treatmentService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -4939,7 +5073,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatments/listtreatment/listtreatment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-container wrap\">\n  <h1>Tratamientos</h1>\n\n  <form (ngSubmit)=\"this.searchcontent()\" class=\"form-row\" #forma=\"ngForm\" >\n    <article class=\"form-group col-md-4\">\n      <input type=\"text\"   class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button  [routerLink]=\"['/admin/newtreatment']\" class=\"btn btn-outline-primary\">Nuevo Tratamiento</button>\n    </article>\n  </form>\n  <table class=\"table table-hover\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Nombre</th>\n      <th scope=\"col\">Descripción</th>\n      <th scope=\"col\">Modificar</th>\n      <th scope=\"col\">Eliminar</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let treatment of treatments\">\n      <th scope=\"row\">{{treatment.name}}</th>\n      <td>{{treatment.description}}</td>\n      <td><button  class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edittreatment/',treatment.id]\" >Modificar</button></td>\n      <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(treatment.id)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td>\n    </tr>\n  </tbody>\n</table>\n<app-pagination [count]=\"this.numeroItems\" [type]=\"2\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Tratamientos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"treatment.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newtreatment']\" class=\"btn btn-outline-primary\">Nuevo Tratamiento</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let treatment of treatments\">\r\n          <th scope=\"row\">{{treatment.name}}</th>\r\n          <td>{{treatment.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edittreatment/',treatment.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(treatment.id)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(treatment.id,2)\">Eliminar</button></td>\r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"2\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -4952,6 +5086,8 @@ module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-cont
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_treatment_service__ = __webpack_require__("../../../../../src/app/services/treatment.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_treatment_class__ = __webpack_require__("../../../../../src/app/classes/treatment.class.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4965,10 +5101,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListtreatmentComponent = (function () {
-    function ListtreatmentComponent(_treatmentService, activatedRoute) {
+
+
+var ListtreatmentComponent = /** @class */ (function () {
+    function ListtreatmentComponent(_treatmentService, activatedRoute, dialog) {
         this._treatmentService = _treatmentService;
         this.activatedRoute = activatedRoute;
+        this.dialog = dialog;
         this.treatments = [];
         this.treatment = new __WEBPACK_IMPORTED_MODULE_2__classes_treatment_class__["a" /* Treatment */]();
         this.paginaActual = 1;
@@ -5021,6 +5160,31 @@ var ListtreatmentComponent = (function () {
             console.error(error);
         });
     };
+    ListtreatmentComponent.prototype.searchcontent = function (page, items) {
+        var _this = this;
+        this._treatmentService.searchAll(this.treatment, page, items)
+            .subscribe(function (data) {
+            if (data[0] != undefined) {
+                _this.treatments = [];
+                _this.numeroItems = data[0].num;
+                if (_this.estado == false) {
+                    _this.paginaActual = 1;
+                    _this.estado = true;
+                }
+                for (var key$ in data) {
+                    _this.treatments.push(data[key$]);
+                }
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    ListtreatmentComponent.prototype.openDialog = function (id, tipo) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
+            width: '600px',
+            data: { idObject: id, typeObject: tipo }
+        });
+    };
     ListtreatmentComponent.prototype.ngOnInit = function () {
         this.ActualizarPagina();
     };
@@ -5031,7 +5195,8 @@ var ListtreatmentComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/components/treatments/listtreatment/listtreatment.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_treatment_service__["a" /* TreatmentService */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */]])
     ], ListtreatmentComponent);
     return ListtreatmentComponent;
 }());
@@ -5061,7 +5226,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatments/newtreatment/newtreatment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n<section class=\"container main-container\">\n\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\n\t  <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"name_product\">Nombre</label>\n        <input type=\"text\" class=\"form-control\" [(ngModel)]=\"treatment.name\" name=\"name\" id=\"name_product\" required>\n      </div>\n    </div>\n\t\t<div class=\"form-group\">\n\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"treatment.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\n\t\t</div>\n    <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n    <button [routerLink] =\"['/admin/products']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n\t</form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<section class=\"container main-container\">\r\n\t\t<form (ngSubmit)=\"this.guardar()\" #forma=\"ngForm\">\r\n\t\t\t<div class=\"form-row\">\r\n\t\t\t\t<div class=\"form-group col-md-6\">\r\n\t\t\t\t\t<label for=\"name_product\">Nombre</label>\r\n\t\t\t\t\t<input type=\"text\" class=\"form-control\" [(ngModel)]=\"treatment.name\" name=\"name\" id=\"name_product\" required>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"form-group\">\r\n\t\t\t\t<textarea class=\"form-control\" [(ngModel)]=\"treatment.description\" name=\"description\" placeholder=\"Descripción\" required rows=\"3\" required></textarea>\r\n\t\t\t</div>\r\n\t\t\t<button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n\t\t\t<button [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\t\t</form>\r\n\t</section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5087,7 +5252,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentComponent = (function () {
+var NewtreatmentComponent = /** @class */ (function () {
     function NewtreatmentComponent(_treatmentService, _appComponent) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -5143,7 +5308,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatments/treatment/treatment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  treatment works!\n</p>\n"
+module.exports = "<p>\r\n  treatment works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -5163,7 +5328,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var TreatmentComponent = (function () {
+var TreatmentComponent = /** @class */ (function () {
     function TreatmentComponent() {
     }
     TreatmentComponent.prototype.ngOnInit = function () {
@@ -5204,7 +5369,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatmentsplants/newtreatmentsplants/newtreatmentsplants.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n<section class=\"container main-container\" >\n  <h2>Tratamiento</h2>\n  <form (ngSubmit)=\"this.guardar()\"  method=\"post\">\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"treatment_plant\">Tratamiento</label>\n         <select class=\"form-control\" id=\"treatment_plant\" [(ngModel)]=\"treatmentPlant.treatment\" name=\"treatment\"  required>\n           <option *ngFor=\"let treatment of treatments\" value=\"{{treatment.id}}\">{{treatment.name}}</option>\n         </select>\n      </div>\n      <div class=\"form-group col-md-6\">\n          <label for=\"frequency_treatmentPlant\">Frecuencia</label>\n          <input type=\"number\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.frequency\" name=\"frequency\" id=\"frequency_treatmentPlant\" placeholder=\"Se mide en días\">\n        </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"date_initDate\">Inicio</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.initDate\" name=\"initDate\" id=\"date_initDate\">\n      </div>\n      <div class=\"form-group col-md-6\">\n        <label for=\"date_initDate\">Fin</label>\n        <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.finalDate\" name=\"initDate\" id=\"date_initDate\">\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-6\">\n        <label for=\"product_plant\">Productos</label>\n         <select class=\"form-control selectpicker\" multiple  id=\"product_plant\" [(ngModel)]=\"productTreatment.product\" name=\"product\" >\n           <option *ngFor=\"let product of products\" value=\"{{product.id}}\">{{product.name}}</option>\n         </select>\n      </div>\n    </div>\n    <div class=\"form-row\">\n      <div class=\"form-group col-md-2\">\n          <button type=\"submit\" class=\"btn btn-success\">Añadir tratamiento</button>\n      </div>\n      <div class=\"form-group col-md-2\">\n          <button [routerLink] =\"['/library']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\n      </div>\n    </div>\n  </form>\n</section>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <section class=\"container main-container\">\r\n    <h2>Tratamiento</h2>\r\n    <form (ngSubmit)=\"this.guardar()\" method=\"post\">\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"treatment_plant\">Tratamiento</label>\r\n          <select class=\"form-control\" id=\"treatment_plant\" [(ngModel)]=\"treatmentPlant.treatment\" name=\"treatment\" required>\r\n           <option *ngFor=\"let treatment of treatments\" value=\"{{treatment.id}}\">{{treatment.name}}</option>\r\n         </select>\r\n        </div>\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"frequency_treatmentPlant\">Frecuencia</label>\r\n          <input type=\"number\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.frequency\" name=\"frequency\" id=\"frequency_treatmentPlant\" placeholder=\"Se mide en días\">\r\n        </div>\r\n      </div>\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"date_initDate\">Inicio</label>\r\n          <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.initDate\" name=\"initDate\" id=\"date_initDate\">\r\n        </div>\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"date_initDate\">Fin</label>\r\n          <input type=\"date\" class=\"form-control\" [(ngModel)]=\"treatmentPlant.finalDate\" name=\"initDate\" id=\"date_initDate\">\r\n        </div>\r\n      </div>\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"product_plant\">Productos</label>\r\n          <select class=\"form-control selectpicker\" multiple id=\"product_plant\" [(ngModel)]=\"productTreatment.product\" name=\"product\">\r\n           <option *ngFor=\"let product of products\" value=\"{{product.id}}\">{{product.name}}</option>\r\n         </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-2\">\r\n          <button type=\"submit\" class=\"btn btn-success\">Añadir tratamiento</button>\r\n        </div>\r\n        <div class=\"form-group col-md-2\">\r\n          <button [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5238,7 +5403,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentsplantsComponent = (function () {
+var NewtreatmentsplantsComponent = /** @class */ (function () {
     function NewtreatmentsplantsComponent(_treatmentService, _productService, _treatmentPlantService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._productService = _productService;
@@ -5335,7 +5500,7 @@ var NewtreatmentsplantsComponent = (function () {
 /***/ "../../../../../src/app/components/user/detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"container main-container\">\n  <h1>\n    Bienvenido a Gardiot, tu email es {{this.user.id}}\n  </h1>\n  <div class=\"wrap\">\n    <div class=\"card-columns\">\n      <div class=\"card text-white bg-success mb-3\" [routerLink]=\"[gardenRoute]\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Jardín</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Visualiza y modifica los detalles de tu jardín 3D</h5>\n        </div>\n      </div>\n      <div class=\"card text-white bg-warning mb-3\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Biblioteca</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Accede a toda nuestra información botánica</h5>\n        </div>\n      </div>\n      <div class=\"card text-white bg-info mb-3\" [routerLink]=\"['/calendar']\" style=\"max-width: 25rem;\">\n        <div class=\"card-header\">Calendario</div>\n        <div class=\"card-body\">\n          <h5 class=\"card-title\">Revisa los cuidados que necesita tu jardín</h5>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container main-container\">\r\n  <div [routerLink]=\"['/calendar']\">\r\n    <div class=\"row text-center\">\r\n      <div class=\"col-md-12\">\r\n        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div [ngSwitch]=\"view\">\r\n      <mwl-calendar-month-view *ngSwitchCase=\"'month'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" [activeDayIsOpen]=\"activeDayIsOpen\" (dayClicked)=\"dayClicked($event.day)\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-month-view>\r\n      <mwl-calendar-week-view *ngSwitchCase=\"'week'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-week-view>\r\n      <mwl-calendar-day-view *ngSwitchCase=\"'day'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-day-view>\r\n    </div>\r\n  </div>\r\n  <section class=\"herramienta\">\r\n    <article class=\"form-row\">\r\n      <div class=\"form-group col-md-6\">\r\n        <canvas [routerLink]=\"[gardenRoute]\" id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"450\"\r\n          height=\"350\"></canvas>\r\n      </div>\r\n      <div class=\"form-group col-md-6\">\r\n        <section *ngFor=\"let feed of feeds\" class=\"alert alert-success \" role=\"alert\">\r\n          <article class=\"form-row\">\r\n            <div class=\"form-group row-md-2\">\r\n              <h6>{{feed.name}} </h6>\r\n            </div>\r\n            <div class=\"form-group row-md-8\">  \r\n              <p>{{feed.text}} </p>\r\n            </div>\r\n            <div class=\"form-group row-md-1\">\r\n              <button class=\"btn btn-outline-primary\" (click)=\"cerrarfeed(feed.id)\">X</button>\r\n            </div>\r\n          </article>\r\n        </section>\r\n      </div>\r\n    </article>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5347,8 +5512,17 @@ module.exports = "\n\n<div class=\"container main-container\">\n  <h1>\n    Bien
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__classes_user_class__ = __webpack_require__("../../../../../src/app/classes/user.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_task_service__ = __webpack_require__("../../../../../src/app/services/task.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_feed_service__ = __webpack_require__("../../../../../src/app/services/feed.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__classes_task_class__ = __webpack_require__("../../../../../src/app/classes/task.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__classes_feed_class__ = __webpack_require__("../../../../../src/app/classes/feed.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5363,13 +5537,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var DetailComponent = (function () {
-    function DetailComponent(_detailService, _gardenService, _route) {
+
+
+
+
+
+
+
+
+var colors = {
+    red: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+    },
+    blue: {
+        primary: '#1e90ff',
+        secondary: '#D1E8FF'
+    },
+    yellow: {
+        primary: '#e3bc08',
+        secondary: '#FDF1BA'
+    }
+};
+var DetailComponent = /** @class */ (function () {
+    function DetailComponent(_detailService, _gardenService, _route, _taskService, _feedService, datePipe) {
         this._detailService = _detailService;
         this._gardenService = _gardenService;
         this._route = _route;
+        this._taskService = _taskService;
+        this._feedService = _feedService;
+        this.datePipe = datePipe;
+        this.view = 'week';
+        this.viewDate = new Date();
         this.user = new __WEBPACK_IMPORTED_MODULE_2__classes_user_class__["a" /* User */]("");
         this.gardenRoute = "";
+        this.feeds = [];
+        this.feed = new __WEBPACK_IMPORTED_MODULE_7__classes_feed_class__["a" /* Feed */]();
+        this.garden = new __WEBPACK_IMPORTED_MODULE_9__classes_garden_class__["a" /* Garden */]("");
+        this.tasks = [];
+        this.task = new __WEBPACK_IMPORTED_MODULE_6__classes_task_class__["a" /* Task */]();
+        this.refresh = new __WEBPACK_IMPORTED_MODULE_12_rxjs_Subject__["b" /* Subject */]();
+        this.events = [];
     }
     //Recoge los datos del usuario logueado y los guarda para mostrarlos
     DetailComponent.prototype.mostrar = function () {
@@ -5387,6 +5595,40 @@ var DetailComponent = (function () {
             _this._route.navigate(['/login']);
         });
     };
+    DetailComponent.prototype.mostrar2 = function () {
+        var _this = this;
+        this._gardenService.details()
+            .subscribe(function (data) {
+            if (data != null) {
+                _this.garden.id = data.id;
+                _this.garden.title = data.title;
+                _this.garden.width = data.width;
+                _this.garden.length = data.length;
+                _this.garden.longitude = data.longitude;
+                _this.garden.latitude = data.latitude;
+                _this.garden.soil = data.soil;
+                _this.garden.user = data.user;
+                _this.garden.countryCode = data.countryCode;
+                _this.garden.city = data.city;
+                _this.garden.plants = data.plants;
+                new iniciar("detail", _this.garden);
+            }
+            else {
+                _this._route.navigate(['/newgarden']);
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+            if (JSON.parse(error._body).Mensaje == 'No existe') {
+                _this._route.navigate(['/newgarden']);
+            }
+            else {
+                _this._route.navigate(['/detail']);
+            }
+        });
+    };
+    DetailComponent.prototype.inicializar = function () {
+        // new iniciar("detail", this.garden);
+    };
     DetailComponent.prototype.checkGarden = function () {
         var _this = this;
         this._gardenService.details()
@@ -5401,18 +5643,76 @@ var DetailComponent = (function () {
             console.error(JSON.parse(error._body).Mensaje);
         });
     };
+    DetailComponent.prototype.cargarfeeds = function () {
+        var _this = this;
+        this._feedService.showfeeds()
+            .subscribe(function (data) {
+            _this.feeds = [];
+            for (var key$ in data) {
+                _this.feeds.push(data[key$]);
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    DetailComponent.prototype.mostrartask = function () {
+        var _this = this;
+        var f = new Date();
+        var fecha_actual;
+        f.getDate();
+        f.getMonth() + 1;
+        f.getFullYear();
+        fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+        this._taskService.detailsAll(fecha_actual)
+            .subscribe(function (data) {
+            _this.tasks = [];
+            for (var key$ in data) {
+                _this.addEvent(data[key$].name + " " + data[key$].commonName, _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    DetailComponent.prototype.cerrarfeed = function (id) {
+        this._feedService.closefeed(id)
+            .subscribe(function (data) {
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    DetailComponent.prototype.addEvent = function (Ttitle, Tstart, Tend) {
+        this.events.push({
+            title: Ttitle,
+            start: Object(__WEBPACK_IMPORTED_MODULE_11_date_fns__["startOfDay"])(new Date(Tstart)),
+            end: Object(__WEBPACK_IMPORTED_MODULE_11_date_fns__["endOfDay"])(new Date(Tend)),
+            color: colors.red,
+            draggable: false,
+            resizable: {
+                beforeStart: true,
+                afterEnd: true
+            }
+        });
+        this.refresh.next();
+    };
     DetailComponent.prototype.ngOnInit = function () {
-        this.mostrar();
         this.checkGarden();
+        this.mostrar();
+        this.mostrar2();
+        this.inicializar();
+        this.mostrartask();
+        this.cargarfeeds();
     };
     DetailComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-detail',
             template: __webpack_require__("../../../../../src/app/components/user/detail.component.html")
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__services_user_service__["a" /* UserService */],
-            __WEBPACK_IMPORTED_MODULE_3__services_garden_service__["a" /* GardenService */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_8__services_garden_service__["a" /* GardenService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_4__services_task_service__["a" /* TaskService */],
+            __WEBPACK_IMPORTED_MODULE_5__services_feed_service__["a" /* FeedService */],
+            __WEBPACK_IMPORTED_MODULE_10__angular_common__["DatePipe"]])
     ], DetailComponent);
     return DetailComponent;
 }());
@@ -5424,7 +5724,7 @@ var DetailComponent = (function () {
 /***/ "../../../../../src/app/components/user/editprofile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\n  <h1>Mi perfil</h1>\n<section class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form  (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\n        <div class=\"divPhoto\" (click)=\"selectPhoto($event)\">\n          <div>\n          </div>\n          <i class=\"material-icons\">file_upload</i>\n        </div>\n      <input type=\"file\" (change)=\"uploadPhoto($event)\" ng2FileSelect [uploader]=\"uploader\" />\n        <div class=\"form-group\">\n          <label  for=\"name_user\">Nombre: </label>\n          <input  type=\"text\" [(ngModel)]=\"user.name\" name=\"name\" id=\"name_user\" required>\n        </div> \n        <div class=\"form-group\">\n          <label  for=\"lastname_user\">Apellidos: </label>\n          <input  type=\"text\" [(ngModel)]=\"user.lastName\" name=\"lastName\" id=\"lastname_user\">\n        </div>\n        <div class=\"form-group\">\n          <label  for=\"name_user\">Email: </label>\n          <label for=\"name_user\">{{this.user.id}}</label>\n        </div>\n\n        <div class=\"form-group\">\n          <label  for=\"birthday_user\">Fecha de nacimiento: </label>\n          <input  type=\"date\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\n        </div>\n\n        <div class=\"form-group\" ng-init=\"listarPaises()\">\n          <label for=\"countries\">País:</label>\n\n            <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\n            </select2>\n\n           </div>\n        <div class=\"form-group\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n        </div>\n\n        <div class=\"form-group\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n        </div>\n\n        <!--<div class=\"form-group\">\n          <label for=\"birthDate_user\">Fecha de nacimiento: </label>\n          <input [(ngModel)]=\"user.birthDate\" type=\"date\" name=\"birthDate\" id=\"birthDate_user\"  >\n        </div>-->\n\n        <h3>Cambiar contraseña</h3>\n        <div class=\"form-group\">\n          <label for=\"oldPassword_user\">Introduce tu contraseña actual</label>\n          <input [(ngModel)]=\"user.oldPassword\" type=\"password\" name=\"oldPassword\" id=\"oldPassword_user\" >\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password_user\">Introduce tu nueva contraseña</label>\n          <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" id=\"password_user\" >\n        </div>\n        <div class=\"form-group\">\n          <label for=\"password2_user\">Repite tu contraseña</label>\n          <input [(ngModel)]=\"user.password2\" type=\"password\" name=\"password2\" id=\"password2_user\" >\n        </div>\n        <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\n        <button [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\n      </form>\n    </div>\n  </div>\n</section>\n</div>\n\n\n\n<!-- button to trigger the file upload when submitted -->\n<!--<button type=\"button\" class=\"btn btn-success btn-s\" (click)=\"uploader.uploadAll()\" [disabled]=\"!uploader.getNotUploadedItems().length\">\n      Upload with ng-2 file uploader\n</button>-->\n"
+module.exports = "<div class=\"container main-container\">\r\n  <h1>Mi perfil</h1>\r\n  <section class=\"container\">\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\r\n          <div class=\"divPhoto\" (click)=\"selectPhoto($event)\">\r\n            <div>\r\n            </div>\r\n            <i class=\"material-icons\">file_upload</i>\r\n          </div>\r\n          <input type=\"file\" (change)=\"uploadPhoto($event)\" ng2FileSelect [uploader]=\"uploader\" />\r\n          <div class=\"form-group\">\r\n            <label for=\"name_user\">Nombre: </label>\r\n            <input type=\"text\" [(ngModel)]=\"user.name\" name=\"name\" id=\"name_user\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"lastname_user\">Apellidos: </label>\r\n            <input type=\"text\" [(ngModel)]=\"user.lastName\" name=\"lastName\" id=\"lastname_user\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"name_user\">Email: </label>\r\n            <label for=\"name_user\">{{this.user.id}}</label>\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <label for=\"birthday_user\">Fecha de nacimiento: </label>\r\n            <input type=\"date\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\r\n          </div>\r\n\r\n          <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n            <label for=\"countries\">País:</label>\r\n\r\n            <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n            </select2>\r\n\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"countries\">Introduce tu código postal:</label>\r\n            <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n          </div>\r\n\r\n          <div class=\"form-group\">\r\n            <label for=\"countries\">Ciudad:</label>\r\n            <span id=\"ciudad\"></span>\r\n          </div>\r\n\r\n          <!--<div class=\"form-group\">\r\n          <label for=\"birthDate_user\">Fecha de nacimiento: </label>\r\n          <input [(ngModel)]=\"user.birthDate\" type=\"date\" name=\"birthDate\" id=\"birthDate_user\"  >\r\n        </div>-->\r\n\r\n          <h3>Cambiar contraseña</h3>\r\n          <div class=\"form-group\">\r\n            <label for=\"oldPassword_user\">Introduce tu contraseña actual</label>\r\n            <input [(ngModel)]=\"user.oldPassword\" type=\"password\" name=\"oldPassword\" id=\"oldPassword_user\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password_user\">Introduce tu nueva contraseña</label>\r\n            <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" id=\"password_user\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password2_user\">Repite tu contraseña</label>\r\n            <input [(ngModel)]=\"user.password2\" type=\"password\" name=\"password2\" id=\"password2_user\">\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n          <button [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n\r\n\r\n\r\n<!-- button to trigger the file upload when submitted -->\r\n<!--<button type=\"button\" class=\"btn btn-success btn-s\" (click)=\"uploader.uploadAll()\" [disabled]=\"!uploader.getNotUploadedItems().length\">\r\n      Upload with ng-2 file uploader\r\n</button>-->\r\n"
 
 /***/ }),
 
@@ -5463,7 +5763,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditProfileComponent = (function () {
+var EditProfileComponent = /** @class */ (function () {
     function EditProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5604,13 +5904,11 @@ var EditProfileComponent = (function () {
     //Estas dos funciones son para guardar los datos
     //del país y ciudad en el objeto de usuario
     EditProfileComponent.prototype.saveCountry = function (e) {
-        console.log(e.value);
         if (e.value != 0 && e.value !== undefined) {
             this.user.countryCode = e.value;
         }
     };
     EditProfileComponent.prototype.saveCity = function (e) {
-        console.log("save city" + e.value);
         if (e.value != 0 && e.value !== undefined) {
             this.user.city = e.value;
             this.mostrarCiudad();
@@ -5681,7 +5979,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/user/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\r\n  <h1>Mi perfil</h1>\r\n<section class=\"container\">\r\n  <div class=\"divPhoto\" (click)=\"selectPhoto($event)\">\r\n    <div>\r\n    </div>\r\n    <i class=\"material-icons\">file_upload</i>\r\n  </div>\r\n\r\n\r\n<input type=\"file\" (change)=\"uploadPhoto($event)\" ng2FileSelect [uploader]=\"uploader\" />\r\n    <dl class=\"row\">\r\n  <dt class=\"col-sm-3\">Nombre</dt>\r\n  <dd class=\"col-sm-9\">{{user.name}} {{user.lastName}}</dd>\r\n\r\n  <dt class=\"col-sm-3\">Email</dt>\r\n  <dd class=\"col-sm-9\">{{user.id}}</dd>\r\n\r\n  <dt class=\"col-sm-3\">Cumpleaños</dt>\r\n  <dd class=\"col-sm-9\">{{user.birthDate | date}}</dd>\r\n\r\n  <dt class=\"col-sm-3\">País</dt>\r\n  <dd class=\"col-sm-9\">{{user.countryCode}}</dd>\r\n\r\n  <dt class=\"col-sm-3\">Ciudad</dt>\r\n  <dd class=\"col-sm-9\">{{user.city}}</dd>\r\n\r\n</dl>\r\n\r\n        <button [routerLink]=\"['/editprofile']\" class=\"btn btn-outline-primary\">Editar perfil</button>\r\n\r\n\r\n</section>\r\n</div>\r\n"
+module.exports = "<div class=\"container main-container\">\r\n  <h1>Mi perfil</h1>\r\n  <section class=\"container\">\r\n    <div class=\"divPhoto\" (click)=\"selectPhoto($event)\">\r\n      <div>\r\n      </div>\r\n      <i class=\"material-icons\">file_upload</i>\r\n    </div>\r\n\r\n\r\n    <input type=\"file\" (change)=\"uploadPhoto($event)\" ng2FileSelect [uploader]=\"uploader\" />\r\n    <dl class=\"row\">\r\n      <dt class=\"col-sm-3\">Nombre</dt>\r\n      <dd class=\"col-sm-9\">{{user.name}} {{user.lastName}}</dd>\r\n\r\n      <dt class=\"col-sm-3\">Email</dt>\r\n      <dd class=\"col-sm-9\">{{user.id}}</dd>\r\n\r\n      <dt class=\"col-sm-3\">Cumpleaños</dt>\r\n      <dd class=\"col-sm-9\">{{user.birthDate | date}}</dd>\r\n\r\n      <dt class=\"col-sm-3\">País</dt>\r\n      <dd class=\"col-sm-9\">{{user.countryCode}}</dd>\r\n\r\n      <dt class=\"col-sm-3\">Ciudad</dt>\r\n      <dd class=\"col-sm-9\">{{user.city}}</dd>\r\n\r\n    </dl>\r\n\r\n    <button [routerLink]=\"['/editprofile']\" class=\"btn btn-outline-primary\">Editar perfil</button>\r\n\r\n\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5714,7 +6012,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfileComponent = (function () {
+var ProfileComponent = /** @class */ (function () {
     function ProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -5814,7 +6112,7 @@ var ProfileComponent = (function () {
 /***/ "../../../../../src/app/components/users/edituser/edituser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-container\">\n  <h3>Usuario {{user.name}}</h3>\n  <hr>\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n          <label>Email</label>\n          <input\n                type=\"text\" name=\"id\"\n                class=\"form-control\" [(ngModel)]=\"user.id\" required>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <label>Nombre</label>\n            <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"user.name\" required>\n          </div>\n          <div class=\"form-group col-md-6\">\n            <label>Apellidos</label>\n            <input type=\"text\" name=\"lastName\" class=\"form-control\" [(ngModel)]=\"user.lastName\">\n          </div>\n        </div>\n        <div class=\"form-row\">\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n\t\t\t\t\t\t<label for=\"date_initplant\">Nacimiento</label>\n\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"form-group col-md-6\">\n            <label for=\"photo_plant\">Foto</label>\n            <div class=\"upload-btn-wrapper form-control \">\n              <button class=\"bttn\">Selecionar imagen</button>\n              <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\n            </div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-4\">\n            <div class=\"form-group\" ng-init=\"listarPaises()\">\n              <label for=\"countries\">País:</label>\n              <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\"></select2>\n            </div>\n          </div>\n          <div class=\"form-group col-md-4\">\n            <label for=\"countries\">Introduce tu código postal:</label>\n            <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\"/>\n          </div>\n          <div class=\"form-group col-md-4\">\n            <label for=\"countries\">Ciudad:</label>\n            <span id=\"ciudad\"></span>\n          </div>\n        </div>\n        <div class=\"form-row\">\n          <div class=\"form-group col-md-6\">\n            <button  [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary form-control\">Resetear contraseña</button>\n          </div>\n          <div class=\"form-group col-md-6 form-check  form-control\">\n            <input type=\"checkbox\" class=\"form-check-input form-control\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\"  value=\"1\">\n            <label class=\"form-check-label\"for=\"admin\">Administrador</label>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <button type=\"submit\" class=\"btn btn-outline-primary\">\n            Guardar cambios\n          </button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container\">\r\n    <h3>Usuario {{user.name}}</h3>\r\n    <hr>\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\r\n          <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"text\" name=\"id\" class=\"form-control\" [(ngModel)]=\"user.id\" required>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Nombre</label>\r\n              <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"user.name\" required>\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Apellidos</label>\r\n              <input type=\"text\" name=\"lastName\" class=\"form-control\" [(ngModel)]=\"user.lastName\">\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"date_initplant\">Nacimiento</label>\r\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"photo_plant\">Foto</label>\r\n              <div class=\"upload-btn-wrapper form-control \">\r\n                <button class=\"bttn\">Selecionar imagen</button>\r\n                <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-4\">\r\n              <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n                <label for=\"countries\">País:</label>\r\n                <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\"></select2>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Introduce tu código postal:</label>\r\n              <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Ciudad:</label>\r\n              <span id=\"ciudad\"></span>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <button [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary form-control\">Resetear contraseña</button>\r\n            </div>\r\n            <div class=\"form-group col-md-6 form-check  form-control\">\r\n              <input type=\"checkbox\" class=\"form-check-input form-control\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\" value=\"1\">\r\n              <label class=\"form-check-label\" for=\"admin\">Administrador</label>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <button type=\"submit\" class=\"btn btn-outline-primary\"> Guardar</button>\r\n            <button [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5848,7 +6146,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdituserComponent = (function () {
+var EdituserComponent = /** @class */ (function () {
     function EdituserComponent(_editUserService, _appComponent, _router, datePipe, _route) {
         this._editUserService = _editUserService;
         this._appComponent = _appComponent;
@@ -5869,7 +6167,7 @@ var EdituserComponent = (function () {
         }
         this._editUserService.modifyUserProfileAdmin(forma.value, this.oldId, this.user)
             .subscribe(function (data) {
-            _this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users");
+            _this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users?pag=1");
         });
     };
     EdituserComponent.prototype.getID = function () {
@@ -6017,7 +6315,7 @@ var EdituserComponent = (function () {
 /***/ "../../../../../src/app/components/users/listusers/listusers.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- https://www.npmjs.com/package/ng2-opd-popup -->\n\n<div class=\"vistaAdmin\">\n  <div class=\"container main-container wrap\">\n  <h1>Panel de administrador</h1>\n\n  <form (ngSubmit)=\"this.searchcontent()\" class=\"form-row\" #forma=\"ngForm\" >\n    <article class=\"form-group col-md-4\">\n      <input type=\"text\"   class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\n    </article>\n    <article class=\"form-group col-md-2\">\n      <button  [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary\">Nuevo Usuario</button>\n    </article>\n  </form>\n  <table class=\"table table-hover\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Nombre</th>\n      <th scope=\"col\">Apellidos</th>\n      <th scope=\"col\">Correo</th>\n      <th scope=\"col\">Tipo</th>\n      <th scope=\"col\">Estado</th>\n      <th scope=\"col\">Modificar</th>\n      <th scope=\"col\">Eliminar</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let user of users\">\n      <th scope=\"row\">{{user.name}}</th>\n      <td>{{user.lastName}}</td>\n      <td>{{user.id}}</td>\n      <td>{{user.admin}}</td>\n      <td>{{user.active}}</td>\n      <td><button  class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edituser/',user.id]\">Modificar</button></td>\n      <td><button  class=\"btn btn-outline-danger\" (click)=\"deleteuser(user.id)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td>\n    </tr>\n  </tbody>\n</table>\n  <app-pagination [count]=\"this.numeroItems\" [type]=\"4\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Panel de administrador</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"user.id\" class=\"form-control\" name=\"id\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary\">Nuevo Usuario</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Apellidos</th>\r\n          <th scope=\"col\">Correo</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Estado</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let user of users\">\r\n          <th scope=\"row\">{{user.name}}</th>\r\n          <td>{{user.lastName}}</td>\r\n          <td>{{user.id}}</td>\r\n          <td>{{user.admin}}</td>\r\n          <td>{{user.active}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edituser/',user.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"deleteuser(user.id)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(user.id,5)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"4\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6029,7 +6327,9 @@ module.exports = "<!-- https://www.npmjs.com/package/ng2-opd-popup -->\n\n<div c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_user_class__ = __webpack_require__("../../../../../src/app/classes/user.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6044,13 +6344,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminListUsersComponent = (function () {
-    function AdminListUsersComponent(_detailService, _route, _appComponent, activatedRoute) {
+
+
+var AdminListUsersComponent = /** @class */ (function () {
+    function AdminListUsersComponent(_detailService, _route, activatedRoute, dialog) {
         this._detailService = _detailService;
         this._route = _route;
-        this._appComponent = _appComponent;
         this.activatedRoute = activatedRoute;
+        this.dialog = dialog;
         this.users = [];
+        this.user = new __WEBPACK_IMPORTED_MODULE_3__classes_user_class__["a" /* User */]();
         this.paginaActual = 1;
         this.elementosPorPagina = 5;
         this.estado = false; // false es listado y true buscador
@@ -6101,6 +6404,33 @@ var AdminListUsersComponent = (function () {
             console.error(error);
         });
     };
+    AdminListUsersComponent.prototype.searchcontent = function (page, items) {
+        var _this = this;
+        console.log('blablabla');
+        console.log(this.user);
+        this._detailService.searchAll(this.user, page, items)
+            .subscribe(function (data) {
+            if (data[0] != undefined) {
+                _this.users = [];
+                _this.numeroItems = data[0].num;
+                if (_this.estado == false) {
+                    _this.paginaActual = 1;
+                    _this.estado = true;
+                }
+                for (var key$ in data) {
+                    _this.users.push(data[key$]);
+                }
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    AdminListUsersComponent.prototype.openDialog = function (id, tipo) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */], {
+            width: '600px',
+            data: { idObject: id, typeObject: tipo }
+        });
+    };
     AdminListUsersComponent.prototype.ngOnInit = function () {
         this.ActualizarPagina();
     };
@@ -6112,8 +6442,8 @@ var AdminListUsersComponent = (function () {
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */]])
     ], AdminListUsersComponent);
     return AdminListUsersComponent;
 }());
@@ -6125,7 +6455,7 @@ var AdminListUsersComponent = (function () {
 /***/ "../../../../../src/app/components/users/newuser/newuser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n  <div class=\"container main-container\">\n  <h3>Nuevo Usuario</h3>\n  <hr>\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12\">\n      <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n          <label>Email</label>\n          <input\n                type=\"text\" name=\"id\"\n                class=\"form-control\" [(ngModel)]=\"user.id\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Password</label>\n          <input\n                type=\"password\" name=\"password\"\n                class=\"form-control\" [(ngModel)]=\"user.password\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Repite el password</label>\n          <input\n                type=\"password\" name=\"password2\"\n                class=\"form-control\" [(ngModel)]=\"user.password2\" required>\n        </div>\n        <div class=\"form-check\">\n          <input type=\"checkbox\" class=\"form-check-input\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\"  value=\"1\">\n          <label class=\"form-check-label\"for=\"admin\">Administrador</label>\n        </div>\n        <div class=\"form-group\">\n          <button type=\"submit\" class=\"btn btn-outline-primary\">\n            Crear\n          </button>\n        </div>\n\n      </form>\n    </div>\n  </div>\n\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container\">\r\n    <h3>Nuevo Usuario</h3>\r\n    <hr>\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\r\n          <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"text\" name=\"id\" class=\"form-control\" [(ngModel)]=\"user.id\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label>Password</label>\r\n            <input type=\"password\" name=\"password\" class=\"form-control\" [(ngModel)]=\"user.password\" required>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label>Repite el password</label>\r\n            <input type=\"password\" name=\"password2\" class=\"form-control\" [(ngModel)]=\"user.password2\" required>\r\n          </div>\r\n          <div class=\"form-check\">\r\n            <input type=\"checkbox\" class=\"form-check-input\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\" value=\"1\">\r\n            <label class=\"form-check-label\" for=\"admin\">Administrador</label>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <button type=\"submit\" class=\"btn btn-outline-primary\">Crear</button>\r\n            <button [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n          </div>\r\n\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6151,7 +6481,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewuserComponent = (function () {
+var NewuserComponent = /** @class */ (function () {
     function NewuserComponent(_newUserServce, _appComponent) {
         this._newUserServce = _newUserServce;
         this._appComponent = _appComponent;
@@ -6191,7 +6521,7 @@ var NewuserComponent = (function () {
 /***/ "../../../../../src/app/components/users/userdata/userdata.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\n\t<div class=\"container main-container\">\n\t<h1>Usuarios</h1>\n  <p>texto</p>\n\t<button [routerLink] =\"['/admin/listusers']\" class=\"btn btn-outline-primary\"\n\t        type=\"submit\" name=\"button\">Lista de usuarios</button>\n\t<button [routerLink] =\"['/admin/user']\" class=\"btn btn-outline-primary\"\n\t                type=\"submit\" name=\"button\">Crear nuevo usuario</button>\n\n\n\t<app-admin-listusers> </app-admin-listusers>\n\t<app-pagination [count]=\"this.numeroItems\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\n\n</div>\n</div>\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n\t<div class=\"container main-container\">\r\n\t\t<h1>Usuarios</h1>\r\n\t\t<p>texto</p>\r\n\t\t<button [routerLink]=\"['/admin/listusers']\" class=\"btn btn-outline-primary\" type=\"submit\" name=\"button\">Lista de usuarios</button>\r\n\t\t<button [routerLink]=\"['/admin/user']\" class=\"btn btn-outline-primary\" type=\"submit\" name=\"button\">Crear nuevo usuario</button>\r\n\t\t<app-admin-listusers> </app-admin-listusers>\r\n\t\t<app-pagination [count]=\"this.numeroItems\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n\t</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6211,7 +6541,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserdataComponent = (function () {
+var UserdataComponent = /** @class */ (function () {
     function UserdataComponent() {
     }
     UserdataComponent.prototype.ngOnInit = function () {
@@ -6233,7 +6563,7 @@ var UserdataComponent = (function () {
 /***/ "../../../../../src/app/desarrollo/desarrollo.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"desarrollo\" style=\"z-index:999\">\n<p>\nEsta aplicación está en desarrollo. La funcionalidad y el diseño están limitados\n</p>\n</div>\n"
+module.exports = "<div class=\"desarrollo\" style=\"z-index:999\">\r\n<p>\r\nEsta aplicación está en desarrollo. La funcionalidad y el diseño están limitados\r\n</p>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6253,7 +6583,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DesarrolloComponent = (function () {
+var DesarrolloComponent = /** @class */ (function () {
     function DesarrolloComponent() {
     }
     DesarrolloComponent.prototype.ngOnInit = function () {
@@ -6294,7 +6624,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var FeedService = (function () {
+var FeedService = /** @class */ (function () {
     function FeedService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6338,6 +6668,17 @@ var FeedService = (function () {
             return res.json();
         });
     };
+    FeedService.prototype.searchAll = function (feed, page, items) {
+        var body = "name=" + feed.name;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post(this.apiURL + "find/Feed/" + items + "/" + page + "/name/ASC", body, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
     FeedService.prototype.getNumberItems = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer']
@@ -6347,7 +6688,7 @@ var FeedService = (function () {
             return res.json();
         });
     };
-    FeedService.prototype.deleteProduct = function (idFeed) {
+    FeedService.prototype.deleteFeed = function (idFeed) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer']
         });
@@ -6370,6 +6711,15 @@ var FeedService = (function () {
             'Authorization': "Bearer " + localStorage['Bearer']
         });
         return this.http.get(this.apiURL + "feed", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    FeedService.prototype.closefeed = function (id) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.patch(this.apiURL + "feed/" + id, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6407,7 +6757,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenService = (function () {
+var GardenService = /** @class */ (function () {
     function GardenService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6588,7 +6938,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantService = (function () {
+var PlantService = /** @class */ (function () {
     function PlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6726,7 +7076,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProductService = (function () {
+var ProductService = /** @class */ (function () {
     function ProductService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6765,6 +7115,17 @@ var ProductService = (function () {
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         return this.http.put(this.apiURL + "admin/product/" + product.id, body, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    ProductService.prototype.searchAll = function (product, page, items) {
+        var body = "name=" + product.name;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post(this.apiURL + "find/Product/" + items + "/" + page + "/name/ASC", body, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6829,7 +7190,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TaskService = (function () {
+var TaskService = /** @class */ (function () {
     function TaskService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6846,6 +7207,24 @@ var TaskService = (function () {
             'Authorization': "Bearer " + localStorage['Bearer']
         });
         return this.http.get(this.apiURL + "monthTask/" + fecha_actual, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    TaskService.prototype.moveTask = function (mPlant, myPlant, tPlant, treatmentPlant) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.put(this.apiURL + "moveTask/" + myPlant + "/" + mPlant + "/" + tPlant + "/2018-04-01", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    TaskService.prototype.DoneTask = function (mPlant, myPlant, tPlant, treatmentPlant, date) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.patch(this.apiURL + "taskDone/" + myPlant + "/" + mPlant + "/" + tPlant + "/" + date, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6883,7 +7262,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentService = (function () {
+var TreatmentService = /** @class */ (function () {
     function TreatmentService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6922,6 +7301,17 @@ var TreatmentService = (function () {
             'Authorization': "Bearer " + localStorage['Bearer']
         });
         return this.http.get(this.apiURL + "admin/treatments" + "/" + items + "/" + page + "/asc", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    TreatmentService.prototype.searchAll = function (treatment, page, items) {
+        var body = "name=" + treatment.name;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post(this.apiURL + "find/Treatment/" + items + "/" + page + "/name/ASC", body, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6986,7 +7376,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentPlantService = (function () {
+var TreatmentPlantService = /** @class */ (function () {
     function TreatmentPlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7075,7 +7465,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var UserService = (function () {
+var UserService = /** @class */ (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7197,6 +7587,7 @@ var UserService = (function () {
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
         });
+        console.log(body);
         return this.http.put(this.apiURL + "user", body, { headers: headers })
             .map(function (res) {
             return res.json();
@@ -7208,12 +7599,10 @@ var UserService = (function () {
             body += "&lastName=" + user.lastName;
         }
         if (user.photo !== undefined) {
-            console.log(user.photo);
             body += "&photo=" + user.photo;
         }
         var country = 0;
         if (user.birthDate != null) {
-            console.log(user.birthDate);
             body += "&birthDate=" + user.birthDate;
         }
         if (user.oldPassword && user.password) {
@@ -7224,7 +7613,6 @@ var UserService = (function () {
             country = 1;
         }
         if (user.city !== undefined && country == 1) {
-            console.log(user.city);
             body += "&city=" + user.city;
         }
         console.log(body);
@@ -7370,6 +7758,17 @@ var UserService = (function () {
         return this.http.put(this.apiURL + "resetPassword/" + token, body, { headers: headers })
             .map(function (res) {
             // console.log("dentro de RES");
+            return res.json();
+        });
+    };
+    UserService.prototype.searchAll = function (user, page, items) {
+        var body = "id=" + user.id;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.post(this.apiURL + "find/User/" + items + "/" + page + "/id/ASC", body, { headers: headers })
+            .map(function (res) {
             return res.json();
         });
     };

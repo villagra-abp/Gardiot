@@ -69,6 +69,7 @@ class TMotor{
             if(window.loading.length==0){
               motor.draw();
               motor.allLoaded();
+              
             }
           }, 100);
     	}
@@ -91,19 +92,32 @@ class TMotor{
 
         //inicializar viewport
 		    gl.viewport(0, 0, canvas.width, canvas.height);
-
-
+		    this.iterar();
+		    //this.siguienteMallaAnimada("pajaro");
+		    //this.siguienteMallaAnimada("alaA");
+		    //this.siguienteMallaAnimada("alaB");
         //inicializar cámara
         this.dibujarCamaraActiva();
 
 		      //dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
-        this.escena.draw();
+		this.escena.draw();
 
 	}
 
 
   usarShader(shader){
-    gl.useProgram(glProgram[shader]);
+    let p=-1;
+    if(shader=='cartoon')
+      p=0;
+    else if(shader=='realista')
+      p=1;
+    if(p>=0){
+      window.program=p;
+      gl.useProgram(glProgram[p]);
+
+      return true;
+    }
+    return false;
   }
 
 
@@ -155,7 +169,7 @@ class TMotor{
 		}
 		if(pos>=0){
 			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
-      console.log(this.camaraRegistro[pos].dad.dad.entity);
+
 			return true;
 		}
 
@@ -170,13 +184,12 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
-      console.log(this.camaraRegistro[pos].dad.dad.entity.matrix);
-			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix.slice(0);
+			let matrix=this.camaraRegistro[pos].dad.dad.entity.matrix;
       matrix[12]=x;
       matrix[13]=y;
       matrix[14]=z;
-      this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
-      console.log(matrix);
+      //this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
+
 			return true;
 		}
   }
@@ -295,7 +308,7 @@ class TMotor{
 		let camaraActiva=this.getCamaraActiva();
 		//crear matriz projection a partir de la info almacenada
 		if(!camaraActiva.entity._isPerspective){
-            mat4.ortho(matrixProjection, camaraActiva.entity._left*90, camaraActiva.entity._right*90, camaraActiva.entity._bottom*90, camaraActiva.entity._top*90, camaraActiva.entity._near, camaraActiva.entity._far*100);
+            mat4.ortho(matrixProjection, camaraActiva.entity._left*10, camaraActiva.entity._right*10, camaraActiva.entity._bottom*10, camaraActiva.entity._top*10, camaraActiva.entity._near, camaraActiva.entity._far*100);
         }
         else{
             mat4.frustum(matrixProjection, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
@@ -319,11 +332,16 @@ class TMotor{
         this.camaraPosition=auxMatrix.slice(0);
         //el resultado lo invertimos y tenemos la matrix View
         mat4.invert(auxMatrix, auxMatrix);
-        invertedMView=auxMatrix.slice(0);
+        invertedMView=auxMatrix;
+
+        let aux=[];
+        mat4.invert(aux, invertedMView);
+        //gl.uniform3f(glProgram[0].eyePos, aux[12], aux[13], aux[14]);
+        //console.log(aux[12], aux[13], aux[14]);
 
         //pasar matrices a WebGL
-        gl.uniformMatrix4fv(glProgram[0].vMatrixUniform, false, auxMatrix);
-        gl.uniformMatrix4fv(glProgram[0].pMatrixUniform, false, matrixProjection);
+        gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, auxMatrix);
+        gl.uniformMatrix4fv(glProgram[window.program].pMatrixUniform, false, matrixProjection);
 	}
 //=================================FIN CÁMARA============================
 
@@ -343,20 +361,56 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
+      var rotOrb = new TNodo(nombre + "_RO", new TTransf(), hermano.dad);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}else{
 			//console.log("crea en raiz");
-			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
+      var rotOrb = new TNodo(nombre + "_RO", new TTransf(), this.escena);
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
-			var luz = new TNodo(nombre, new TLuz(i, i, i, i, i, i), rotLuz);
+			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}
     this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+    motor.escalarMalla("sol", 10);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
 	}
+
+  /**
+	 * Crea una luz dirigida (spotlight), se tiene que definir su nombre,
+	 * intensidad y si quieres que cuelgue de un hermano
+	 * si no, se deja en undefined
+   * También se le pasa la amplitud del foco (de 0 a 100) y
+   * la dirección de la luz, en forma de vec3
+	 * @param  {string} nombre
+	 * @param  {double} intensidad
+   * @param  {int} amplitud
+   * @param  {[double, double, double]} direccion
+	 * @param  {TNodo | undefined} hermano
+	 * @return {TNodo}
+	 */
+  crearNodoLuzDirigida(nombre, amplitud, direccion, intensidad, hermano){
+    let i=intensidad;
+
+		if( hermano !== undefined){
+			//console.log("crea un hermano");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), hermano.dad);
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
+		}else{
+			//console.log("crea en raiz");
+			var traLuz = new TNodo(nombre + "_T",  new TTransf(), this.escena);
+			var rotLuz = new TNodo(nombre + "_R",  new TTransf(), traLuz);
+			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
+		}
+    //this.crearNodoMalla("cubo", "cubo", undefined, luz);
+		this.luzRegistro.push(luz);
+		this.luzActiva.push(0);
+		return luz;
+  }
 
 	//True if can activate, false otherwise
 	activarLuz(nombre){
@@ -372,9 +426,6 @@ class TMotor{
 			if(pos>=0){
 				this.luzActiva[pos] = 1;
 				this.lucesActivas++;
-				if(this.running){
-					configurarShaders(this.vertexShader, this.fragmentShader);
-				}
 				return this.luzRegistro[pos];
 			}else{
 				return false;
@@ -423,6 +474,62 @@ class TMotor{
 		}
 	}
 
+  rotarLuz(nombre, grados, eje){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+			this.luzRegistro[pos].dad.entity.rotar(grados, eje);
+
+
+
+      let lDir=this.luzRegistro[i].entity.origin.slice(0);
+      vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
+
+      this.luzRegistro[i].entity.direccion=lDir;
+			return true;
+		}
+
+	}
+  rotarLuzOrbital(nombre, grados){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+
+			this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
+
+			return true;
+		}
+  }
+  rotarLuzOrbitalA(nombre, grados){
+		var pos = -1;
+
+		for (var i = 0; i< this.luzRegistro.length; i++){
+			if(nombre == this.luzRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let mat=this.luzRegistro[pos].dad.dad.dad.entity.matrix;
+			mat4.fromRotation(mat, grados * Math.PI / 180, [0.0, 0.0, 1.0]);
+      //this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
+
+			return true;
+		}
+  }
+
 	dibujarLucesActivas(){
 		//dibujar ambient light
 		let contLuces=0;
@@ -442,8 +549,8 @@ class TMotor{
         		//recorremos la lista auxiliar invertida
 		        let auxMatrix=mat4.create();
 		        for(let i=auxStack.length-1; i>=0; i--){
-              let au=[];
-		        	mat4.multiply(auxMatrix, auxMatrix.slice(0), auxStack[i]);
+              		let au=[];
+		        	mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 		        }
 
 
@@ -454,17 +561,33 @@ class TMotor{
 				vec4.transformMat4(lPos, lPos, auxMatrix);
 				vec4.subtract(lPos, lPos, aux);
 
-        vec4.transformMat4(lPos, lPos, invertedMView);
-        //console.log(lPos);
 
 				//se la pasamos al shader
-				var lightPosUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].position`);
-				var lightIntUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].color`);
-				var lightSpecUniformLocation=gl.getUniformLocation(glProgram[0], `uLight[${contLuces}].specColor`);
+				//console.log(this.luzRegistro[i].entity.tipo);
+				let isActive, lightPosUniformLocation, lightIntUniformLocation,
+            lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
+				if(this.luzRegistro[i].entity.tipo=="puntual"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
+				}
+				else if(this.luzRegistro[i].entity.tipo=="dirigida"){
+					isActive=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
+					lightPosUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
+					lightIntUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
+					lightSpecUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
+          lightDirUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
+          lightAmpUniformLocation=gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
+          gl.uniform4fv(lightDirUniformLocation, this.luzRegistro[i].entity.direccion);
+          gl.uniform1f(lightAmpUniformLocation, this.luzRegistro[i].entity.amplitud);
+				}
 
+				gl.uniform1i(isActive, 1);
 				gl.uniform4fv(lightPosUniformLocation, lPos);
 				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
 				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
+
 
 				contLuces++;
 			}
@@ -505,9 +628,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -521,18 +646,19 @@ class TMotor{
         var pos = -1;
 
         for (var i = 0; i< this.mallaRegistro.length; i++){
-            if(nombre == this.mallaRegistro[i].name){
-                pos = i;
-                break;
-            }
+            if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
+			}
         }
         if(pos>=0){
-            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix.slice(0);
+            let matrix=this.mallaRegistro[pos].dad.dad.dad.entity.matrix;
               matrix[12]=x;
               matrix[13]=y;
               matrix[14]=z;
               this.mallaRegistro[pos].dad.dad.dad.entity.matrix=matrix;
-              console.log(matrix);
             return true;
         }
 
@@ -542,9 +668,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -559,9 +687,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i]!= undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -576,9 +706,11 @@ class TMotor{
 		var pos = -1;
 
 		for (var i = 0; i< this.mallaRegistro.length; i++){
-			if(nombre == this.mallaRegistro[i].name){
-				pos = i;
-				break;
+			if(this.mallaRegistro[i]!= undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
 			}
 		}
 		if(pos>=0){
@@ -588,6 +720,27 @@ class TMotor{
 
 	}
 
+
+	borrarMalla(nombre){
+		var pos = -1;
+
+		for (var i = 0; i< this.mallaRegistro.length; i++){
+			if(this.mallaRegistro[i] != undefined){
+				if(nombre == this.mallaRegistro[i].name){
+					pos = i;
+					break;
+				}
+			}
+		}
+
+		if(pos>=0){
+			console.log("borrado");
+			this.mallaRegistro[pos].dad.dad.dad.dad.removeChild(this.mallaRegistro[pos].dad.dad.dad);
+			this.mallaRegistro[pos] = undefined;
+		}
+	}
+
+
 //=================================FIN MALLAS============================
 
 
@@ -595,8 +748,8 @@ class TMotor{
 //
 //Nombre, nombre del recurso y si tiene un hermano o no
 //se maneja igual que una malla y tiene el mismo tipo tambien
-crearNodoAnimacion(nombre, arrayRecursos, hermano){
-		console.log(arrayRecursos);
+crearNodoAnimacion(nombre, recurso, numeroFrames, hermano){
+		
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
 
@@ -607,8 +760,11 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 
 			var animacion = new TNodo(nombre, new TTransf(), escMalla);
 
-			for(var i = 0; i < arrayRecursos.length; i++){
-				var malla = new TNodo(nombre + "_" + i, new TMalla(arrayRecursos[i]), animacion);
+			for(var i = 0; i < numeroFrames; i++){
+				var malla = new TNodo(nombre + "_" + i, new TMalla(recurso+""+i, undefined), animacion);
+				if(i!=0){
+					malla._active = 0;
+				}
 			}
 		}else{
 			//console.log("crea en raiz");
@@ -619,11 +775,9 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 
 			var animacion = new TNodo(nombre, new TTransf(), escMalla);
 
-			for(var i = 0; i < arrayRecursos.length; i++){
-				var malla = new TNodo(nombre + "_" + i, new TMalla(arrayRecursos[i]), animacion);
+			for(var i = 0; i < numeroFrames; i++){
+				var malla = new TNodo(nombre + "_" + i, new TMalla(recurso+""+i, undefined), animacion);
 				if(i!=0){
-					console.log("mallas a no poner activa");
-					console.log(malla);
 					malla._active = 0;
 				}
 			}
@@ -636,8 +790,14 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 		console.log(this.animRegistro);
 		return malla;
 	}
+	iterar(){
+		for(var i = 0; i<this.animRegistro.length; i++){
+			this.siguienteMallaAnimada(this.animRegistro[i]._name);
+		}
+	}
 
-	/*siguienteMallaAnimada(nombre){
+
+	siguienteMallaAnimada(nombre){
 		var pos = -1;
 
 		for (var i = 0; i< this.animRegistro.length; i++){
@@ -646,9 +806,6 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 				break;
 			}
 		}
-		//console.log("mallaAnimada para ver");
-		//console.log(this.animRegistro[pos]);
-		//sacamos la malla que esta activa
 
 		var numMallas = this.animRegistro[pos]._childs.length;
 		var activa = -1;
@@ -670,15 +827,8 @@ crearNodoAnimacion(nombre, arrayRecursos, hermano){
 		//console.log(this.animRegistro[pos]._childs[activa]);
 
 
-
-
-
-
-
-
-
 	}
-*/
+
 
 
 

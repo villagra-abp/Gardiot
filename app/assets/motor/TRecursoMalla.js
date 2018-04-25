@@ -30,6 +30,7 @@ class TRecursoMalla extends TRecurso{
     this.matrixModelView=[];
     this.normalMatrix=[];
 
+    this.hovered=false;
 
   }
   cargarFichero(nombre, textura){
@@ -72,9 +73,7 @@ class TRecursoMalla extends TRecurso{
 
 
       //almacenamos las coordenadas de textura
-      console.log("texture");
       if(objeto.meshes[0].texturecoords!==undefined){
-        console.log(objeto.meshes[0].texturecoords);
         this._textureCoords=objeto.meshes[0].texturecoords[0];
       }
 
@@ -148,30 +147,34 @@ class TRecursoMalla extends TRecurso{
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute=gl.getAttribLocation(glProgram[0], "aVertPosition");
-    this.vertexNormAttribute=gl.getAttribLocation(glProgram[0], "aVertNormal");
-    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[0], "aVertTexCoord");
+    this.vertexPosAttribute=gl.getAttribLocation(glProgram[window.program], "aVertPosition");
+    this.vertexNormAttribute=gl.getAttribLocation(glProgram[window.program], "aVertNormal");
+    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
+
 
 
   }
 
 
-  draw(){
+  draw(variable){
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+
+    mat4.invert(this.normalMatrix, this.matrixModelView);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
     //esto es lo correcto
-    mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
+    //mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
     //esto es la ñapa
     //mat3.normalFromMat4(this.normalMatrix, matrixModel);
 
     if(this.normalMatrix.length>0){
       //Pasamos matriz normal al shader
-      gl.uniformMatrix3fv(glProgram[0].normalMatrixUniform, false, this.normalMatrix);
+      gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
     }
 
     //Pasamos la matriz modelo al shader
-    gl.uniformMatrix4fv(glProgram[0].mMatrixUniform, false, matrixModel);
+    gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);
 
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
@@ -187,22 +190,22 @@ class TRecursoMalla extends TRecurso{
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
 
-      gl.uniform1i(glProgram[0].textured, 1);
+      gl.uniform1i(glProgram[window.program].textured, 1);
     }
     else{
-      gl.uniform1i(glProgram[0].textured, 0);
+      gl.uniform1i(glProgram[window.program].textured, 0);
     }
 
 
     //Pasamos los materiales
     if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
-      gl.uniform3fv(glProgram[0].ka, this.Ka);
-      gl.uniform3fv(glProgram[0].kd, this.Kd);
-      gl.uniform3fv(glProgram[0].ks, this.Ks);
+      gl.uniform3fv(glProgram[window.program].ka, this.Ka);
+      gl.uniform3fv(glProgram[window.program].kd, this.Kd);
+      gl.uniform3fv(glProgram[window.program].ks, this.Ks);
 
-      gl.uniform1f(glProgram[0].shin, this.shininess);
-      gl.uniform1f(glProgram[0].opac, this.opacity);
+      gl.uniform1f(glProgram[window.program].shin, this.shininess);
+      gl.uniform1f(glProgram[window.program].opac, this.opacity);
     }
 
 
@@ -216,11 +219,25 @@ class TRecursoMalla extends TRecurso{
 
     //Decimos si le aplicamos la luz estándar o no al objeto
     if(this.nombre=='sol'){
-      gl.uniform1i(glProgram[0].lighted, 0);
+      gl.uniform1i(glProgram[window.program].lighted, 0);
     }
     else {
-      gl.uniform1i(glProgram[0].lighted, 1);
+      gl.uniform1i(glProgram[window.program].lighted, 1);
     }
+
+    if(variable==true){
+      gl.uniform1i(glProgram[window.program].hovered, 1);
+    }
+    else if(variable=="green"){
+      gl.uniform1i(glProgram[window.program].hovered, 2);
+    }
+    else if(variable=="red"){
+      gl.uniform1i(glProgram[window.program].hovered, 3);
+    }
+    else {
+      gl.uniform1i(glProgram[window.program].hovered, 0);
+    }
+
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 
