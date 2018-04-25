@@ -2,8 +2,11 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var validator = require('validator');
+var geo = require('geo-hash');
 
 var routeRequirements = require('../functions/routeRequirements');
+var filter = require('../functions/filter');
+var isASCII = require('../functions/isASCII');
 
 var gardenModel = require('../models/garden');
 
@@ -75,6 +78,8 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
     city: request.body.city,
     zip: request.body.zip,
 	};
+	gardenData = filter(gardenData);
+	var geohash = geo.encode(data.latitude, data.longitude, 8);
 	gardenModel.insertGarden(gardenData, function(error, data) {
 		if (error) 
 			response.status(500).json({"Mensaje":error.message});
@@ -97,6 +102,7 @@ router.put('/garden', passport.authenticate('jwt', {session: false}), routeRequi
     city: request.body.city,
     zip: request.body.zip,
 	};
+	gardenData = filter(gardenData);
 	gardenModel.isOwner(request.user.id, gardenData.id, function(error, data) {
 		if (error) 
 			response.status(500).json({"Mensaje":error.message});
@@ -128,5 +134,20 @@ router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), rou
 		}
 	});
 });
+
+function validateInput(data) {
+	var resp = '';
+	if (typeof data.id!=='undefined' && !validator.isInt(data.id)) resp += 'ID no válido, ';
+	if (typeof data.title!=='undefined' && !isASCII(data.title)) resp += 'Título no válido, ';
+	if (typeof data.width!=='undefined' && !validator.isInt(data.width)) resp += 'Ancho no válida, ';
+	if (typeof data.lenght!=='undefined' && !validator.isInt(data.lenght)) resp += 'Largo no válido, ';
+	if (typeof data.latitude!=='undefined' && !validator.isFloat(data.latitude)) resp += 'Latitud no válida, ';
+	if (typeof data.longitude!=='undefined' && !validator.isFloat(data.longitude)) resp += 'Longitud no válida, ';
+	if (typeof data.garden!=='undefined' && !validator.isInt(data.garden)) resp += 'Jardín no válido, ';
+	if (typeof data.soil!=='undefined' && !validator.isInt(data.soil)) resp += 'Suelo no válido, ';
+	if (typeof data.seed!=='undefined' && !validator.isISO8601(data.seed)) resp += 'Fecha no válida, ';
+	if (resp) resp = resp.slice(0, -2);
+	return resp;
+  }
 
 module.exports = router;

@@ -1,17 +1,14 @@
 var connection = require('../config/connection');
-var geo = require('geo-hash');
 
 var garden = {};
 
 garden.getGarden = function(callback) {
   if(connection) {
     connection.query('SELECT * FROM Garden' , function (error, rows){
-      if(error) {
-        throw error;
-      }
-      else {
+      if(error) 
+        callback (error, null);
+      else 
         callback(null, rows);
-      }
     });
   }
 }
@@ -21,12 +18,10 @@ garden.getGardenById = function(id, callback) {
 	if (connection) {
 		var sentence = 'SELECT * FROM Garden WHERE id = ' + id;
 		connection.query(sentence, function(error, row) {
-			if (error) {
-				throw error;
-			}
-			else {
+			if (error) 
+				callback (error, null);
+			else 
 				callback(null, row);
-			}
 		});
 	}
 }
@@ -38,9 +33,8 @@ garden.getGardenByUser = function(user, callback) {
 
     sentence += 'WHERE Garden.user = "' + user + '" ';
     connection.query(sentence, function(error, row) {
-      if (error) {
-        throw error;
-      }
+      if (error) 
+        callback (error, null);
       else {
         if(row.length==0){
           var shortSentence = 'SELECT *, Garden.id as gardenId FROM Garden WHERE Garden.user = "' + user + '" ';
@@ -89,7 +83,7 @@ garden.insertGarden = function(data, callback) {
       sentence +='zip ="' + data.zip + '",';
     }
     if(data.longitude && data.latitude) {
-      var geohash = geo.encode(data.latitude, data.longitude, 8);
+      
       sentence +='geoHash ="' + geohash + '" ';
     }
     sentence = sentence.slice(0, -1);
