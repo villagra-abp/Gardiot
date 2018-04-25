@@ -43,8 +43,6 @@ class TRecursoMalla extends TRecurso{
         alert("fail to cargar malla "+nombre);
       }
       else{
-        console.log('JSON del objeto '+nombre+':');
-        console.log(modelObj);
         objeto=modelObj;
         window.loading.pop();
       }
