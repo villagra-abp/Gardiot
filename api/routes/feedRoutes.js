@@ -49,7 +49,7 @@ router.get('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 	}
 });
 
-router.patch('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -62,18 +62,6 @@ router.patch('/feed/:id', passport.authenticate('jwt', {session: false}), routeR
 	}
 });
 
-
-/*router.get('/feedSearch/:name', function(request, response) {
-	var name = request.params.name;
-	feedModel.getFeedSearch(name, function(error, data) {
-		if (typeof data !== 'undefined' && data.length > 0) {
-			response.status(200).json(data);
-		}
-		else {
-			response.status(404).json({"Mensaje":"No existe"});
-		}
-	});
-});*/
 
 router.post('/admin/feed', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var feedData = {
