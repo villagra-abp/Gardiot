@@ -14,7 +14,10 @@ router.get('/plants/:number/:page/:order/:sort', function (request, response) {
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		plantModel.getPlants (request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data){
-    		response.status(200).json(data);
+			if (error) 
+				response.status(500).json({"Mensaje":error.message});
+			else
+    			response.status(200).json(data);
     	});
 	}
 });
