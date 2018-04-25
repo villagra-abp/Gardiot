@@ -116,6 +116,17 @@ export class PlantService {
 					})
 		}
 
+		updateViews(idPlant: number){
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`
+			});
+			console.log(this.apiURL+"updateViewPlant/" + idPlant);
+				return this.http.get(this.apiURL+"updateViewPlant/" + idPlant , { headers })
+					.map( res =>{
+						return res.json();
+					})
+		}
+
 		deletePlant(idPlant: number){
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`

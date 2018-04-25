@@ -34,7 +34,7 @@ plant.getPlantsNumber = function (callback) {
 
 plant.getPlantById = function(id, callback) {
 	if (connection) {
-		connection.query('SELECT scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant, Family WHERE Plant.id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
+		connection.query('SELECT Plant.id, scientificName, commonName, Plant.description, photo, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType, name FROM Plant, Family WHERE Plant.id = ' + id + ' AND Plant.family = Family.id', function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -89,6 +89,20 @@ plant.updatePlant = function(data, id, callback) {
         callback(null, result.affectedRows);
       }
 		});
+  }
+}
+
+plant.updateViews = function(id, callback) {
+  if(connection){
+    var sql = 'UPDATE Plant SET views = views +1 WHERE id= ' + id;
+    connection.query(sql, function(error, result) {
+      if (error){
+        callback(error, null);
+      }
+      else{
+        callback(null, result.affectedRows);
+      }
+    });
   }
 }
 

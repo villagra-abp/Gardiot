@@ -71,8 +71,9 @@ export class PlantComponent implements OnInit {
 
         this.plant.leaveType = data[0].leaveType;
         // this.plant.commonName=data[0].3DModel;
+        
 
-
+        
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
@@ -173,6 +174,7 @@ export class PlantComponent implements OnInit {
       if (params['id'] != null) {
         this.plant = new Plant(params['id']);
         this.mostrar(this.plant.id);
+        this._plantService.updateViews(this.plant.id);
         // llamo a mostrarTratamientos y le paso el id de la planta
         // this.treatment=new Treatment(params['id']);
         this.mostrarTratamientos(this.plant.id);
