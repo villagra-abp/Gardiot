@@ -103,7 +103,7 @@ garden.insertGarden = function(data, callback) {
   }
 }
 
-garden.isPropietary = function (user, garden, callback) {
+garden.isOwner = function (user, garden, callback) {
   if (connection) {
     connection.query('SELECT user FROM Garden WHERE id = ' + garden, function (error, result) {
       if (error)
