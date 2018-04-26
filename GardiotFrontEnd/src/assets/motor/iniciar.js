@@ -20,6 +20,9 @@ function iniciar(accion, jardinBBDD){
   window.hovered=-1;
   window.colorCell=[];
 
+  window.rotationCamX=45;
+  window.rotationCamY=0;
+
   //inicialización de matrices
   window.matrixStack=[];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
@@ -176,15 +179,16 @@ motor.moverMalla("around", 0, -0.11, 0);
 //   motor.escalarMalla("arbol", 0.3);
 //   motor.rotarMalla("arbol", -90, "x");
 //   motor.moverMalla("arbol", 0.5, 0.2, 3);
-
-  //ANIMACION
-  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
-  motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
-  motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
+  if(accion!='home'){
+    //ANIMACION
+  /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
+    motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
+    motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
 
     motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
     motor.moverMalla("alaA", 0.2, 0.2, 0.2);
-    motor.moverMalla("alaB", 0.2, 0.2, 0.2);
+    motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
+  }
 
   // bandera
  // motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
@@ -243,5 +247,10 @@ motor.activarLuz("sol");
     motor.activarCamara("camara2");
     //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
+  }
+  else if(accion=='home'){
+    motor.activarCamara("camara1");
+    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
   }
 }
