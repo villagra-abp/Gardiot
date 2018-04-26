@@ -55,10 +55,19 @@ export class GardenComponent {
   private tercerDia: string = "";
   private visible = false;
 
+  private photoURL = "";
+
   constructor(
     private _gardenService: GardenService,
     private _route: Router,
-    private _appComponent: AppComponent) { }
+    private _appComponent: AppComponent) { 
+      if(window.location.toString().indexOf("localhost")>=0){
+        this.photoURL="/assets/images/imgWeather/";
+      }
+      else if(window.location.toString().indexOf("gardiot")>=0){
+        this.photoURL="/app/assets/images/imgWeather/";
+      }
+  }
 
 
   ngOnInit() {
