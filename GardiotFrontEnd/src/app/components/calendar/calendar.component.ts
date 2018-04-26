@@ -44,6 +44,10 @@ const colors: any = {
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA'
+  },
+  green: {
+    primary: '#009900',
+    secondary: '#99ff99'
   }
 };
 
@@ -91,17 +95,17 @@ export class CalendarComponent implements OnInit {
     {
       label: '<i class="material-icons">check</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
+        //this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event);
       }
-    },
+    }/*,
     {
       label: '<i class="material-icons">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event);
       }
-    }
+    }*/
   ];
   refresh: Subject<any> = new Subject();
 
@@ -176,20 +180,25 @@ export class CalendarComponent implements OnInit {
     newStart,
     newEnd
   }: CalendarEventTimesChangedEvent): void {
+    let oldDate = this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'));
     event.start = newStart;
     event.end = newEnd;
-    this.handleEvent('Changed', event);
+    this.handleEvent('Changed', event, oldDate);
     this.refresh.next();
   }
 
 
   addEvent(Ttitle: string, Tstart: string, Tend: string, idT: number): void {
+    let color;
+    Ttitle.indexOf('Regar')>=0 ? color=colors.blue : color=colors.red;
+
+
     this.events.push({
       title: Ttitle,
       id: idT,
       start: startOfDay(new Date(Tstart)),
       end: endOfDay(new Date(Tend)),
-      color: colors.red,
+      color: color,
       actions: this.actions,
       draggable: true,
       resizable: {
@@ -201,7 +210,7 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  handleEvent(action:string, event:CalendarEvent) {
+  handleEvent(action:string, event:CalendarEvent, oldDate:string) {
     let f = new Date();
     let fecha_actual: string;
     f.getDate();
@@ -213,6 +222,8 @@ export class CalendarComponent implements OnInit {
       alert("detalles");
     }
     else if(action=='Done'){
+      event.color = colors.green;
+      this.refresh.next();
       let task=this.tasks[event.id];
       this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant,fecha_actual )
         .subscribe(data => {
@@ -221,10 +232,11 @@ export class CalendarComponent implements OnInit {
 
     }
     else if(action=='Changed'){
+      console.log(oldDate);
       let task=this.tasks[event.id];
-      this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
+      this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, oldDate, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'))
         .subscribe(data => {
-
+          console.log(data);
         });
     }
     else{

@@ -58,11 +58,11 @@ router.get('/plantTask/:number/:page/:myPlant', passport.authenticate('jwt', {se
 	}
 });
 
-router.put('/moveTask/:myPlant/:plant/:treatment/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.plant, {gt: 0}) || !validator.isInt(request.params.treatment, {gt: 0}) || !validator.isISO8601(request.params.date)) 
+router.put('/moveTask/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:newDate', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		taskModel.moveTask (request.params.myPlant, request.params.plant, request.params.treatment, request.params.date, function (error, data) {
+		taskModel.moveTask (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.newDate, function (error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
 			else if (data == 1)

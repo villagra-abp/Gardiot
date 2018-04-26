@@ -60,7 +60,7 @@ export class GardenComponent {
   constructor(
     private _gardenService: GardenService,
     private _route: Router,
-    private _appComponent: AppComponent) { 
+    private _appComponent: AppComponent) {
       if(window.location.toString().indexOf("localhost")>=0){
         this.photoURL="/assets/images/imgWeather/";
       }
@@ -74,7 +74,6 @@ export class GardenComponent {
     this.mostrar();
   }
 
-
   mostrar() {
     this._gardenService.details()
       .subscribe(data => {
@@ -82,8 +81,8 @@ export class GardenComponent {
         if (data != null) {
           this.garden.id = data.id;
           this.garden.title = data.title;
-          this.garden.width = data.width;
-          this.garden.length = data.length;
+          this.garden.width = parseInt(data.width);
+          this.garden.length = parseInt(data.length);
           this.garden.longitude = data.longitude;
           this.garden.latitude = data.latitude;
           this.garden.soil = data.soil;
@@ -118,10 +117,10 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
- 
+
         var aux = data.main.temp - 273;
         this.temperatura = aux;
-      
+
 
 
 

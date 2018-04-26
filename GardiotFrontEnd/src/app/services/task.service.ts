@@ -31,11 +31,11 @@ export class TaskService {
         })
   }
 
-  moveTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number){
+  moveTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, oldDate:string, date:string){
     let headers = new Headers({
       'Authorization':`Bearer ${localStorage['Bearer']}`
     });
-    return this.http.put(`${this.apiURL}moveTask/${myPlant}/${mPlant}/${tPlant}/2018-04-01`, { headers } )
+    return this.http.put(`${this.apiURL}moveTask/${myPlant}/${mPlant}/${tPlant}/${treatmentPlant}/${oldDate}/${date}`, '', { headers } )
         .map( res =>{
           return res.json();
         })
