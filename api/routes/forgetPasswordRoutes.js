@@ -26,6 +26,11 @@ router.post('/forgetPassword', function (request, response) {
 					expiresIn: '1h',
 					subject: id
 				});
+				let host = '';
+				if (request.hostname == 'gardiot.ovh')
+					host = 'https://gardiot.ovh';
+				else
+					host = 'http://localhost:4200';
 				forgetPasswordModel.getForgetPasswordTokenByUser(id, function(error, token) {
 					if (error) response.status(500).json({"Mensaje":"Imposible recuperar el token de verificacion."});
 					else if (typeof token[0] === 'undefined') {
@@ -33,7 +38,7 @@ router.post('/forgetPassword', function (request, response) {
 							if (error) response.status(500).json({"Mensaje":error.message});
 							else {
 								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero   ***\nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'***
-								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/reset-pass-back\/' + tokenNew + '\n'};
+								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \n' + host + '\/app\/reset-pass-back\/' + tokenNew + '\n'};
 								transporter.sendMail(mailOptions, function(err) {
 									if (err) response.status(500).json({"Mensaje": err.message});
 									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
@@ -46,7 +51,7 @@ router.post('/forgetPassword', function (request, response) {
 							if (error) response.status(500).json({"Mensaje":"Error"});
 							else {
 								var transporter = nodemailer.createTransport({service: 'Sendgrid', auth: {user: sendgrid.auth, pass: sendgrid.password} }); //Coger de fichero  ***\nhttps:\/\/' + request.hostname + '\/dist\/resetPassword\/' + tokenNew + '\n'***
-								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \nhttp:\/\/' + request.hostname + '\/app\/reset-pass-back\/' + tokenNew + '\n'};
+								var mailOptions = {from: 'symbiosegardiot@gmail.com', to: id, subject: 'Restablecer contraseña en Gardiot', text: 'Hola,\n\n' + 'Por favor restablece tu contraseña con el siguiente enlace: \n' + host + '\/app\/reset-pass-back\/' + tokenNew + '\n'};
 								transporter.sendMail(mailOptions, function(err) {
 									if (err) response.status(500).json({"Mensaje": err.message});
 									else response.status(201).json({"Mensaje":"Un email para restablecer la contraseña se ha enviado a " + id + "."});
