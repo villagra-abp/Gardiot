@@ -61,7 +61,7 @@ declare var iniciar: any;
       provide: CalendarDateFormatter,
       useClass: CustomDateFormatter
     }
-
+  ]
 })
 export class DetailComponent implements OnInit {
   view: string = 'week';

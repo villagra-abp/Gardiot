@@ -69,7 +69,7 @@ class TMotor{
             if(window.loading.length==0){
               motor.draw();
               motor.allLoaded();
-              
+
             }
           }, 100);
     	}
@@ -251,7 +251,7 @@ class TMotor{
 
 	}
 
-  //rotar respecto al 0, 0, 0
+
   rotarCamaraOrbital(nombre, grados, eje){
 		var pos = -1;
 
@@ -262,14 +262,18 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
-      let a=[];
-      mat4.getRotation(a, this.camaraRegistro[pos].dad.dad.dad.entity.matrix);
-      if(eje=="y"){
-			   this.camaraRegistro[pos].dad.dad.dad.dad.entity.rotar(grados, eje);
+      if(eje == 'x'){
+        rotationCamX+=grados;
+        grados > 0 ? rotationCamX = Math.min(rotationCamX, 70) : rotationCamX = Math.max(rotationCamX, 0);
+        let rad=Math.PI*rotationCamX/180;
+        mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.entity.matrix, rad, [1.0, 0.0, 0.0]);
       }
-      else if(eje=="x" && !(grados<0 && a[0]<=0) && !(grados>0 && a[0]>=0.67)){
-        this.camaraRegistro[pos].dad.dad.dad.entity.rotar(grados, eje);
+      else if(eje == 'y'){
+        rotationCamY+=grados;
+        let rad=Math.PI*rotationCamY/180;
+        mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
       }
+
 			return true;
 		}
 	}
@@ -749,7 +753,7 @@ class TMotor{
 //Nombre, nombre del recurso y si tiene un hermano o no
 //se maneja igual que una malla y tiene el mismo tipo tambien
 crearNodoAnimacion(nombre, recurso, numeroFrames, hermano){
-		
+
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
 

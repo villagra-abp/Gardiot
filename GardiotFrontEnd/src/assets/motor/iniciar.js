@@ -20,6 +20,9 @@ function iniciar(accion, jardinBBDD){
   window.hovered=-1;
   window.colorCell=[];
 
+  window.rotationCamX=45;
+  window.rotationCamY=0;
+
   //inicialización de matrices
   window.matrixStack=[];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
