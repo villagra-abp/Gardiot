@@ -96,6 +96,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
 import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DialogNewgardenComponent } from './components/dialog-newgarden/dialog-newgarden.component';
 
 registerLocaleData(localeEs);
 
@@ -148,6 +149,7 @@ registerLocaleData(localeEs);
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
     HelpComponent,
+    DialogNewgardenComponent,
 
   ],
   imports: [
@@ -183,7 +185,8 @@ registerLocaleData(localeEs);
     DatePipe
   ],
   entryComponents: [
-    DialogDeleteComponent
+    DialogDeleteComponent,
+    DialogNewgardenComponent
   ],
   bootstrap: [AppComponent]
 })

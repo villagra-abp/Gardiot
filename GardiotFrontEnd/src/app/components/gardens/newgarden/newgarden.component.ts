@@ -11,6 +11,9 @@ import { Select2OptionData } from 'ng2-select2';
 import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
 
+import { DialogNewgardenComponent } from '../../dialog-newgarden/dialog-newgarden.component';
+import { MatDialog } from '@angular/material';
+
 @Component({
   selector: 'app-newgarden',
   templateUrl: './newgarden.component.html'
@@ -39,7 +42,9 @@ export class NewGardenComponent implements OnInit {
     private _plantService: PlantService,
     private _route: Router,
     private datePipe: DatePipe,
-    private _appComponent: AppComponent) { }
+    private _appComponent: AppComponent,
+    private dialog: MatDialog,
+  ) { }
 
   @HostListener('document:keyup', ['$event'])
 
@@ -78,9 +83,9 @@ export class NewGardenComponent implements OnInit {
             input.value = '';
 
           },
-          error => {
-            console.error(error);
-          });
+            error => {
+              console.error(error);
+            });
       }
     }
   }
@@ -105,9 +110,9 @@ export class NewGardenComponent implements OnInit {
 
 
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
 
   }
 
@@ -133,9 +138,9 @@ export class NewGardenComponent implements OnInit {
         }
 
       },
-      error => {
-        console.error(JSON.parse(error._body).Mensaje);
-      });
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+        });
   }
 
   mostrarPlantas() {
@@ -145,18 +150,12 @@ export class NewGardenComponent implements OnInit {
           this.plants.push(data[key$]);
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
 
-  ngOnInit() {
-    this.mostrar();
-    this.mostrarPlantas();
-    this.listarPaises();
-    this.mostrarCiudad();
-  }
 
   //Envia los nuevos datos del jardin a  a GardenService para guardarlos
   newGarden() {
@@ -177,17 +176,17 @@ export class NewGardenComponent implements OnInit {
             this._gardenService.saveplants(this.plant[cont], X, this.idNewJardin, fecha_actual)
               .subscribe(data => {
               },
-              error => {
-                let v = JSON.parse(error._body);
-              });
+                error => {
+                  let v = JSON.parse(error._body);
+                });
           }
         }
         this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   saveCountry(e) {
@@ -203,5 +202,12 @@ export class NewGardenComponent implements OnInit {
     }
   }
 
+  ngOnInit() {
+    this.dialog.open(DialogNewgardenComponent, { width: '800px', data: {}});
+    this.mostrar();
+    this.mostrarPlantas();
+    this.listarPaises();
+    this.mostrarCiudad();
+  }
 
 }
