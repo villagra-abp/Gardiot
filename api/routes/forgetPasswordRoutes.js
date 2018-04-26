@@ -30,7 +30,7 @@ router.post('/forgetPassword', function (request, response) {
 				if (request.hostname == 'gardiot.ovh')
 					host = 'https://gardiot.ovh';
 				else
-					host = 'http://localhost:4200';
+					host = 'localhost:4200';
 				forgetPasswordModel.getForgetPasswordTokenByUser(id, function(error, token) {
 					if (error) response.status(500).json({"Mensaje":"Imposible recuperar el token de verificacion."});
 					else if (typeof token[0] === 'undefined') {
