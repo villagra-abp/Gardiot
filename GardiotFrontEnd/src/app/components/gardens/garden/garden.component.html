@@ -15,35 +15,35 @@
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Hoy
           <br>
-          <img src="/assets/images/imgWeather/{{fotoHoy}}.png">
+          <img src="{{photoURL}}{{fotoHoy}}.png">
           <br>
           <span class="maxima">{{temperatura | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Mañana
           <br>
-          <img src="/assets/images/imgWeather/{{fotoMan}}.png">
+          <img src="{{photoURL}}{{fotoMan}}.png">
           <br>
           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia3">
           {{nombreDia3}}
           <br>
-          <img src="/assets/images/imgWeather/{{fotoDia3}}.png">
+          <img src="{{photoURL}}{{fotoDia3}}.png">
           <br>
           <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia4">
           {{nombreDia4}}
           <br>
-          <img src="/assets/images/imgWeather/{{fotoDia4}}.png">
+          <img src="{{photoURL}}{{fotoDia4}}.png">
           <br>
           <span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia5">
           {{nombreDia5}}
           <br>
-          <img src="/assets/images/imgWeather/{{fotoDia5}}.png">
+          <img src="{{photoURL}}{{fotoDia5}}.png">
           <br>
           <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span>
         </div>
