@@ -99,5 +99,7 @@ export class DialogNewgardenComponent implements OnInit {
 
 
   ngOnInit() {
+    this.garden.width=19;
+    this.garden.length=19;
   }
 }
