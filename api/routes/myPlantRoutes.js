@@ -111,12 +111,14 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 							response.status(400).json({"Mensaje": validate});
 						else {
 							myPlantModel.updateMyPlant(request.params.id, myPlantData, function(error, data) {
-								if (data == 1)
+								if (error)
+									response.status(500).json({"Mensaje":error.message});
+								else if (data == 1)
 									response.status(200).json({"Mensaje":"Actualizado"});
 								else if (data == 0)
 									response.status(404).json({"Mensaje":"No existe"});
 								else
-									response.status(500).json({"Mensaje":error.message});
+									response.status(500).json({"Mensaje":"Hubo un error."});
 							});
 						}
 					}

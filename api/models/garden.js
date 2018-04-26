@@ -2,9 +2,10 @@ var connection = require('../config/connection');
 
 var garden = {};
 
-garden.getGarden = function(callback) {
+garden.getGarden = function(number, page, callback) {
   if(connection) {
-    connection.query('SELECT * FROM Garden' , function (error, rows){
+    let minPeak = (page - 1) * number;
+    connection.query('SELECT * FROM Garden LIMIT ' + minPeak + ',' + number , function (error, rows){
       if(error) 
         callback (error, null);
       else 
@@ -40,7 +41,7 @@ garden.getGardenByUser = function(user, callback) {
           var shortSentence = 'SELECT *, Garden.id as gardenId FROM Garden WHERE Garden.user = "' + user + '" ';
           connection.query(shortSentence, function(shortError, shortRow) {
             if (shortError) {
-              throw shortError;
+              callback(shortError, null);
             }
             else {
               callback(null, shortRow);
@@ -57,40 +58,14 @@ garden.getGardenByUser = function(user, callback) {
 
 garden.insertGarden = function(data, callback) {
   if(connection) {
-    var sentence = 'INSERT INTO Garden SET title = "'+data.title+'", user= "'+data.user+'",';
-    if(data.width) {
-      sentence +=' width =' + data.width + ',';
-    }
-    if(data.length) {
-      sentence +=' lenght =' + data.length + ',';
-    }
-    if(data.soil) {
-      sentence +=' soil =' + data.soil + ',';
-    }
-    if(data.longitude) {
-      sentence +=' longitude =' + data.longitude + ',';
-    }
-    if(data.latitude) {
-      sentence +='latitude =' + data.latitude + ',';
-    }
-    if(data.countryCode) {
-      sentence +='countryCode ="' + data.countryCode + '",';
-    }
-    if(data.city) {
-      sentence +='city ="' + data.city + '",';
-    }
-    if(data.zip) {
-      sentence +='zip ="' + data.zip + '",';
-    }
-    if(data.longitude && data.latitude) {
-      
-      sentence +='geoHash ="' + geohash + '" ';
-    }
-    sentence = sentence.slice(0, -1);
-
-    connection.query(sentence, function(error, result){
+    sql = 'INSERT INTO Garden SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    connection.query(sql, function(error, result){
       if(error)
-        throw error;
+        callback(error, null);
       else
         callback(null, result.insertId);
     });
@@ -110,51 +85,21 @@ garden.isOwner = function (user, garden, callback) {
   }
 }
 
-garden.updateGarden = function(data, callback) {
+garden.updateGarden = function(id, data, callback) {
   if(connection) {
-    var sentence =  'UPDATE Garden SET ';
-   if(data.width) {
-      sentence +=' width =' + data.width + ',';
-    }
-    if(data.length) {
-      sentence +=' lenght =' + data.length + ',';
-    }
-    if(data.soil) {
-      sentence +=' soil =' + data.soil + ',';
-    }
-    if(data.longitude) {
-      sentence +=' longitude =' + data.longitude + ',';
-    }
-    if(data.latitude) {
-      sentence +='latitude =' + data.latitude + ',';
-    }
-    if(data.countryCode) {
-      sentence +='countryCode ="' + data.countryCode + '",';
-    }
-    if(data.city) {
-      sentence +='city ="' + data.city + '",';
-    }
-    if(data.zip) {
-      sentence +='zip ="' + data.zip + '",';
-    }
-    if(data.longitude && data.latitude) {
-      var geohash = geo.encode(data.latitude, data.longitude, 8);
-      sentence +='geoHash ="' + geohash + '" ';
-    }
-    sentence = sentence.slice(0, -1);
-    sentence += ' WHERE id = "' + data.id +'"';
-    connection.query(sentence, function(error, result) {
-			if (error){
-				throw error;
+    var sql = 'UPDATE Garden SET ';
+    for (var key in data)
+      if (typeof data[key]!== 'undefined')
+        sql += key + ' = "' + data[key] + '",';
+    sql = sql.slice(0, -1);
+    sql += ' WHERE id = "' + id +'"';
+    connection.query(sql, function(error, result) {
+      if (error)
+        callback(error, null);
+      else{
+        callback(null, result.affectedRows);
       }
-			else{
-        if(result.affectedRows < 1){
-          callback(null, {"mensaje":"No existe"});
-        }else{
-  				callback(null, {"mensaje":"Actualizado"});
-        }
-      }
-		});
+    });
   }
 }
 
@@ -163,7 +108,7 @@ garden.deleteGarden = function(id, callback) {
     var sentence = 'DELETE FROM Garden WHERE id = "' + id + '"';
     connection.query(sentence, function(error, result) {
 			if (error)
-				throw error;
+				callback(error, null);
 			else
 				callback(null, result.affectedRows);
 		});
