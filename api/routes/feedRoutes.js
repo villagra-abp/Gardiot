@@ -49,7 +49,7 @@ router.get('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 	}
 });
 
-router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
@@ -58,6 +58,8 @@ router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeReq
 				response.status(500).json({"Mensaje":error.message});
 			else if (data == 1)
 				response.status(200).json({"Mensaje":"Marcado como visto"});
+			else
+				response.status(404).json({"Mensaje":"Feed no encontrado"});
 		});
 	}
 });

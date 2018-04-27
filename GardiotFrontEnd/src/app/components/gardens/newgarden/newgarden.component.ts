@@ -24,6 +24,7 @@ export class NewGardenComponent implements OnInit {
 
   garden = new Garden("");
 
+
   private plant: number[];
   private plants: any[] = [];
   countries: any[] = [];
@@ -205,6 +206,8 @@ export class NewGardenComponent implements OnInit {
 
   ngOnInit() {
     this.dialog.open(DialogNewgardenComponent, { width: '800px', data: {}});
+    this.garden.width=19;
+    this.garden.length=19;
     this.mostrar();
     this.mostrarPlantas();
     this.listarPaises();

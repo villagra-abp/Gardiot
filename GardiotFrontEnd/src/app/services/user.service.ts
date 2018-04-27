@@ -234,7 +234,7 @@ export class UserService {
         'Content-Type':'application/x-www-form-urlencoded'
       });
 
-      return this.http.get(this.apiURL+"confirmation/"+token, { headers } )
+      return this.http.post(this.apiURL+"confirmation/"+token, { headers } )
           .map( res =>{
             return res.json();
           })

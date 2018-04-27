@@ -144,5 +144,7 @@ export class DialogNewgardenComponent implements OnInit {
     this.mostrar();
     this.listarPaises();
     this.mostrarCiudad();
+    this.garden.width=19;
+    this.garden.length=19;
   }
 }

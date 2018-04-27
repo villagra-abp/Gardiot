@@ -108,10 +108,11 @@ export class FeedService {
 
 		closefeed(id:number){
 			let headers = new Headers({
-					'Authorization':`Bearer ${localStorage['Bearer']}`
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
 				});
 
-			return this.http.put(this.apiURL+"feed/"+id ,{ headers } )
+			return this.http.put(this.apiURL+"feed/"+id , '',{ headers } )
 				.map( res =>{
 					return res.json();
 				})
