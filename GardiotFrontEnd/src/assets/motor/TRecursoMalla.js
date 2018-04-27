@@ -43,8 +43,6 @@ class TRecursoMalla extends TRecurso{
         alert("fail to cargar malla "+nombre);
       }
       else{
-        console.log('JSON del objeto '+nombre+':');
-        console.log(modelObj);
         objeto=modelObj;
         window.loading.pop();
       }
@@ -162,7 +160,7 @@ class TRecursoMalla extends TRecurso{
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
 
     mat4.invert(this.normalMatrix, this.matrixModelView);
-    mat4.transpose(this.normalMatrix, this.normalMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix.slice(0));
     //esto es lo correcto
     //mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
     //esto es la ñapa

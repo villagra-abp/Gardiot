@@ -21,16 +21,16 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-4" ng-init="listarPaises()">
+        <div class="form-group col-md-6" ng-init="listarPaises()">
           <label for="countries">País</label>
           <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
           </select2>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="countries">Código postal</label>
           <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="countries">Ciudad</label>
           <span id="ciudad"></span>
         </div>

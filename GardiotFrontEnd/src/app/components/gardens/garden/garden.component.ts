@@ -60,7 +60,7 @@ export class GardenComponent {
   constructor(
     private _gardenService: GardenService,
     private _route: Router,
-    private _appComponent: AppComponent) { 
+    private _appComponent: AppComponent) {
       if(window.location.toString().indexOf("localhost")>=0){
         this.photoURL="/assets/images/imgWeather/";
       }
@@ -118,12 +118,9 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
- 
+
         var aux = data.main.temp - 273;
         this.temperatura = aux;
-      
-
-
 
       },
       error => {

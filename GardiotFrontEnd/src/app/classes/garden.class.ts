@@ -3,8 +3,8 @@ export class Garden {
  constructor(
    public id?: string,
    public title?: string,
-   public width?: string,
-   public length?: string,
+   public width?: number,
+   public length?: number,
    public latitude?: string,
    public longitude?: string,
    public soil?: string,

@@ -28,8 +28,13 @@ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from 'angular-calendar';
+
+import { CustomDateFormatter } from '../calendar/customdate.provider';
+
 
 const colors: any = {
   red: {
@@ -50,10 +55,21 @@ declare var iniciar: any;
 
 @Component({
   selector: 'app-detail',
-  templateUrl: './detail.component.html'
+  templateUrl: './detail.component.html',
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class DetailComponent implements OnInit {
   view: string = 'week';
+  locale: string = 'es';
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+
   viewDate: Date = new Date();
   private user = new User("");
   private gardenRoute = "";
@@ -107,7 +123,7 @@ export class DetailComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          new iniciar("detail", this.garden);
+          new iniciar("home", this.garden);
         } else {
           this._route.navigate(['/newgarden']);
         }
@@ -121,10 +137,6 @@ export class DetailComponent implements OnInit {
           this._route.navigate(['/detail']);
         }
       });
-  }
-
-  inicializar() {
-    // new iniciar("detail", this.garden);
   }
 
   checkGarden() {
@@ -201,7 +213,6 @@ export class DetailComponent implements OnInit {
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
-    this.inicializar();
     this.mostrartask();
     this.cargarfeeds();
 

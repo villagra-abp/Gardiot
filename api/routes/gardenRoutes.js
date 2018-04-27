@@ -20,6 +20,7 @@ router.get('/admin/garden',  passport.authenticate('jwt', {session: false}), rou
   });
 });
 
+
 router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -27,7 +28,7 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 		var id = request.params.id;
 		var user = request.user;
 		gardenModel.getGardenById(id, function(error, data) {
-			if (error) 
+			if (error)
 				response.status(500).json({"Mensaje":error.message});
 			else if (typeof data !== 'undefined' && data.length > 0) {
 				if(user.id == data[0].user)
@@ -35,7 +36,7 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 				else
 					response.status(403).json({"Mensaje":"Imposible recuperar los datos de un jardín ajeno."});
 			}
-			else 
+			else
 				response.status(404).json({"Mensaje":"No existe"});
 		});
 	}
@@ -44,14 +45,14 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var user = request.user.id;
 	gardenModel.getGardenByUser(user, function(error, data) {
-		if (error) 
+		if (error)
 			response.status(500).json({"Mensaje":error.message});
 		else if (typeof data !== 'undefined' && data.length > 0) {
 			let garden={};
 			garden.id=data[0].gardenId;
 			garden.title=data[0].title;
 			garden.width=data[0].width;
-			garden.length=data[0].lenght;
+			garden.length=data[0].length;
 			garden.longitude=data[0].longitude;
 			garden.latitude=data[0].latitude;
 			garden.soil=data[0].soil;
@@ -75,6 +76,21 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 	});
 });
 
+router.get('/firstgardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	var user = request.user.id;
+	gardenModel.getGardenByUser(user, function(error, data) {
+		if (error)
+			response.status(500).json({"Mensaje":error.message});
+		else if (typeof data !== 'undefined' && data.length > 0) {
+			response.status(200).json({"Mensaje":"Existe"});
+		}
+		else {
+			response.status(200).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
+
 router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var gardenData = {
 		title: request.body.title,
@@ -89,22 +105,26 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
 		zip: request.body.zip,
 	};
 	gardenData = filter(gardenData);
-	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.soil=== 'undefined' || typeof gardenData.user=== 'undefined')
-		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.soil=== 'undefined' || typeof gardenData.user=== 'undefined'){
+    response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+  }
 	else {
 		var validate = validateInput(gardenData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
+		if (validate.length > 0){
+      response.status(400).json({"Mensaje": validate});
+    }
 		else {
 			gardenData.geoHash = geo.encode(gardenData.latitude, gardenData.longitude, 8);
 			gardenModel.insertGarden(gardenData, function(error, data) {
-				if (error) 
-					response.status(500).json({"Mensaje":error.message});
-				else if (data) 
+				if (error){
+          response.status(500).json({"Mensaje":error.message});
+        }
+
+				else if (data)
 					response.status(200).json(data);
 			});
-		}		
-	}	
+		}
+	}
 });
 
 router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
@@ -122,7 +142,7 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 			city: request.body.city,
 			zip: request.body.zip,
 		};
-		gardenData = filter(gardenData);	
+		gardenData = filter(gardenData);
 		if (typeof gardenData.width === 'undefined' || typeof gardenData.length === 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
@@ -131,7 +151,7 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 				response.status(400).json({"Mensaje": validate});
 			else {
 				gardenModel.isOwner(request.user.id, request.params.id, function(error, owner) {
-					if (error) 
+					if (error)
 						response.status(500).json({"Mensaje":error.message});
 					else if (owner){
 						gardenData.geoHash = geo.encode(gardenData.latitude, gardenData.longitude, 8);
@@ -143,7 +163,7 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 							else if (data == 0)
 								response.status(404).json({"Mensaje":"No existe"});
 							else
-								response.status(500).json({"Mensaje":"Hubo un error."});						
+								response.status(500).json({"Mensaje":"Hubo un error."});
 						});
 					}
 					else if (!owner) response.status(403).json({"Mensaje":"No puedes modificar un jardin de otro usuario."});
@@ -165,10 +185,10 @@ router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), rou
 				gardenModel.deleteGarden(id, function(error, data) {
 					if (error)
 						response.status(500).json({"Mensaje":error.message});
-					else if (data == 1) 
+					else if (data == 1)
 						response.status(200).json({"Mensaje":"Borrado"});
-					else if (data == 0) 
-						response.status(404).json({"Mensaje":"No existe"});				
+					else if (data == 0)
+						response.status(404).json({"Mensaje":"No existe"});
 				});
 			}
 			else if (!owner) response.status(403).json({"Mensaje":"No puedes borrar un jardin de otro usuario."});

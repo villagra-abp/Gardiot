@@ -30,6 +30,17 @@ export class GardenService {
           })
 	  }
 
+		firstgarden(){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
+
+				return this.http.get(this.apiURL+"firstgardenByUser", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
     deleteGarden(garden:Garden){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
@@ -93,18 +104,18 @@ export class GardenService {
 
 	  modifyGarden(garden:Garden){
 
-       garden.soil="1";
+      garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
       if(garden.title != "undefined"){
 	  	body += `&title=${garden.title}`;
       }
-      if(garden.width != "undefined"){
+      // if(garden.width != "undefined"){
 	  	body += `&width=${garden.width}`;
-      }
-      if(garden.length != "undefined"){
+      // }
+      // if(garden.length != "undefined"){
 	  	body += `&length=${garden.length}`;
-      }
+      // }
       if(garden.latitude != "undefined"){
 	  	body += `&latitude=${garden.latitude}`;
       }
