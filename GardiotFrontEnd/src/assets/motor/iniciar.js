@@ -22,6 +22,11 @@ function iniciar(accion, jardinBBDD){
 
   window.rotationCamX=45;
   window.rotationCamY=0;
+  window.step=[0, 0, 0];
+  window.transition=false;
+
+  window.mode=0;//0 modo visualización
+                //1 modo edición
 
   //inicialización de matrices
   window.matrixStack=[];//pila de matrices
@@ -63,15 +68,15 @@ function iniciar(accion, jardinBBDD){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
+  motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  motor.crearNodoLuz("sol", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
-  window.camara = motor.crearNodoCamara("camara1", true, undefined);
+  motor.crearNodoCamara("dynamicCamera", true, undefined);
 
   //camara de edición
-  window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
+  //motor.crearNodoCamara("dynamicCamera", true, undefined);
 
   //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
@@ -222,35 +227,45 @@ motor.activarLuz("sol");
 
 
 
-  //motor.rotarCamaraOrbital("camara1", 45, "y");
-  //motor.rotarCamaraOrbital("camara1", -45, "x");
+  //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+  //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
 
-  //motor.moverCamaraA("camara2", 0,10, 0);
-  motor.rotarCamara("camara1", -90, "x");
-  motor.moverCamaraA("camara1", 0, 10, 0);
-  motor.rotarCamaraOrbital("camara1", 45, "y");
-  motor.rotarCamaraOrbital("camara1", 25, "x");
+  //motor.moverCamaraA("dynamicCamera", 0,10, 0);
 
 
-  motor.rotarCamara("camara2", -90, "x");
-  motor.moverCamara("camara2", 0, 20, 0);
-  //motor.rotarCamaraOrbital("camara2", -90, "x");
+  //motor.rotarCamaraOrbital("dynamicCamera", -90, "x");
 
-
+  motor.activarCamara("dynamicCamera");
 
   //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if(accion=='detail'){
-    motor.activarCamara("camara1");
+    window.mode=0;
+    motor.rotarCamara("dynamicCamera", -90, "x");
+    motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+    motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
   else if(accion=='edit'){
-    motor.activarCamara("camara2");
-    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    window.mode=1;
+    motor.rotarCamara("dynamicCamera", -90, "x");
+    motor.moverCamara("dynamicCamera", 0, 20, 0);
+
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
   else if(accion=='home'){
-    motor.activarCamara("camara1");
+    window.mode=0;
+    motor.rotarCamara("dynamicCamera", -90, "x");
+    motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+    motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+    motor.activarCamara("dynamicCamera");
     //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
     motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
   }
+
+
+  //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+
 }

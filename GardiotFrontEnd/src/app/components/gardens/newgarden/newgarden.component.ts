@@ -28,6 +28,7 @@ export class NewGardenComponent implements OnInit {
   private plants: any[] = [];
   private idNewJardin: number;
   private garden = new Garden("");
+  private accion: string;
 
 
 
@@ -126,9 +127,12 @@ export class NewGardenComponent implements OnInit {
 
   }
 
-
+  toggleState(){
+    this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
+  }
 
   ngOnInit() {
+    this.accion='Editar';
     this.firstgarden();
     this.mostrar();
     this.mostrarPlantas();

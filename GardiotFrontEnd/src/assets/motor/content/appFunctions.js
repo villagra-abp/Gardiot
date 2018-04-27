@@ -6,6 +6,20 @@ function animLoop(){
     //Si toca dibujar y el motor está corriendo
     if(elapsed>fpsInterval && motor.running){
         then=now-(elapsed%fpsInterval);
+        if(window.transition){
+
+          motor.rotarCamaraOrbital("dynamicCamera", -window.step[0], "x");
+          motor.rotarCamaraOrbital("dynamicCamera", -window.step[1], "y");
+          motor.moverCamara("dynamicCamera", 0, window.step[2], 0);
+          if(Math.abs(rotationCamX)<5){
+            rotationCamX=0;
+            rotationCamY=0;
+            motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+            motor.resetOrbital("dynamicCamera");
+            window.transition=false;
+          }
+
+        }
 
         motor.draw();
     }
@@ -45,7 +59,7 @@ function drop(e) {
 }
 
 
-function mouse_move(e, view){
+function mouse_move(e){
     let cv=e.target,
         x=e.offsetX,
         y=e.offsetY;
@@ -58,18 +72,18 @@ function mouse_move(e, view){
           let pos=motor.getPosCamaraActiva();
           let movPosible=pos[1]*0.6;
 
-          if(view=='detail'){
-            motor.rotarCamaraOrbital("camara1", ejeX*150, "y");
-            motor.rotarCamaraOrbital("camara1", ejeY*150, "x");
+          if(window.mode==0){
+            motor.rotarCamaraOrbital("dynamicCamera", ejeX*150, "y");
+            motor.rotarCamaraOrbital("dynamicCamera", ejeY*150, "x");
           }
           else{
             //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
             if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
-              motor.moverCamara("camara2", ejeX*pos[1]*1.5, 0, 0);
+              motor.moverCamara("dynamicCamera", ejeX*pos[1]*1.5, 0, 0);
             }
 
             if((pos[2] <= jardin.length*1.0/2 || ejeY<0) && (pos[2] >= jardin.length*(-1.0)/2 || ejeY>0)){
-              motor.moverCamara("camara2", 0, 0, ejeY*pos[1]*1.5);
+              motor.moverCamara("dynamicCamera", 0, 0, ejeY*pos[1]*1.5);
             }
           }
 
@@ -80,7 +94,7 @@ function mouse_move(e, view){
 					window.originClickY=y/cv.offsetHeight;
         }
 
-        if (view != 'detail') {
+        if (window.mode != 0) {
           let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
           let p=[Math.round(point[0]), Math.round(point[2])];
           if(window.dragging) {
@@ -113,10 +127,10 @@ function mouse_move(e, view){
 
 
 
-function mouse_down(e, view){
+function mouse_down(e){
   switch (e.which) {
     case 1: //Izquierdo
-      if (view != 'detail') {
+      if (window.mode != 0) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -151,11 +165,11 @@ function mouse_down(e, view){
   }
 }
 
-function mouse_up(e, view){
+function mouse_up(e){
   colorCell=[];
   switch (e.which) {
     case 1: //Izquierdo
-      if (view != 'detail' && window.dragging) {
+      if (window.mode != 0 && window.dragging) {
         e.preventDefault();
         e.stopPropagation();
         let cv = e.target;
@@ -205,20 +219,31 @@ function mouse_up(e, view){
 
 //Esto es solo para el zoom de la cámara en el modo edición
 function scrolling(e){
+  if(window.mode==0){
+    if(e.deltaY<0){
+      motor.moverCamara("dynamicCamera", 0, -1, 0);
+    }
 
-  let cv=e.target;
-  let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
-  let camera=motor.getPosCamaraActiva();
-
-  let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);
-  vec3.normalize(vector, vector);
-  vec3.scale(vector, vector, 1);
-  if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>5){
-    motor.moverCamara("camara2", vector[0], vector[1], vector[2]);
+    else if(e.deltaY>0){
+      motor.moverCamara("dynamicCamera", 0, 1, 0);
+    }
   }
 
-  else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<10){
-    motor.moverCamara("camara2", -vector[0], -vector[1], -vector[2]);
+  else if(window.mode==1){
+    let cv=e.target;
+    let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
+    let camera=motor.getPosCamaraActiva();
+
+    let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);
+    vec3.normalize(vector, vector);
+    vec3.scale(vector, vector, 1);
+    if(e.deltaY<0 && motor.getPosCamaraActiva()[1]>5){
+      motor.moverCamara("dynamicCamera", vector[0], vector[1], vector[2]);
+    }
+
+    else if(e.deltaY>0 && motor.getPosCamaraActiva()[1]<10){
+      motor.moverCamara("dynamicCamera", -vector[0], -vector[1], -vector[2]);
+    }
   }
 
 }

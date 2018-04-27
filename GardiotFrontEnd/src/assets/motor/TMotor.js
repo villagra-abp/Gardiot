@@ -92,10 +92,9 @@ class TMotor{
 
         //inicializar viewport
 		    gl.viewport(0, 0, canvas.width, canvas.height);
+
 		    this.iterar();
-		    //this.siguienteMallaAnimada("pajaro");
-		    //this.siguienteMallaAnimada("alaA");
-		    //this.siguienteMallaAnimada("alaB");
+
         //inicializar cámara
         this.dibujarCamaraActiva();
 
@@ -118,6 +117,37 @@ class TMotor{
       return true;
     }
     return false;
+  }
+
+  toggleVista(){
+    if(window.mode==0){//visualización
+      window.mode=1;
+      //motor.resetOrbital("dynamicCamera");
+      //motor.rotarCamaraA("dynamicCamera", -90, "x");
+      let pos=motor.getCamaraActiva().dad.dad.entity.matrix[13];
+      console.log(pos);
+      if(rotationCamY>360)
+        rotationCamY%=360;
+      window.step=[rotationCamX/20, rotationCamY/20, (10-pos)/20];
+      window.transition=true;
+      //window.now=[rotationCamX, rotationCamY];
+      //console.log(now);
+      //motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+    }
+    else if(window.mode==1){//edición
+
+      window.mode=0;
+      rotationCamX=45;
+      rotationCamY=45;
+
+      motor.rotarCamaraOrbital("dynamicCamera", 0, "x");
+      motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
+      //window.transition=true;
+      //window.now=[rotationCamX, rotationCamY];
+      //console.log(now);
+      motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+
+    }
   }
 
 
@@ -251,6 +281,32 @@ class TMotor{
 
 	}
 
+  rotarCamaraA(nombre, grados, eje){
+		var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      let dir=[];
+      if(eje=='x'){
+        dir=[1.0, 0.0, 0.0];
+      }else if(eje=='y'){
+        dir=[0.0, 1.0, 0.0];
+      }else if(eje=='z'){
+        dir=[0.0, 0.0, 1.0];
+      }
+      let rad=Math.PI*grados/180
+
+			mat4.fromRotation(this.camaraRegistro[pos].dad.entity.matrix, rad, eje);
+			return true;
+		}
+
+	}
+
 
   rotarCamaraOrbital(nombre, grados, eje){
 		var pos = -1;
@@ -278,6 +334,24 @@ class TMotor{
 		}
 	}
 
+  resetOrbital(nombre){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+
+        mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.entity.matrix, 0, [1.0, 0.0, 0.0]);
+
+        mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.dad.entity.matrix, 0, [0.0, 1.0, 0.0]);
+
+			return true;
+		}
+  }
 	/** se le pasa el nombre por parametro y activa dicha camara */
 	activarCamara(nombre){
 		var pos = -1;
