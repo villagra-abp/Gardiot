@@ -49,7 +49,7 @@ router.get('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 	}
 });
 
-router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+router.put('/feed/:id', passport.authenticate('jwt', {session: false}), routeRequirements,  function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {

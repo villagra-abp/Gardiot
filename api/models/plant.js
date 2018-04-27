@@ -23,6 +23,17 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
   }
 }
 
+plant.getPlantsSowing = function(callback) {
+  if (connection) {
+    connection.query('SELECT id FROM Plant WHERE DAYOFYEAR(initDatePlant) <= DAYOFYEAR(NOW())  AND DAYOFYEAR(finDatePlant)>= DAYOFYEAR(NOW())', function (error, rows) {
+      if (error)
+        callback(error, null);
+      else
+        callback (null, rows);
+    });
+  }
+}
+
 plant.getPlantsNumber = function (callback) {
   if (connection) {
     connection.query('SELECT COUNT(*) AS NUMPLANTAS FROM Plant', function (error, number) {
@@ -116,6 +127,8 @@ plant.deletePlant = function(id, callback) {
 		});
   }
 }
+
+
 
 
 module.exports = plant;

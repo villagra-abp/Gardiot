@@ -121,9 +121,6 @@ export class GardenComponent {
         var aux = data.main.temp - 273;
         this.temperatura = aux;
 
-
-
-
       },
       error => {
         console.error(error);

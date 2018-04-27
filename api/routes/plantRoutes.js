@@ -22,6 +22,15 @@ router.get('/plants/:number/:page/:order/:sort', function (request, response) {
 	}
 });
 
+router.get('/sowingPlants', function (request, response) {
+	plantModel.getPlantsSowing (function(error, data) {
+		if (error)
+			response.status(500).json({"Mensaje":error.message});
+		else
+			response.status(200).json(data);
+	});
+});
+
 router.get('/plant/:id', function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
