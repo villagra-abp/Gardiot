@@ -150,9 +150,9 @@ task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate
 	}
 }
 
-task.setTaskDone = function (myPlant, plant, treatment, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, dateDone, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
-		connection.query('UPDATE Task SET dateDone = "' + date + '" WHERE tPlant =' + plant + ' AND treatmentPlant =' + treatment + ' AND myPlant =' + myPlant + ' AND mPlant =' + plant, function(error, row) {
+		connection.query('UPDATE Task SET dateDone = "' + dateDone + '" WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else

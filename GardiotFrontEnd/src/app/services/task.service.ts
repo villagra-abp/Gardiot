@@ -41,11 +41,12 @@ export class TaskService {
         })
   }
 
-  DoneTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, date:string){
+  DoneTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, date:string, dateDone:string){
+    console.log(date, dateDone);
     let headers = new Headers({
       'Authorization':`Bearer ${localStorage['Bearer']}`
     });
-    return this.http.patch(this.apiURL+"taskDone/"+myPlant+"/"+mPlant+"/"+tPlant+"/"+date, { headers } )
+    return this.http.put(this.apiURL+"taskDone/"+myPlant+"/"+mPlant+"/"+tPlant+"/"+treatmentPlant+"/"+date+"/"+dateDone, '', { headers } )
         .map( res =>{
           return res.json();
         })
