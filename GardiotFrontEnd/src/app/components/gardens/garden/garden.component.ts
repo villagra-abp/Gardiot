@@ -74,7 +74,6 @@ export class GardenComponent {
     this.mostrar();
   }
 
-
   mostrar() {
     this._gardenService.details()
       .subscribe(data => {
@@ -82,8 +81,8 @@ export class GardenComponent {
         if (data != null) {
           this.garden.id = data.id;
           this.garden.title = data.title;
-          this.garden.width = data.width;
-          this.garden.length = data.length;
+          this.garden.width = parseInt(data.width);
+          this.garden.length = parseInt(data.length);
           this.garden.longitude = data.longitude;
           this.garden.latitude = data.latitude;
           this.garden.soil = data.soil;

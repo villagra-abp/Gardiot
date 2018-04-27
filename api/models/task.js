@@ -139,24 +139,24 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 	}
 }
 
-task.moveTask = function (myPlant, plant, treatment, date, callback) { //Mover tarea de sitio
+task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate, callback) { //Mover tarea de sitio
 	if (connection) {
-		connection.query('UPDATE Task SET date = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {
+		connection.query('UPDATE Task SET date = "'+newDate+'" WHERE date="'+date+'" AND tPlant=' + tPlant + ' AND treatmentPlant=' + treatmentPlant + ' AND myPlant=' + myPlant + ' AND mPlant=' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, result.affectedRows);
+				callback(null, row.affectedRows);
 		});
 	}
 }
 
-task.setTaskDone = function (myPlant, plant, treatment, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, dateDone, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
-		connection.query('UPDATE Task SET dateDone = "' + date + '" WHERE tPlant =' + plant + ', treatmentPlant =' + treatment + ', myPlant =' + myPlant + ', mPlant =' + plant, function(error, row) {
+		connection.query('UPDATE Task SET dateDone = "' + dateDone + '" WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
-				callback(null, result.affectedRows);
+				callback(null, row.affectedRows);
 		});
 	}
 }
@@ -167,7 +167,7 @@ task.deleteTasksByMyPlant = function (myPlant, callback) { //Se borran las las p
 	    	if (error)
         		callback(error, null);
         	else
-        		callback(null, result.affectedRows);
+        		callback(null, row.affectedRows);
 		});
 	}
 }

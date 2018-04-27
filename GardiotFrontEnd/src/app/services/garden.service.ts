@@ -107,28 +107,28 @@ export class GardenService {
       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
-      if(garden.title != "undefined"){
+      if(garden.title !== undefined){
 	  	body += `&title=${garden.title}`;
       }
-      // if(garden.width != "undefined"){
+      if(garden.width !== undefined){
 	  	body += `&width=${garden.width}`;
-      // }
-      // if(garden.length != "undefined"){
+      }
+      if(garden.length !== undefined){
 	  	body += `&length=${garden.length}`;
-      // }
-      if(garden.latitude != "undefined"){
+      }
+      if(garden.latitude !== undefined){
 	  	body += `&latitude=${garden.latitude}`;
       }
-      if(garden.longitude != "undefined"){
+      if(garden.longitude !== undefined){
 	  	body += `&longitude=${garden.longitude}`;
       }
-      if(garden.soil != "undefined"){
+      if(garden.soil !== undefined){
 	  	//body += `&soil=${garden.soil}`;
       }
-      if(garden.countryCode != "undefined"){
+      if(garden.countryCode !== undefined){
 	  	body += `&countryCode=${garden.countryCode}`;
       }
-      if(garden.city != "undefined"){
+      if(garden.city !== undefined){
 	  	body += `&city=${garden.city}`;
       }
       let headers = new Headers({
