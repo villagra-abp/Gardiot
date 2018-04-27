@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
+import {Overlay} from '@angular/cdk/overlay';
 
 import { DialogNewgardenComponent } from '../../dialog-newgarden/dialog-newgarden.component';
 import { MatDialog } from '@angular/material';
