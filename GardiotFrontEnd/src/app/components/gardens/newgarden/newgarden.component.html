@@ -1,83 +1,43 @@
-<div class="container main-container">
-  <h1>Crear mi jardin</h1>
+<div class="main-container">
+  <section class="herramienta">
+    <ul class="nav superior">
+      <li class="nav-item">
+        <button [routerLink]="['/editgarden']" class="btn btn-success">Plantas</button>
+      </li>
+    </ul>
+    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+    <ul class="nav justify-content-end inferior">
+      <li class="nav-item">
+        <button [routerLink]="['/editgarden']" class="btn btn-success">Editar</button>
+      </li>
+    </ul>
 
-  <section class="container">
-    <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
   </section>
 
-  <section class="container">
-    <div class="row animated fadeIn fast">
-      <div class="col-md-12">
-        <form (ngSubmit)="newGarden()" #forma="ngForm" novalidate="">
-          <div class="form-group  col-md-6">
-            <label for="title">Título: </label>
-            <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
-          </div>
-          <div class="form-group col-md-6">
-              <label for="length">Largo: {{garden.length===undefined ? 19 : garden.length}}</label>
-              <input class="form-control"
-                      type="range"
-                      [(ngModel)]="garden.length"
-                      min="7"
-                      max="31"
-                      step="2"
-                      name="length"
-                      id="length_garden"
-                      required>
+  <section class="container title">
+    <h1>{{garden.title}}</h1>
 
-              <label for="width">Ancho: {{garden.width===undefined ? 19 : garden.width}}</label>
-              <input class="form-control"
-                      type="range"
-                      [(ngModel)]="garden.width"
-                      min="7"
-                      max="31"
-                      step="2"
-                      name="width"
-                      id="width_garden"
-                      required>
+  </section>
 
-          </div>
-          <div class="form-group col-md-6" ng-init="listarPaises()">
-            <label for="countries">País:</label>
+</div>
 
-            <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-            </select2>
 
-          </div>
 
-          <div class="form-group col-md-6">
-            <label for="countries">Introduce tu código postal:</label>
-            <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
-          </div>
 
-          <div class="form-group col-md-6">
-            <label for="countries">Ciudad:</label>
-            <span id="ciudad"></span>
-          </div>
+<div class="container main-container">
 
-          <!-- <div class="form-group" ng-init="listarPaises()">
-          <label for="countries">País:</label>
-
-            <select2 [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.changeCities($event)">
-            </select2>
-
-        </div>-->
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="name_plant">Plantas</label>
-              <select class="form-control selectpicker" multiple id="name_plant" [(ngModel)]="plant" name="plant">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name_plant">Plantas</label>
+      <select class="form-control selectpicker" multiple id="name_plant" [(ngModel)]="plant" name="plant">
                <option *ngFor="let plant of plants" value="{{plant.id}}">{{plant.commonName}}</option>
              </select>
-            </div>
-          </div>
-
-
-
-          <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-          <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
-
-        </form>
-      </div>
     </div>
-  </section>
+  </div>
+
+
+
+  <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+  <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
+
 </div>

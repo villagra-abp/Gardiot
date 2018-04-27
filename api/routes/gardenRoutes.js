@@ -20,6 +20,7 @@ router.get('/admin/garden',  passport.authenticate('jwt', {session: false}), rou
   });
 });
 
+
 router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -75,6 +76,21 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 	});
 });
 
+router.get('/firstgardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	var user = request.user.id;
+	gardenModel.getGardenByUser(user, function(error, data) {
+		if (error)
+			response.status(500).json({"Mensaje":error.message});
+		else if (typeof data !== 'undefined' && data.length > 0) {
+			response.status(200).json({"Mensaje":"Existe"});
+		}
+		else {
+			response.status(200).json({"Mensaje":"No existe"});
+		}
+	});
+});
+
+
 router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var gardenData = {
 		title: request.body.title,
@@ -89,17 +105,21 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
 		zip: request.body.zip,
 	};
 	gardenData = filter(gardenData);
-	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.soil=== 'undefined' || typeof gardenData.user=== 'undefined')
-		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.soil=== 'undefined' || typeof gardenData.user=== 'undefined'){
+    response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
+  }
 	else {
 		var validate = validateInput(gardenData);
-		if (validate.length > 0)
-			response.status(400).json({"Mensaje": validate});
+		if (validate.length > 0){
+      response.status(400).json({"Mensaje": validate});
+    }
 		else {
 			gardenData.geoHash = geo.encode(gardenData.latitude, gardenData.longitude, 8);
 			gardenModel.insertGarden(gardenData, function(error, data) {
-				if (error)
-					response.status(500).json({"Mensaje":error.message});
+				if (error){
+          response.status(500).json({"Mensaje":error.message});
+        }
+
 				else if (data)
 					response.status(200).json(data);
 			});
