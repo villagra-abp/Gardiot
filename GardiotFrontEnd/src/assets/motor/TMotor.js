@@ -20,6 +20,7 @@ class TMotor{
         this.fragmentShader;
     }
 
+
     //empezamos a dibujar con los shaders que le pasemos por parámetro
     startDrawing(vs, fs){
     	this.running=true;
@@ -119,16 +120,19 @@ class TMotor{
     return false;
   }
 
+
   toggleVista(){
     if(window.mode==0){//visualización
       window.mode=1;
       //motor.resetOrbital("dynamicCamera");
       //motor.rotarCamaraA("dynamicCamera", -90, "x");
-      let pos=motor.getCamaraActiva().dad.dad.entity.matrix[13];
-      console.log(pos);
-      if(rotationCamY>360)
-        rotationCamY%=360;
-      window.step=[rotationCamX/20, rotationCamY/20, (10-pos)/20];
+      let pos=motor.getCamaraActiva().dad.dad.entity.matrix;
+      window.escala=motor.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
+      //console.log(pos[12], pos[13], pos[14]);
+      //console.log(esc);
+      //rotationCamY%=360;
+
+      window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, -rotationCamY/20];
       window.transition=true;
       //window.now=[rotationCamX, rotationCamY];
       //console.log(now);
@@ -137,15 +141,16 @@ class TMotor{
     else if(window.mode==1){//edición
 
       window.mode=0;
-      rotationCamX=45;
-      rotationCamY=45;
-
-      motor.rotarCamaraOrbital("dynamicCamera", 0, "x");
-      motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
+      window.rotationCamX=-40;
+      window.rotationCamY=-45;
+      motor.rotarCamaraA("dynamicCamera", 0, "x");
+      motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+      motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+      motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
       //window.transition=true;
       //window.now=[rotationCamX, rotationCamY];
       //console.log(now);
-      motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+      //motor.moverCamaraA("dynamicCamera", 0, 10, 0);
 
     }
   }
@@ -168,17 +173,21 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), hermano.dad);
+      var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
+      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
       var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
+
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}else{
 			//console.log("crea en raiz");
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), this.escena);
+      var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
+      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
       var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
+
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}
 
@@ -275,6 +284,8 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
+      if(eje=='z')
+        rotationCamY+=grados;
 			this.camaraRegistro[pos].dad.entity.rotar(grados, eje);
 			return true;
 		}
@@ -299,9 +310,9 @@ class TMotor{
       }else if(eje=='z'){
         dir=[0.0, 0.0, 1.0];
       }
-      let rad=Math.PI*grados/180
+      let rad=Math.PI*grados/180;
 
-			mat4.fromRotation(this.camaraRegistro[pos].dad.entity.matrix, rad, eje);
+			mat4.fromRotation(this.camaraRegistro[pos].dad.entity.matrix, rad, dir);
 			return true;
 		}
 
@@ -348,6 +359,22 @@ class TMotor{
         mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.entity.matrix, 0, [1.0, 0.0, 0.0]);
 
         mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.dad.entity.matrix, 0, [0.0, 1.0, 0.0]);
+
+			return true;
+		}
+  }
+
+  escalarCamara(nombre, q){
+    var pos = -1;
+
+		for (var i = 0; i< this.camaraRegistro.length; i++){
+			if(nombre == this.camaraRegistro[i].name){
+				pos = i;
+				break;
+			}
+		}
+		if(pos>=0){
+      this.camaraRegistro[pos].dad.dad.dad.dad.dad.entity.escalar(q, q, q);
 
 			return true;
 		}

@@ -20,10 +20,14 @@ function iniciar(accion, jardinBBDD){
   window.hovered=-1;
   window.colorCell=[];
 
-  window.rotationCamX=45;
-  window.rotationCamY=0;
+  window.rotationCamX=-40;
+  window.rotationCamY=-45;
   window.step=[0, 0, 0];
   window.transition=false;
+  window.escala=1;
+  window.cont=19;
+  window.camHeight=4;
+
 
   window.mode=0;//0 modo visualización
                 //1 modo edición
@@ -93,6 +97,7 @@ function iniciar(accion, jardinBBDD){
 //suelo
 let adjustX=0, adjustY=0;
 let width=Math.floor(jardin.width/2), length=Math.floor(jardin.length/2);
+
 
 motor.crearNodoMalla("around", "around", undefined, undefined);
 motor.escalarMallaXYZ("around", 500, 0.1, 500);
@@ -240,10 +245,13 @@ motor.activarLuz("sol");
   //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if(accion=='detail'){
     window.mode=0;
-    motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamaraA("dynamicCamera", 0, 10, 0);
-    motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
-    motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+    //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
+    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
+    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+
+    //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
 
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
@@ -257,7 +265,7 @@ motor.activarLuz("sol");
   else if(accion=='home'){
     window.mode=0;
     motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+    motor.moverCamaraA("dynamicCamera", 0, 7, 0);
     motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
     motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
     motor.activarCamara("dynamicCamera");
