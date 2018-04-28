@@ -8,7 +8,7 @@ function animLoop(){
         then=now-(elapsed%fpsInterval);
         if(window.transition){
 
-          motor.moverCamara("dynamicCamera", window.step[0], 0, window.step[1]);
+          motor.moverCamara("dynamicCamera", window.step[0], window.step[4], window.step[1]);
           //motor.escalarMalla("dynamicCamera", 1+window.step[2]);
           window.escala+=window.step[2];
           console.log(escala, step[2]);
@@ -102,7 +102,8 @@ function mouse_move(e){
             //antigua rotación
             //motor.rotarCamaraOrbital("dynamicCamera", ejeX*150, "y");
             //motor.rotarCamaraOrbital("dynamicCamera", ejeY*150, "x");
-
+            e.preventDefault();
+            e.stopPropagation();
             //nuevo movimiento
             console.log(rotationCamY);
 
@@ -135,7 +136,8 @@ function mouse_move(e){
           console.log('rotando camara');
           let ejeY=window.originClickY-(y/cv.offsetHeight);
           let ejeX=window.originClickX-(x/cv.offsetWidth);
-          motor.rotarCamara("dynamicCamera", ejeX*100, "z");
+          motor.rotarCamara("dynamicCamera", ejeX*150, "z");
+          //motor.rotarCamara("dynamicCamera", ejeY*50, "z");
           window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
         }
@@ -193,7 +195,7 @@ function mouse_down(e){
       break;
     case 1: //Derecho
 
-
+      if (window.mode ==1) {
       //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
       //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
       let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
@@ -207,14 +209,17 @@ function mouse_down(e){
         }
       }
       if(!dragging){
-      cv.setAttribute('moviendo-camara', 'true');
-
-
+        cv.setAttribute('moviendo-camara', 'true');
+      }
+    }
+      else{
+        cv.setAttribute('moviendo-camara', 'true');
       //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
       //de mouse_move
-      window.originClickX=x/cv.offsetWidth;
-      window.originClickY=y/cv.offsetHeight;
+
     }
+    window.originClickX=x/cv.offsetWidth;
+    window.originClickY=y/cv.offsetHeight;
       break;
   }
 }
@@ -278,19 +283,35 @@ function mouse_up(e){
 
 //Esto es solo para el zoom de la cámara en el modo edición
 function scrolling(e){
+  e.preventDefault();
+  e.stopPropagation();
   if(window.mode==0){
+
     /*let a=vec3.fromValues(0.0, 0.0, -1.0);
     vec3.rotateX(a, a, a, Math.PI*rotationCamX/180);
     vec3.rotateX(a, a, a, Math.PI*rotationCamX/180);
     console.log(a);*/
-    if(e.deltaY<0){
-      motor.escalarCamara("dynamicCamera", 0.95);
+    /*let p=motor.getPosCamaraActiva();
+    let radX=Math.PI*rotationCamX/180;
+    let radY=Math.PI*rotationCamX/180;
+    vec3.rotateX(p, p, vec3.fromValues(0.0, 0.0, 0.0), radX);
+    vec3.rotateY(p, p, vec3.fromValues(0.0, 0.0, 0.0), radY);
+    vec3.normalize(p, p);*/
+    let p=vec3.fromValues(-1.0, 1.0, 1.0);
+    let pos=motor.getPosCamaraActiva();
+    if(e.deltaY<0 && pos[1]>camHeight/2){
+
+
+      //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
+      //if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
+        motor.moverCamara("dynamicCamera",  -p[0], -p[1], -p[2]);
+      //motor.escalarCamara("dynamicCamera", 0.95);
     }
 
-    else if(e.deltaY>0){
-      motor.escalarCamara("dynamicCamera", 1.05);
+    else if(e.deltaY>0 && pos[1]<camHeight+(camHeight/2)){
+      motor.moverCamara("dynamicCamera",  p[0], p[1], p[2]);
     }
-    console.log(motor.getPosCamaraActiva());
+    //console.log(motor.getPosCamaraActiva());
   }
 
   else if(window.mode==1){

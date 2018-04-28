@@ -132,7 +132,7 @@ class TMotor{
       //console.log(esc);
       //rotationCamY%=360;
 
-      window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, -rotationCamY/20];
+      window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, (camHeight-pos[13])/20];
       window.transition=true;
       //window.now=[rotationCamX, rotationCamY];
       //console.log(now);
