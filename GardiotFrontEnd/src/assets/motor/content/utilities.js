@@ -98,6 +98,7 @@ function insertMyPlant(garden, plant, soil, x, y){
             window.jardin.plants.push(value);
             motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
             motor.moverMallaA(respuesta.myPlant, x, 0, y);
+						motor.escalarMalla(respuesta.myPlant, 2.5);
         }
     }
 

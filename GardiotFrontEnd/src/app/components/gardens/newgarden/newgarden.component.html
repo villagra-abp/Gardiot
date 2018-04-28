@@ -5,10 +5,10 @@
         <button [routerLink]="['/editgarden']" class="btn btn-success">Plantas</button>
       </li>
     </ul>
-    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1800" height="1200"></canvas>
+    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1200"></canvas>
     <ul class="nav justify-content-end inferior">
       <li class="nav-item">
-        <button [routerLink]="['/editgarden']" class="btn btn-success">Editar</button>
+        <button onclick="motor.toggleVista()" (click)="this.toggleState()" class="btn btn-success">{{accion}}</button>
       </li>
     </ul>
 
