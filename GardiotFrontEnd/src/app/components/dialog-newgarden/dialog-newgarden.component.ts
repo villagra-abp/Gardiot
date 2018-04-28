@@ -130,7 +130,6 @@ export class DialogNewgardenComponent implements OnInit {
 
 
   saveGarden() {
-    console.log(this.garden);
     this._gardenService.insertGarden(this.garden)
       .subscribe(data => {
         console.log('llego aqui')
@@ -145,7 +144,7 @@ export class DialogNewgardenComponent implements OnInit {
   ngOnInit() {
     this.listarPaises();
     this.mostrarCiudad();
-    this.garden.width=19;
-    this.garden.length=19;
+    this.garden.width=4;
+    this.garden.length=4;
   }
 }

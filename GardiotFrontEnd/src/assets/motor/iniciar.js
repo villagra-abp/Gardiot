@@ -111,6 +111,7 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
+
   // plantas dragables
   window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
@@ -264,12 +265,14 @@ motor.activarLuz("sol");
   }
   else if(accion=='home'){
     window.mode=0;
-    motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamaraA("dynamicCamera", 0, 7, 0);
-    motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
-    motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
-    motor.activarCamara("dynamicCamera");
-    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
+    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
+    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+
+    //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+
     motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
   }
 

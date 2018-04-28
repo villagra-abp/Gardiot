@@ -25,6 +25,8 @@ height: 100% !important;
 button{
 	min-height: 40px;
 }
+
+
 .selectPlantas{
 	position: absolute;
 	display: flex;
@@ -78,9 +80,20 @@ button{
 	z-index: 2;
  }
 
+ .botonera{
+	 position: absolute;
+	 height: 300px;
+	 width: 100px;
+	 z-index: 10;
+	 bottom: 100px;
+	 right: 20px;
+ }
+
 
 
 @media (max-width: 768px) {
+
+
 
 	.selectPlantas{
 		position: absolute;

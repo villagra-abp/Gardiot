@@ -12,7 +12,9 @@ declare var iniciar: any;
 @Component({
   selector: 'app-garden',
   templateUrl: './garden.component.html',
-  styleUrls: ['./garden.component.css']
+  styleUrls: ['./garden.component.css',
+              '../editgarden/editgarden.component.css'
+            ]
 })
 export class GardenComponent {
   private garden = new Garden("");
@@ -57,6 +59,10 @@ export class GardenComponent {
 
   private photoURL = "";
 
+  private accion: string;
+  private width: number;
+  private length: number;
+
   constructor(
     private _gardenService: GardenService,
     private _route: Router,
@@ -71,6 +77,7 @@ export class GardenComponent {
 
 
   ngOnInit() {
+    this.accion='Editar';
     this.mostrar();
   }
 
@@ -83,6 +90,8 @@ export class GardenComponent {
           this.garden.title = data.title;
           this.garden.width = parseInt(data.width);
           this.garden.length = parseInt(data.length);
+          this.width = (parseInt(data.width)-1)/2;
+          this.length = (parseInt(data.length)-1)/2;
           this.garden.longitude = data.longitude;
           this.garden.latitude = data.latitude;
           this.garden.soil = data.soil;
@@ -90,7 +99,7 @@ export class GardenComponent {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          new iniciar("detail", this.garden);
+          this.inicializar();
           if (this.garden.city) {
             this.visible = true;
             this.getTiempo();
@@ -281,8 +290,60 @@ export class GardenComponent {
     return dia;
   }
 
+  edit() {
+
+    this._gardenService.modifyGarden(this.garden, (this.width*2)+1, (this.length*2)+1)
+      .subscribe(data => {
+        this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+      },
+      error => {
+        let v = JSON.parse(error._body);
+        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+      });
+  }
+
+  //muestra el formulario de edicion y borrado de jardín
+  showForm() {
+    if (this.menuVisible == true) {
+      this.menuVisible = false;
+    } else {
+      this.menuVisible = true;
+    }
+  }
+
+  resizeCanvas() {
+    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
+
+    let canvas = document.querySelector('canvas');
+    canvas.width = canvasEvolver.offsetWidth;
+    canvas.height = canvasEvolver.offsetHeight;
+
+
+    let desvX = (canvas.width - 1200) * 0.0008;
+    let desvY = (canvas.height - 974) * 0.00072;
+    let pos = motor.getPosCamaraActiva();
+    //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+
+  }
+
+  toggleState(){
+    this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
+  }
+
   inicializar() {
-    new iniciar("detail");
+    new iniciar("detail", this.garden);
+    let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
+    let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvas = document.querySelector('canvas');
+    canvas.width = width;
+    canvas.height = height;
+
+    let desvX = (canvas.width - 1200) * 0.0008;
+    let desvY = (canvas.height - 974) * 0.00072;
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+    window.addEventListener("resize", this.resizeCanvas);
   }
 
 

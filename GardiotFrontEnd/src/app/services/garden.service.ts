@@ -57,10 +57,10 @@ export class GardenService {
 
       let body = `title=${garden.title}`;
       if(garden.width != undefined){
-        body += `&width=${garden.width}`;
+        body += `&width=${(garden.width*2)+1}`;
       }
       if(garden.length != undefined){
-        body += `&length=${garden.length}`;
+        body += `&length=${(garden.length*2)+1}`;
       }
       if(garden.latitude != undefined){
         body += `&latitude=${garden.latitude}`;
@@ -102,8 +102,8 @@ export class GardenService {
 		}
 
 
-	  modifyGarden(garden:Garden){
-
+	  modifyGarden(garden:Garden, width:number, length:number){
+			console.log(width, length);
       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
@@ -111,10 +111,10 @@ export class GardenService {
 	  	body += `&title=${garden.title}`;
       }
       if(garden.width !== undefined){
-	  	body += `&width=${garden.width}`;
+	  	body += `&width=${width}`;
       }
       if(garden.length !== undefined){
-	  	body += `&length=${garden.length}`;
+	  	body += `&length=${length}`;
       }
       if(garden.latitude !== undefined){
 	  	body += `&latitude=${garden.latitude}`;
