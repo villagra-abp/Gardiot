@@ -110,11 +110,13 @@ function mouse_move(e){
             motor.moverCamara("dynamicCamera", -ejeY*10, 0, ejeY*10);
           }
           else{
-
+            let dir=vec3.fromValues(ejeX*10, 0, ejeY*10);
+            let rad=Math.PI*rotationCamY/180;
+            vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), rad);
 
             //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
             //if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
-              motor.moverCamara("dynamicCamera",  ejeX*10, 0, ejeY*10);
+              motor.moverCamara("dynamicCamera",  dir[0], 0, dir[2]);
             //}
 
             //if((pos[2] <= jardin.length*1.0/2 || ejeY<0) && (pos[2] >= jardin.length*(-1.0)/2 || ejeY>0)){
@@ -176,35 +178,35 @@ function mouse_down(e){
   x=e.offsetX,
   y=e.offsetY;
   switch (e.which) {
-    case 1: //Izquierdo
+    case 3: //Izquierdo
       if (window.mode != 0) {
         e.preventDefault();
         e.stopPropagation();
 
-        let cv=e.target;
-        let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
-        let coordX = Math.round(point[0]);
-        let coordY = Math.round(point[2]);
-        for (let plant of window.jardin.plants) {
-          if (plant.x == coordX && plant.y == coordY) {
-            plant.isDragging = true;
-            window.dragging = true;
-            break;
-          }
-        }
-        if(!dragging){
+
           cv.setAttribute('rotando-camara', 'true');
           window.originClickX=x/cv.offsetWidth;
           window.originClickY=y/cv.offsetHeight;
-        }
+
       }
 
       break;
-    case 3: //Derecho
+    case 1: //Derecho
 
 
       //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
       //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
+      let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+      let coordX = Math.round(point[0]);
+      let coordY = Math.round(point[2]);
+      for (let plant of window.jardin.plants) {
+        if (plant.x == coordX && plant.y == coordY) {
+          plant.isDragging = true;
+          window.dragging = true;
+          break;
+        }
+      }
+      if(!dragging){
       cv.setAttribute('moviendo-camara', 'true');
 
 
@@ -212,6 +214,7 @@ function mouse_down(e){
       //de mouse_move
       window.originClickX=x/cv.offsetWidth;
       window.originClickY=y/cv.offsetHeight;
+    }
       break;
   }
 }
@@ -219,46 +222,49 @@ function mouse_down(e){
 function mouse_up(e){
   colorCell=[];
   switch (e.which) {
+    case 3: //Derecho
+
+      e.target.removeAttribute('rotando-camara');
+      window.originClickX=undefined;
+      window.originClickY=undefined;
+      break;
     case 1: //Izquierdo
-      if (window.mode != 0 && window.dragging) {
-        e.preventDefault();
-        e.stopPropagation();
-        let cv = e.target;
-        let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
-        let coordX = Math.round(point[0]);
-        let coordY = Math.round(point[2]);
-        for (let plant of window.jardin.plants) {
-          if (plant.isDragging) {
-            plant.isDragging = false;
-            window.dragging = false;
-            if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
-              let occupied = false;
-              for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
-                if (value.x == coordX && value.y == coordY) {
-                  motor.moverMallaA(plant.id, plant.x, 0, plant.y);
-                  occupied = true;
-                  break;
-                }
-              }
-              if (!occupied)
-                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
-            }
-            else {
-              let rect = cv.getBoundingClientRect();
-              let xPos = e.clientX - rect.left;
-              let yPos = e.clientY - rect.top;
-              if (xPos >= 90*cv.offsetWidth/100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10*cv.offsetHeight/100)
-                deleteMyPlant(window.jardin.id, plant);
-              else
+    if (window.mode != 0 && window.dragging) {
+      e.preventDefault();
+      e.stopPropagation();
+      let cv = e.target;
+      let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+      let coordX = Math.round(point[0]);
+      let coordY = Math.round(point[2]);
+      for (let plant of window.jardin.plants) {
+        if (plant.isDragging) {
+          plant.isDragging = false;
+          window.dragging = false;
+          if (coordX <= jardin.width*1.0/2 && coordX >= jardin.width*(-1.0)/2 && coordY <= jardin.length*1.0/2 && coordY >= jardin.length*(-1.0)/2) {
+            let occupied = false;
+            for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
+              if (value.x == coordX && value.y == coordY) {
                 motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                occupied = true;
+                break;
+              }
             }
-            break;
+            if (!occupied)
+              updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
           }
+          else {
+            let rect = cv.getBoundingClientRect();
+            let xPos = e.clientX - rect.left;
+            let yPos = e.clientY - rect.top;
+            if (xPos >= 90*cv.offsetWidth/100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10*cv.offsetHeight/100)
+              deleteMyPlant(window.jardin.id, plant);
+            else
+              motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+          }
+          break;
         }
       }
-      e.target.removeAttribute('rotando-camara');
-      break;
-    case 3: //Derecho
+    }
     //No se hace nada al soltar el botón derecho
       window.originClickX=undefined;
       window.originClickY=undefined;
