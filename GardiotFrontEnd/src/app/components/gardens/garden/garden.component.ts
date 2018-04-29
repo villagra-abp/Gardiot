@@ -56,6 +56,8 @@ export class GardenComponent {
 
   private tercerDia: string = "";
   private visible = false;
+  private menuVisible = false;
+
 
   private photoURL = "";
 
