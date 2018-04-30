@@ -3,23 +3,48 @@ var validator = require('validator');
 var isASCII = require('../functions/isASCII');
 var isEmail = require('isemail');
 
+var skeleton = {
+	PLANT: {
+		SELECT: 'Family.name',
+		FROM: 'Plant, Family, TreatmentPlant',
+	},
+	USER: {
+		SELECT: '',
+		FROM: 'User',
+	},
+	PRODUCT: {
+		SELECT: '',
+		FROM: 'Product',
+	},
+	TREATMENT: {
+		SELECT: '',
+		FROM: 'Treatment',
+	},
+	FEED: {
+		SELECT: '',
+		FROM: 'Feed',
+	}
+};
+
 var finder = {};
 
 finder.find = function(model, data, number, page, order, sort, callback) {
+	console.log(skeleton[model.toUpperCase()]);
+	console.log();
 	if (connection) {
 		let minPeak = (page - 1) * number;
-		var sql = 'SELECT COUNT(*) OVER () AS num, Q.* FROM ' + model + ' Q ';
+		var sql = 'SELECT COUNT(*) OVER () AS num, Q.*, ' + skeleton[model.toUpperCase()]['SELECT'] + ' FROM ' + skeleton[model.toUpperCase()]['FROM'] + ' Q ';
 
 		let sqlParams = '';
 		for (var key in data) {
 			if (typeof data[key]!== 'undefined') {
 				if (validator.isISO8601(data[key])) {
 					if (key.toUpperCase().indexOf('INIT')!= -1)
-						sqlParams += ' ' + key + ' >= ' + data[key] + ' AND';
+						sqlParams += ' DAYOFYEAR(' + key + ') >= DAYOFYEAR(' + data[key] + ') AND';
 					else if (key.toUpperCase().indexOf('FIN')!= -1)
-						sqlParams += ' ' + key + ' <= ' + data[key] + ' AND';
+						sqlParams += ' DAYOFYEAR(' + key + ') <= DAYOFYEAR(' + data[key] + ') AND';
 					else
-						sqlParams += ' ' + key + ' = ' + data[key] + ' AND';
+						sqlParams += ' DAYOFYEAR(' + key + ') = DAYOFYEAR(' + data[key] + ') AND';
 				}
 				else if (Number.isInteger(data[key]) || validator.isFloat(data[key])) {
 					if (key.toUpperCase().indexOf('GT')!= -1)
