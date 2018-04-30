@@ -6,7 +6,7 @@ var isEmail = require('isemail');
 var skeleton = {
 	PLANT: {
 		SELECT: 'Family.name',
-		FROM: 'Plant, Family, TreatmentPlant',
+		FROM: 'Family, TreatmentPlant, Plant',
 	},
 	USER: {
 		SELECT: '',
@@ -29,8 +29,6 @@ var skeleton = {
 var finder = {};
 
 finder.find = function(model, data, number, page, order, sort, callback) {
-	console.log(skeleton[model.toUpperCase()]);
-	console.log();
 	if (connection) {
 		let minPeak = (page - 1) * number;
 		var sql = 'SELECT COUNT(*) OVER () AS num, Q.*, ' + skeleton[model.toUpperCase()]['SELECT'] + ' FROM ' + skeleton[model.toUpperCase()]['FROM'] + ' Q ';
