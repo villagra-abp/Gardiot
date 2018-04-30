@@ -5,7 +5,7 @@
         <button [routerLink]="['/editgarden']" class="btn btn-success">Plantas</button>
       </li>
     </ul>
-    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="1800" height="1200"></canvas>
+    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="2100" height="1200"></canvas>
     <ul class="nav justify-content-end inferior">
       <li class="nav-item">
         <button onclick="motor.toggleVista()" (click)="this.toggleState()" class="btn btn-success">{{accion}}</button>
@@ -16,16 +16,21 @@
 
   <section class="container title">
     <h1>{{garden.title}}</h1>
-
   </section>
-
 </div>
+
+<div class="container main-container">
+  <ul class="smooth-scroll list-unstyled">
+    <li *ngFor="let plant of plants" value="{{plant.id}}">
+        <img src="{{plant.photo}}" alt="no sale la imagen"  width="80px" height="80px">
+    </li>
+  </ul>
+  </div>
 
 
 
 
 <div class="container main-container">
-
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name_plant">Plantas</label>
