@@ -19,13 +19,22 @@
   							 <option  value="DES">Z-A</option>
   						 </select>
   					</article> -->
-        <article class="form-group col-md-2">
+        <article class="form-group col-md-8">
           <button class="btn btn-default" type="submit">Buscar</button>
+          <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
         </article>
         <article class="form-group col-md-2">
           <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary">Nueva planta</button>
         </article>
       </form>
+      <section class="form-row">
+
+        <div id="demo" class="collapse">
+          <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+            <label for="scientificName">Nombre Científico</label><input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+          </form>
+        </div>
+      </section>
 
       <section class="card-columns">
         <div *ngFor="let plant of plants" class="card" style="width: 18rem;">

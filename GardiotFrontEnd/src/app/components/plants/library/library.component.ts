@@ -49,8 +49,11 @@ export class LibraryComponent implements OnInit {
   }
 
   searchcontent(page: number, items: number) {
+    console.log(this.plant);
+   
     this._plantService.searchAll(this.plant, page, items)
       .subscribe(data => {
+        console.log(data);
         if (data[0] != undefined) {
           this.plants = [];
           this.numeroItems = data[0].num;

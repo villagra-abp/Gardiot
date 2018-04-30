@@ -93,6 +93,7 @@ export class PlantService {
 
 		searchAll(plant:Plant,page:number, items:number){
 			let body = `commonName=${plant.commonName}`;
+			body += `&scientificName=${plant.scientificName}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
