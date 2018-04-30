@@ -72,3 +72,15 @@
 h1, h2{
   text-align: center;
 }
+
+
+.toggleDeko{
+  background: url(http://online-kuechenplaner.macrocom.de/style/default/camControl/controls-white.png) 2px 66px, #ef7f00;
+}
+
+.litButton{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 99999;
+}
