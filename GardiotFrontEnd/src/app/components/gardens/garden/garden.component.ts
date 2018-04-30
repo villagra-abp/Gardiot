@@ -8,6 +8,8 @@ import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 
 declare var iniciar: any;
+declare var motor: any;
+
 
 @Component({
   selector: 'app-garden',
@@ -20,7 +22,6 @@ export class GardenComponent {
   private garden = new Garden("");
 
   private temperatura = 0;
-
 
   private prevHoy = [];
   private prevMan = [];
@@ -292,6 +293,7 @@ export class GardenComponent {
     return dia;
   }
 
+
   edit() {
 
     this._gardenService.modifyGarden(this.garden, (this.width*2)+1, (this.length*2)+1)
@@ -323,9 +325,9 @@ export class GardenComponent {
 
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
-    let pos = window.motor.getPosCamaraActiva();
+    let pos = motor.getPosCamaraActiva();
     //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
-    window.motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
 
   }
 
@@ -343,8 +345,8 @@ export class GardenComponent {
 
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
-    window.motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
-    window.motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
   }
 
