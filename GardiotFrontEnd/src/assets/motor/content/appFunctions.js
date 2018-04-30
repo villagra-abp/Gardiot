@@ -67,7 +67,7 @@ function drop(e) {
     e.stopPropagation();
     let plant = e.dataTransfer.getData("text");
     let cv = e.target;
-    let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+    let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
     let coordX = Math.round(point[0]);
     let coordY = Math.round(point[2]);
 
@@ -86,9 +86,9 @@ function drop(e) {
 
 
 function mouse_move(e){
-    let cv=e.target,
-        x=e.offsetX,
-        y=e.offsetY;
+    let cv=document.querySelector('#myCanvas'),
+        x=e.clientX,
+        y=e.clientY;
 
 				if(cv.getAttribute('moviendo-camara')){
 	        //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
@@ -105,7 +105,6 @@ function mouse_move(e){
             e.preventDefault();
             e.stopPropagation();
             //nuevo movimiento
-            console.log(rotationCamY);
 
             motor.moverCamara("dynamicCamera", ejeX*10, 0, ejeX*5);
             motor.moverCamara("dynamicCamera", -ejeY*10, 0, ejeY*10);
@@ -133,7 +132,6 @@ function mouse_move(e){
         }
 
         else if(cv.getAttribute('rotando-camara')){
-          console.log('rotando camara');
           let ejeY=window.originClickY-(y/cv.offsetHeight);
           let ejeX=window.originClickX-(x/cv.offsetWidth);
           motor.rotarCamara("dynamicCamera", ejeX*150, "z");
@@ -143,7 +141,7 @@ function mouse_move(e){
         }
 
         if (window.mode != 0) {
-          let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+          let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
           let p=[Math.round(point[0]), Math.round(point[2])];
           if(window.dragging) {
             e.preventDefault();
@@ -176,29 +174,17 @@ function mouse_move(e){
 
 
 function mouse_down(e){
-  let cv=e.target,
-  x=e.offsetX,
-  y=e.offsetY;
+  let cv=document.querySelector('#myCanvas'),
+  x=e.clientX,
+  y=e.clientY;
+
   switch (e.which) {
-    case 3: //Izquierdo
-      if (window.mode != 0) {
-        e.preventDefault();
-        e.stopPropagation();
 
-
-          cv.setAttribute('rotando-camara', 'true');
-          window.originClickX=x/cv.offsetWidth;
-          window.originClickY=y/cv.offsetHeight;
-
-      }
-
-      break;
-    case 1: //Derecho
-
-      if (window.mode ==1) {
+    case 1: //Izquierdo
+    if (window.mode ==1) {
       //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
       //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
-      let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+      let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
       let coordX = Math.round(point[0]);
       let coordY = Math.round(point[2]);
       for (let plant of window.jardin.plants) {
@@ -221,6 +207,14 @@ function mouse_down(e){
     window.originClickX=x/cv.offsetWidth;
     window.originClickY=y/cv.offsetHeight;
       break;
+
+      case 3:
+      if(window.mode==1){
+        window.originClickX=x/cv.offsetWidth;
+        window.originClickY=y/cv.offsetHeight;
+        cv.setAttribute('rotando-camara', 'true');
+        break;
+      }
   }
 }
 
@@ -228,17 +222,19 @@ function mouse_up(e){
   colorCell=[];
   switch (e.which) {
     case 3: //Derecho
+    window.originClickX=undefined;
+    window.originClickY=undefined;
 
-      e.target.removeAttribute('rotando-camara');
-      window.originClickX=undefined;
-      window.originClickY=undefined;
+    //console.log(`UP-> Posición: ${fila} - ${columna}`);
+    e.target.removeAttribute('rotando-camara');
+
       break;
     case 1: //Izquierdo
     if (window.mode != 0 && window.dragging) {
       e.preventDefault();
       e.stopPropagation();
-      let cv = e.target;
-      let point = get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);
+      let cv=document.querySelector('#myCanvas');
+      let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
       let coordX = Math.round(point[0]);
       let coordY = Math.round(point[2]);
       for (let plant of window.jardin.plants) {
@@ -266,6 +262,9 @@ function mouse_up(e){
             else
               motor.moverMallaA(plant.id, plant.x, 0, plant.y);
           }
+          e.target.removeAttribute('rotando-camara');
+          window.originClickX=undefined;
+          window.originClickY=undefined;
           break;
         }
       }
@@ -278,8 +277,48 @@ function mouse_up(e){
       e.target.removeAttribute('moviendo-camara');
 
       break;
+
   }
 }
+
+function deletePlant(){
+  if (window.mode != 0 && window.dragging) {
+
+    for (let plant of window.jardin.plants) {
+      if (plant.isDragging) {
+        plant.isDragging = false;
+        window.dragging = false;
+
+        deleteMyPlant(window.jardin.id, plant);
+
+      }
+    }
+  }
+}
+
+function plusZoom(){
+  let p=vec3.fromValues(-0.5, 0.5, 0.5);
+  let pos=motor.getPosCamaraActiva();
+  if(pos[1]>camHeight/2){
+
+
+    //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
+    //if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
+      motor.moverCamara("dynamicCamera",  -p[0], -p[1], -p[2]);
+    //motor.escalarCamara("dynamicCamera", 0.95);
+  }
+
+}
+
+function subZoom(){
+  let p=vec3.fromValues(-0.5, 0.5, 0.5);
+  let pos=motor.getPosCamaraActiva();
+  if(pos[1]<camHeight+(camHeight/2)){
+    motor.moverCamara("dynamicCamera",  p[0], p[1], p[2]);
+  }
+}
+
+
 
 //Esto es solo para el zoom de la cámara en el modo edición
 function scrolling(e){
@@ -316,7 +355,7 @@ function scrolling(e){
 
   else if(window.mode==1){
     let cv=e.target;
-    let point=get3DPoint([e.offsetX, e.offsetY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
+    let point=get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);//punto donde queremos acercarnos
     let camera=motor.getPosCamaraActiva();
 
     let vector=vec3.fromValues(point[0]-camera[0], point[1]-camera[1], point[2]-camera[2]);

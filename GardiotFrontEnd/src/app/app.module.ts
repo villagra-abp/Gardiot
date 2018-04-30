@@ -93,6 +93,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogHelpGardenComponent } from './components/dialog-gardenhelp/dialog-help-garden.component';
 import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -150,6 +151,7 @@ registerLocaleData(localeEs);
     DialogDeleteComponent,
     HelpComponent,
     DialogNewgardenComponent,
+    DialogHelpGardenComponent
 
   ],
   imports: [

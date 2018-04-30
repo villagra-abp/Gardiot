@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { FormsModule, NgForm } from "@angular/forms";
@@ -6,9 +6,14 @@ import { GardenService } from "../../../services/garden.service";
 import { Garden } from "../../../classes/garden.class";
 import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
+import { Select2OptionData } from 'ng2-select2';
+import { DialogHelpGardenComponent } from '../../dialog-gardenhelp/dialog-help-garden.component';
+import { MatDialog } from '@angular/material';
+import 'rxjs/add/operator/delay';
 
 declare var iniciar: any;
 declare var motor: any;
+
 
 
 @Component({
@@ -60,6 +65,16 @@ export class GardenComponent {
   private menuVisible = false;
 
 
+  countries: any[] = [];
+  cities: any[] = [];
+  zip: string = "";
+  countryData: Observable<Array<Select2OptionData>>;
+  startCountry: Observable<string>;
+  cityData: Observable<Array<Select2OptionData>>;
+  startCity: Observable<string>;
+  city: string;
+
+
   private photoURL = "";
 
   private accion: string;
@@ -69,14 +84,99 @@ export class GardenComponent {
   constructor(
     private _gardenService: GardenService,
     private _route: Router,
-    private _appComponent: AppComponent) {
+    private _appComponent: AppComponent,
+    private dialog: MatDialog) {
       if(window.location.toString().indexOf("localhost")>=0){
-        this.photoURL="/assets/images/imgWeather/";
+        this.photoURL="/assets";
       }
       else if(window.location.toString().indexOf("gardiot")>=0){
-        this.photoURL="/app/assets/images/imgWeather/";
+        this.photoURL="/app/assets";
       }
   }
+
+
+    @HostListener('document:keyup', ['$event'])
+
+    searchZip(event: KeyboardEvent): void {
+      //aqui vamos cargando las posibles ciudades a elegir
+      let input = (<HTMLInputElement>document.querySelector("#zipCode"));
+      if (input.value.length == 5) {
+        this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
+          .subscribe(data => {
+            let sp = document.querySelector('#ciudad');
+
+            if (data.length > 0) {
+              this.garden.latitude = data[0].lat.toFixed(2);
+              this.garden.longitude = data[0].lng.toFixed(2);
+              if (data[0].adminName3 !== undefined) {
+                this.garden.city = data[0].adminName3;
+                sp.innerHTML = data[0].adminName3;
+              }
+              else if (data[0].adminName2 !== undefined) {
+                this.garden.city = data[0].adminName2;
+                sp.innerHTML = data[0].adminName2;
+              }
+              else if (data[0].adminName1 !== undefined) {
+                this.garden.city = data[0].adminName1;
+                sp.innerHTML = data[0].adminName1;
+              }
+              else {
+                this.garden.city = '';
+                sp.innerHTML = 'Código postal no encontrado';
+              }
+            }
+            else {
+              this.garden.city = '';
+              sp.innerHTML = 'Código postal no encontrado';
+            }
+            input.value = '';
+
+          },
+          error => {
+            console.error(error);
+          });
+      }
+    }
+
+    listarPaises() {
+      this._gardenService.listCoutries()
+        .subscribe(data => {
+          let aux = [];
+          aux.push({ id: 0, text: "Selecciona un país" });
+          for (let i = 0; i < data.geonames.length; i++) {
+            aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
+          }
+
+
+
+          this.countryData = Observable.create((obs) => {
+            obs.next(aux);
+            obs.complete();
+          });
+          this.startCountry = Observable.create((obs) => {
+            obs.next(this.garden.countryCode);
+            obs.complete();
+          });
+          document.querySelector('.select2').style.width='180px';
+        },
+        error => {
+          console.error(error);
+        });
+
+    }
+
+
+    mostrarCiudad() {
+
+      let aux = [];
+      aux.push({ id: this.garden.city, text: this.garden.city });
+      this.city=this.garden.city;
+      this.cityData = Observable.create((obs) => {
+        obs.next(aux);
+        obs.complete();
+      });
+
+    }
 
 
   ngOnInit() {
@@ -103,6 +203,8 @@ export class GardenComponent {
           this.garden.city = data.city;
           this.garden.plants = data.plants;
           this.inicializar();
+          this.listarPaises();
+          this.mostrarCiudad();
           if (this.garden.city) {
             this.visible = true;
             this.getTiempo();
@@ -181,11 +283,11 @@ export class GardenComponent {
         this.prevDia4 = auxDia4;
         this.prevDia5 = auxDia5;
 
-        this.fotoHoy = this.prevHoy[0].weather[0].icon;
+        /*this.fotoHoy = this.prevHoy[0].weather[0].icon;
         this.fotoMan = this.prevMan[4].weather[0].icon;
         this.fotoDia3 = this.prevDia3[4].weather[0].icon;
         this.fotoDia4 = this.prevDia4[4].weather[0].icon;
-        this.fotoDia5 = this.prevDia5[4].weather[0].icon;
+        this.fotoDia5 = this.prevDia5[4].weather[0].icon;*/
 
         this.ordenarTemperatura();
       },
@@ -298,7 +400,7 @@ export class GardenComponent {
 
     this._gardenService.modifyGarden(this.garden, (this.width*2)+1, (this.length*2)+1)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+        this._appComponent.mensajeEmergente("Datos modificados", "success", "");
       },
       error => {
         let v = JSON.parse(error._body);
@@ -313,6 +415,26 @@ export class GardenComponent {
     } else {
       this.menuVisible = true;
     }
+  }
+
+  //country functions
+  saveCountry(e) {
+    if (e.value != 0 && e.value !== undefined) {
+      this.garden.countryCode = e.value;
+    }
+  }
+
+  saveCity(e) {
+    if (e.value != 0 && e.value !== undefined) {
+      this.garden.city = e.value;
+      this.mostrarCiudad();
+    }
+  }
+
+  openDialog(id: number, tipo: number) {
+    let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
+      width: '600px'
+    });
   }
 
   resizeCanvas() {
@@ -348,6 +470,8 @@ export class GardenComponent {
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
+    document.onmousemove=mouse_move(event);
+    }
   }
 
 

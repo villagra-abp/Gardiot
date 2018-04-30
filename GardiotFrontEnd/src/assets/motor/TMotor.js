@@ -122,6 +122,7 @@ class TMotor{
 
 
   toggleVista(){
+
     if(window.mode==0){//visualización
       window.mode=1;
       //motor.resetOrbital("dynamicCamera");

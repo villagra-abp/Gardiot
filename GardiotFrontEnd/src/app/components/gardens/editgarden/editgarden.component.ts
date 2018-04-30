@@ -202,7 +202,7 @@ export class EditGardenComponent implements OnInit {
 
     this._gardenService.modifyGarden(this.garden, this.garden.width, this.garden.length)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+        this._appComponent.mensajeEmergente("Datos modificados", "success", "");
       },
       error => {
         let v = JSON.parse(error._body);

@@ -65,9 +65,35 @@
   color: gray;
 }
 
+.formulario{
+  height: auto;
+  width: 250px;
+  top: 160px;
+  right: 160px;
+}
 
+.formulario{
+ position: fixed;
+ padding: 0 30px 10px 30px;
+ top: 100px;
+ right: 30px;
+ width:240px;
 
+ height: auto;
+ background-color: #fff;
 
+}
+
+.formulario>i{
+  position: absolute;
+  top: -30px;
+  right: 0;
+  cursor: pointer;
+}
+label{
+  margin-bottom: 0;
+  margin-top: 10px;
+}
 
 h1, h2{
   text-align: center;
@@ -75,12 +101,54 @@ h1, h2{
 
 
 .toggleDeko{
-  background: url(http://online-kuechenplaner.macrocom.de/style/default/camControl/controls-white.png) 2px 66px, #ef7f00;
+  background: url('../../../../assets/images/icon/buttons.png');
+  /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/
 }
 
+
+/*buttons*/
+.litButtons{
+  position: fixed;
+  width: 40px;
+  height: 315px;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+}
 .litButton{
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  z-index: 99999;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin:0;
+  cursor:pointer;
+}
+.litButton:not(:last-of-type){
+  margin-bottom: 15px;
+}
+
+.red{
+  background-color: rgb(226, 0, 26);
+}
+.orange{
+  background-color: #ef7f00;
+}
+.yellow{
+  background-color: #0036ff;
+}
+/*end buttons*/
+
+/*Additional buttons*/
+.rotButton{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  border: none;
+  width: 100px;
+  background: none;
+  z-index: 15;
+}
+.rotButton>img{
+  width: 100%;
 }

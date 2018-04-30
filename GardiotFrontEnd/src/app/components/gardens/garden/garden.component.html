@@ -1,76 +1,131 @@
-<aside class="botonera">
+<!--<aside class="botonera">
   <button [routerLink]="['/detail']" class="btn btn-outline-danger">Volver</button>
   <button class="btn btn-primary" (click)="showForm()">Editar datos</button>
   <button onclick="motor.toggleVista()" (click)="this.toggleState()" class="btn btn-success">{{accion}}</button>
-</aside>
+</aside>-->
 
-<div class="canvasEvolver">
-  <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
+<!--
+<aside class="selectPlantas">
+  <button [routerLink]="['/garden']" class="btn btn-outline-danger">Volver</button>
+  <button class="btn btn-primary" (click)="showForm()">Editar datos</button>
+  <article id="8" draggable="true" ondragstart="drag(event);">
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
+    </div>
+    <span>Margarita 1</span>
+  </article>
+  <article>
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
+    </div>
+    <span>Margarita 2</span>
+  </article>
+  <article>
+    <div class="imgPlant" style='background-image: url("./assets/ejemplo.JPG");'>
+    </div>
+    <span>Margarita 3</span>
+  </article>
+</aside>-->
+
+<div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
+
+
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
+
+  <section class="formulario rounded border border-secondary" [hidden]="menuVisible">
+    <i (click)="showForm()">Cerrar</i>
+    <div class="row animated fadeIn fast">
+      <div class="col-md-12">
+        <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
+          <div class="form-group">
+            <div>
+              <label for="title"><b>Título:</b> </label>
+              <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
+            </div>
+            <div>
+              <label for="length"><b>Largo:</b> {{length}} metros</label>
+              <input class="form-control"
+                      type="range"
+                      [(ngModel)]="length"
+                      min="2"
+                      max="10"
+                      step="1"
+                      name="length"
+                      id="length_garden"
+                      required>
+            </div>
+            <div>
+              <label for="width"><b>Ancho:</b> {{width}} metros</label>
+              <input class="form-control"
+                      type="range"
+                      [(ngModel)]="width"
+                      min="2"
+                      max="10"
+                      step="1"
+                      name="width"
+                      id="width_garden"
+                      required>
+            </div>
+            <div>
+              <label for="countries"><b>País:</b></label>
+              <br>
+              <select2 id="pais" [width]="180" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+              </select2>
+            </div>
+            <div>
+              <label for="countries"><b>Código postal:</b></label>
+              <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
+            </div>
+            <div>
+              <label for="countries"><b>Ciudad:</b> {{city}}</label>
+            </div>
+          </div>
+
+
+
+          <button type="submit" class="btn btn-outline-primary">Actualizar</button>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="litButtons">
+    <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;"
+          onclick="motor.toggleVista(event)"
+          (click)="this.toggleState()"></div>
+    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;"
+          (click)="showForm()"
+    >
+  </div>
+
+
+
+    <div class="toggleDeko litButton orange" id="plus" style="background-position: 4px 4px;"
+          onclick="plusZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="sub" style="background-position: 4px 164px;"
+      onclick="subZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;"
+      (click)="this.openDialog(1, 2)"
+    ></div>
+    <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;"
+        onmouseup="deletePlant()"
+    ></div>
+  </section>
+
 </div>
 
+<!--<button class="rotButton"><img src="{{photoURL}}/images/icon/rotation.png" alt="Rotate"></button>-->
 
-<section class="formulario rounded border border-secondary" [hidden]="menuVisible">
-  <div class="row animated fadeIn fast">
-    <div class="col-md-12">
-      <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
-        <div class="form-group">
-          <div>
-            <label for="title">Título: </label>
-            <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
-          </div>
-          <div>
-            <label for="length">Largo: {{length}}</label>
-            <input class="form-control"
-                    type="range"
-                    [(ngModel)]="length"
-                    min="2"
-                    max="10"
-                    step="1"
-                    name="length"
-                    id="length_garden"
-                    required>
-          </div>
-          <div>
-            <label for="width">Ancho: {{width}}</label>
-            <input class="form-control"
-                    type="range"
-                    [(ngModel)]="width"
-                    min="2"
-                    max="10"
-                    step="1"
-                    name="width"
-                    id="width_garden"
-                    required>
-          </div>
-          <div>
-            <label for="countries">País:</label>
-            <br>
-            <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-            </select2>
-          </div>
-          <div>
-            <label for="countries">Introduce tu código postal:</label>
-            <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
-          </div>
-        </div>
 
-        <div class="form-group  col-md-6">
-          <label for="countries">Ciudad:</label>
-          <span id="ciudad"></span>
-        </div>
 
-        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-        <button [routerLink]="['/garden']" class="btn btn-outline-danger">Cancelar</button>
-        <button (click)="delete()" class="btn btn-danger float-right">Borrar</button>
 
-      </form>
-    </div>
 
-  </div>
-</section>
 
-<div class="toggleDeko litButton" style="background-position: 2px 66px; background-color: rgb(226, 0, 26);"></div>
 
+<!--
   <section class="container" *ngIf="visible == true">
     <div id="prevision">
       <h4>Previsión meteorológica</h4>
@@ -78,38 +133,39 @@
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Hoy
           <br>
-          <img src="{{photoURL}}{{fotoHoy}}.png">
+          <img src="{{photoURL}}/images/imgWeather/{{fotoHoy}}.png">
           <br>
           <span class="maxima">{{temperatura | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Mañana
           <br>
-          <img src="{{photoURL}}{{fotoMan}}.png">
+          <img src="{{photoURL}}/images/imgWeather/{{fotoMan}}.png">
           <br>
           <span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia3">
           {{nombreDia3}}
           <br>
-          <img src="{{photoURL}}{{fotoDia3}}.png">
+          <img src="{{photoURL}}/images/imgWeather/{{fotoDia3}}.png">
           <br>
           <span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia4">
           {{nombreDia4}}
           <br>
-          <img src="{{photoURL}}{{fotoDia4}}.png">
+          <img src="{{photoURL}}/images/imgWeather/{{fotoDia4}}.png">
           <br>
           <span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span>
         </div>
         <div class="col-sm casilla rounded" [style.background-color]="colorDia5">
           {{nombreDia5}}
           <br>
-          <img src="{{photoURL}}{{fotoDia5}}.png">
+          <img src="{{photoURL}}/images/imgWeather/{{fotoDia5}}.png">
           <br>
           <span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span>
         </div>
       </div>
     </div>
   </section>
+-->
