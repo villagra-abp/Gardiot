@@ -4,6 +4,8 @@ var passport = require('passport');
 var validator = require('validator');
 var geo = require('geo-hash');
 var isEmail = require('isemail');
+var jwt = require('jsonwebtoken');
+var config = require('../config/main');
 
 var routeRequirements = require('../functions/routeRequirements');
 var filter = require('../functions/filter');
@@ -194,6 +196,52 @@ router.delete('/garden/:id', passport.authenticate('jwt', {session: false}), rou
 			else if (!owner) response.status(403).json({"Mensaje":"No puedes borrar un jardin de otro usuario."});
 		});
 	}
+});
+
+router.get('/shareGarden', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	jwt.sign({}, config.secret, {subject: request.user.id}, function (err, token) {
+		if (err)
+			response.status(400).json({"Mensaje":err.message});
+		else 
+			response.status(200).json({"Mensaje":token});
+	});
+});
+
+router.get('/gardenShared/:token', function (request, response) {
+	jwt.verify(request.params.token, config.secret, {ignoreExpiration: true}, function(err, decoded) {
+		if (err)
+			response.status(400).json({"Mensaje":err.message});
+		else {
+			gardenModel.getGardenByUser(decoded.sub, function (error, data) {
+				if (error)
+					response.status(500).json({"Mensaje":error.message});
+				else if (typeof data !== 'undefined' && data.length > 0) {
+					let garden={};
+					garden.id=data[0].gardenId;
+					garden.title=data[0].title;
+					garden.width=data[0].width;
+					garden.length=data[0].length;
+					//garden.longitude=data[0].longitude;
+					//garden.latitude=data[0].latitude;
+					garden.soil=data[0].soil;
+					//garden.countryCode=data[0].countryCode;
+					//garden.city=data[0].city;
+					garden.plants=[];
+					for(let i=0; i<data.length; i++){
+						garden.plants.push({"id": data[i].id,
+											"plant": data[i].plant,
+											"model": data[i]._3DModel,
+											"x": data[i].xCoordinate,
+											"y": data[i].yCoordinate,
+											"seed": data[i].seed});
+					}
+					response.status(200).json(garden);
+				}
+				else 
+					response.status(404).json({"Mensaje":"No existe"});
+			});
+		}		
+	});
 });
 
 function validateInput(data) {
