@@ -6,13 +6,22 @@
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="user.id" class="form-control" name="id" placeholder="Buscar en gardiot">
       </article>
-      <article class="form-group col-md-2">
+      <article class="form-group col-md-6">
         <button class="btn btn-default" type="submit">Buscar</button>
+        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
       </article>
       <article class="form-group col-md-2">
         <button [routerLink]="['/admin/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
       </article>
     </form>
+    <div class="collapse" id="demo">
+      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+        <label for="propio">Nombre propio</label><input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="nombre propio">
+        <label for="tipo">Tipo</label><input type="text" [(ngModel)]="user.name" class="form-control" id="tipo" name="tipo" placeholder="0">
+      </form>
+    </div>
+
+       
     <table class="table table-hover">
       <thead>
         <tr>
