@@ -130,7 +130,6 @@ export class DetailComponent implements OnInit {
 
       },
       error => {
-        console.error(JSON.parse(error._body).Mensaje);
         if (JSON.parse(error._body).Mensaje == 'No existe') {
           this._route.navigate(['/newgarden']);
         } else {
@@ -140,9 +139,8 @@ export class DetailComponent implements OnInit {
   }
 
   checkGarden() {
-    this._gardenService.details()
-      .subscribe(data => {
-        if (data != null) {
+    this._gardenService.firstgarden().subscribe(data => {
+        if (data == "Existe") {
           this.gardenRoute = '/garden';
         } else {
           this.gardenRoute = '/newgarden';
