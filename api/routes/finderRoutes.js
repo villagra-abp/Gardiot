@@ -20,8 +20,14 @@ router.post('/find/:model/:number/:page/:order/:sort', passport.authenticate('jw
     else {
       var body = filter(request.body);
       finderModel.find(request.params.model, body, request.params.number, request.params.page, request.params.order, request.params.sort, function(error, data) {
-        if (error)
-          response.status(400).json({"Mensaje":"Error al buscar los datos: " + error.message});
+        if (error) {
+          if (error.errno == '1054')
+            response.status(400).json({"Mensaje":"Búsqueda de claves incorrecta."});
+          else  if (error.errno == '1052')
+            response.status(400).json({"Mensaje":"Claves ambiguas"});
+          else if (error)
+            response.status(400).json({"Mensaje":"Error al buscar los datos: " + error.message});
+        }      
         else if (data)
           response.status(200).json(data);
       });
