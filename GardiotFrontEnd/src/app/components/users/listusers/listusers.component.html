@@ -16,8 +16,19 @@
     </form>
     <div class="collapse" id="demo">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-        <label for="propio">Nombre propio</label><input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="nombre propio">
-        <label for="tipo">Tipo</label><input type="text" [(ngModel)]="user.name" class="form-control" id="tipo" name="tipo" placeholder="0">
+        <label for="propio">Nombre propio</label><input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="Nombre propio">
+
+        <label for="tipo">Tipo</label><select type="text" [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
+          <option value="">Todos</option>
+          <option value="0">Usuario</option>
+          <option value="1">Administrador</option>
+        </select>
+
+         <label for="tipo">Tipo</label><select type="text" [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
+          <option value="">Todos</option>
+          <option value="0">Usuario</option>
+          <option value="1">Administrador</option>
+        </select>
       </form>
     </div>
 
