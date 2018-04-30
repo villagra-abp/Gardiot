@@ -8,6 +8,8 @@ import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 
 declare var iniciar: any;
+declare var motor: any;
+
 
 @Component({
   selector: 'app-garden',
@@ -20,7 +22,6 @@ export class GardenComponent {
   private garden = new Garden("");
 
   private temperatura = 0;
-
 
   private prevHoy = [];
   private prevMan = [];
@@ -291,6 +292,7 @@ export class GardenComponent {
     }
     return dia;
   }
+
 
   edit() {
 
