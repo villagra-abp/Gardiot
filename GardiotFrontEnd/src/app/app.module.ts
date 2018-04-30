@@ -98,6 +98,8 @@ import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DialogNewgardenComponent } from './components/dialog-newgarden/dialog-newgarden.component';
+import { DialogNewgarden2Component } from './components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component';
+import { DialogNewgarden3Component } from './components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component';
 
 registerLocaleData(localeEs);
 
@@ -152,6 +154,8 @@ registerLocaleData(localeEs);
     HelpComponent,
     DialogNewgardenComponent,
     DialogHelpGardenComponent
+    DialogNewgarden2Component,
+    DialogNewgarden3Component,
 
   ],
   imports: [
@@ -188,7 +192,9 @@ registerLocaleData(localeEs);
   ],
   entryComponents: [
     DialogDeleteComponent,
-    DialogNewgardenComponent
+    DialogNewgardenComponent,
+    DialogNewgarden2Component,
+    DialogNewgarden3Component
   ],
   bootstrap: [AppComponent]
 })

@@ -5,8 +5,8 @@ var isEmail = require('isemail');
 
 var skeleton = {
 	PLANT: {
-		SELECT: 'Family.name',
-		FROM: 'Family, TreatmentPlant, Plant',
+		SELECT: 'Family.name AS familyName',
+		FROM: 'Family, Plant',
 	},
 	USER: {
 		SELECT: '',

@@ -21,9 +21,6 @@ declare var iniciar: any;
 })
 
 export class NewGardenComponent implements OnInit {
-
-
-
   private plant: number[];
   private plants: any[] = [];
   private idNewJardin: number;
