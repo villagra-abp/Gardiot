@@ -133,7 +133,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       rotZ: 0,
       posY: 0
     },
-    /*MACETAS: {
+    /*MACETA: {
       escalado: 0.05,
       rotX: 0,
       rotY: 0,
