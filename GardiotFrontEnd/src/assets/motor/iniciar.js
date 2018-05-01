@@ -317,7 +317,9 @@ motor.activarLuz("sol");
   let gradeSunPosition = (minuteSinceSunrise * 180) / window.minutesOfSun;
   motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
   window.lastTime = today;
+  rotarSol();
 
+  
 
   //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
   //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
@@ -365,4 +367,18 @@ motor.activarLuz("sol");
 
   //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
 
+}
+
+async function rotarSol () {
+  await sleep(300000); //5 min
+  let now = new Date();
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  window.lastTime = now;
+  let gradeSunPosition = (minutesDiff * 180) / window.minutesOfSun;
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  rotarSol();
+}
+
+function sleep (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
