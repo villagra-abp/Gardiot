@@ -69,10 +69,6 @@
   color: gray;
 }
 
-
-
-
-
 h1, h2{
   text-align: center;
 }
@@ -86,4 +82,8 @@ h1, h2{
   margin-left: 0.2em;
   z-index: 99999;
   position: absolute;
+}
+
+ul, li{
+  margin-top: 0.4em;
 }
