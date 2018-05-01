@@ -77,6 +77,7 @@ function drop(e) {
 
 
 function mouse_move(e){
+  if(typeof matrixProjection !== 'undefined'){
     let cv=document.querySelector('#myCanvas'),
         x=e.clientX,
         y=e.clientY;
@@ -153,6 +154,7 @@ function mouse_move(e){
             hovered=-1;
           }
         }
+      }
 }
 
 
