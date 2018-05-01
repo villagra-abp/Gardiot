@@ -348,7 +348,9 @@ export class UserService {
     searchAll(user:User,page:number, items:number){
       let body = `id=${user.id}`;
       body += `&name=${user.name}`;
+      body += `&lastName=${user.lastName}`;
       body += `&admin=${user.admin}`;
+      body += `&active=${user.active}`;
       console.log(body);
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,

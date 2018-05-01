@@ -42,7 +42,7 @@ export class AdminListUsersComponent {
           console.error(error);
         });
     } else {
-      // this.searchcontent(this.paginaActual,this.elementosPorPagina);
+      this.searchcontent(this.paginaActual,this.elementosPorPagina);
       console.log("assss");
     }
   }

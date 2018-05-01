@@ -31,8 +31,20 @@
 
         <div id="demo" class="collapse">
           <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-            <label for="scientificName">Nombre Científico</label><input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+            <label for="scientificName">Nombre Científico</label>
+            <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+
+            <label for="initDatePlant">Inicio de plantación</label>
+            <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control" id="initDatePlant" name="initDatePlant" >
+
+            <label for="tipo">Tipo de hoja</label>
+            <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
+              <option value="undefined">Todos</option>
+              <option value="caduca">Caduca</option>
+              <option value="perenne">Perenne</option>
+            </select>
           </form>
+          
         </div>
       </section>
 

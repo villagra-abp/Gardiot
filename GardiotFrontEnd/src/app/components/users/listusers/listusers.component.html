@@ -4,7 +4,7 @@
 
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
-        <input type="text" [(ngModel)]="user.id" class="form-control" name="id" placeholder="Buscar en gardiot">
+        <input type="text" [(ngModel)]="user.id" class="form-control" name="id" placeholder="Buscar por e-mail">
       </article>
       <article class="form-group col-md-6">
         <button class="btn btn-default" type="submit">Buscar</button>
@@ -16,18 +16,24 @@
     </form>
     <div class="collapse" id="demo">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-        <label for="propio">Nombre propio</label><input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="Nombre propio">
+        <label for="propio">Nombre</label>
+        <input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="Nombre propio">
 
-        <label for="tipo">Tipo</label><select type="text" [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
-          <option value="">Todos</option>
+        <label for="apellido">Apellido</label>
+        <input type="text" [(ngModel)]="user.lastName" class="form-control" id="apellido" name="apellido" placeholder="apellido">
+
+        <label for="tipo">Tipo</label>
+        <select [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
+          <option value="undefined">Todos</option>
           <option value="0">Usuario</option>
           <option value="1">Administrador</option>
         </select>
 
-         <label for="tipo">Tipo</label><select type="text" [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
-          <option value="">Todos</option>
-          <option value="0">Usuario</option>
-          <option value="1">Administrador</option>
+         <label for="activo">Estado</label>
+         <select [(ngModel)]="user.active" class="form-control" id="activo" name="activo" default="">
+          <option value="undefined">Todos</option>
+          <option value="0">No activo</option>
+          <option value="1">Activo</option>
         </select>
       </form>
     </div>
