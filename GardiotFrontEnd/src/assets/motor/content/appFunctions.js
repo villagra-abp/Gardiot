@@ -45,7 +45,12 @@ function animLoop(){
           cont=19;
         }
 
-        
+        /* MOVIMIENTO SOL */
+        let now = new Date();
+        let minutesDiff = Math.abs(now - window.lastTime)/60000;
+        window.lastTime = now;
+        let gradeSunPosition = (minutesDiff * 180) / window.minutesOfSun;
+        motor.rotarLuzOrbital('sol', gradeSunPosition);
 
         motor.draw();
     }

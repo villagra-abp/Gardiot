@@ -1,4 +1,4 @@
-function iniciar(accion, jardinBBDD){
+function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 06:41:23'), sunset = new Date('December 25, 1995 20:14:44')){
   console.log(jardinBBDD);
   window.canvas=null;
 
@@ -133,13 +133,13 @@ motor.moverMalla("around", 0, -0.11, 0);
       rotZ: 0,
       posY: 0
     },
-    /*MACETA: {
+    MACETA: {
       escalado: 0.05,
       rotX: 0,
       rotY: 0,
       rotZ: 0,
       posY: 0.1
-    },*/
+    },
     PEREJIL: {
       escalado: 0.004,
       rotX: -90,
@@ -307,7 +307,16 @@ motor.activarLuz("sol");
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
 
-
+  /* POSICION DEL SOL */
+  let today = new Date();
+  let minuteOfDay = today.getHours() * 60 + today.getMinutes();
+  let minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
+  let minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
+  window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
+  let minuteSinceSunrise = minuteOfDay - minuteOfSunrise; // Minutos transcurridos desde la salida del sol
+  let gradeSunPosition = (minuteSinceSunrise * 180) / window.minutesOfSun;
+  motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+  window.lastTime = today;
 
 
   //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
