@@ -19,11 +19,13 @@
   height: 100%;
 }
 
-.prevision{
-  margin-top: 1em;
+#prevision{
+  position: absolute;
+  color: #fff;
 }
 
 .tiempo{
+  color:#000;
   margin-top : 1em;
   margin-left, margin-right: 30px%;
   /*padding: 1em;*/

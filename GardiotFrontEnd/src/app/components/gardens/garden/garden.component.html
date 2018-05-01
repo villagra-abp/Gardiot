@@ -125,11 +125,11 @@
 
 
 
-<!--
-  <section class="container" *ngIf="visible == true">
-    <div id="prevision">
-      <h4>Previsión meteorológica</h4>
-      <div class="row tiempo">
+
+ 
+    <div id="prevision" *ngIf="visible == true">
+      <h4>{{tiempoCity}}</h4>
+      <div class="tiempo">
         <div class="col-sm casilla rounded" [style.background-color]="colorMan">
           Hoy
           <br>
@@ -167,5 +167,4 @@
         </div>
       </div>
     </div>
-  </section>
--->
+

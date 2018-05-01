@@ -259,7 +259,7 @@ motor.activarLuz("sol");
   else if(accion=='edit'){
     window.mode=1;
     motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamara("dynamicCamera", 0, 20, 0);
+    motor.moverCamara("dynamicCamera", 0, camHeight/2, 0);
 
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }

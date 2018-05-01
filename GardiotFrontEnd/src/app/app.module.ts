@@ -153,9 +153,9 @@ registerLocaleData(localeEs);
     DialogDeleteComponent,
     HelpComponent,
     DialogNewgardenComponent,
-    DialogHelpGardenComponent
     DialogNewgarden2Component,
     DialogNewgarden3Component,
+    DialogHelpGardenComponent
 
   ],
   imports: [
@@ -191,6 +191,7 @@ registerLocaleData(localeEs);
     DatePipe
   ],
   entryComponents: [
+    DialogHelpGardenComponent,
     DialogDeleteComponent,
     DialogNewgardenComponent,
     DialogNewgarden2Component,

@@ -15,7 +15,6 @@ declare var iniciar: any;
 declare var motor: any;
 
 
-
 @Component({
   selector: 'app-garden',
   templateUrl: './garden.component.html',
@@ -73,6 +72,7 @@ export class GardenComponent {
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
   city: string;
+  tiempoCity:string = "El tiempo";
 
 
   private photoURL = "";
@@ -157,7 +157,6 @@ export class GardenComponent {
             obs.next(this.garden.countryCode);
             obs.complete();
           });
-          document.querySelector('.select2').style.width='180px';
         },
         error => {
           console.error(error);
@@ -171,6 +170,7 @@ export class GardenComponent {
       let aux = [];
       aux.push({ id: this.garden.city, text: this.garden.city });
       this.city=this.garden.city;
+      this.tiempoCity='El tiempo en '+this.garden.city;
       this.cityData = Observable.create((obs) => {
         obs.next(aux);
         obs.complete();
@@ -247,6 +247,7 @@ export class GardenComponent {
   getPrevision() {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
+        console.log(data);
         var date = new Date();
         var today = new Date();
         var todayDay = today.getDate();
@@ -470,9 +471,7 @@ export class GardenComponent {
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
-    document.onmousemove=mouse_move(event);
     }
-  }
 
 
 
