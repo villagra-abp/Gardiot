@@ -103,7 +103,6 @@ export class GardenService {
 
 
 	  modifyGarden(garden:Garden, width:number, length:number){
-			console.log(width, length);
       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
@@ -135,13 +134,28 @@ export class GardenService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log(body);
       return this.http.put(this.apiURL+"garden/" + garden.id, body, { headers })
           .map( res =>{
             return res.json();
           })
 
 	  }
+
+		modifyGarden2(garden:Garden){
+			let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;
+			body += `&longitude=${garden.longitude}&countryCode=${garden.countryCode}&city=${garden.city}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.put(this.apiURL+"garden/" + garden.id, body, { headers })
+					.map( res =>{
+						return res.json();
+					})
+
+		}
+
+
 
 	  tiempo(garden:Garden){
 	  	let headers = new Headers({

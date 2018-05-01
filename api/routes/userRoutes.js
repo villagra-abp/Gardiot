@@ -271,6 +271,20 @@ router.get('/admin/user/:id', passport.authenticate('jwt', {session: false}), ro
 	}
 });
 
+/* Igual que el anterior pero sin autenticar */
+router.get('/admin/userExist/:id', function(request, response) {
+	if (request.params.id && !validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+		response.status(400).json({"Mensaje":"Introduce un mail válido"});
+	else {
+		userModel.getUserById(request.params.id, function(error, data) {
+			if (typeof data[0] !== 'undefined')
+				response.status(200).json(data);
+			else
+				response.status(404).json({"Mensaje":"No existe"});
+		});
+	}
+});
+
 //*** Da de baja a un usuario. Misma forma que antes
 
 router.patch('/admin/user/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {

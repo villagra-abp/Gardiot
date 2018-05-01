@@ -19,19 +19,75 @@
   height: 100%;
 }
 
-.prevision{
-  margin-top: 1em;
+#prevision{
+  position: absolute;
+  top: 100px;
+  left: 0;
+  min-width: 250px;
+  /*top: 50%;
+  transform: translateY(-50%);*/
+  color: #fff;
+  transition: .3s ease-in all;
+}
+
+
+#prevision>span{
+  position: absolute;
+  top: -30px;
+  left: 0;
+  cursor: pointer;
+}
+
+.previsionClosed{
+  left: -250px !important;
+}
+.previsionClosed>span:last-of-type{
+  position: absolute;
+  left: 250px !important;
+  display: inline-block !important;
+}
+
+.interactiveButton{
+  cursor: pointer;
 }
 
 .tiempo{
-  margin-top : 1em;
-  margin-left, margin-right: 30px%;
+  color:#000;
+  margin-top : 0;
   /*padding: 1em;*/
+}
+.headTiempo{
+  padding: 5px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 5px;
+  text-align: center;
+  background-color: #d3ed44;
+  color: #3e3e3e;
+}
+.today{
+  min-height: 80px;
+  position: relative;
+  padding-left: 10px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 5px;
+}
+.today>img{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+
+}
+.today>p{
+  margin: 0;
+}
+.today>span{
+  color: #3e3e3e;
+  
 }
 
 .tarjetaHoy{
   margin-top : 2em;
-  margin-left, margin-right: 30px%;
   padding: 1em;
   width: 250px;
   background-color:#63dd63;
@@ -58,17 +114,100 @@
 }*/
 
 .maxima{
-  font-size : 1em;
+  color: #3e3e3e;
+  font-size : 2em;
+  font-weight: bold;
 }
 .minima{
   font-size : 0.8em;
-  color: gray;
+  color: #3e3e3e;
 }
 
 
 
+.formulario{
+ position: fixed;
+ padding: 0 30px 10px 30px;
+ top: 100px;
+ right: 0;
+ width:240px;
 
+ height: auto;
+ background-color: #fff;
+ border-top-left-radius: 15px;
+ border-bottom-left-radius: 15px;
+transition: .3s ease-in all;
+}
+
+.infoOcult{
+  right: -240px;
+}
+
+.formulario>i{
+  position: absolute;
+  top: -30px;
+  right: 0;
+  cursor: pointer;
+}
+label{
+  margin-bottom: 0;
+  margin-top: 10px;
+}
 
 h1, h2{
   text-align: center;
+}
+
+
+.toggleDeko{
+  background: url('../../../../assets/images/icon/buttons.png');
+  /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/
+}
+
+
+/*buttons*/
+.litButtons{
+  position: fixed;
+  width: 40px;
+  height: 315px;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.litButton{
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin:0;
+  cursor:pointer;
+}
+.litButton:not(:last-of-type){
+  margin-bottom: 15px;
+}
+
+.red{
+  background-color: rgb(226, 0, 26);
+}
+.orange{
+  background-color: #ef7f00;
+}
+.yellow{
+  background-color: #0036ff;
+}
+/*end buttons*/
+
+/*Additional buttons*/
+.rotButton{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  border: none;
+  width: 100px;
+  background: none;
+  z-index: 15;
+}
+.rotButton>img{
+  width: 100%;
 }

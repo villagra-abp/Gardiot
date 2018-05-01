@@ -122,6 +122,7 @@ class TMotor{
 
 
   toggleVista(){
+
     if(window.mode==0){//visualización
       window.mode=1;
       //motor.resetOrbital("dynamicCamera");
@@ -207,7 +208,40 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
-			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+			let position=motor.getPosCamaraActiva();
+			if(window.mode==1 && !window.transition){
+				if(position[0]<(-jardin.width/2) && x<0){
+					x=0;
+				}else if(position[0]>(jardin.width/2) && x>0){
+					x=0;
+				}if(position[2]>(jardin.length/2) && z>0){
+					z=0;
+				}else if(position[2]<(-jardin.length/2) && z<0){
+					z=0;
+				}
+				
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+
+			}
+			else if(!window.transition){
+				if(position[0]<((-jardin.width/2)-2) && x<0){
+					x=0;
+				}else if(position[0]>((jardin.width/2)-5) && x>0){
+					x=0;
+				}if(position[2]>((jardin.length/2)+2) && z>0){
+					z=0;
+				}else if(position[2]<((-jardin.length/2)+5) && z<0){
+					z=0;
+				}
+
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+				
+			}
+			else{
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+			}
+			
+
 
 			return true;
 		}

@@ -111,14 +111,91 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
+  var dataPlants = {
+    LECHUGA: {
+      escalado: 2.5,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0
+    },
+    CALABAZA: {
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 90,
+      posY: 0.1
+    },
+    TOMATE: {
+      escalado: 0.006,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0
+    },
+    /*MACETA: {
+      escalado: 0.05,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.1
+    },*/
+    PEREJIL: {
+      escalado: 0.004,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.1
+    },
+    ROSA: {
+      escalado: 0.01,
+      rotX: -90,
+      rotY: 10,
+      rotZ: 0,
+      posY: 0.1
+    },
+    MARGARITA: {
+      escalado: 0.06,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.5
+    },
+    CICA: {
+      escalado: 0.1,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.2
+    },
+    CIPRES: {
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.2
+    }
+  };
 
   // plantas dragables
   window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
     plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
-    motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
-    motor.escalarMalla(jardin.plants[i].id, 2.5);
-    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
+    let resource = jardin.plants[i].name;
+    resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
+    resource = resource.toUpperCase();
+    let texture = jardin.plants[i].model;
+    if (jardin.plants[i].model == 'url_3DModel')
+      texture = "lechuga.jpg";
+    motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
+    motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
+    if (dataPlants[resource].rotX != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
+    if (dataPlants[resource].rotY != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
+    if (dataPlants[resource].rotZ != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
+    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
   }
 
   /* OBJETOS DE PRUEBA */
@@ -259,7 +336,7 @@ motor.activarLuz("sol");
   else if(accion=='edit'){
     window.mode=1;
     motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamara("dynamicCamera", 0, 20, 0);
+    motor.moverCamara("dynamicCamera", 0, camHeight/2, 0);
 
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }

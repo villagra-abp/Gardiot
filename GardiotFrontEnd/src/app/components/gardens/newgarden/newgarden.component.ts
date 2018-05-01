@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/delay';
 import {Overlay} from '@angular/cdk/overlay';
+import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 
 import { DialogNewgardenComponent } from '../../dialog-newgarden/dialog-newgarden.component';
 import { MatDialog } from '@angular/material';
@@ -21,14 +22,18 @@ declare var iniciar: any;
 })
 
 export class NewGardenComponent implements OnInit {
-
-
-
   private plant: number[];
   private plants: any[] = [];
+  private plantmotor: number[];
+  private plantsmotor: any[] = [];
   private idNewJardin: number;
   private garden = new Garden("");
   private accion: string;
+
+  private numeroItems: number;
+  private paginaActual: number = 1;
+  private elementosPorPagina: number = 8;
+  private estado: boolean = false;// false es listado y true buscador
 
 
 
@@ -38,6 +43,7 @@ export class NewGardenComponent implements OnInit {
     private _route: Router,
     private datePipe: DatePipe,
     private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   // @HostListener('document:keyup', ['$event'])
@@ -131,8 +137,49 @@ export class NewGardenComponent implements OnInit {
     this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
   }
 
+  ActualizarPagina() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.paginaActual = params['pag'];
+      this.getitems();
+    });
+  }
+
+  getitems() {
+    this._plantService.getNumberItems()
+      .subscribe(data => {
+        if (this.estado == false) {
+          this.numeroItems = data[0].NUMPLANTAS;
+        }
+        this.mostrarplantasmotor();
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+  mostrarplantasmotor() {
+    if (this.estado == false) {
+
+      this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+        .subscribe(data => {
+          this.plantsmotor = [];
+          for (let key$ in data) {
+            this.plantsmotor.push(data[key$]);
+          }
+          console.log(this.plantsmotor);
+        },
+        error => {
+          console.error(error);
+        });
+    } else {
+      // this.searchcontent(this.paginaActual, this.elementosPorPagina);
+    }
+  }
+
+
   ngOnInit() {
     this.accion='Editar';
+    this.ActualizarPagina();
     this.firstgarden();
     this.mostrar();
     this.mostrarPlantas();
