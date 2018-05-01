@@ -63,6 +63,8 @@ export class GardenComponent {
   private visible = false;
   private menuVisible = false;
 
+  private sunrise;
+  private sunset;
 
   countries: any[] = [];
   cities: any[] = [];
@@ -187,7 +189,6 @@ export class GardenComponent {
   mostrar() {
     this._gardenService.details()
       .subscribe(data => {
-        console.log(data);
         if (data != null) {
           this.garden.id = data.id;
           this.garden.title = data.title;
@@ -202,10 +203,11 @@ export class GardenComponent {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
+          
           this.inicializar();
           this.listarPaises();
           this.mostrarCiudad();
-          if (this.garden.city) {
+          if (this.garden.city !== undefined) {
             this.visible = true;
             this.getTiempo();
             this.getPrevision();
@@ -231,9 +233,15 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-
         var aux = data.main.temp - 273;
         this.temperatura = aux;
+        var sunrise = new Date();
+        var sunset = new Date();
+        sunrise.setTime(data.sys.sunrise * 1000);
+        this.sunrise = sunrise;
+
+        sunset.setTime(data.sys.sunset * 1000);
+        this.sunset = sunset;
 
       },
       error => {

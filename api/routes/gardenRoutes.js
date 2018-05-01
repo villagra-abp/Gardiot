@@ -63,6 +63,7 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 			garden.plants=[];
 			for(let i=0; i<data.length; i++){
 				garden.plants.push({"id": data[i].id,
+									"name": data[i].commonName,
 									"plant": data[i].plant,
 									"model": data[i]._3DModel,
 									"x": data[i].xCoordinate,

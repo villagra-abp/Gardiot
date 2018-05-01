@@ -143,7 +143,7 @@ export class DetailComponent implements OnInit {
         if (data == "Existe") {
           this.gardenRoute = '/garden';
         } else {
-          this.gardenRoute = '/newgarden';
+          this.gardenRoute = '/newgarden?pag=1';
         }
       },
       error => {
