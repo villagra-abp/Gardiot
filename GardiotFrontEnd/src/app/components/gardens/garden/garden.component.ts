@@ -39,6 +39,12 @@ export class GardenComponent {
   private fotoDia4 = "default";
   private fotoDia5 = "default";
 
+  private statusHoy = "Clear";
+  private statusMan = "Clear";
+  private statusDia3 = "Clear";
+  private statusDia4 = "Clear";
+  private statusDia5 = "Clear";
+
   private colorHoy = "#fcfcfc";
   private colorMan = "#fcfcfc";
   private colorDia3 = "#fcfcfc";
@@ -292,11 +298,18 @@ export class GardenComponent {
         this.prevDia4 = auxDia4;
         this.prevDia5 = auxDia5;
 
-        /*this.fotoHoy = this.prevHoy[0].weather[0].icon;
+        this.statusHoy = this.prevHoy[0].weather[0].main;
+        this.statusMan = this.prevMan[0].weather[0].main;
+        this.statusDia3 = this.prevDia3[0].weather[0].main;
+        this.statusDia4 = this.prevDia4[0].weather[0].main;
+        this.statusDia5 = this.prevDia5[0].weather[0].main;
+        
+        this.fotoHoy = this.prevHoy[0].weather[0].icon;
         this.fotoMan = this.prevMan[4].weather[0].icon;
         this.fotoDia3 = this.prevDia3[4].weather[0].icon;
         this.fotoDia4 = this.prevDia4[4].weather[0].icon;
-        this.fotoDia5 = this.prevDia5[4].weather[0].icon;*/
+        this.fotoDia5 = this.prevDia5[4].weather[0].icon;
+
 
         this.ordenarTemperatura();
       },
@@ -317,6 +330,7 @@ export class GardenComponent {
     }
     this.maxMan = Math.max(...auxTemp);
     this.minMan = Math.min(...auxTemp);
+    
     this.colorMan = this.colorTemperatura(this.maxMan);
     auxTemp = [];
     auxNum = 0;
@@ -395,7 +409,7 @@ export class GardenComponent {
         dia = "Viernes";
         break;
       case 5:
-        dia = "Sabado";
+        dia = "Sábado";
         break;
       case 6:
         dia = "Domingo";
@@ -425,6 +439,7 @@ export class GardenComponent {
       this.menuVisible = true;
     }
   }
+
 
   //country functions
   saveCountry(e) {
@@ -464,6 +479,7 @@ export class GardenComponent {
 
   toggleState(){
     this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
+    this.visible ? this.visible=false : this.visible=true;
   }
 
   inicializar() {
@@ -479,6 +495,44 @@ export class GardenComponent {
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
+    }
+
+
+    getMyStyles(temperatura, status){
+      let color1='green';
+      let color2='blue';
+      if(status=='Clear'){
+        color1='#fff600';
+      }else if(status=='Rain'){
+        color1='#22dbed';
+      }else if(status=='Clouds'){
+        color1='#e1e1e1';
+      }
+      if(temperatura<0){
+        color2='#98daf4';
+      }else if(temperatura<10){
+        color2='#d6eff4';
+      }else if(temperatura<15){
+        color2='#eff2bb';
+      }else if(temperatura<20){
+        color2='#f5f289';
+      }else if(temperatura<25){
+        color2='#f8d44a';
+      }else if(temperatura<30){
+        color2='#f7b612';
+      }else if(temperatura<35){
+        color2='#f68b1f'
+      }else{
+        color2='#ea3c24';
+      }
+      let myStyles = {
+        'background': 'linear-gradient(to top right, '+color2+', '+color1+')',
+     };
+     return myStyles;
+    }
+
+    isDragging(){
+      return !window.dragging;
     }
 
 
