@@ -328,8 +328,8 @@ motor.activarLuz("sol");
   if(accion=='detail'){
     window.mode=0;
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
-    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight*2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
 
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");

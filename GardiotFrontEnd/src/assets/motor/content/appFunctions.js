@@ -34,6 +34,7 @@ function animLoop(){
         }
         else {
           cont=19;
+          
         }
 
         
@@ -101,13 +102,14 @@ function mouse_move(e){
             e.stopPropagation();
             //nuevo movimiento
 
-            motor.moverCamara("dynamicCamera", ejeX*10, 0, ejeX*5);
-            motor.moverCamara("dynamicCamera", -ejeY*10, 0, ejeY*10);
+            motor.moverCamara("dynamicCamera", ejeX*10, 0, ejeY*10);
+            //motor.moverCamara("dynamicCamera", -ejeY*10, 0, ejeY*10);
           }
           else{
               let dir=vec3.fromValues(ejeX*10, 0, ejeY*10);
               let rad=Math.PI*rotationCamY/180;
               vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), rad);
+              vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI*45/180);
 
               motor.moverCamara("dynamicCamera",  dir[0], 0, dir[2]);
           }
@@ -121,8 +123,13 @@ function mouse_move(e){
 
         else if(cv.getAttribute('rotando-camara')){
           let ejeY=window.originClickY-(y/cv.offsetHeight);
-          let ejeX=window.originClickX-(x/cv.offsetWidth);
-          motor.rotarCamara("dynamicCamera", ejeX*150, "z");
+            let ejeX=window.originClickX-(x/cv.offsetWidth);
+          if(window.mode == 1){
+            
+            motor.rotarCamara("dynamicCamera", ejeX*150, "z");
+          }else{
+            motor.rotarCamaraOrbital("dynamicCamera", ejeX*150, "y");
+          }
           //motor.rotarCamara("dynamicCamera", ejeY*50, "z");
           window.originClickX=x/cv.offsetWidth;
 					window.originClickY=y/cv.offsetHeight;
@@ -198,12 +205,12 @@ function mouse_down(e){
       break;
 
       case 3:
-      if(window.mode==1){
+      //if(window.mode==1){
         window.originClickX=x/cv.offsetWidth;
         window.originClickY=y/cv.offsetHeight;
         cv.setAttribute('rotando-camara', 'true');
         break;
-      }
+      //}
   }
 }
 
