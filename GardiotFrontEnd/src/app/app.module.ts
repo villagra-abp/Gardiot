@@ -100,6 +100,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { DialogNewgardenComponent } from './components/dialog-newgarden/dialog-newgarden.component';
 import { DialogNewgarden2Component } from './components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component';
 import { DialogNewgarden3Component } from './components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component';
+import { DialogTaskComponent } from './components/calendar/dialog-task/dialog-task.component';
 
 registerLocaleData(localeEs);
 
@@ -155,7 +156,8 @@ registerLocaleData(localeEs);
     DialogNewgardenComponent,
     DialogNewgarden2Component,
     DialogNewgarden3Component,
-    DialogHelpGardenComponent
+    DialogHelpGardenComponent,
+    DialogTaskComponent
 
   ],
   imports: [
@@ -195,7 +197,8 @@ registerLocaleData(localeEs);
     DialogDeleteComponent,
     DialogNewgardenComponent,
     DialogNewgarden2Component,
-    DialogNewgarden3Component
+    DialogNewgarden3Component,
+    DialogTaskComponent
   ],
   bootstrap: [AppComponent]
 })
