@@ -303,6 +303,12 @@ export class GardenComponent {
         this.statusDia3 = this.prevDia3[0].weather[0].main;
         this.statusDia4 = this.prevDia4[0].weather[0].main;
         this.statusDia5 = this.prevDia5[0].weather[0].main;
+
+        console.log(this.statusHoy,
+        this.statusMan,
+        this.statusDia3,
+        this.statusDia4,
+        this.statusDia5);
         
         this.fotoHoy = this.prevHoy[0].weather[0].icon;
         this.fotoMan = this.prevMan[4].weather[0].icon;
