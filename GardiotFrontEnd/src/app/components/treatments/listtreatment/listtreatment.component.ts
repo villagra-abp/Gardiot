@@ -86,6 +86,10 @@ export class ListtreatmentComponent implements OnInit {
           for (let key$ in data) {
             this.treatments.push(data[key$]);
           }
+        }else{
+          this.treatments = [];
+          this.numeroItems = 0;
+          this.paginaActual = 1;
         }
       },
       error => {

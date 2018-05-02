@@ -6,14 +6,28 @@
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="product.name" class="form-control" name="name" placeholder="Buscar en gardiot">
       </article>
-      <article class="form-group col-md-2">
+      <article class="form-group col-md-4">
         <button class="btn btn-default" type="submit">Buscar</button>
+        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
       </article>
       <article class="form-group col-md-2">
         <button [routerLink]="['/admin/newproduct']" class="btn btn-outline-primary">Nuevo Producto</button>
       </article>
     </form>
-    <table class="table table-hover">
+    <div id="demo" class="collapse">
+      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+        <label for="content">Descripción</label>
+        <input type="text" [(ngModel)]="product.description" class="form-control" id="content" name="content" placeholder="Descripción">
+
+        <label for="content">Tipo</label>
+        <input type="type" [(ngModel)]="product.type" class="form-control" id="type" name="type" placeholder="tipo">
+
+        <button class="btn btn-default" type="submit">Filtrar</button>
+      </form>
+      
+    </div>
+
+    <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -24,6 +38,7 @@
         </tr>
       </thead>
       <tbody>
+        
         <tr *ngFor="let product of products">
           <th scope="row">{{product.name}}</th>
           <td>{{product.type}}</td>
@@ -34,6 +49,7 @@
         </tr>
       </tbody>
     </table>
+    <p *ngIf="numeroItems==0">Esta busqueda no tiene resultados</p>
     <app-pagination [count]="this.numeroItems" [type]="3" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
   </div>
 </div>
