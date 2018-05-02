@@ -370,4 +370,15 @@ export class UserService {
           })
     }
 
+    logInGrafana(){
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin':'*'
+      });
+      let body= `id=user1&password=gardioters`;
+
+      return this.http.post("https://gardiot.ovh/grafana/login", body, { headers } )
+          
+    }s
+
 }
