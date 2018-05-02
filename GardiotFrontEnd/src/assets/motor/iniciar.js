@@ -311,17 +311,19 @@ motor.activarLuz("sol");
   motor.rotarMalla("malla3", 40, "x");
 
   /* POSICION DEL SOL */
-  let today = new Date();
-  let minuteOfDay = today.getHours() * 60 + today.getMinutes();
-  let minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
-  let minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
-  window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
-  let minuteSinceSunrise = minuteOfDay - minuteOfSunrise; // Minutos transcurridos desde la salida del sol
-  let gradeSunPosition = (minuteSinceSunrise * 180) / window.minutesOfSun;
-  motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
-  console.log("SOL: Colocamos originalmente en " + gradeSunPosition + ' sobre 180 grados a las ' + today.getHours() + ':' + today.getMinutes());
-  window.lastTime = today;
-  rotarSol(gradeSunPosition);
+  if (typeof sunrise !== 'undefined' && typeof sunset !== 'undefined') {
+    let today = new Date();
+    let minuteOfDay = today.getHours() * 60 + today.getMinutes();
+    let minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
+    let minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
+    window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
+    let minuteSinceSunrise = minuteOfDay - minuteOfSunrise; // Minutos transcurridos desde la salida del sol
+    let gradeSunPosition = (minuteSinceSunrise * 180) / window.minutesOfSun;
+    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+    window.lastTime = today;
+    rotarSol();
+  }
+  
 
   
 
@@ -373,16 +375,14 @@ motor.activarLuz("sol");
 
 }
 
-async function rotarSol (gsp) {
+async function rotarSol () {
   await sleep(300000); //5 min
   let now = new Date();
   let minutesDiff = Math.abs(now - window.lastTime)/60000;
   window.lastTime = now;
   let gradeSunPosition = (minutesDiff * 180) / window.minutesOfSun;
-  gsp += gradeSunPosition;
-  console.log("SOL: Rotamos " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes() + '. Total grados: ' + gsp + ' sobre 180.');
   motor.rotarLuzOrbital('sol', gradeSunPosition);
-  rotarSol(gsp);
+  rotarSol();
 }
 
 function sleep (ms) {
