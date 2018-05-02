@@ -127,6 +127,7 @@
 
 .formulario{
  position: fixed;
+ z-index: 20;
  padding: 0 30px 10px 30px;
  top: 100px;
  right: 0;

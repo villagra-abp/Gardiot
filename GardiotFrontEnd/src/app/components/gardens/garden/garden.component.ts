@@ -531,7 +531,9 @@ export class GardenComponent {
      return myStyles;
     }
 
-
+    isDragging(){
+      return false;
+    }
 
 
 }
