@@ -43,7 +43,6 @@ export class AdminListUsersComponent {
         });
     } else {
       this.searchcontent(this.paginaActual,this.elementosPorPagina);
-      console.log("assss");
     }
   }
 

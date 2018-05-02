@@ -37,6 +37,9 @@
             <label for="initDatePlant">Inicio de plantación</label>
             <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control" id="initDatePlant" name="initDatePlant" >
 
+            <label for="finDatePlant">Fin de plantación</label>
+            <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant" >
+
             <label for="tipo">Tipo de hoja</label>
             <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
               <option value="undefined">Todos</option>
@@ -50,6 +53,7 @@
       </section>
 
       <section class="card-columns">
+
         <div *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
           <div class="card-body">
@@ -61,6 +65,7 @@
           </div>
         </div>
       </section>
+      <p *ngIf="numeroItems==0">Esta busqueda no tiene resultados</p>
       <app-pagination [count]="this.numeroItems" [type]="1" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
     </div>
   </div>

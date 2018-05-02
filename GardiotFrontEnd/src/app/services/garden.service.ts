@@ -103,7 +103,6 @@ export class GardenService {
 
 
 	  modifyGarden(garden:Garden, width:number, length:number){
-			console.log(width, length);
       garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
@@ -135,7 +134,6 @@ export class GardenService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log(body);
       return this.http.put(this.apiURL+"garden/" + garden.id, body, { headers })
           .map( res =>{
             return res.json();

@@ -48,12 +48,9 @@ export class LibraryComponent implements OnInit {
     }
   }
 
-  searchcontent(page: number, items: number) {
-    console.log(this.plant);
-   
+  searchcontent(page: number, items: number) {   
     this._plantService.searchAll(this.plant, page, items)
       .subscribe(data => {
-        console.log(data);
         if (data[0] != undefined) {
           this.plants = [];
           this.numeroItems = data[0].num;
@@ -64,6 +61,10 @@ export class LibraryComponent implements OnInit {
           for (let key$ in data) {
             this.plants.push(data[key$]);
           }
+        }else{
+          this.plants = [];
+          this.numeroItems = 0;
+          this.paginaActual = 1;
         }
       },
       error => {
@@ -87,7 +88,6 @@ export class LibraryComponent implements OnInit {
       .subscribe(data => {
         if (this.estado == false) {
           this.numeroItems = data[0].NUMPLANTAS;
-          console.log(this.numeroItems);
         }
         this.mostrar();
       },

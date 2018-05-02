@@ -55,7 +55,7 @@ export class TreatmentService {
 		searchAll(treatment:Treatment, page:number, items:number){
 			let body = `name=${treatment.name}`;
 			body += `&description=${treatment.description}`;
-			console.log(body);
+
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'

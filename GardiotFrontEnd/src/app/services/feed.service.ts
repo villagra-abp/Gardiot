@@ -46,7 +46,7 @@ export class FeedService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
 			});
-			console.log(feed.id);
+			
 			return this.http.put(this.apiURL+"admin/feed/"+ feed.id , body, { headers } )
 					.map( res=>{
 						return res.json();

@@ -42,7 +42,7 @@ export class TaskService {
   }
 
   DoneTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, date:string, dateDone:string){
-    console.log(date, dateDone);
+    
     let headers = new Headers({
       'Authorization':`Bearer ${localStorage['Bearer']}`
     });

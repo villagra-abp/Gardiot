@@ -24,7 +24,7 @@
       </form>
       
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -34,6 +34,7 @@
         </tr>
       </thead>
       <tbody>
+        
         <tr *ngFor="let treatment of treatments">
           <th scope="row">{{treatment.name}}</th>
           <td>{{treatment.description}}</td>
@@ -44,5 +45,6 @@
         </tr>
       </tbody>
     </table>
+    <p *ngIf="numeroItems==0">Esta busqueda no tiene resultados</p>
     <app-pagination [count]="this.numeroItems" [type]="2" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
   </div>

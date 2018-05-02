@@ -39,7 +39,6 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		var sql = 'SELECT COUNT(*) OVER () AS num, Q.* ' + skeleton[model.toUpperCase()]['SELECT'] + ' FROM ' + skeleton[model.toUpperCase()]['FROM'] + ' Q ';
 
 		let sqlParams = '';
-		console.log(data);
 		for (var key in data) {
 			if (typeof data[key]!== 'undefined') {
 				if (validator.isISO8601(data[key])) {
@@ -81,7 +80,6 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		if(sort.toUpperCase() === 'DESC')
 			sql += 'DESC ';
 		sql += 'LIMIT ' + minPeak + ',' + number;
-		console.log(sql);
 		connection.query(sql, function(error, rows) {
 			if (error)
 				callback(error, null);
