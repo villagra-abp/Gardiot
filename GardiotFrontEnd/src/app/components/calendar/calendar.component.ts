@@ -6,6 +6,8 @@ import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { DialogTaskComponent } from './dialog-task/dialog-task.component';
+import { MatDialog } from '@angular/material';
 import {
   ChangeDetectionStrategy,
   ViewChild,
@@ -157,7 +159,7 @@ export class CalendarComponent implements OnInit {
     private _appComponent: AppComponent,
     private datePipe: DatePipe,
     private activatedRoute: ActivatedRoute,
-
+    private dialog: MatDialog,
   ) { }
 
 
@@ -221,7 +223,9 @@ export class CalendarComponent implements OnInit {
     fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
 
     if(action=='Edited'){
-      alert("detalles");
+      console.log('deberias saltar el pop up');
+      this.dialog.open(DialogTaskComponent, { width: '800px', data: {id: 1}});
+
     }
     else if(action=='Done'){
       event.color = colors.green;
