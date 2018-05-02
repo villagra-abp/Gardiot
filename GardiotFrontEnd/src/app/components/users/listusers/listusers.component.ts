@@ -82,6 +82,7 @@ export class AdminListUsersComponent {
     console.log(this.user);
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
+        console.log(data);
         if (data[0] != undefined) {
           this.users = [];
           this.numeroItems = data[0].num;
@@ -92,6 +93,10 @@ export class AdminListUsersComponent {
           for (let key$ in data) {
             this.users.push(data[key$]);
           }
+        }else{
+          this.users = [];
+          this.numeroItems = 0;
+          this.paginaActual = 1;
         }
       },
       error => {

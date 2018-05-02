@@ -54,6 +54,9 @@ export class FeedService {
 		}
 		searchAll(feed:Feed,page:number, items:number){
 			let body = `name=${feed.name}`;
+			body += `&text=${feed.text}`;
+			body += `&dateInit=${feed.dateInit}`;
+			body += `&dateFinal=${feed.dateFinal}`;
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'

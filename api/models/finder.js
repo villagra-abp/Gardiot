@@ -43,7 +43,6 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		for (var key in data) {
 			if (typeof data[key]!== 'undefined') {
 				if (validator.isISO8601(data[key])) {
-					console.log("entra");
 					if (key.toUpperCase().indexOf('INIT')!= -1)
 						sqlParams += ' DAYOFYEAR(' + key + ') >= DAYOFYEAR("' + data[key] + '") AND';
 					else if (key.toUpperCase().indexOf('FIN')!= -1)
@@ -71,7 +70,9 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 			if(skeleton[model.toUpperCase()]['WHERE'] != '')
 			sql += ' WHERE ';
 		}
+
 		sql += skeleton[model.toUpperCase()]['WHERE'];
+
 		if(skeleton[model.toUpperCase()]['WHERE'] != ''){
 			sql = sql.slice(0, -3); //Cut the last AND
 		}

@@ -95,6 +95,7 @@ export class PlantService {
 			let body = `commonName=${plant.commonName}`;
 			body += `&scientificName=${plant.scientificName}`;
 			body += `&leaveType=${plant.leaveType}`;
+			body += `&initDatePlant=${plant.initDatePlant}`;
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'

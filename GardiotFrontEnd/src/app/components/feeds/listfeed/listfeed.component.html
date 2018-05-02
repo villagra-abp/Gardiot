@@ -6,13 +6,34 @@
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="feed.name" class="form-control" name="name" placeholder="Buscar en gardiot">
       </article>
-      <article class="form-group col-md-2">
+      <article class="form-group col-md-4">
         <button class="btn btn-default" type="submit">Buscar</button>
+        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
       </article>
       <article class="form-group col-md-2">
         <button [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary">Nuevo Consejo</button>
+        
       </article>
     </form>
+
+
+        <div id="demo" class="collapse">
+          <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+            <label for="content">Texto</label>
+            <input type="text" [(ngModel)]="feed.text" class="form-control" id="content" name="content" placeholder="Contenido">
+
+            <label for="inicio">Fecha inicio</label>
+            <input type="date" [(ngModel)]="feed.dateInit" class="form-control" id="inicio" name="inicio" >
+
+            <label for="fin">Fecha fin</label>
+            <input type="date" [(ngModel)]="feed.dateFinal" class="form-control" id="fin" name="fin" >
+
+            
+          </form>
+          
+        </div>
+      
+
     <table class="table table-hover">
       <thead>
         <tr>

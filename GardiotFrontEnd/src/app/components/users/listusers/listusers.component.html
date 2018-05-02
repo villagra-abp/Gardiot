@@ -15,12 +15,14 @@
       </article>
     </form>
     <div class="collapse" id="demo">
+      
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+
         <label for="propio">Nombre</label>
         <input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="Nombre propio">
 
         <label for="apellido">Apellido</label>
-        <input type="text" [(ngModel)]="user.lastName" class="form-control" id="apellido" name="apellido" placeholder="apellido">
+        <input type="text" [(ngModel)]="user.lastName" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
 
         <label for="tipo">Tipo</label>
         <select [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
@@ -35,6 +37,7 @@
           <option value="0">No activo</option>
           <option value="1">Activo</option>
         </select>
+        <button class="btn btn-default" type="submit">Filtrar</button>
       </form>
     </div>
 
@@ -51,7 +54,7 @@
           <th scope="col">Eliminar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *nfIf = "this.numeroItems !=0" >
         <tr *ngFor="let user of users">
           <th scope="row">{{user.name}}</th>
           <td>{{user.lastName}}</td>
