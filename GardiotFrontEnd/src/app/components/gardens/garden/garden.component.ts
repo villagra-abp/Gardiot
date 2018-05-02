@@ -531,10 +531,6 @@ export class GardenComponent {
      return myStyles;
     }
 
-    isDragging(){
-      return !window.dragging;
-    }
-
 
 
 
