@@ -180,22 +180,24 @@ motor.moverMalla("around", 0, -0.11, 0);
   // plantas dragables
   window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
-    plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
     let resource = jardin.plants[i].name;
-    resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
-    resource = resource.toUpperCase();
-    let texture = jardin.plants[i].model;
-    if (jardin.plants[i].model == 'url_3DModel')
-      texture = "lechuga.jpg";
-    motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
-    motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
-    if (dataPlants[resource].rotX != 0)
-      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
-    if (dataPlants[resource].rotY != 0)
-      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
-    if (dataPlants[resource].rotZ != 0)
-      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
-    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
+    if (typeof resource !== 'undefined') {
+      plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
+      resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
+      resource = resource.toUpperCase();
+      let texture = jardin.plants[i].model;
+      if (jardin.plants[i].model == 'url_3DModel')
+        texture = "lechuga.jpg";
+      motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
+      motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
+      if (dataPlants[resource].rotX != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
+      if (dataPlants[resource].rotY != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
+      if (dataPlants[resource].rotZ != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
+      motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
+    }
   }
 
   /* OBJETOS DE PRUEBA */
