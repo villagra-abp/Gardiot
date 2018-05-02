@@ -73,7 +73,7 @@ function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 07:03
 
 
   motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  motor.crearNodoLuz("sol", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -312,17 +312,25 @@ motor.activarLuz("sol");
 
   /* POSICION DEL SOL */
   if (typeof sunrise !== 'undefined' && typeof sunset !== 'undefined') {
+    
     let today = new Date();
     let minuteOfDay = today.getHours() * 60 + today.getMinutes();
-    let minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
+    window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     let minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
     let minuteSinceSunrise = minuteOfDay - minuteOfSunrise; // Minutos transcurridos desde la salida del sol
     let gradeSunPosition = (minuteSinceSunrise * 180) / window.minutesOfSun;
     motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
     window.lastTime = today;
-    rotarSol();
-  }
+    /* COLOR DEL SOL */
+    window.rgbInit = {red: 182, green: 126, blue: 91};
+    window.rgbNoon = {red: 192, green: 191, blue: 173};
+    window.rgbDiff = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue}; 
+  
+    iluminarSol(minuteSinceSunrise);
+    demoSol();
+
+    }
   
 
   
@@ -382,7 +390,41 @@ async function rotarSol () {
   window.lastTime = now;
   let gradeSunPosition = (minutesDiff * 180) / window.minutesOfSun;
   motor.rotarLuzOrbital('sol', gradeSunPosition);
+  let minuteOfDay = now.getHours() * 60 + now.getMinutes();
+  let minuteSinceSunrise = minuteOfDay - minuteOfSunrise;
+  iluminarSol(minuteSinceSunrise);
   rotarSol();
+}
+
+async function demoSol () {
+  await sleep(500); 
+  let now = window.lastTime;
+  now.setHours(window.lastTime.getHours() + 1);
+  let minuteOfDay = now.getHours() * 60 + now.getMinutes();
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  window.lastTime = now;
+  let gradeSunPosition = (minutesDiff * 180) / window.minutesOfSun;
+  console.log("Roto el sol " + gradeSunPosition + ' grados, sobre 180.');
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  let minuteSinceSunrise = minuteOfDay - minuteOfSunrise;
+  iluminarSol(minuteSinceSunrise);
+  demoSol();
+}
+
+async function iluminarSol (minutes) {
+  let rgbFinal = {};
+    if (minutes < window.minutesOfSun/2) {
+      let percent = minutes  / window.minutesOfSun;
+      let rgbMoment = {red: rgbDiff.red * percent, green: rgbDiff.green * percent, blue: rgbDiff.blue * percent};
+      rgbFinal = {red: rgbMoment.red + rgbInit.red, green: rgbMoment.green + rgbInit.green, blue: rgbMoment.blue + rgbInit.blue}
+    }
+    else {
+      let percent = (minutes - (window.minutesOfSun/2)) / window.minutesOfSun;
+      let rgbMoment = {red: rgbDiff.red * percent, green: rgbDiff.green * percent, blue: rgbDiff.blue * percent};
+      rgbFinal = {red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue}
+    }
+    console.log("Pinto el sol (" + rgbFinal.red + ',' + rgbFinal.green + ',' + rgbFinal.blue + '),');
+    sol.entity.setIntensidad(rgbFinal.red/255, rgbFinal.green/255, rgbFinal.blue/255);
 }
 
 function sleep (ms) {

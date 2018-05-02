@@ -113,7 +113,6 @@ export class DetailComponent implements OnInit {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        console.log(data);
         var sunrise = new Date();
         var sunset = new Date();
         sunrise.setTime(data.sys.sunrise * 1000);
