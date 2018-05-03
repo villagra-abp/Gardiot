@@ -4,11 +4,15 @@ import { DatePipe } from "@angular/common";
 import { FormsModule, NgForm } from "@angular/forms";
 import { GardenService } from "../../../services/garden.service";
 import { Garden } from "../../../classes/garden.class";
+import { PlantService } from "../../../services/plant.service";
+import { Plant } from "../../../classes/plant.class";
 import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import { DialogHelpGardenComponent } from '../../dialog-gardenhelp/dialog-help-garden.component';
+import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { DialogNewgarden0Component } from '../../dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
 import 'rxjs/add/operator/delay';
 
 declare var iniciar: any;
@@ -84,16 +88,26 @@ export class GardenComponent {
 
 
   private photoURL = "";
-
   private accion: string;
   private width: number;
   private length: number;
 
+  //paginación y buscador
+  private numeroItems: number;
+  private paginaActual: number = 1;
+  private elementosPorPagina: number = 8;
+  private estado: boolean = false;// false es listado y true buscador
+  private plantmotor: number[];
+  private plantsmotor: any[] = [];
+
   constructor(
     private _gardenService: GardenService,
+    private _plantService: PlantService,
     private _route: Router,
     private _appComponent: AppComponent,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+  ) {
       if(window.location.toString().indexOf("localhost")>=0){
         this.photoURL="/assets";
       }
@@ -186,12 +200,6 @@ export class GardenComponent {
 
     }
 
-
-  ngOnInit() {
-    this.accion='Editar';
-    this.mostrar();
-  }
-
   mostrar() {
     this._gardenService.details()
       .subscribe(data => {
@@ -209,7 +217,7 @@ export class GardenComponent {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          
+
           this.inicializar();
           this.listarPaises();
           this.mostrarCiudad();
@@ -220,14 +228,11 @@ export class GardenComponent {
           } else {
             this.visible = false;
           }
-        } else {
-          this._route.navigate(['/newgarden']);
         }
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
         if (JSON.parse(error._body).Mensaje == 'No existe') {
-          this._route.navigate(['/newgarden']);
         } else {
           this._route.navigate(['/detail']);
         }
@@ -304,12 +309,6 @@ export class GardenComponent {
         this.statusDia4 = this.prevDia4[0].weather[0].main;
         this.statusDia5 = this.prevDia5[0].weather[0].main;
 
-        console.log(this.statusHoy,
-        this.statusMan,
-        this.statusDia3,
-        this.statusDia4,
-        this.statusDia5);
-        
         this.fotoHoy = this.prevHoy[0].weather[0].icon;
         this.fotoMan = this.prevMan[4].weather[0].icon;
         this.fotoDia3 = this.prevDia3[4].weather[0].icon;
@@ -336,7 +335,7 @@ export class GardenComponent {
     }
     this.maxMan = Math.max(...auxTemp);
     this.minMan = Math.min(...auxTemp);
-    
+
     this.colorMan = this.colorTemperatura(this.maxMan);
     auxTemp = [];
     auxNum = 0;
@@ -539,6 +538,65 @@ export class GardenComponent {
 
     isDragging(){
       return false;
+    }
+
+    //--------------------Mostrar Plantas---------------------//
+    ActualizarPagina() {
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+        this.paginaActual = params['pag'];
+        this.getitems();
+      });
+    }
+
+    getitems() {
+      this._plantService.getNumberItems()
+        .subscribe(data => {
+          if (this.estado == false) {
+            this.numeroItems = data[0].NUMPLANTAS;
+          }
+          this.mostrarplantasmotor();
+        },
+        error => {
+          console.error(error);
+        });
+    }
+
+    mostrarplantasmotor() {
+      if (this.estado == false) {
+
+        this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+          .subscribe(data => {
+            this.plantsmotor = [];
+            for (let key$ in data) {
+              this.plantsmotor.push(data[key$]);
+            }
+            console.log(this.plantsmotor);
+          },
+          error => {
+            console.error(error);
+          });
+      } else {
+      }
+    }
+
+    //--------------------Detecta que es un nuevo usuarío y muestra tutorial---------------------//
+    firstgarden() {
+      this._gardenService.firstgarden()
+        .subscribe(data => {
+          if (data.Mensaje == "No existe") {
+            this.dialog.open(DialogNewgarden0Component, { width: '800px', data: {id: 1}});
+          }
+        },
+          error => {
+            console.error(JSON.parse(error._body).Mensaje);
+          });
+    }
+
+    ngOnInit() {
+      this.firstgarden();
+      this.ActualizarPagina();
+      this.accion='Editar';
+      this.mostrar();
     }
 
 
