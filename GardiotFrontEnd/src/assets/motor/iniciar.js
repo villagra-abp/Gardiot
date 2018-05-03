@@ -112,7 +112,7 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
-  var dataPlants = {
+  window.dataPlants = {
     LECHUGA: {
       escalado: 2.5,
       rotX: 0,
@@ -162,7 +162,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       rotZ: 0,
       posY: 0.5
     },
-    CICA: {
+    CYCA: {
       escalado: 0.1,
       rotX: -90,
       rotY: 0,
@@ -181,15 +181,16 @@ motor.moverMalla("around", 0, -0.11, 0);
   // plantas dragables
   window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
-    
-    let resource = jardin.plants[i].name;
+
+    let resource = jardin.plants[i].model;
     if (typeof resource !== 'undefined') {
       plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
       resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
       resource = resource.toUpperCase();
-      let texture = jardin.plants[i].model;
+      let texture = jardin.plants[i].model+'.jpg';
       if (jardin.plants[i].model == 'url_3DModel')
         texture = "lechuga.jpg";
+      console.log(resource.toLowerCase());
       motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
       motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
       if (dataPlants[resource].rotX != 0)
@@ -290,8 +291,8 @@ motor.activarLuz("sol");
   if(accion=='detail'){
     window.mode=0;
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
-    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight*2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
 
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
@@ -302,7 +303,7 @@ motor.activarLuz("sol");
   else if(accion=='edit'){
     window.mode=1;
     motor.rotarCamara("dynamicCamera", -90, "x");
-    motor.moverCamara("dynamicCamera", 0, 20, 0);
+    motor.moverCamara("dynamicCamera", 0, camHeight/2, 0);
 
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }

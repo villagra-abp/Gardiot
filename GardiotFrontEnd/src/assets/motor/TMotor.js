@@ -122,31 +122,41 @@ class TMotor{
 
 
   toggleVista(){
-    if(window.mode==0){//visualización
-      window.mode=1;
+
+		if(window.mode==0){//visualización
+			motor.resetOrbital("dynamicCamera");
+			window.rotationCamX=-40;
+      window.rotationCamY=-45;
+			window.mode=1;
+			motor.rotarCamaraA("dynamicCamera", -90, "x");
+			//motor.rotarCamara("dynamicCamera", rotationCamY, "z");
+			motor.moverCamaraA("dynamicCamera", 0, camHeight, 0);
+
+			
       //motor.resetOrbital("dynamicCamera");
       //motor.rotarCamaraA("dynamicCamera", -90, "x");
-      let pos=motor.getCamaraActiva().dad.dad.entity.matrix;
+      /*let pos=motor.getCamaraActiva().dad.dad.entity.matrix;
       window.escala=motor.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
       //console.log(pos[12], pos[13], pos[14]);
       //console.log(esc);
       //rotationCamY%=360;
 
       window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, (camHeight-pos[13])/20];
-      window.transition=true;
+      window.transition=true;*/
       //window.now=[rotationCamX, rotationCamY];
       //console.log(now);
       //motor.moverCamaraA("dynamicCamera", 0, 10, 0);
     }
     else if(window.mode==1){//edición
-
+			motor.resetOrbital("dynamicCamera");
       window.mode=0;
       window.rotationCamX=-40;
       window.rotationCamY=-45;
       motor.rotarCamaraA("dynamicCamera", 0, "x");
-      motor.rotarCamara("dynamicCamera", rotationCamY, "y");
-      motor.rotarCamara("dynamicCamera", rotationCamX, "x");
-      motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
+      //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
+			motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight*2);
+			motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
+			motor.rotarCamara("dynamicCamera", rotationCamX, "x");
       //window.transition=true;
       //window.now=[rotationCamX, rotationCamY];
       //console.log(now);
@@ -173,18 +183,18 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-      var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
-      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+	      var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
+	      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
+	      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}else{
 			//console.log("crea en raiz");
-      var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
-      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+	      var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
+	      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
+	      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 
@@ -207,7 +217,43 @@ class TMotor{
 			}
 		}
 		if(pos>=0){
-			this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+			let position=motor.getPosCamaraActiva();
+			if(window.mode==1 && !window.transition){
+				if(position[0]<(-jardin.width/2) && x<0){
+					x=0;
+				}else if(position[0]>(jardin.width/2) && x>0){
+					x=0;
+				}if(position[2]>(jardin.length/2) && z>0){
+					z=0;
+				}else if(position[2]<(-jardin.length/2) && z<0){
+					z=0;
+				}
+				
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+
+			}
+			
+			else if(!window.transition){
+				position=motor.getCamaraActiva().dad.dad.entity.matrix;
+				let length=Math.max(jardin.width/2, jardin.length/2);
+				if(position[12]<((-length)-2) && x<0){
+					x=0;
+				}else if(position[12]>((length)+2) && x>0){
+					x=0;
+				}if(position[14]>((length)+2) && z>0){
+					z=0;
+				}else if(position[14]<((-length)-2) && z<0){
+					z=0;
+				}
+
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+				
+			}
+			else{
+				this.camaraRegistro[pos].dad.dad.entity.trasladar(x,y,z);
+			}
+			
+
 
 			return true;
 		}

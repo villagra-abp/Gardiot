@@ -1,0 +1,14 @@
+<div>
+  <section>
+    <h4>¡Bienvenido a Gardiot!</h4>
+    <p>Una manera fácil de cuidar tu jardín</p>
+    <img src="{{photoURL}}/images/imgGardiot/gardiot.png" class="rounded mx-auto d-block" alt="Logo">
+    <p>Vamos a ayudarte a crear tu primer jardín, para ello dale a comenzar</p>
+    <mat-dialog-actions>
+      <button mat-raise-button  (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Comenzar</button>
+    </mat-dialog-actions>
+    <mat-dialog-actions>
+      <a (click)="onCloseOmit()" class="omitir" href="#">Omitir</a>
+    </mat-dialog-actions>
+  </section>
+</div>

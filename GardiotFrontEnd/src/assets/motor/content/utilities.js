@@ -67,7 +67,7 @@ function updateMyPlant(garden, plant, soil, x, y){
 	xhr.send(params);
 }
 
-function insertMyPlant(garden, plant, soil, x, y){
+function insertMyPlant(garden, plant, soil, x, y, model){
     let xhr=new XMLHttpRequest(),
             url;
     if(window.location.toString().indexOf("localhost")>=0){
@@ -93,12 +93,18 @@ function insertMyPlant(garden, plant, soil, x, y){
                 seed: undefined
             };
 
-						plantsMap.set(x+'-'+y, respuesta.myPlant);//Para la iluminación
+			plantsMap.set(x+'-'+y, respuesta.myPlant);//Para la iluminación
 
             window.jardin.plants.push(value);
-            motor.crearNodoMalla(respuesta.myPlant, "lechuga", "lechuga.jpg", undefined);
-            motor.moverMallaA(respuesta.myPlant, x, 0, y);
-						motor.escalarMalla(respuesta.myPlant, 2.5);
+            let datos=dataPlants[model.toUpperCase()];
+
+            motor.crearNodoMalla(respuesta.myPlant, model, "lechuga.jpg", undefined);
+            motor.moverMallaA(respuesta.myPlant, x, datos.posY, y);
+            motor.rotarMalla(respuesta.myPlant, datos.rotX, 'x');
+            motor.rotarMalla(respuesta.myPlant, datos.rotY, 'y');
+            motor.rotarMalla(respuesta.myPlant, datos.rotZ, 'z');
+
+			motor.escalarMalla(respuesta.myPlant, datos.escalado);
         }
     }
 

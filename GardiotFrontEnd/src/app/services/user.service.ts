@@ -26,7 +26,7 @@ export class UserService {
       if(user.birthDate!=null){
         //body+=`&birthDate=${user.birthDate}`;
       }
-      console.log(user);
+
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded'
       });
@@ -38,7 +38,7 @@ export class UserService {
 
               }
               else{
-                console.log(`Usuario ${user.id} logueado`);
+
                 localStorage.setItem('Bearer', res.json().Token);
                 let expires=Date.now()+(6*60*60*1000);//6 horas para que expire el token
                 localStorage.setItem('expires_at', expires.toString());
@@ -53,7 +53,7 @@ export class UserService {
       let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
       body+= `&name=${user.name}&lastName=${user.lastName}`;
       body+= `&admin=${user.admin}`;
-      console.log(user);
+
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -79,8 +79,7 @@ export class UserService {
               localStorage.setItem('expires_at', expires.toString());
             }
             else{
-              console.log("Token es null");
-              console.log(res.json());
+              
             }
 
             return res.json();
@@ -146,7 +145,7 @@ export class UserService {
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log(body);
+
       return this.http.put(this.apiURL+"user", body, { headers })
           .map( res =>{
             return res.json();
@@ -179,7 +178,7 @@ export class UserService {
 
         body+=`&city=${user.city}`;
       }
-      console.log(body);
+
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -206,7 +205,7 @@ export class UserService {
       if(user2.city && country==1){
         body+=`&city=${user2.city}`;
       }
-      console.log("guapaaa"+body);
+
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -322,7 +321,7 @@ export class UserService {
         'Content-Type':'application/x-www-form-urlencoded',
         //'Authorization':`Bearer ${localStorage['Bearer']}`,
       });
-      //console.log(this.apiURL+"forgetPassword", body, { headers });
+      
       return this.http.post(this.apiURL+"forgetPassword", body, { headers })
       .map(res=>{
         return res.json();
@@ -330,22 +329,26 @@ export class UserService {
     }
     // reset password2
     newPassword(pass1:String, pass2:String, token:String){
-      // console.log("Hola New PASS");
-      // console.log(pass1,pass2);
+    
       let body=`password=${pass1}&password2=${pass2}`;
       let headers = new Headers({
         'Content-Type':'application/x-www-form-urlencoded',
       });
-      // console.log("CAMBIADO:"+this.apiURL+"resetPassword/"+token, body, { headers });
+      
       return this.http.put(this.apiURL+"resetPassword/"+token, body, { headers })
       .map(res=>{
-        // console.log("dentro de RES");
+        
         return res.json();
       })
     }
 
     searchAll(user:User,page:number, items:number){
       let body = `id=${user.id}`;
+      body += `&name=${user.name}`;
+      body += `&lastName=${user.lastName}`;
+      body += `&admin=${user.admin}`;
+      body += `&active=${user.active}`;
+      
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
@@ -366,5 +369,16 @@ export class UserService {
             return res.json();
           })
     }
+
+    logInGrafana(){
+      let headers = new Headers({
+        'Content-Type':'application/x-www-form-urlencoded',
+        'Access-Control-Allow-Origin':'*'
+      });
+      let body= `id=user1&password=gardioters`;
+
+      return this.http.post("https://gardiot.ovh/grafana/login", body, { headers } )
+          
+    };
 
 }

@@ -92,6 +92,19 @@ export class DetailComponent implements OnInit {
     private datePipe: DatePipe,
 
   ) { }
+//------ comprobamos si es su primera vez en la app------//
+  checkGarden() {
+    this._gardenService.firstgarden().subscribe(data => {
+      console.log(data.Mensaje);
+        if (data.Mensaje == "Existe") {
+        }else{
+          this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
+        }
+      },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+      });
+  }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
   mostrar() {
@@ -150,31 +163,20 @@ export class DetailComponent implements OnInit {
           }
           new iniciar("home", this.garden, this.sunrise, this.sunset);
         } else {
-          this._route.navigate(['/newgarden']);
+          // this._route.navigate(['/newgarden']);
         }
 
       },
       error => {
         if (JSON.parse(error._body).Mensaje == 'No existe') {
-          this._route.navigate(['/newgarden']);
+          // this._route.navigate(['/newgarden']);
         } else {
           this._route.navigate(['/detail']);
         }
       });
   }
 
-  checkGarden() {
-    this._gardenService.firstgarden().subscribe(data => {
-        if (data == "Existe") {
-          this.gardenRoute = '/garden';
-        } else {
-          this.gardenRoute = '/newgarden?pag=1';
-        }
-      },
-      error => {
-        console.error(JSON.parse(error._body).Mensaje);
-      });
-  }
+
 
   cargarfeeds() {
     this._feedService.showfeeds()

@@ -19,7 +19,6 @@ export class TreatmentPlantService {
     }
 
     savetreatment( treatmentPlant:TreatmentPlant,idPlant:number ){
-      console.log(treatmentPlant);
       let body = `plant=${idPlant}&treatment=${treatmentPlant.treatment}`;
           body += `&frequency=${treatmentPlant.frequency}&initDate=${treatmentPlant.initDate}`;
           body += `&finalDate=${treatmentPlant.finalDate}`;

@@ -11,14 +11,17 @@ import 'rxjs/add/operator/delay';
 import {Overlay} from '@angular/cdk/overlay';
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 
-import { DialogNewgardenComponent } from '../../dialog-newgarden/dialog-newgarden.component';
+import { DialogNewgarden1Component } from '../../dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component';
 import { MatDialog } from '@angular/material';
 declare var iniciar: any;
+declare var motor: any;
 
 @Component({
   selector: 'app-newgarden',
   templateUrl: './newgarden.component.html',
-  styleUrls: ['./newgarden.component.css']
+  styleUrls: ['./newgarden.component.css',
+              '../garden/garden.component.css',
+              '../editgarden/editgarden.component.css']
 })
 
 export class NewGardenComponent implements OnInit {
@@ -121,17 +124,20 @@ export class NewGardenComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          new iniciar("detail", this.garden);
+          console.log(data.plants);
+          this.inicializar();
+
 
         } else {
           this._route.navigate(['/newgarden']);
         }
       },
       error => {
-        this.dialog.open(DialogNewgardenComponent, { width: '800px', data: {id: 1}});
+        this.dialog.open(DialogNewgarden1Component, { width: '800px', data: {id: 1}});
       });
 
   }
+
 
   toggleState(){
     this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
@@ -174,6 +180,41 @@ export class NewGardenComponent implements OnInit {
     } else {
       // this.searchcontent(this.paginaActual, this.elementosPorPagina);
     }
+  }
+
+  resizeCanvas() {
+    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
+
+    let canvas = document.querySelector('canvas');
+    canvas.width = canvasEvolver.offsetWidth;
+    canvas.height = canvasEvolver.offsetHeight;
+
+
+    let desvX = (canvas.width - 1200) * 0.0008;
+    let desvY = (canvas.height - 974) * 0.00072;
+    let pos = motor.getPosCamaraActiva();
+    //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+
+  }
+
+  isDragging(){
+    return false;
+  }
+
+  inicializar(){
+    new iniciar("detail", this.garden);
+    let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
+    let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
+    let canvas = document.querySelector('canvas');
+    canvas.width = width;
+    canvas.height = height;
+
+    let desvX = (canvas.width - 1200) * 0.0008;
+    let desvY = (canvas.height - 974) * 0.00072;
+    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+    window.addEventListener("resize", this.resizeCanvas);
   }
 
 

@@ -1,6 +1,34 @@
-<div class="main-container">
-  <section class="herramienta">
-    <nav class="navbar navbar-default nav superior" role="navigation">
+
+    
+<div class="canvasEvolver" onmousemove="mouse_move(event);" onmouseup="mouse_up(event);">
+
+    <section class="litButtons">
+    <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;"
+          onclick="motor.toggleVista(event)"
+          (click)="this.toggleState()"></div>
+    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;"
+          onclick="document.getElementById('formulario').classList.toggle('infoOcult')"
+    >
+  </div>
+
+
+
+    <div class="toggleDeko litButton orange" id="plus" style="background-position: 4px 4px;"
+          onclick="plusZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="sub" style="background-position: 4px 164px;"
+      onclick="subZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;"
+      (click)="this.openDialog(1, 2)"
+    ></div>
+    <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;"
+        onmouseup="deletePlant()"
+        [hidden]="isDragging()"
+    ></div>
+  </section>
+
+  <nav class="navbar navbar-default nav superior" role="navigation">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
     <div class="navbar-header">
@@ -15,30 +43,21 @@
          otro elemento que se pueda ocultar al minimizar la barra -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" id="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-            <img src="{{plantmotor.photo}}" alt="no sale la imagen"  width="50px" height="50px">
+        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}"  draggable="true" ondragstart="drag(event);">
+            <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3dmodel}}" alt="no sale la imagen"  width="50px" height="50px">
         </li>
         <li>  <app-pagination [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination></li>
       </ul>
 
     </div>
   </nav>
-    <!-- <ul class="nav superior">
-      <li class="nav-item">
-        <button [routerLink]="['/editgarden']" class="btn btn-success">Plantas</button>
-      </li>
-    </ul> -->
-    <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event);" onmousedown="mouse_down(event);" onmouseup="mouse_up(event);" onmousewheel="scrolling(event);" width="2100" height="1200"></canvas>
-    <ul class="nav justify-content-end inferior">
-      <li class="nav-item">
-        <button onclick="motor.toggleVista()" (click)="this.toggleState()" class="btn btn-success">{{accion}}</button>
-      </li>
-    </ul>
-  </section>
-  <section class="container title">
-    <h1>{{garden.title}}</h1>
-  </section>
+
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="2100" height="1200"></canvas>
 </div>
+    
+
+
+
 <!-- <div class="container main-container">
   <ul class="smooth-scroll list-unstyled">
     <li *ngFor="let plant of plants" value="{{plant.id}}">
