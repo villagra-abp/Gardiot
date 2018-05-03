@@ -121,7 +121,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <app-header></app-header>\r\n  <router-outlet></router-outlet>\r\n  <app-desarrollo></app-desarrollo>\r\n"
+module.exports = "  <app-header></app-header>\r\n  <router-outlet></router-outlet>\r\n  <!--<app-desarrollo></app-desarrollo>-->\r\n"
 
 /***/ }),
 
@@ -141,7 +141,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var AppComponent = /** @class */ (function () {
+var AppComponent = (function () {
     function AppComponent() {
         this.url = "";
         this.admin = window.location.href.indexOf('admin') >= 0;
@@ -261,9 +261,15 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__angular_material_tabs__ = __webpack_require__("../../../material/esm5/tabs.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__components_dialog_delete_dialog_delete_component__ = __webpack_require__("../../../../../src/app/components/dialog-delete/dialog-delete.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__components_help_help_component__ = __webpack_require__("../../../../../src/app/components/help/help.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__angular_material_expansion__ = __webpack_require__("../../../material/esm5/expansion.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__components_dialog_gardenhelp_dialog_help_garden_component__ = __webpack_require__("../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__components_help_help_component__ = __webpack_require__("../../../../../src/app/components/help/help.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__angular_material_tooltip__ = __webpack_require__("../../../material/esm5/tooltip.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__angular_material_expansion__ = __webpack_require__("../../../material/esm5/expansion.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__components_dialog_newgarden_dialog_newgarden1_dialog_newgarden1_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__components_dialog_newgarden_dialog_newgarden2_dialog_newgarden2_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__components_dialog_newgarden_dialog_newgarden3_dialog_newgarden3_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__components_calendar_dialog_task_dialog_task_component__ = __webpack_require__("../../../../../src/app/components/calendar/dialog-task/dialog-task.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__components_dialog_newgarden_dialog_newgarden0_dialog_newgarden0_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -363,8 +369,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
+
+
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_common__["registerLocaleData"])(__WEBPACK_IMPORTED_MODULE_25__angular_common_locales_es__["a" /* default */]);
-var AppModule = /** @class */ (function () {
+var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
@@ -415,7 +427,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_62__components_manage_reset_pass_back_reset_pass_back_component__["a" /* ResetPassBackComponent */],
                 __WEBPACK_IMPORTED_MODULE_63__components_treatmentsplants_newtreatmentsplants_newtreatmentsplants_component__["a" /* NewtreatmentsplantsComponent */],
                 __WEBPACK_IMPORTED_MODULE_70__components_dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */],
-                __WEBPACK_IMPORTED_MODULE_71__components_help_help_component__["a" /* HelpComponent */],
+                __WEBPACK_IMPORTED_MODULE_72__components_help_help_component__["a" /* HelpComponent */],
+                __WEBPACK_IMPORTED_MODULE_75__components_dialog_newgarden_dialog_newgarden1_dialog_newgarden1_component__["a" /* DialogNewgarden1Component */],
+                __WEBPACK_IMPORTED_MODULE_76__components_dialog_newgarden_dialog_newgarden2_dialog_newgarden2_component__["a" /* DialogNewgarden2Component */],
+                __WEBPACK_IMPORTED_MODULE_77__components_dialog_newgarden_dialog_newgarden3_dialog_newgarden3_component__["a" /* DialogNewgarden3Component */],
+                __WEBPACK_IMPORTED_MODULE_71__components_dialog_gardenhelp_dialog_help_garden_component__["a" /* DialogHelpGardenComponent */],
+                __WEBPACK_IMPORTED_MODULE_78__components_calendar_dialog_task_dialog_task_component__["a" /* DialogTaskComponent */],
+                __WEBPACK_IMPORTED_MODULE_79__components_dialog_newgarden_dialog_newgarden0_dialog_newgarden0_component__["a" /* DialogNewgarden0Component */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_13__angular_platform_browser__["a" /* BrowserModule */],
@@ -431,8 +449,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_67__angular_material_button__["a" /* MatButtonModule */],
                 __WEBPACK_IMPORTED_MODULE_68__angular_material_dialog__["c" /* MatDialogModule */],
                 __WEBPACK_IMPORTED_MODULE_69__angular_material_tabs__["a" /* MatTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_72__angular_material_tooltip__["a" /* MatTooltipModule */],
-                __WEBPACK_IMPORTED_MODULE_73__angular_material_expansion__["a" /* MatExpansionModule */],
+                __WEBPACK_IMPORTED_MODULE_73__angular_material_tooltip__["a" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_74__angular_material_expansion__["a" /* MatExpansionModule */],
                 __WEBPACK_IMPORTED_MODULE_0__app_routes__["a" /* APP_ROUTING */]
             ],
             providers: [
@@ -450,7 +468,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_common__["DatePipe"]
             ],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_70__components_dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */]
+                __WEBPACK_IMPORTED_MODULE_71__components_dialog_gardenhelp_dialog_help_garden_component__["a" /* DialogHelpGardenComponent */],
+                __WEBPACK_IMPORTED_MODULE_70__components_dialog_delete_dialog_delete_component__["a" /* DialogDeleteComponent */],
+                __WEBPACK_IMPORTED_MODULE_79__components_dialog_newgarden_dialog_newgarden0_dialog_newgarden0_component__["a" /* DialogNewgarden0Component */],
+                __WEBPACK_IMPORTED_MODULE_75__components_dialog_newgarden_dialog_newgarden1_dialog_newgarden1_component__["a" /* DialogNewgarden1Component */],
+                __WEBPACK_IMPORTED_MODULE_76__components_dialog_newgarden_dialog_newgarden2_dialog_newgarden2_component__["a" /* DialogNewgarden2Component */],
+                __WEBPACK_IMPORTED_MODULE_77__components_dialog_newgarden_dialog_newgarden3_dialog_newgarden3_component__["a" /* DialogNewgarden3Component */],
+                __WEBPACK_IMPORTED_MODULE_78__components_calendar_dialog_task_dialog_task_component__["a" /* DialogTaskComponent */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_22__app_component__["a" /* AppComponent */]]
         })
@@ -569,7 +593,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AuthguardGuard = /** @class */ (function () {
+var AuthguardGuard = (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -599,7 +623,7 @@ var AuthguardGuard = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Feed; });
-var Feed = /** @class */ (function () {
+var Feed = (function () {
     function Feed(id, name, text, dateInit, dateFinal) {
         this.id = id;
         this.name = name;
@@ -619,7 +643,7 @@ var Feed = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Garden; });
-var Garden = /** @class */ (function () {
+var Garden = (function () {
     function Garden(id, title, width, length, latitude, longitude, soil, user, countryCode, city, plants) {
         this.id = id;
         this.title = title;
@@ -645,7 +669,7 @@ var Garden = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Plant; });
-var Plant = /** @class */ (function () {
+var Plant = (function () {
     function Plant(id, scientificName, commonName, description, photo, _3DModel, family, depth, distance, diseaseResist, initDatePlant, finDatePlant, initDateBloom, finDateBloom, initDateHarvest, finDateHarvest, leaveType) {
         this.id = id;
         this.scientificName = scientificName;
@@ -677,7 +701,7 @@ var Plant = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Product; });
-var Product = /** @class */ (function () {
+var Product = (function () {
     function Product(id, name, type, description) {
         this.id = id;
         this.name = name;
@@ -696,7 +720,7 @@ var Product = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTreatment; });
-var ProductTreatment = /** @class */ (function () {
+var ProductTreatment = (function () {
     function ProductTreatment(plant, treatment, product, name) {
         this.plant = plant;
         this.treatment = treatment;
@@ -715,7 +739,7 @@ var ProductTreatment = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Task; });
-var Task = /** @class */ (function () {
+var Task = (function () {
     function Task(tPlant, treatmentPlant, myPlant, mPlant, date, dateDone, commonName, name) {
         this.tPlant = tPlant;
         this.treatmentPlant = treatmentPlant;
@@ -738,7 +762,7 @@ var Task = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Treatment; });
-var Treatment = /** @class */ (function () {
+var Treatment = (function () {
     function Treatment(id, name, description, icon) {
         this.id = id;
         this.name = name;
@@ -757,7 +781,7 @@ var Treatment = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TreatmentPlant; });
-var TreatmentPlant = /** @class */ (function () {
+var TreatmentPlant = (function () {
     function TreatmentPlant(plant, treatment, frequency, initDate, finalDate) {
         this.plant = plant;
         this.treatment = treatment;
@@ -777,7 +801,7 @@ var TreatmentPlant = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return User; });
-var User = /** @class */ (function () {
+var User = (function () {
     function User(id, name, lastName, password, password2, oldPassword, photo, countryCode, city, birthDate, active, admin) {
         this.id = id;
         this.name = name;
@@ -828,7 +852,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { AdminListUsersComponent } from "./listusers.component";
 //import { AdminUserComponent } from "./user.component";
-var AdminComponent = /** @class */ (function () {
+var AdminComponent = (function () {
     function AdminComponent(_detailService, _route) {
         this._detailService = _detailService;
         this._route = _route;
@@ -871,7 +895,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminguardGuard = /** @class */ (function () {
+var AdminguardGuard = (function () {
     function AdminguardGuard(user, router) {
         this.user = user;
         this.router = router;
@@ -933,7 +957,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminProfileComponent = /** @class */ (function () {
+var AdminProfileComponent = (function () {
     function AdminProfileComponent(_detailService, _route, _appComponent, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -1096,7 +1120,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/******* ESTILO ESTADISTICAS *******/\r\n/******* Julián Sánchez García *******/\r\n*{\r\n  margin: 0;\r\n}\r\nh1{\r\n  color:  #fbb200;\r\n  font-size: 1.6em;\r\n}\r\ni{\r\n  float: left;\r\n}\r\n\r\nh4{\r\n}\r\nfieldset{\r\n  border-color: #fbb200;\r\n}\r\n.mat-tab{\r\n    /* height:unset!important; */\r\n    width: unset!important;\r\n    /* height: unset!important; */\r\n}\r\n/******* FIN ESTILO ESTADISTICAS *******/\r\n", ""]);
+exports.push([module.i, "/******* ESTILO ESTADISTICAS *******/\r\n/******* Julián Sánchez García *******/\r\n*{\r\n  /* margin: 0; */\r\n}\r\n.titulo{\r\n  display: inline;\r\n}\r\niframe{\r\n  padding-top: 1%;\r\n}\r\nh1{\r\n  color:  #fbb200;\r\n  font-size: 1.6em;\r\n}\r\ni{\r\n  float: left;\r\n}\r\n\r\nh4{\r\n}\r\nfieldset{\r\n  border-color: #fbb200;\r\n}\r\n.mat-tab{\r\n    /* height:unset!important; */\r\n    /* width: unset!important;\r\n    /* height: unset!important; */\r\n}\r\n/******* FIN ESTILO ESTADISTICAS *******/\r\n", ""]);
 
 // exports
 
@@ -1109,7 +1133,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin/statistics.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <section class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"well well-sm\">\r\n          <fieldset>\r\n            <mat-tab-group class=\"demo-tab-group\">\r\n              <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n                <article class=\"row\">\r\n                  <div class=\"col\">\r\n                    <h4>Usuarios</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light\"\r\n                      width=\"450\" height=\"350\" frameborder=\"0\">\r\n                    </iframe>\r\n                  </div>\r\n                  <div class=\"col\">\r\n                    <h4>Mapa de usuarios</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light\"\r\n                    width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                    </article>\r\n                  <br>\r\n                  <article class=\"row\">\r\n                    <div id=\"header\" class=\"col\">\r\n                      <div class=\"row\">\r\n                        <h4 class=\"col\">Usuarios conectados</h4>\r\n                        <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i>\r\n                      </div>\r\n\r\n                      <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light\"\r\n                              width=\"450\" height=\"350\" frameborder=\"0\" class=\"col\">\r\n                      </iframe>\r\n                      </div>\r\n                  </article>\r\n\r\n\r\n\r\n              </mat-tab>\r\n\r\n              <mat-tab label=\"Estadísticas de jardín\">\r\n                <article class=\"row\">\r\n                  <div class=\"col\">\r\n                    <h4>Tareas realizadas en los jardines</h4>\r\n                    <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=4&var-tiempo=120&theme=light\"\r\n                    width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                  <div class=\"col\">\r\n                    <h4>Comparativa de plantas</h4>\r\n                  <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=2&var-tiempo=120&theme=light\"\r\n                  width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n                  </div>\r\n                </article>\r\n              </mat-tab>\r\n\r\n            </mat-tab-group>\r\n          </fieldset>\r\n        </div>\r\n      </div>\r\n    </section>\r\n  </article>\r\n</section>\r\n\r\n\r\n\r\n<!-- <section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <mat-tab-group class=\"demo-tab-group\">\r\n      <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4>Usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n            <h4>Mapa de usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n        </article>\r\n        <br>\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4 class=\"col\">Usuarios conectados</h4>\r\n            <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i>\r\n                <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light\"\r\n                  width=\"450\" height=\"350\" frameborder=\"0\" class=\"col\">\r\n                </iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n\r\n          </div>\r\n        </article>\r\n      </mat-tab>\r\n    </mat-tab-group>\r\n  </article>\r\n</section> -->\r\n"
+module.exports = "<section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <section class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"well well-sm\">\r\n          <fieldset>\r\n            <mat-tab-group class=\"demo-tab-group\">\r\n              <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n                <!-- <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i> -->\r\n                <iframe src=\"https://gardiot.ovh/grafana/d/WlnVc4Mmz/dashboard-usuarios?orgId=1&from=1524816953370&to=1524838553373&theme=light\"\r\n                        width=\"720\" height=\"820\" frameborder=\"0\" class=\"col\">\r\n                </iframe>\r\n              </mat-tab>\r\n\r\n              <mat-tab class=\"one\" label=\"Estadísticas de jardín\">\r\n                <iframe src=\"https://gardiot.ovh/grafana/d/o7sXcVMiz/dashboard-jardines?orgId=1&from=1524543632044&to=1524835605975&theme=light\"\r\n                        width=\"720\" height=\"820\" frameborder=\"0\" class=\"col\">\r\n                </iframe>\r\n              </mat-tab>\r\n\r\n            </mat-tab-group>\r\n          </fieldset>\r\n        </div>\r\n      </div>\r\n    </section>\r\n  </article>\r\n</section>\r\n\r\n\r\n\r\n<!-- <section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas</h1>\r\n  <br>\r\n  <article class=\"statistics\">\r\n    <mat-tab-group class=\"demo-tab-group\">\r\n      <mat-tab class=\"one\" label=\"Estadísticas de usuario\">\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4>Usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1521354664432&to=1524479085912&panelId=6&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n            <h4>Mapa de usuarios</h4>\r\n            <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&from=1523110198752&to=1525082489811&panelId=8&var-tiempo=120&theme=light\"\r\n            width=\"450\" height=\"350\" frameborder=\"0\"></iframe>\r\n          </div>\r\n        </article>\r\n        <br>\r\n        <article class=\"row\">\r\n          <div class=\"col\">\r\n            <h4 class=\"col\">Usuarios conectados</h4>\r\n            <i matTooltip=\"Zoom in: selecciona área con botón izquierdo. CRTL Z para zoom out.\" class=\"material-icons col\" style=\"color:#63d297;\">help</i>\r\n                <iframe src=\"https://gardiot.ovh/grafana/d-solo/4-LEvPkiz/panel-de-estadisticas?orgId=1&var-tiempo=120&panelId=10&from=1522533600000&to=1525125599999&theme=light\"\r\n                  width=\"450\" height=\"350\" frameborder=\"0\" class=\"col\">\r\n                </iframe>\r\n          </div>\r\n          <div class=\"col\">\r\n\r\n          </div>\r\n        </article>\r\n      </mat-tab>\r\n    </mat-tab-group>\r\n  </article>\r\n</section> -->\r\n"
 
 /***/ }),
 
@@ -1120,6 +1144,7 @@ module.exports = "<section class=\"container vistaAdmin\">\r\n  <h1>Estadisticas
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatisticsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_user_service__ = __webpack_require__("../../../../../src/app/services/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1131,9 +1156,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var StatisticsComponent = /** @class */ (function () {
-    function StatisticsComponent(dialog) {
+
+var StatisticsComponent = (function () {
+    function StatisticsComponent(dialog, _userService) {
         this.dialog = dialog;
+        this._userService = _userService;
         this.dialogResult = "";
         this.datos = [
             { value: '15', viewValue: 'Últimos 15 minutos' },
@@ -1160,6 +1187,13 @@ var StatisticsComponent = /** @class */ (function () {
     // captura(){
     // }
     StatisticsComponent.prototype.ngOnInit = function () {
+        this.autoLogInGrafana();
+    };
+    StatisticsComponent.prototype.autoLogInGrafana = function () {
+        this._userService.logInGrafana()
+            .subscribe(function (data) {
+            console.log(data);
+        });
     };
     StatisticsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -1167,7 +1201,7 @@ var StatisticsComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/components/admin/statistics.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/admin/statistics.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatDialog */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material__["a" /* MatDialog */], __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]])
     ], StatisticsComponent);
     return StatisticsComponent;
 }());
@@ -1212,11 +1246,13 @@ module.exports = "<div class=\"main-container container\">\r\n  <div class=\"row
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_task_class__ = __webpack_require__("../../../../../src/app/classes/task.class.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_date_fns__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__customdate_provider__ = __webpack_require__("../../../../../src/app/components/calendar/customdate.provider.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dialog_task_dialog_task_component__ = __webpack_require__("../../../../../src/app/components/calendar/dialog-task/dialog-task.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__customdate_provider__ = __webpack_require__("../../../../../src/app/components/calendar/customdate.provider.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1226,6 +1262,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1250,21 +1288,26 @@ var colors = {
     yellow: {
         primary: '#e3bc08',
         secondary: '#FDF1BA'
+    },
+    green: {
+        primary: '#009900',
+        secondary: '#99ff99'
     }
 };
-var CalendarComponent = /** @class */ (function () {
-    function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute) {
+var CalendarComponent = (function () {
+    function CalendarComponent(_taskService, _route, _appComponent, datePipe, activatedRoute, dialog) {
         var _this = this;
         this._taskService = _taskService;
         this._route = _route;
         this._appComponent = _appComponent;
         this.datePipe = datePipe;
         this.activatedRoute = activatedRoute;
+        this.dialog = dialog;
         this.view = 'month';
         this.viewDate = new Date();
         this.locale = 'es';
-        this.weekStartsOn = __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].MONDAY;
-        this.weekendDays = [__WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].SATURDAY, __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["c" /* DAYS_OF_WEEK */].SUNDAY];
+        this.weekStartsOn = __WEBPACK_IMPORTED_MODULE_10_angular_calendar__["c" /* DAYS_OF_WEEK */].MONDAY;
+        this.weekendDays = [__WEBPACK_IMPORTED_MODULE_10_angular_calendar__["c" /* DAYS_OF_WEEK */].SATURDAY, __WEBPACK_IMPORTED_MODULE_10_angular_calendar__["c" /* DAYS_OF_WEEK */].SUNDAY];
         this.tasks = [];
         this.task = new __WEBPACK_IMPORTED_MODULE_3__classes_task_class__["a" /* Task */]();
         this.treatments = [];
@@ -1280,27 +1323,26 @@ var CalendarComponent = /** @class */ (function () {
                 label: '<i class="material-icons">check</i>',
                 onClick: function (_a) {
                     var event = _a.event;
-                    _this.events = _this.events.filter(function (iEvent) { return iEvent !== event; });
-                    _this.handleEvent('Done', event);
+                    //this.events = this.events.filter(iEvent => iEvent !== event);
+                    _this.handleEvent('Done', event, undefined);
                 }
-            },
+            } /*,
             {
-                label: '<i class="material-icons">close</i>',
-                onClick: function (_a) {
-                    var event = _a.event;
-                    _this.events = _this.events.filter(function (iEvent) { return iEvent !== event; });
-                    _this.handleEvent('Done', event);
-                }
-            }
+              label: '<i class="material-icons">close</i>',
+              onClick: ({ event }: { event: CalendarEvent }): void => {
+                this.events = this.events.filter(iEvent => iEvent !== event);
+                this.handleEvent('Done', event);
+              }
+            }*/
         ];
-        this.refresh = new __WEBPACK_IMPORTED_MODULE_7_rxjs_Subject__["b" /* Subject */]();
+        this.refresh = new __WEBPACK_IMPORTED_MODULE_9_rxjs_Subject__["b" /* Subject */]();
         this.events = [];
         this.activeDayIsOpen = true;
     }
     CalendarComponent.prototype.dayClicked = function (_a) {
         var date = _a.date, events = _a.events;
-        if (Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameMonth"])(date, this.viewDate)) {
-            if ((Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["isSameDay"])(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        if (Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["isSameMonth"])(date, this.viewDate)) {
+            if ((Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["isSameDay"])(this.viewDate, date) && this.activeDayIsOpen === true) ||
                 events.length === 0) {
                 this.activeDayIsOpen = false;
             }
@@ -1312,18 +1354,22 @@ var CalendarComponent = /** @class */ (function () {
     };
     CalendarComponent.prototype.eventTimesChanged = function (_a) {
         var event = _a.event, newStart = _a.newStart, newEnd = _a.newEnd;
+        var oldDate = this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd');
         event.start = newStart;
         event.end = newEnd;
-        this.handleEvent('Changed', event);
+        this.handleEvent('Changed', event, oldDate);
         this.refresh.next();
     };
-    CalendarComponent.prototype.addEvent = function (Ttitle, Tstart, Tend, idT) {
+    CalendarComponent.prototype.addEvent = function (Ttitle, Tstart, Tend, idT, done) {
+        var color;
+        ;
+        done ? color = colors.green : (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.red);
         this.events.push({
             title: Ttitle,
             id: idT,
-            start: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["startOfDay"])(new Date(Tstart)),
-            end: Object(__WEBPACK_IMPORTED_MODULE_6_date_fns__["endOfDay"])(new Date(Tend)),
-            color: colors.red,
+            start: Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["startOfDay"])(new Date(Tstart)),
+            end: Object(__WEBPACK_IMPORTED_MODULE_8_date_fns__["endOfDay"])(new Date(Tend)),
+            color: color,
             actions: this.actions,
             draggable: true,
             resizable: {
@@ -1333,7 +1379,7 @@ var CalendarComponent = /** @class */ (function () {
         });
         this.refresh.next();
     };
-    CalendarComponent.prototype.handleEvent = function (action, event) {
+    CalendarComponent.prototype.handleEvent = function (action, event, oldDate) {
         var f = new Date();
         var fecha_actual;
         f.getDate();
@@ -1341,18 +1387,24 @@ var CalendarComponent = /** @class */ (function () {
         f.getFullYear();
         fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
         if (action == 'Edited') {
-            alert("detalles");
+            console.log('deberias saltar el pop up');
+            this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__dialog_task_dialog_task_component__["a" /* DialogTaskComponent */], { width: '800px', data: { id: 1 } });
         }
         else if (action == 'Done') {
+            event.color = colors.green;
+            this.refresh.next();
             var task = this.tasks[event.id];
-            this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, fecha_actual)
+            this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'), fecha_actual)
                 .subscribe(function (data) {
+                console.log(data);
             });
         }
         else if (action == 'Changed') {
+            console.log(oldDate);
             var task = this.tasks[event.id];
-            this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant)
+            this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, oldDate, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'))
                 .subscribe(function (data) {
+                console.log(data);
             });
         }
         else {
@@ -1373,7 +1425,7 @@ var CalendarComponent = /** @class */ (function () {
             for (var key$ in data) {
                 _this.tasks.push(data[key$]);
                 console.log(data[key$]);
-                _this.addEvent(data[key$].name + " " + data[key$].commonName, _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), parseInt(key$));
+                _this.addEvent(data[key$].name + " " + data[key$].commonName, _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), _this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), parseInt(key$), data[key$].dateDone != null);
             }
             /*for(let key$ in data){
               this.treatments.push(data[key$]);
@@ -1395,8 +1447,8 @@ var CalendarComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/components/calendar/calendar.component.html"),
             providers: [
                 {
-                    provide: __WEBPACK_IMPORTED_MODULE_8_angular_calendar__["a" /* CalendarDateFormatter */],
-                    useClass: __WEBPACK_IMPORTED_MODULE_9__customdate_provider__["a" /* CustomDateFormatter */]
+                    provide: __WEBPACK_IMPORTED_MODULE_10_angular_calendar__["a" /* CalendarDateFormatter */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_11__customdate_provider__["a" /* CustomDateFormatter */]
                 }
             ]
         }),
@@ -1404,7 +1456,8 @@ var CalendarComponent = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
             __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_5__angular_common__["DatePipe"],
-            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MatDialog */]])
     ], CalendarComponent);
     return CalendarComponent;
 }());
@@ -1435,7 +1488,7 @@ var __extends = (this && this.__extends) || (function () {
 
 
 
-var CustomDateFormatter = /** @class */ (function (_super) {
+var CustomDateFormatter = (function (_super) {
     __extends(CustomDateFormatter, _super);
     function CustomDateFormatter() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -1448,6 +1501,79 @@ var CustomDateFormatter = /** @class */ (function (_super) {
     };
     return CustomDateFormatter;
 }(__WEBPACK_IMPORTED_MODULE_0_angular_calendar__["a" /* CalendarDateFormatter */]));
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/dialog-task/dialog-task.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/dialog-task/dialog-task.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>Nombre tarea</h4>\r\n    <p>Descripción</p>\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button  (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Crear</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/calendar/dialog-task/dialog-task.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogTaskComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var DialogTaskComponent = (function () {
+    function DialogTaskComponent(thisDialogRef, data) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+    }
+    DialogTaskComponent.prototype.onCloseConfirm = function () {
+        this.thisDialogRef.close('Confirm');
+    };
+    DialogTaskComponent.prototype.ngOnInit = function () {
+    };
+    DialogTaskComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-task',
+            template: __webpack_require__("../../../../../src/app/components/calendar/dialog-task/dialog-task.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/calendar/dialog-task/dialog-task.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object])
+    ], DialogTaskComponent);
+    return DialogTaskComponent;
+}());
 
 
 
@@ -1510,7 +1636,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
-var DialogDeleteComponent = /** @class */ (function () {
+var DialogDeleteComponent = (function () {
     function DialogDeleteComponent(thisDialogRef, data, _productService, _treatmentService, _feedService, _plantService, _userService) {
         this.thisDialogRef = thisDialogRef;
         this.data = data;
@@ -1596,6 +1722,647 @@ var DialogDeleteComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>¡Bienvenido a tu jardín!</h4>\r\n\r\n      <h5>Esto es la ayuda del jardín</h5>\r\n\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button (click)=\"onCloseCancel()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Aceptar</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogHelpGardenComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var DialogHelpGardenComponent = (function () {
+    function DialogHelpGardenComponent(thisDialogRef, data) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+    }
+    // @HostListener('document:keyup', ['$event'])
+    DialogHelpGardenComponent.prototype.onCloseCancel = function () {
+        this.thisDialogRef.close('Cancel');
+    };
+    DialogHelpGardenComponent.prototype.ngOnInit = function () {
+    };
+    DialogHelpGardenComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-help-garden',
+            template: __webpack_require__("../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object])
+    ], DialogHelpGardenComponent);
+    return DialogHelpGardenComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\nimg{\r\n  width: 50%;\r\n}\r\n.omitir{\r\n  color: green;\r\n  margin-left: 90%;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>¡Bienvenido a Gardiot!</h4>\r\n    <p>Una manera fácil de cuidar tu jardín</p>\r\n    <img src=\"{{photoURL}}/images/imgGardiot/gardiot.png\" class=\"rounded mx-auto d-block\" alt=\"Logo\">\r\n    <p>Vamos a ayudarte a crear tu primer jardín, para ello dale a comenzar</p>\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button  (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Comenzar</button>\r\n    </mat-dialog-actions>\r\n    <mat-dialog-actions>\r\n      <a (click)=\"onCloseOmit()\" class=\"omitir\" href=\"#\">Omitir</a>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogNewgarden0Component; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dialog_newgarden1_dialog_newgarden1_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+
+var DialogNewgarden0Component = (function () {
+    function DialogNewgarden0Component(thisDialogRef, data, _route, dialog, _gardenService) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+        this._route = _route;
+        this.dialog = dialog;
+        this._gardenService = _gardenService;
+        this.photoURL = "";
+        this.garden = new __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__["a" /* Garden */]('');
+        if (window.location.toString().indexOf("localhost") >= 0) {
+            this.photoURL = "/assets";
+        }
+        else if (window.location.toString().indexOf("gardiot") >= 0) {
+            this.photoURL = "/app/assets";
+        }
+    }
+    DialogNewgarden0Component.prototype.onCloseConfirm = function () {
+        this.saveGarden();
+        this.openDialog();
+        this.thisDialogRef.close('Empezar');
+    };
+    DialogNewgarden0Component.prototype.onCloseOmit = function () {
+        this.saveGarden();
+        this.thisDialogRef.close('Empezar');
+    };
+    DialogNewgarden0Component.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__dialog_newgarden1_dialog_newgarden1_component__["a" /* DialogNewgarden1Component */], {
+            width: '800px',
+            data: {}
+        });
+    };
+    DialogNewgarden0Component.prototype.saveGarden = function () {
+        this._gardenService.insertGarden(this.garden)
+            .subscribe(function (data) {
+        }, function (error) {
+            var v = JSON.parse(error._body);
+        });
+    };
+    DialogNewgarden0Component.prototype.ngOnInit = function () {
+        this.garden.width = 2;
+        this.garden.length = 2;
+    };
+    DialogNewgarden0Component = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-newgarden0',
+            template: __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_3__services_garden_service__["a" /* GardenService */]])
+    ], DialogNewgarden0Component);
+    return DialogNewgarden0Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>¡Bienvenido a Gardiot!</h4>\r\n    <p>Vamos a crear tu jardín</p>\r\n    <form (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" class=\"needs-validation\" novalidate>\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"title\">Nombre</label>\r\n          <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"form-row\">\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"length\">Largo {{garden.length===undefined ? 4 : garden.length}}</label>\r\n          <input class=\"form-control\" type=\"range\" [(ngModel)]=\"garden.length\" min=\"2\" max=\"10\" step=\"1\" name=\"length\" id=\"length_garden\" required>\r\n        </div>\r\n        <div class=\"form-group col-md-6\">\r\n          <label for=\"width\">Ancho {{garden.width===undefined ? 4 : garden.width}}</label>\r\n          <input class=\"form-control\" type=\"range\" [(ngModel)]=\"garden.width\" min=\"2\" max=\"10\" step=\"1\" name=\"width\" id=\"width_garden\" required>\r\n        </div>\r\n      </div>\r\n    </form>\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button  (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Siguiente</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogNewgarden1Component; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dialog_newgarden2_dialog_newgarden2_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+
+var DialogNewgarden1Component = (function () {
+    function DialogNewgarden1Component(thisDialogRef, data, _gardenService, _route, dialog) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+        this._gardenService = _gardenService;
+        this._route = _route;
+        this.dialog = dialog;
+        this.garden = new __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__["a" /* Garden */]("");
+    }
+    DialogNewgarden1Component.prototype.getid = function () {
+        var _this = this;
+        this._gardenService.details().subscribe(function (data) {
+            if (data != null) {
+                _this.garden = data;
+                console.log(_this.garden);
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    DialogNewgarden1Component.prototype.saveGarden = function () {
+        this._gardenService.modifyGarden2(this.garden)
+            .subscribe(function (data) {
+        }, function (error) {
+            var v = JSON.parse(error._body);
+        });
+    };
+    DialogNewgarden1Component.prototype.onCloseConfirm = function () {
+        this.saveGarden();
+        this.openDialog();
+        this.thisDialogRef.close('Guardado');
+    };
+    DialogNewgarden1Component.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__dialog_newgarden2_dialog_newgarden2_component__["a" /* DialogNewgarden2Component */], {
+            width: '800px',
+            data: {}
+        });
+    };
+    DialogNewgarden1Component.prototype.ngOnInit = function () {
+        this.getid();
+    };
+    DialogNewgarden1Component = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-newgarden',
+            template: __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_3__services_garden_service__["a" /* GardenService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */]])
+    ], DialogNewgarden1Component);
+    return DialogNewgarden1Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n\r\n.selectsearch__field {\r\n    background: transparent;\r\n    padding: 0 12px;\r\n    height: 32px;\r\n    line-height: 1.42857143;\r\n    margin-top: 0;\r\n    min-width: 5em;}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>¡Danos tu ubicación!</h4>\r\n    <p>Si nos das tu ubicacíon podremos hacerte recomendaciones e informarte de la meteorología del lugar</p>\r\n    <form (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" class=\"needs-validation\" novalidate>\r\n      <!-- <div class=\"form-col\">\r\n        <div class=\" \" ng-init=\"listarPaises()\">\r\n          <label for=\"countries\">País</label>\r\n          <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n          </select2>\r\n        </div>\r\n        <div class=\"form-group col-md-4\">\r\n          <label for=\"countries\">Código postal</label>\r\n          <input class=\"\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n        </div>\r\n      </div> -->\r\n\r\n      <div class=\"form-group col-md-8\">\r\n        <label for=\"pais\">País</label>\r\n        <select2 id=\"pais\" class=\"form-control\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n        </select2>\r\n      </div>\r\n      <div class=\"form-group col-md-3\">\r\n        <label for=\"countries\">C.P.</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"countries\" (valueChanged)=\"this.saveCity($event)\">\r\n      </div>\r\n    </form>\r\n\r\n    <div>\r\n      <p>Ciudad</p>\r\n      <span id=\"ciudad\"></span>\r\n    </div>\r\n\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Siguiente</button>\r\n      <button mat-raise-button (click)=\"onCloseAtras()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Atrás</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogNewgarden2Component; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dialog_newgarden3_dialog_newgarden3_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dialog_newgarden1_dialog_newgarden1_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+
+
+
+var DialogNewgarden2Component = (function () {
+    function DialogNewgarden2Component(thisDialogRef, data, _gardenService, _route, dialog) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+        this._gardenService = _gardenService;
+        this._route = _route;
+        this.dialog = dialog;
+        this.garden = new __WEBPACK_IMPORTED_MODULE_5__classes_garden_class__["a" /* Garden */]("");
+        this.countries = [];
+        this.cities = [];
+        this.zip = "";
+    }
+    DialogNewgarden2Component.prototype.getid = function () {
+        var _this = this;
+        this._gardenService.details().subscribe(function (data) {
+            if (data != null) {
+                _this.garden = data;
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    DialogNewgarden2Component.prototype.onCloseConfirm = function () {
+        this.openDialog();
+        this.saveGarden();
+        this.thisDialogRef.close('Guardado');
+    };
+    DialogNewgarden2Component.prototype.onCloseAtras = function () {
+        this.openDialogAtras();
+        this.thisDialogRef.close('Guardado');
+    };
+    DialogNewgarden2Component.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__dialog_newgarden3_dialog_newgarden3_component__["a" /* DialogNewgarden3Component */], {
+            width: '800px',
+            data: {}
+        });
+    };
+    DialogNewgarden2Component.prototype.openDialogAtras = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_8__dialog_newgarden1_dialog_newgarden1_component__["a" /* DialogNewgarden1Component */], {
+            width: '800px',
+            data: {}
+        });
+    };
+    DialogNewgarden2Component.prototype.listarPaises = function () {
+        var _this = this;
+        this._gardenService.listCoutries().subscribe(function (data) {
+            var aux = [];
+            aux.push({ id: 0, text: "Ninguno" });
+            for (var i = 0; i < data.geonames.length; i++) {
+                aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
+            }
+            _this.countryData = __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+                obs.next(aux);
+                obs.complete();
+            });
+            _this.startCountry = __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+                obs.next(_this.garden.countryCode);
+                obs.complete();
+            }).delay(1000);
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    DialogNewgarden2Component.prototype.mostrarCiudad = function () {
+        var aux = [];
+        aux.push({ id: this.garden.city, text: this.garden.city });
+        this.cityData = __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+            obs.next(aux);
+            obs.complete();
+        });
+        if (this.garden.city != undefined)
+            document.querySelector('#ciudad').innerHTML = this.garden.city;
+    };
+    DialogNewgarden2Component.prototype.saveCountry = function (e) {
+        if (e.value != 0 && e.value !== undefined) {
+            this.garden.countryCode = e.value;
+        }
+    };
+    DialogNewgarden2Component.prototype.saveCity = function (e) {
+        if (e.value != 0 && e.value !== undefined) {
+            this.garden.city = e.value;
+            this.mostrarCiudad();
+        }
+    };
+    DialogNewgarden2Component.prototype.searchZip = function (event) {
+        var _this = this;
+        //aqui vamos cargando las posibles ciudades a elegir
+        var input = document.querySelector("#zipCode");
+        if (this.garden.countryCode != undefined) {
+            if (input.value.length == 5) {
+                this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
+                    .subscribe(function (data) {
+                    var sp = document.querySelector('#ciudad');
+                    if (data.length > 0) {
+                        _this.garden.latitude = data[0].lat.toFixed(2);
+                        _this.garden.longitude = data[0].lng.toFixed(2);
+                        if (data[0].adminName3 !== undefined) {
+                            _this.garden.city = data[0].adminName3;
+                            sp.innerHTML = data[0].adminName3;
+                        }
+                        else if (data[0].adminName2 !== undefined) {
+                            _this.garden.city = data[0].adminName2;
+                            sp.innerHTML = data[0].adminName2;
+                        }
+                        else if (data[0].adminName1 !== undefined) {
+                            _this.garden.city = data[0].adminName1;
+                            sp.innerHTML = data[0].adminName1;
+                        }
+                        else {
+                            _this.garden.city = '';
+                            sp.innerHTML = 'Código postal no encontrado';
+                        }
+                    }
+                    else {
+                        _this.garden.city = '';
+                        sp.innerHTML = 'Código postal no encontrado';
+                    }
+                    input.value = '';
+                }, function (error) {
+                    console.error(error);
+                });
+            }
+        }
+    };
+    DialogNewgarden2Component.prototype.saveGarden = function () {
+        this._gardenService.modifyGarden2(this.garden)
+            .subscribe(function (data) {
+        }, function (error) {
+            var v = JSON.parse(error._body);
+        });
+    };
+    DialogNewgarden2Component.prototype.ngOnInit = function () {
+        this.listarPaises();
+        this.mostrarCiudad();
+        this.getid();
+    };
+    DialogNewgarden2Component = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-newgarden2',
+            template: __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_4__services_garden_service__["a" /* GardenService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_material__["a" /* MatDialog */]])
+    ], DialogNewgarden2Component);
+    return DialogNewgarden2Component;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "div{\r\n    width: 100%;\r\n    margin: 0 auto;\r\n    background: rgba(255,255,255,0.1);\r\n    padding: 35px;\r\n    border: 2px solid #fff;\r\n    border-radius: 20px/50px;\r\n    background-clip: padding-box;\r\n    text-align: center;\r\n}\r\nsection{\r\n  margin-top: -26px;\r\n}\r\n\r\nmat-dialog-actions{\r\npadding: 2.5px;\r\n}\r\nbutton{\r\nmargin: auto;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n  <section>\r\n    <h4>Privacidad y permisos</h4>\r\n    <p>Danos permiso para mostrar tu jardín virtual a otros usuarios para ayudarlos a crear el suyo</p>\r\n    <form (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" class=\"needs-validation\" novalidate>\r\n      <div class=\"form-row\">\r\n        <legend class=\"col-form-label\">Jardín</legend>\r\n\t\t\t\t<div class=\"form-group col-md-4\">\r\n          <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios1\" value=\"option1\" checked>\r\n          <label class=\"form-check-label\" for=\"gridRadios1\"> Público </label>\r\n\t\t\t\t</div>\r\n\t\t\t\t<div class=\"form-group col-md-4\">\r\n          <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios2\" value=\"option2\">\r\n          <label class=\"form-check-label\" for=\"gridRadios2\"> Privado </label>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n        <div class=\"form-check\">\r\n          <input class=\"form-check-input\" type=\"checkbox\" id=\"gridCheck\">\r\n          <label class=\"form-check-label\" for=\"gridCheck\"> Aceptar condiciones de uso </label>\r\n        </div>\r\n    </form>\r\n    <mat-dialog-actions>\r\n      <button mat-raise-button (click)=\"onCloseConfirm()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Crear</button>\r\n      <button mat-raise-button (click)=\"onCloseAtras()\" type=\"button\" class=\"btn btn-success\" href=\"#\">Atrás</button>\r\n    </mat-dialog-actions>\r\n  </section>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DialogNewgarden3Component; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__ = __webpack_require__("../../../material/esm5/dialog.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dialog_newgarden2_dialog_newgarden2_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+
+
+var DialogNewgarden3Component = (function () {
+    function DialogNewgarden3Component(thisDialogRef, data, _gardenService, _route, dialog) {
+        this.thisDialogRef = thisDialogRef;
+        this.data = data;
+        this._gardenService = _gardenService;
+        this._route = _route;
+        this.dialog = dialog;
+        this.garden = new __WEBPACK_IMPORTED_MODULE_4__classes_garden_class__["a" /* Garden */]("");
+    }
+    DialogNewgarden3Component.prototype.getid = function () {
+        var _this = this;
+        this._gardenService.details().subscribe(function (data) {
+            if (data != null) {
+                _this.garden = data;
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    DialogNewgarden3Component.prototype.onCloseConfirm = function () {
+        this.saveGarden();
+        window.location.reload();
+        this.thisDialogRef.close('Guardado');
+    };
+    DialogNewgarden3Component.prototype.onCloseAtras = function () {
+        this.openDialogAtras();
+        this.thisDialogRef.close('Guardado');
+    };
+    DialogNewgarden3Component.prototype.openDialogAtras = function () {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__dialog_newgarden2_dialog_newgarden2_component__["a" /* DialogNewgarden2Component */], {
+            width: '800px',
+            data: {}
+        });
+    };
+    DialogNewgarden3Component.prototype.saveGarden = function () {
+        this._gardenService.modifyGarden2(this.garden)
+            .subscribe(function (data) {
+        }, function (error) {
+            var v = JSON.parse(error._body);
+        });
+    };
+    DialogNewgarden3Component.prototype.ngOnInit = function () {
+        this.getid();
+    };
+    DialogNewgarden3Component = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-dialog-newgarden3',
+            template: __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component.css")]
+        }),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["a" /* MAT_DIALOG_DATA */])),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_material_dialog__["d" /* MatDialogRef */], Object, __WEBPACK_IMPORTED_MODULE_3__services_garden_service__["a" /* GardenService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatDialog */]])
+    ], DialogNewgarden3Component);
+    return DialogNewgarden3Component;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/feeds/editfeed/editfeed.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1647,7 +2414,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditfeedComponent = /** @class */ (function () {
+var EditfeedComponent = (function () {
     function EditfeedComponent(_feedService, _appComponent, _router, _route, datePipe) {
         this._feedService = _feedService;
         this._appComponent = _appComponent;
@@ -1760,7 +2527,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var FeedComponent = /** @class */ (function () {
+var FeedComponent = (function () {
     function FeedComponent() {
     }
     FeedComponent.prototype.ngOnInit = function () {
@@ -1801,7 +2568,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/feeds/listfeed/listfeed.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Consejos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"feed.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newfeed']\" class=\"btn btn-outline-primary\">Nuevo Consejo</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Texto</th>\r\n          <th scope=\"col\">Fecha Inicial</th>\r\n          <th scope=\"col\">Fecha Final</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let feed of feeds\">\r\n          <th scope=\"row\">{{feed.name}}</th>\r\n          <td>{{feed.text}}</td>\r\n          <td>{{feed.dateInit}}</td>\r\n          <td>{{feed.dateFinal}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editfeed/',feed.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(feed.id)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(feed.id,3)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"5\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Consejos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"feed.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-4\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        <a data-toggle=\"collapse\" data-target=\"#demo\" class=\"small\">Busqueda avanzada</a>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newfeed']\" class=\"btn btn-outline-primary\">Nuevo Consejo</button>\r\n        \r\n      </article>\r\n    </form>\r\n\r\n\r\n        <div id=\"demo\" class=\"collapse\">\r\n          <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n            <label for=\"content\">Texto</label>\r\n            <input type=\"text\" [(ngModel)]=\"feed.text\" class=\"form-control\" id=\"content\" name=\"content\" placeholder=\"Contenido\">\r\n\r\n            <label for=\"inicio\">Fecha inicio</label>\r\n            <input type=\"date\" [(ngModel)]=\"feed.dateInit\" class=\"form-control\" id=\"inicio\" name=\"inicio\" >\r\n\r\n            <label for=\"fin\">Fecha fin</label>\r\n            <input type=\"date\" [(ngModel)]=\"feed.dateFinal\" class=\"form-control\" id=\"fin\" name=\"fin\" >\r\n\r\n            \r\n          </form>\r\n          \r\n        </div>\r\n      \r\n\r\n    <table class=\"table table-hover\" *ngIf=\"numeroItems!=0\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Texto</th>\r\n          <th scope=\"col\">Fecha Inicial</th>\r\n          <th scope=\"col\">Fecha Final</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let feed of feeds\">\r\n          <th scope=\"row\">{{feed.name}}</th>\r\n          <td>{{feed.text}}</td>\r\n          <td>{{feed.dateInit}}</td>\r\n          <td>{{feed.dateFinal}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editfeed/',feed.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(feed.id)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(feed.id,3)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <p *ngIf=\"numeroItems==0\">Esta busqueda no tiene resultados</p>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"5\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1831,7 +2598,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListfeedComponent = /** @class */ (function () {
+var ListfeedComponent = (function () {
     function ListfeedComponent(_feedService, activatedRoute, dialog) {
         this._feedService = _feedService;
         this.activatedRoute = activatedRoute;
@@ -1857,7 +2624,6 @@ var ListfeedComponent = /** @class */ (function () {
         }
         else {
             //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
-            console.log("assss");
         }
     };
     ListfeedComponent.prototype.ActualizarPagina = function () {
@@ -1902,6 +2668,11 @@ var ListfeedComponent = /** @class */ (function () {
                 for (var key$ in data) {
                     _this.feeds.push(data[key$]);
                 }
+            }
+            else {
+                _this.feeds = [];
+                _this.numeroItems = 0;
+                _this.paginaActual = 1;
             }
         }, function (error) {
             console.error(error);
@@ -1980,7 +2751,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewfeedComponent = /** @class */ (function () {
+var NewfeedComponent = (function () {
     function NewfeedComponent(_feedService, _appComponent) {
         this._feedService = _feedService;
         this._appComponent = _appComponent;
@@ -2023,7 +2794,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "body{\r\n\tpadding: 0 !important;\r\n}\r\n.borrar{\r\n\tmargin-top: 1em;\r\n}\r\n.canvasEvolver{\r\n\tposition: absolute;\r\n\ttop: 61px;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n\toverflow: hidden;\r\n\tz-index:0;\r\n}\r\ncanvas{\r\nmargin: 0;\r\npadding: 0;\r\nwidth: 100% !important;\r\nheight: 100% !important;\r\n\r\n}\r\nbutton{\r\n\tmin-height: 40px;\r\n}\r\n.selectPlantas{\r\n\tposition: absolute;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-ms-flex-direction: column;\r\n\tflex-direction: column;\r\n\tmax-height:100%;\r\n\toverflow-y: auto;\r\n\ttop: 61px;\r\n\tleft: 0;\r\n\tbottom: 0;\r\n\twidth: 150px;\r\n\tpadding: 10px;\r\n\tbackground-color: #fff;\r\n\tz-index:1;\r\n}\r\n\r\n .selectPlantas>article{\r\n\t min-width: 110px;\r\n\t min-height: 200px;\r\n\t margin-top: 5px;\r\n }\r\n\r\n .selectPlantas>article>.imgPlant{\r\n\t width: 100%;\r\n\t height: 180px;\r\n\t background-position: center;\r\n\t background-repeat: no-repeat;\r\n\t background-size: contain;\r\n\t border: 2px solid #000;\r\n\t cursor: pointer;\r\n }\r\n\r\n .formulario{\r\n \tposition: fixed;\r\n \tpadding: 10px;\r\n\ttop: 81px;\r\n\tright: 20px;\r\n \twidth:400px;\r\n\theight: 80%;\r\n\tbackground-color: #fff;\r\n\r\n }\r\n\r\n .boton-container{\r\n \tposition: absolute;\r\n \twidth: 150px;\r\n \ttext-align:center;\r\n \tpadding: 5px;\r\n\tbackground-color: #fff;\r\n\tz-index: 2;\r\n }\r\n\r\n\r\n\r\n@media (max-width: 768px) {\r\n\r\n\t.selectPlantas{\r\n\t\tposition: absolute;\r\n\t\tdisplay: -ms-flexbox;\r\n\t\tdisplay: flex;\r\n\t\t-ms-flex-direction: row;\r\n\t\tflex-direction: row;\r\n\t\t-ms-flex-pack: start;\r\n\t\t    justify-content: flex-start;\r\n\t\theight:120px;\r\n\t\twidth: 100%;\r\n\t\toverflow-x: auto;\r\n\t\toverflow-y: hidden;\r\n\t\ttop: auto;\r\n\t\tleft: 0;\r\n\t\tright: 0;\r\n\t\tbottom: 0;\r\n\t\tpadding: 10px;\r\n\t\tbackground-color: #fff;\r\n\t\tz-index:1;\r\n\t}\r\n\r\n\t.selectPlantas>article{\r\n\t min-width: 60px;\r\n\t min-height: 100px;\r\n \t max-width: 60px;\r\n \t max-height: 100px;\r\n \t margin: 0 10px 0 10px;\r\n  }\r\n\r\n  .selectPlantas>article>.imgPlant{\r\n \t width: 100%;\r\n \t height: 80px;\r\n \t background-position: center;\r\n \t background-repeat: no-repeat;\r\n \t background-size: contain;\r\n \t border: 2px solid #000;\r\n \t cursor: pointer;\r\n  }\r\n\r\n  .formulario{\r\n \tmargin-top : -20px;\r\n \tmargin-left: auto;\r\n \tmargin-right:auto;\r\n \twidth:90%;\r\n\tbackground-color: #lightblue;\r\n\r\n }\r\n\r\n\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2068,7 +2839,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditGardenComponent = /** @class */ (function () {
+var EditGardenComponent = (function () {
     function EditGardenComponent(_gardenService, _route, _appComponent) {
         this._gardenService = _gardenService;
         this._route = _route;
@@ -2213,9 +2984,9 @@ var EditGardenComponent = /** @class */ (function () {
     //Envia los nuevos datos del jardin a  a GardenService para guardarlos
     EditGardenComponent.prototype.edit = function () {
         var _this = this;
-        this._gardenService.modifyGarden(this.garden)
+        this._gardenService.modifyGarden(this.garden, this.garden.width, this.garden.length)
             .subscribe(function (data) {
-            _this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+            _this._appComponent.mensajeEmergente("Datos modificados", "success", "");
         }, function (error) {
             var v = JSON.parse(error._body);
             _this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
@@ -2276,7 +3047,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 100%;\r\n  max-width: 1080px;\r\n  margin: 0 auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  padding: 0;\r\n}\r\n.herramienta>canvas{\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.prevision{\r\n  margin-top: 1em;\r\n}\r\n\r\n.tiempo{\r\n  margin-top : 1em;\r\n  margin-left, margin-right: 30px%;\r\n  /*padding: 1em;*/\r\n}\r\n\r\n.tarjetaHoy{\r\n  margin-top : 2em;\r\n  margin-left, margin-right: 30px%;\r\n  padding: 1em;\r\n  width: 250px;\r\n  background-color:#63dd63;\r\n}\r\n\r\n.hoy{\r\n  font-size : 2em;\r\n\r\n}\r\n\r\n\r\n.casilla{\r\n  padding-top:.5em;\r\n  padding-bottom:.5em;\r\n  max-width: 100px;\r\n  margin-left, margin-right:.3em;\r\n  text-align: center;\r\n}\r\n/*.casilla:nth-child(even){\r\n  background-color:#63dd63;\r\n}\r\n.casilla:nth-child(odd){\r\n  background:#fcfcfc;\r\n}*/\r\n\r\n.maxima{\r\n  font-size : 1em;\r\n}\r\n.minima{\r\n  font-size : 0.8em;\r\n  color: gray;\r\n}\r\n\r\n\r\n\r\n\r\n\r\nh1, h2{\r\n  text-align: center;\r\n}\r\n", ""]);
+exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 100%;\r\n  max-width: 1080px;\r\n  margin: 0 auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  padding: 0;\r\n}\r\n.herramienta>canvas{\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n#prevision{\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 0;\r\n  min-width: 250px;\r\n  /*top: 50%;\r\n  transform: translateY(-50%);*/\r\n  color: #fff;\r\n  transition: .3s ease-in all;\r\n}\r\n\r\n\r\n#prevision>span{\r\n  position: absolute;\r\n  top: -30px;\r\n  left: 0;\r\n  cursor: pointer;\r\n}\r\n\r\n.previsionClosed{\r\n  left: -250px !important;\r\n}\r\n.previsionClosed>span:last-of-type{\r\n  position: absolute;\r\n  left: 250px !important;\r\n  display: inline-block !important;\r\n}\r\n\r\n.interactiveButton{\r\n  cursor: pointer;\r\n}\r\n\r\n.tiempo{\r\n  color:#000;\r\n  margin-top : 0;\r\n  /*padding: 1em;*/\r\n}\r\n.headTiempo{\r\n  padding: 5px;\r\n  border-bottom-right-radius: 12px;\r\n  border-top-right-radius: 5px;\r\n  text-align: center;\r\n  background-color: #d3ed44;\r\n  color: #3e3e3e;\r\n}\r\n.today{\r\n  min-height: 80px;\r\n  position: relative;\r\n  padding-left: 10px;\r\n  border-bottom-right-radius: 12px;\r\n  border-top-right-radius: 5px;\r\n}\r\n.today>img{\r\n  position:absolute;\r\n  top: 10px;\r\n  right: 10px;\r\n  width: 40px;\r\n\r\n}\r\n.today>p{\r\n  margin: 0;\r\n}\r\n.today>span{\r\n  color: #3e3e3e;\r\n\r\n}\r\n\r\n.tarjetaHoy{\r\n  margin-top : 2em;\r\n  padding: 1em;\r\n  width: 250px;\r\n  background-color:#63dd63;\r\n}\r\n\r\n.hoy{\r\n  font-size : 2em;\r\n\r\n}\r\n\r\n\r\n.casilla{\r\n  padding-top:.5em;\r\n  padding-bottom:.5em;\r\n  max-width: 100px;\r\n  margin-left, margin-right:.3em;\r\n  text-align: center;\r\n}\r\n/*.casilla:nth-child(even){\r\n  background-color:#63dd63;\r\n}\r\n.casilla:nth-child(odd){\r\n  background:#fcfcfc;\r\n}*/\r\n\r\n.maxima{\r\n  color: #3e3e3e;\r\n  font-size : 2em;\r\n  font-weight: bold;\r\n}\r\n.minima{\r\n  font-size : 0.8em;\r\n  color: #3e3e3e;\r\n}\r\n\r\n\r\n\r\n.formulario{\r\n position: fixed;\r\n z-index: 20;\r\n padding: 0 30px 10px 30px;\r\n top: 100px;\r\n right: 0;\r\n width:240px;\r\n\r\n height: auto;\r\n background-color: #fff;\r\n border-top-left-radius: 15px;\r\n border-bottom-left-radius: 15px;\r\ntransition: .3s ease-in all;\r\n}\r\n\r\n.infoOcult{\r\n  right: -240px;\r\n}\r\n\r\n.formulario>i{\r\n  position: absolute;\r\n  top: -30px;\r\n  right: 0;\r\n  cursor: pointer;\r\n}\r\nlabel{\r\n  margin-bottom: 0;\r\n  margin-top: 10px;\r\n}\r\n\r\nh1, h2{\r\n  text-align: center;\r\n}\r\n\r\n\r\n.toggleDeko{\r\n  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAADACAYAAABlPmF2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAYxSURBVHja7JttiBVVGMd/o+vdXV/SpdxCxdTKtjVRWRA1hYj1W5CSWkQEQVr4qUCwSM2IQvtQERZopllYqRhRYIRivqSYb5VbaatrqJVWmmGab7v774PPhWGae2fuzFx17Rw4zJ05L8/vvJ/nued4kriSrhNX2DkAB+AA0gLIvGsCB9BxASpK6O1Jwr1rpga8iJJ7rhM6gGt+HiDpOHdN4AAcgANwAA7AATgAB+AAHMD/xj6QWG/o8PYB1wkdgANwAA7AATgAB+AAHMBVD5ADngDuK7zhl7L23STVSWqUtEhSu6SPCsUvti2vs+e+mKXtB0wG7gKGAbf6lJr6JDXwiqTvJE2QlIso9UhJu/Vf1yLphPnQtMUy3WSZnJK0Q9ICg+kWiNdb0raA4FZJ6yStkXRB0rEkAD9J+kvSaV/G5yRttRLn493vCz8rabukGZLesHdZ7YTKKTYKqoF24CvguH2rBEYDi4EB9m2IPXcCTwLzgDHAdKDKwrYkGYbHgBqgG7AI+MIXNtSGlgccBd634dYHWAZM9MU9AyxP0gmX+ap2s6THJE2X9IN9Wy6pyvrEaEkbFO7mSOqUpA9MCmT0s6T5ksZI+ljSJ5IqJQ2T9H2I4D8lPWOQBeV4RY7z9QJWAuMD3zdaOx8GTgGfA+uBN4F7gd7AfmBzrDkkYnyPkNQUUromSYMlvSbpgKTuSWdOL8aBxgHWo0fZ3N5ko6MeGAGsAh5NvFqUQFspqafv/R2rjSVp1o5S/rw+bz7vngdqgeY0y2WcJvCA24HrgTbf9zaguzXH+UB8AYdsjkhtpBoPvAf0DDHdtdpk1jkk3WZggk1EqQBqzZfq+gE9sgDYCMy1GrgQU3g1sMem89R9AGCgNUUu0A8KFeo48EGWw7DRptZ2SW0RPr92eHHyjrsp3QKstR7eKcIDrIhrX/ZKONrdFWi0tX44MBi4ybd0NwPfAFuBz4CLWQM4xcQBOAAH4AAcwFULUGmb1qDrblpS6k1pIfc4MMv2fr8D42x57gv0N8WlFWgBXspqOa6x7XkOWAiMte+nge2mnt9gemVFYKueuAbqbT9Ya6Xta5vO4YHqvieQ7gDwLbAjTRPMAiYBt5iQMPeH6Yu7gV22K4prWYtsAn/gWWCvCdhpwvYCf6fpwVE18DTwtZXwaDmGYbEaqDRfDXQxHdDvWn3fKkKGtGfh/wDnAvpjLIBFwFTgF8vkCHDSYG4GrrPf2A5YpiN2sfeLNlr6m1VtaqlN8BuwwVSyOuC2FDXdOYlmdIekOyWtNm1nvaTOklb4TDUPShrne99gFrEP7X2fpLGSBiYxUOy152HfKGizUTDFpzEd8aVpsXY/ae+ngC/TrgV59fpGe+4pEvd4IO6RLBajE/bMm13bY6SpCtReKoCLAZvwmYAtsWvIxFUbSJsK4GhEeiVMGxugOTCJnIvRX4ZYml1Z7AeagEeAByx+sT6QD1tjNoJNWVlIMIuHJ6mPpE8l7Zc0VFK1/f7U5gTiWkfimmrdptQBOAAH4ADC1LOZtvuRz68FppWcW4l/Mk1WtFsrqSZunqUIb1B8t7IcADtVmmvM8v+CBvN+t860Hw+YH5KmMctOOKiA3uj/fTCks6ZWTvNuFdHnyw8WAL1s80BDCNBlARhkc0BNSK1l1gRhQlsi7AoHywlQyK0ztX5V3ARZAow3gI61GLlteRqAhb6leF7iXBKe/ZgZsvhMS5JX0hpoiPmtbE2wK+a3sjUBkub5qn9mOQ8yuWHoAByAA+hwANXAAuBH2571KNdUHOb7BP7QkL33ykI3jONHFtAT3y03QI2khyRV2HnkMyFnjMsGUGWnrGVXApA0MQAxo1wAVZKWBkr7soVNkfSrpLlZ2QfCjvkuLdDmr1p4fZTlPI3wJREGiruztpDkfS6G8NkhNzEyAchJejtC+LOl5Fmq8MVZCi8FICfprQjhs5L0pziResUQPjvpaIoT6YUI4XPSzCXFArvYc5RdWMpceBTASLsrVmF/5TcHhD+XxTpSLPBhE5S/qFYn6VCWwqMAXvSVdrXdIxkr6aksl/BigcH7Y6+X4WpgUSPVaS5d39nGpRNR+7l0FqQty/2bU04dgANwAFcc4N8BAK1ynIzIjREbAAAAAElFTkSuQmCC');\r\n  /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/\r\n}\r\n\r\n\r\n/*buttons*/\r\n.litButtons{\r\n  position: fixed;\r\n  width: 40px;\r\n  height: 315px;\r\n  bottom: 50px;\r\n  right: 50px;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction: column;\r\n      flex-direction: column;\r\n}\r\n.litButton{\r\n  border-radius: 20px;\r\n  width: 40px;\r\n  height: 40px;\r\n  margin:0;\r\n  cursor:pointer;\r\n}\r\n.litButton:not(:last-of-type){\r\n  margin-bottom: 15px;\r\n}\r\n\r\n.red{\r\n  background-color: rgb(226, 0, 26);\r\n}\r\n.orange{\r\n  background-color: #ef7f00;\r\n}\r\n.yellow{\r\n  background-color: #0036ff;\r\n}\r\n/*end buttons*/\r\n\r\n/*Additional buttons*/\r\n.rotButton{\r\n  position: fixed;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  bottom: 50px;\r\n  border: none;\r\n  width: 100px;\r\n  background: none;\r\n  z-index: 15;\r\n}\r\n.rotButton>img{\r\n  width: 100%;\r\n}\r\n\r\n.superior{\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 0;\r\n  z-index: 99999;\r\n}\r\n\r\nul, li{\r\n  margin-top: 0.4em;\r\n}\r\n\r\n\r\nbody{\r\n  padding: 0 !important;\r\n}\r\n.borrar{\r\n  margin-top: 1em;\r\n}\r\n.canvasEvolver{\r\n  position: absolute;\r\n  top: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n  overflow: hidden;\r\n  z-index:0;\r\n}\r\ncanvas{\r\nmargin: 0;\r\npadding: 0;\r\nwidth: 100% !important;\r\nheight: 100% !important;\r\n\r\n}\r\nbutton{\r\n  min-height: 40px;\r\n}\r\n\r\n\r\n.selectPlantas{\r\n  position: absolute;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction: column;\r\n  flex-direction: column;\r\n  max-height:100%;\r\n  overflow-y: auto;\r\n  top: 61px;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 150px;\r\n  padding: 10px;\r\n  background-color: #fff;\r\n  z-index:1;\r\n}\r\n\r\n .selectPlantas>article{\r\n   min-width: 110px;\r\n   min-height: 200px;\r\n   margin-top: 5px;\r\n }\r\n\r\n .selectPlantas>article>.imgPlant{\r\n   width: 100%;\r\n   height: 180px;\r\n   background-position: center;\r\n   background-repeat: no-repeat;\r\n   background-size: contain;\r\n   border: 2px solid #000;\r\n   cursor: pointer;\r\n }\r\n\r\n\r\n\r\n .boton-container{\r\n  position: absolute;\r\n  width: 150px;\r\n  text-align:center;\r\n  padding: 5px;\r\n  background-color: #fff;\r\n  z-index: 2;\r\n }\r\n\r\n .botonera{\r\n   position: absolute;\r\n   height: 300px;\r\n   width: 100px;\r\n   z-index: 10;\r\n   bottom: 100px;\r\n   right: 20px;\r\n }\r\n", ""]);
 
 // exports
 
@@ -2289,7 +3060,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/gardens/garden/garden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"herramienta\">\r\n  <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"1800\" height=\"1200\"></canvas>\r\n</section>\r\n<div class=\"main-container\">\r\n\r\n  <section class=\"container title\">\r\n    <h1>{{garden.title}}</h1>\r\n    <button [routerLink]=\"['/editgarden']\" class=\"btn btn-outline-primary\">Editar</button>\r\n  </section>\r\n\r\n  <section class=\"container\" *ngIf=\"visible == true\">\r\n    <div id=\"prevision\">\r\n      <h4>Previsión meteorológica</h4>\r\n      <div class=\"row tiempo\">\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\r\n          Hoy\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoHoy}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{temperatura | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorMan\">\r\n          Mañana\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoMan}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxMan | number:'.0-0'}}º</span> <span class=\"minima\">{{minMan | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia3\">\r\n          {{nombreDia3}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia3}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia3 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia3 | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia4\">\r\n          {{nombreDia4}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia4}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia4 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia4 | number:'.0-0'}}º</span>\r\n        </div>\r\n        <div class=\"col-sm casilla rounded\" [style.background-color]=\"colorDia5\">\r\n          {{nombreDia5}}\r\n          <br>\r\n          <img src=\"/assets/images/imgWeather/{{fotoDia5}}.png\">\r\n          <br>\r\n          <span class=\"maxima\">{{maxDia5 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia5 | number:'.0-0'}}º</span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
+module.exports = "<div class=\"canvasEvolver\" onmousemove=\"mouse_move(event)\" onmouseup=\"mouse_up(event);\">\r\n  <nav class=\"navbar navbar-default nav superior\" role=\"navigation\" *ngIf=\"visible == false\">\r\n    <!-- El logotipo y el icono que despliega el menú se agrupan\r\n         para mostrarlos mejor en los dispositivos móviles -->\r\n    <div class=\"navbar-header\">\r\n      <button type=\"button\" class=\"btn btn-success\" data-toggle=\"collapse\" data-target=\".navbar-ex1-collapse\">\r\n        <span class=\"sr-only\">Desplegar navegación</span>\r\n        <i class=\"material-icons\">spa</i>\r\n      </button>\r\n    </div>\r\n    <!-- Agrupar los enlaces de navegación, los formularios y cualquier\r\n         otro elemento que se pueda ocultar al minimizar la barra -->\r\n    <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li *ngFor=\"let plantmotor of plantsmotor\" value=\"{{plantmotor.id}}\" draggable=\"true\" ondragstart=\"drag(event);\">\r\n          <img src=\"{{plantmotor.photo}}\" id=\"{{plantmotor.id+'-'+plantmotor._3dmodel}}\" alt=\"no sale la imagen\" width=\"50px\" height=\"50px\">\r\n        </li>\r\n        <li>\r\n          <app-pagination [count]=\"this.numeroItems\" [type]=\"6\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </nav>\r\n  <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousedown=\"mouse_down(event);\" onmousewheel=\"scrolling(event);\" ondrop=\"drop(event);\" ondragover=\"allowDrop(event);\" width=\"1800\" height=\"1170\"></canvas>\r\n  <section id=\"formulario\" class=\"formulario\" [hidden]=\"menuVisible\">\r\n    <i onclick=\"this.parentNode.classList.toggle('infoOcult')\">Cerrar</i>\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"edit()\" #forma=\"ngForm\" novalidate=\"\">\r\n          <div class=\"form-group\">\r\n            <div>\r\n              <label for=\"title\"><b>Título:</b> </label>\r\n              <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\r\n            </div>\r\n            <div>\r\n              <label for=\"length\"><b>Largo:</b> {{length}} metros</label>\r\n              <input class=\"form-control\" type=\"range\" [(ngModel)]=\"length\" min=\"2\" max=\"10\" step=\"1\" name=\"length\" id=\"length_garden\" required>\r\n            </div>\r\n            <div>\r\n              <label for=\"width\"><b>Ancho:</b> {{width}} metros</label>\r\n              <input class=\"form-control\" type=\"range\" [(ngModel)]=\"width\" min=\"2\" max=\"10\" step=\"1\" name=\"width\" id=\"width_garden\" required>\r\n            </div>\r\n            <div>\r\n              <label for=\"countries\"><b>País:</b></label>\r\n              <br>\r\n              <select2 id=\"pais\" [width]=\"180\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n              </select2>\r\n            </div>\r\n            <div>\r\n              <label for=\"countries\"><b>Código postal:</b></label>\r\n              <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n            </div>\r\n            <div>\r\n              <label for=\"countries\"><b>Ciudad:</b> {{city}}</label>\r\n            </div>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Actualizar</button>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </section>\r\n  <section class=\"litButtons\">\r\n    <div class=\"toggleDeko litButton yellow\" id=\"plt\" style=\"background-position: 4px 132px;\" onclick=\"motor.toggleVista(event)\" (click)=\"this.toggleState()\"></div>\r\n    <div class=\"toggleDeko litButton yellow\" id=\"edit\" style=\"background-position: 4px 38px;\" onclick=\"document.getElementById('formulario').classList.toggle('infoOcult')\">\r\n    </div>\r\n    <div class=\"toggleDeko litButton orange\" id=\"plus\" style=\"background-position: 4px 4px;\" onclick=\"plusZoom()\"></div>\r\n    <div class=\"toggleDeko litButton orange\" id=\"sub\" style=\"background-position: 4px 164px;\" onclick=\"subZoom()\"></div>\r\n    <div class=\"toggleDeko litButton orange\" id=\"help\" style=\"background-position: 4px 68px;\" (click)=\"this.openDialog(1, 2)\"></div>\r\n    <div class=\"toggleDeko litButton red\" id=\"del\" style=\"background-position: 4px 100px;\" onmouseup=\"deletePlant()\" [hidden]=\"isDragging()\"></div>\r\n  </section>\r\n\r\n    <div id=\"prevision\" *ngIf=\"visible == true && haveWeather == true\">\r\n        <span class=\"interactiveButton\" onclick=\"document.getElementById('prevision').classList.toggle('previsionClosed')\">Flecha para cerrar</span>\r\n        <span class=\"interactiveButton\" style=\"display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;\" onclick=\"document.getElementById('prevision').classList.toggle('previsionClosed')\">Flecha para abrir</span>\r\n      <div class=\"tiempo\">\r\n        <div class=\"headTiempo\">\r\n          <h4>{{tiempoCity}}</h4>\r\n        </div>\r\n        <div class=\"today\" [ngStyle]=\"getMyStyles(temperatura, this.statusHoy)\">\r\n          <p><span class=\"maxima\">{{temperatura | number:'.0-0'}}º</span></p>\r\n          <span>Ahora</span>\r\n\r\n          <img src=\"{{photoURL}}/images/imgWeather/{{fotoHoy}}.png\">\r\n\r\n        </div>\r\n        <div class=\"today\" [ngStyle]=\"getMyStyles(maxMan, this.statusMan)\">\r\n          <p><span class=\"maxima\">{{maxMan | number:'.0-0'}}º</span> <span class=\"minima\">{{minMan | number:'.0-0'}}º</span></p>\r\n          <span>Mañana</span>\r\n\r\n          <img src=\"{{photoURL}}/images/imgWeather/{{fotoMan}}.png\">\r\n\r\n        </div>\r\n        <div class=\"today\" [ngStyle]=\"getMyStyles(maxDia3, this.statusDia3)\">\r\n          <p><span class=\"maxima\">{{maxDia3 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia3 | number:'.0-0'}}º</span></p>\r\n          <span>{{nombreDia3}}</span>\r\n\r\n          <img src=\"{{photoURL}}/images/imgWeather/{{fotoDia3}}.png\">\r\n\r\n        </div>\r\n        <div class=\"today\" [ngStyle]=\"getMyStyles(maxDia4, this.statusDia4)\">\r\n          <p><span class=\"maxima\">{{maxDia4 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia4 | number:'.0-0'}}º</span></p>\r\n          <span>{{nombreDia4}}</span>\r\n\r\n          <img src=\"{{photoURL}}/images/imgWeather/{{fotoDia4}}.png\">\r\n\r\n        </div>\r\n        <div class=\"today\" [ngStyle]=\"getMyStyles(maxDia4, this.statusDia5)\">\r\n          <p><span class=\"maxima\">{{maxDia5 | number:'.0-0'}}º</span> <span class=\"minima\">{{minDia5 | number:'.0-0'}}º</span></p>\r\n          <span>{{nombreDia5}}</span>\r\n\r\n          <img src=\"{{photoURL}}/images/imgWeather/{{fotoDia5}}.png\">\r\n\r\n        </div>\r\n\r\n      </div>\r\n      \r\n    </div>\r\n</div>\r\n\r\n<!--<button class=\"rotButton\"><img src=\"{{photoURL}}/images/icon/rotation.png\" alt=\"Rotate\"></button>-->\r\n"
 
 /***/ }),
 
@@ -2302,7 +3073,13 @@ module.exports = "<section class=\"herramienta\">\r\n  <canvas id=\"myCanvas\" o
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dialog_gardenhelp_dialog_help_garden_component__ = __webpack_require__("../../../../../src/app/components/dialog-gardenhelp/dialog-help-garden.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dialog_newgarden_dialog_newgarden0_dialog_newgarden0_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_delay__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/delay.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2317,11 +3094,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenComponent = /** @class */ (function () {
-    function GardenComponent(_gardenService, _route, _appComponent) {
+
+
+
+
+
+
+
+var GardenComponent = (function () {
+    function GardenComponent(_gardenService, _plantService, _route, _appComponent, dialog, activatedRoute) {
         this._gardenService = _gardenService;
+        this._plantService = _plantService;
         this._route = _route;
         this._appComponent = _appComponent;
+        this.dialog = dialog;
+        this.activatedRoute = activatedRoute;
         this.garden = new __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__["a" /* Garden */]("");
         this.temperatura = 0;
         this.prevHoy = [];
@@ -2334,6 +3121,11 @@ var GardenComponent = /** @class */ (function () {
         this.fotoDia3 = "default";
         this.fotoDia4 = "default";
         this.fotoDia5 = "default";
+        this.statusHoy = "Clear";
+        this.statusMan = "Clear";
+        this.statusDia3 = "Clear";
+        this.statusDia4 = "Clear";
+        this.statusDia5 = "Clear";
         this.colorHoy = "#fcfcfc";
         this.colorMan = "#fcfcfc";
         this.colorDia3 = "#fcfcfc";
@@ -2352,20 +3144,104 @@ var GardenComponent = /** @class */ (function () {
         this.nombreDia5 = "";
         this.tercerDia = "";
         this.visible = false;
+        this.menuVisible = false;
+        this.haveWeather = false;
+        this.countries = [];
+        this.cities = [];
+        this.zip = "";
+        this.tiempoCity = "El tiempo";
+        this.photoURL = "";
+        this.paginaActual = 1;
+        this.elementosPorPagina = 8;
+        this.estado = false; // false es listado y true buscador
+        this.plantsmotor = [];
+        if (window.location.toString().indexOf("localhost") >= 0) {
+            this.photoURL = "/assets";
+        }
+        else if (window.location.toString().indexOf("gardiot") >= 0) {
+            this.photoURL = "/app/assets";
+        }
     }
-    GardenComponent.prototype.ngOnInit = function () {
-        this.mostrar();
+    GardenComponent.prototype.searchZip = function (event) {
+        var _this = this;
+        //aqui vamos cargando las posibles ciudades a elegir
+        var input = document.querySelector("#zipCode");
+        if (input.value.length == 5) {
+            this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
+                .subscribe(function (data) {
+                var sp = document.querySelector('#ciudad');
+                if (data.length > 0) {
+                    _this.garden.latitude = data[0].lat.toFixed(2);
+                    _this.garden.longitude = data[0].lng.toFixed(2);
+                    if (data[0].adminName3 !== undefined) {
+                        _this.garden.city = data[0].adminName3;
+                        sp.innerHTML = data[0].adminName3;
+                    }
+                    else if (data[0].adminName2 !== undefined) {
+                        _this.garden.city = data[0].adminName2;
+                        sp.innerHTML = data[0].adminName2;
+                    }
+                    else if (data[0].adminName1 !== undefined) {
+                        _this.garden.city = data[0].adminName1;
+                        sp.innerHTML = data[0].adminName1;
+                    }
+                    else {
+                        _this.garden.city = '';
+                        sp.innerHTML = 'Código postal no encontrado';
+                    }
+                }
+                else {
+                    _this.garden.city = '';
+                    sp.innerHTML = 'Código postal no encontrado';
+                }
+                input.value = '';
+            }, function (error) {
+                console.error(error);
+            });
+        }
+    };
+    GardenComponent.prototype.listarPaises = function () {
+        var _this = this;
+        this._gardenService.listCoutries()
+            .subscribe(function (data) {
+            var aux = [];
+            aux.push({ id: 0, text: "Selecciona un país" });
+            for (var i = 0; i < data.geonames.length; i++) {
+                aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
+            }
+            _this.countryData = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+                obs.next(aux);
+                obs.complete();
+            });
+            _this.startCountry = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+                obs.next(_this.garden.countryCode);
+                obs.complete();
+            });
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    GardenComponent.prototype.mostrarCiudad = function () {
+        var aux = [];
+        aux.push({ id: this.garden.city, text: this.garden.city });
+        this.city = this.garden.city;
+        this.tiempoCity = 'El tiempo en ' + this.garden.city;
+        this.cityData = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
+            obs.next(aux);
+            obs.complete();
+        });
     };
     GardenComponent.prototype.mostrar = function () {
         var _this = this;
         this._gardenService.details()
             .subscribe(function (data) {
-            console.log(data);
             if (data != null) {
                 _this.garden.id = data.id;
                 _this.garden.title = data.title;
-                _this.garden.width = data.width;
-                _this.garden.length = data.length;
+                _this.garden.width = parseInt(data.width);
+                _this.garden.length = parseInt(data.length);
+                _this.width = (parseInt(data.width) - 1) / 2;
+                _this.length = (parseInt(data.length) - 1) / 2;
                 _this.garden.longitude = data.longitude;
                 _this.garden.latitude = data.latitude;
                 _this.garden.soil = data.soil;
@@ -2373,8 +3249,10 @@ var GardenComponent = /** @class */ (function () {
                 _this.garden.countryCode = data.countryCode;
                 _this.garden.city = data.city;
                 _this.garden.plants = data.plants;
-                new iniciar("detail", _this.garden);
-                if (_this.garden.city) {
+                _this.inicializar();
+                _this.listarPaises();
+                _this.mostrarCiudad();
+                if (_this.garden.city !== undefined) {
                     _this.visible = true;
                     _this.getTiempo();
                     _this.getPrevision();
@@ -2383,13 +3261,9 @@ var GardenComponent = /** @class */ (function () {
                     _this.visible = false;
                 }
             }
-            else {
-                _this._route.navigate(['/newgarden']);
-            }
         }, function (error) {
             console.error(JSON.parse(error._body).Mensaje);
             if (JSON.parse(error._body).Mensaje == 'No existe') {
-                _this._route.navigate(['/newgarden']);
             }
             else {
                 _this._route.navigate(['/detail']);
@@ -2400,8 +3274,18 @@ var GardenComponent = /** @class */ (function () {
         var _this = this;
         this._gardenService.tiempo(this.garden)
             .subscribe(function (data) {
-            var aux = data.main.temp - 273;
-            _this.temperatura = aux;
+            if (data.cod != '404') {
+                _this.haveWeather = true;
+                var aux = data.main.temp - 273;
+                _this.temperatura = aux;
+                var sunrise = new Date();
+                var sunset = new Date();
+                sunrise.setTime(data.sys.sunrise * 1000);
+                _this.sunrise = sunrise;
+                sunset.setTime(data.sys.sunset * 1000);
+                _this.sunset = sunset;
+            }
+            console.log(data);
         }, function (error) {
             console.error(error);
             localStorage.clear();
@@ -2413,46 +3297,54 @@ var GardenComponent = /** @class */ (function () {
         var _this = this;
         this._gardenService.prevision(this.garden)
             .subscribe(function (data) {
-            var date = new Date();
-            var today = new Date();
-            var todayDay = today.getDate();
-            var auxToday = [];
-            var auxTomorrow = [];
-            var auxDia3 = [];
-            var auxDia4 = [];
-            var auxDia5 = [];
-            for (var i = 0; i < data.list.length; i++) {
-                date.setTime(data.list[i].dt * 1000);
-                if (date.getDate() == todayDay) {
-                    auxToday.push(data.list[i]);
+            if (data.cod != '404') {
+                _this.haveWeather = true;
+                var date = new Date();
+                var today = new Date();
+                var todayDay = today.getDate();
+                var auxToday = [];
+                var auxTomorrow = [];
+                var auxDia3 = [];
+                var auxDia4 = [];
+                var auxDia5 = [];
+                for (var i = 0; i < data.list.length; i++) {
+                    date.setTime(data.list[i].dt * 1000);
+                    if (date.getDate() == todayDay) {
+                        auxToday.push(data.list[i]);
+                    }
+                    if (date.getDate() == todayDay + 1) {
+                        auxTomorrow.push(data.list[i]);
+                    }
+                    if (date.getDate() == todayDay + 2) {
+                        auxDia3.push(data.list[i]);
+                        _this.nombreDia3 = _this.diaSemana(date.getDay() - 1);
+                    }
+                    if (date.getDate() == todayDay + 3) {
+                        auxDia4.push(data.list[i]);
+                        _this.nombreDia4 = _this.diaSemana(date.getDay() - 1);
+                    }
+                    if (date.getDate() == todayDay + 4) {
+                        auxDia5.push(data.list[i]);
+                        _this.nombreDia5 = _this.diaSemana(date.getDay() - 1);
+                    }
                 }
-                if (date.getDate() == todayDay + 1) {
-                    auxTomorrow.push(data.list[i]);
-                }
-                if (date.getDate() == todayDay + 2) {
-                    auxDia3.push(data.list[i]);
-                    _this.nombreDia3 = _this.diaSemana(date.getDay() - 1);
-                }
-                if (date.getDate() == todayDay + 3) {
-                    auxDia4.push(data.list[i]);
-                    _this.nombreDia4 = _this.diaSemana(date.getDay() - 1);
-                }
-                if (date.getDate() == todayDay + 4) {
-                    auxDia5.push(data.list[i]);
-                    _this.nombreDia5 = _this.diaSemana(date.getDay() - 1);
-                }
+                _this.prevHoy = auxToday;
+                _this.prevMan = auxTomorrow;
+                _this.prevDia3 = auxDia3;
+                _this.prevDia4 = auxDia4;
+                _this.prevDia5 = auxDia5;
+                _this.statusHoy = _this.prevHoy[0].weather[0].main;
+                _this.statusMan = _this.prevMan[0].weather[0].main;
+                _this.statusDia3 = _this.prevDia3[0].weather[0].main;
+                _this.statusDia4 = _this.prevDia4[0].weather[0].main;
+                _this.statusDia5 = _this.prevDia5[0].weather[0].main;
+                _this.fotoHoy = _this.prevHoy[0].weather[0].icon;
+                _this.fotoMan = _this.prevMan[4].weather[0].icon;
+                _this.fotoDia3 = _this.prevDia3[4].weather[0].icon;
+                _this.fotoDia4 = _this.prevDia4[4].weather[0].icon;
+                _this.fotoDia5 = _this.prevDia5[4].weather[0].icon;
+                _this.ordenarTemperatura();
             }
-            _this.prevHoy = auxToday;
-            _this.prevMan = auxTomorrow;
-            _this.prevDia3 = auxDia3;
-            _this.prevDia4 = auxDia4;
-            _this.prevDia5 = auxDia5;
-            _this.fotoHoy = _this.prevHoy[0].weather[0].icon;
-            _this.fotoMan = _this.prevMan[4].weather[0].icon;
-            _this.fotoDia3 = _this.prevDia3[4].weather[0].icon;
-            _this.fotoDia4 = _this.prevDia4[4].weather[0].icon;
-            _this.fotoDia5 = _this.prevDia5[4].weather[0].icon;
-            _this.ordenarTemperatura();
         }, function (error) {
             console.error(error);
             // localStorage.clear();
@@ -2538,7 +3430,7 @@ var GardenComponent = /** @class */ (function () {
                 dia = "Viernes";
                 break;
             case 5:
-                dia = "Sabado";
+                dia = "Sábado";
                 break;
             case 6:
                 dia = "Domingo";
@@ -2546,9 +3438,175 @@ var GardenComponent = /** @class */ (function () {
         }
         return dia;
     };
-    GardenComponent.prototype.inicializar = function () {
-        new iniciar("detail");
+    GardenComponent.prototype.edit = function () {
+        var _this = this;
+        this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
+            .subscribe(function (data) {
+            _this._appComponent.mensajeEmergente("Datos modificados", "success", "");
+        }, function (error) {
+            var v = JSON.parse(error._body);
+            _this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
     };
+    //muestra el formulario de edicion y borrado de jardín
+    GardenComponent.prototype.showForm = function () {
+        if (this.menuVisible == true) {
+            this.menuVisible = false;
+        }
+        else {
+            this.menuVisible = true;
+        }
+    };
+    //country functions
+    GardenComponent.prototype.saveCountry = function (e) {
+        if (e.value != 0 && e.value !== undefined) {
+            this.garden.countryCode = e.value;
+        }
+    };
+    GardenComponent.prototype.saveCity = function (e) {
+        if (e.value != 0 && e.value !== undefined) {
+            this.garden.city = e.value;
+            this.mostrarCiudad();
+        }
+    };
+    GardenComponent.prototype.openDialog = function (id, tipo) {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__dialog_gardenhelp_dialog_help_garden_component__["a" /* DialogHelpGardenComponent */], {
+            width: '600px'
+        });
+    };
+    GardenComponent.prototype.resizeCanvas = function () {
+        var canvasEvolver = document.querySelector('.canvasEvolver');
+        var canvas = document.querySelector('canvas');
+        canvas.width = canvasEvolver.offsetWidth;
+        canvas.height = canvasEvolver.offsetHeight;
+        var desvX = (canvas.width - 1200) * 0.0008;
+        var desvY = (canvas.height - 974) * 0.00072;
+        var pos = motor.getPosCamaraActiva();
+        //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+        motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    };
+    GardenComponent.prototype.toggleState = function () {
+        this.accion == 'Editar' ? this.accion = 'Modo vista' : this.accion = 'Editar';
+        this.visible ? this.visible = false : this.visible = true;
+    };
+    GardenComponent.prototype.inicializar = function () {
+        new iniciar("detail", this.garden, this.sunrise, this.sunset);
+        var width = document.querySelector(".canvasEvolver").offsetWidth;
+        var height = document.querySelector(".canvasEvolver").offsetHeight;
+        var canvas = document.querySelector('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        var desvX = (canvas.width - 1200) * 0.0008;
+        var desvY = (canvas.height - 974) * 0.00072;
+        motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+        motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+        window.addEventListener("resize", this.resizeCanvas);
+    };
+    GardenComponent.prototype.getMyStyles = function (temperatura, status) {
+        var color1 = 'green';
+        var color2 = 'blue';
+        if (status == 'Clear') {
+            color1 = '#fff600';
+        }
+        else if (status == 'Rain') {
+            color1 = '#22dbed';
+        }
+        else if (status == 'Clouds') {
+            color1 = '#e1e1e1';
+        }
+        if (temperatura < 0) {
+            color2 = '#98daf4';
+        }
+        else if (temperatura < 10) {
+            color2 = '#d6eff4';
+        }
+        else if (temperatura < 15) {
+            color2 = '#eff2bb';
+        }
+        else if (temperatura < 20) {
+            color2 = '#f5f289';
+        }
+        else if (temperatura < 25) {
+            color2 = '#f8d44a';
+        }
+        else if (temperatura < 30) {
+            color2 = '#f7b612';
+        }
+        else if (temperatura < 35) {
+            color2 = '#f68b1f';
+        }
+        else {
+            color2 = '#ea3c24';
+        }
+        var myStyles = {
+            'background': 'linear-gradient(to top right, ' + color2 + ', ' + color1 + ')',
+        };
+        return myStyles;
+    };
+    GardenComponent.prototype.isDragging = function () {
+        return false;
+    };
+    //--------------------Mostrar Plantas---------------------//
+    GardenComponent.prototype.ActualizarPagina = function () {
+        var _this = this;
+        this.activatedRoute.queryParams.subscribe(function (params) {
+            _this.paginaActual = params['pag'];
+            _this.getitems();
+        });
+    };
+    GardenComponent.prototype.getitems = function () {
+        var _this = this;
+        this._plantService.getNumberItems()
+            .subscribe(function (data) {
+            if (_this.estado == false) {
+                _this.numeroItems = data[0].NUMPLANTAS;
+            }
+            _this.mostrarplantasmotor();
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    GardenComponent.prototype.mostrarplantasmotor = function () {
+        var _this = this;
+        if (this.estado == false) {
+            this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+                .subscribe(function (data) {
+                _this.plantsmotor = [];
+                for (var key$ in data) {
+                    _this.plantsmotor.push(data[key$]);
+                }
+                console.log(_this.plantsmotor);
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        else {
+        }
+    };
+    //--------------------Detecta que es un nuevo usuarío y muestra tutorial---------------------//
+    GardenComponent.prototype.firstgarden = function () {
+        var _this = this;
+        this._gardenService.firstgarden()
+            .subscribe(function (data) {
+            if (data.Mensaje == "No existe") {
+                _this.dialog.open(__WEBPACK_IMPORTED_MODULE_9__dialog_newgarden_dialog_newgarden0_dialog_newgarden0_component__["a" /* DialogNewgarden0Component */], { width: '800px', data: { id: 1 } });
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
+    GardenComponent.prototype.ngOnInit = function () {
+        this.firstgarden();
+        this.ActualizarPagina();
+        this.accion = 'Editar';
+        this.mostrar();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('document:keyup', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [KeyboardEvent]),
+        __metadata("design:returntype", void 0)
+    ], GardenComponent.prototype, "searchZip", null);
     GardenComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-garden',
@@ -2556,8 +3614,11 @@ var GardenComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_garden_service__["a" /* GardenService */],
+            __WEBPACK_IMPORTED_MODULE_4__services_plant_service__["a" /* PlantService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]])
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], GardenComponent);
     return GardenComponent;
 }());
@@ -2566,10 +3627,28 @@ var GardenComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/gardens/newgarden/newgarden.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".title{\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: justify;\r\n      justify-content: space-between;\r\n  -ms-flex-align: baseline;\r\n      align-items: baseline;\r\n}\r\n.title>button{\r\n  height: 40px;\r\n}\r\n.herramienta{\r\n  width: 100%;\r\n  max-width: 1080px;\r\n  margin: 0 auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-direction:column;\r\n      flex-direction:column;\r\n  padding: 0;\r\n  border-style: solid;\r\n  /* border-color: #63dd63; */\r\n  background-color: #63dd63;\r\n}\r\n.herramienta>canvas{\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n\r\n.prevision{\r\n  margin-top: 1em;\r\n}\r\n\r\n.tiempo{\r\n  margin-top : 1em;\r\n  margin-left, margin-right: 30px%;\r\n  /*padding: 1em;*/\r\n}\r\n\r\n.tarjetaHoy{\r\n  margin-top : 2em;\r\n  margin-left, margin-right: 30px%;\r\n  padding: 1em;\r\n  width: 250px;\r\n  background-color:#63dd63;\r\n}\r\n\r\n.hoy{\r\n  font-size : 2em;\r\n\r\n}\r\n\r\n\r\n.casilla{\r\n  padding-top:.5em;\r\n  padding-bottom:.5em;\r\n  max-width: 100px;\r\n  margin-left, margin-right:.3em;\r\n  text-align: center;\r\n}\r\n/*.casilla:nth-child(even){\r\n  background-color:#63dd63;\r\n}\r\n.casilla:nth-child(odd){\r\n  background:#fcfcfc;\r\n}*/\r\n\r\n.maxima{\r\n  font-size : 1em;\r\n}\r\n.minima{\r\n  font-size : 0.8em;\r\n  color: gray;\r\n}\r\n\r\nh1, h2{\r\n  text-align: center;\r\n}\r\n.inferior{\r\n  margin-top: -2.8em;\r\n  margin-right: 0.2em;\r\n  z-index: 99999;\r\n}\r\n.superior{\r\n  position: absolute;\r\n  top: 100px;\r\n  left: 0;\r\n  z-index: 99999;\r\n}\r\n  \r\n\r\nul, li{\r\n  margin-top: 0.4em;\r\n}\r\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/gardens/newgarden/newgarden.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\r\n  <h1>Crear mi jardin</h1>\r\n\r\n  <section class=\"container\">\r\n    <canvas style=\"border:1px solid #000000\" id=\"myCanvas\" width=\"480\" height=\"360\"></canvas>\r\n  </section>\r\n\r\n  <section class=\"container\">\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"newGarden()\" #forma=\"ngForm\" novalidate=\"\">\r\n          <div class=\"form-group  col-md-6\">\r\n            <label for=\"title\">Título: </label>\r\n            <input class=\"form-control\" type=\"text\" [(ngModel)]=\"garden.title\" name=\"title\" id=\"title_garden\" required>\r\n          </div>\r\n          <div class=\"form-group col-md-6\">\r\n              <label for=\"length\">Largo: {{garden.length===undefined ? 19 : garden.length}}</label>\r\n              <input class=\"form-control\"\r\n                      type=\"range\"\r\n                      [(ngModel)]=\"garden.length\"\r\n                      min=\"7\"\r\n                      max=\"31\"\r\n                      step=\"2\"\r\n                      name=\"length\"\r\n                      id=\"length_garden\"\r\n                      required>\r\n\r\n              <label for=\"width\">Ancho: {{garden.width===undefined ? 19 : garden.width}}</label>\r\n              <input class=\"form-control\"\r\n                      type=\"range\"\r\n                      [(ngModel)]=\"garden.width\"\r\n                      min=\"7\"\r\n                      max=\"31\"\r\n                      step=\"2\"\r\n                      name=\"width\"\r\n                      id=\"width_garden\"\r\n                      required>\r\n\r\n          </div>\r\n          <div class=\"form-group col-md-6\" ng-init=\"listarPaises()\">\r\n            <label for=\"countries\">País:</label>\r\n\r\n            <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\">\r\n            </select2>\r\n\r\n          </div>\r\n\r\n          <div class=\"form-group col-md-6\">\r\n            <label for=\"countries\">Introduce tu código postal:</label>\r\n            <input class=\"form-control\" type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n          </div>\r\n\r\n          <div class=\"form-group col-md-6\">\r\n            <label for=\"countries\">Ciudad:</label>\r\n            <span id=\"ciudad\"></span>\r\n          </div>\r\n\r\n          <!-- <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n          <label for=\"countries\">País:</label>\r\n\r\n            <select2 [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.changeCities($event)\">\r\n            </select2>\r\n\r\n        </div>-->\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"name_plant\">Plantas</label>\r\n              <select class=\"form-control selectpicker\" multiple id=\"name_plant\" [(ngModel)]=\"plant\" name=\"plant\">\r\n               <option *ngFor=\"let plant of plants\" value=\"{{plant.id}}\">{{plant.commonName}}</option>\r\n             </select>\r\n            </div>\r\n          </div>\r\n\r\n\r\n\r\n          <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n          <button [routerLink]=\"['/detail']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </section>\r\n</div>\r\n"
+module.exports = "\r\n    \r\n<div class=\"canvasEvolver\" onmousemove=\"mouse_move(event);\" onmouseup=\"mouse_up(event);\">\r\n\r\n    <section class=\"litButtons\">\r\n    <div class=\"toggleDeko litButton yellow\" id=\"plt\" style=\"background-position: 4px 132px;\"\r\n          onclick=\"motor.toggleVista(event)\"\r\n          (click)=\"this.toggleState()\"></div>\r\n    <div class=\"toggleDeko litButton yellow\" id=\"edit\" style=\"background-position: 4px 38px;\"\r\n          onclick=\"document.getElementById('formulario').classList.toggle('infoOcult')\"\r\n    >\r\n  </div>\r\n\r\n\r\n\r\n    <div class=\"toggleDeko litButton orange\" id=\"plus\" style=\"background-position: 4px 4px;\"\r\n          onclick=\"plusZoom()\"\r\n    ></div>\r\n    <div class=\"toggleDeko litButton orange\" id=\"sub\" style=\"background-position: 4px 164px;\"\r\n      onclick=\"subZoom()\"\r\n    ></div>\r\n    <div class=\"toggleDeko litButton orange\" id=\"help\" style=\"background-position: 4px 68px;\"\r\n      (click)=\"this.openDialog(1, 2)\"\r\n    ></div>\r\n    <div class=\"toggleDeko litButton red\" id=\"del\" style=\"background-position: 4px 100px;\"\r\n        onmouseup=\"deletePlant()\"\r\n        [hidden]=\"isDragging()\"\r\n    ></div>\r\n  </section>\r\n\r\n  <nav class=\"navbar navbar-default nav superior\" role=\"navigation\">\r\n    <!-- El logotipo y el icono que despliega el menú se agrupan\r\n         para mostrarlos mejor en los dispositivos móviles -->\r\n    <div class=\"navbar-header\">\r\n      <button type=\"button\" class=\"btn btn-success\" data-toggle=\"collapse\"\r\n              data-target=\".navbar-ex1-collapse\">\r\n        <span class=\"sr-only\">Desplegar navegación</span>\r\n        <i class=\"material-icons\">spa</i>\r\n      </button>\r\n    </div>\r\n\r\n    <!-- Agrupar los enlaces de navegación, los formularios y cualquier\r\n         otro elemento que se pueda ocultar al minimizar la barra -->\r\n    <div class=\"collapse navbar-collapse navbar-ex1-collapse\">\r\n      <ul class=\"nav navbar-nav\">\r\n        <li *ngFor=\"let plantmotor of plantsmotor\" value=\"{{plantmotor.id}}\"  draggable=\"true\" ondragstart=\"drag(event);\">\r\n            <img src=\"{{plantmotor.photo}}\" id=\"{{plantmotor.id+'-'+plantmotor._3dmodel}}\" alt=\"no sale la imagen\"  width=\"50px\" height=\"50px\">\r\n        </li>\r\n        <li>  <app-pagination [count]=\"this.numeroItems\" [type]=\"6\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination></li>\r\n      </ul>\r\n\r\n    </div>\r\n  </nav>\r\n\r\n  <canvas id=\"myCanvas\" oncontextmenu=\"return false;\" onmousedown=\"mouse_down(event);\" onmousewheel=\"scrolling(event);\" ondrop=\"drop(event);\" ondragover=\"allowDrop(event);\" width=\"2100\" height=\"1200\"></canvas>\r\n</div>\r\n    \r\n\r\n\r\n\r\n<!-- <div class=\"container main-container\">\r\n  <ul class=\"smooth-scroll list-unstyled\">\r\n    <li *ngFor=\"let plant of plants\" value=\"{{plant.id}}\">\r\n        <img src=\"{{plant.photo}}\" alt=\"no sale la imagen\"  width=\"80px\" height=\"80px\">\r\n    </li>\r\n  </ul>\r\n  </div> -->\r\n<!-- <div class=\"container main-container\">\r\n  <div class=\"form-row\">\r\n    <div class=\"form-group col-md-6\">\r\n      <label for=\"name_plant\">Plantas</label>\r\n      <select class=\"form-control selectpicker\" multiple id=\"name_plant\" [(ngModel)]=\"plant\" name=\"plant\">\r\n               <option *ngFor=\"let plant of plants\" value=\"{{plant.id}}\">{{plant.commonName}}</option>\r\n             </select>\r\n    </div>\r\n  </div>\r\n  <button type=\"submit\" class=\"btn btn-outline-primary\">Guardar cambios</button>\r\n  <button [routerLink]=\"['/detail']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n\r\n</div> -->\r\n"
 
 /***/ }),
 
@@ -2583,10 +3662,10 @@ module.exports = "<div class=\"container main-container\">\r\n  <h1>Crear mi jar
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_garden_service__ = __webpack_require__("../../../../../src/app/services/garden.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__ = __webpack_require__("../../../../../src/app/classes/garden.class.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_plant_service__ = __webpack_require__("../../../../../src/app/services/plant.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_add_operator_delay__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/delay.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_delay__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/delay.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dialog_newgarden_dialog_newgarden1_dialog_newgarden1_component__ = __webpack_require__("../../../../../src/app/components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2605,96 +3684,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewGardenComponent = /** @class */ (function () {
-    function NewGardenComponent(_gardenService, _plantService, _route, datePipe, _appComponent) {
+
+var NewGardenComponent = (function () {
+    function NewGardenComponent(_gardenService, _plantService, _route, datePipe, dialog, activatedRoute) {
         this._gardenService = _gardenService;
         this._plantService = _plantService;
         this._route = _route;
         this.datePipe = datePipe;
-        this._appComponent = _appComponent;
-        this.garden = new __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__["a" /* Garden */]("");
+        this.dialog = dialog;
+        this.activatedRoute = activatedRoute;
         this.plants = [];
-        this.countries = [];
-        this.cities = [];
-        this.zip = "";
+        this.plantsmotor = [];
+        this.garden = new __WEBPACK_IMPORTED_MODULE_3__classes_garden_class__["a" /* Garden */]("");
+        this.paginaActual = 1;
+        this.elementosPorPagina = 8;
+        this.estado = false; // false es listado y true buscador
     }
-    NewGardenComponent.prototype.searchZip = function (event) {
+    // @HostListener('document:keyup', ['$event'])
+    NewGardenComponent.prototype.firstgarden = function () {
         var _this = this;
-        //aqui vamos cargando las posibles ciudades a elegir
-        var input = document.querySelector("#zipCode");
-        if (this.garden.countryCode != undefined) {
-            if (input.value.length == 5) {
-                this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
-                    .subscribe(function (data) {
-                    var sp = document.querySelector('#ciudad');
-                    if (data.length > 0) {
-                        _this.garden.latitude = data[0].lat.toFixed(2);
-                        _this.garden.longitude = data[0].lng.toFixed(2);
-                        if (data[0].adminName3 !== undefined) {
-                            _this.garden.city = data[0].adminName3;
-                            sp.innerHTML = data[0].adminName3;
-                        }
-                        else if (data[0].adminName2 !== undefined) {
-                            _this.garden.city = data[0].adminName2;
-                            sp.innerHTML = data[0].adminName2;
-                        }
-                        else if (data[0].adminName1 !== undefined) {
-                            _this.garden.city = data[0].adminName1;
-                            sp.innerHTML = data[0].adminName1;
-                        }
-                        else {
-                            _this.garden.city = '';
-                            sp.innerHTML = 'Código postal no encontrado';
-                        }
-                    }
-                    else {
-                        _this.garden.city = '';
-                        sp.innerHTML = 'Código postal no encontrado';
-                    }
-                    input.value = '';
-                }, function (error) {
-                    console.error(error);
-                });
-            }
-        }
-    };
-    NewGardenComponent.prototype.listarPaises = function () {
-        var _this = this;
-        this._gardenService.listCoutries()
+        this._gardenService.firstgarden()
             .subscribe(function (data) {
-            var aux = [];
-            aux.push({ id: 0, text: "Selecciona un país" });
-            for (var i = 0; i < data.geonames.length; i++) {
-                aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
-            }
-            _this.countryData = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
-                obs.next(aux);
-                obs.complete();
-            });
-            _this.startCountry = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
-                obs.next(_this.garden.countryCode);
-                obs.complete();
-            }).delay(1000);
-        }, function (error) {
-            console.error(error);
-        });
-    };
-    NewGardenComponent.prototype.mostrarCiudad = function () {
-        var aux = [];
-        aux.push({ id: this.garden.city, text: this.garden.city });
-        this.cityData = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["a" /* Observable */].create(function (obs) {
-            obs.next(aux);
-            obs.complete();
-        });
-        if (this.garden.city != undefined)
-            document.querySelector('#ciudad').innerHTML = this.garden.city;
-    };
-    NewGardenComponent.prototype.mostrar = function () {
-        var _this = this;
-        this._gardenService.details()
-            .subscribe(function (data) {
-            if (data != null) {
-                _this._route.navigate(['/garden']);
+            if (data == "Existe") {
+                _this._route.navigate(['/detail']);
             }
         }, function (error) {
             console.error(JSON.parse(error._body).Mensaje);
@@ -2711,68 +3723,149 @@ var NewGardenComponent = /** @class */ (function () {
             console.error(error);
         });
     };
-    NewGardenComponent.prototype.ngOnInit = function () {
-        this.mostrar();
-        this.mostrarPlantas();
-        this.listarPaises();
-        this.mostrarCiudad();
-    };
     //Envia los nuevos datos del jardin a  a GardenService para guardarlos
-    NewGardenComponent.prototype.newGarden = function () {
+    // newGarden() {
+    //
+    //   this._gardenService.insertGarden(this.garden)
+    //     .subscribe(data => {
+    //       this.idNewJardin = data;
+    //       let X: number = -20;
+    //       let f = new Date();
+    //       let fecha_actual: string;
+    //       f.getDate();
+    //       f.getMonth() + 1;
+    //       f.getFullYear();
+    //       fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    //       if (this.plant !== undefined) {
+    //         for (let cont = 0; cont < this.plant.length; cont++) {
+    //           X = X - 1;
+    //           this._gardenService.saveplants(this.plant[cont], X, this.idNewJardin, fecha_actual)
+    //             .subscribe(data => {
+    //             },
+    //               error => {
+    //                 let v = JSON.parse(error._body);
+    //               });
+    //         }
+    //       }
+    //       this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
+    //     },
+    //       error => {
+    //         let v = JSON.parse(error._body);
+    //         this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+    //       });
+    // }
+    NewGardenComponent.prototype.mostrar = function () {
         var _this = this;
-        this._gardenService.insertGarden(this.garden)
+        this._gardenService.details()
             .subscribe(function (data) {
-            _this.idNewJardin = data;
-            var X = -20;
-            var f = new Date();
-            var fecha_actual;
-            f.getDate();
-            f.getMonth() + 1;
-            f.getFullYear();
-            fecha_actual = _this.datePipe.transform(f, 'yyyy-MM-dd');
-            if (_this.plant !== undefined) {
-                for (var cont = 0; cont < _this.plant.length; cont++) {
-                    X = X - 1;
-                    _this._gardenService.saveplants(_this.plant[cont], X, _this.idNewJardin, fecha_actual)
-                        .subscribe(function (data) {
-                    }, function (error) {
-                        var v = JSON.parse(error._body);
-                    });
-                }
+            if (data != null) {
+                _this.garden.id = data.id;
+                _this.garden.title = data.title;
+                _this.garden.width = data.width;
+                _this.garden.length = data.length;
+                _this.garden.longitude = data.longitude;
+                _this.garden.latitude = data.latitude;
+                _this.garden.soil = data.soil;
+                _this.garden.user = data.user;
+                _this.garden.countryCode = data.countryCode;
+                _this.garden.city = data.city;
+                _this.garden.plants = data.plants;
+                console.log(data.plants);
+                _this.inicializar();
             }
-            _this._appComponent.mensajeEmergente("Jardin Creado", "success", "garden");
+            else {
+                _this._route.navigate(['/newgarden']);
+            }
         }, function (error) {
-            var v = JSON.parse(error._body);
-            _this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+            _this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__dialog_newgarden_dialog_newgarden1_dialog_newgarden1_component__["a" /* DialogNewgarden1Component */], { width: '800px', data: { id: 1 } });
         });
     };
-    NewGardenComponent.prototype.saveCountry = function (e) {
-        if (e.value != 0 && e.value !== undefined) {
-            this.garden.countryCode = e.value;
+    NewGardenComponent.prototype.toggleState = function () {
+        this.accion == 'Editar' ? this.accion = 'Modo vista' : this.accion = 'Editar';
+    };
+    NewGardenComponent.prototype.ActualizarPagina = function () {
+        var _this = this;
+        this.activatedRoute.queryParams.subscribe(function (params) {
+            _this.paginaActual = params['pag'];
+            _this.getitems();
+        });
+    };
+    NewGardenComponent.prototype.getitems = function () {
+        var _this = this;
+        this._plantService.getNumberItems()
+            .subscribe(function (data) {
+            if (_this.estado == false) {
+                _this.numeroItems = data[0].NUMPLANTAS;
+            }
+            _this.mostrarplantasmotor();
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    NewGardenComponent.prototype.mostrarplantasmotor = function () {
+        var _this = this;
+        if (this.estado == false) {
+            this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+                .subscribe(function (data) {
+                _this.plantsmotor = [];
+                for (var key$ in data) {
+                    _this.plantsmotor.push(data[key$]);
+                }
+                console.log(_this.plantsmotor);
+            }, function (error) {
+                console.error(error);
+            });
+        }
+        else {
+            // this.searchcontent(this.paginaActual, this.elementosPorPagina);
         }
     };
-    NewGardenComponent.prototype.saveCity = function (e) {
-        if (e.value != 0 && e.value !== undefined) {
-            this.garden.city = e.value;
-            this.mostrarCiudad();
-        }
+    NewGardenComponent.prototype.resizeCanvas = function () {
+        var canvasEvolver = document.querySelector('.canvasEvolver');
+        var canvas = document.querySelector('canvas');
+        canvas.width = canvasEvolver.offsetWidth;
+        canvas.height = canvasEvolver.offsetHeight;
+        var desvX = (canvas.width - 1200) * 0.0008;
+        var desvY = (canvas.height - 974) * 0.00072;
+        var pos = motor.getPosCamaraActiva();
+        //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+        motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('document:keyup', ['$event']),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [KeyboardEvent]),
-        __metadata("design:returntype", void 0)
-    ], NewGardenComponent.prototype, "searchZip", null);
+    NewGardenComponent.prototype.isDragging = function () {
+        return false;
+    };
+    NewGardenComponent.prototype.inicializar = function () {
+        new iniciar("detail", this.garden);
+        var width = document.querySelector(".canvasEvolver").offsetWidth;
+        var height = document.querySelector(".canvasEvolver").offsetHeight;
+        var canvas = document.querySelector('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        var desvX = (canvas.width - 1200) * 0.0008;
+        var desvY = (canvas.height - 974) * 0.00072;
+        motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+        motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+        window.addEventListener("resize", this.resizeCanvas);
+    };
+    NewGardenComponent.prototype.ngOnInit = function () {
+        this.accion = 'Editar';
+        this.ActualizarPagina();
+        this.firstgarden();
+        this.mostrar();
+        this.mostrarPlantas();
+    };
     NewGardenComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-newgarden',
-            template: __webpack_require__("../../../../../src/app/components/gardens/newgarden/newgarden.component.html")
+            template: __webpack_require__("../../../../../src/app/components/gardens/newgarden/newgarden.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/components/gardens/newgarden/newgarden.component.css"), __webpack_require__("../../../../../src/app/components/gardens/garden/garden.component.css"), __webpack_require__("../../../../../src/app/components/gardens/editgarden/editgarden.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_garden_service__["a" /* GardenService */],
             __WEBPACK_IMPORTED_MODULE_4__services_plant_service__["a" /* PlantService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_common__["DatePipe"],
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]])
+            __WEBPACK_IMPORTED_MODULE_5__angular_common__["DatePipe"],
+            __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatDialog */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], NewGardenComponent);
     return NewGardenComponent;
 }());
@@ -2789,7 +3882,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".navbar.user{\r\n  z-index:10;\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-light.bg-light.header{\r\n  z-index:9;\r\n}\r\n.navbar-header{\r\n  position: fixed;\r\n  top:0;\r\n  left:0;\r\n  right:0;\r\n  height: 50px;\r\n  background-color: #299654 ;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-align: center;\r\n      align-items: center;\r\n  z-index: 999999;\r\n  }\r\n  .navbar-header>div{\r\n    max-height: 46px;\r\n  }\r\n  .navbar-header>div>i{\r\n    font-size: 46px;\r\n    cursor: pointer;\r\n    color: #fff;\r\n    display:inline-block;\r\n  \ttransform:rotate(0);\r\n  \ttransition: transform 0.3s ease-out;\r\n  }\r\n\r\n  .navbar-header>img{\r\n    margin-left: 10px;\r\n    height: 30px;\r\n  }\r\n\r\n  .opened{\r\n    transform:rotate(90deg) !important;\r\n  }\r\n\r\n  #sidebar-wrapper {\r\n  top: 50px;\r\n  left: -200px;\r\n  width: 200px;\r\n  background-color: #299654;\r\n  color: white;\r\n  position: fixed;\r\n  height: 100%;\r\n  z-index: 999999;\r\n}\r\n#sidebar-wrapper>img{\r\n  display:none;\r\n}\r\n\r\n.sidebar-nav {\r\n  position: absolute;\r\n  top: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 200px;\r\n  list-style: none;\r\n}\r\n.sidebar-nav li {\r\n  text-indent: 20px;\r\n  line-height: 50px;\r\n}\r\n.sidebar-nav li a {\r\n  color: white;\r\n  display: block;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:hover {\r\n  background: rgba(255,255,255,0.25);\r\n  color: white;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\r\n  text-decoration: none;\r\n}\r\n#sidebar-wrapper.sidebar-toggle {\r\n  transition: all 0.3s ease-out;\r\n  margin-left: -200px;\r\n}\r\n\r\n\r\n/*HEADER USER*/\r\n.header{\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-brand>img{\r\n  width: 140px;\r\n}\r\n#navbarSupportedContent > ul > li > a{\r\n  color: #fff !important;\r\n}\r\nbutton{\r\n  background: rgba(255, 255, 255, 0.5);\r\n}\r\n#navbarSupportedContent{\r\n  -ms-flex-pack: end;\r\n      justify-content: flex-end;\r\n}\r\n#navbarSupportedContent > ul{\r\n  margin-right: 0 !important;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n  .sidebar-nav {\r\n    top: 60px;\r\n  }\r\n\r\n  .limited{\r\n    max-width: 1150px;\r\n    margin: 0 auto;\r\n  }\r\n  #sidebar-wrapper.sidebar-toggle {\r\n    transition: 0s;\r\n    left: 200px;\r\n    top: 0;\r\n  }\r\n  #sidebar-wrapper>img{\r\n    display: initial;\r\n    width: 140px;\r\n    margin: 0 auto;\r\n    margin-top: 15px;\r\n    margin-left: 20px;\r\n  }\r\n  .navbar-header{\r\n    display: none;\r\n\r\n    }\r\n}\r\n\r\n#photoMenu{\r\n  width: auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n@media (max-width: 991px) {\r\n  #photoMenu>div{\r\n    display: none;\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, ".navbar.user{\r\n  z-index:10;\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-light.bg-light.header{\r\n  z-index:9;\r\n}\r\n.navbar-header{\r\n  position: fixed;\r\n  top:0;\r\n  left:0;\r\n  right:0;\r\n  height: 50px;\r\n  background-color: #299654 ;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-align: center;\r\n      align-items: center;\r\n  z-index: 999999;\r\n  }\r\n  .navbar-header>div{\r\n    max-height: 46px;\r\n  }\r\n  .navbar-header>div>i{\r\n    font-size: 46px;\r\n    cursor: pointer;\r\n    color: #fff;\r\n    display:inline-block;\r\n  \ttransform:rotate(0);\r\n  \ttransition: transform 0.3s ease-out;\r\n  }\r\n\r\n  .navbar-header>img{\r\n    margin-left: 10px;\r\n    height: 30px;\r\n  }\r\n\r\n  .opened{\r\n    transform:rotate(90deg) !important;\r\n  }\r\n\r\n  #sidebar-wrapper {\r\n  top: 50px;\r\n  left: -200px;\r\n  width: 200px;\r\n  background-color: #299654;\r\n  color: white;\r\n  position: fixed;\r\n  height: 100%;\r\n  z-index: 999999;\r\n}\r\n#sidebar-wrapper>img{\r\n  display:none;\r\n}\r\n\r\n.sidebar-nav {\r\n  position: absolute;\r\n  top: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 200px;\r\n  list-style: none;\r\n}\r\n.sidebar-nav li {\r\n  text-indent: 20px;\r\n  line-height: 50px;\r\n}\r\n.sidebar-nav li a {\r\n  color: white;\r\n  display: block;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:hover {\r\n  background: rgba(255,255,255,0.25);\r\n  color: white;\r\n  text-decoration: none;\r\n}\r\n.sidebar-nav li a:active, .sidebar-nav li a:focus {\r\n  text-decoration: none;\r\n}\r\n#sidebar-wrapper.sidebar-toggle {\r\n  transition: all 0.3s ease-out;\r\n  margin-left: -200px;\r\n}\r\n\r\n\r\n/*HEADER USER*/\r\n.header{\r\n  background-color: #299654 !important;\r\n}\r\n.navbar-brand>img{\r\n  width: 140px;\r\n}\r\n#navbarSupportedContent > ul > li > a{\r\n  color: #fff !important;\r\n}\r\nbutton{\r\n  background: rgba(255, 255, 255, 0.5);\r\n}\r\n#navbarSupportedContent{\r\n  -ms-flex-pack: end;\r\n      justify-content: flex-end;\r\n}\r\n#navbarSupportedContent > ul{\r\n  margin-right: 0 !important;\r\n}\r\n\r\n.arounder{\r\n  position:relative;\r\n  background-color: #299654 ;\r\n  z-index:20;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n  .sidebar-nav {\r\n    top: 60px;\r\n  }\r\n\r\n  .limited{\r\n    max-width: 1150px;\r\n    margin: 0 auto;\r\n  }\r\n  #sidebar-wrapper.sidebar-toggle {\r\n    transition: 0s;\r\n    left: 200px;\r\n    top: 0;\r\n  }\r\n  #sidebar-wrapper>img{\r\n    display: initial;\r\n    width: 140px;\r\n    margin: 0 auto;\r\n    margin-top: 15px;\r\n    margin-left: 20px;\r\n  }\r\n  .navbar-header{\r\n    display: none;\r\n\r\n    }\r\n}\r\n\r\n#photoMenu{\r\n  width: auto;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n@media (max-width: 991px) {\r\n  #photoMenu>div{\r\n    display: none;\r\n  }\r\n}\r\n", ""]);
 
 // exports
 
@@ -2802,7 +3895,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Menú admin-->\r\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"navbar-header\">\r\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\r\n\t\t\t\t<i class=\"material-icons\">view_headline</i>\r\n\t\t\t</div>\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t</div>\r\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" href=\"#\">Plantas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n\r\n<!-- Menú estándar -->\r\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\r\n\t<div class=\"navbar user navbar-expand-lg limited\">\r\n\t\t<a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\r\n\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/help']\" class=\"nav-link\" href=\"#\">Ayuda</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"nav-link\" href=\"#\">Biblioteca</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n"
+module.exports = "<!--Menú admin-->\r\n<nav *ngIf=\"this.userService.isAdmin\" class=\"navbar navbar-default\" role=\"navigation\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"navbar-header\">\r\n\t\t\t<div id=\"menu-toggle\" href=\"#\" class=\"navbar-toggle\" (click)=\"toggleMenu($event)\">\r\n\t\t\t\t<i class=\"material-icons\">view_headline</i>\r\n\t\t\t</div>\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t</div>\r\n\t\t<div id=\"sidebar-wrapper\" class=\"sidebar-toggle\">\r\n\t\t\t<img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\">\r\n\t\t\t<ul class=\"sidebar-nav\" (click)=\"toggleMenu()\">\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/statistics']\" href=\"#\">Estadísticas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['admin/users']\" [queryParams]=\"{pag: 1}\" href=\"#\">Usuarios</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" href=\"#\">Plantas</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" href=\"#\">Tratamientos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" href=\"#\">Productos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: 1}\" href=\"#\">Consejos</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/admin/profile']\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n\r\n<!-- Menú estándar -->\r\n<nav *ngIf=\"!this.userService.isAdmin\" class=\" navbar-light bg-light header\">\r\n\t<div class=\"arounder\">\r\n\r\n\r\n\t<div class=\"navbar user navbar-expand-lg limited\">\r\n\r\n\t\t<a [routerLink]=\"['/detail']\" class=\"navbar-brand\" href=\"#\"><img src=\"https://gardiot.ovh/images/light2.png\" alt=\"Gardiot\"></a>\r\n\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n\r\n  </button>\r\n\r\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a href=\"https://gardiot.ovh/symbiose/\" class=\"nav-link\" target=\"blank\">Symbiose</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/login']\" class=\"nav-link\" href=\"#\">Log In</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/register']\" class=\"nav-link\" href=\"#\">Registrarse</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"!this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/help']\" class=\"nav-link\" href=\"#\">Ayuda</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"nav-link\" href=\"#\">Biblioteca</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" id=\"photoMenu\" [routerLink]=\"['/profile']\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<a [routerLink]=\"['/profile']\" class=\"nav-link\" href=\"#\">Mi perfil</a>\r\n\t\t\t\t</li>\r\n\t\t\t\t<li class=\"nav-item\" *ngIf=\"this.userService.isAuthenticated\">\r\n\t\t\t\t\t<a [routerLink]=\"['/logout']\" class=\"nav-link\" href=\"#\">Log Out</a>\r\n\t\t\t\t</li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n\t</div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -2826,7 +3919,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var HeaderComponent = /** @class */ (function () {
+var HeaderComponent = (function () {
     function HeaderComponent(userService, _ngZone) {
         this.userService = userService;
         this._ngZone = _ngZone;
@@ -2970,7 +4063,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var HelpComponent = /** @class */ (function () {
+var HelpComponent = (function () {
     function HelpComponent() {
         this.panelOpenState = false;
     }
@@ -3013,7 +4106,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ConfirmationComponent = /** @class */ (function () {
+var ConfirmationComponent = (function () {
     function ConfirmationComponent(_comprobationService, _router, _appComponent) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -3098,7 +4191,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LoginComponent = /** @class */ (function () {
+var LoginComponent = (function () {
     function LoginComponent(_loginService, _route, _appComponent) {
         this._loginService = _loginService;
         this._route = _route;
@@ -3187,7 +4280,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LogoutComponent = /** @class */ (function () {
+var LogoutComponent = (function () {
     function LogoutComponent(_logoutService, _route) {
         this._logoutService = _logoutService;
         this._route = _route;
@@ -3244,7 +4337,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var OauthConfirmationComponent = /** @class */ (function () {
+var OauthConfirmationComponent = (function () {
     function OauthConfirmationComponent(_comprobationService, _router, _appComponent, _route) {
         this._comprobationService = _comprobationService;
         this._router = _router;
@@ -3312,7 +4405,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var RegisterComponent = /** @class */ (function () {
+var RegisterComponent = (function () {
     function RegisterComponent(_userService, _route, _appComponent) {
         this._userService = _userService;
         this._route = _route;
@@ -3387,7 +4480,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResendComponent = /** @class */ (function () {
+var ResendComponent = (function () {
     function ResendComponent(_resendService, _route) {
         this._resendService = _resendService;
         this._route = _route;
@@ -3464,7 +4557,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ResetPassBackComponent = /** @class */ (function () {
+var ResetPassBackComponent = (function () {
     function ResetPassBackComponent(_appComponent, router, _newPass) {
         this._appComponent = _appComponent;
         this.router = router;
@@ -3528,7 +4621,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "section,h1,form{\r\n  max-width: 720px;\r\n  padding-left: 20%;\r\n}\r\nh1{\r\n  padding-top: 1%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -3541,7 +4634,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/manage/reset-pass.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <h1>Resetear contraseña</h1>\r\n\r\n  <section>\r\n    <p>Estas a punto de resetear tu contraseña. Introduce tu email con el que te registraste y te enviaremos un link a tu correo electrónico para poder hacerlo. Recuerda que sólo tienes unas pocas horas para ello.</p>\r\n  </section>\r\n\r\n  <form #f=\"ngForm\" (ngSubmit)=\"resetPass(f)\">\r\n    <div class=\"form-group\">\r\n      <input type=\"email\" class=\"form-control\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" name=\"first\" ngModel required #first=\"ngModel\">\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\">Enviar</button>\r\n    <button [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n  </form>\r\n  <br>\r\n  <!-- <button [routerLink]=\"['/reset-pass-back']\"  class=\"btn btn-primary\">passBack</button> -->\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n  <h1>Resetear contraseña</h1>\r\n  <section>\r\n    <p>Estas a punto de resetear la contraseña. Introduce el email de registro y enviaremos un link al correo electrónico para poder hacerlo.</p>\r\n  </section>\r\n\r\n  <form #f=\"ngForm\" (ngSubmit)=\"resetPass(f)\">\r\n    <div class=\"form-group\">\r\n      <input type=\"email\" class=\"form-control\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\" name=\"first\" ngModel required #first=\"ngModel\">\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\">Enviar</button>\r\n    <button type=\"button\" [routerLink]=\"['/profile']\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n  </form>\r\n  <br>\r\n  <!-- <button [routerLink]=\"['/reset-pass-back']\"  class=\"btn btn-primary\">passBack</button> -->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3566,23 +4659,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // import { User } from "../../classes/user.class";
 
 
-var ResetPassComponent = /** @class */ (function () {
-    function ResetPassComponent(_appComponent, _resetPassword) {
+var ResetPassComponent = (function () {
+    function ResetPassComponent(_appComponent, _resetPassword, _isAdmin, _userExist) {
         this._appComponent = _appComponent;
         this._resetPassword = _resetPassword;
-        // user=new User("");
+        this._isAdmin = _isAdmin;
+        this._userExist = _userExist;
         this.apiURL = "https://gardiot.ovh/api/";
     }
+    ResetPassComponent.prototype.isAdmin = function () {
+        var _this = this;
+        // LLAMADA A LA API
+        this._isAdmin.isUserAdmin()
+            .subscribe(function (data) {
+            _this.semaforo = data;
+            console.log("Es admin ? " + _this.semaforo);
+        });
+    };
     ResetPassComponent.prototype.resetPass = function (f) {
+        var _this = this;
         var valor = f.value;
         var email = valor.first;
-        // LLAMADA A LA API
-        this._resetPassword.resetPassword(email)
-            .subscribe(function (data) {
-        });
-        this._appComponent.mensajeEmergente("Mensaje enviado. Revisa tu correo", "primary", "login");
+        // comprobar que el formulario no este vacio
+        if (valor.first != "") {
+            // comprobar que el usuario exista
+            this._userExist.isUser(email)
+                .subscribe(function (data) {
+                _this.correo = data[0].id;
+            });
+            if (this.correo != undefined) {
+                // comprueba si el usuario es admin o no
+                if (this.semaforo) {
+                    // LLAMADA A LA API
+                    this._resetPassword.resetPassword(email)
+                        .subscribe(function (data) {
+                    });
+                    this._appComponent.mensajeEmergente("Mensaje enviado al usuario", "primary", "admin/edituser/" + email); /*/admin/edituser/   admin/users?pag=1 */
+                }
+                else {
+                    // console.log("NO soy admin");
+                    // LLAMADA A LA API
+                    this._resetPassword.resetPassword(email)
+                        .subscribe(function (data) {
+                    });
+                    this._appComponent.mensajeEmergente("Mensaje enviado. Revisa tu correo", "primary", "login");
+                }
+            }
+            else {
+                this._appComponent.mensajeEmergente("No existe el usuario", "danger", "");
+            }
+        }
+        else {
+            this._appComponent.mensajeEmergente("Introduce un email.", "danger", "");
+        }
     };
     ResetPassComponent.prototype.ngOnInit = function () {
+        this.isAdmin();
     };
     ResetPassComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -3591,6 +4723,8 @@ var ResetPassComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../src/app/components/manage/reset-pass.component.css")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_2__services_user_service__["a" /* UserService */]])
     ], ResetPassComponent);
     return ResetPassComponent;
@@ -3621,7 +4755,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/pagination/pagination.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- https://www.npmjs.com/package/ng2-paginate -->\r\n<!-- https://embed.plnkr.co/oyFWJe/ -->\r\n<!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==1\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>\r\n    <span> hay {{ totalPages() }} paginas totales </span> -->\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==2\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==3\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==4\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==5\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n"
+module.exports = "<!-- https://www.npmjs.com/package/ng2-paginate -->\r\n<!-- https://embed.plnkr.co/oyFWJe/ -->\r\n<!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==1\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>\r\n    <span> hay {{ totalPages() }} paginas totales </span> -->\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0 && type==2\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==3\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==4\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n<nav aria-label=\"Page navigation example\" *ngIf=\"count > 0  && type==5\">\r\n  <ul class=\"pagination justify-content-end\">\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: previusPage()}\">Previous</button>\r\n    </li>\r\n    <li class=\"page-item\" *ngFor=\"let pageNum of getPages()\"><button class=\"page-link\" (click)=\"onPage(pageNum)\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: pageNum}\">{{pageNum}}</button></li>\r\n    <li class=\"page-item\">\r\n      <button class=\"page-link\" (click)=\"onNext()\" [routerLink]=\"['/admin/feeds']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\">Next</button>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n\r\n  <ul class=\"pagination\"  *ngIf=\"count > 0 && type==6\">\r\n    <li class=\"\">\r\n      <button class=\"btn btn-secondary btn-sm\" [disabled]=\"page ==1 || loading\" (click)=\"onPrev()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: previusPage()}\"><i class=\"material-icons\">chevron_left</i></button>\r\n    </li>\r\n    <li class=\"\">\r\n      <button class=\"btn btn-secondary btn-sm\" (click)=\"onNext()\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: nextPage()}\" [disabled]=\"lastPage() || loading\"><i class=\"material-icons\">chevron_right</i></button>\r\n    </li>\r\n  </ul>\r\n"
 
 /***/ }),
 
@@ -3642,7 +4776,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var PaginationComponent = /** @class */ (function () {
+var PaginationComponent = (function () {
     function PaginationComponent() {
         this.plants = [];
         this.goPrev = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -3815,7 +4949,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditplantComponent = /** @class */ (function () {
+var EditplantComponent = (function () {
     function EditplantComponent(_plantService, _appComponent, _ng2ImgMax, datePipe, _router, _route) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
@@ -3968,7 +5102,7 @@ var EditplantComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/components/plants/library/library.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"evolver\">\r\n  <div class=\"container main-container\">\r\n    <h1>Biblioteca</h1>\r\n    <div class=\"wrap\">\r\n\r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n        <article class=\"form-group col-md-4\">\r\n          <input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\r\n        </article>\r\n        <!-- <article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"family\">\r\n  \t\t\t\t\t\t\t <option  value=\"nombre\">nombre</option>\r\n  \t\t\t\t\t\t\t <option  value=\"familia\">familia</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article>\r\n  \t\t\t\t\t<article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"order\">\r\n  \t\t\t\t\t\t\t <option  value=\"ASC\">A-Z</option>\r\n  \t\t\t\t\t\t\t <option  value=\"DES\">Z-A</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article> -->\r\n        <article class=\"form-group col-md-2\">\r\n          <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        </article>\r\n        <article class=\"form-group col-md-2\">\r\n          <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/newplant']\" class=\"btn btn-outline-primary\">Nueva planta</button>\r\n        </article>\r\n      </form>\r\n\r\n      <section class=\"card-columns\">\r\n        <div *ngFor=\"let plant of plants\" class=\"card\" style=\"width: 18rem;\">\r\n          <img class=\"card-img-top\" src=\"{{plant.photo}}\" alt=\"no sale la imagen\" width=\"100px\" height=\"200px\" [routerLink]=\"['/plant', plant.id]\">\r\n          <div class=\"card-body\">\r\n            <h4>{{plant.commonName}} </h4>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/editplant/',plant.id]\" class=\"btn btn-outline-primary\">Modificar</button>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/admin/newtreatmentsplants/',plant.id]\" class=\"btn btn-outline-secondary\">Tratamientos</button>\r\n            <button class=\"btn btn-outline-danger\" (click)=\"openDialog(plant.id,4)\">Eliminar</button>\r\n            <!-- <button *ngIf=\"this.user.isAdmin\" (click)=\"deleteplant(plant.id)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Eliminar</button> -->\r\n          </div>\r\n        </div>\r\n      </section>\r\n      <app-pagination [count]=\"this.numeroItems\" [type]=\"1\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"evolver\">\r\n  <div class=\"container main-container\">\r\n    <h1>Biblioteca</h1>\r\n    <div class=\"wrap\">\r\n\r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n        <article class=\"form-group col-md-4\">\r\n          <input type=\"text\" [(ngModel)]=\"plant.commonName\" class=\"form-control\" name=\"commonName\" placeholder=\"Buscar en gardiot\">\r\n        </article>\r\n        <!-- <article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"family\">\r\n  \t\t\t\t\t\t\t <option  value=\"nombre\">nombre</option>\r\n  \t\t\t\t\t\t\t <option  value=\"familia\">familia</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article>\r\n  \t\t\t\t\t<article class=\"form-group col-md-2\">\r\n  \t\t\t\t\t\t <select class=\"form-control\"  name=\"order\">\r\n  \t\t\t\t\t\t\t <option  value=\"ASC\">A-Z</option>\r\n  \t\t\t\t\t\t\t <option  value=\"DES\">Z-A</option>\r\n  \t\t\t\t\t\t </select>\r\n  \t\t\t\t\t</article> -->\r\n        <article class=\"form-group col-md-8\">\r\n          <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n          <a data-toggle=\"collapse\" data-target=\"#demo\" class=\"small\">Busqueda avanzada</a>\r\n        </article>\r\n        <article class=\"form-group col-md-2\">\r\n          <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/newplant']\" class=\"btn btn-outline-primary\">Nueva planta</button>\r\n        </article>\r\n      </form>\r\n      <section class=\"form-row\">\r\n\r\n        <div id=\"demo\" class=\"collapse\">\r\n          <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n            <label for=\"scientificName\">Nombre Científico</label>\r\n            <input type=\"text\" [(ngModel)]=\"plant.scientificName\" class=\"form-control\" id=\"scientificName\" name=\"scientificName\" placeholder=\"Nombre científico\">\r\n\r\n            <label for=\"initDatePlant\">Inicio de plantación</label>\r\n            <input type=\"date\" [(ngModel)]=\"plant.initDatePlant\" class=\"form-control\" id=\"initDatePlant\" name=\"initDatePlant\" >\r\n\r\n            <label for=\"finDatePlant\">Fin de plantación</label>\r\n            <input type=\"date\" [(ngModel)]=\"plant.finDatePlant\" class=\"form-control\" id=\"finDatePlant\" name=\"finDatePlant\" >\r\n\r\n            <label for=\"tipo\">Tipo de hoja</label>\r\n            <select [(ngModel)]=\"plant.leaveType\" class=\"form-control\" id=\"tipo\" name=\"tipo\" default=\"\">\r\n              <option value=\"undefined\">Todos</option>\r\n              <option value=\"caduca\">Caduca</option>\r\n              <option value=\"perenne\">Perenne</option>\r\n            </select>\r\n            <button class=\"btn btn-default\" type=\"submit\">Filtrar</button>\r\n          </form>\r\n          \r\n        </div>\r\n      </section>\r\n\r\n      <section class=\"card-columns\">\r\n\r\n        <div *ngFor=\"let plant of plants\" class=\"card\" style=\"width: 18rem;\">\r\n          <img class=\"card-img-top\" src=\"{{plant.photo}}\" alt=\"no sale la imagen\" width=\"100px\" height=\"200px\" [routerLink]=\"['/plant', plant.id]\">\r\n          <div class=\"card-body\">\r\n            <h4>{{plant.commonName}} </h4>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/editplant/',plant.id]\" class=\"btn btn-outline-primary\">Modificar</button>\r\n            <button *ngIf=\"this.user.isAdmin\" [routerLink]=\"['/admin/newtreatmentsplants/',plant.id]\" class=\"btn btn-outline-secondary\">Tratamientos</button>\r\n            <button *ngIf=\"this.user.isAdmin\" class=\"btn btn-outline-danger\" (click)=\"openDialog(plant.id,4)\">Eliminar</button>\r\n            <!-- <button *ngIf=\"this.user.isAdmin\" (click)=\"deleteplant(plant.id)\" [routerLink]=\"['/plants']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Eliminar</button> -->\r\n          </div>\r\n        </div>\r\n      </section>\r\n      <p *ngIf=\"numeroItems==0\">Esta busqueda no tiene resultados</p>\r\n      <app-pagination [count]=\"this.numeroItems\" [type]=\"1\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4001,7 +5135,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var LibraryComponent = /** @class */ (function () {
+var LibraryComponent = (function () {
     function LibraryComponent(_plantService, _route, activatedRoute, user, dialog) {
         this._plantService = _plantService;
         this._route = _route;
@@ -4046,6 +5180,11 @@ var LibraryComponent = /** @class */ (function () {
                     _this.plants.push(data[key$]);
                 }
             }
+            else {
+                _this.plants = [];
+                _this.numeroItems = 0;
+                _this.paginaActual = 1;
+            }
         }, function (error) {
             console.error(error);
         });
@@ -4065,7 +5204,6 @@ var LibraryComponent = /** @class */ (function () {
             .subscribe(function (data) {
             if (_this.estado == false) {
                 _this.numeroItems = data[0].NUMPLANTAS;
-                console.log(_this.numeroItems);
             }
             _this.mostrar();
         }, function (error) {
@@ -4192,10 +5330,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewplantComponent = /** @class */ (function () {
+var NewplantComponent = (function () {
     function NewplantComponent(_plantService, 
-    // private _treatmentService:TreatmentService,
-    _appComponent, _ng2ImgMax) {
+        // private _treatmentService:TreatmentService,
+        _appComponent, _ng2ImgMax) {
         this._plantService = _plantService;
         this._appComponent = _appComponent;
         this._ng2ImgMax = _ng2ImgMax;
@@ -4349,7 +5487,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantComponent = /** @class */ (function () {
+var PlantComponent = (function () {
     function PlantComponent(_plantService, _treatmentPlantService, _router, user, _route) {
         this._plantService = _plantService;
         this._treatmentPlantService = _treatmentPlantService;
@@ -4414,11 +5552,9 @@ var PlantComponent = /** @class */ (function () {
         var _this = this;
         this._treatmentPlantService.showProductPlant(treatment, idPlant)
             .subscribe(function (data) {
-            // this.productTreatments=[];
             for (var key$ in data) {
                 _this.productTreatments.push(data[key$]);
             }
-            console.log(_this.productTreatments);
         }, function (error) {
             console.error(JSON.parse(error._body).Mensaje);
         });
@@ -4489,12 +5625,19 @@ var PlantComponent = /** @class */ (function () {
             this.user.isAdmin = false;
         }
     };
+    PlantComponent.prototype.contShowPlant = function () {
+        this._plantService.updateViews(this.plant.id).subscribe(function (data) {
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
     PlantComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._router.params.subscribe(function (params) {
             if (params['id'] != null) {
                 _this.plant = new __WEBPACK_IMPORTED_MODULE_1__classes_plant_class__["a" /* Plant */](params['id']);
                 _this.mostrar(_this.plant.id);
+                _this.contShowPlant();
                 // llamo a mostrarTratamientos y le paso el id de la planta
                 // this.treatment=new Treatment(params['id']);
                 _this.mostrarTratamientos(_this.plant.id);
@@ -4572,7 +5715,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditproductComponent = /** @class */ (function () {
+var EditproductComponent = (function () {
     function EditproductComponent(_productService, _appComponent, _router, _route) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4659,7 +5802,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/listproduct/listproduct.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Productos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"product.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newproduct']\" class=\"btn btn-outline-primary\">Nuevo Producto</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let product of products\">\r\n          <th scope=\"row\">{{product.name}}</th>\r\n          <td>{{product.type}}</td>\r\n          <td>{{product.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editproduct/',product.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(product.id)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(product.id,1)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"3\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Productos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"product.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-4\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        <a data-toggle=\"collapse\" data-target=\"#demo\" class=\"small\">Busqueda avanzada</a>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newproduct']\" class=\"btn btn-outline-primary\">Nuevo Producto</button>\r\n      </article>\r\n    </form>\r\n    <div id=\"demo\" class=\"collapse\">\r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n        <label for=\"content\">Descripción</label>\r\n        <input type=\"text\" [(ngModel)]=\"product.description\" class=\"form-control\" id=\"content\" name=\"content\" placeholder=\"Descripción\">\r\n\r\n        <label for=\"content\">Tipo</label>\r\n        <input type=\"type\" [(ngModel)]=\"product.type\" class=\"form-control\" id=\"type\" name=\"type\" placeholder=\"tipo\">\r\n\r\n        <button class=\"btn btn-default\" type=\"submit\">Filtrar</button>\r\n      </form>\r\n      \r\n    </div>\r\n\r\n    <table class=\"table table-hover\" *ngIf=\"numeroItems!=0\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        \r\n        <tr *ngFor=\"let product of products\">\r\n          <th scope=\"row\">{{product.name}}</th>\r\n          <td>{{product.type}}</td>\r\n          <td>{{product.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/editproduct/',product.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(product.id)\" [routerLink]=\"['/admin/products']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(product.id,1)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <p *ngIf=\"numeroItems==0\">Esta busqueda no tiene resultados</p>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"3\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4689,7 +5832,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListproductComponent = /** @class */ (function () {
+var ListproductComponent = (function () {
     function ListproductComponent(_productService, activatedRoute, dialog) {
         this._productService = _productService;
         this.activatedRoute = activatedRoute;
@@ -4760,6 +5903,11 @@ var ListproductComponent = /** @class */ (function () {
                 for (var key$ in data) {
                     _this.products.push(data[key$]);
                 }
+            }
+            else {
+                _this.products = [];
+                _this.numeroItems = 0;
+                _this.paginaActual = 1;
             }
         }, function (error) {
             console.error(error);
@@ -4842,7 +5990,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewproductComponent = /** @class */ (function () {
+var NewproductComponent = (function () {
     function NewproductComponent(_productService, _appComponent) {
         this._productService = _productService;
         this._appComponent = _appComponent;
@@ -4918,7 +6066,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var ProductComponent = /** @class */ (function () {
+var ProductComponent = (function () {
     function ProductComponent() {
     }
     ProductComponent.prototype.ngOnInit = function () {
@@ -4987,7 +6135,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdittreatmentComponent = /** @class */ (function () {
+var EdittreatmentComponent = (function () {
     function EdittreatmentComponent(_treatmentService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -5073,7 +6221,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/treatments/listtreatment/listtreatment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Tratamientos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"treatment.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newtreatment']\" class=\"btn btn-outline-primary\">Nuevo Tratamiento</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let treatment of treatments\">\r\n          <th scope=\"row\">{{treatment.name}}</th>\r\n          <td>{{treatment.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edittreatment/',treatment.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(treatment.id)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(treatment.id,2)\">Eliminar</button></td>\r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"2\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Tratamientos</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"treatment.name\" class=\"form-control\" name=\"name\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-4\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        <a data-toggle=\"collapse\" data-target=\"#demo\" class=\"small\">Busqueda avanzada</a>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newtreatment']\" class=\"btn btn-outline-primary\">Nuevo Tratamiento</button>\r\n      </article>\r\n    </form>\r\n\r\n    <div id=\"demo\" class=\"collapse\">\r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n        <label for=\"content\">Descripción</label>\r\n        <input type=\"text\" [(ngModel)]=\"treatment.description\" class=\"form-control\" id=\"content\" name=\"content\" placeholder=\"Contenido\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Filtrar</button>\r\n        \r\n      </form>\r\n      \r\n    </div>\r\n    <table class=\"table table-hover\" *ngIf=\"numeroItems!=0\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Descripción</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        \r\n        <tr *ngFor=\"let treatment of treatments\">\r\n          <th scope=\"row\">{{treatment.name}}</th>\r\n          <td>{{treatment.description}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edittreatment/',treatment.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"delete(treatment.id)\" [routerLink]=\"['/admin/treatments']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(treatment.id,2)\">Eliminar</button></td>\r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <p *ngIf=\"numeroItems==0\">Esta busqueda no tiene resultados</p>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"2\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -5103,7 +6251,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ListtreatmentComponent = /** @class */ (function () {
+var ListtreatmentComponent = (function () {
     function ListtreatmentComponent(_treatmentService, activatedRoute, dialog) {
         this._treatmentService = _treatmentService;
         this.activatedRoute = activatedRoute;
@@ -5174,6 +6322,11 @@ var ListtreatmentComponent = /** @class */ (function () {
                 for (var key$ in data) {
                     _this.treatments.push(data[key$]);
                 }
+            }
+            else {
+                _this.treatments = [];
+                _this.numeroItems = 0;
+                _this.paginaActual = 1;
             }
         }, function (error) {
             console.error(error);
@@ -5252,7 +6405,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentComponent = /** @class */ (function () {
+var NewtreatmentComponent = (function () {
     function NewtreatmentComponent(_treatmentService, _appComponent) {
         this._treatmentService = _treatmentService;
         this._appComponent = _appComponent;
@@ -5328,7 +6481,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var TreatmentComponent = /** @class */ (function () {
+var TreatmentComponent = (function () {
     function TreatmentComponent() {
     }
     TreatmentComponent.prototype.ngOnInit = function () {
@@ -5403,7 +6556,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewtreatmentsplantsComponent = /** @class */ (function () {
+var NewtreatmentsplantsComponent = (function () {
     function NewtreatmentsplantsComponent(_treatmentService, _productService, _treatmentPlantService, _appComponent, _router, _route) {
         this._treatmentService = _treatmentService;
         this._productService = _productService;
@@ -5500,7 +6653,7 @@ var NewtreatmentsplantsComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/components/user/detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container main-container\">\r\n  <div [routerLink]=\"['/calendar']\">\r\n    <div class=\"row text-center\">\r\n      <div class=\"col-md-12\">\r\n        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div [ngSwitch]=\"view\">\r\n      <mwl-calendar-month-view *ngSwitchCase=\"'month'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" [activeDayIsOpen]=\"activeDayIsOpen\" (dayClicked)=\"dayClicked($event.day)\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-month-view>\r\n      <mwl-calendar-week-view *ngSwitchCase=\"'week'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-week-view>\r\n      <mwl-calendar-day-view *ngSwitchCase=\"'day'\" [viewDate]=\"viewDate\" [events]=\"events\" [refresh]=\"refresh\" (eventClicked)=\"handleEvent('Clicked', $event.event)\" (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-day-view>\r\n    </div>\r\n  </div>\r\n  <section class=\"herramienta\">\r\n    <article class=\"form-row\">\r\n      <div class=\"form-group col-md-6\">\r\n        <canvas [routerLink]=\"[gardenRoute]\" id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"450\"\r\n          height=\"350\"></canvas>\r\n      </div>\r\n      <div class=\"form-group col-md-6\">\r\n        <section *ngFor=\"let feed of feeds\" class=\"alert alert-success \" role=\"alert\">\r\n          <article class=\"form-row\">\r\n            <div class=\"form-group row-md-2\">\r\n              <h6>{{feed.name}} </h6>\r\n            </div>\r\n            <div class=\"form-group row-md-8\">  \r\n              <p>{{feed.text}} </p>\r\n            </div>\r\n            <div class=\"form-group row-md-1\">\r\n              <button class=\"btn btn-outline-primary\" (click)=\"cerrarfeed(feed.id)\">X</button>\r\n            </div>\r\n          </article>\r\n        </section>\r\n      </div>\r\n    </article>\r\n  </section>\r\n</div>\r\n"
+module.exports = "<div class=\"container main-container\">\r\n  <div [routerLink]=\"['/calendar']\">\r\n    <div class=\"row text-center\">\r\n      <div class=\"col-md-12\">\r\n        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>\r\n      </div>\r\n    </div>\r\n    <br>\r\n    <div [ngSwitch]=\"view\">\r\n      <mwl-calendar-week-view *ngSwitchCase=\"'week'\"\r\n      [viewDate]=\"viewDate\"\r\n      [events]=\"events\"\r\n      [refresh]=\"refresh\"\r\n      [locale]=\"locale\"\r\n      [refresh]=\"refresh\"\r\n      [weekStartsOn]=\"weekStartsOn\"\r\n      [weekendDays]=\"weekendDays\"\r\n      (eventClicked)=\"handleEvent('Clicked', $event.event)\"\r\n      (eventTimesChanged)=\"eventTimesChanged($event)\">\r\n      </mwl-calendar-week-view>\r\n    </div>\r\n  </div>\r\n  <section class=\"herramienta\">\r\n    <article class=\"form-row\">\r\n      <div class=\"form-group col-md-6\">\r\n        <canvas [routerLink]=\"[gardenRoute]\" id=\"myCanvas\" oncontextmenu=\"return false;\" onmousemove=\"mouse_move(event, 'detail');\" onmousedown=\"mouse_down(event, 'detail');\" onmouseup=\"mouse_up(event, 'detail');\" onmousewheel=\"scrolling(event, 'detail');\" width=\"450\"\r\n          height=\"350\"></canvas>\r\n      </div>\r\n      <div class=\"form-group col-md-6\">\r\n        <section *ngFor=\"let feed of feeds\" class=\"alert alert-success \" role=\"alert\">\r\n          <article class=\"form-row\">\r\n            <div class=\"form-group row-md-2\">\r\n              <h6>{{feed.name}} </h6>\r\n            </div>\r\n            <div class=\"form-group row-md-8\">\r\n              <p>{{feed.text}} </p>\r\n            </div>\r\n            <div class=\"form-group row-md-1\">\r\n              <button class=\"btn btn-outline-primary\" (click)=\"cerrarfeed(feed.id)\">X</button>\r\n            </div>\r\n          </article>\r\n        </section>\r\n      </div>\r\n    </article>\r\n  </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -5523,6 +6676,8 @@ module.exports = "<div class=\"container main-container\">\r\n  <div [routerLink
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_date_fns__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angular_calendar__ = __webpack_require__("../../../../angular-calendar/esm5/angular-calendar.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__calendar_customdate_provider__ = __webpack_require__("../../../../../src/app/components/calendar/customdate.provider.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5532,6 +6687,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -5559,7 +6716,7 @@ var colors = {
         secondary: '#FDF1BA'
     }
 };
-var DetailComponent = /** @class */ (function () {
+var DetailComponent = (function () {
     function DetailComponent(_detailService, _gardenService, _route, _taskService, _feedService, datePipe) {
         this._detailService = _detailService;
         this._gardenService = _gardenService;
@@ -5568,6 +6725,9 @@ var DetailComponent = /** @class */ (function () {
         this._feedService = _feedService;
         this.datePipe = datePipe;
         this.view = 'week';
+        this.locale = 'es';
+        this.weekStartsOn = __WEBPACK_IMPORTED_MODULE_13_angular_calendar__["c" /* DAYS_OF_WEEK */].MONDAY;
+        this.weekendDays = [__WEBPACK_IMPORTED_MODULE_13_angular_calendar__["c" /* DAYS_OF_WEEK */].SATURDAY, __WEBPACK_IMPORTED_MODULE_13_angular_calendar__["c" /* DAYS_OF_WEEK */].SUNDAY];
         this.viewDate = new Date();
         this.user = new __WEBPACK_IMPORTED_MODULE_2__classes_user_class__["a" /* User */]("");
         this.gardenRoute = "";
@@ -5579,6 +6739,20 @@ var DetailComponent = /** @class */ (function () {
         this.refresh = new __WEBPACK_IMPORTED_MODULE_12_rxjs_Subject__["b" /* Subject */]();
         this.events = [];
     }
+    //------ comprobamos si es su primera vez en la app------//
+    DetailComponent.prototype.checkGarden = function () {
+        var _this = this;
+        this._gardenService.firstgarden().subscribe(function (data) {
+            console.log(data.Mensaje);
+            if (data.Mensaje == "Existe") {
+            }
+            else {
+                _this._route.navigate(['/garden'], { queryParams: { pag: '1' } });
+            }
+        }, function (error) {
+            console.error(JSON.parse(error._body).Mensaje);
+        });
+    };
     //Recoge los datos del usuario logueado y los guarda para mostrarlos
     DetailComponent.prototype.mostrar = function () {
         var _this = this;
@@ -5588,6 +6762,23 @@ var DetailComponent = /** @class */ (function () {
             _this.user.birthDate = data.birthDate;
             _this.user.photo = data.photo;
             _this.user.name = data.name;
+        }, function (error) {
+            console.error(error);
+            localStorage.clear();
+            sessionStorage.clear();
+            _this._route.navigate(['/login']);
+        });
+    };
+    DetailComponent.prototype.getTiempo = function () {
+        var _this = this;
+        this._gardenService.tiempo(this.garden)
+            .subscribe(function (data) {
+            var sunrise = new Date();
+            var sunset = new Date();
+            sunrise.setTime(data.sys.sunrise * 1000);
+            _this.sunrise = sunrise;
+            sunset.setTime(data.sys.sunset * 1000);
+            _this.sunset = sunset;
         }, function (error) {
             console.error(error);
             localStorage.clear();
@@ -5611,36 +6802,21 @@ var DetailComponent = /** @class */ (function () {
                 _this.garden.countryCode = data.countryCode;
                 _this.garden.city = data.city;
                 _this.garden.plants = data.plants;
-                new iniciar("detail", _this.garden);
+                if (typeof _this.garden.city !== undefined && _this.garden.city != null) {
+                    _this.getTiempo();
+                }
+                new iniciar("home", _this.garden, _this.sunrise, _this.sunset);
             }
             else {
-                _this._route.navigate(['/newgarden']);
+                // this._route.navigate(['/newgarden']);
             }
         }, function (error) {
-            console.error(JSON.parse(error._body).Mensaje);
             if (JSON.parse(error._body).Mensaje == 'No existe') {
-                _this._route.navigate(['/newgarden']);
+                // this._route.navigate(['/newgarden']);
             }
             else {
                 _this._route.navigate(['/detail']);
             }
-        });
-    };
-    DetailComponent.prototype.inicializar = function () {
-        // new iniciar("detail", this.garden);
-    };
-    DetailComponent.prototype.checkGarden = function () {
-        var _this = this;
-        this._gardenService.details()
-            .subscribe(function (data) {
-            if (data != null) {
-                _this.gardenRoute = '/garden';
-            }
-            else {
-                _this.gardenRoute = '/newgarden';
-            }
-        }, function (error) {
-            console.error(JSON.parse(error._body).Mensaje);
         });
     };
     DetailComponent.prototype.cargarfeeds = function () {
@@ -5698,14 +6874,19 @@ var DetailComponent = /** @class */ (function () {
         this.checkGarden();
         this.mostrar();
         this.mostrar2();
-        this.inicializar();
         this.mostrartask();
         this.cargarfeeds();
     };
     DetailComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-detail',
-            template: __webpack_require__("../../../../../src/app/components/user/detail.component.html")
+            template: __webpack_require__("../../../../../src/app/components/user/detail.component.html"),
+            providers: [
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_13_angular_calendar__["a" /* CalendarDateFormatter */],
+                    useClass: __WEBPACK_IMPORTED_MODULE_14__calendar_customdate_provider__["a" /* CustomDateFormatter */]
+                }
+            ]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_user_service__["a" /* UserService */],
             __WEBPACK_IMPORTED_MODULE_8__services_garden_service__["a" /* GardenService */],
@@ -5763,7 +6944,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EditProfileComponent = /** @class */ (function () {
+var EditProfileComponent = (function () {
     function EditProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, datePipe, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -6012,7 +7193,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProfileComponent = /** @class */ (function () {
+var ProfileComponent = (function () {
     function ProfileComponent(_detailService, _route, _appComponent, _ng2ImgMax, _renderer) {
         this._detailService = _detailService;
         this._route = _route;
@@ -6112,7 +7293,7 @@ var ProfileComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/components/users/edituser/edituser.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container\">\r\n    <h3>Usuario {{user.name}}</h3>\r\n    <hr>\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\r\n          <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"text\" name=\"id\" class=\"form-control\" [(ngModel)]=\"user.id\" required>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Nombre</label>\r\n              <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"user.name\" required>\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Apellidos</label>\r\n              <input type=\"text\" name=\"lastName\" class=\"form-control\" [(ngModel)]=\"user.lastName\">\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"date_initplant\">Nacimiento</label>\r\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"photo_plant\">Foto</label>\r\n              <div class=\"upload-btn-wrapper form-control \">\r\n                <button class=\"bttn\">Selecionar imagen</button>\r\n                <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-4\">\r\n              <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n                <label for=\"countries\">País:</label>\r\n                <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\"></select2>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Introduce tu código postal:</label>\r\n              <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Ciudad:</label>\r\n              <span id=\"ciudad\"></span>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <button [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary form-control\">Resetear contraseña</button>\r\n            </div>\r\n            <div class=\"form-group col-md-6 form-check  form-control\">\r\n              <input type=\"checkbox\" class=\"form-check-input form-control\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\" value=\"1\">\r\n              <label class=\"form-check-label\" for=\"admin\">Administrador</label>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <button type=\"submit\" class=\"btn btn-outline-primary\"> Guardar</button>\r\n            <button [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container\">\r\n    <h3>Usuario {{user.name}}</h3>\r\n    <hr>\r\n    <div class=\"row animated fadeIn fast\">\r\n      <div class=\"col-md-12\">\r\n        <form (ngSubmit)=\"guardarUsuario(forma)\" #forma=\"ngForm\">\r\n          <div class=\"form-group\">\r\n            <label>Email</label>\r\n            <input type=\"text\" name=\"id\" class=\"form-control\" [(ngModel)]=\"user.id\" required>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Nombre</label>\r\n              <input type=\"text\" name=\"name\" class=\"form-control\" [(ngModel)]=\"user.name\" required>\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label>Apellidos</label>\r\n              <input type=\"text\" name=\"lastName\" class=\"form-control\" [(ngModel)]=\"user.lastName\">\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"date_initplant\">Nacimiento</label>\r\n              <input type=\"date\" class=\"form-control\" [(ngModel)]=\"user.birthDate\" name=\"birthDate\" id=\"birthday_user\">\r\n            </div>\r\n            <div class=\"form-group col-md-6\">\r\n              <label for=\"photo_plant\">Foto</label>\r\n              <div class=\"upload-btn-wrapper form-control \">\r\n                <button class=\"bttn\">Selecionar imagen</button>\r\n                <input type=\"file\" name=\"myfile\" id=\"photo_plant\" ng2FileSelect [uploader]=\"uploader\" />\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-4\">\r\n              <div class=\"form-group\" ng-init=\"listarPaises()\">\r\n                <label for=\"countries\">País:</label>\r\n                <select2 id=\"pais\" [data]=\"countryData | async\" [value]=\"startCountry | async\" (valueChanged)=\"this.saveCountry($event)\"></select2>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Introduce tu código postal:</label>\r\n              <input type=\"text\" id=\"zipCode\" (valueChanged)=\"this.saveCity($event)\" />\r\n            </div>\r\n            <div class=\"form-group col-md-4\">\r\n              <label for=\"countries\">Ciudad:</label>\r\n              <span id=\"ciudad\"></span>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-row\">\r\n            <div class=\"form-group col-md-6\">\r\n              <button type=\"button\" [routerLink]=\"['/resetPass']\" class=\"btn btn-outline-primary form-control\">Resetear contraseña</button>\r\n            </div>\r\n            <div class=\"form-group col-md-6 form-check  form-control\">\r\n              <input type=\"checkbox\" class=\"form-check-input form-control\" id=\"admin\" [(ngModel)]=\"user.admin\" name=\"admin\" value=\"1\">\r\n              <label class=\"form-check-label\" for=\"admin\">Administrador</label>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <button type=\"submit\" class=\"btn btn-outline-primary\"> Guardar</button>\r\n            <button [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" class=\"btn btn-outline-danger\">Cancelar</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6146,7 +7327,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var EdituserComponent = /** @class */ (function () {
+var EdituserComponent = (function () {
     function EdituserComponent(_editUserService, _appComponent, _router, datePipe, _route) {
         this._editUserService = _editUserService;
         this._appComponent = _appComponent;
@@ -6315,7 +7496,7 @@ var EdituserComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/components/users/listusers/listusers.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Panel de administrador</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"user.id\" class=\"form-control\" name=\"id\" placeholder=\"Buscar en gardiot\">\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary\">Nuevo Usuario</button>\r\n      </article>\r\n    </form>\r\n    <table class=\"table table-hover\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Apellidos</th>\r\n          <th scope=\"col\">Correo</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Estado</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let user of users\">\r\n          <th scope=\"row\">{{user.name}}</th>\r\n          <td>{{user.lastName}}</td>\r\n          <td>{{user.id}}</td>\r\n          <td>{{user.admin}}</td>\r\n          <td>{{user.active}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edituser/',user.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"deleteuser(user.id)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(user.id,5)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"4\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"vistaAdmin\">\r\n  <div class=\"container main-container wrap\">\r\n    <h1>Panel de administrador</h1>\r\n\r\n    <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n      <article class=\"form-group col-md-4\">\r\n        <input type=\"text\" [(ngModel)]=\"user.id\" class=\"form-control\" name=\"id\" placeholder=\"Buscar por e-mail\">\r\n      </article>\r\n      <article class=\"form-group col-md-6\">\r\n        <button class=\"btn btn-default\" type=\"submit\">Buscar</button>\r\n        <a data-toggle=\"collapse\" data-target=\"#demo\" class=\"small\">Busqueda avanzada</a>\r\n      </article>\r\n      <article class=\"form-group col-md-2\">\r\n        <button [routerLink]=\"['/admin/newuser']\" class=\"btn btn-outline-primary\">Nuevo Usuario</button>\r\n      </article>\r\n    </form>\r\n    <div class=\"collapse\" id=\"demo\">\r\n      \r\n      <form (ngSubmit)=\"this.searchcontent(1,6)\" class=\"form-row\" #forma=\"ngForm\">\r\n\r\n        <label for=\"propio\">Nombre</label>\r\n        <input type=\"text\" [(ngModel)]=\"user.name\" class=\"form-control\" id=\"propio\" name=\"propio\" placeholder=\"Nombre propio\">\r\n\r\n        <label for=\"apellido\">Apellido</label>\r\n        <input type=\"text\" [(ngModel)]=\"user.lastName\" class=\"form-control\" id=\"apellido\" name=\"apellido\" placeholder=\"Apellido\">\r\n\r\n        <label for=\"tipo\">Tipo</label>\r\n        <select [(ngModel)]=\"user.admin\" class=\"form-control\" id=\"tipo\" name=\"tipo\" default=\"\">\r\n          <option value=\"undefined\">Todos</option>\r\n          <option value=\"0\">Usuario</option>\r\n          <option value=\"1\">Administrador</option>\r\n        </select>\r\n\r\n         <label for=\"activo\">Estado</label>\r\n         <select [(ngModel)]=\"user.active\" class=\"form-control\" id=\"activo\" name=\"activo\" default=\"\">\r\n          <option value=\"undefined\">Todos</option>\r\n          <option value=\"0\">No activo</option>\r\n          <option value=\"1\">Activo</option>\r\n        </select>\r\n        <button class=\"btn btn-default\" type=\"submit\">Filtrar</button>\r\n      </form>\r\n    </div>\r\n\r\n       \r\n    <table class=\"table table-hover\" *ngIf=\"numeroItems!=0\">\r\n      <thead>\r\n        <tr>\r\n          <th scope=\"col\">Nombre</th>\r\n          <th scope=\"col\">Apellidos</th>\r\n          <th scope=\"col\">Correo</th>\r\n          <th scope=\"col\">Tipo</th>\r\n          <th scope=\"col\">Estado</th>\r\n          <th scope=\"col\">Modificar</th>\r\n          <th scope=\"col\">Eliminar</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody >\r\n        \r\n        <tr *ngFor=\"let user of users\">\r\n          <th scope=\"row\">{{user.name}}</th>\r\n          <td>{{user.lastName}}</td>\r\n          <td>{{user.id}}</td>\r\n          <td>{{user.admin}}</td>\r\n          <td>{{user.active}}</td>\r\n          <td><button class=\"btn btn-outline-primary\" [routerLink]=\"['/admin/edituser/',user.id]\">Modificar</button></td>\r\n          <!-- <td><button  class=\"btn btn-outline-danger\" (click)=\"deleteuser(user.id)\" [routerLink]=\"['/admin/users']\" [queryParams]=\"{pag: 1}\" >Eliminar</button></td> -->\r\n          <td><button class=\"btn btn-outline-danger\" (click)=\"openDialog(user.id,5)\">Eliminar</button></td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <p *ngIf=\"numeroItems==0\">Esta busqueda no tiene resultados</p>\r\n    <app-pagination [count]=\"this.numeroItems\" [type]=\"4\" [page]=\"this.paginaActual\" [perPage]=\"this.elementosPorPagina\" [pagesToShow]=\"3\" [loading]=\"false\" (onPrev)=\"prevPage()\" (onNext)=\"nextPage()\" (onPage)=\"goToPage($event)\"></app-pagination>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -6346,7 +7527,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AdminListUsersComponent = /** @class */ (function () {
+var AdminListUsersComponent = (function () {
     function AdminListUsersComponent(_detailService, _route, activatedRoute, dialog) {
         this._detailService = _detailService;
         this._route = _route;
@@ -6372,8 +7553,7 @@ var AdminListUsersComponent = /** @class */ (function () {
             });
         }
         else {
-            // this.searchcontent(this.paginaActual,this.elementosPorPagina);
-            console.log("assss");
+            this.searchcontent(this.paginaActual, this.elementosPorPagina);
         }
     };
     AdminListUsersComponent.prototype.deleteuser = function (idUser) {
@@ -6410,6 +7590,7 @@ var AdminListUsersComponent = /** @class */ (function () {
         console.log(this.user);
         this._detailService.searchAll(this.user, page, items)
             .subscribe(function (data) {
+            console.log(data);
             if (data[0] != undefined) {
                 _this.users = [];
                 _this.numeroItems = data[0].num;
@@ -6420,6 +7601,11 @@ var AdminListUsersComponent = /** @class */ (function () {
                 for (var key$ in data) {
                     _this.users.push(data[key$]);
                 }
+            }
+            else {
+                _this.users = [];
+                _this.numeroItems = 0;
+                _this.paginaActual = 1;
             }
         }, function (error) {
             console.error(error);
@@ -6481,7 +7667,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var NewuserComponent = /** @class */ (function () {
+var NewuserComponent = (function () {
     function NewuserComponent(_newUserServce, _appComponent) {
         this._newUserServce = _newUserServce;
         this._appComponent = _appComponent;
@@ -6541,7 +7727,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserdataComponent = /** @class */ (function () {
+var UserdataComponent = (function () {
     function UserdataComponent() {
     }
     UserdataComponent.prototype.ngOnInit = function () {
@@ -6583,7 +7769,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var DesarrolloComponent = /** @class */ (function () {
+var DesarrolloComponent = (function () {
     function DesarrolloComponent() {
     }
     DesarrolloComponent.prototype.ngOnInit = function () {
@@ -6624,7 +7810,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var FeedService = /** @class */ (function () {
+var FeedService = (function () {
     function FeedService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6662,7 +7848,6 @@ var FeedService = /** @class */ (function () {
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        console.log(feed.id);
         return this.http.put(this.apiURL + "admin/feed/" + feed.id, body, { headers: headers })
             .map(function (res) {
             return res.json();
@@ -6670,6 +7855,9 @@ var FeedService = /** @class */ (function () {
     };
     FeedService.prototype.searchAll = function (feed, page, items) {
         var body = "name=" + feed.name;
+        body += "&text=" + feed.text;
+        body += "&dateInit=" + feed.dateInit;
+        body += "&dateFinal=" + feed.dateFinal;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -6717,9 +7905,10 @@ var FeedService = /** @class */ (function () {
     };
     FeedService.prototype.closefeed = function (id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
-            'Authorization': "Bearer " + localStorage['Bearer']
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
-        return this.http.patch(this.apiURL + "feed/" + id, { headers: headers })
+        return this.http.put(this.apiURL + "feed/" + id, '', { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6757,7 +7946,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var GardenService = /** @class */ (function () {
+var GardenService = (function () {
     function GardenService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6778,6 +7967,15 @@ var GardenService = /** @class */ (function () {
             return res.json();
         });
     };
+    GardenService.prototype.firstgarden = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.get(this.apiURL + "firstgardenByUser", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
     GardenService.prototype.deleteGarden = function (garden) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
@@ -6792,10 +7990,10 @@ var GardenService = /** @class */ (function () {
         garden.soil = "1";
         var body = "title=" + garden.title;
         if (garden.width != undefined) {
-            body += "&width=" + garden.width;
+            body += "&width=" + ((garden.width * 2) + 1);
         }
         if (garden.length != undefined) {
-            body += "&length=" + garden.length;
+            body += "&length=" + ((garden.length * 2) + 1);
         }
         if (garden.latitude != undefined) {
             body += "&latitude=" + garden.latitude;
@@ -6832,39 +8030,50 @@ var GardenService = /** @class */ (function () {
             return res.json();
         });
     };
-    GardenService.prototype.modifyGarden = function (garden) {
+    GardenService.prototype.modifyGarden = function (garden, width, length) {
         garden.soil = "1";
         var body = "id=" + garden.id;
-        if (garden.title != "undefined") {
+        if (garden.title !== undefined) {
             body += "&title=" + garden.title;
         }
-        if (garden.width != "undefined") {
-            body += "&width=" + garden.width;
+        if (garden.width !== undefined) {
+            body += "&width=" + width;
         }
-        if (garden.length != "undefined") {
-            body += "&length=" + garden.length;
+        if (garden.length !== undefined) {
+            body += "&length=" + length;
         }
-        if (garden.latitude != "undefined") {
+        if (garden.latitude !== undefined) {
             body += "&latitude=" + garden.latitude;
         }
-        if (garden.longitude != "undefined") {
+        if (garden.longitude !== undefined) {
             body += "&longitude=" + garden.longitude;
         }
-        if (garden.soil != "undefined") {
+        if (garden.soil !== undefined) {
             //body += `&soil=${garden.soil}`;
         }
-        if (garden.countryCode != "undefined") {
+        if (garden.countryCode !== undefined) {
             body += "&countryCode=" + garden.countryCode;
         }
-        if (garden.city != "undefined") {
+        if (garden.city !== undefined) {
             body += "&city=" + garden.city;
         }
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        console.log(body);
-        return this.http.put(this.apiURL + "garden", body, { headers: headers })
+        return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    GardenService.prototype.modifyGarden2 = function (garden) {
+        var body = "id=" + garden.id + "&title=" + garden.title + "&width=" + garden.width + "&length=" + garden.length + "&latitude=" + garden.latitude;
+        body += "&longitude=" + garden.longitude + "&countryCode=" + garden.countryCode + "&city=" + garden.city;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer'],
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -6938,7 +8147,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var PlantService = /** @class */ (function () {
+var PlantService = (function () {
     function PlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -6959,7 +8168,6 @@ var PlantService = /** @class */ (function () {
         body += "&distance=" + plant.distance + "&diseaseResist=" + plant.diseaseResist;
         body += "&leaveType=" + plant.leaveType;
         body += "&photo=" + plant.photo;
-        console.log(body);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7016,6 +8224,10 @@ var PlantService = /** @class */ (function () {
     };
     PlantService.prototype.searchAll = function (plant, page, items) {
         var body = "commonName=" + plant.commonName;
+        body += "&scientificName=" + plant.scientificName;
+        body += "&leaveType=" + plant.leaveType;
+        body += "&initDatePlant=" + plant.initDatePlant;
+        body += "&finDatePlant=" + plant.finDatePlant;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7030,6 +8242,15 @@ var PlantService = /** @class */ (function () {
             'Authorization': "Bearer " + localStorage['Bearer']
         });
         return this.http.get(this.apiURL + "numPlants/", { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    PlantService.prototype.updateViews = function (idPlant) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.get(this.apiURL + "updateViewPlant/" + idPlant, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -7076,7 +8297,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var ProductService = /** @class */ (function () {
+var ProductService = (function () {
     function ProductService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7121,6 +8342,8 @@ var ProductService = /** @class */ (function () {
     };
     ProductService.prototype.searchAll = function (product, page, items) {
         var body = "name=" + product.name;
+        body += "&description=" + product.description;
+        body += "&type=" + product.type;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7190,7 +8413,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TaskService = /** @class */ (function () {
+var TaskService = (function () {
     function TaskService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7211,20 +8434,20 @@ var TaskService = /** @class */ (function () {
             return res.json();
         });
     };
-    TaskService.prototype.moveTask = function (mPlant, myPlant, tPlant, treatmentPlant) {
+    TaskService.prototype.moveTask = function (mPlant, myPlant, tPlant, treatmentPlant, oldDate, date) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer']
         });
-        return this.http.put(this.apiURL + "moveTask/" + myPlant + "/" + mPlant + "/" + tPlant + "/2018-04-01", { headers: headers })
+        return this.http.put(this.apiURL + "moveTask/" + myPlant + "/" + mPlant + "/" + tPlant + "/" + treatmentPlant + "/" + oldDate + "/" + date, '', { headers: headers })
             .map(function (res) {
             return res.json();
         });
     };
-    TaskService.prototype.DoneTask = function (mPlant, myPlant, tPlant, treatmentPlant, date) {
+    TaskService.prototype.DoneTask = function (mPlant, myPlant, tPlant, treatmentPlant, date, dateDone) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer']
         });
-        return this.http.patch(this.apiURL + "taskDone/" + myPlant + "/" + mPlant + "/" + tPlant + "/" + date, { headers: headers })
+        return this.http.put(this.apiURL + "taskDone/" + myPlant + "/" + mPlant + "/" + tPlant + "/" + treatmentPlant + "/" + date + "/" + dateDone, '', { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -7262,7 +8485,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentService = /** @class */ (function () {
+var TreatmentService = (function () {
     function TreatmentService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7307,6 +8530,7 @@ var TreatmentService = /** @class */ (function () {
     };
     TreatmentService.prototype.searchAll = function (treatment, page, items) {
         var body = "name=" + treatment.name;
+        body += "&description=" + treatment.description;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7376,7 +8600,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var TreatmentPlantService = /** @class */ (function () {
+var TreatmentPlantService = (function () {
     function TreatmentPlantService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7389,7 +8613,6 @@ var TreatmentPlantService = /** @class */ (function () {
         }
     }
     TreatmentPlantService.prototype.savetreatment = function (treatmentPlant, idPlant) {
-        console.log(treatmentPlant);
         var body = "plant=" + idPlant + "&treatment=" + treatmentPlant.treatment;
         body += "&frequency=" + treatmentPlant.frequency + "&initDate=" + treatmentPlant.initDate;
         body += "&finalDate=" + treatmentPlant.finalDate;
@@ -7465,7 +8688,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var UserService = /** @class */ (function () {
+var UserService = (function () {
     function UserService(http, _route) {
         this.http = http;
         this._route = _route;
@@ -7483,7 +8706,6 @@ var UserService = /** @class */ (function () {
         if (user.birthDate != null) {
             //body+=`&birthDate=${user.birthDate}`;
         }
-        console.log(user);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
@@ -7493,7 +8715,6 @@ var UserService = /** @class */ (function () {
                 if (window.location.toString().indexOf("gardiot") >= 0) {
                 }
                 else {
-                    console.log("Usuario " + user.id + " logueado");
                     localStorage.setItem('Bearer', res.json().Token);
                     var expires = Date.now() + (6 * 60 * 60 * 1000); //6 horas para que expire el token
                     localStorage.setItem('expires_at', expires.toString());
@@ -7506,7 +8727,6 @@ var UserService = /** @class */ (function () {
         var body = "id=" + user.id + "&password=" + user.password + "&password2=" + user.password2;
         body += "&name=" + user.name + "&lastName=" + user.lastName;
         body += "&admin=" + user.admin;
-        console.log(user);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7524,14 +8744,11 @@ var UserService = /** @class */ (function () {
         return this.http.post(this.apiURL + "authenticate", body, { headers: headers })
             .map(function (res) {
             if (res.json().Token != null) {
-                console.log("Usuario " + user.id + " logueado");
                 localStorage.setItem('Bearer', res.json().Token);
                 var expires = Date.now() + (6 * 60 * 60 * 1000); //6 horas para que expire el token
                 localStorage.setItem('expires_at', expires.toString());
             }
             else {
-                console.log("Token es null");
-                console.log(res.json());
             }
             return res.json();
         });
@@ -7587,7 +8804,6 @@ var UserService = /** @class */ (function () {
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        console.log(body);
         return this.http.put(this.apiURL + "user", body, { headers: headers })
             .map(function (res) {
             return res.json();
@@ -7615,7 +8831,6 @@ var UserService = /** @class */ (function () {
         if (user.city !== undefined && country == 1) {
             body += "&city=" + user.city;
         }
-        console.log(body);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7640,7 +8855,6 @@ var UserService = /** @class */ (function () {
         if (user2.city && country == 1) {
             body += "&city=" + user2.city;
         }
-        console.log("guapaaa" + body);
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7663,7 +8877,7 @@ var UserService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
-        return this.http.get(this.apiURL + "confirmation/" + token, { headers: headers })
+        return this.http.post(this.apiURL + "confirmation/" + token, { headers: headers })
             .map(function (res) {
             return res.json();
         });
@@ -7740,7 +8954,6 @@ var UserService = /** @class */ (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Content-Type': 'application/x-www-form-urlencoded',
         });
-        //console.log(this.apiURL+"forgetPassword", body, { headers });
         return this.http.post(this.apiURL + "forgetPassword", body, { headers: headers })
             .map(function (res) {
             return res.json();
@@ -7748,21 +8961,21 @@ var UserService = /** @class */ (function () {
     };
     // reset password2
     UserService.prototype.newPassword = function (pass1, pass2, token) {
-        // console.log("Hola New PASS");
-        // console.log(pass1,pass2);
         var body = "password=" + pass1 + "&password2=" + pass2;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Content-Type': 'application/x-www-form-urlencoded',
         });
-        // console.log("CAMBIADO:"+this.apiURL+"resetPassword/"+token, body, { headers });
         return this.http.put(this.apiURL + "resetPassword/" + token, body, { headers: headers })
             .map(function (res) {
-            // console.log("dentro de RES");
             return res.json();
         });
     };
     UserService.prototype.searchAll = function (user, page, items) {
         var body = "id=" + user.id;
+        body += "&name=" + user.name;
+        body += "&lastName=" + user.lastName;
+        body += "&admin=" + user.admin;
+        body += "&active=" + user.active;
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
             'Authorization': "Bearer " + localStorage['Bearer'],
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -7772,6 +8985,25 @@ var UserService = /** @class */ (function () {
             return res.json();
         });
     };
+    /* Comprueba si existe el usuario */
+    UserService.prototype.isUser = function (idUser) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Authorization': "Bearer " + localStorage['Bearer']
+        });
+        return this.http.get(this.apiURL + "admin/userExist/" + idUser, { headers: headers })
+            .map(function (res) {
+            return res.json();
+        });
+    };
+    UserService.prototype.logInGrafana = function () {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Access-Control-Allow-Origin': '*'
+        });
+        var body = "id=user1&password=gardioters";
+        return this.http.post("https://gardiot.ovh/grafana/login", body, { headers: headers });
+    };
+    ;
     UserService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]])
