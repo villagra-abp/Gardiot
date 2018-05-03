@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-statistics',
@@ -22,7 +23,7 @@ export class StatisticsComponent implements OnInit {
     {value: '1051200', viewValue: 'Últimos dos años'},
   ];
 
-  constructor( public dialog:MatDialog ) {
+  constructor( public dialog:MatDialog, public _userService:UserService  ) {
     // this.datos = [15,60,120,1440,10080,525600,1051200];
     // this.datos = [
     //   {value: '15', viewValue: 'Últimos 15 minutos'},
@@ -40,7 +41,14 @@ export class StatisticsComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.autoLogInGrafana();
+  }
 
+  autoLogInGrafana(){
+   this._userService.logInGrafana()
+     .subscribe(data => {
+       console.log(data);
+      });
   }
 
   // openDialog(){

@@ -45,6 +45,8 @@ function animLoop(){
 
 
 function drag(e) {
+  console.log('draggin');
+  console.log(e.target);
   e.dataTransfer.setData("text", e.target.id);
 }
 
@@ -54,6 +56,7 @@ function allowDrop(e) {
 }
 
 function drop(e) {
+  console.log('dropping');
     e.preventDefault();
     e.stopPropagation();
     let plant = e.dataTransfer.getData("text");

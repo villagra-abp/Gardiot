@@ -86,6 +86,10 @@ export class ListproductComponent implements OnInit {
           for (let key$ in data) {
             this.products.push(data[key$]);
           }
+        }else{
+          this.products = [];
+          this.numeroItems = 0;
+          this.paginaActual = 1;
         }
       },
       error => {

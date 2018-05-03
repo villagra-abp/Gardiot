@@ -303,6 +303,12 @@ export class GardenComponent {
         this.statusDia3 = this.prevDia3[0].weather[0].main;
         this.statusDia4 = this.prevDia4[0].weather[0].main;
         this.statusDia5 = this.prevDia5[0].weather[0].main;
+
+        console.log(this.statusHoy,
+        this.statusMan,
+        this.statusDia3,
+        this.statusDia4,
+        this.statusDia5);
         
         this.fotoHoy = this.prevHoy[0].weather[0].icon;
         this.fotoMan = this.prevMan[4].weather[0].icon;
@@ -471,9 +477,9 @@ export class GardenComponent {
 
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
-    let pos = motor.getPosCamaraActiva();
+    //let pos = motor.getPosCamaraActiva();
     //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
-    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    //motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
 
   }
 
@@ -492,8 +498,8 @@ export class GardenComponent {
 
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
-    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
-    motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
+    //motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    //motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
     }
 
@@ -532,10 +538,8 @@ export class GardenComponent {
     }
 
     isDragging(){
-      return !window.dragging;
+      return false;
     }
-
-
 
 
 }
