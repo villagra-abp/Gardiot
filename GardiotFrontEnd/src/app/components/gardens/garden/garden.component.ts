@@ -487,7 +487,7 @@ export class GardenComponent {
   }
 
   inicializar() {
-    new iniciar("detail", this.garden);
+    new iniciar("detail", this.garden, this.sunrise, this.sunset);
     let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
     let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
     let canvas = document.querySelector('canvas');

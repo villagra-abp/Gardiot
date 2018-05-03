@@ -36,7 +36,6 @@ function animLoop(){
           cont=19;
           
         }
-
         
 
         motor.draw();

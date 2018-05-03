@@ -80,6 +80,8 @@ export class DetailComponent implements OnInit {
   private task = new Task();
   private refresh: Subject<any> = new Subject();
   private events: CalendarEvent[] = [];
+  private sunrise;
+  private sunset;
 
   constructor(
     private _detailService: UserService,
@@ -121,6 +123,26 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  getTiempo() {
+    this._gardenService.tiempo(this.garden)
+      .subscribe(data => {
+        var sunrise = new Date();
+        var sunset = new Date();
+        sunrise.setTime(data.sys.sunrise * 1000);
+        this.sunrise = sunrise;
+
+        sunset.setTime(data.sys.sunset * 1000);
+        this.sunset = sunset;
+
+      },
+      error => {
+        console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
+        this._route.navigate(['/login']);
+      });
+  }
+
   mostrar2() {
     this._gardenService.details()
       .subscribe(data => {
@@ -136,7 +158,10 @@ export class DetailComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          new iniciar("home", this.garden);
+          if (typeof this.garden.city !== undefined && this.garden.city != null) {
+            this.getTiempo();
+          }
+          new iniciar("home", this.garden, this.sunrise, this.sunset);
         } else {
           // this._route.navigate(['/newgarden']);
         }
