@@ -113,6 +113,7 @@ motor.moverMalla("around", 0, -0.11, 0);
 
   window.dataPlants = {
     LECHUGA: {
+      textura: 'lechuga.jpg',
       escalado: 2.5,
       rotX: 0,
       rotY: 0,
@@ -120,6 +121,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0
     },
     CALABAZA: {
+      textura: 'calabaza.jpg',
       escalado: 0.3,
       rotX: -90,
       rotY: 0,
@@ -127,6 +129,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0.1
     },
     TOMATE: {
+      textura: 'tomatera.png',
       escalado: 0.006,
       rotX: 0,
       rotY: 0,
@@ -141,6 +144,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0.1
     },*/
     PEREJIL: {
+      textura: 'peregil.jpg',
       escalado: 0.004,
       rotX: -90,
       rotY: 0,
@@ -148,6 +152,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0.1
     },
     ROSA: {
+      textura: 'rosa.jpg',
       escalado: 0.01,
       rotX: -90,
       rotY: 10,
@@ -155,13 +160,15 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0.1
     },
     MARGARITA: {
+      textura: 'margarita.jpg',
       escalado: 0.06,
       rotX: -90,
       rotY: 0,
       rotZ: 0,
       posY: 0.5
     },
-    CICA: {
+    CYCA: {
+      textura: 'cyca2.jpg',
       escalado: 0.1,
       rotX: -90,
       rotY: 0,
@@ -169,6 +176,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       posY: 0.2
     },
     CIPRES: {
+      textura: 'arbol.jpg',
       escalado: 0.3,
       rotX: -90,
       rotY: 0,

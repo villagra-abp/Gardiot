@@ -116,7 +116,7 @@
     ></div>
   </section>
 
-    <div id="prevision" *ngIf="visible == true">
+    <div id="prevision" *ngIf="visible == true && haveWeather == true">
         <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
         <span class="interactiveButton" style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para abrir</span>
       <div class="tiempo">

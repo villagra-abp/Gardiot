@@ -22,8 +22,8 @@ declare var motor: any;
 @Component({
   selector: 'app-garden',
   templateUrl: './garden.component.html',
-  styleUrls: ['./garden.component.css',
-              '../editgarden/editgarden.component.css'
+  styleUrls: ['./garden.component.css'
+              //'../editgarden/editgarden.component.css'
             ]
 })
 export class GardenComponent {
@@ -72,6 +72,7 @@ export class GardenComponent {
   private tercerDia: string = "";
   private visible = false;
   private menuVisible = false;
+  private haveWeather = false;
 
   private sunrise;
   private sunset;
@@ -244,15 +245,20 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        var aux = data.main.temp - 273;
-        this.temperatura = aux;
-        var sunrise = new Date();
-        var sunset = new Date();
-        sunrise.setTime(data.sys.sunrise * 1000);
-        this.sunrise = sunrise;
+        if(data.cod!='404'){
+          this.haveWeather=true;
+          var aux = data.main.temp - 273;
+          this.temperatura = aux;
+          var sunrise = new Date();
+          var sunset = new Date();
+          sunrise.setTime(data.sys.sunrise * 1000);
+          this.sunrise = sunrise;
 
-        sunset.setTime(data.sys.sunset * 1000);
-        this.sunset = sunset;
+          sunset.setTime(data.sys.sunset * 1000);
+          this.sunset = sunset;
+        }
+        console.log(data);
+        
 
       },
       error => {
@@ -266,57 +272,60 @@ export class GardenComponent {
   getPrevision() {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
-        console.log(data);
-        var date = new Date();
-        var today = new Date();
-        var todayDay = today.getDate();
-        var auxToday = [];
-        var auxTomorrow = [];
-        var auxDia3 = [];
-        var auxDia4 = [];
-        var auxDia5 = [];
-        for (var i = 0; i < data.list.length; i++) {
-          date.setTime(data.list[i].dt * 1000);
-          if (date.getDate() == todayDay) {
-            auxToday.push(data.list[i]);
-          }
-          if (date.getDate() == todayDay + 1) {
-            auxTomorrow.push(data.list[i]);
-          }
-          if (date.getDate() == todayDay + 2) {
-            auxDia3.push(data.list[i]);
+        if(data.cod!='404'){
+          this.haveWeather=true;
+          var date = new Date();
+          var today = new Date();
+          var todayDay = today.getDate();
+          var auxToday = [];
+          var auxTomorrow = [];
+          var auxDia3 = [];
+          var auxDia4 = [];
+          var auxDia5 = [];
+          for (var i = 0; i < data.list.length; i++) {
+            date.setTime(data.list[i].dt * 1000);
+            if (date.getDate() == todayDay) {
+              auxToday.push(data.list[i]);
+            }
+            if (date.getDate() == todayDay + 1) {
+              auxTomorrow.push(data.list[i]);
+            }
+            if (date.getDate() == todayDay + 2) {
+              auxDia3.push(data.list[i]);
 
-            this.nombreDia3 = this.diaSemana(date.getDay() - 1);
+              this.nombreDia3 = this.diaSemana(date.getDay() - 1);
+            }
+            if (date.getDate() == todayDay + 3) {
+              auxDia4.push(data.list[i]);
+              this.nombreDia4 = this.diaSemana(date.getDay() - 1);
+            }
+            if (date.getDate() == todayDay + 4) {
+              auxDia5.push(data.list[i]);
+              this.nombreDia5 = this.diaSemana(date.getDay() - 1);
+            }
           }
-          if (date.getDate() == todayDay + 3) {
-            auxDia4.push(data.list[i]);
-            this.nombreDia4 = this.diaSemana(date.getDay() - 1);
-          }
-          if (date.getDate() == todayDay + 4) {
-            auxDia5.push(data.list[i]);
-            this.nombreDia5 = this.diaSemana(date.getDay() - 1);
-          }
+          this.prevHoy = auxToday;
+          this.prevMan = auxTomorrow;
+          this.prevDia3 = auxDia3;
+          this.prevDia4 = auxDia4;
+          this.prevDia5 = auxDia5;
+
+          this.statusHoy = this.prevHoy[0].weather[0].main;
+          this.statusMan = this.prevMan[0].weather[0].main;
+          this.statusDia3 = this.prevDia3[0].weather[0].main;
+          this.statusDia4 = this.prevDia4[0].weather[0].main;
+          this.statusDia5 = this.prevDia5[0].weather[0].main;
+
+          this.fotoHoy = this.prevHoy[0].weather[0].icon;
+          this.fotoMan = this.prevMan[4].weather[0].icon;
+          this.fotoDia3 = this.prevDia3[4].weather[0].icon;
+          this.fotoDia4 = this.prevDia4[4].weather[0].icon;
+          this.fotoDia5 = this.prevDia5[4].weather[0].icon;
+
+
+          this.ordenarTemperatura();
         }
-        this.prevHoy = auxToday;
-        this.prevMan = auxTomorrow;
-        this.prevDia3 = auxDia3;
-        this.prevDia4 = auxDia4;
-        this.prevDia5 = auxDia5;
-
-        this.statusHoy = this.prevHoy[0].weather[0].main;
-        this.statusMan = this.prevMan[0].weather[0].main;
-        this.statusDia3 = this.prevDia3[0].weather[0].main;
-        this.statusDia4 = this.prevDia4[0].weather[0].main;
-        this.statusDia5 = this.prevDia5[0].weather[0].main;
-
-        this.fotoHoy = this.prevHoy[0].weather[0].icon;
-        this.fotoMan = this.prevMan[4].weather[0].icon;
-        this.fotoDia3 = this.prevDia3[4].weather[0].icon;
-        this.fotoDia4 = this.prevDia4[4].weather[0].icon;
-        this.fotoDia5 = this.prevDia5[4].weather[0].icon;
-
-
-        this.ordenarTemperatura();
+        
       },
       error => {
         console.error(error);
