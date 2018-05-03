@@ -93,9 +93,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogHelpGardenComponent } from './components/dialog-gardenhelp/dialog-help-garden.component';
 import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DialogNewgarden1Component } from './components/dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component';
+import { DialogNewgarden2Component } from './components/dialog-newgarden/dialog-newgarden2/dialog-newgarden2.component';
+import { DialogNewgarden3Component } from './components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component';
+import { DialogTaskComponent } from './components/calendar/dialog-task/dialog-task.component';
+import { DialogNewgarden0Component } from './components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
 
 registerLocaleData(localeEs);
 
@@ -148,6 +154,12 @@ registerLocaleData(localeEs);
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
     HelpComponent,
+    DialogNewgarden1Component,
+    DialogNewgarden2Component,
+    DialogNewgarden3Component,
+    DialogHelpGardenComponent,
+    DialogTaskComponent,
+    DialogNewgarden0Component
 
   ],
   imports: [
@@ -183,7 +195,13 @@ registerLocaleData(localeEs);
     DatePipe
   ],
   entryComponents: [
-    DialogDeleteComponent
+    DialogHelpGardenComponent,
+    DialogDeleteComponent,
+    DialogNewgarden0Component,
+    DialogNewgarden1Component,
+    DialogNewgarden2Component,
+    DialogNewgarden3Component,
+    DialogTaskComponent
   ],
   bootstrap: [AppComponent]
 })

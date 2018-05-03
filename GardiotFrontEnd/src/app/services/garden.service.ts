@@ -30,6 +30,17 @@ export class GardenService {
           })
 	  }
 
+		firstgarden(){
+			let headers = new Headers({
+					'Authorization':`Bearer ${localStorage['Bearer']}`
+				});
+
+				return this.http.get(this.apiURL+"firstgardenByUser", { headers } )
+					.map( res =>{
+						return res.json();
+					})
+		}
+
     deleteGarden(garden:Garden){
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
@@ -46,10 +57,10 @@ export class GardenService {
 
       let body = `title=${garden.title}`;
       if(garden.width != undefined){
-        body += `&width=${garden.width}`;
+        body += `&width=${(garden.width*2)+1}`;
       }
       if(garden.length != undefined){
-        body += `&length=${garden.length}`;
+        body += `&length=${(garden.length*2)+1}`;
       }
       if(garden.latitude != undefined){
         body += `&latitude=${garden.latitude}`;
@@ -91,46 +102,60 @@ export class GardenService {
 		}
 
 
-	  modifyGarden(garden:Garden){
-
-       garden.soil="1";
+	  modifyGarden(garden:Garden, width:number, length:number){
+      garden.soil="1";
 	  	let body = `id=${garden.id}`;
 
-      if(garden.title != "undefined"){
+      if(garden.title !== undefined){
 	  	body += `&title=${garden.title}`;
       }
-      if(garden.width != "undefined"){
-	  	body += `&width=${garden.width}`;
+      if(garden.width !== undefined){
+	  	body += `&width=${width}`;
       }
-      if(garden.length != "undefined"){
-	  	body += `&length=${garden.length}`;
+      if(garden.length !== undefined){
+	  	body += `&length=${length}`;
       }
-      if(garden.latitude != "undefined"){
+      if(garden.latitude !== undefined){
 	  	body += `&latitude=${garden.latitude}`;
       }
-      if(garden.longitude != "undefined"){
+      if(garden.longitude !== undefined){
 	  	body += `&longitude=${garden.longitude}`;
       }
-      if(garden.soil != "undefined"){
+      if(garden.soil !== undefined){
 	  	//body += `&soil=${garden.soil}`;
       }
-      if(garden.countryCode != "undefined"){
+      if(garden.countryCode !== undefined){
 	  	body += `&countryCode=${garden.countryCode}`;
       }
-      if(garden.city != "undefined"){
+      if(garden.city !== undefined){
 	  	body += `&city=${garden.city}`;
       }
       let headers = new Headers({
         'Authorization':`Bearer ${localStorage['Bearer']}`,
         'Content-Type':'application/x-www-form-urlencoded'
       });
-      console.log(body);
-      return this.http.put(this.apiURL+"garden", body, { headers })
+      return this.http.put(this.apiURL+"garden/" + garden.id, body, { headers })
           .map( res =>{
             return res.json();
           })
 
 	  }
+
+		modifyGarden2(garden:Garden){
+			let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;
+			body += `&longitude=${garden.longitude}&countryCode=${garden.countryCode}&city=${garden.city}`;
+			let headers = new Headers({
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
+			});
+			return this.http.put(this.apiURL+"garden/" + garden.id, body, { headers })
+					.map( res =>{
+						return res.json();
+					})
+
+		}
+
+
 
 	  tiempo(garden:Garden){
 	  	let headers = new Headers({

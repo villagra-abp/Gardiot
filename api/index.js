@@ -12,8 +12,9 @@ var config = require('./config/main');
 //Express init and load modules
 var app = express();
 app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(helmet());
 if (process.env.NODE_ENV === "production")
 	app.use(morgan('tiny', {

@@ -28,8 +28,13 @@ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent
+  CalendarEventTimesChangedEvent,
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from 'angular-calendar';
+
+import { CustomDateFormatter } from '../calendar/customdate.provider';
+
 
 const colors: any = {
   red: {
@@ -50,10 +55,21 @@ declare var iniciar: any;
 
 @Component({
   selector: 'app-detail',
-  templateUrl: './detail.component.html'
+  templateUrl: './detail.component.html',
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class DetailComponent implements OnInit {
   view: string = 'week';
+  locale: string = 'es';
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+
   viewDate: Date = new Date();
   private user = new User("");
   private gardenRoute = "";
@@ -64,6 +80,8 @@ export class DetailComponent implements OnInit {
   private task = new Task();
   private refresh: Subject<any> = new Subject();
   private events: CalendarEvent[] = [];
+  private sunrise;
+  private sunset;
 
   constructor(
     private _detailService: UserService,
@@ -74,6 +92,19 @@ export class DetailComponent implements OnInit {
     private datePipe: DatePipe,
 
   ) { }
+//------ comprobamos si es su primera vez en la app------//
+  checkGarden() {
+    this._gardenService.firstgarden().subscribe(data => {
+      console.log(data.Mensaje);
+        if (data.Mensaje == "Existe") {
+        }else{
+          this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
+        }
+      },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+      });
+  }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
   mostrar() {
@@ -83,6 +114,26 @@ export class DetailComponent implements OnInit {
         this.user.birthDate = data.birthDate;
         this.user.photo = data.photo;
         this.user.name = data.name;
+      },
+      error => {
+        console.error(error);
+        localStorage.clear();
+        sessionStorage.clear();
+        this._route.navigate(['/login']);
+      });
+  }
+
+  getTiempo() {
+    this._gardenService.tiempo(this.garden)
+      .subscribe(data => {
+        var sunrise = new Date();
+        var sunset = new Date();
+        sunrise.setTime(data.sys.sunrise * 1000);
+        this.sunrise = sunrise;
+
+        sunset.setTime(data.sys.sunset * 1000);
+        this.sunset = sunset;
+
       },
       error => {
         console.error(error);
@@ -107,39 +158,25 @@ export class DetailComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          new iniciar("detail", this.garden);
+          if (typeof this.garden.city !== undefined && this.garden.city != null) {
+            this.getTiempo();
+          }
+          new iniciar("home", this.garden, this.sunrise, this.sunset);
         } else {
-          this._route.navigate(['/newgarden']);
+          // this._route.navigate(['/newgarden']);
         }
 
       },
       error => {
-        console.error(JSON.parse(error._body).Mensaje);
         if (JSON.parse(error._body).Mensaje == 'No existe') {
-          this._route.navigate(['/newgarden']);
+          // this._route.navigate(['/newgarden']);
         } else {
           this._route.navigate(['/detail']);
         }
       });
   }
 
-  inicializar() {
-    // new iniciar("detail", this.garden);
-  }
 
-  checkGarden() {
-    this._gardenService.details()
-      .subscribe(data => {
-        if (data != null) {
-          this.gardenRoute = '/garden';
-        } else {
-          this.gardenRoute = '/newgarden';
-        }
-      },
-      error => {
-        console.error(JSON.parse(error._body).Mensaje);
-      });
-  }
 
   cargarfeeds() {
     this._feedService.showfeeds()
@@ -201,7 +238,6 @@ export class DetailComponent implements OnInit {
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
-    this.inicializar();
     this.mostrartask();
     this.cargarfeeds();
 

@@ -200,9 +200,9 @@ export class EditGardenComponent implements OnInit {
   //Envia los nuevos datos del jardin a  a GardenService para guardarlos
   edit() {
 
-    this._gardenService.modifyGarden(this.garden)
+    this._gardenService.modifyGarden(this.garden, this.garden.width, this.garden.length)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("Datos modificados", "success", "garden");
+        this._appComponent.mensajeEmergente("Datos modificados", "success", "");
       },
       error => {
         let v = JSON.parse(error._body);

@@ -1,0 +1,39 @@
+<div>
+  <section>
+    <h4>¡Danos tu ubicación!</h4>
+    <p>Si nos das tu ubicacíon podremos hacerte recomendaciones e informarte de la meteorología del lugar</p>
+    <form (ngSubmit)="newGarden()" #forma="ngForm" class="needs-validation" novalidate>
+      <!-- <div class="form-col">
+        <div class=" " ng-init="listarPaises()">
+          <label for="countries">País</label>
+          <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+          </select2>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="countries">Código postal</label>
+          <input class="" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
+        </div>
+      </div> -->
+
+      <div class="form-group col-md-8">
+        <label for="pais">País</label>
+        <select2 id="pais" class="form-control" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+        </select2>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="countries">C.P.</label>
+        <input type="text" class="form-control" id="countries" (valueChanged)="this.saveCity($event)">
+      </div>
+    </form>
+
+    <div>
+      <p>Ciudad</p>
+      <span id="ciudad"></span>
+    </div>
+
+    <mat-dialog-actions>
+      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Siguiente</button>
+      <button mat-raise-button (click)="onCloseAtras()" type="button" class="btn btn-success" href="#">Atrás</button>
+    </mat-dialog-actions>
+  </section>
+</div>

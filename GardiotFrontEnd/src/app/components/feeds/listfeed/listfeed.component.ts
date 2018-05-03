@@ -38,7 +38,6 @@ export class ListfeedComponent implements OnInit {
         });
     } else {
       //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
-      console.log("assss");
     }
   }
   ActualizarPagina() {
@@ -85,6 +84,10 @@ export class ListfeedComponent implements OnInit {
           for (let key$ in data) {
             this.feeds.push(data[key$]);
           }
+        }else{
+          this.feeds = [];
+          this.numeroItems = 0;
+          this.paginaActual = 1;
         }
       },
       error => {

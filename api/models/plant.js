@@ -14,11 +14,22 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
       orderByParam = 'commonName ' + orderSentence;
     else if (orderBy.toUpperCase() === 'FAMILY')
       orderByParam = 'Family.id ' + orderSentence + ', commonName';
-    connection.query('SELECT Plant.id, family, commonName, photo, name FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
+    connection.query('SELECT Plant.id, family, commonName, photo, name, _3dmodel FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
       if(error)
         callback(error, null);
       else
         callback(null, rows);
+    });
+  }
+}
+
+plant.getPlantsSowing = function(callback) {
+  if (connection) {
+    connection.query('SELECT id FROM Plant WHERE DAYOFYEAR(initDatePlant) <= DAYOFYEAR(NOW())  AND DAYOFYEAR(finDatePlant)>= DAYOFYEAR(NOW())', function (error, rows) {
+      if (error)
+        callback(error, null);
+      else
+        callback (null, rows);
     });
   }
 }
@@ -116,6 +127,8 @@ plant.deletePlant = function(id, callback) {
 		});
   }
 }
+
+
 
 
 module.exports = plant;

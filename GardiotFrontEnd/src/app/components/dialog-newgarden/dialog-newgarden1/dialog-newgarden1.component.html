@@ -1,0 +1,28 @@
+<div>
+  <section>
+    <h4>¡Bienvenido a Gardiot!</h4>
+    <p>Vamos a crear tu jardín</p>
+    <form (ngSubmit)="newGarden()" #forma="ngForm" class="needs-validation" novalidate>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="title">Nombre</label>
+          <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="length">Largo {{garden.length===undefined ? 4 : garden.length}}</label>
+          <input class="form-control" type="range" [(ngModel)]="garden.length" min="2" max="10" step="1" name="length" id="length_garden" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="width">Ancho {{garden.width===undefined ? 4 : garden.width}}</label>
+          <input class="form-control" type="range" [(ngModel)]="garden.width" min="2" max="10" step="1" name="width" id="width_garden" required>
+        </div>
+      </div>
+    </form>
+    <mat-dialog-actions>
+      <button mat-raise-button  (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Siguiente</button>
+    </mat-dialog-actions>
+  </section>
+</div>

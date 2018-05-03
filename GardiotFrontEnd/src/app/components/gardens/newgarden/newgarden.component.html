@@ -1,83 +1,80 @@
-<div class="container main-container">
-  <h1>Crear mi jardin</h1>
 
-  <section class="container">
-    <canvas style="border:1px solid #000000" id="myCanvas" width="480" height="360"></canvas>
+    
+<div class="canvasEvolver" onmousemove="mouse_move(event);" onmouseup="mouse_up(event);">
+
+    <section class="litButtons">
+    <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;"
+          onclick="motor.toggleVista(event)"
+          (click)="this.toggleState()"></div>
+    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;"
+          onclick="document.getElementById('formulario').classList.toggle('infoOcult')"
+    >
+  </div>
+
+
+
+    <div class="toggleDeko litButton orange" id="plus" style="background-position: 4px 4px;"
+          onclick="plusZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="sub" style="background-position: 4px 164px;"
+      onclick="subZoom()"
+    ></div>
+    <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;"
+      (click)="this.openDialog(1, 2)"
+    ></div>
+    <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;"
+        onmouseup="deletePlant()"
+        [hidden]="isDragging()"
+    ></div>
   </section>
 
-  <section class="container">
-    <div class="row animated fadeIn fast">
-      <div class="col-md-12">
-        <form (ngSubmit)="newGarden()" #forma="ngForm" novalidate="">
-          <div class="form-group  col-md-6">
-            <label for="title">Título: </label>
-            <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
-          </div>
-          <div class="form-group col-md-6">
-              <label for="length">Largo: {{garden.length===undefined ? 19 : garden.length}}</label>
-              <input class="form-control"
-                      type="range"
-                      [(ngModel)]="garden.length"
-                      min="7"
-                      max="31"
-                      step="2"
-                      name="length"
-                      id="length_garden"
-                      required>
+  <nav class="navbar navbar-default nav superior" role="navigation">
+    <!-- El logotipo y el icono que despliega el menú se agrupan
+         para mostrarlos mejor en los dispositivos móviles -->
+    <div class="navbar-header">
+      <button type="button" class="btn btn-success" data-toggle="collapse"
+              data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Desplegar navegación</span>
+        <i class="material-icons">spa</i>
+      </button>
+    </div>
 
-              <label for="width">Ancho: {{garden.width===undefined ? 19 : garden.width}}</label>
-              <input class="form-control"
-                      type="range"
-                      [(ngModel)]="garden.width"
-                      min="7"
-                      max="31"
-                      step="2"
-                      name="width"
-                      id="width_garden"
-                      required>
+    <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+         otro elemento que se pueda ocultar al minimizar la barra -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}"  draggable="true" ondragstart="drag(event);">
+            <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3dmodel}}" alt="no sale la imagen"  width="50px" height="50px">
+        </li>
+        <li>  <app-pagination [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination></li>
+      </ul>
 
-          </div>
-          <div class="form-group col-md-6" ng-init="listarPaises()">
-            <label for="countries">País:</label>
+    </div>
+  </nav>
 
-            <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-            </select2>
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="2100" height="1200"></canvas>
+</div>
+    
 
-          </div>
 
-          <div class="form-group col-md-6">
-            <label for="countries">Introduce tu código postal:</label>
-            <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
-          </div>
 
-          <div class="form-group col-md-6">
-            <label for="countries">Ciudad:</label>
-            <span id="ciudad"></span>
-          </div>
-
-          <!-- <div class="form-group" ng-init="listarPaises()">
-          <label for="countries">País:</label>
-
-            <select2 [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.changeCities($event)">
-            </select2>
-
-        </div>-->
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="name_plant">Plantas</label>
-              <select class="form-control selectpicker" multiple id="name_plant" [(ngModel)]="plant" name="plant">
+<!-- <div class="container main-container">
+  <ul class="smooth-scroll list-unstyled">
+    <li *ngFor="let plant of plants" value="{{plant.id}}">
+        <img src="{{plant.photo}}" alt="no sale la imagen"  width="80px" height="80px">
+    </li>
+  </ul>
+  </div> -->
+<!-- <div class="container main-container">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name_plant">Plantas</label>
+      <select class="form-control selectpicker" multiple id="name_plant" [(ngModel)]="plant" name="plant">
                <option *ngFor="let plant of plants" value="{{plant.id}}">{{plant.commonName}}</option>
              </select>
-            </div>
-          </div>
-
-
-
-          <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-          <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
-
-        </form>
-      </div>
     </div>
-  </section>
-</div>
+  </div>
+  <button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+  <button [routerLink]="['/detail']" class="btn btn-outline-danger">Cancelar</button>
+
+</div> -->

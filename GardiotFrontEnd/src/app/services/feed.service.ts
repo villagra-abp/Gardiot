@@ -46,7 +46,7 @@ export class FeedService {
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
 			});
-			console.log(feed.id);
+			
 			return this.http.put(this.apiURL+"admin/feed/"+ feed.id , body, { headers } )
 					.map( res=>{
 						return res.json();
@@ -54,6 +54,9 @@ export class FeedService {
 		}
 		searchAll(feed:Feed,page:number, items:number){
 			let body = `name=${feed.name}`;
+			body += `&text=${feed.text}`;
+			body += `&dateInit=${feed.dateInit}`;
+			body += `&dateFinal=${feed.dateFinal}`;
 			let headers = new Headers({
 				'Authorization':`Bearer ${localStorage['Bearer']}`,
 				'Content-Type':'application/x-www-form-urlencoded'
@@ -108,10 +111,11 @@ export class FeedService {
 
 		closefeed(id:number){
 			let headers = new Headers({
-					'Authorization':`Bearer ${localStorage['Bearer']}`
+				'Authorization':`Bearer ${localStorage['Bearer']}`,
+				'Content-Type':'application/x-www-form-urlencoded'
 				});
 
-			return this.http.patch(this.apiURL+"feed/"+id ,{ headers } )
+			return this.http.put(this.apiURL+"feed/"+id , '',{ headers } )
 				.map( res =>{
 					return res.json();
 				})

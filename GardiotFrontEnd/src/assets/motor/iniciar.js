@@ -1,4 +1,4 @@
-function iniciar(accion, jardinBBDD){
+function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 07:03:23'), sunset = new Date('December 25, 1995 20:55:44')){
   console.log(jardinBBDD);
   window.canvas=null;
 
@@ -19,6 +19,18 @@ function iniciar(accion, jardinBBDD){
 
   window.hovered=-1;
   window.colorCell=[];
+
+  window.rotationCamX=-40;
+  window.rotationCamY=-45;
+  window.step=[0, 0, 0];
+  window.transition=false;
+  window.escala=1;
+  window.cont=19;
+  window.camHeight=4;
+
+
+  window.mode=0;//0 modo visualización
+                //1 modo edición
 
   //inicialización de matrices
   window.matrixStack=[];//pila de matrices
@@ -60,15 +72,16 @@ function iniciar(accion, jardinBBDD){
   window.motor = new TMotor(gestor);
 
 
-  window.luz = motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
-  window.camara = motor.crearNodoCamara("camara1", true, undefined);
+  motor.crearNodoCamara("dynamicCamera", true, undefined);
 
   //camara de edición
-  window.camaraEdit=motor.crearNodoCamara("camara2", true, undefined);
+  //motor.crearNodoCamara("dynamicCamera", true, undefined);
 
   //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion");
@@ -86,6 +99,7 @@ function iniciar(accion, jardinBBDD){
 let adjustX=0, adjustY=0;
 let width=Math.floor(jardin.width/2), length=Math.floor(jardin.length/2);
 
+
 motor.crearNodoMalla("around", "around", undefined, undefined);
 motor.escalarMallaXYZ("around", 500, 0.1, 500);
 motor.moverMalla("around", 0, -0.11, 0);
@@ -98,93 +112,115 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
+  window.dataPlants = {
+    LECHUGA: {
+      textura: 'lechuga.jpg',
+      escalado: 2.5,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0
+    },
+    CALABAZA: {
+      textura: 'calabaza.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 90,
+      posY: 0.1
+    },
+    TOMATE: {
+      textura: 'tomatera.png',
+      escalado: 0.006,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0
+    },
+    MACETA: {
+      escalado: 0.05,
+      rotX: 0,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.1
+    },
+    PEREJIL: {
+      textura: 'peregil.jpg',
+      escalado: 0.004,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.1
+    },
+    ROSA: {
+      textura: 'rosa.jpg',
+      escalado: 0.01,
+      rotX: -90,
+      rotY: 10,
+      rotZ: 0,
+      posY: 0.1
+    },
+    MARGARITA: {
+      textura: 'margarita.jpg',
+      escalado: 0.06,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.5
+    },
+    CYCA: {
+      textura: 'cyca2.jpg',
+      escalado: 0.1,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.2
+    },
+    CIPRES: {
+      textura: 'arbol.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.2
+    }
+  };
+
   // plantas dragables
   window.plantsMap=new Map();
   for(let i=0; i<jardin.plants.length; i++){
-    plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
-    motor.crearNodoMalla(jardin.plants[i].id, "lechuga", "lechuga.jpg", undefined);
-    motor.escalarMalla(jardin.plants[i].id, 2.5);
-    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, 0, jardin.plants[i].y);
+
+    let resource = jardin.plants[i].model;
+    if (typeof resource !== 'undefined') {
+      plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
+      resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
+      resource = resource.toUpperCase();
+      let texture = jardin.plants[i].model+'.jpg';
+      if (jardin.plants[i].model == 'url_3DModel')
+        texture = "lechuga.jpg";
+      console.log(resource.toLowerCase());
+      motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
+      motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
+      if (dataPlants[resource].rotX != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
+      if (dataPlants[resource].rotY != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
+      if (dataPlants[resource].rotZ != 0)
+        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
+      motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
+    }
   }
 
-  /* OBJETOS DE PRUEBA */
-  // LECHUGA
-  // for(let i=-2; i<0; i++){
-  //   for(let j=-2; j<0; j++){
-  //     motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-  //     motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
-  //     //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-  //     // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-  //     motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
-  //   }
-  // }
-//   // CALABAZA
-//   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
-//   motor.escalarMalla("calabaza", 0.3);
-//   motor.rotarMalla("calabaza", -90, "x");
-//   motor.rotarMalla("calabaza", 90, "z");
-//   motor.moverMalla("calabaza", 0, 0.1, 0);
-
-//   // TOMATERA
-//   for(let i=1; i<3; i++){
-//     for(let j=1; j<3; j++){
-//       motor.crearNodoMalla("tomatera"+i+'-'+j, "tomatera", "tomatera.png", undefined);
-//       motor.escalarMalla("tomatera"+i+'-'+j, 0.006);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("tomatera"+i+'-'+j, 2*i, 0, 2*j);
-//     }
-//   }
-//   // MACETAS
-//   for(let i=1; i<3; i++){
-//     for(let j=1; j<3; j++){
-//       motor.crearNodoMalla("maceta"+i+'-'+j, "maceta", "maceta.jpg", undefined);
-//       motor.escalarMalla("maceta"+i+'-'+j, 0.05);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("maceta"+i+'-'+j, 2*i, 0.1, 2*j);
-//     }
-//   }
-//   // PEREGIL
-//   motor.crearNodoMalla("peregil", "peregil", "peregil.jpg", undefined);
-//   motor.escalarMalla("peregil", 0.004);
-//   motor.rotarMalla("peregil", -90, "x");
-//   motor.moverMalla("peregil", 3, 0.1, -1);
-
-//   // ROSAS
-//   motor.crearNodoMalla("rosa", "rosa", "rosa.jpg", undefined);
-//   motor.escalarMalla("rosa", 0.01);
-//   motor.rotarMalla("rosa", -90, "x");
-//   motor.rotarMalla("rosa", 10, "y");
-//   motor.moverMalla("rosa", 1, 0.1, 3);
-
-//   // MARGARITAS
-//   motor.crearNodoMalla("margarita", "margarita", "margarita.jpg", undefined);
-//   motor.escalarMalla("margarita", 0.06);
-//   motor.rotarMalla("margarita", -90, "x");
-//   motor.moverMalla("margarita", 0, 0.5, 3);
-
-
-//   // CICA
-//   motor.crearNodoMalla("cyca2", "cyca2", "cyca2.jpg", undefined);
-//   motor.escalarMalla("cyca2", 0.1);
-//   motor.rotarMalla("cyca2", -90, "x");
-//   motor.moverMalla("cyca2", -1, 0.2, 6);
-
-//   // Arbol
-//   motor.crearNodoMalla("arbol", "arbol", "arbol.jpg", undefined);
-//   motor.escalarMalla("arbol", 0.3);
-//   motor.rotarMalla("arbol", -90, "x");
-//   motor.moverMalla("arbol", 0.5, 0.2, 3);
-
-  //ANIMACION
-  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
-  motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
-  motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
+  if(accion!='home'){
+    //ANIMACION
+  /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
+    motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
+    motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
 
     motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
     motor.moverMalla("alaA", 0.2, 0.2, 0.2);
-    motor.moverMalla("alaB", 0.2, 0.2, 0.2);
+    motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
+  }
 
   // bandera
  // motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
@@ -199,6 +235,7 @@ motor.moverMalla("around", 0, -0.11, 0);
 //luces
 motor.moverLuz("luz1", 10.0, 10.0, 0.0);
 motor.moverLuz("sol", 0.0, 500.0, 0.0);
+motor.moverLuz("luna", 0.0, -500.0, 0.0);
 //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 motor.activarLuz("luz1");
 motor.activarLuz("sol");
@@ -215,33 +252,165 @@ motor.activarLuz("sol");
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
 
+  /* POSICION DEL SOL */
+  if (typeof sunrise !== 'undefined' && typeof sunset !== 'undefined') {
+    sunrise = new Date(2018, 11, 11, 8, 42, 30);
+    sunset = new Date(2018, 11, 11, 20, 14, 42);
+  }
+    
+    let today = new Date();
+    let minuteOfDay = today.getHours() * 60 + today.getMinutes();
+    window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
+    window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
+    window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
+    let minutesTotalDay = 24 * 60;
+    window.relationSunDay = minutesOfSun/minutesTotalDay;
+    let relationNowDay = minuteOfDay * relationSunDay;
+    let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
+    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    window.lastTime = today;
+    
+    /* COLOR DEL SOL */
+    window.rgbInit = {red: 182, green: 126, blue: 91};
+    window.rgbNoon = {red: 192, green: 191, blue: 173};
+    window.rgbMoon = {red: 192, green: 198, blue: 255};
+    window.rgbDiffSun = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue}; 
+    window.rgbDiffMoon = {red: rgbMoon.red - rgbNoon.red, green: rgbMoon.green - rgbNoon.green, blue: rgbMoon.blue - rgbNoon.blue}; 
+
+    iluminarAstro(minuteOfDay);
+    rotarSol();
+  
+  
+
+  
+
+  //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+  //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
+
+  //motor.moverCamaraA("dynamicCamera", 0,10, 0);
 
 
+  //motor.rotarCamaraOrbital("dynamicCamera", -90, "x");
 
-  //motor.rotarCamaraOrbital("camara1", 45, "y");
-  //motor.rotarCamaraOrbital("camara1", -45, "x");
-
-  //motor.moverCamaraA("camara2", 0,10, 0);
-  motor.rotarCamara("camara1", -90, "x");
-  motor.moverCamaraA("camara1", 0, 10, 0);
-  motor.rotarCamaraOrbital("camara1", 45, "y");
-  motor.rotarCamaraOrbital("camara1", 25, "x");
-
-
-  motor.rotarCamara("camara2", -90, "x");
-  motor.moverCamara("camara2", 0, 20, 0);
-  //motor.rotarCamaraOrbital("camara2", -90, "x");
-
-
+  motor.activarCamara("dynamicCamera");
 
   //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if(accion=='detail'){
-    motor.activarCamara("camara1");
+    window.mode=0;
+    //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
+    motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight*2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
+    motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+
+    //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
   else if(accion=='edit'){
-    motor.activarCamara("camara2");
-    //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    window.mode=1;
+    motor.rotarCamara("dynamicCamera", -90, "x");
+    motor.moverCamara("dynamicCamera", 0, camHeight/2, 0);
+
     motor.startDrawing('shaderP.vs', 'shaderP.fs');
   }
+  else if(accion=='home'){
+    window.mode=0;
+    //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
+    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
+    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+
+    //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
+    //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
+
+    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+  }
+
+
+  //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+
+}
+
+
+
+async function rotarSol () {
+  await sleep(300000); //5 min
+  let now = new Date();
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  let relationNowDay = minutesDiff * window.relationSunDay;
+  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  motor.rotarLuzOrbital('luna', gradeSunPosition);
+  window.lastTime = now;
+  iluminarAstro(now.getHours() * 60 + now.getMinutes());
+  rotarSol();
+}
+
+async function demoSol () {
+  await sleep(500); 
+  let now = new Date(window.lastTime);
+  now.setHours(now.getHours() + 1);
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  motor.rotarLuzOrbital('luna', gradeSunPosition);
+  window.lastTime = now;
+  iluminarAstro(now.getHours() * 60 + now.getMinutes());
+  demoSol();
+}
+
+async function iluminarAstro (minuteOfDay) {
+  if (minuteOfDay >= window.minuteOfSunrise && minuteOfDay <= window.minuteOfSunset) {
+    motor.activarLuz("sol");
+    motor.desactivarLuz("luna");
+    iluminarSol(minuteOfDay);
+  }
+  else {
+    motor.activarLuz("luna");
+    motor.desactivarLuz("sol");
+    iluminarLuna(minuteOfDay);
+  }
+}
+
+async function iluminarSol (minutes) {
+  let rgb = {};
+  let minutesSinceSunrise = minutes - window.minuteOfSunrise;
+  if (minutesSinceSunrise < window.minutesOfSun/2) {
+    let percent = minutesSinceSunrise  / (window.minutesOfSun/2);
+    let rgbMoment = {red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent};
+    rgb = {red: rgbMoment.red + rgbInit.red, green: rgbMoment.green + rgbInit.green, blue: rgbMoment.blue + rgbInit.blue}
+  }
+  else {
+    let percent = (minutesSinceSunrise - (window.minutesOfSun/2)) / (window.minutesOfSun/2);
+    let rgbMoment = {red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent};
+    rgb = {red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue}
+  }
+  sol.entity.setIntensidad(rgb.red/255, rgb.green/255, rgb.blue/255);
+}
+
+async function iluminarLuna (minutes) {
+  let rgb = {};
+  let minutesOfNight = (24 * 60) - window.minutesOfSun;
+  let minutesSinceSunset = '';
+  if (minutes > window.minuteOfSunset) 
+    minutesSinceSunset = minutes - window.minuteOfSunset;
+  else 
+    minutesSinceSunset = minutes + ((24 * 60) - window.minuteOfSunset);
+  
+  if (minutesSinceSunset < minutesOfNight/2) {
+    let percent = minutesSinceSunset / (minutesOfNight/2); 
+    rgb = {red: (window.rgbDiffMoon.red * percent) + window.rgbNoon.red, green: (window.rgbDiffMoon.green * percent) + window.rgbNoon.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbNoon.blue};
+  }
+  else {
+    let percent = (minutesSinceSunset - (minutesOfNight/2)) / (minutesOfNight/2);
+    rgb = {red: window.rgbMoon.red - (window.rgbDiffMoon.red * percent), green: window.rgbMoon.green - (window.rgbDiffMoon.green * percent), blue: window.rgbMoon.blue - (window.rgbDiffMoon.blue * percent)};
+  }
+  luna.entity.setIntensidad(rgb.red/255, rgb.green/255, rgb.blue/255);
+}
+
+function sleep (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
