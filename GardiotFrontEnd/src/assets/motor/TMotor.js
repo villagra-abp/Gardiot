@@ -675,7 +675,6 @@ class TMotor{
 		if(pos>=0){
       let mat=this.luzRegistro[pos].dad.dad.dad.entity.matrix;
 			mat4.fromRotation(mat, grados * Math.PI / 180, [0.0, 0.0, 1.0]);
-      //this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
 
 			return true;
 		}

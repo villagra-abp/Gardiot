@@ -98,7 +98,7 @@ function insertMyPlant(garden, plant, soil, x, y, model){
             window.jardin.plants.push(value);
             let datos=dataPlants[model.toUpperCase()];
 
-            motor.crearNodoMalla(respuesta.myPlant, model, "lechuga.jpg", undefined);
+            motor.crearNodoMalla(respuesta.myPlant, model, datos.textura, undefined);
             motor.moverMallaA(respuesta.myPlant, x, datos.posY, y);
             motor.rotarMalla(respuesta.myPlant, datos.rotX, 'x');
             motor.rotarMalla(respuesta.myPlant, datos.rotY, 'y');
