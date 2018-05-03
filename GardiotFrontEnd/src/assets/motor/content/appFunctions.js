@@ -47,7 +47,7 @@ function animLoop(){
 
 function drag(e) {
   console.log('draggin');
-  console.log(e.target);
+  console.log(e.target.id);
   e.dataTransfer.setData("text", e.target.id);
 }
 
@@ -60,7 +60,7 @@ function drop(e) {
   console.log('dropping');
     e.preventDefault();
     e.stopPropagation();
-    let plant = e.dataTransfer.getData("text");
+    let plant = e.dataTransfer.getData("text").split('-');
     let cv = e.target;
     let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
     let coordX = Math.round(point[0]);
@@ -75,7 +75,7 @@ function drop(e) {
           }
         }
         if (!occupied)
-          insertMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
+          insertMyPlant(window.jardin.id, plant[0], window.jardin.soil, coordX, coordY, plant[1]);
     }
 }
 
@@ -300,7 +300,7 @@ function plusZoom(){
 
 
       if(window.mode==0){
-        motor.moverCamara("dynamicCamera",  -p[0], -p[1], -p[2]);
+        motor.escalarCamara("dynamicCamera", 0.9);
       //motor.escalarCamara("dynamicCamera", 0.95);
       }else{
         motor.moverCamara("dynamicCamera",  0, -p[1], 0);
@@ -315,7 +315,7 @@ function subZoom(){
   
   if(pos[1]<camHeight+(camHeight/2)){
     if(window.mode==0){
-      motor.moverCamara("dynamicCamera",  p[0], p[1], p[2]);
+      motor.escalarCamara("dynamicCamera", 1.1);
     }else {
       motor.moverCamara("dynamicCamera", 0, p[1], 0);
     }
@@ -331,31 +331,17 @@ function scrolling(e){
   e.stopPropagation();
   if(window.mode==0){
 
-    /*let a=vec3.fromValues(0.0, 0.0, -1.0);
-    vec3.rotateX(a, a, a, Math.PI*rotationCamX/180);
-    vec3.rotateX(a, a, a, Math.PI*rotationCamX/180);
-    console.log(a);*/
-    /*let p=motor.getPosCamaraActiva();
-    let radX=Math.PI*rotationCamX/180;
-    let radY=Math.PI*rotationCamX/180;
-    vec3.rotateX(p, p, vec3.fromValues(0.0, 0.0, 0.0), radX);
-    vec3.rotateY(p, p, vec3.fromValues(0.0, 0.0, 0.0), radY);
-    vec3.normalize(p, p);*/
     let p=vec3.fromValues(-1.0, 1.0, 1.0);
     let pos=motor.getPosCamaraActiva();
     if(e.deltaY<0 && pos[1]>camHeight/2){
 
+        motor.escalarCamara("dynamicCamera", 0.9);
 
-      //if (pos[0] <= jardin.width*1.0/2 && pos[0] >= jardin.width*(-1.0)/2) {
-      //if((pos[0] <= jardin.width*1.0/2 || ejeX<0) && (pos[0] >= jardin.width*(-1.0)/2 || ejeX>0)){
-        motor.moverCamara("dynamicCamera",  -p[0], -p[1], -p[2]);
-      //motor.escalarCamara("dynamicCamera", 0.95);
     }
-
     else if(e.deltaY>0 && pos[1]<camHeight+(camHeight/2)){
-      motor.moverCamara("dynamicCamera",  p[0], p[1], p[2]);
+      motor.escalarCamara("dynamicCamera", 1.1);
     }
-    //console.log(motor.getPosCamaraActiva());
+
   }
 
   else if(window.mode==1){

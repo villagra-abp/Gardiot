@@ -111,7 +111,7 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
-  var dataPlants = {
+  window.dataPlants = {
     LECHUGA: {
       escalado: 2.5,
       rotX: 0,

@@ -183,18 +183,18 @@ class TMotor{
 
 		if( hermano !== undefined){
 			//console.log("crea un hermano");
-      var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
-      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+	      var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
+	      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
+	      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		}else{
 			//console.log("crea en raiz");
-      var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
-      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
-      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
+	      var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
+	      var orbCamY=new TNodo(nombre+ "_ROY", new TTransf(), escCam);
+	      var orbCamX=new TNodo(nombre+ "_ROX", new TTransf(), orbCamY);
 			var traCam = new TNodo(nombre + "_T",  new TTransf(), orbCamX );
 			var rotCam = new TNodo(nombre + "_R", new TTransf(), traCam);
 

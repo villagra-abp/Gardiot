@@ -209,6 +209,7 @@ export class GardenComponent {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
+          console.log(data.plants);
           
           this.inicializar();
           this.listarPaises();
