@@ -83,7 +83,7 @@
 }
 .today>span{
   color: #3e3e3e;
-  
+
 }
 
 .tarjetaHoy{
@@ -211,4 +211,15 @@ h1, h2{
 }
 .rotButton>img{
   width: 100%;
+}
+
+.superior{
+  position: absolute;
+  top: 100px;
+  left: 0;
+  z-index: 99999;
+}
+
+ul, li{
+  margin-top: 0.4em;
 }

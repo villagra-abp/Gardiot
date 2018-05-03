@@ -161,7 +161,7 @@ motor.moverMalla("around", 0, -0.11, 0);
       rotZ: 0,
       posY: 0.5
     },
-    CICA: {
+    CYCA: {
       escalado: 0.1,
       rotX: -90,
       rotY: 0,
