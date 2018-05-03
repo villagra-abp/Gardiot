@@ -8,6 +8,7 @@ import { GardenService } from "../../../services/garden.service";
 import { Garden } from "../../../classes/garden.class";
 import { MatDialog } from '@angular/material';
 import { DialogNewgarden3Component } from '../dialog-newgarden3/dialog-newgarden3.component';
+import { DialogNewgarden1Component } from '../dialog-newgarden1/dialog-newgarden1.component';
 
 @Component({
   selector: 'app-dialog-newgarden2',
@@ -50,8 +51,19 @@ export class DialogNewgarden2Component implements OnInit {
     this.thisDialogRef.close('Guardado');
   }
 
+  onCloseAtras() {
+    this.openDialogAtras();
+    this.thisDialogRef.close('Guardado');
+  }
+
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden3Component, {
+      width: '800px',
+      data: {}
+    });
+  }
+  openDialogAtras() {
+    let dialogRef = this.dialog.open(DialogNewgarden1Component, {
       width: '800px',
       data: {}
     });

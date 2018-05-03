@@ -40,6 +40,18 @@ export class DialogNewgarden3Component implements OnInit {
     this.thisDialogRef.close('Guardado');
   }
 
+  onCloseAtras() {
+    this.openDialogAtras();
+    this.thisDialogRef.close('Guardado');
+  }
+
+  openDialogAtras() {
+    let dialogRef = this.dialog.open(DialogNewgarden2Component, {
+      width: '800px',
+      data: {}
+    });
+  }
+
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
@@ -48,7 +60,7 @@ export class DialogNewgarden3Component implements OnInit {
           let v = JSON.parse(error._body);
         });
   }
-  
+
   ngOnInit() {
         this.getid();
   }

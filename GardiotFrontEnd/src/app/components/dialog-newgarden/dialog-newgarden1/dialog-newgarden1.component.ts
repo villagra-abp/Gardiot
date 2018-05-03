@@ -23,11 +23,33 @@ export class DialogNewgarden1Component implements OnInit {
     private _route: Router,
     private dialog: MatDialog,
   ) { }
-    // @HostListener('document:keyup', ['$event'])
+
+
+  getid(){
+    this._gardenService.details().subscribe(data => {
+        if (data != null) {
+          this.garden = data;
+              console.log(this.garden);
+        }
+      },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+      });
+  }
+
+  saveGarden() {
+    this._gardenService.modifyGarden2(this.garden)
+      .subscribe(data => {
+      },
+        error => {
+          let v = JSON.parse(error._body);
+        });
+  }
+
 
   onCloseConfirm() {
-    this.openDialog();
     this.saveGarden();
+    this.openDialog();
     this.thisDialogRef.close('Guardado');
 
   }
@@ -39,20 +61,7 @@ export class DialogNewgarden1Component implements OnInit {
     });
   }
 
-
-  saveGarden() {
-    this._gardenService.insertGarden(this.garden)
-      .subscribe(data => {
-      },
-        error => {
-          let v = JSON.parse(error._body);
-        });
-  }
-
-
-
   ngOnInit() {
-    this.garden.width=2;
-    this.garden.length=2;
+    this.getid();
   }
 }

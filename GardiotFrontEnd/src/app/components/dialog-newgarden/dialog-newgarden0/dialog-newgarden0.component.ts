@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
+import { GardenService } from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
 import { MatDialog } from '@angular/material';
 import { DialogNewgarden1Component } from '../dialog-newgarden1/dialog-newgarden1.component';
 
@@ -12,14 +14,14 @@ import { DialogNewgarden1Component } from '../dialog-newgarden1/dialog-newgarden
   styleUrls: ['./dialog-newgarden0.component.css']
 })
 export class DialogNewgarden0Component implements OnInit {
-
-
   private photoURL = "";
+  private garden = new Garden('');
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden0Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _route: Router,
     private dialog: MatDialog,
+    private _gardenService: GardenService,
   ) {
       if(window.location.toString().indexOf("localhost")>=0){
         this.photoURL="/assets";
@@ -30,28 +32,36 @@ export class DialogNewgarden0Component implements OnInit {
 
    }
 
-
   onCloseConfirm() {
+    this.saveGarden();
     this.openDialog();
     this.thisDialogRef.close('Empezar');
+  }
 
-  }  openDialog() {
+  onCloseOmit() {
+    this.saveGarden();
+    this.thisDialogRef.close('Empezar');
+  }
+
+  openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
       width: '800px',
       data: {}
     });
   }
 
-  // saveGarden() {
-  //   this._gardenService.insertGarden(this.garden)
-  //     .subscribe(data => {
-  //     },
-  //       error => {
-  //         let v = JSON.parse(error._body);
-  //       });
-  // }
+  saveGarden() {
+    this._gardenService.insertGarden(this.garden)
+      .subscribe(data => {
+      },
+        error => {
+          let v = JSON.parse(error._body);
+        });
+  }
 
   ngOnInit() {
+      this.garden.width=2;
+      this.garden.length=2;
   }
 
 }
