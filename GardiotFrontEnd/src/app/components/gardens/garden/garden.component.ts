@@ -209,7 +209,7 @@ export class GardenComponent {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
-          
+
           this.inicializar();
           this.listarPaises();
           this.mostrarCiudad();
@@ -336,7 +336,7 @@ export class GardenComponent {
     }
     this.maxMan = Math.max(...auxTemp);
     this.minMan = Math.min(...auxTemp);
-    
+
     this.colorMan = this.colorTemperatura(this.maxMan);
     auxTemp = [];
     auxNum = 0;
@@ -473,7 +473,6 @@ export class GardenComponent {
     let canvas = document.querySelector('canvas');
     canvas.width = canvasEvolver.offsetWidth;
     canvas.height = canvasEvolver.offsetHeight;
-
 
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
