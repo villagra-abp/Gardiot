@@ -1,4 +1,4 @@
-function iniciar(accion, jardinBBDD){
+function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 07:03:23'), sunset = new Date('December 25, 1995 20:55:44')){
   console.log(jardinBBDD);
   window.canvas=null;
 
@@ -73,7 +73,8 @@ function iniciar(accion, jardinBBDD){
 
 
   motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  motor.crearNodoLuz("sol", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -136,13 +137,13 @@ motor.moverMalla("around", 0, -0.11, 0);
       rotZ: 0,
       posY: 0
     },
-    /*MACETA: {
+    MACETA: {
       escalado: 0.05,
       rotX: 0,
       rotY: 0,
       rotZ: 0,
       posY: 0.1
-    },*/
+    },
     PEREJIL: {
       textura: 'peregil.jpg',
       escalado: 0.004,
@@ -210,75 +211,6 @@ motor.moverMalla("around", 0, -0.11, 0);
     }
   }
 
-  /* OBJETOS DE PRUEBA */
-  // LECHUGA
-  // for(let i=-2; i<0; i++){
-  //   for(let j=-2; j<0; j++){
-  //     motor.crearNodoMalla("lechuga2"+i+'-'+j, "lechuga", "lechuga.jpg", undefined);
-  //     motor.escalarMalla("lechuga2"+i+'-'+j, 1.5);
-  //     //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-  //     // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-  //     motor.moverMalla("lechuga2"+i+'-'+j, 2*i, 0, 2*j);
-  //   }
-  // }
-//   // CALABAZA
-//   motor.crearNodoMalla("calabaza", "calabaza", "calabaza.jpg", undefined);
-//   motor.escalarMalla("calabaza", 0.3);
-//   motor.rotarMalla("calabaza", -90, "x");
-//   motor.rotarMalla("calabaza", 90, "z");
-//   motor.moverMalla("calabaza", 0, 0.1, 0);
-
-//   // TOMATERA
-//   for(let i=1; i<3; i++){
-//     for(let j=1; j<3; j++){
-//       motor.crearNodoMalla("tomatera"+i+'-'+j, "tomatera", "tomatera.png", undefined);
-//       motor.escalarMalla("tomatera"+i+'-'+j, 0.006);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("tomatera"+i+'-'+j, 2*i, 0, 2*j);
-//     }
-//   }
-//   // MACETAS
-//   for(let i=1; i<3; i++){
-//     for(let j=1; j<3; j++){
-//       motor.crearNodoMalla("maceta"+i+'-'+j, "maceta", "maceta.jpg", undefined);
-//       motor.escalarMalla("maceta"+i+'-'+j, 0.05);
-//       //motor.rotarMalla("planta"+i+'-'+j, -70, "x");
-//       // motor.moverMalla("lechuga"+i+'-'+j, 0.5*Math.random(), 0, 0.5*Math.random());
-//       motor.moverMalla("maceta"+i+'-'+j, 2*i, 0.1, 2*j);
-//     }
-//   }
-//   // PEREGIL
-//   motor.crearNodoMalla("peregil", "peregil", "peregil.jpg", undefined);
-//   motor.escalarMalla("peregil", 0.004);
-//   motor.rotarMalla("peregil", -90, "x");
-//   motor.moverMalla("peregil", 3, 0.1, -1);
-
-//   // ROSAS
-//   motor.crearNodoMalla("rosa", "rosa", "rosa.jpg", undefined);
-//   motor.escalarMalla("rosa", 0.01);
-//   motor.rotarMalla("rosa", -90, "x");
-//   motor.rotarMalla("rosa", 10, "y");
-//   motor.moverMalla("rosa", 1, 0.1, 3);
-
-//   // MARGARITAS
-//   motor.crearNodoMalla("margarita", "margarita", "margarita.jpg", undefined);
-//   motor.escalarMalla("margarita", 0.06);
-//   motor.rotarMalla("margarita", -90, "x");
-//   motor.moverMalla("margarita", 0, 0.5, 3);
-
-
-//   // CICA
-//   motor.crearNodoMalla("cyca2", "cyca2", "cyca2.jpg", undefined);
-//   motor.escalarMalla("cyca2", 0.1);
-//   motor.rotarMalla("cyca2", -90, "x");
-//   motor.moverMalla("cyca2", -1, 0.2, 6);
-
-//   // Arbol
-//   motor.crearNodoMalla("arbol", "arbol", "arbol.jpg", undefined);
-//   motor.escalarMalla("arbol", 0.3);
-//   motor.rotarMalla("arbol", -90, "x");
-//   motor.moverMalla("arbol", 0.5, 0.2, 3);
   if(accion!='home'){
     //ANIMACION
   /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
@@ -303,6 +235,7 @@ motor.moverMalla("around", 0, -0.11, 0);
 //luces
 motor.moverLuz("luz1", 10.0, 10.0, 0.0);
 motor.moverLuz("sol", 0.0, 500.0, 0.0);
+motor.moverLuz("luna", 0.0, -500.0, 0.0);
 //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
 motor.activarLuz("luz1");
 motor.activarLuz("sol");
@@ -319,8 +252,38 @@ motor.activarLuz("sol");
   motor.escalarMalla("malla3", 6);
   motor.rotarMalla("malla3", 40, "x");
 
+  /* POSICION DEL SOL */
+  if (typeof sunrise !== 'undefined' && typeof sunset !== 'undefined') {
+    sunrise = new Date(2018, 11, 11, 8, 42, 30);
+    sunset = new Date(2018, 11, 11, 20, 14, 42);
+  }
+    
+    let today = new Date();
+    let minuteOfDay = today.getHours() * 60 + today.getMinutes();
+    window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
+    window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
+    window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
+    let minutesTotalDay = 24 * 60;
+    window.relationSunDay = minutesOfSun/minutesTotalDay;
+    let relationNowDay = minuteOfDay * relationSunDay;
+    let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
+    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    window.lastTime = today;
+    
+    /* COLOR DEL SOL */
+    window.rgbInit = {red: 182, green: 126, blue: 91};
+    window.rgbNoon = {red: 192, green: 191, blue: 173};
+    window.rgbMoon = {red: 192, green: 198, blue: 255};
+    window.rgbDiffSun = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue}; 
+    window.rgbDiffMoon = {red: rgbMoon.red - rgbNoon.red, green: rgbMoon.green - rgbNoon.green, blue: rgbMoon.blue - rgbNoon.blue}; 
 
+    iluminarAstro(minuteOfDay);
+    rotarSol();
+  
+  
 
+  
 
   //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
   //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
@@ -368,4 +331,86 @@ motor.activarLuz("sol");
 
   //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
 
+}
+
+
+
+async function rotarSol () {
+  await sleep(300000); //5 min
+  let now = new Date();
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  let relationNowDay = minutesDiff * window.relationSunDay;
+  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  motor.rotarLuzOrbital('luna', gradeSunPosition);
+  window.lastTime = now;
+  iluminarAstro(now.getHours() * 60 + now.getMinutes());
+  rotarSol();
+}
+
+async function demoSol () {
+  await sleep(500); 
+  let now = new Date(window.lastTime);
+  now.setHours(now.getHours() + 1);
+  let minutesDiff = Math.abs(now - window.lastTime)/60000;
+  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
+  motor.rotarLuzOrbital('sol', gradeSunPosition);
+  motor.rotarLuzOrbital('luna', gradeSunPosition);
+  window.lastTime = now;
+  iluminarAstro(now.getHours() * 60 + now.getMinutes());
+  demoSol();
+}
+
+async function iluminarAstro (minuteOfDay) {
+  if (minuteOfDay >= window.minuteOfSunrise && minuteOfDay <= window.minuteOfSunset) {
+    motor.activarLuz("sol");
+    motor.desactivarLuz("luna");
+    iluminarSol(minuteOfDay);
+  }
+  else {
+    motor.activarLuz("luna");
+    motor.desactivarLuz("sol");
+    iluminarLuna(minuteOfDay);
+  }
+}
+
+async function iluminarSol (minutes) {
+  let rgb = {};
+  let minutesSinceSunrise = minutes - window.minuteOfSunrise;
+  if (minutesSinceSunrise < window.minutesOfSun/2) {
+    let percent = minutesSinceSunrise  / (window.minutesOfSun/2);
+    let rgbMoment = {red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent};
+    rgb = {red: rgbMoment.red + rgbInit.red, green: rgbMoment.green + rgbInit.green, blue: rgbMoment.blue + rgbInit.blue}
+  }
+  else {
+    let percent = (minutesSinceSunrise - (window.minutesOfSun/2)) / (window.minutesOfSun/2);
+    let rgbMoment = {red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent};
+    rgb = {red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue}
+  }
+  sol.entity.setIntensidad(rgb.red/255, rgb.green/255, rgb.blue/255);
+}
+
+async function iluminarLuna (minutes) {
+  let rgb = {};
+  let minutesOfNight = (24 * 60) - window.minutesOfSun;
+  let minutesSinceSunset = '';
+  if (minutes > window.minuteOfSunset) 
+    minutesSinceSunset = minutes - window.minuteOfSunset;
+  else 
+    minutesSinceSunset = minutes + ((24 * 60) - window.minuteOfSunset);
+  
+  if (minutesSinceSunset < minutesOfNight/2) {
+    let percent = minutesSinceSunset / (minutesOfNight/2); 
+    rgb = {red: (window.rgbDiffMoon.red * percent) + window.rgbNoon.red, green: (window.rgbDiffMoon.green * percent) + window.rgbNoon.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbNoon.blue};
+  }
+  else {
+    let percent = (minutesSinceSunset - (minutesOfNight/2)) / (minutesOfNight/2);
+    rgb = {red: window.rgbMoon.red - (window.rgbDiffMoon.red * percent), green: window.rgbMoon.green - (window.rgbDiffMoon.green * percent), blue: window.rgbMoon.blue - (window.rgbDiffMoon.blue * percent)};
+  }
+  luna.entity.setIntensidad(rgb.red/255, rgb.green/255, rgb.blue/255);
+}
+
+function sleep (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

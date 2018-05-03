@@ -600,9 +600,9 @@ class TMotor{
 		if(pos>=0){
 			this.luzActiva[pos] = 0;
 			this.lucesActivas--;
-			if(this.running){
+			/*if(this.running){
 					configurarShaders(this.vertexShader, this.fragmentShader);
-				}
+				}*/
 			return this.luzRegistro[pos];
 		}else{
 			return false;
