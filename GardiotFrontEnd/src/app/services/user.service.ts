@@ -379,6 +379,6 @@ export class UserService {
 
       return this.http.post("https://gardiot.ovh/grafana/login", body, { headers } )
           
-    }s
+    };
 
 }
