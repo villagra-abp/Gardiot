@@ -473,7 +473,6 @@ export class GardenComponent {
     canvas.width = canvasEvolver.offsetWidth;
     canvas.height = canvasEvolver.offsetHeight;
 
-
     let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
     //let pos = motor.getPosCamaraActiva();
