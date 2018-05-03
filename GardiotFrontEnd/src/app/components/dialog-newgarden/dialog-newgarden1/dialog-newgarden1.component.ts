@@ -3,21 +3,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Observable';
-import { GardenService } from "../../services/garden.service";
-import { Garden } from "../../classes/garden.class";
+import { GardenService } from "../../../services/garden.service";
+import { Garden } from "../../../classes/garden.class";
 import { MatDialog } from '@angular/material';
-import { DialogNewgarden2Component } from './dialog-newgarden2/dialog-newgarden2.component';
+import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden2.component';
 
 @Component({
   selector: 'app-dialog-newgarden',
-  templateUrl: './dialog-newgarden.component.html',
-  styleUrls: ['./dialog-newgarden.component.css']
+  templateUrl: './dialog-newgarden1.component.html',
+  styleUrls: ['./dialog-newgarden1.component.css']
 })
-export class DialogNewgardenComponent implements OnInit {
+export class DialogNewgarden1Component implements OnInit {
   private garden = new Garden("");
 
   constructor(
-    public thisDialogRef: MatDialogRef<DialogNewgardenComponent>,
+    public thisDialogRef: MatDialogRef<DialogNewgarden1Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _gardenService: GardenService,
     private _route: Router,

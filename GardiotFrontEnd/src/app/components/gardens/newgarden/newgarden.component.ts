@@ -11,7 +11,7 @@ import 'rxjs/add/operator/delay';
 import {Overlay} from '@angular/cdk/overlay';
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 
-import { DialogNewgardenComponent } from '../../dialog-newgarden/dialog-newgarden.component';
+import { DialogNewgarden1Component } from '../../dialog-newgarden/dialog-newgarden1/dialog-newgarden1.component';
 import { MatDialog } from '@angular/material';
 declare var iniciar: any;
 declare var motor: any;
@@ -125,14 +125,14 @@ export class NewGardenComponent implements OnInit {
           this.garden.city = data.city;
           this.garden.plants = data.plants;
           this.inicializar();
-          
+
 
         } else {
           this._route.navigate(['/newgarden']);
         }
       },
       error => {
-        this.dialog.open(DialogNewgardenComponent, { width: '800px', data: {id: 1}});
+        this.dialog.open(DialogNewgarden1Component, { width: '800px', data: {id: 1}});
       });
 
   }
