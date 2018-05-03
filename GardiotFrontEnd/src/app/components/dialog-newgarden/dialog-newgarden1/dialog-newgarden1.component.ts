@@ -9,47 +9,32 @@ import { MatDialog } from '@angular/material';
 import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden2.component';
 
 @Component({
-  selector: 'app-dialog-newgarden3',
-  templateUrl: './dialog-newgarden3.component.html',
-  styleUrls: ['./dialog-newgarden3.component.css']
+  selector: 'app-dialog-newgarden',
+  templateUrl: './dialog-newgarden1.component.html',
+  styleUrls: ['./dialog-newgarden1.component.css']
 })
-export class DialogNewgarden3Component implements OnInit {
+export class DialogNewgarden1Component implements OnInit {
   private garden = new Garden("");
+
   constructor(
-    public thisDialogRef: MatDialogRef<DialogNewgarden3Component>,
+    public thisDialogRef: MatDialogRef<DialogNewgarden1Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _gardenService: GardenService,
     private _route: Router,
     private dialog: MatDialog,
   ) { }
 
-  getid() {
+
+  getid(){
     this._gardenService.details().subscribe(data => {
         if (data != null) {
           this.garden = data;
+              console.log(this.garden);
         }
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
-  }
-
-  onCloseConfirm() {
-    this.saveGarden();
-    window.location.reload();
-    this.thisDialogRef.close('Guardado');
-  }
-
-  onCloseAtras() {
-    this.openDialogAtras();
-    this.thisDialogRef.close('Guardado');
-  }
-
-  openDialogAtras() {
-    let dialogRef = this.dialog.open(DialogNewgarden2Component, {
-      width: '800px',
-      data: {}
-    });
   }
 
   saveGarden() {
@@ -61,8 +46,22 @@ export class DialogNewgarden3Component implements OnInit {
         });
   }
 
-  ngOnInit() {
-        this.getid();
+
+  onCloseConfirm() {
+    this.saveGarden();
+    this.openDialog();
+    this.thisDialogRef.close('Guardado');
+
   }
 
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogNewgarden2Component, {
+      width: '800px',
+      data: {}
+    });
+  }
+
+  ngOnInit() {
+    this.getid();
+  }
 }
