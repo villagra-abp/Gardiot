@@ -1,4 +1,4 @@
-function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 07:03:23'), sunset = new Date('December 25, 1995 20:55:44')){
+function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:03:23')*/, sunset /*= new Date('December 25, 1995 20:55:44')*/){
   console.log(jardinBBDD);
   window.canvas=null;
 
@@ -41,10 +41,8 @@ function iniciar(accion, jardinBBDD, sunrise = new Date('December 25, 1995 07:03
 
   //DragAndDrop
   window.dragging = false;
-  //window.plants = [];
   for (let value of window.jardin.plants) {
     value.isDragging = false;
-    //window.plants.push(value);
   }
 
   //declaramos las variables necesarias para ejecutar el programa
@@ -253,7 +251,7 @@ motor.activarLuz("sol");
   motor.rotarMalla("malla3", 40, "x");
 
   /* POSICION DEL SOL */
-  if (typeof sunrise !== 'undefined' && typeof sunset !== 'undefined') {
+  if (typeof sunrise === 'undefined' && typeof sunset === 'undefined') {
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
     sunset = new Date(2018, 11, 11, 20, 14, 42);
   }
@@ -276,7 +274,7 @@ motor.activarLuz("sol");
     window.rgbNoon = {red: 192, green: 191, blue: 173};
     window.rgbMoon = {red: 192, green: 198, blue: 255};
     window.rgbDiffSun = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue}; 
-    window.rgbDiffMoon = {red: rgbMoon.red - rgbNoon.red, green: rgbMoon.green - rgbNoon.green, blue: rgbMoon.blue - rgbNoon.blue}; 
+    window.rgbDiffMoon = {red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue}; 
 
     iluminarAstro(minuteOfDay);
     rotarSol();
@@ -402,7 +400,7 @@ async function iluminarLuna (minutes) {
   
   if (minutesSinceSunset < minutesOfNight/2) {
     let percent = minutesSinceSunset / (minutesOfNight/2); 
-    rgb = {red: (window.rgbDiffMoon.red * percent) + window.rgbNoon.red, green: (window.rgbDiffMoon.green * percent) + window.rgbNoon.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbNoon.blue};
+    rgb = {red: (window.rgbDiffMoon.red * percent) + window.rgbInit.red, green: (window.rgbDiffMoon.green * percent) + window.rgbInit.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbInit.blue};
   }
   else {
     let percent = (minutesSinceSunset - (minutesOfNight/2)) / (minutesOfNight/2);
