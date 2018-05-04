@@ -26,13 +26,22 @@ export class DialogNewgarden2Component implements OnInit {
   private cities: any[] = [];
   private zip: string = "";
 
+  private photoURL = "";
+
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden2Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _gardenService: GardenService,
     private _route: Router,
     private dialog: MatDialog,
-  ) { }
+  ) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }
+  }
 
   getid() {
     this._gardenService.details().subscribe(data => {
@@ -157,7 +166,6 @@ export class DialogNewgarden2Component implements OnInit {
     }
   }
 
-
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
@@ -166,8 +174,6 @@ export class DialogNewgarden2Component implements OnInit {
           let v = JSON.parse(error._body);
         });
   }
-
-
 
   ngOnInit() {
     this.listarPaises();
