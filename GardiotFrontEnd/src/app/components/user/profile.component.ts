@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
         document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
-          background-image: url("${this.user.photo}");
+          background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
@@ -88,6 +88,12 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    }
     this.uploader = new FileUploader({ url: this._detailService.apiURL + 'uploadAvatar', itemAlias: 'photo' });
     this.mostrar();
 
@@ -110,7 +116,7 @@ export class ProfileComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
           if (data.Mensaje == 'Actualizado')
-            this._renderer.setElementStyle(img, 'background-image', `url("${this.user.photo}")`);
+            this._renderer.setElementStyle(img, 'background-image', `url("${this.imgUrl+this.user.photo}")`);
         });
     };
 

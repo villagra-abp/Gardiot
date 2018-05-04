@@ -193,11 +193,9 @@ motor.moverMalla("around", 0, -0.11, 0);
       plantsMap.set(jardin.plants[i].x+'-'+jardin.plants[i].y, jardin.plants[i].id);
       resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
       resource = resource.toUpperCase();
-      let texture = jardin.plants[i].model+'.jpg';
-      if (jardin.plants[i].model == 'url_3DModel')
-        texture = "lechuga.jpg";
+
       console.log(resource.toLowerCase());
-      motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), texture, undefined);
+      motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
       motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
       if (dataPlants[resource].rotX != 0)
         motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
