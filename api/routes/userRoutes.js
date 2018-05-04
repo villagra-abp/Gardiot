@@ -417,7 +417,7 @@ function validateInput(data) {
 	if (typeof data.birthDate!== 'undefined' && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
 	if (typeof data.city!=='undefined' && !isASCII(data.city)) resp += 'Ciudad no válida, ';
-	if (typeof data.photo!=='undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
+	//if (typeof data.photo!=='undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
 	if (typeof data.oldId!=='undefined' && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;
