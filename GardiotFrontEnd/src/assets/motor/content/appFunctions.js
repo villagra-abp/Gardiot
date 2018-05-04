@@ -172,63 +172,66 @@ function mouse_down(e){
   let cv=document.querySelector('#myCanvas'),
   x=e.clientX,
   y=e.clientY;
+  if(!cv.getAttribute('rotando-camara') && !cv.getAttribute('moviendo-camara') && !window.dragging){
+    switch (e.which) {
 
-  switch (e.which) {
-
-    case 1: //Izquierdo
-    if (window.mode ==1) {
-      //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
-      //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
-      let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
-      let coordX = Math.round(point[0]);
-      let coordY = Math.round(point[2]);
-      for (let plant of window.jardin.plants) {
-        if (plant.x == coordX && plant.y == coordY) {
-          plant.isDragging = true;
-          window.dragging = true;
-          break;
+      case 1: //Izquierdo
+      if (window.mode ==1) {
+        //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
+        //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
+        let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
+        let coordX = Math.round(point[0]);
+        let coordY = Math.round(point[2]);
+        for (let plant of window.jardin.plants) {
+          if (plant.x == coordX && plant.y == coordY) {
+            plant.isDragging = true;
+            window.dragging = true;
+            break;
+          }
+        }
+        if(!dragging){
+          cv.setAttribute('moviendo-camara', 'true');
         }
       }
-      if(!dragging){
-        cv.setAttribute('moviendo-camara', 'true');
+        else{
+          cv.setAttribute('moviendo-camara', 'true');
+        //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
+        //de mouse_move
+
       }
-    }
-      else{
-        cv.setAttribute('moviendo-camara', 'true');
-      //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
-      //de mouse_move
-
-    }
-    window.originClickX=x/cv.offsetWidth;
-    window.originClickY=y/cv.offsetHeight;
-      break;
-
-      case 3:
-      //if(window.mode==1){
-        window.originClickX=x/cv.offsetWidth;
-        window.originClickY=y/cv.offsetHeight;
-        cv.setAttribute('rotando-camara', 'true');
+      window.originClickX=x/cv.offsetWidth;
+      window.originClickY=y/cv.offsetHeight;
         break;
-      //}
+
+        case 3:
+        //if(window.mode==1){
+          window.originClickX=x/cv.offsetWidth;
+          window.originClickY=y/cv.offsetHeight;
+          cv.setAttribute('rotando-camara', 'true');
+          break;
+        //}
+    }
   }
 }
 
 function mouse_up(e){
   colorCell=[];
+  let cv=document.querySelector('#myCanvas')
   switch (e.which) {
     case 3: //Derecho
-    window.originClickX=undefined;
-    window.originClickY=undefined;
+    if(!cv.getAttribute('moviendo-camara')){
+      window.originClickX=undefined;
+      window.originClickY=undefined;
 
-    //console.log(`UP-> Posición: ${fila} - ${columna}`);
-    e.target.removeAttribute('rotando-camara');
+      //console.log(`UP-> Posición: ${fila} - ${columna}`);
+      cv.removeAttribute('rotando-camara');
+    }
 
       break;
     case 1: //Izquierdo
     if (window.mode != 0 && window.dragging) {
       e.preventDefault();
       e.stopPropagation();
-      let cv=document.querySelector('#myCanvas');
       let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
       let coordX = Math.round(point[0]);
       let coordY = Math.round(point[2]);
@@ -257,19 +260,17 @@ function mouse_up(e){
             else
               motor.moverMallaA(plant.id, plant.x, 0, plant.y);
           }
-          e.target.removeAttribute('rotando-camara');
+          cv.removeAttribute('rotando-camara');
           window.originClickX=undefined;
           window.originClickY=undefined;
           break;
         }
       }
     }
-    //No se hace nada al soltar el botón derecho
-      window.originClickX=undefined;
-      window.originClickY=undefined;
+
 
       //console.log(`UP-> Posición: ${fila} - ${columna}`);
-      e.target.removeAttribute('moviendo-camara');
+      cv.removeAttribute('moviendo-camara');
 
       break;
 
