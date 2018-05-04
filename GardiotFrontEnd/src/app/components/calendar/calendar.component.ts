@@ -246,7 +246,10 @@ export class CalendarComponent implements OnInit {
         });
     }
     else{
-      alert("click standar");
+      // alert("click standar");
+      let task=this.tasks[event.id];
+      // llamada pop Up
+      this.dialog.open(DialogTaskComponent, { width: '800px', data: {mPlant: task.mPlant,myPlant:task.myPlant,tPlant:task.tPlant,treatmentPlant:task.treatmentPlant}});
     }
 
   }

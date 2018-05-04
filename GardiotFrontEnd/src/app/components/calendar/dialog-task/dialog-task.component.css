@@ -1,20 +1,31 @@
 div{
     width: 100%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     background: rgba(255,255,255,0.1);
-    padding: 35px;
+    /* padding: 35px; */
     border: 2px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
-    text-align: center;
+    /* text-align: center; */
 }
 section{
-  margin-top: -26px;
+  /* margin-top: -26px; */
 }
 
 mat-dialog-actions{
-padding: 2.5px;
+  /* padding: 2.5px; */
 }
 button{
-margin: auto;
+  /* margin: auto; */
+}
+.producto{
+  /* margin: 0;
+  padding: 0; */
+
+}
+.planta{
+
+}
+.tratamiento{
+
 }

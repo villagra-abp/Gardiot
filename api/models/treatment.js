@@ -28,7 +28,7 @@ treatment.getTreatmentsNumber = function (callback) {
 
 treatment.getTreatmentById = function(id, callback) {
   if (connection) {
-    connection.query('SELECT name, description FROM Treatment WHERE id = ' + id, function(error, row) {
+    connection.query('SELECT name, description, icon FROM Treatment WHERE id = ' + id, function(error, row) {
       if (error)
         callback (error, null);
       else
