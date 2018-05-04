@@ -8,7 +8,7 @@ productTreatment.getProductsByTreatmentAndPlant = function(number, page, sort, t
 	    let orderSentence = '';
 	    if (sort.toUpperCase() === 'DESC')
 	      orderSentence = 'DESC';
-		connection.query('SELECT COUNT(*) OVER () AS NUMPRODUCTS, P.*,ProductTreatment.* FROM Product P, ProductTreatment , TreatmentPlant WHERE ProductTreatment.treatment = TreatmentPlant.treatment AND ProductTreatment.product = P.id AND ProductTreatment.plant = TreatmentPlant.plant AND ProductTreatment.treatment = ' + treatment + ' AND ProductTreatment.plant = ' + plant + ' ORDER BY P.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
+		connection.query('SELECT COUNT(*) OVER () AS NUMPRODUCTS, P.*, ProductTreatment.plant, ProductTreatment.treatment FROM Product P, ProductTreatment , TreatmentPlant WHERE ProductTreatment.treatment = TreatmentPlant.treatment AND ProductTreatment.product = P.id AND ProductTreatment.plant = TreatmentPlant.plant AND ProductTreatment.treatment = ' + treatment + ' AND ProductTreatment.plant = ' + plant + ' ORDER BY P.name ' + orderSentence + ' LIMIT ' + minPeak + ',' + number, function(error, row) {
 			if (error)
 				callback (error, null);
 			else
