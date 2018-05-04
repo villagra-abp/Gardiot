@@ -2,16 +2,17 @@
   <section>
     <div class="tratamiento">
       <img src="{{nameTreatment.icon}}" alt="{{nameTreatment.icon}}" width="30" height="30">
-      <h4>{{this.nameTreatment.name}}</h4>
+      <h2>{{this.nameTreatment.name}}</h2>
       <p>{{this.nameTreatment.description}}</p>
     </div>
     <div class="planta">
-      <h5>{{plant.commonName}}</h5>
+      <h3>{{plant.commonName}}</h3>
       <img src="{{plant.photo}}" alt="{{plant.photo}}" width="150" height="150">
     </div>
     <div class="producto">
-      <h6>Productos</h6>
-      <p>Descripción de producto</p>
+      <h4>{{this.product.name}}</h4>
+      <h5>{{this.product.type}}</h5>
+      <p>{{this.product.description}}</p>
     </div>
     <mat-dialog-actions>
       <button mat-raise-button  (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Cerrar</button>

@@ -266,7 +266,7 @@ export class CalendarComponent implements OnInit {
         this.tasks = [];
         for (let key$ in data) {
           this.tasks.push(data[key$]);
-          console.log(data[key$]);
+          // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
                         this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
                         this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
