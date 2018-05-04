@@ -37,8 +37,10 @@ router.get('/monthTask/:date', passport.authenticate('jwt', {session: false}), r
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
 		taskModel.getMyTasksByMonth (request.user.id, request.params.date, function (error, data) {
-			if (error)
+			if (error) {
+				console.log(error.message);
 				response.status(500).json({"Mensaje":error.message});
+			}
 			else
 				response.status(200).json(data);
 		})
