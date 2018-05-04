@@ -1,12 +1,13 @@
 div{
-    width: 100%;
+    /* width: 100%; */
     /* margin: 0 auto; */
     background: rgba(255,255,255,0.1);
     /* padding: 35px; */
-    border: 2px solid #fff;
+    border: 3px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
-    /* text-align: center; */
+    text-align: center;
+    margin: 0;
 }
 section{
   /* margin-top: -26px; */
@@ -19,8 +20,6 @@ button{
   /* margin: auto; */
 }
 .producto{
-  /* margin: 0;
-  padding: 0; */
 
 }
 .planta{
