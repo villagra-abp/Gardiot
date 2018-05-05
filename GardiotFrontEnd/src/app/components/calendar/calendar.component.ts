@@ -270,6 +270,7 @@ export class CalendarComponent implements OnInit {
           console.log(event);
           event.actions = this.undoneActions;
           event.color = colors.green;
+          event.draggable=false;
           this.refresh.next();
         });
 
