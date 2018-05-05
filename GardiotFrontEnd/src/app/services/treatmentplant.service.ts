@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions  } from "@angular/http";
+import { Http, Headers, RequestOptions } from "@angular/http";
 import { TreatmentPlant } from "../classes/treatmentplant.class";
 import { ProductTreatment } from "../classes/producttreatment.class";
 import { Router } from "@angular/router";
@@ -7,64 +7,64 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TreatmentPlantService {
-  public apiURL:string="";
+  public apiURL: string = "";
 
-  constructor( private http:Http, private _route:Router) {
-      if(window.location.toString().indexOf("localhost")>=0){
-        this.apiURL="http://localhost:3000/api/";
-      }
-      else if(window.location.toString().indexOf("gardiot")>=0){
-        this.apiURL="https://gardiot.ovh/api/";
-      }
+  constructor(private http: Http, private _route: Router) {
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.apiURL = "http://localhost:3000/api/";
     }
-
-    savetreatment( treatmentPlant:TreatmentPlant,idPlant:number ){
-      let body = `plant=${idPlant}&treatment=${treatmentPlant.treatment}`;
-          body += `&frequency=${treatmentPlant.frequency}&initDate=${treatmentPlant.initDate}`;
-          body += `&finalDate=${treatmentPlant.finalDate}`;
-      let headers = new Headers({
-        'Authorization':`Bearer ${localStorage['Bearer']}`,
-        'Content-Type':'application/x-www-form-urlencoded'
-      });
-      return this.http.post(this.apiURL+"admin/treatmentPlant", body, { headers } )
-          .map( res=>{
-            return res.json();
-          })
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.apiURL = "https://gardiot.ovh/api/";
     }
+  }
 
-    saveproduct( treatment:number, product:number,idPlant:number ){
+  savetreatment(treatmentPlant: TreatmentPlant, idPlant: number) {
+    let body = `plant=${idPlant}&treatment=${treatmentPlant.treatment}`;
+    body += `&frequency=${treatmentPlant.frequency}&initDate=${treatmentPlant.initDate}`;
+    body += `&finalDate=${treatmentPlant.finalDate}`;
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    return this.http.post(this.apiURL + "admin/treatmentPlant", body, { headers })
+      .map(res => {
+        return res.json();
+      })
+  }
 
-      let body = `plant=${idPlant}&treatment=${treatment}&product=${product}`;
-      let headers = new Headers({
-        'Authorization':`Bearer ${localStorage['Bearer']}`,
-        'Content-Type':'application/x-www-form-urlencoded'
-      });
-      return this.http.post(this.apiURL+"admin/productTreatment", body, { headers } )
-          .map( res=>{
-            return res.json();
-          })
-    }
+  saveproduct(treatment: number, product: number, idPlant: number) {
 
-    showProductPlant( treatment:number,idPlant:number ){
-      let headers = new Headers({
-        'Authorization':`Bearer ${localStorage['Bearer']}`,
-      });
-      return this.http.get(this.apiURL+"productTreatmentPlant/"+treatment+"/"+idPlant+"/10/1/ASC",  { headers } )
-          .map( res=>{
-            return res.json();
-          })
-    }
+    let body = `plant=${idPlant}&treatment=${treatment}&product=${product}`;
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    return this.http.post(this.apiURL + "admin/productTreatment", body, { headers })
+      .map(res => {
+        return res.json();
+      })
+  }
 
-    // mostrar Tratamientos de una planta
-    detailsTreatment(numplant:number){
-	  	let headers = new Headers({
-        	'Authorization':`Bearer ${localStorage['Bearer']}`,
-          // 'Content-Type':'application/x-www-form-urlencoded'
-      	});
-      	return this.http.get(this.apiURL+"treatmentPlant/"+numplant+"/100/1/ASC", { headers } )
-          .map( res =>{
-            return res.json();
-          })
-	  }
+  showProductPlant(treatment: number, idPlant: number) {
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`,
+    });
+    return this.http.get(this.apiURL + "productTreatmentPlant/" + treatment + "/" + idPlant + "/10/1/ASC", { headers })
+      .map(res => {
+        return res.json();
+      })
+  }
+
+  // mostrar Tratamientos de una planta
+  detailsTreatment(numplant: number) {
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`,
+      // 'Content-Type':'application/x-www-form-urlencoded'
+    });
+    return this.http.get(this.apiURL + "treatmentPlant/" + numplant + "/100/1/ASC", { headers })
+      .map(res => {
+        return res.json();
+      })
+  }
 
 }
