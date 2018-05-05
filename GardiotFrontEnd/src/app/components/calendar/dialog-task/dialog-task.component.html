@@ -10,8 +10,10 @@
       <img src="{{plant.photo}}" alt="{{plant.photo}}" width="150" height="150">
     </div>
     <div class="producto">
-      <h4>{{this.product.name}}</h4>
-      <h5>{{this.product.type}}</h5>
+      <dl>
+        <dt>{{this.product.name}}</dt>
+        <dd>{{this.product.type}}</dd>
+      </dl>
       <p>{{this.product.description}}</p>
     </div>
     <mat-dialog-actions>
