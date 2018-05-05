@@ -51,4 +51,14 @@ export class TaskService {
           return res.json();
         })
   }
+  undoneTask(mPlant:number, myPlant:number, tPlant:number, treatmentPlant:number, date:string){
+    
+    let headers = new Headers({
+      'Authorization':`Bearer ${localStorage['Bearer']}`
+    });
+    return this.http.put(this.apiURL+"taskUndone/"+myPlant+"/"+mPlant+"/"+tPlant+"/"+treatmentPlant+"/"+date, '', { headers } )
+        .map( res =>{
+          return res.json();
+        })
+  }
 }
