@@ -190,25 +190,59 @@ function cargarShaders() {
     gl.useProgram(glProgram[window.program]);
 }
 
-
-//inicializamos parámetros básicos de WebGL
-function setupWebGL() {
-
-    //establece el clear color a blanco
-    gl.clearColor(0.1, 0.8, 0.9, 1.0);
+function renderShadows() {
+    window.program=2;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+    gl.viewport(0, 0, 2048, 2048);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    //profundidad
-    gl.enable(gl.DEPTH_TEST);
 
+    gl.useProgram(glProgram[window.program]);
+    
+    
     //Nos traemos las matrices, projection, model y view al motor
     glProgram[window.program].pMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrix");
     glProgram[window.program].mMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMMatrix");
     glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
+    glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
+    glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
+
+    
+    motor.escena.draw();
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    window.program=1;
+    gl.useProgram(glProgram[window.program]);
+    gl.uniform1i(glProgram[window.program].shadowMapUniform, 0);
+
+}
+
+//inicializamos parámetros básicos de WebGL
+function setupWebGL() {
+
+    /*gl.viewport(0, 0, canvas.width, canvas.height);
+    //establece el clear color a blanco
+    gl.clearColor(0.1, 0.8, 0.9, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);*/
+    //profundidad
+    //gl.enable(gl.DEPTH_TEST);
+
+    
+
+    //Nos traemos las matrices, projection, model y view al motor
+    glProgram[window.program].mMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMMatrix");
+    glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
+    glProgram[window.program].mvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVMatrix");
+    glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
+    glProgram[window.program].lmvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight");
 
     glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
     glProgram[window.program].textured = gl.getUniformLocation(glProgram[window.program], "uTextured");
     glProgram[window.program].lighted = gl.getUniformLocation(glProgram[window.program], "uLighted");
     glProgram[window.program].hovered = gl.getUniformLocation(glProgram[window.program], "uHovered");
+    glProgram[window.program].shadowMapUniform = gl.getUniformLocation(glProgram[window.program], "uShadowMap");
     //matriz de normales
     glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
 
@@ -218,7 +252,42 @@ function setupWebGL() {
 
     glProgram[window.program].shin = gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
     glProgram[window.program].opac = gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
+
 }
+
+function initFramebufferObject(gl) {
+    var texture, depthBuffer;
+    var framebuffer = gl.createFramebuffer();
+
+    texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 2048, 2048, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+    depthBuffer = gl.createRenderbuffer();
+    gl.bindRenderbuffer(gl.RENDERBUFFER, depthBuffer);
+    gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, 2048, 2048);
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthBuffer);
+
+    framebuffer.texture = texture;
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.bindTexture(gl.TEXTURE_2D, null);
+    gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+    return framebuffer;
+}
+
+function calculeProjectionMatrix(){
+    if (!camaraActiva.entity._isPerspective) {
+        mat4.ortho(projectionMatrix, camaraActiva.entity._left * 10, camaraActiva.entity._right * 10, camaraActiva.entity._bottom * 10, camaraActiva.entity._top * 10, camaraActiva.entity._near, camaraActiva.entity._far * 100);
+    }
+    else {
+        mat4.frustum(projectionMatrix, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
+    }
+}
+
 
 
 function iniciamosWebGL(idCanvas) {
