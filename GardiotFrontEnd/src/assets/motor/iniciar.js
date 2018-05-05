@@ -29,15 +29,20 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.camHeight = 4;
 
 
-  window.mode = 0;//0 modo visualización
+  window.mode = 0;
+  //0 modo visualización
   //1 modo edición
+  //2 modo sombras
 
   //inicialización de matrices
   window.matrixStack = [];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
   matrixStack.push(matrixModel);
-  window.matrixProjection = [];//matriz proyección
-  window.invertedMView = [];//matriz view
+  window.camaraActiva = null;
+  window.projectionMatrix = [];//matriz proyección
+  window.viewMatrix = [];//matriz view
+
+  window.viewLightMatrix = []; //view matrix from light
 
   //DragAndDrop
   window.dragging = false;
@@ -54,11 +59,12 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.glProgram = [];
 
 
+
   //program 0 = cartoon
   //program 1 = estandar
   window.program = 1;
-  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs'];
-  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs'];
+  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
+  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
 
   //inicializamos el gestor de recursos
   window.gestor = new TGestorRecursos();
@@ -66,11 +72,20 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   iniciamosWebGL('myCanvas');
   cargarShaders();
 
+  //shadows
+  window.fbo = initFramebufferObject(gl);
+  gl.activeTexture(gl.TEXTURE0);
+  gl.bindTexture(gl.TEXTURE_2D, fbo.texture);
+
+  gl.clearColor(0, 0, 0, 1);
+  gl.enable(gl.DEPTH_TEST);
+
+  
   //fachada
   window.motor = new TMotor(gestor);
 
 
-  motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
   window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
   //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
@@ -117,7 +132,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
       rotX: 0,
       rotY: 0,
       rotZ: 0,
-      posY: 0
+      posY: -0.2
     },
     CALABAZA: {
       textura: 'calabaza.jpg',
@@ -388,7 +403,8 @@ async function iluminarSol(minutes) {
     let rgbMoment = { red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent };
     rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
   }
-  sol.entity.setIntensidad(rgb.red / 255, rgb.green / 255, rgb.blue / 255);
+  sol.entity.setIntensidad(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
+  sol.entity.setIntensidadSpecular(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
 }
 
 async function iluminarLuna(minutes) {
