@@ -90,5 +90,20 @@ router.put('/taskDone/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:dateDone',
 	}
 });
 
+router.put('/taskUndone/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		taskModel.setTaskUndone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, function (error, data) {
+			if (error)
+				response.status(500).json({"Mensaje":error.message});
+			else if (data == 1)
+				response.status(200).json({"Mensaje":"Actualizado."});
+			else
+				response.status(400).json({"Mensaje":"No actualizado"});
+		})
+	}
+});
+
 
 module.exports = router;

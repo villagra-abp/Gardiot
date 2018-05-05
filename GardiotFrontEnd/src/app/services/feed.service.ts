@@ -1,124 +1,124 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions  } from "@angular/http";
+import { Http, Headers, RequestOptions } from "@angular/http";
 import { Feed } from "../classes/feed.class";
 import { Router } from "@angular/router";
 import 'rxjs/Rx';
 
 @Injectable()
 export class FeedService {
-	public apiURL:string="";
+	public apiURL: string = "";
 
-  constructor( private http:Http, private _route:Router) {
-	    if(window.location.toString().indexOf("localhost")>=0){
-	      this.apiURL="http://localhost:3000/api/";
-	    }
-	    else if(window.location.toString().indexOf("gardiot")>=0){
-	      this.apiURL="https://gardiot.ovh/api/";
-	    }
-	  }
-
-
-		detailsAll(page:number, items:number){
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`
-			});
-			return this.http.get(this.apiURL+"admin/feed"+"/"+items+"/"+page+"/asc", { headers } )
-					.map( res =>{
-						return res.json();
-					})
+	constructor(private http: Http, private _route: Router) {
+		if (window.location.toString().indexOf("localhost") >= 0) {
+			this.apiURL = "http://localhost:3000/api/";
 		}
-
-		save( feed:Feed ){
-			let body = `name=${feed.name}&text=${feed.text}&dateInit=${feed.dateInit}&dateFinal=${feed.dateFinal}`;
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`,
-				'Content-Type':'application/x-www-form-urlencoded'
-			});
-			return this.http.post(this.apiURL+"admin/feed", body, { headers } )
-					.map( res=>{
-						return res.json();
-					})
+		else if (window.location.toString().indexOf("gardiot") >= 0) {
+			this.apiURL = "https://gardiot.ovh/api/";
 		}
+	}
 
-		modify( feed:Feed ){
-			let body = `name=${feed.name}&text=${feed.text}&dateInit=${feed.dateInit}&dateFinal=${feed.dateFinal}`;
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`,
-				'Content-Type':'application/x-www-form-urlencoded'
-			});
-			
-			return this.http.put(this.apiURL+"admin/feed/"+ feed.id , body, { headers } )
-					.map( res=>{
-						return res.json();
-					})
-		}
-		searchAll(feed:Feed,page:number, items:number){
-			let body = `name=${feed.name}`;
-			body += `&text=${feed.text}`;
-			body += `&dateInit=${feed.dateInit}`;
-			body += `&dateFinal=${feed.dateFinal}`;
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`,
-				'Content-Type':'application/x-www-form-urlencoded'
-			});
-			return this.http.post(this.apiURL+"find/Feed/"+items+"/"+page+"/name/ASC", body,  { headers } )
-					.map( res =>{
-						return res.json();
-					})
-		}
 
-		getNumberItems(){
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`
-			});
-			return this.http.get(this.apiURL+"/admin/numFeeds", { headers } )
-					.map( res =>{
-						return res.json();
-					})
-		}
+	detailsAll(page: number, items: number) {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`
+		});
+		return this.http.get(this.apiURL + "admin/feed" + "/" + items + "/" + page + "/asc", { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
-		deleteFeed(idFeed: number){
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`
-			});
-			return this.http.delete(this.apiURL+"admin/feed/"+ idFeed, { headers } )
-					.map( res =>{
-						return res.json();
-					})
-		}
+	save(feed: Feed) {
+		let body = `name=${feed.name}&text=${feed.text}&dateInit=${feed.dateInit}&dateFinal=${feed.dateFinal}`;
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		});
+		return this.http.post(this.apiURL + "admin/feed", body, { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
-		details(numfeed:number){
-			let headers = new Headers({
-					'Authorization':`Bearer ${localStorage['Bearer']}`
-				});
+	modify(feed: Feed) {
+		let body = `name=${feed.name}&text=${feed.text}&dateInit=${feed.dateInit}&dateFinal=${feed.dateFinal}`;
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		});
 
-			return this.http.get(this.apiURL+"admin/feed/"+numfeed, { headers } )
-				.map( res =>{
-					return res.json();
-				})
-		}
+		return this.http.put(this.apiURL + "admin/feed/" + feed.id, body, { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
+	searchAll(feed: Feed, page: number, items: number) {
+		let body = `name=${feed.name}`;
+		body += `&text=${feed.text}`;
+		body += `&dateInit=${feed.dateInit}`;
+		body += `&dateFinal=${feed.dateFinal}`;
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		});
+		return this.http.post(this.apiURL + "find/Feed/" + items + "/" + page + "/name/ASC", body, { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
-		showfeeds(){
-			let headers = new Headers({
-					'Authorization':`Bearer ${localStorage['Bearer']}`
-				});
+	getNumberItems() {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`
+		});
+		return this.http.get(this.apiURL + "/admin/numFeeds", { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
-			return this.http.get(this.apiURL+"feed" ,{ headers } )
-				.map( res =>{
-					return res.json();
-				})
-		}
+	deleteFeed(idFeed: number) {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`
+		});
+		return this.http.delete(this.apiURL + "admin/feed/" + idFeed, { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
-		closefeed(id:number){
-			let headers = new Headers({
-				'Authorization':`Bearer ${localStorage['Bearer']}`,
-				'Content-Type':'application/x-www-form-urlencoded'
-				});
+	details(numfeed: number) {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`
+		});
 
-			return this.http.put(this.apiURL+"feed/"+id , '',{ headers } )
-				.map( res =>{
-					return res.json();
-				})
-		}
+		return this.http.get(this.apiURL + "admin/feed/" + numfeed, { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
+
+	showfeeds() {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`
+		});
+
+		return this.http.get(this.apiURL + "feed", { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
+
+	closefeed(id: number) {
+		let headers = new Headers({
+			'Authorization': `Bearer ${localStorage['Bearer']}`,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		});
+
+		return this.http.put(this.apiURL + "feed/" + id, '', { headers })
+			.map(res => {
+				return res.json();
+			})
+	}
 
 }

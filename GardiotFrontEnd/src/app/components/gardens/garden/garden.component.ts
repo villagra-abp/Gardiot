@@ -23,8 +23,8 @@ declare var motor: any;
   selector: 'app-garden',
   templateUrl: './garden.component.html',
   styleUrls: ['./garden.component.css'
-              //'../editgarden/editgarden.component.css'
-            ]
+    //'../editgarden/editgarden.component.css'
+  ]
 })
 export class GardenComponent {
   private garden = new Garden("");
@@ -85,7 +85,7 @@ export class GardenComponent {
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
   city: string;
-  tiempoCity:string = "El tiempo";
+  tiempoCity: string = "El tiempo";
 
 
   private photoURL = "";
@@ -109,100 +109,100 @@ export class GardenComponent {
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
   ) {
-      if(window.location.toString().indexOf("localhost")>=0){
-        this.photoURL="/assets";
-      }
-      else if(window.location.toString().indexOf("gardiot")>=0){
-        this.photoURL="/app/assets";
-      }
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.photoURL = "/assets";
+    }
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.photoURL = "/app/assets";
+    }
   }
 
 
-    @HostListener('document:keyup', ['$event'])
+  @HostListener('document:keyup', ['$event'])
 
-    searchZip(event: KeyboardEvent): void {
-      //aqui vamos cargando las posibles ciudades a elegir
-      let input = (<HTMLInputElement>document.querySelector("#zipCode"));
-      if (input.value.length == 5) {
-        console.log("callCity");
-        this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
-          .subscribe(data => {
-            let sp = document.querySelector('#ciudad');
+  searchZip(event: KeyboardEvent): void {
+    //aqui vamos cargando las posibles ciudades a elegir
+    let input = (<HTMLInputElement>document.querySelector("#zipCode"));
+    if (input.value.length == 5) {
+      console.log("callCity");
+      this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
+        .subscribe(data => {
+          let sp = document.querySelector('#ciudad');
 
-            if (data.length > 0) {
-              console.log(data[0]);
-              this.garden.latitude = data[0].lat.toFixed(2);
-              this.garden.longitude = data[0].lng.toFixed(2);
-              if (data[0].adminName3 !== undefined) {
-                this.garden.city = data[0].adminName3;
-                this.city = data[0].adminName3;
-                console.log(this.city);
-              }
-              else if (data[0].adminName2 !== undefined) {
-                this.garden.city = data[0].adminName2;
-                this.city = data[0].adminName2;
-              }
-              else if (data[0].adminName1 !== undefined) {
-                this.garden.city = data[0].adminName1;
-                this.city = data[0].adminName1;
-              }
-              else {
-                this.garden.city = '';
-                this.city = 'Código postal no encontrado';
-              }
+          if (data.length > 0) {
+            console.log(data[0]);
+            this.garden.latitude = data[0].lat.toFixed(2);
+            this.garden.longitude = data[0].lng.toFixed(2);
+            if (data[0].adminName3 !== undefined) {
+              this.garden.city = data[0].adminName3;
+              this.city = data[0].adminName3;
+              console.log(this.city);
+            }
+            else if (data[0].adminName2 !== undefined) {
+              this.garden.city = data[0].adminName2;
+              this.city = data[0].adminName2;
+            }
+            else if (data[0].adminName1 !== undefined) {
+              this.garden.city = data[0].adminName1;
+              this.city = data[0].adminName1;
             }
             else {
               this.garden.city = '';
               this.city = 'Código postal no encontrado';
             }
-            input.value = '';
+          }
+          else {
+            this.garden.city = '';
+            this.city = 'Código postal no encontrado';
+          }
+          input.value = '';
 
-          },
+        },
           error => {
             console.error(error);
           });
-      }
     }
+  }
 
-    listarPaises() {
-      this._gardenService.listCoutries()
-        .subscribe(data => {
-          let aux = [];
-          aux.push({ id: 0, text: "Selecciona un país" });
-          for (let i = 0; i < data.geonames.length; i++) {
-            aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
-          }
+  listarPaises() {
+    this._gardenService.listCoutries()
+      .subscribe(data => {
+        let aux = [];
+        aux.push({ id: 0, text: "Selecciona un país" });
+        for (let i = 0; i < data.geonames.length; i++) {
+          aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
+        }
 
 
 
-          this.countryData = Observable.create((obs) => {
-            obs.next(aux);
-            obs.complete();
-          });
-          this.startCountry = Observable.create((obs) => {
-            obs.next(this.garden.countryCode);
-            obs.complete();
-          });
-        },
+        this.countryData = Observable.create((obs) => {
+          obs.next(aux);
+          obs.complete();
+        });
+        this.startCountry = Observable.create((obs) => {
+          obs.next(this.garden.countryCode);
+          obs.complete();
+        });
+      },
         error => {
           console.error(error);
         });
 
-    }
+  }
 
 
-    mostrarCiudad() {
+  mostrarCiudad() {
 
-      let aux = [];
-      aux.push({ id: this.garden.city, text: this.garden.city });
-      this.city=this.garden.city;
-      this.tiempoCity='El tiempo en '+this.garden.city;
-      this.cityData = Observable.create((obs) => {
-        obs.next(aux);
-        obs.complete();
-      });
+    let aux = [];
+    aux.push({ id: this.garden.city, text: this.garden.city });
+    this.city = this.garden.city;
+    this.tiempoCity = 'El tiempo en ' + this.garden.city;
+    this.cityData = Observable.create((obs) => {
+      obs.next(aux);
+      obs.complete();
+    });
 
-    }
+  }
 
   mostrar() {
     this._gardenService.details()
@@ -212,8 +212,8 @@ export class GardenComponent {
           this.garden.title = data.title;
           this.garden.width = parseInt(data.width);
           this.garden.length = parseInt(data.length);
-          this.width = (parseInt(data.width)-1)/2;
-          this.length = (parseInt(data.length)-1)/2;
+          this.width = (parseInt(data.width) - 1) / 2;
+          this.length = (parseInt(data.length) - 1) / 2;
           this.garden.longitude = data.longitude;
           this.garden.latitude = data.latitude;
           this.garden.soil = data.soil;
@@ -234,22 +234,22 @@ export class GardenComponent {
           }
         }
       },
-      error => {
-        console.error(JSON.parse(error._body).Mensaje);
-        if (JSON.parse(error._body).Mensaje == 'No existe') {
-        } else {
-          this._route.navigate(['/detail']);
-        }
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+          if (JSON.parse(error._body).Mensaje == 'No existe') {
+          } else {
+            this._route.navigate(['/detail']);
+          }
 
-      });
+        });
 
   }
 
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        if(data.cod!='404'){
-          this.haveWeather=true;
+        if (data.cod != '404') {
+          this.haveWeather = true;
           var aux = data.main.temp - 273;
           this.temperatura = aux;
           var sunrise = new Date();
@@ -264,19 +264,19 @@ export class GardenComponent {
 
 
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+          this._route.navigate(['/login']);
+        });
   }
 
   getPrevision() {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
-        if(data.cod!='404'){
-          this.haveWeather=true;
+        if (data.cod != '404') {
+          this.haveWeather = true;
           var date = new Date();
           var today = new Date();
           var todayDay = today.getDate();
@@ -312,12 +312,16 @@ export class GardenComponent {
           this.prevDia3 = auxDia3;
           this.prevDia4 = auxDia4;
           this.prevDia5 = auxDia5;
-
+          console.log(auxToday);
+          console.log(auxTomorrow[0].weather[0].main);
+          console.log(auxDia3);
+          console.log(auxDia4);
+          console.log(auxDia5);
           this.statusHoy = this.prevHoy[0].weather[0].main;
-          this.statusMan = this.prevMan[0].weather[0].main;
-          this.statusDia3 = this.prevDia3[0].weather[0].main;
-          this.statusDia4 = this.prevDia4[0].weather[0].main;
-          this.statusDia5 = this.prevDia5[0].weather[0].main;
+          this.statusMan = this.prevMan[4].weather[0].main;
+          this.statusDia3 = this.prevDia3[4].weather[0].main;
+          this.statusDia4 = this.prevDia4[4].weather[0].main;
+          this.statusDia5 = this.prevDia5[4].weather[0].main;
 
           this.fotoHoy = this.prevHoy[0].weather[0].icon;
           this.fotoMan = this.prevMan[4].weather[0].icon;
@@ -330,12 +334,12 @@ export class GardenComponent {
         }
 
       },
-      error => {
-        console.error(error);
-        // localStorage.clear();
-        // sessionStorage.clear();
-        // this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          // localStorage.clear();
+          // sessionStorage.clear();
+          // this._route.navigate(['/login']);
+        });
   }
 
   ordenarTemperatura() {
@@ -438,14 +442,14 @@ export class GardenComponent {
 
   edit() {
 
-    this._gardenService.modifyGarden(this.garden, (this.width*2)+1, (this.length*2)+1)
+    this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
       .subscribe(data => {
         this.ngOnInit();
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
 
@@ -476,7 +480,7 @@ export class GardenComponent {
     canvas.width = canvasEvolver.offsetWidth;
     canvas.height = canvasEvolver.offsetHeight;
 
-       let desvX = (canvas.width - 1200) * 0.0008;
+    let desvX = (canvas.width - 1200) * 0.0008;
     let desvY = (canvas.height - 974) * 0.00072;
     let pos = motor.getPosCamaraActiva();
     //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
@@ -485,9 +489,9 @@ export class GardenComponent {
 
   }
 
-  toggleState(){
-    this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
-    this.visible ? this.visible=false : this.visible=true;
+  toggleState() {
+    this.accion == 'Editar' ? this.accion = 'Modo vista' : this.accion = 'Editar';
+    this.visible ? this.visible = false : this.visible = true;
     document.getElementById('formulario').classList.add('infoOcult');
   }
 
@@ -504,98 +508,97 @@ export class GardenComponent {
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
     window.addEventListener("resize", this.resizeCanvas);
+  }
+
+
+  getMyStyles(temperatura, status) {
+    let color1 = 'green';
+    let color2 = 'blue';
+    if (status == 'Clear') {
+      color1 = '#fff600';
+    } else if (status == 'Rain') {
+      color1 = '#22dbed';
+    } else if (status == 'Clouds') {
+      color1 = '#e1e1e1';
     }
-
-
-    getMyStyles(temperatura, status){
-      let color1='green';
-      let color2='blue';
-      if(status=='Clear'){
-        color1='#fff600';
-      }else if(status=='Rain'){
-        color1='#22dbed';
-      }else if(status=='Clouds'){
-        color1='#e1e1e1';
-      }
-      if(temperatura<0){
-        color2='#98daf4';
-      }else if(temperatura<10){
-        color2='#d6eff4';
-      }else if(temperatura<15){
-        color2='#eff2bb';
-      }else if(temperatura<20){
-        color2='#f5f289';
-      }else if(temperatura<25){
-        color2='#f8d44a';
-      }else if(temperatura<30){
-        color2='#f7b612';
-      }else if(temperatura<35){
-        color2='#f68b1f'
-      }else{
-        color2='#ea3c24';
-      }
-      let myStyles = {
-        'background': 'linear-gradient(to top right, '+color2+', '+color1+')',
-     };
-     return myStyles;
+    if (temperatura < 0) {
+      color2 = '#98daf4';
+    } else if (temperatura < 10) {
+      color2 = '#d6eff4';
+    } else if (temperatura < 15) {
+      color2 = '#eff2bb';
+    } else if (temperatura < 20) {
+      color2 = '#f5f289';
+    } else if (temperatura < 25) {
+      color2 = '#f8d44a';
+    } else if (temperatura < 30) {
+      color2 = '#f7b612';
+    } else if (temperatura < 35) {
+      color2 = '#f68b1f'
+    } else {
+      color2 = '#ea3c24';
     }
+    let myStyles = {
+      'background': 'linear-gradient(to top right, ' + color2 + ', ' + color1 + ')',
+    };
+    return myStyles;
+  }
 
-    isDragging(){
-      return false;
-    }
+  isDragging() {
+    return false;
+  }
 
-    //--------------------Mostrar Plantas---------------------//
-    ActualizarPagina() {
-      this.activatedRoute.queryParams.subscribe((params: Params) => {
-        this.paginaActual = params['pag'];
-        this.getitems();
-      });
-    }
+  //--------------------Mostrar Plantas---------------------//
+  ActualizarPagina() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.paginaActual = params['pag'];
+      this.getitems();
+    });
+  }
 
-    getitems() {
-      this._plantService.getNumberItems()
-        .subscribe(data => {
-          if (this.estado == false) {
-            this.numeroItems = data[0].NUMPLANTAS;
-          }
-          this.mostrarplantasmotor();
-        },
+  getitems() {
+    this._plantService.getNumberItems()
+      .subscribe(data => {
+        if (this.estado == false) {
+          this.numeroItems = data[0].NUMPLANTAS;
+        }
+        this.mostrarplantasmotor();
+      },
         error => {
           console.error(error);
         });
-    }
+  }
 
-    mostrarplantasmotor() {
-      if (this.estado == false) {
+  mostrarplantasmotor() {
+    if (this.estado == false) {
 
-        this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
-          .subscribe(data => {
-            this.plantsmotor = [];
-            for (let key$ in data) {
-              this.plantsmotor.push(data[key$]);
-            }
-            console.log(this.plantsmotor);
-          },
+      this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
+        .subscribe(data => {
+          this.plantsmotor = [];
+          for (let key$ in data) {
+            this.plantsmotor.push(data[key$]);
+          }
+          console.log(this.plantsmotor);
+        },
           error => {
             console.error(error);
           });
-      } else {
-      }
+    } else {
     }
+  }
 
-    //--------------------Detecta que es un nuevo usuarío y muestra tutorial---------------------//
-    firstgarden() {
-      this._gardenService.firstgarden()
-        .subscribe(data => {
-          if (data.Mensaje == "No existe") {
-            this.dialog.open(DialogNewgarden0Component, { width: '800px', data: {id: 1}});
-          }
-        },
-          error => {
-            console.error(JSON.parse(error._body).Mensaje);
-          });
-    }
-
+  //--------------------Detecta que es un nuevo usuarío y muestra tutorial---------------------//
+  firstgarden() {
+    this._gardenService.firstgarden()
+      .subscribe(data => {
+        if (data.Mensaje == "No existe") {
+          this.dialog.open(DialogNewgarden0Component, { width: '800px', data: { id: 1 } });
+        }
+      },
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+        });
+  }
     //--------------------Buscador---------------------//
     searchcontent(page: number, items: number) {
     console.log('ENTRO COMO UN REY')
@@ -628,6 +631,13 @@ export class GardenComponent {
       this.accion='Editar';
       this.mostrar();
     }
+
+  ngOnInit() {
+    this.firstgarden();
+    this.ActualizarPagina();
+    this.accion = 'Editar';
+    this.mostrar();
+  }
 
 
 }

@@ -1,28 +1,28 @@
-class TRecursoShader extends TRecurso{
+class TRecursoShader extends TRecurso {
   /*var vertices, normales, texturas;
   var vertTriangulos, normTriangulos, textTriangulos;
   var nTriangulos;*/
-  constructor (nombre){
+  constructor(nombre) {
     super(nombre);
-    this._shader='';
+    this._shader = '';
   }
 
-  cargarFichero(nombre){
+  cargarFichero(nombre) {
     let cargado, shader;
-  	loadTextResource('/recursos/shaders/'+nombre+'.glsl', function (vsErr, vsText){
-      if(vsErr){
-        cargado=false;
+    loadTextResource('/recursos/shaders/' + nombre + '.glsl', function (vsErr, vsText) {
+      if (vsErr) {
+        cargado = false;
       }
-      else{
-        shader=vsText;
-        cargado=true;
+      else {
+        shader = vsText;
+        cargado = true;
       }
     });
-    this._shader=shader;
+    this._shader = shader;
     return cargado;
   }
 
-  get shader(){
+  get shader() {
     return this._shader;
   }
 }
