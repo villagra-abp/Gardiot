@@ -217,7 +217,7 @@ export class CalendarComponent implements OnInit {
   addEvent(Ttitle: string, Tstart: string, Tend: string, idT: number, done: boolean): void {
     let color;
     let actions;
-    let drag=false;
+    let drag = false;
 
     if (done) {
       color = colors.green;
@@ -226,7 +226,7 @@ export class CalendarComponent implements OnInit {
     else {
       (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.red);
       actions = this.doneActions;
-      drag=true;
+      drag = true;
     }
 
 
@@ -270,7 +270,7 @@ export class CalendarComponent implements OnInit {
           console.log(event);
           event.actions = this.undoneActions;
           event.color = colors.green;
-          event.draggable=false;
+          event.draggable = false;
           this.refresh.next();
         });
 
@@ -282,7 +282,7 @@ export class CalendarComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
           console.log(event);
-          event.draggable=true;
+          event.draggable = true;
           event.actions = this.doneActions;
           event.color = colors.red;
           this.refresh.next();
@@ -363,7 +363,7 @@ export class CalendarComponent implements OnInit {
         });
   }
 
-  prueba(){
+  prueba() {
     alert("cojones2");
   }
 

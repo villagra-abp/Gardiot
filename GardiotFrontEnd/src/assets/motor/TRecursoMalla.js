@@ -1,19 +1,19 @@
-class TRecursoMalla extends TRecurso{
+class TRecursoMalla extends TRecurso {
 
-  constructor (nombre){
+  constructor(nombre) {
     super(nombre)
-    this._vertices=[];
-    this._verticesIndex=[];
-    this._normales=[];
+    this._vertices = [];
+    this._verticesIndex = [];
+    this._normales = [];
     this._textura;
-    this._textureCoords=[];
+    this._textureCoords = [];
 
     //materiales
-    this.Ka=[];
-    this.Kd=[];
-    this.Ks=[];
-    this.shininess=0.0;
-    this.opacity=1.0;
+    this.Ka = [];
+    this.Kd = [];
+    this.Ks = [];
+    this.shininess = 0.0;
+    this.opacity = 1.0;
 
     //buffers webGL
     this.bufferVertices;
@@ -27,95 +27,95 @@ class TRecursoMalla extends TRecurso{
 
 
     //auxVar
-    this.matrixModelView=[];
-    this.normalMatrix=[];
+    this.matrixModelView = [];
+    this.normalMatrix = [];
 
-    this.hovered=false;
+    this.hovered = false;
 
   }
-  cargarFichero(nombre, textura){
+  cargarFichero(nombre, textura) {
     window.loading.push(1);
     let objeto;
     //cargamos el objeto del directorio
-    loadJSONResource('/recursos/mallas/'+nombre+'.json', function (modelErr, modelObj){
-      if(modelErr){
+    loadJSONResource('/recursos/mallas/' + nombre + '.json', function (modelErr, modelObj) {
+      if (modelErr) {
 
-        alert("fail to cargar malla "+nombre);
+        alert("fail to cargar malla " + nombre);
       }
-      else{
-        objeto=modelObj;
+      else {
+        objeto = modelObj;
         window.loading.pop();
       }
     });
-      //console.log("meshes:");
-      //console.log(objeto.meshes);
-      //almacenamos los vértices del objeto
+    //console.log("meshes:");
+    //console.log(objeto.meshes);
+    //almacenamos los vértices del objeto
 
-      for(var i = 0; i<objeto.meshes.length; i++){
+    for (var i = 0; i < objeto.meshes.length; i++) {
 
-       //console.log(objeto.meshes[i].vertices);
-       this._vertices.push(objeto.meshes[i].vertices);
+      //console.log(objeto.meshes[i].vertices);
+      this._vertices.push(objeto.meshes[i].vertices);
+    }
+    //this._vertices=objeto.meshes[0].vertices;
+
+    //almacenamos el índice de caras
+    let auxVertexIndex = [];
+    for (var k = 0; k < objeto.meshes.length; k++) {
+      for (let i = 0; i < objeto.meshes[k].faces.length; i++) {
+        for (let j = 0; j < objeto.meshes[k].faces[i].length; j++) {
+          auxVertexIndex.push(objeto.meshes[k].faces[i][j]);
+        }
       }
-      //this._vertices=objeto.meshes[0].vertices;
+      this._verticesIndex.push(auxVertexIndex);
+    }
 
-      //almacenamos el índice de caras
-      let auxVertexIndex = [];
-      for(var k = 0; k<objeto.meshes.length; k++){
-        for(let i=0; i<objeto.meshes[k].faces.length; i++){
-          for(let j=0; j<objeto.meshes[k].faces[i].length; j++){
-            auxVertexIndex.push(objeto.meshes[k].faces[i][j]);
+
+    //almacenamos las coordenadas de textura
+    if (objeto.meshes[0].texturecoords !== undefined) {
+      this._textureCoords = objeto.meshes[0].texturecoords[0];
+    }
+
+    //almacenamos el material del objeto
+    if (objeto.materials.length > 0) {
+      for (let i = 0; i < objeto.materials[objeto.materials.length - 1].properties.length; i++) {
+        switch (objeto.materials[objeto.materials.length - 1].properties[i].key) {
+          case "$clr.ambient": {
+            this.Ka = objeto.materials[objeto.materials.length - 1].properties[i].value;
+          }
+          case "$clr.diffuse": {
+            this.Kd = objeto.materials[objeto.materials.length - 1].properties[i].value;
+          }
+          case "$clr.specular": {
+            this.Ks = objeto.materials[objeto.materials.length - 1].properties[i].value;
+          }
+          case "$mat.shininess": {
+            this.shininess = objeto.materials[objeto.materials.length - 1].properties[i].value;
+          }
+          case "$mat.opacity": {
+            this.opacity = objeto.materials[objeto.materials.length - 1].properties[i].value;
+          }
+          default: {
           }
         }
-        this._verticesIndex.push(auxVertexIndex);
       }
+    }
 
 
-      //almacenamos las coordenadas de textura
-      if(objeto.meshes[0].texturecoords!==undefined){
-        this._textureCoords=objeto.meshes[0].texturecoords[0];
+    //almacenamos las normales de los vértices
+    for (var k = 0; k < objeto.meshes.length; k++) {
+      if (objeto.meshes[k].normals !== undefined) {
+        this._normales.push(objeto.meshes[k].normals);
       }
+    }
 
-      //almacenamos el material del objeto
-      if(objeto.materials.length>0){
-        for(let i=0; i<objeto.materials[objeto.materials.length-1].properties.length; i++){
-          switch(objeto.materials[objeto.materials.length-1].properties[i].key){
-            case "$clr.ambient":{
-              this.Ka=objeto.materials[objeto.materials.length-1].properties[i].value;
-            }
-            case "$clr.diffuse":{
-              this.Kd=objeto.materials[objeto.materials.length-1].properties[i].value;
-            }
-            case "$clr.specular":{
-              this.Ks=objeto.materials[objeto.materials.length-1].properties[i].value;
-            }
-            case "$mat.shininess":{
-              this.shininess=objeto.materials[objeto.materials.length-1].properties[i].value;
-            }
-            case "$mat.opacity":{
-              this.opacity=objeto.materials[objeto.materials.length-1].properties[i].value;
-            }
-            default: {
-            }
-          }
-        }
-      }
+    //cargamos la textura
+    if (textura !== undefined) {
+      this._textura = gestor.getRecurso(textura, "textura");
+    }
 
-
-      //almacenamos las normales de los vértices
-      for(var k = 0; k<objeto.meshes.length; k++){
-        if(objeto.meshes[k].normals!==undefined){
-          this._normales.push(objeto.meshes[k].normals);
-        }
-      }
-
-      //cargamos la textura
-      if(textura!==undefined){
-          this._textura=gestor.getRecurso(textura, "textura");
-      }
-
-      //CREAR BUFFERS
-      //==============CREACIÓN BUFFER DE VÉRTICES==============
-    this.bufferVertices=gl.createBuffer();
+    //CREAR BUFFERS
+    //==============CREACIÓN BUFFER DE VÉRTICES==============
+    this.bufferVertices = gl.createBuffer();
     //se lo pasamos al programa
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     //asignamos los vértices leídos al buffer
@@ -124,37 +124,37 @@ class TRecursoMalla extends TRecurso{
     //==============CREACIÓN BUFFER DE ÍNDICES==============
     //Ahora vamos a crear el índice de vértices
     //(esto es como indicarle a WebGL los vértices que componen cada cara)
-    this.bufferIndex=gl.createBuffer();
-    this.bufferIndex.number_vertex_points=this._verticesIndex[0].length;
+    this.bufferIndex = gl.createBuffer();
+    this.bufferIndex.number_vertex_points = this._verticesIndex[0].length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex[0]), gl.STATIC_DRAW);
 
-    if(this._textureCoords.length>0){
-    //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
-      this.bufferTextureCoords=gl.createBuffer();
+    if (this._textureCoords.length > 0) {
+      //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
+      this.bufferTextureCoords = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._textureCoords), gl.STATIC_DRAW);
     }
 
 
-    if(this._normales[0].length>0){
+    if (this._normales[0].length > 0) {
       //==============CREACIÓN BUFFER DE NORMALES==============
-      this.bufferNormales=gl.createBuffer();
+      this.bufferNormales = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._normales[0]), gl.STATIC_DRAW);
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute=gl.getAttribLocation(glProgram[window.program], "aVertPosition");
-    this.vertexNormAttribute=gl.getAttribLocation(glProgram[window.program], "aVertNormal");
-    this.vertexTexCoordAttribute=gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
+    this.vertexPosAttribute = gl.getAttribLocation(glProgram[window.program], "aVertPosition");
+    this.vertexNormAttribute = gl.getAttribLocation(glProgram[window.program], "aVertNormal");
+    this.vertexTexCoordAttribute = gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
 
 
 
   }
 
 
-  draw(variable){
+  draw(variable) {
 
     //Cálculo de matriz normal
     mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
@@ -166,7 +166,7 @@ class TRecursoMalla extends TRecurso{
     //esto es la ñapa
     //mat3.normalFromMat4(this.normalMatrix, matrixModel);
 
-    if(this.normalMatrix.length>0){
+    if (this.normalMatrix.length > 0) {
       //Pasamos matriz normal al shader
       gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
     }
@@ -180,7 +180,7 @@ class TRecursoMalla extends TRecurso{
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
     //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
-    if(this._textura!==undefined && this._textureCoords.length>0 && window.loading.length==0){
+    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0) {
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
@@ -190,13 +190,13 @@ class TRecursoMalla extends TRecurso{
 
       gl.uniform1i(glProgram[window.program].textured, 1);
     }
-    else{
+    else {
       gl.uniform1i(glProgram[window.program].textured, 0);
     }
 
 
     //Pasamos los materiales
-    if(this.Ka.length>0 && this.Kd.length>0 && this.Ks.length>0){
+    if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
       gl.uniform3fv(glProgram[window.program].kd, this.Kd);
@@ -209,27 +209,27 @@ class TRecursoMalla extends TRecurso{
 
 
     //Pasamos el array de normales al shader
-    if(this._normales[0].length>0){
+    if (this._normales[0].length > 0) {
       gl.enableVertexAttribArray(this.vertexNormAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferNormales);
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
     }
 
     //Decimos si le aplicamos la luz estándar o no al objeto
-    if(this.nombre=='sol'){
+    if (this.nombre == 'sol') {
       gl.uniform1i(glProgram[window.program].lighted, 0);
     }
     else {
       gl.uniform1i(glProgram[window.program].lighted, 1);
     }
 
-    if(variable==true){
+    if (variable == true) {
       gl.uniform1i(glProgram[window.program].hovered, 1);
     }
-    else if(variable=="green"){
+    else if (variable == "green") {
       gl.uniform1i(glProgram[window.program].hovered, 2);
     }
-    else if(variable=="red"){
+    else if (variable == "red") {
       gl.uniform1i(glProgram[window.program].hovered, 3);
     }
     else {
