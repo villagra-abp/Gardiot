@@ -202,6 +202,17 @@ task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, date
 	}
 }
 
+task.setTaskUndone = function (myPlant, mPlant, tPlant, treatmentPlant, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+	if (connection) {
+		connection.query('UPDATE Task SET dateDone = null WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
+			if (error)
+				callback(error, null);
+			else
+				callback(null, row.affectedRows);
+		});
+	}
+}
+
 task.deleteTasksByMyPlant = function (myPlant, callback) { //Se borran las las proximas tareas o todas. Cuidado con ON delete cascade de MyPlant
 	if (connection) {
 		connection.query('DELETE FROM Task WHERE myPlant = ' + myPlant, function (error, row) {

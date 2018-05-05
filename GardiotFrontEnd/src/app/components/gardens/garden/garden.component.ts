@@ -311,12 +311,16 @@ export class GardenComponent {
           this.prevDia3 = auxDia3;
           this.prevDia4 = auxDia4;
           this.prevDia5 = auxDia5;
-
+          console.log(auxToday);
+          console.log(auxTomorrow[0].weather[0].main);
+          console.log(auxDia3);
+          console.log(auxDia4);
+          console.log(auxDia5);
           this.statusHoy = this.prevHoy[0].weather[0].main;
-          this.statusMan = this.prevMan[0].weather[0].main;
-          this.statusDia3 = this.prevDia3[0].weather[0].main;
-          this.statusDia4 = this.prevDia4[0].weather[0].main;
-          this.statusDia5 = this.prevDia5[0].weather[0].main;
+          this.statusMan = this.prevMan[4].weather[0].main;
+          this.statusDia3 = this.prevDia3[4].weather[0].main;
+          this.statusDia4 = this.prevDia4[4].weather[0].main;
+          this.statusDia5 = this.prevDia5[4].weather[0].main;
 
           this.fotoHoy = this.prevHoy[0].weather[0].icon;
           this.fotoMan = this.prevMan[4].weather[0].icon;
