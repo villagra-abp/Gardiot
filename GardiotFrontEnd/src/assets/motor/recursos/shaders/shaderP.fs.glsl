@@ -127,8 +127,8 @@ void main()
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
 			}
 			else{
-				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-				//gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 			}
 		}
 		else

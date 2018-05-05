@@ -404,6 +404,7 @@ async function iluminarSol(minutes) {
     rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
   }
   sol.entity.setIntensidad(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
+  sol.entity.setIntensidadSpecular(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
 }
 
 async function iluminarLuna(minutes) {

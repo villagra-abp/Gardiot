@@ -193,12 +193,15 @@ export class DetailComponent implements OnInit {
 
   mostrartask() {
     let f = new Date();
-    let fecha_actual: string;
-    f.getDate();
-    f.getMonth() + 1;
-    f.getFullYear();
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
-    this._taskService.detailsAll(fecha_actual)
+    let fecha_actual, fecha_pasada, fecha_futura;
+
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM');
+    f.setMonth(f.getMonth()-1);
+    fecha_pasada = this.datePipe.transform(f, 'yyyy-MM');
+    f.setMonth(f.getMonth()+2);
+    fecha_futura = this.datePipe.transform(f, 'yyyy-MM');
+    console.log(fecha_pasada);
+    this._taskService.detailsAll([fecha_actual, fecha_pasada, fecha_futura])
       .subscribe(data => {
         this.tasks = [];
         for (let key$ in data) {
