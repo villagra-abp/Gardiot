@@ -71,7 +71,6 @@ export class GardenComponent {
 
   private tercerDia: string = "";
   private visible = false;
-  private menuVisible = false;
   private haveWeather = false;
 
   private sunrise;
@@ -124,33 +123,36 @@ export class GardenComponent {
       //aqui vamos cargando las posibles ciudades a elegir
       let input = (<HTMLInputElement>document.querySelector("#zipCode"));
       if (input.value.length == 5) {
+        console.log("callCity");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
             let sp = document.querySelector('#ciudad');
 
             if (data.length > 0) {
+              console.log(data[0]);
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
               if (data[0].adminName3 !== undefined) {
                 this.garden.city = data[0].adminName3;
-                sp.innerHTML = data[0].adminName3;
+                this.city = data[0].adminName3;
+                console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
-                sp.innerHTML = data[0].adminName2;
+                this.city = data[0].adminName2;
               }
               else if (data[0].adminName1 !== undefined) {
                 this.garden.city = data[0].adminName1;
-                sp.innerHTML = data[0].adminName1;
+                this.city = data[0].adminName1;
               }
               else {
                 this.garden.city = '';
-                sp.innerHTML = 'Código postal no encontrado';
+                this.city = 'Código postal no encontrado';
               }
             }
             else {
               this.garden.city = '';
-              sp.innerHTML = 'Código postal no encontrado';
+              this.city = 'Código postal no encontrado';
             }
             input.value = '';
 
@@ -437,21 +439,12 @@ export class GardenComponent {
 
     this._gardenService.modifyGarden(this.garden, (this.width*2)+1, (this.length*2)+1)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("Datos modificados", "success", "");
+        this.ngOnInit();
       },
       error => {
         let v = JSON.parse(error._body);
         this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
       });
-  }
-
-  //muestra el formulario de edicion y borrado de jardín
-  showForm() {
-    if (this.menuVisible == true) {
-      this.menuVisible = false;
-    } else {
-      this.menuVisible = true;
-    }
   }
 
 
@@ -494,6 +487,7 @@ export class GardenComponent {
   toggleState(){
     this.accion=='Editar' ? this.accion='Modo vista' : this.accion='Editar';
     this.visible ? this.visible=false : this.visible=true;
+    document.getElementById('formulario').classList.add('infoOcult');
   }
 
   inicializar() {

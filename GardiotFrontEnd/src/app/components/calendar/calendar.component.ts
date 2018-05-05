@@ -32,6 +32,8 @@ import {
   DAYS_OF_WEEK
 } from 'angular-calendar';
 import { CustomDateFormatter } from './customdate.provider';
+declare var showPopover: any;
+declare var hidePopover: any;
 
 
 const colors: any = {
@@ -192,7 +194,6 @@ export class CalendarComponent implements OnInit {
 
   addEvent(Ttitle: string, Tstart: string, Tend: string, idT: number, done: boolean): void {
     let color;
-    ;
 
     done ? color=colors.green : (Ttitle.indexOf('Regar')>=0 ? color=colors.blue : color=colors.red);
 
@@ -243,6 +244,38 @@ export class CalendarComponent implements OnInit {
       this._taskService.moveTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, oldDate, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'))
         .subscribe(data => {
           console.log(data);
+        },error=>{
+          event.start=new Date(oldDate);
+          event.end=new Date(oldDate);
+          //alert("chacho no puedes mover esta tarea, que ya hay una igual para esa planta en ese momento");
+
+          this.refresh.next();
+          let taskDay=parseInt(oldDate.split('-')[2]).toString();
+          let taskMonth=parseInt(oldDate.split('-')[1]);
+
+          let cellsOfCalendar=document.getElementsByClassName('cal-day-number');
+          let monthInCalendar=parseInt(this.datePipe.transform(this.viewDate, 'yyyy-MM-dd').split('-')[1]);
+          let currentMonth=monthInCalendar-1;
+          let rel=0;
+          for(let i=0; i<cellsOfCalendar.length; i++){
+            if(cellsOfCalendar[i].innerHTML=='1'){
+              rel++;
+              currentMonth++;
+            }
+            let bb;
+            if(currentMonth==taskMonth &&  cellsOfCalendar[i].innerHTML==taskDay){
+              bb=cellsOfCalendar[i].parentElement.getBoundingClientRect();
+              let pop=document.getElementById('popoverError');
+                pop.style.position='absolute';
+                pop.style.top=bb.top+'px';
+                pop.style.left=(bb.left+bb.right)/2+'px';
+                showPopover('popoverError');
+                setTimeout(function(){
+                  hidePopover('popoverError');
+                }, 4000);
+            }
+
+          }
         });
     }
     else{
@@ -283,6 +316,8 @@ export class CalendarComponent implements OnInit {
         console.error(error);
       });
   }
+
+
 
   ngOnInit() {
     this.mostrar();

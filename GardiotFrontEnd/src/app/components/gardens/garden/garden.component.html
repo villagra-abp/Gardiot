@@ -22,7 +22,7 @@
     </div>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
-  <section id="formulario" class="formulario" [hidden]="menuVisible">
+  <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult">
     <i onclick="this.parentNode.classList.toggle('infoOcult')">Cerrar</i>
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
@@ -69,7 +69,7 @@
     <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;" onmouseup="deletePlant()" [hidden]="isDragging()"></div>
   </section>
 
-    <div id="prevision" *ngIf="visible == true && haveWeather == true">
+    <div id="prevision" *ngIf="visible == true && haveWeather == true" oncontextmenu="return false;">
         <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
         <span class="interactiveButton" style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para abrir</span>
       <div class="tiempo">
