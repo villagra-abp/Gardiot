@@ -28,9 +28,10 @@ declare var motor: any;
 })
 export class GardenComponent {
   private garden = new Garden("");
+  private plant = new Plant();
+  private plants: any[] = [];
 
   private temperatura = 0;
-
   private prevHoy = [];
   private prevMan = [];
   private prevDia3 = [];
@@ -95,7 +96,7 @@ export class GardenComponent {
   //paginación y buscador
   private numeroItems: number;
   private paginaActual: number = 1;
-  private elementosPorPagina: number = 8;
+  private elementosPorPagina: number = 6;
   private estado: boolean = false;// false es listado y true buscador
   private plantmotor: number[];
   private plantsmotor: any[] = [];
@@ -260,7 +261,7 @@ export class GardenComponent {
           this.sunset = sunset;
         }
         console.log(data);
-        
+
 
       },
       error => {
@@ -327,7 +328,7 @@ export class GardenComponent {
 
           this.ordenarTemperatura();
         }
-        
+
       },
       error => {
         console.error(error);
@@ -593,6 +594,32 @@ export class GardenComponent {
           error => {
             console.error(JSON.parse(error._body).Mensaje);
           });
+    }
+
+    //--------------------Buscador---------------------//
+    searchcontent(page: number, items: number) {
+    console.log('ENTRO COMO UN REY')
+      this._plantService.searchAll(this.plant, page, items)
+        .subscribe(data => {
+          if (data[0] != undefined) {
+            this.plants = [];
+            this.numeroItems = data[0].num;
+            if (this.estado == false) {
+              this.paginaActual = 1;
+              this.estado = true;
+            }
+            for (let key$ in data) {
+              this.plants.push(data[key$]);
+            }
+          }else{
+            this.plants = [];
+            this.numeroItems = 0;
+            this.paginaActual = 1;
+          }
+        },
+        error => {
+          console.error(error);
+        });
     }
 
     ngOnInit() {
