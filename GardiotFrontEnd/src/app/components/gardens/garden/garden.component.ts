@@ -28,8 +28,7 @@ declare var motor: any;
 })
 export class GardenComponent {
   private garden = new Garden("");
-  private plant = new Plant();
-  private plants: any[] = [];
+
 
   private temperatura = 0;
   private prevHoy = [];
@@ -77,15 +76,15 @@ export class GardenComponent {
   private sunrise;
   private sunset;
 
-  countries: any[] = [];
-  cities: any[] = [];
-  zip: string = "";
-  countryData: Observable<Array<Select2OptionData>>;
-  startCountry: Observable<string>;
-  cityData: Observable<Array<Select2OptionData>>;
-  startCity: Observable<string>;
-  city: string;
-  tiempoCity: string = "El tiempo";
+  private countries: any[] = [];
+  private cities: any[] = [];
+  private zip: string = "";
+  private countryData: Observable<Array<Select2OptionData>>;
+  private startCountry: Observable<string>;
+  private cityData: Observable<Array<Select2OptionData>>;
+  private startCity: Observable<string>;
+  private city: string;
+  private tiempoCity: string = "El tiempo";
 
 
   private photoURL = "";
@@ -96,10 +95,12 @@ export class GardenComponent {
   //paginación y buscador
   private numeroItems: number;
   private paginaActual: number = 1;
-  private elementosPorPagina: number = 6;
+  private elementosPorPagina: number = 5;
   private estado: boolean = false;// false es listado y true buscador
   private plantmotor: number[];
   private plantsmotor: any[] = [];
+  private plant = new Plant();
+
 
   constructor(
     private _gardenService: GardenService,
@@ -312,11 +313,7 @@ export class GardenComponent {
           this.prevDia3 = auxDia3;
           this.prevDia4 = auxDia4;
           this.prevDia5 = auxDia5;
-          console.log(auxToday);
-          console.log(auxTomorrow[0].weather[0].main);
-          console.log(auxDia3);
-          console.log(auxDia4);
-          console.log(auxDia5);
+
           this.statusHoy = this.prevHoy[0].weather[0].main;
           this.statusMan = this.prevMan[4].weather[0].main;
           this.statusDia3 = this.prevDia3[4].weather[0].main;
@@ -336,9 +333,6 @@ export class GardenComponent {
       },
         error => {
           console.error(error);
-          // localStorage.clear();
-          // sessionStorage.clear();
-          // this._route.navigate(['/login']);
         });
   }
 
@@ -571,14 +565,12 @@ export class GardenComponent {
 
   mostrarplantasmotor() {
     if (this.estado == false) {
-
       this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
         .subscribe(data => {
           this.plantsmotor = [];
           for (let key$ in data) {
             this.plantsmotor.push(data[key$]);
           }
-          console.log(this.plantsmotor);
         },
           error => {
             console.error(error);
@@ -601,21 +593,20 @@ export class GardenComponent {
   }
     //--------------------Buscador---------------------//
     searchcontent(page: number, items: number) {
-    console.log('ENTRO COMO UN REY')
       this._plantService.searchAll(this.plant, page, items)
         .subscribe(data => {
           if (data[0] != undefined) {
-            this.plants = [];
+            this.plantsmotor = [];
             this.numeroItems = data[0].num;
             if (this.estado == false) {
               this.paginaActual = 1;
               this.estado = true;
             }
             for (let key$ in data) {
-              this.plants.push(data[key$]);
+              this.plantsmotor.push(data[key$]);
             }
           }else{
-            this.plants = [];
+            this.plantsmotor = [];
             this.numeroItems = 0;
             this.paginaActual = 1;
           }
@@ -623,6 +614,7 @@ export class GardenComponent {
         error => {
           console.error(error);
         });
+
     }
 
 
