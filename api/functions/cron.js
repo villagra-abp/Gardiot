@@ -4,6 +4,9 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/main');
 var dateFormat = require('../functions/dateFormatter');
 
+var plantModel = require('../models/plant');
+var feedModel = require('../models/feed');
+
 var verificationTokenJob = new CronJob({
   cronTime: '30 * * * * *',
   onTick: function() {
@@ -118,7 +121,41 @@ var nextMonthTasks = new CronJob({
   timeZone: 'Europe/Madrid'
 });
 
+var autoWeeklyFeed = new CronJob({
+  cronTime: '00 00 08 * * 1',
+  onTick: function() {
+    plantModel.getPlantsSowing(function(error, data) {
+      if (error)
+        console.log("CronJob: Failed to retrieve plants sowing. Error: "+ error.message);
+      else if (typeof data !== 'undefined' && Object.keys(data).length > 0){
+        var today = new Date();
+        var month = today.getMonth() + 1;
+        var endWeek = new Date();
+        endWeek.setDate(endWeek.getDate() + 6);
+        var monthFinal = endWeek.getMonth() + 1;
+        var feedData = {
+          name: 'Plantas para sembrar del ' + today.getDate() + '/' + month + ' al ' + endWeek.getDate() + '/' + monthFinal,
+          text: 'Hola Gardioters, esta semana es la ideal para plantar ',
+          dateInit: dateFormat(today),
+          dateFinal: dateFormat(endWeek)
+        };
+        for (var plant in data) 
+          feedData.text += data[plant].commonName + ', ';
+        feedData.text = feedData.text.slice(0, -2);
+        feedModel.insertFeed(feedData, function(error, data) {
+          if (error)
+            console.log("CronJob: Failed to insert weekly feed. Error: " + error.message);
+        });
+      }
+    });
+  },
+  start: false,
+  timeZone: 'Europe/Madrid',
+  runOnInit: true
+});
+
 forgetPasswordTokenJob.start();
 inactiveTokenJob.start();
 verificationTokenJob.start();
 nextMonthTasks.start();
+autoWeeklyFeed.start();
