@@ -83,6 +83,7 @@ export class CalendarComponent implements OnInit {
 
   private treatments: any[] = [];
   private treatment = new Task();
+  private monthsLoaded: string[] = [];
 
 
 
@@ -339,13 +340,20 @@ export class CalendarComponent implements OnInit {
 
   mostrar() {
     let f = new Date();
-    let fecha_actual: string;
-    f.getDate();
-    f.getMonth() + 1;
-    f.getFullYear();
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
-    this._taskService.detailsAll(fecha_actual)
+    let fecha_actual, fecha_pasada, fecha_futura;
+
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM');
+    f.setMonth(f.getMonth()-1);
+    fecha_pasada = this.datePipe.transform(f, 'yyyy-MM');
+    f.setMonth(f.getMonth()+2);
+    fecha_futura = this.datePipe.transform(f, 'yyyy-MM');
+    console.log(fecha_pasada);
+    this._taskService.detailsAll([fecha_actual, fecha_pasada, fecha_futura])
       .subscribe(data => {
+        this.monthsLoaded.push(fecha_pasada);
+        this.monthsLoaded.push(fecha_actual);
+        this.monthsLoaded.push(fecha_futura);
+        console.log(this.monthsLoaded);
         this.tasks = [];
         for (let key$ in data) {
           this.tasks.push(data[key$]);
@@ -362,9 +370,47 @@ export class CalendarComponent implements OnInit {
           console.error(error);
         });
   }
+  changeMonth(){
+    let dates=[];
+    let f=new Date(this.datePipe.transform(this.viewDate, 'yyyy-MM'));
+    f.setMonth(f.getMonth()-1);
+    for(let i=0; i<3; i++){
+      let month=this.datePipe.transform(f, 'yyyy-MM');
+      let exists=false;
+      for(let j=0; j<this.monthsLoaded.length && !exists; j++){
+        if(this.monthsLoaded[j]==month){
+          exists=true;
+        }
+      }
+      if(!exists){
+        dates.push(month);
+        this.monthsLoaded.push(month);
+      }
+      f.setMonth(f.getMonth()+1);
+    }
+    if(dates.length>0){
+      this._taskService.detailsAll(dates)
+      .subscribe(data => {
 
-  prueba() {
-    alert("cojones2");
+        this.tasks = [];
+        for (let key$ in data) {
+          this.tasks.push(data[key$]);
+          // console.log(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName,
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+            parseInt(key$),
+            data[key$].dateDone != null);
+        }
+
+      },
+        error => {
+          console.error(error);
+        });
+    }
+    console.log(this.monthsLoaded);
+
+    
   }
 
   ngOnInit() {
