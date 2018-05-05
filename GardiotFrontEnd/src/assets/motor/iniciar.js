@@ -227,7 +227,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
       motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
       motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
-  
+
       motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
       motor.moverMalla("alaA", 0.2, 0.2, 0.2);
       motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
@@ -239,8 +239,8 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
   // Pruebas LOGO
-  // motor.crearNodoMalla("logo", "logo", "logo.png", undefined);
-  // motor.escalarMallaXYZ("logo", 1, 1, 2);
+  // motor.crearNodoMalla("logo", "logo", "logo.jpg", undefined);
+  // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
   // motor.moverMalla("logo", 1, 1, 1);
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
