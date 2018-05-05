@@ -35,10 +35,12 @@ export class DialogTaskComponent implements OnInit {
     // TRATAMIENTO
     this._treatmentService.details(this.data.treatmentPlant)
       .subscribe(data => {
-        this.nameTreatment.name = data[0].name;
-        this.nameTreatment.name = data[0].name;
-        this.nameTreatment.description = data[0].description;
-        this.nameTreatment.icon = data[0].icon;
+        if (data[0] !== undefined) {
+          this.nameTreatment.name = data[0].name;
+          this.nameTreatment.name = data[0].name;
+          this.nameTreatment.description = data[0].description;
+          this.nameTreatment.icon = data[0].icon;            
+        }
       },
       error => {
         console.error(error);
@@ -56,9 +58,11 @@ export class DialogTaskComponent implements OnInit {
     // PRODUCTO
     this._treatmentPlantService.showProductPlant(this.data.treatmentPlant,this.data.mPlant)
       .subscribe(data => {
-        this.product.name = data[0].name;
-        this.product.type = data[0].type;
-        this.product.description = data[0].description;
+        if (data[0] !== undefined) {
+          this.product.name = data[0].name;
+          this.product.type = data[0].type;
+          this.product.description = data[0].description;
+        }
       },
       error => {
         console.error(error);

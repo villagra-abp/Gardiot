@@ -6,7 +6,7 @@ div{
     border: 3px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
-    text-align: center;
+    /* text-align: center; */
     margin: 0;
 }
 section{

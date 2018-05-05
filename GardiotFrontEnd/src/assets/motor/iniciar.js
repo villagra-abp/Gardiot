@@ -223,6 +223,10 @@ motor.moverMalla("around", 0, -0.11, 0);
   //motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
   //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
+  // Pruebas LOGO
+  // motor.crearNodoMalla("logo", "logo", "logo.png", undefined);
+  // motor.escalarMallaXYZ("logo", 1, 1, 2);
+  // motor.moverMalla("logo", 1, 1, 1);
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
   // motor.rotarMalla("pajaro2_000000", -90, "x");
@@ -253,7 +257,7 @@ motor.activarLuz("sol");
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
     sunset = new Date(2018, 11, 11, 20, 14, 42);
   }
-    
+
     let today = new Date();
     let minuteOfDay = today.getHours() * 60 + today.getMinutes();
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
@@ -266,20 +270,20 @@ motor.activarLuz("sol");
     motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
     motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
     window.lastTime = today;
-    
+
     /* COLOR DEL SOL */
     window.rgbInit = {red: 182, green: 126, blue: 91};
     window.rgbNoon = {red: 192, green: 191, blue: 173};
     window.rgbMoon = {red: 192, green: 198, blue: 255};
-    window.rgbDiffSun = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue}; 
-    window.rgbDiffMoon = {red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue}; 
+    window.rgbDiffSun = {red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue};
+    window.rgbDiffMoon = {red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue};
 
     iluminarAstro(minuteOfDay);
     rotarSol();
-  
-  
 
-  
+
+
+
 
   //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
   //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
@@ -345,7 +349,7 @@ async function rotarSol () {
 }
 
 async function demoSol () {
-  await sleep(500); 
+  await sleep(500);
   let now = new Date(window.lastTime);
   now.setHours(now.getHours() + 1);
   let minutesDiff = Math.abs(now - window.lastTime)/60000;
@@ -391,13 +395,13 @@ async function iluminarLuna (minutes) {
   let rgb = {};
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
   let minutesSinceSunset = '';
-  if (minutes > window.minuteOfSunset) 
+  if (minutes > window.minuteOfSunset)
     minutesSinceSunset = minutes - window.minuteOfSunset;
-  else 
+  else
     minutesSinceSunset = minutes + ((24 * 60) - window.minuteOfSunset);
-  
+
   if (minutesSinceSunset < minutesOfNight/2) {
-    let percent = minutesSinceSunset / (minutesOfNight/2); 
+    let percent = minutesSinceSunset / (minutesOfNight/2);
     rgb = {red: (window.rgbDiffMoon.red * percent) + window.rgbInit.red, green: (window.rgbDiffMoon.green * percent) + window.rgbInit.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbInit.blue};
   }
   else {
