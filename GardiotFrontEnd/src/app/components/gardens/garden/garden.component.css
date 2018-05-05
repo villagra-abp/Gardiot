@@ -306,3 +306,8 @@ button{
    bottom: 100px;
    right: 20px;
  }
+
+ .search{
+   margin-top: -3em;
+   margin-left: 5em;
+ }

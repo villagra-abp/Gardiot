@@ -11,6 +11,7 @@ export class Garden {
    public user?: string,
    public countryCode?: string,
    public city?: string,
+   public zip?: string,
    public plants?: any[]
    ) {
 

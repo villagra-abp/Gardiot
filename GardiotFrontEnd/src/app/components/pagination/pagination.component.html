@@ -71,9 +71,9 @@
 
   <ul class="pagination"  *ngIf="count > 0 && type==6">
     <li class="">
-      <button class="btn btn-secondary btn-sm" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/plants']" [queryParams]="{pag: previusPage()}"><i class="material-icons">chevron_left</i></button>
+      <button class="btn btn-secondary btn-sm" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/garden']" [queryParams]="{pag: previusPage()}"><i class="material-icons">chevron_left</i></button>
     </li>
     <li class="">
-      <button class="btn btn-secondary btn-sm" (click)="onNext()" [routerLink]="['/plants']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading"><i class="material-icons">chevron_right</i></button>
+      <button class="btn btn-secondary btn-sm" (click)="onNext()" [routerLink]="['/garden']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading"><i class="material-icons">chevron_right</i></button>
     </li>
   </ul>
