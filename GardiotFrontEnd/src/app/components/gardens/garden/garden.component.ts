@@ -625,12 +625,6 @@ export class GardenComponent {
         });
     }
 
-    ngOnInit() {
-      this.firstgarden();
-      this.ActualizarPagina();
-      this.accion='Editar';
-      this.mostrar();
-    }
 
   ngOnInit() {
     this.firstgarden();
