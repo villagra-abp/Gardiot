@@ -80,7 +80,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   gl.clearColor(0, 0, 0, 1);
   gl.enable(gl.DEPTH_TEST);
 
-  
+
   //fachada
   window.motor = new TMotor(gestor);
 
@@ -196,6 +196,15 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
       rotY: 0,
       rotZ: 0,
       posY: 0.2
+    },
+    LOGO: { // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
+      textura: 'logo.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 90,
+      posY: 0.2
+
     }
   };
 
@@ -238,7 +247,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   //motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
   //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
-  // Pruebas LOGO
+//  Pruebas LOGO
   // motor.crearNodoMalla("logo", "logo", "logo.jpg", undefined);
   // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
   // motor.moverMalla("logo", 1, 1, 1);
