@@ -55,6 +55,7 @@ declare var iniciar: any;
 
 @Component({
   selector: 'app-detail',
+  styleUrls: ['detail.component.css'],
   templateUrl: './detail.component.html',
   providers: [
     {
@@ -62,6 +63,7 @@ declare var iniciar: any;
       useClass: CustomDateFormatter
     }
   ]
+
 })
 export class DetailComponent implements OnInit {
   view: string = 'week';
@@ -163,7 +165,7 @@ export class DetailComponent implements OnInit {
           }
           new iniciar("home", this.garden, this.sunrise, this.sunset);
         } else {
-          // this._route.navigate(['/newgarden']); 
+          // this._route.navigate(['/newgarden']);
         }
 
       },
@@ -200,7 +202,6 @@ export class DetailComponent implements OnInit {
     fecha_pasada = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()+2);
     fecha_futura = this.datePipe.transform(f, 'yyyy-MM');
-    console.log(fecha_pasada);
     this._taskService.detailsAll([fecha_actual, fecha_pasada, fecha_futura])
       .subscribe(data => {
         this.tasks = [];
@@ -216,6 +217,7 @@ export class DetailComponent implements OnInit {
   cerrarfeed(id:number) {
     this._feedService.closefeed(id)
       .subscribe(data => {
+        this.cargarfeeds();
       },
       error => {
         console.error(error);
