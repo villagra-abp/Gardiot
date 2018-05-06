@@ -80,7 +80,7 @@ function drop(e) {
 
 
 function mouse_move(e) {
-  if (typeof matrixProjection !== 'undefined') {
+  if (typeof projectionMatrix !== 'undefined') {
     let cv = document.querySelector('#myCanvas'),
       x = e.clientX,
       y = e.clientY;
@@ -366,7 +366,7 @@ function scrolling(e) {
 
 function get2DPoint(point3D, width, height) {
   let viewProjectionMatrix = [];
-  mat4.multiply(viewProjectionMatrix, matrixProjection, invertedMView);
+  mat4.multiply(viewProjectionMatrix, projectionMatrix, viewMatrix);
   vec3.transformMat4(point3D, point3D, viewProjectionMatrix);
 
   let invert = [];
@@ -394,7 +394,7 @@ function get3DPoint(point2D, width, height) {
   y = 1 - y;
 
   let viewProjectionMatrix = [];
-  mat4.multiply(viewProjectionMatrix, matrixProjection, invertedMView);
+  mat4.multiply(viewProjectionMatrix, projectionMatrix, viewMatrix);
 
   let invert = [];
   mat4.invert(invert, viewProjectionMatrix);

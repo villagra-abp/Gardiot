@@ -27,7 +27,7 @@ class TRecursoMalla extends TRecurso {
 
 
     //auxVar
-    this.matrixModelView = [];
+    this.viewModelMatrix = [];
     this.normalMatrix = [];
 
     this.hovered = false;
@@ -155,21 +155,23 @@ class TRecursoMalla extends TRecurso {
 
 
   draw(variable) {
-
     //Cálculo de matriz normal
-    mat4.multiply(this.matrixModelView, invertedMView, matrixModel);
+    mat4.multiply(this.viewModelMatrix, viewMatrix, matrixModel);
+    mat4.invert(this.normalMatrix, this.viewModelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
 
-    mat4.invert(this.normalMatrix, this.matrixModelView);
-    mat4.transpose(this.normalMatrix, this.normalMatrix.slice(0));
-    //esto es lo correcto
-    //mat3.normalFromMat4(this.normalMatrix, this.matrixModelView);
-    //esto es la ñapa
-    //mat3.normalFromMat4(this.normalMatrix, matrixModel);
+    //Cálculo de la matrix model view projection
+    let projectionViewModelMatrix=[];
+    mat4.multiply(projectionViewModelMatrix, projectionMatrix, this.viewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].mvMatrixUniform, false, this.viewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].mvpMatrixUniform, false, projectionViewModelMatrix);
 
-    if (this.normalMatrix.length > 0) {
-      //Pasamos matriz normal al shader
-      gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
-    }
+    //Cálculo de la matrix model view projection desde la luz
+    let lightProjectionViewModelMatrix=[];
+    mat4.multiply(lightProjectionViewModelMatrix, projectionMatrix, viewLightMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
+
 
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);

@@ -21,11 +21,21 @@ export class TaskService {
   }
 
 
-  detailsAll(fecha_actual: string) {
+  detailsAll(fechas: string[]) {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
-    return this.http.get(this.apiURL + "monthTask/" + fecha_actual, { headers })
+    let query='?';
+    if(fechas[0]!==undefined){
+      query += 'fecha1='+fechas[0]+'&';
+    }if(fechas[1]!==undefined){
+      query += 'fecha2='+fechas[1]+'&';
+    }if(fechas[2]!==undefined){
+      query += 'fecha3='+fechas[2]+'&';
+    }
+    query = query.substring(0, query.length - 1);
+
+    return this.http.get(this.apiURL + "monthTask"+query, { headers })
       .map(res => {
         return res.json();
       })

@@ -25,7 +25,7 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
 
 plant.getPlantsSowing = function(callback) {
   if (connection) {
-    connection.query('SELECT id FROM Plant WHERE DAYOFYEAR(initDatePlant) <= DAYOFYEAR(NOW())  AND DAYOFYEAR(finDatePlant)>= DAYOFYEAR(NOW())', function (error, rows) {
+    connection.query('SELECT id, commonName FROM Plant WHERE DAYOFYEAR(initDatePlant) <= DAYOFYEAR(NOW())  AND DAYOFYEAR(finDatePlant)>= DAYOFYEAR(NOW())', function (error, rows) {
       if (error)
         callback(error, null);
       else
