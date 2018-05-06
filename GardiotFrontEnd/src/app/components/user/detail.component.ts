@@ -163,7 +163,7 @@ export class DetailComponent implements OnInit {
           }
           new iniciar("home", this.garden, this.sunrise, this.sunset);
         } else {
-          // this._route.navigate(['/newgarden']);
+          // this._route.navigate(['/newgarden']); 
         }
 
       },
