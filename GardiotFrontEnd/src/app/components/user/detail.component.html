@@ -1,4 +1,19 @@
 <div class="container main-container">
+  <div class="form-group row-md-12 feeds">
+    <section *ngFor="let feed of feeds" class="alert alert-success feed" role="alert">
+      <article class="form-row">
+        <div class="col">
+          <h6>{{feed.name}} </h6>
+        </div>
+        <div class="col">
+          <button type="button" class="close" aria-label="Close" (click)="cerrarfeed(feed.id)"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="form-group row-md-8">
+          <p>{{feed.text}} </p>
+        </div>
+      </article>
+    </section>
+  </div>
   <div [routerLink]="['/calendar']">
     <div class="row text-center">
       <div class="col-md-12">
@@ -7,16 +22,8 @@
     </div>
     <br>
     <div [ngSwitch]="view">
-      <mwl-calendar-week-view *ngSwitchCase="'week'"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      [locale]="locale"
-      [refresh]="refresh"
-      [weekStartsOn]="weekStartsOn"
-      [weekendDays]="weekendDays"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)">
+      <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [locale]="locale" [refresh]="refresh" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" (eventClicked)="handleEvent('Clicked', $event.event)"
+        (eventTimesChanged)="eventTimesChanged($event)">
       </mwl-calendar-week-view>
     </div>
   </div>
@@ -25,21 +32,6 @@
       <div class="form-group col-md-6">
         <canvas [routerLink]="[gardenRoute]" id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="450"
           height="350"></canvas>
-      </div>
-      <div class="form-group col-md-6">
-        <section *ngFor="let feed of feeds" class="alert alert-success " role="alert">
-          <article class="form-row">
-            <div class="form-group row-md-2">
-              <h6>{{feed.name}} </h6>
-            </div>
-            <div class="form-group row-md-8">
-              <p>{{feed.text}} </p>
-            </div>
-            <div class="form-group row-md-1">
-              <button class="btn btn-outline-primary" (click)="cerrarfeed(feed.id)">X</button>
-            </div>
-          </article>
-        </section>
       </div>
     </article>
   </section>
