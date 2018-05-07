@@ -1,47 +1,40 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
     <h1>Tratamientos</h1>
-
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
-        <input type="text" [(ngModel)]="treatment.name" class="form-control" name="name" placeholder="Buscar en gardiot">
+        <input type="text" [(ngModel)]="treatment.name" class="form-control" name="name" placeholder="Nombre">
       </article>
-      <article class="form-group col-md-4">
-        <button class="btn btn-default" type="submit">Buscar</button>
-        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
+      <article class="form-group col-md-6">
+        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
       </article>
-      <article class="form-group col-md-2">
-        <button [routerLink]="['/admin/newtreatment']" class="btn btn-outline-primary">Nuevo Tratamiento</button>
+      <article class="form-group col-md-2 nav justify-content-end">
+        <button [routerLink]="['/admin/newtreatment']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
-
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
         <label for="content">Descripción</label>
         <input type="text" [(ngModel)]="treatment.description" class="form-control" id="content" name="content" placeholder="Contenido">
         <button class="btn btn-default" type="submit">Filtrar</button>
-        
       </form>
-      
     </div>
     <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
-          <th scope="col">Modificar</th>
-          <th scope="col">Eliminar</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        
         <tr *ngFor="let treatment of treatments">
           <th scope="row">{{treatment.name}}</th>
           <td>{{treatment.description}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/edittreatment/',treatment.id]">Modificar</button></td>
-          <!-- <td><button  class="btn btn-outline-danger" (click)="delete(treatment.id)" [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-          <td><button class="btn btn-outline-danger" (click)="openDialog(treatment.id,2)">Eliminar</button></td>
-
+          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/edittreatment/',treatment.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button class="btn btn-outline-danger" (click)="openDialog(treatment.id,2)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>
