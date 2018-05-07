@@ -134,9 +134,14 @@ export class GardenComponent {
             console.log(data[0]);
             this.garden.latitude = data[0].lat.toFixed(2);
             this.garden.longitude = data[0].lng.toFixed(2);
-            if (data[0].adminName3 !== undefined) {
+            if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
               this.garden.city = data[0].adminName3;
               this.city = data[0].adminName3;
+              console.log(this.city);
+            }
+            else if (data[0].placeName !== undefined) {
+              this.garden.city = data[0].placeName;
+              this.city = data[0].placeName;
               console.log(this.city);
             }
             else if (data[0].adminName2 !== undefined) {

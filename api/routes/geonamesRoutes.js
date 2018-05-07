@@ -11,7 +11,6 @@ router.get('/geonamesByZip/:zip/:code', function (request, response) {
       data = JSON.stringify(data);
       data = data.replace(/\\/g, "");
       data= data.substring(1, data.length-1);
-
       response.status(200).send(data);
     });
 
@@ -51,6 +50,7 @@ router.get('/geonamesSearchByZip/:zip/:code', function (request, response) {
       data = JSON.stringify(data);
       data = data.replace(/\\/g, "");
       data= data.substring(1, data.length-1);
+
       let datos=JSON.parse(data).postalCodes;
       let nuevoArray = [];
       let lookup  = {};
@@ -62,7 +62,6 @@ router.get('/geonamesSearchByZip/:zip/:code', function (request, response) {
       for (i in lookup) {
           nuevoArray.push(lookup[i]);
       }
-
 
       response.status(200).send(nuevoArray);
     });
