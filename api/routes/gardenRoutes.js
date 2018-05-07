@@ -13,13 +13,17 @@ var isASCII = require('../functions/isASCII');
 
 var gardenModel = require('../models/garden');
 
-router.get('/admin/garden',  passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-  gardenModel.getGarden (function(error, data){
-	if (error)
-		  response.status(500).json({"Mensaje":error.message});
-	else
-		response.status(200).json(data);
-  });
+router.get('/gardens/:number/:page',  passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}))
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+    else {
+		gardenModel.getGarden(request.params.number, request.params.page, function(error, data){
+			if (error)
+				response.status(500).json({"Mensaje":error.message});
+			else
+				response.status(200).json(data);
+		});
+	}
 });
 
 
@@ -27,16 +31,32 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 	if (!validator.isInt(request.params.id, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		var id = request.params.id;
-		var user = request.user;
-		gardenModel.getGardenById(id, function(error, data) {
+		gardenModel.getGardenById(request.params.id, function(error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
 			else if (typeof data !== 'undefined' && data.length > 0) {
-				if(user.id == data[0].user)
-					response.status(200).json(data);
-				else
-					response.status(403).json({"Mensaje":"Imposible recuperar los datos de un jardín ajeno."});
+				let garden={};
+				garden.id=data[0].gardenId;
+				garden.title=data[0].title;
+				garden.width=data[0].width;
+				garden.length=data[0].length;
+				//garden.longitude=data[0].longitude;
+				//garden.latitude=data[0].latitude;
+				garden.soil=data[0].soil;
+				//garden.countryCode=data[0].countryCode;
+				//garden.city=data[0].city;
+				garden.plants=[];
+				for(let i=0; i<data.length; i++){
+					garden.plants.push({"id": data[i].id,
+										"name": data[i].commonName,
+										"plant": data[i].plant,
+										"model": data[i]._3DModel,
+										"x": data[i].xCoordinate,
+										"y": data[i].yCoordinate,
+										"seed": data[i].seed});
+				}
+
+				response.status(200).json(garden);
 			}
 			else
 				response.status(404).json({"Mensaje":"No existe"});
@@ -78,6 +98,43 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 		}
 	});
 });
+
+/*router.get('/gardenByUser/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
+	if(!validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
+		response.status(400).json({"Mensaje":"Email no válido"});
+	else {
+		gardenModel.getGardenByUser(request.params.id, function (error, data) {
+			if (error)
+				response.status(500).json({"Mensaje":error.message});
+			else if (typeof data !== 'undefined' && data.length > 0) {
+				let garden={};
+				garden.id=data[0].gardenId;
+				garden.title=data[0].title;
+				garden.width=data[0].width;
+				garden.length=data[0].length;
+				//garden.longitude=data[0].longitude;
+				//garden.latitude=data[0].latitude;
+				garden.soil=data[0].soil;
+				//garden.countryCode=data[0].countryCode;
+				//garden.city=data[0].city;
+				garden.plants=[];
+				for(let i=0; i<data.length; i++){
+					garden.plants.push({"id": data[i].id,
+										"name": data[i].commonName,
+										"plant": data[i].plant,
+										"model": data[i]._3DModel,
+										"x": data[i].xCoordinate,
+										"y": data[i].yCoordinate,
+										"seed": data[i].seed});
+				}
+
+				response.status(200).json(garden);
+			}
+			else 
+				response.status(200).json({"Mensaje":"Este usuario no tiene jardín."});
+		});
+	}
+});*/
 
 router.get('/firstgardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var user = request.user.id;

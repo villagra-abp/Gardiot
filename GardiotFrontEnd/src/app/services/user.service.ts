@@ -372,8 +372,8 @@ export class UserService {
 
   logInGrafana() {
     let headers = new Headers({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Access-Control-Allow-Origin': '*'
+      'Content-Type': 'application/x-www-form-urlencoded'
+
     });
     let body = `id=user1&password=gardioters`;
 
