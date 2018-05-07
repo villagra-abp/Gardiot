@@ -85,6 +85,8 @@ export class CalendarComponent implements OnInit {
   private treatment = new Task();
   private monthsLoaded: string[] = [];
 
+  private contador: number=0;
+
 
 
 
@@ -233,7 +235,7 @@ export class CalendarComponent implements OnInit {
 
     this.events.push({
       title: Ttitle,
-      id: idT,
+      id: this.contador,
       start: startOfDay(new Date(Tstart)),
       end: endOfDay(new Date(Tend)),
       color: color,
@@ -245,6 +247,7 @@ export class CalendarComponent implements OnInit {
       }
     });
     this.refresh.next();
+    this.contador++;
 
   }
 
@@ -340,23 +343,25 @@ export class CalendarComponent implements OnInit {
 
   mostrar() {
     let f = new Date();
-    let fecha_actual, fecha_pasada, fecha_futura;
+    let fechas=[];
 
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM');
+    fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()-1);
-    fecha_pasada = this.datePipe.transform(f, 'yyyy-MM');
+    fechas[1] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()+2);
-    fecha_futura = this.datePipe.transform(f, 'yyyy-MM');
-    console.log(fecha_pasada);
-    this._taskService.detailsAll([fecha_actual, fecha_pasada, fecha_futura])
+    fechas[2] = this.datePipe.transform(f, 'yyyy-MM');
+
+    for(let i=0; i<fechas.length; i++){
+
+      this._taskService.detailsAll(fechas[i])
       .subscribe(data => {
-        this.monthsLoaded.push(fecha_pasada);
-        this.monthsLoaded.push(fecha_actual);
-        this.monthsLoaded.push(fecha_futura);
+        this.monthsLoaded.push(fechas[i]);
+
         console.log(this.monthsLoaded);
-        this.tasks = [];
+        
         for (let key$ in data) {
           this.tasks.push(data[key$]);
+          console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
           // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
@@ -369,6 +374,8 @@ export class CalendarComponent implements OnInit {
         error => {
           console.error(error);
         });
+    }
+    
   }
   changeMonth(){
     let dates=[];
@@ -389,10 +396,10 @@ export class CalendarComponent implements OnInit {
       f.setMonth(f.getMonth()+1);
     }
     if(dates.length>0){
-      this._taskService.detailsAll(dates)
+      for(let i=0; i<dates.length; i++){
+        this._taskService.detailsAll(dates[i])
       .subscribe(data => {
 
-        this.tasks = [];
         for (let key$ in data) {
           this.tasks.push(data[key$]);
           // console.log(data[key$]);
@@ -407,6 +414,8 @@ export class CalendarComponent implements OnInit {
         error => {
           console.error(error);
         });
+      }
+      
     }
     console.log(this.monthsLoaded);
 
