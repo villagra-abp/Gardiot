@@ -32,36 +32,11 @@ router.get('/dayTask/:number/:page/:date', passport.authenticate('jwt', {session
 	}
 });
 
-router.get('/monthTask', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
-	
-	let dates=[];
-	if(request.query.fecha1!==undefined){
-		if (!validator.isISO8601(request.query.fecha1)){
-			response.status(400).json({"Mensaje":"Petición incorrecta"});
-		}
-		else{
-			dates.push(request.query.fecha1);
-		}
-	}
-	if(request.query.fecha2!==undefined){
-		if (!validator.isISO8601(request.query.fecha2)){
-			response.status(400).json({"Mensaje":"Petición incorrecta"});
-		}
-		else{
-			dates.push(request.query.fecha2);
-		}
-	}
-	if(request.query.fecha3!==undefined){
-		if (!validator.isISO8601(request.query.fecha3)){
-			response.status(400).json({"Mensaje":"Petición incorrecta"});
-		}
-		else{
-			dates.push(request.query.fecha3);
-		}
-	}
-	console.log(request.query.fecha1);
-	if(dates.length>0) {
-		taskModel.getMyTasksByMonth (request.user.id, dates, function (error, data) {
+router.get('/monthTask/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isISO8601(request.params.date)) 
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		taskModel.getMyTasksByMonth (request.user.id, request.params.date, function (error, data) {
 			if (error) {
 				console.log(error.message);
 				response.status(500).json({"Mensaje":error.message});
@@ -69,9 +44,6 @@ router.get('/monthTask', passport.authenticate('jwt', {session: false}), routeRe
 			else
 				response.status(200).json(data);
 		})
-	}
-	else{
-		response.status(400).json({"Mensaje":"Debes pasar alguna fecha"});
 	}
 });
 
@@ -87,7 +59,6 @@ router.get('/plantTask/:number/:page/:myPlant', passport.authenticate('jwt', {se
 		})
 	}
 });
-
 
 router.put('/moveTask/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:newDate', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
