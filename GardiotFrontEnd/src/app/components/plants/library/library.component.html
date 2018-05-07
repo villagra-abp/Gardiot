@@ -7,12 +7,12 @@
         <article class="form-group col-md-4">
           <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
         </article>
-        <article class="form-group col-md-8">
-          <button class="btn btn-default" type="submit">Buscar</button>
-          <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
+        <article class="form-group col-md-6">
+          <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+          <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
         </article>
         <article class="form-group col-md-2">
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary">Nueva planta</button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary"><i class="material-icons">add_circle</i></button>
         </article>
       </form>
       <section class="form-row">
@@ -46,10 +46,9 @@
           <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
           <div class="card-body">
             <h4>{{plant.commonName}} </h4>
-            <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary">Modificar</button>
-            <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-secondary">Tratamientos</button>
-            <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger" (click)="openDialog(plant.id,4)">Eliminar</button>
-            <!-- <button *ngIf="this.user.isAdmin" (click)="deleteplant(plant.id)" [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Eliminar</button> -->
+            <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
+            <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary"><i class="material-icons">mode_edit</i></button>
+            <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
           </div>
         </div>
       </section>

@@ -1,36 +1,30 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
-    <h1>Panel de administrador</h1>
-
+    <h1>Gestión de usuarios</h1>
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="user.id" class="form-control" name="id" placeholder="Buscar por e-mail">
       </article>
       <article class="form-group col-md-6">
-        <button class="btn btn-default" type="submit">Buscar</button>
-        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
+        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
       </article>
       <article class="form-group col-md-2">
-        <button [routerLink]="['/admin/newuser']" class="btn btn-outline-primary">Nuevo Usuario</button>
+        <button [routerLink]="['/admin/newuser']" class="btn btn-outline-primary"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
     <div class="collapse" id="demo">
-      
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-
         <label for="propio">Nombre</label>
         <input type="text" [(ngModel)]="user.name" class="form-control" id="propio" name="propio" placeholder="Nombre propio">
-
         <label for="apellido">Apellido</label>
         <input type="text" [(ngModel)]="user.lastName" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
-
         <label for="tipo">Tipo</label>
         <select [(ngModel)]="user.admin" class="form-control" id="tipo" name="tipo" default="">
           <option value="undefined">Todos</option>
           <option value="0">Usuario</option>
           <option value="1">Administrador</option>
         </select>
-
          <label for="activo">Estado</label>
          <select [(ngModel)]="user.active" class="form-control" id="activo" name="activo" default="">
           <option value="undefined">Todos</option>
@@ -40,8 +34,6 @@
         <button class="btn btn-default" type="submit">Filtrar</button>
       </form>
     </div>
-
-       
     <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
@@ -50,21 +42,19 @@
           <th scope="col">Correo</th>
           <th scope="col">Tipo</th>
           <th scope="col">Estado</th>
-          <th scope="col">Modificar</th>
-          <th scope="col">Eliminar</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody >
-        
         <tr *ngFor="let user of users">
           <th scope="row">{{user.name}}</th>
           <td>{{user.lastName}}</td>
           <td>{{user.id}}</td>
           <td>{{user.admin}}</td>
           <td>{{user.active}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]">Modificar</button></td>
-          <!-- <td><button  class="btn btn-outline-danger" (click)="deleteuser(user.id)" [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-          <td><button class="btn btn-outline-danger" (click)="openDialog(user.id,5)">Eliminar</button></td>
+          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/edituser/',user.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button class="btn btn-outline-danger" (click)="openDialog(user.id,5)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>
