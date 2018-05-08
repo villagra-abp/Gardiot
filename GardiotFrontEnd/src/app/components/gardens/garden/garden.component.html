@@ -29,7 +29,7 @@
       </form> -->
       <ul class="nav navbar-nav">
         <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3dmodel}}" alt="no sale la imagen" width="90px" height="90px" class="img" title="{{plantmotor.commonName}}" >
+          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="no sale la imagen" width="90px" height="90px" class="img" title="{{plantmotor.commonName}}" >
           <!-- <div class="text">{{plantmotor.commonName}}</div> -->
         </li>
         <li>

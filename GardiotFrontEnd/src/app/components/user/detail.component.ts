@@ -203,7 +203,7 @@ export class DetailComponent implements OnInit {
 
       this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-        
+
         for (let key$ in data) {
           this.tasks.push(data[key$]);
           console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
@@ -217,7 +217,6 @@ export class DetailComponent implements OnInit {
         error => {
           console.error(error);
         });
-    }
   }
 
   cerrarfeed(id:number) {
