@@ -1,0 +1,26 @@
+.card{
+  background-color: #f2f2f2;
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  margin:1.5em;
+  overflow:hidden;
+}
+.buttonAdmin{
+  margin-top:1em;
+  margin-left: 0.4em;
+  padding-left: 0.2em;
+}
+
+.search{
+  border: none;
+}
+p{
+  text-align: center;
+  font-size: smaller;
+}
+img{
+  transition: 0.5s ease-out;
+}
+img:hover{
+  transform:scale(1.1);
+
+}

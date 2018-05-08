@@ -12,6 +12,11 @@ h1{
   margin-bottom: 1.5em;
 }
 
+h4{
+  text-align: center;
+  font-weight:bold;
+}
+
 
 
 /* -------------------------------------- */
@@ -138,9 +143,13 @@ display: flex;
   top: 0;
   opacity: 0;
 }
+
 .vistaAdmin{
   margin-top: 50px;
 }
+
+
+
 @media (min-width: 768px) {
   .vistaAdmin{
     margin-left: 200px !important;

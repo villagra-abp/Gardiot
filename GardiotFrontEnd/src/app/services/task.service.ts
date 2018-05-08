@@ -21,7 +21,7 @@ export class TaskService {
   }
 
 
-  detailsAll(fechas: string[]) {
+  detailsAll(fechas: string) {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
@@ -35,7 +35,7 @@ export class TaskService {
     }
     query = query.substring(0, query.length - 1);
 
-    return this.http.get(this.apiURL + "monthTask"+query, { headers })
+    return this.http.get(this.apiURL + "monthTask/"+fechas, { headers })
       .map(res => {
         return res.json();
       })
