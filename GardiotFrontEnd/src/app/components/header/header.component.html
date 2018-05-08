@@ -9,32 +9,40 @@
 		</div>
 		<div id="sidebar-wrapper" class="sidebar-toggle">
 			<img src="https://gardiot.ovh/images/light2.png" alt="Gardiot">
-			<ul class="sidebar-nav" (click)="toggleMenu()">
+			<ul class="sidebar-nav " (click)="toggleMenu()">
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/statistics']" href="#">Estadísticas</a>
+					<a [routerLink]="['/admin/statistics']" href="#"><i class="material-icons">insert_chart</i>Estadísticas</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" href="#">Usuarios</a>
+					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">people</i>Usuarios</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" href="#">Plantas</a>
+					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">nature</i>Plantas</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" href="#">Tratamientos</a>
+					<a [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">store</i>Tratamientos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#">Productos</a>
+					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">shopping_basket</i>Productos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" href="#">Consejos</a>
+					<a [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">style</i>Consejos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/profile']" href="#">Mi perfil</a>
+					<a [routerLink]="['/admin/profile']" href="#"><i class="material-icons">account_box</i>Perfil</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/logout']" href="#">Log Out</a>
+					<a [routerLink]="['/logout']" href="#"><i class="material-icons">input</i>Log Out</a>
 				</li>
 			</ul>
+			<!-- <ul class="sidebar-nav inferior " (click)="toggleMenu()">
+				<li *ngIf="this.userService.isAuthenticated">
+					<a [routerLink]="['/admin/profile']" href="#"><i class="material-icons">account_box</i>Perfil</a>
+				</li>
+				<li *ngIf="this.userService.isAuthenticated">
+					<a [routerLink]="['/logout']" href="#"><i class="material-icons">input</i>Log Out</a>
+				</li>
+			</ul> -->
 		</div>
 	</div>
 </nav>

@@ -2,29 +2,22 @@
   max-width: 25px;
   max-height: 25px;
 }
-section{
-  margin-top: 2.5%;
-  padding: 2%;
+
+img{
+  width: 50%;
+  height: 80%;
+}
+
+ul{
+  text-align: center;
 }
 article{
-  margin-top: 1%;
-  padding: 2%;
-}
-div{
-  margin-top: 0;
+  padding: 0.2em;
+  margin:0.4em;
+  margin-top: 1.2em;
 }
 
-
-/* img{
-  max-width: 420px;
-  max-height: 400px;
-} */
-
-/* img{
-  width: 300px;
-  height: 300px;
-} */
-dl {
+/* dl {
   width: 100%;
   overflow: hidden;
   padding: 0;
@@ -33,7 +26,7 @@ dl {
 dt {
   float: left;
   width: 50%;
-  /* adjust the width; make sure the total of both is 100% */
+ adjust the width; make sure the total of both is 100%
   padding: 0;
   margin: 0
 }
@@ -42,7 +35,4 @@ dd{
   width: 50%;
   padding: 0;
   margin: 0;
-}
-h1{
-  text-align: center;
-}
+} */

@@ -138,7 +138,7 @@ export class LibraryComponent implements OnInit {
 
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
-      width: '600px',
+      width: '40em',
       data: { idObject: id, typeObject: tipo }
     });
   }

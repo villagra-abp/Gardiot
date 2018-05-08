@@ -81,6 +81,12 @@
   margin-left: -200px;
 }
 
+i{
+   vertical-align: text-bottom;
+   margin-right: 0.2em;
+}
+.inferior{
+}
 
 /*HEADER USER*/
 .header{
