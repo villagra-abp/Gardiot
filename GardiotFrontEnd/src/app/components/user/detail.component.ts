@@ -199,17 +199,10 @@ export class DetailComponent implements OnInit {
 
     fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()-1);
-    fechas[1] = this.datePipe.transform(f, 'yyyy-MM');
-    f.setMonth(f.getMonth()+2);
-    fechas[2] = this.datePipe.transform(f, 'yyyy-MM');
 
-    for(let i=0; i<fechas.length; i++){
 
-      this._taskService.detailsAll(fechas[i])
+      this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-        this.monthsLoaded.push(fechas[i]);
-
-        console.log(this.monthsLoaded);
         
         for (let key$ in data) {
           this.tasks.push(data[key$]);
@@ -217,9 +210,7 @@ export class DetailComponent implements OnInit {
           // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-            parseInt(key$),
-            data[key$].dateDone != null);
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
 
       },
