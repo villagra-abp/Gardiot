@@ -210,7 +210,7 @@ export class DetailComponent implements OnInit {
 
         for (let key$ in data) {
           this.tasks.push(data[key$]);
-          console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
           // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
