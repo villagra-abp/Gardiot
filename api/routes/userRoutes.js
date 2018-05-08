@@ -25,6 +25,7 @@ router.post('/register', function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
+		photo: request.body.photo,
 	};
 	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
@@ -309,7 +310,8 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
-		admin: request.body.admin
+		admin: request.body.admin,
+		photo: request.body.photo
 	};
 	userData = filter(userData);
 	if (typeof userData.id==='undefined' || typeof userData.password==='undefined')
@@ -417,7 +419,7 @@ function validateInput(data) {
 	if (typeof data.birthDate!== 'undefined' && !validator.isISO8601(data.birthDate) && validator.isAfter(data.birthDate)) resp += 'Fecha no válida, ';
 	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
 	if (typeof data.city!=='undefined' && !isASCII(data.city)) resp += 'Ciudad no válida, ';
-	if (typeof data.photo!=='undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
+	//if (typeof data.photo!=='undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
 	if (typeof data.oldId!=='undefined' && !validator.isEmail(data.oldId) && !isEmail.validate(data.oldId)) resp += 'Email anterior no válido, ';
 	if (resp) resp = resp.slice(0, -2);
 	return resp;

@@ -55,6 +55,7 @@ declare var iniciar: any;
 
 @Component({
   selector: 'app-detail',
+  styleUrls: ['detail.component.css'],
   templateUrl: './detail.component.html',
   providers: [
     {
@@ -62,6 +63,7 @@ declare var iniciar: any;
       useClass: CustomDateFormatter
     }
   ]
+
 })
 export class DetailComponent implements OnInit {
   view: string = 'week';
@@ -104,6 +106,10 @@ export class DetailComponent implements OnInit {
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
+  }
+
+  goGarden(){
+    this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
   }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
@@ -193,26 +199,34 @@ export class DetailComponent implements OnInit {
 
   mostrartask() {
     let f = new Date();
-    let fecha_actual: string;
-    f.getDate();
-    f.getMonth() + 1;
-    f.getFullYear();
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
-    this._taskService.detailsAll(fecha_actual)
+    let fechas=[];
+
+    fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
+    f.setMonth(f.getMonth()-1);
+
+
+      this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-        this.tasks = [];
+
         for (let key$ in data) {
-          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          this.tasks.push(data[key$]);
+          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          // console.log(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName,
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
+
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   cerrarfeed(id:number) {
     this._feedService.closefeed(id)
       .subscribe(data => {
+        this.cargarfeeds();
       },
       error => {
         console.error(error);

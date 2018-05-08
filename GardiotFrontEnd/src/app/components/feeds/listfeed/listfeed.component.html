@@ -1,59 +1,57 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
     <h1>Consejos</h1>
-
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
-        <input type="text" [(ngModel)]="feed.name" class="form-control" name="name" placeholder="Buscar en gardiot">
+        <input type="text" [(ngModel)]="feed.name" class="form-control" name="name" placeholder="Título">
       </article>
-      <article class="form-group col-md-4">
-        <button class="btn btn-default" type="submit">Buscar</button>
-        <a data-toggle="collapse" data-target="#demo" class="small">Busqueda avanzada</a>
+      <article class="form-group col-md-6">
+        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
       </article>
-      <article class="form-group col-md-2">
-        <button [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary">Nuevo Consejo</button>
-        
+      <article class="form-group col-md-2 nav justify-content-end">
+        <button [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
-
-
-        <div id="demo" class="collapse">
-          <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+    <div id="demo" class="collapse">
+      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+          <div class="form-group col-md-6">
             <label for="content">Texto</label>
-            <input type="text" [(ngModel)]="feed.text" class="form-control" id="content" name="content" placeholder="Contenido">
+            <input type="text" [(ngModel)]="feed.text" class="form-control" id="content" name="content">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inicio">Inicio</label>
+            <input type="date" [(ngModel)]="feed.dateInit" class="form-control" id="inicio" name="inicio">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="fin">Fin</label>
+            <input type="date" [(ngModel)]="feed.dateFinal" class="form-control" id="fin" name="fin">
+          </div>
+          <div class="form-group col-md-2">
+            <button class="btn btn-default" type="submit">Filtrar</button>
+          </div>
 
-            <label for="inicio">Fecha inicio</label>
-            <input type="date" [(ngModel)]="feed.dateInit" class="form-control" id="inicio" name="inicio" >
-
-            <label for="fin">Fecha fin</label>
-            <input type="date" [(ngModel)]="feed.dateFinal" class="form-control" id="fin" name="fin" >
-
-            
-          </form>
-          
-        </div>
-      
-
+      </form>
+    </div>
     <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
-          <th scope="col">Nombre</th>
+          <th scope="col">Título</th>
           <th scope="col">Texto</th>
           <th scope="col">Fecha Inicial</th>
           <th scope="col">Fecha Final</th>
-          <th scope="col">Modificar</th>
-          <th scope="col">Eliminar</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let feed of feeds">
           <th scope="row">{{feed.name}}</th>
           <td>{{feed.text}}</td>
-          <td>{{feed.dateInit}}</td>
-          <td>{{feed.dateFinal}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/editfeed/',feed.id]">Modificar</button></td>
-          <!-- <td><button  class="btn btn-outline-danger" (click)="delete(feed.id)" [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-          <td><button class="btn btn-outline-danger" (click)="openDialog(feed.id,3)">Eliminar</button></td>
+          <td>{{feed.dateInit | date}}</td>
+          <td>{{feed.dateFinal| date}}</td>
+          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/editfeed/',feed.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button class="btn btn-outline-danger" (click)="openDialog(feed.id,3)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>

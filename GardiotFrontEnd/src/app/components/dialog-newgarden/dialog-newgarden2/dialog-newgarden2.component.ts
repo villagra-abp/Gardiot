@@ -26,13 +26,22 @@ export class DialogNewgarden2Component implements OnInit {
   private cities: any[] = [];
   private zip: string = "";
 
+  private photoURL = "";
+
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden2Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _gardenService: GardenService,
     private _route: Router,
     private dialog: MatDialog,
-  ) { }
+  ) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }
+  }
 
   getid() {
     this._gardenService.details().subscribe(data => {
@@ -109,6 +118,7 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
   saveCity(e) {
+    console.log(e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.garden.city = e.value;
       this.mostrarCiudad();
@@ -122,13 +132,20 @@ export class DialogNewgarden2Component implements OnInit {
       if (input.value.length == 5) {
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
+            console.log(data);
             let sp = document.querySelector('#ciudad');
             if (data.length > 0) {
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
-              if (data[0].adminName3 !== undefined) {
-                this.garden.city = data[0].adminName3;
-                sp.innerHTML = data[0].adminName3;
+              if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
+              this.garden.city = data[0].adminName3;
+              //this.city = data[0].adminName3;
+              //console.log(this.city);
+              }
+              else if (data[0].placeName !== undefined) {
+                this.garden.city = data[0].placeName;
+                //this.city = data[0].placeName;
+                //console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
@@ -158,6 +175,56 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
 
+
+  searchZip2(): void {
+    //aqui vamos cargando las posibles ciudades a elegir
+    var input = this.garden.zip;
+    console.log(input);
+    if (this.garden.countryCode != undefined) {
+      if (input.length == 5) {
+        this._gardenService.listCitiesByZip(this.garden.countryCode, input)
+          .subscribe(data => {
+            //let sp = document.querySelector('#ciudad');
+            if (data.length > 0) {
+              this.garden.latitude = data[0].lat.toFixed(2);
+              this.garden.longitude = data[0].lng.toFixed(2);
+              if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
+              this.garden.city = data[0].adminName3;
+              //this.city = data[0].adminName3;
+              //console.log(this.city);
+              }
+              else if (data[0].placeName !== undefined) {
+                this.garden.city = data[0].placeName;
+                //this.city = data[0].placeName;
+                //console.log(this.city);
+              }
+              else if (data[0].adminName2 !== undefined) {
+                this.garden.city = data[0].adminName2;
+               // sp.innerHTML = data[0].adminName2;
+              }
+              else if (data[0].adminName1 !== undefined) {
+                this.garden.city = data[0].adminName1;
+                //sp.innerHTML = data[0].adminName1;
+              }
+              else {
+                this.garden.city = '';
+                // sp.innerHTML = 'Código postal no encontrado';
+              }
+            }
+            else {
+              this.garden.city = '';
+              //sp.innerHTML = 'Código postal no encontrado';
+            }
+            input = '';
+
+          },
+            error => {
+              console.error(error);
+            });
+      }
+    }
+  }
+
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
@@ -166,8 +233,6 @@ export class DialogNewgarden2Component implements OnInit {
           let v = JSON.parse(error._body);
         });
   }
-
-
 
   ngOnInit() {
     this.listarPaises();

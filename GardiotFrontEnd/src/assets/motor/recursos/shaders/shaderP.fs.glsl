@@ -45,10 +45,24 @@ uniform int uLighted;
 uniform int uNLights;
 uniform int uHovered;
 
+uniform sampler2D uShadowMap;
+varying vec4 vPositionFromLight;
 
+float unpackDepth(const in vec4 rgbaDepth) {
+        const vec4 bitShift = vec4(1.0, 1.0/256.0, 1.0/(256.0 * 256.0), 1.0/(256.0*256.0*256.0));
+        float depth = dot(rgbaDepth, bitShift);
+        return depth;
+    }
 
 void main()
 {
+
+	vec3 shadowCoord = (vPositionFromLight.xyz/vPositionFromLight.w)/2.0 + 0.5;
+    vec4 rgbaDepth = texture2D(uShadowMap, shadowCoord.xy);
+    float depth = unpackDepth(rgbaDepth);
+    float visibility = (shadowCoord.z > depth + 0.0015) ? 0.7 : 1.0;
+
+
 	vec3 N=normalize(vTVertNormal.xyz);
 	vec3 V=normalize(-vTVertPosition);
 	vec3 vLight = material.Ka * cAmbientLight;
@@ -113,6 +127,7 @@ void main()
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
 			}
 			else{
+				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 			}
 		}

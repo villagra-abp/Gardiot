@@ -15,13 +15,22 @@ import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden
 })
 export class DialogNewgarden3Component implements OnInit {
   private garden = new Garden("");
+  private photoURL = "";
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden3Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _gardenService: GardenService,
     private _route: Router,
     private dialog: MatDialog,
-  ) { }
+  ) {
+
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }
+  }
 
   getid() {
     this._gardenService.details().subscribe(data => {

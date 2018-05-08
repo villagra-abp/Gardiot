@@ -36,7 +36,10 @@
     "ng2-pica": "^1.2.8",
     "ng2-select2": "^1.0.0-beta.11",
     "rxjs": "^5.5.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "@angular/cli": "1.6.0",
+    "@angular/compiler-cli": "^5.0.0",
+    "typescript": "~2.4.2"
   },
   "devDependencies": {
     "@angular/cli": "1.6.0",

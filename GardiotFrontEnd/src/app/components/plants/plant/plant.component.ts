@@ -82,7 +82,6 @@ export class PlantComponent implements OnInit {
 
   }
   mostrarTratamientos(numplant: number) {
-    // console.log("Entro en mostrar tratamientos de planta: "+numplant);
     this._treatmentPlantService.detailsTreatment(numplant)
       .subscribe(data => {
         this.treatments = [];
@@ -179,8 +178,6 @@ export class PlantComponent implements OnInit {
         this.plant = new Plant(params['id']);
         this.mostrar(this.plant.id);
         this.contShowPlant();
-        // llamo a mostrarTratamientos y le paso el id de la planta
-        // this.treatment=new Treatment(params['id']);
         this.mostrarTratamientos(this.plant.id);
 
       } else {

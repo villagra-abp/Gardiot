@@ -1,34 +1,24 @@
 <div>
   <section>
     <h4>¡Danos tu ubicación!</h4>
-    <p>Si nos das tu ubicacíon podremos hacerte recomendaciones e informarte de la meteorología del lugar</p>
-    <form (ngSubmit)="newGarden()" #forma="ngForm" class="needs-validation" novalidate>
-      <!-- <div class="form-col">
-        <div class=" " ng-init="listarPaises()">
-          <label for="countries">País</label>
-          <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-          </select2>
-        </div>
-        <div class="form-group col-md-4">
-          <label for="countries">Código postal</label>
-          <input class="" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
-        </div>
-      </div> -->
+    <p>Si nos das tu ubicacíon podremos hacerte recomendaciones de plantas e informarte de la meteorología del lugar</p>
+    <form (ngSubmit)="searchZip2()" #forma="ngForm" class="needs-validation" novalidate>
+<img src="{{photoURL}}/images/imgGardiot/señal.png" class="rounded mx-auto d-block" width="30%" height="30%" alt="Logo">
 
       <div class="form-group col-md-8">
         <label for="pais">País</label>
         <select2 id="pais" class="form-control" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
         </select2>
       </div>
-      <div class="form-group col-md-3">
-        <label for="countries">C.P.</label>
-        <input type="text" class="form-control" id="countries" (valueChanged)="this.saveCity($event)">
+      <div class="form-group col-md-5">
+        <label for="zipCode">C.P.</label>
+        <input type="text" class="form-control" [(ngModel)]="garden.zip" name="zip" id="zipCode" >
+        <button class="btn" (click)="searchZip2()">Comprobar</button>
       </div>
     </form>
-
     <div>
       <p>Ciudad</p>
-      <span id="ciudad"></span>
+      <span id="ciudad">{{garden.city}}</span>
     </div>
 
     <mat-dialog-actions>

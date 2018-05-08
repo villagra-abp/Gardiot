@@ -176,7 +176,7 @@ function validateInput(data) {
 	if (typeof data.scientificName!== 'undefined' && !isASCII(data.scientificName)) resp += 'Nombre científico no válido, ';
 	if (typeof data.commonName!== 'undefined' && !isASCII(data.commonName)) resp += 'Nombre común no válido, ';
 	if (typeof data.description!== 'undefined' && !isASCII(data.description)) resp += 'Descripción no válida, ';
-	if (typeof data.photo!== 'undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
+	//if (typeof data.photo!== 'undefined' && !isASCII(data.photo)) resp += 'Foto no válida, ';
 	if (typeof data._3DModel!== 'undefined' && !isASCII(data._3DModel)) resp += 'Modelo no válido, ';
 	if (typeof data.family!== 'undefined' && !validator.isInt(data.family)) resp += 'Familia no válida, ';
 	if (typeof data.depth!== 'undefined' && !validator.isFloat(data.depth)) resp += 'Profundidad no válida, ';

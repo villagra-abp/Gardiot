@@ -1,4 +1,12 @@
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
+  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == false" >
+    <article class="search">
+      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
+    </article>
+    <article class="searchbutton">
+      <button class="btn btn-default" type="submit">Buscar</button>
+    </article>
+  </form>
   <nav class="navbar navbar-default nav superior" role="navigation" *ngIf="visible == false">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
@@ -11,9 +19,18 @@
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
          otro elemento que se pueda ocultar al minimizar la barra -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <!-- <form (ngSubmit)="this.searchcontent(1,5)" class="form-row" #forma="ngForm">
+        <article class="search">
+          <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
+        </article>
+        <article class="searchbutton">
+          <button class="btn btn-default" type="submit">Buscar</button>
+        </article>
+      </form> -->
       <ul class="nav navbar-nav">
         <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3dmodel}}" alt="no sale la imagen" width="50px" height="50px">
+          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="no sale la imagen" width="90px" height="90px" class="img" title="{{plantmotor.commonName}}" >
+          <!-- <div class="text">{{plantmotor.commonName}}</div> -->
         </li>
         <li>
           <app-pagination [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
@@ -22,7 +39,7 @@
     </div>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
-  <section id="formulario" class="formulario" [hidden]="menuVisible">
+  <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult">
     <i onclick="this.parentNode.classList.toggle('infoOcult')">Cerrar</i>
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
@@ -68,53 +85,40 @@
     <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;" (click)="this.openDialog(1, 2)"></div>
     <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;" onmouseup="deletePlant()" [hidden]="isDragging()"></div>
   </section>
-
-    <div id="prevision" *ngIf="visible == true && haveWeather == true">
-        <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
-        <span class="interactiveButton" style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para abrir</span>
-      <div class="tiempo">
-        <div class="headTiempo">
-          <h4>{{tiempoCity}}</h4>
-        </div>
-        <div class="today" [ngStyle]="getMyStyles(temperatura, this.statusHoy)">
-          <p><span class="maxima">{{temperatura | number:'.0-0'}}º</span></p>
-          <span>Ahora</span>
-
-          <img src="{{photoURL}}/images/imgWeather/{{fotoHoy}}.png">
-
-        </div>
-        <div class="today" [ngStyle]="getMyStyles(maxMan, this.statusMan)">
-          <p><span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span></p>
-          <span>Mañana</span>
-
-          <img src="{{photoURL}}/images/imgWeather/{{fotoMan}}.png">
-
-        </div>
-        <div class="today" [ngStyle]="getMyStyles(maxDia3, this.statusDia3)">
-          <p><span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span></p>
-          <span>{{nombreDia3}}</span>
-
-          <img src="{{photoURL}}/images/imgWeather/{{fotoDia3}}.png">
-
-        </div>
-        <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia4)">
-          <p><span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span></p>
-          <span>{{nombreDia4}}</span>
-
-          <img src="{{photoURL}}/images/imgWeather/{{fotoDia4}}.png">
-
-        </div>
-        <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia5)">
-          <p><span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span></p>
-          <span>{{nombreDia5}}</span>
-
-          <img src="{{photoURL}}/images/imgWeather/{{fotoDia5}}.png">
-
-        </div>
-
+  <div id="prevision" *ngIf="visible == true && haveWeather == true" oncontextmenu="return false;">
+    <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
+    <span class="interactiveButton" style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para abrir</span>
+    <div class="tiempo">
+      <div class="headTiempo">
+        <h4>{{tiempoCity}}</h4>
       </div>
-      
+      <div class="today" [ngStyle]="getMyStyles(temperatura, this.statusHoy)">
+        <p><span class="maxima">{{temperatura | number:'.0-0'}}º</span></p>
+        <span>Ahora</span>
+        <img src="{{photoURL}}/images/imgWeather/{{fotoHoy}}.png">
+      </div>
+      <div class="today" [ngStyle]="getMyStyles(maxMan, this.statusMan)">
+        <p><span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span></p>
+        <span>Mañana</span>
+        <img src="{{photoURL}}/images/imgWeather/{{fotoMan}}.png">
+      </div>
+      <div class="today" [ngStyle]="getMyStyles(maxDia3, this.statusDia3)">
+        <p><span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span></p>
+        <span>{{nombreDia3}}</span>
+        <img src="{{photoURL}}/images/imgWeather/{{fotoDia3}}.png">
+      </div>
+      <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia4)">
+        <p><span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span></p>
+        <span>{{nombreDia4}}</span>
+        <img src="{{photoURL}}/images/imgWeather/{{fotoDia4}}.png">
+      </div>
+      <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia5)">
+        <p><span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span></p>
+        <span>{{nombreDia5}}</span>
+        <img src="{{photoURL}}/images/imgWeather/{{fotoDia5}}.png">
+      </div>
     </div>
+  </div>
 </div>
 
 <!--<button class="rotButton"><img src="{{photoURL}}/images/icon/rotation.png" alt="Rotate"></button>-->

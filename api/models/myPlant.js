@@ -51,8 +51,10 @@ myPlant.updateMyPlant = function(id, data, callback) {
     sql = sql.slice(0, -1);
     sql += ' WHERE id = "' + id +'"';
     connection.query(sql, function(error, result) {
-      if (error)
+      if (error){
+        console.log(error);
         callback(error, null);
+      }
       else{
         callback(null, result.affectedRows);
       }

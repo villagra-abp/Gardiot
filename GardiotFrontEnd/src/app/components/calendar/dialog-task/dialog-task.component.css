@@ -1,20 +1,33 @@
-div{
-    width: 100%;
-    margin: 0 auto;
+section{
+    /* width: 100%; */
+    /* margin: 0 auto; */
     background: rgba(255,255,255,0.1);
-    padding: 35px;
-    border: 2px solid #fff;
+    /* padding: 35px; */
+    border: 3px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
-    text-align: center;
+    /* text-align: center; */
+    /* margin: 0; */
 }
 section{
-  margin-top: -26px;
+  /* margin-top: -26px; */
 }
 
 mat-dialog-actions{
-padding: 2.5px;
+  padding: 2.5px;
 }
 button{
-margin: auto;
+  margin: 3px;
+}
+.producto{
+  font-size: .8em;
+}
+/* .scroll {
+     width:628px;
+     height:315px;
+     overflow:auto;
+} */
+span{
+  font-size: 2em;
+  font-weight: bold;
 }

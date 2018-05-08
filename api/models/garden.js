@@ -5,7 +5,7 @@ var garden = {};
 garden.getGarden = function(number, page, callback) {
   if(connection) {
     let minPeak = (page - 1) * number;
-    connection.query('SELECT * FROM Garden LIMIT ' + minPeak + ',' + number , function (error, rows){
+    connection.query('SELECT id, title FROM Garden LIMIT ' + minPeak + ',' + number , function (error, rows){
       if(error)
         callback (error, null);
       else
@@ -17,12 +17,27 @@ garden.getGarden = function(number, page, callback) {
 
 garden.getGardenById = function(id, callback) {
 	if (connection) {
-		var sentence = 'SELECT * FROM Garden WHERE id = ' + id;
+		var sentence = 'SELECT *, Garden.id as gardenId, MyPlant.id as id FROM Garden RIGHT JOIN MyPlant ON MyPlant.garden=Garden.id ';
+    sentence += 'RIGHT JOIN Plant ON Plant.id=MyPlant.plant ';
+    sentence += 'WHERE Garden.id = "' + id + '" ';
 		connection.query(sentence, function(error, row) {
 			if (error)
 				callback (error, null);
-			else
-				callback(null, row);
+			else {
+        if(row.length==0){
+          var shortSentence = 'SELECT *, Garden.id as gardenId FROM Garden WHERE Garden.id = "' + id + '" ';
+          connection.query(shortSentence, function(shortError, shortRow) {
+            if (shortError) {
+              callback(shortError, null);
+            }
+            else {
+              callback(null, shortRow);
+            }
+          });
+        }
+        else
+          callback(null, row);
+      }
 		});
 	}
 }

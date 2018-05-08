@@ -1,4 +1,5 @@
 var connection = require('../config/connection');
+var dateFormat = require('../functions/dateFormatter');
 
 var task = {};
 
@@ -38,8 +39,69 @@ task.getMyTasksByMonth = function (user, date, callback) {
 		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
 			if (error)
 				callback(error, null);
-			else
-				callback(null, row);
+			else {
+				if (row.length == 0) {
+					var monthBefore = new Date(date);
+					monthBefore.setMonth(monthBefore.getMonth() -1);
+					connection.query('SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant, MyPlant, Garden WHERE TreatmentPlant.myPlant = MyPlant.id AND Garden.id = MyPlant.garden AND Garden.user = "' + user + '" AND TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND MONTH(date) = MONTH("' + dateFormat(monthBefore) +'") AND YEAR(date) = YEAR("' + dateFormat(monthBefore) + '") GROUP BY tPlant, myPlant, treatmentPlant', function (error, rows) {
+						if (error)
+						  callback (error, null);
+						else {
+							var sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';
+							var sqlBase = '';
+							var monthRequested = new Date(date);
+							//TAREAS DE FRECUENCIA
+							for (var i = 0; typeof rows[i]!== 'undefined'; i++) {
+								sqlBase = '(' + rows[i].tPlant + ',' + rows[i].treatmentPlant + ',' + rows[i].myPlant + ',' + rows[i].tPlant;
+								var next = new Date(rows[i].date);
+								next.setDate(next.getDate() + rows[i].frequency);
+								while (monthRequested.getMonth() + 1 >= next.getMonth()) {
+									sql += sqlBase + ',"' + dateFormat(next) + '"),';
+									next.setDate(next.getDate() + rows[i].frequency);
+								}
+							}
+							//TAREAS DE PERIODO
+							connection.query('SELECT DISTINCT initDate, finalDate, TreatmentPlant.plant, treatment, myPlant FROM TreatmentPlant, Task, MyPlant, Garden WHERE TreatmentPlant.treatment = Task.treatmentPlant AND TreatmentPlant.plant = Task.tPlant AND Task.myPlant = MyPlant.id AND MyPlant.garden = Garden.id AND Garden.user = "' + user + '" AND (MONTH(initDate) = (MONTH(NOW()) + 1) OR MONTH(finalDate) = (MONTH(NOW()) + 1))', function (err, row) {
+								if (err)
+									callback(err , null);
+								else {
+									for (var i = 0; typeof row[i]!== 'undefined'; i++) {
+										let ini = new Date(row[i].initDate);
+										let fin = new Date(row[i].finalDate);
+
+										if (ini.getMonth() < new Date().getMonth() + 1)
+											ini = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
+					
+										let nextMonth = ini.getMonth() + 1;
+										while (ini.getMonth() < nextMonth && ini <= fin) {	
+											sql += sqlBase + ',"' + dateFormat(ini) + '"),';
+											ini.setDate(ini.getDate() + 1);
+										}
+									}
+								}
+								if (sqlBase != '') {
+									sql = sql.slice(0, -1);
+									connection.query(sql, function (err, result) {
+										if (err)
+											callback(err, null);
+										else {										
+											connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
+												if (error)
+													callback(error, null);
+												else 
+													callback(null, row);
+											});
+										}										
+									});
+								}
+							});
+							
+						}
+					});				
+				}	
+				else 
+					callback(null, row);	
+			}	
 		});
 	}
 }
@@ -70,9 +132,10 @@ task.insertTasks = function (myPlant, plant, callback) {
 							sqlBase = '(' + plant + ',' + row[object][detail] + ',' + myPlant + ',' + plant;
 						else if (detail == 'frequency' && row[object][detail] != null) {
 							todayDate = new Date();
-							for (let i = 0; i < 100; i++) {
+							var nextMonth = todayDate.getMonth() + 1;
+							while(todayDate.getMonth() < nextMonth) {
 								let month = todayDate.getMonth() + 1;
-								sql += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
+								sql += sqlBase + ',"' + dateFormat(todayDate) + '"),';
 								todayDate.setDate(todayDate.getDate() + row[object][detail]);
 							}
 						}
@@ -80,11 +143,13 @@ task.insertTasks = function (myPlant, plant, callback) {
 							initDate = new Date(row[object][detail]);
 						else if (detail == 'finalDate' &&  row[object][detail] != null)
 							finalDate = new Date(row[object][detail]);
-						if (typeof initDate !== 'undefined' && typeof finalDate !== 'undefined')
-							for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
-								let month = initDate.getMonth() + 1;
-								sql += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
+						if (typeof initDate !== 'undefined' && typeof finalDate !== 'undefined') {
+							let nextMonth = initDate.getMonth() + 1;
+							while (initDate.getMonth() < nextMonth && initDate <= finalDate) {	
+								sql += sqlBase + ',"' + dateFormat(initDate) + '"),';
+								initDate.setDate(initDate.getDate() + 1);
 							}
+						}
 					}
 				}
 				sql = sql.slice(0, -1);
@@ -111,17 +176,23 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', X';
 				if (typeof frequency !== 'undefined' && typeof initDate == 'undefined' && typeof finalDate == 'undefined') {
 					todayDate = new Date();
-					for (let i = 0; i < 100; i++) {
+					var nextMonth = todayDate.getMonth() + 1;
+					while(todayDate.getMonth() < nextMonth) {
 						let month = todayDate.getMonth() + 1;
-						sqlValues += sqlBase + ',"' + todayDate.getFullYear() + '-' + month + '-' + todayDate.getDate() + '"),';
+						sqlValues += sqlBase + ',"' + dateFormat(todayDate) + '"),';
 						todayDate.setDate(todayDate.getDate() + frequency);
 					}
 				}
 				else if (typeof frequency == 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
-					for (initDate; initDate <= finalDate; initDate.setDate(initDate.getDate() + 1)) {
-						let month = initDate.getMonth() + 1;
-						sqlValues += sqlBase + ',"' + initDate.getFullYear() + '-' + month + '-' + initDate.getDate() + '"),';
-					}
+					if (initDate.getMonth() == new Date().getMonth || finalDate.getMonth() == new Date().getMonth()) {
+						let nextMonth = initDate.getMonth() + 1;
+						if (ini.getMonth() < new Date().getMonth())
+							ini = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
+						while (initDate.getMonth() < nextMonth && initDate <= finalDate) {	
+							sqlValues += sqlBase + ',"' + dateFormat(initDate) + '"),';
+							initDate.setDate(initDate.getDate() + 1);
+						}
+					}	
 				}
 				sqlFilled = 'INSERT INTO Task (tPlant, treatmentPlant, mPlant, myPlant, date) VALUES ';
 				for (var mplant in row) 
@@ -153,6 +224,17 @@ task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate
 task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, dateDone, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
 		connection.query('UPDATE Task SET dateDone = "' + dateDone + '" WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
+			if (error)
+				callback(error, null);
+			else
+				callback(null, row.affectedRows);
+		});
+	}
+}
+
+task.setTaskUndone = function (myPlant, mPlant, tPlant, treatmentPlant, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+	if (connection) {
+		connection.query('UPDATE Task SET dateDone = null WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
