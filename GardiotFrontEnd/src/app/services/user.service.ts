@@ -21,8 +21,10 @@ export class UserService {
   }
 
   register(user: User) {
+    let num = Math.floor(Math.random() * 9) + 1;
+    let photo = 'default' + num + '.png';
     let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
-    body += `&name=${user.name}&lastName=${user.lastName}`;
+    body += `&name=${user.name}&lastName=${user.lastName}&photo=${photo}`;
     if (user.birthDate != null) {
       //body+=`&birthDate=${user.birthDate}`;
     }
@@ -50,8 +52,10 @@ export class UserService {
 
 
   registerAdmin(user: User) {
+    let num = Math.floor(Math.random() * 9) + 1;
+    let photo = 'default' + num + '.png';
     let body = `id=${user.id}&password=${user.password}&password2=${user.password2}`;
-    body += `&name=${user.name}&lastName=${user.lastName}`;
+    body += `&name=${user.name}&lastName=${user.lastName}&photo=${photo}`;
     body += `&admin=${user.admin}`;
 
     let headers = new Headers({
