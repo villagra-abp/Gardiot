@@ -1,5 +1,5 @@
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
-  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm">
+  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == false" >
     <article class="search">
       <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
     </article>
