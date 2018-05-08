@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
+    styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
 
@@ -48,7 +49,7 @@ export class LibraryComponent implements OnInit {
     }
   }
 
-  searchcontent(page: number, items: number) {   
+  searchcontent(page: number, items: number) {
     this._plantService.searchAll(this.plant, page, items)
       .subscribe(data => {
         if (data[0] != undefined) {

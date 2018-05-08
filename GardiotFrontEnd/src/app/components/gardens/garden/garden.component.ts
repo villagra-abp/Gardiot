@@ -584,7 +584,7 @@ export class GardenComponent {
     this._gardenService.firstgarden()
       .subscribe(data => {
         if (data.Mensaje == "No existe") {
-          this.dialog.open(DialogNewgarden0Component, { width: '800px', data: { id: 1 } });
+          this.dialog.open(DialogNewgarden0Component, { width: '60em', data: { id: 1 } });
         }
       },
         error => {
