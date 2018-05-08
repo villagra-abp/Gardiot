@@ -52,13 +52,9 @@ task.getMyTasksByMonth = function (user, dates, callback) {
 				callback(error, null);
 			else {
 				if (row.length == 0) {
-					let query='SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant WHERE TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND (';
-					for(let i=0; i<dates.length; i++){
-						query += 'MONTH(date) = MONTH("' + dateFormat(month[i]) +'") AND YEAR(date) = YEAR("' + dateFormat(month[i]) + '") OR ';
-					}
-					query = query.substring(0, query.length -3);
-					query += ') GROUP BY tPlant, myPlant, treatmentPlant';
-					connection.query(query, function (error, rows) {
+					var monthBefore = new Date(date);
+					monthBefore.setMonth(monthBefore.getMonth() -1);
+					connection.query('SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant, MyPlant, Garden WHERE TreatmentPlant.plant = Task.tPlant AND Task.myPlant = MyPlant.id AND Garden.id = MyPlant.garden AND Garden.user = "' + user + '" AND TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND MONTH(date) = MONTH("' + dateFormat(monthBefore) +'") AND YEAR(date) = YEAR("' + dateFormat(monthBefore) + '") GROUP BY tPlant, myPlant, treatmentPlant', function (error, rows) {
 						if (error)
 						  callback (error, null);
 						else {
