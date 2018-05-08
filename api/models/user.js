@@ -52,6 +52,7 @@ user.insertUser = function(userData, callback) {
         			mariasql += 'active = 1,';
       		}
 		mariasql = mariasql.slice(0, -1);
+		console.log(mariasql);
 		connection.query(mariasql, function(error, result) {
 			if (error)
 				callback(error, null);
