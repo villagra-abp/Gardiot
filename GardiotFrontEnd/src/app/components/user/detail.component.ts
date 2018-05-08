@@ -108,6 +108,10 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  goGarden(){
+    this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
+  }
+
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
   mostrar() {
     this._detailService.details(this.user)
