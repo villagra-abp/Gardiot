@@ -183,12 +183,16 @@ function cargarShaders() {
         gl.attachShader(glProgram[i], glFragmentShader[i]);
         gl.linkProgram(glProgram[i]);
 
+        gl.useProgram(glProgram[i]);
+        setupWebGL(i);
+
         if (!gl.getProgramParameter(glProgram[i], gl.LINK_STATUS)) {
             alert("No se puede inicializar el shader");
         }
     }
 
     gl.useProgram(glProgram[window.program]);
+
 }
 
 function renderShadows() {
@@ -200,18 +204,12 @@ function renderShadows() {
     gl.useProgram(glProgram[window.program]);
     
     
-    //Nos traemos las matrices, projection, model y view al motor
-    glProgram[window.program].pMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrix");
-    glProgram[window.program].mMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMMatrix");
-    glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
-    glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
-    glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
 
     
     motor.escena.draw();
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     window.program=1;
@@ -221,42 +219,45 @@ function renderShadows() {
 }
 
 //inicializamos parámetros básicos de WebGL
-function setupWebGL() {
+function setupWebGL(programC) {
+    console.log(programC);
+    if(programC==1 || programC==1){
+        glProgram[1].shadowMapUniform = gl.getUniformLocation(glProgram[1], "uShadowMap");
 
-    /*gl.viewport(0, 0, canvas.width, canvas.height);
-    //establece el clear color a blanco
-    gl.clearColor(0.1, 0.8, 0.9, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);*/
-    //profundidad
-    //gl.enable(gl.DEPTH_TEST);
+        gl.enable(gl.DEPTH_TEST);
+            //Nos traemos las matrices, projection, model y view al motor
+        glProgram[1].mMatrixUniform = gl.getUniformLocation(glProgram[1], "uMMatrix");
+        glProgram[1].vMatrixUniform = gl.getUniformLocation(glProgram[1], "uVMatrix");
+        glProgram[1].mvMatrixUniform = gl.getUniformLocation(glProgram[1], "uMVMatrix");
+        glProgram[1].mvpMatrixUniform = gl.getUniformLocation(glProgram[1], "uMVPMatrix");
+        glProgram[1].lmvpMatrixUniform = gl.getUniformLocation(glProgram[1], "uMVPMatrixFromLight");
 
-    
+        glProgram[1].samplerUniform = gl.getUniformLocation(glProgram[1], "uSampler");
+        glProgram[1].textured = gl.getUniformLocation(glProgram[1], "uTextured");
+        glProgram[1].lighted = gl.getUniformLocation(glProgram[1], "uLighted");
+        glProgram[1].hovered = gl.getUniformLocation(glProgram[1], "uHovered");
+        //matriz de normales
+        glProgram[1].normalMatrixUniform = gl.getUniformLocation(glProgram[1], "uNormalMatrix");
 
-    //Nos traemos las matrices, projection, model y view al motor
-    glProgram[window.program].mMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMMatrix");
-    glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
-    glProgram[window.program].mvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVMatrix");
-    glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
-    glProgram[window.program].lmvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight");
+        glProgram[1].ka = gl.getUniformLocation(glProgram[1], "material.Ka");
+        glProgram[1].kd = gl.getUniformLocation(glProgram[1], "material.Kd");
+        glProgram[1].ks = gl.getUniformLocation(glProgram[1], "material.Ks");
 
-    glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
-    glProgram[window.program].textured = gl.getUniformLocation(glProgram[window.program], "uTextured");
-    glProgram[window.program].lighted = gl.getUniformLocation(glProgram[window.program], "uLighted");
-    glProgram[window.program].hovered = gl.getUniformLocation(glProgram[window.program], "uHovered");
-    glProgram[window.program].shadowMapUniform = gl.getUniformLocation(glProgram[window.program], "uShadowMap");
-    //matriz de normales
-    glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
+        glProgram[1].shin = gl.getUniformLocation(glProgram[1], "propiedades.shininess");
+        glProgram[1].opac = gl.getUniformLocation(glProgram[1], "propiedades.opacity");
 
-    glProgram[window.program].ka = gl.getUniformLocation(glProgram[window.program], "material.Ka");
-    glProgram[window.program].kd = gl.getUniformLocation(glProgram[window.program], "material.Kd");
-    glProgram[window.program].ks = gl.getUniformLocation(glProgram[window.program], "material.Ks");
+    }
+    else if(programC==2){
+        glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
+        //shadows
+        window.fbo = initFramebufferObject();
 
-    glProgram[window.program].shin = gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
-    glProgram[window.program].opac = gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
+        //Nos traemos las matrices, projection, model y view al motor
 
+    }
 }
 
-function initFramebufferObject(gl) {
+function initFramebufferObject() {
     var texture, depthBuffer;
     var framebuffer = gl.createFramebuffer();
 
@@ -274,19 +275,10 @@ function initFramebufferObject(gl) {
     gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthBuffer);
 
     framebuffer.texture = texture;
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-    gl.bindTexture(gl.TEXTURE_2D, null);
-    gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+    //gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    //gl.bindTexture(gl.TEXTURE_2D, null);
+    //gl.bindRenderbuffer(gl.RENDERBUFFER, null);
     return framebuffer;
-}
-
-function calculeProjectionMatrix(){
-    if (!camaraActiva.entity._isPerspective) {
-        mat4.ortho(projectionMatrix, camaraActiva.entity._left * 10, camaraActiva.entity._right * 10, camaraActiva.entity._bottom * 10, camaraActiva.entity._top * 10, camaraActiva.entity._near, camaraActiva.entity._far * 100);
-    }
-    else {
-        mat4.frustum(projectionMatrix, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
-    }
 }
 
 

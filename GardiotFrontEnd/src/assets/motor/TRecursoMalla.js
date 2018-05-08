@@ -155,6 +155,7 @@ class TRecursoMalla extends TRecurso {
 
 
   draw(variable) {
+    //console.log(window.program);
     //Cálculo de matriz normal
     mat4.multiply(this.viewModelMatrix, viewMatrix, matrixModel);
     mat4.invert(this.normalMatrix, this.viewModelMatrix);
@@ -169,7 +170,8 @@ class TRecursoMalla extends TRecurso {
 
     //Cálculo de la matrix model view projection desde la luz
     let lightProjectionViewModelMatrix=[];
-    mat4.multiply(lightProjectionViewModelMatrix, projectionMatrix, viewLightMatrix);
+    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, viewLightMatrix);
+
     gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
 
 

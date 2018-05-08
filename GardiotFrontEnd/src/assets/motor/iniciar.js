@@ -40,6 +40,8 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   matrixStack.push(matrixModel);
   window.camaraActiva = null;
   window.projectionMatrix = [];//matriz proyección
+  window.lightProjectionMatrix = [];
+  mat4.ortho(lightProjectionMatrix, -40, 40, -40, 40, -40.0, 80);
   window.viewMatrix = [];//matriz view
 
   window.viewLightMatrix = []; //view matrix from light
@@ -72,13 +74,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   iniciamosWebGL('myCanvas');
   cargarShaders();
 
-  //shadows
-  window.fbo = initFramebufferObject(gl);
-  gl.activeTexture(gl.TEXTURE0);
-  gl.bindTexture(gl.TEXTURE_2D, fbo.texture);
 
-  gl.clearColor(0, 0, 0, 1);
-  gl.enable(gl.DEPTH_TEST);
 
 
   //fachada

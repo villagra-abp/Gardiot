@@ -36,7 +36,7 @@ class TMotor {
 			//configuramos los shaders y le pasamos el nombre de los ficheros
 			//que tenemos en recursos/shaders
 			//esta función está en content/utilities
-			cargarShaders();
+			//cargarShaders();
 
 			//bucle de animación en utilities.js
 			window.interval = setInterval(function () {
@@ -84,21 +84,18 @@ class TMotor {
 	}
 
 	draw() {
-
-		calculeProjectionMatrix();
-
-		renderShadows();
-
+		window.program=1;
+		gl.useProgram(glProgram[1]);
 		//parámetros básicos de webGL
-		setupWebGL();
+		gl.viewport(0, 0, canvas.width, canvas.height);
+		gl.clearColor(0.98, 0.98, 0.98, 1);
+  		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		//dibujar las luces
 		this.dibujarLucesActivas();
 
 		//inicializar viewport
-		
-
-		this.iterar();
+		//this.iterar();
 
 		//inicializar cámara
 		this.dibujarCamaraActiva();
@@ -106,6 +103,22 @@ class TMotor {
 		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 		this.escena.draw();
 
+	}
+
+	drawSombras() {
+		window.program=2;
+		gl.useProgram(glProgram[2]);
+
+		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+
+		gl.viewport(0, 0, 2048, 2048);
+		gl.clearColor(0, 0, 0, 1);
+		gl.clearDepth(1.0);
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+		this.escena.draw();
+
+		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 	}
 
 
@@ -461,7 +474,13 @@ class TMotor {
 	}
 
 	dibujarCamaraActiva() {
-		
+
+		if (!camaraActiva.entity._isPerspective) {
+			mat4.ortho(projectionMatrix, camaraActiva.entity._left * 10, camaraActiva.entity._right * 10, camaraActiva.entity._bottom * 10, camaraActiva.entity._top * 10, camaraActiva.entity._near, camaraActiva.entity._far * 100);
+		}
+		else {
+			mat4.frustum(projectionMatrix, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
+		}
 
 		//recorrer al árbol a la inversa desde la cámara a la raíz
 		let auxStack = [];
