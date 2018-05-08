@@ -124,6 +124,30 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
       //HACEDLO CON LAS PLANTAS
     }
   }
+  //  Pruebas Valla JARDIN
+    motor.crearNodoMalla("valla", "valla", "maderablanca.jpg", undefined);
+    motor.escalarMallaXYZ("valla",0.2, 2.5*width/2, 0.2); /*ALTURA - largo - ANCHO */
+    motor.moverMalla("valla", 0, 0, 2.5*width/2); /* fondo - altura - izda dcha*/
+    motor.rotarMalla("valla", -90, "z");
+
+    motor.crearNodoMalla("valla2", "valla", "maderablanca.jpg", undefined);
+    motor.escalarMallaXYZ("valla2",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
+    motor.moverMalla("valla2", 0, 0, -2.5); /* fondo - altura - izda dcha*/
+    motor.rotarMalla("valla2", -90, "z");
+
+    motor.crearNodoMalla("valla3", "valla", "maderablanca.jpg", undefined);
+    motor.escalarMallaXYZ("valla3",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
+    motor.moverMalla("valla3", -2.5, 0, 0); /* fondo - altura - izda dcha*/
+    motor.rotarMalla("valla3", -90, "z");
+    motor.rotarMalla("valla3", -90, "x");
+
+    motor.crearNodoMalla("valla4", "valla", "maderablanca.jpg", undefined);
+    motor.escalarMallaXYZ("valla4",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
+    motor.moverMalla("valla4", 2.5, 0, 0); /* fondo - altura - izda dcha*/
+    motor.rotarMalla("valla4", -90, "z");
+    motor.rotarMalla("valla4", -90, "x");
+
+
 
   window.dataPlants = {
     LECHUGA: {
@@ -247,11 +271,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   //motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
   //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
 
-//  Pruebas LOGO
-  motor.crearNodoMalla("valla", "valla", "maderablanca.jpg", undefined);
-  motor.escalarMallaXYZ("valla",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
-  motor.moverMalla("valla", 0, 0, 2.5); /* fondo - altura - izda dcha*/
-  motor.rotarMalla("valla", -90, "z");
+
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
   // motor.rotarMalla("pajaro2_000000", -90, "x");
