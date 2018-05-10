@@ -1,5 +1,5 @@
 function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:03:23')*/, sunset /*= new Date('December 25, 1995 20:55:44')*/) {
-  console.log(jardinBBDD);
+  // console.log(jardinBBDD);
   window.canvas = null;
 
   window.jardin = jardinBBDD;
@@ -80,10 +80,8 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   gl.clearColor(0, 0, 0, 1);
   gl.enable(gl.DEPTH_TEST);
 
-
   //fachada
   window.motor = new TMotor(gestor);
-
 
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
@@ -112,7 +110,6 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   let adjustX = 0, adjustY = 0;
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
 
-
   motor.crearNodoMalla("around", "around", undefined, undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
   motor.moverMalla("around", 0, -0.11, 0);
@@ -125,29 +122,48 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     }
   }
   //  Pruebas Valla JARDIN
-    motor.crearNodoMalla("valla", "valla", "maderablanca.jpg", undefined);
-    motor.escalarMallaXYZ("valla",0.2, 2.5*width/2, 0.2); /*ALTURA - largo - ANCHO */
-    motor.moverMalla("valla", 0, 0, 2.5*width/2); /* fondo - altura - izda dcha*/
-    motor.rotarMalla("valla", -90, "z");
 
-    motor.crearNodoMalla("valla2", "valla", "maderablanca.jpg", undefined);
-    motor.escalarMallaXYZ("valla2",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
-    motor.moverMalla("valla2", 0, 0, -2.5); /* fondo - altura - izda dcha*/
-    motor.rotarMalla("valla2", -90, "z");
+    // VALLADO
+    /* Consideramos length y width como unidades de suelo*/
 
-    motor.crearNodoMalla("valla3", "valla", "maderablanca.jpg", undefined);
-    motor.escalarMallaXYZ("valla3",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
-    motor.moverMalla("valla3", -2.5, 0, 0); /* fondo - altura - izda dcha*/
-    motor.rotarMalla("valla3", -90, "z");
-    motor.rotarMalla("valla3", -90, "x");
+    /* Construimos en el lado derecho del suelo tantas vallas
+      como bloques de suelo y las colocamos en su lugar */
+    let valla = 1;
+    let desfase=0.5;
+    // VALLA derecha.
+    for (var i = -width; i < width; i++) {
+      motor.crearNodoMalla("valla"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla"+i, -90, "z");
+      motor.escalarMallaXYZ("valla"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla"+i, i*valla+desfase, 0, (length+desfase-0.038)); /* FONDO - altura - izda dcha*/
 
-    motor.crearNodoMalla("valla4", "valla", "maderablanca.jpg", undefined);
-    motor.escalarMallaXYZ("valla4",0.2, 2.5, 0.2); /*ALTURA - largo - ANCHO */
-    motor.moverMalla("valla4", 2.5, 0, 0); /* fondo - altura - izda dcha*/
-    motor.rotarMalla("valla4", -90, "z");
-    motor.rotarMalla("valla4", -90, "x");
+    }
+    // VALLA izquierda.
+    for (var i = -width; i < width; i++) {
+      motor.crearNodoMalla("valla2"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla2"+i, -90, "z");
+      motor.escalarMallaXYZ("valla2"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla2"+i, i*valla+desfase, 0, (-length-desfase)); /* FONDO - altura - izda dcha*/
 
+    }
+    // VALLA trasera.
+    for (var i = -length; i < length; i++) {
+      motor.crearNodoMalla("valla3"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla3"+i, -90, "z");
+      motor.rotarMalla("valla3"+i, 90, "x");
+      motor.escalarMallaXYZ("valla3"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla3"+i, width+desfase, 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
 
+    }
+    // VALLA delantera.
+    for (var i = -length; i < length; i++) {
+      motor.crearNodoMalla("valla4"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla4"+i, -90, "z");
+      motor.rotarMalla("valla4"+i, 90, "x");
+      motor.escalarMallaXYZ("valla4"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla4"+i, (-width-desfase), 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
+
+    }
 
   window.dataPlants = {
     LECHUGA: {
@@ -215,7 +231,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     },
     CIPRES: {
       textura: 'arbol.jpg',
-      escalado: 0.3,
+      escalado: 0.2,
       rotX: -90,
       rotY: 0,
       rotZ: 0,
@@ -242,7 +258,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
       resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
       resource = resource.toUpperCase();
 
-      console.log(resource.toLowerCase());
+      // console.log(resource.toLowerCase());
       motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
       motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
       if (dataPlants[resource].rotX != 0)
@@ -265,13 +281,6 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
       motor.moverMalla("alaA", 0.2, 0.2, 0.2);
       motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
   }
-
-  // bandera
-  // motor.crearNodoMalla("bandera_000001", "bandera_000001", "bandera.jpg", undefined);
-  //motor.crearNodoMalla("bandera_000150", "bandera_000150", "bandera.jpg", undefined);
-  //motor.crearNodoMalla("bandera_000250", "bandera_000250", "bandera.jpg", undefined);
-
-
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
   // motor.rotarMalla("pajaro2_000000", -90, "x");
@@ -399,7 +408,7 @@ async function demoSol() {
   now.setHours(now.getHours() + 1);
   let minutesDiff = Math.abs(now - window.lastTime) / 60000;
   let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
+  // console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
   motor.rotarLuzOrbital('sol', gradeSunPosition);
   motor.rotarLuzOrbital('luna', gradeSunPosition);
   window.lastTime = now;
