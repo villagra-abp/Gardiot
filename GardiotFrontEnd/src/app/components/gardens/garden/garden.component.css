@@ -361,3 +361,24 @@ img:hover{
   transform:translate(0px,0px);
   opacity: 1;
 }
+
+@media (max-width: 600px) {
+
+  .litButtons{
+    width: 100%;
+    min-height: 60px;
+    height: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    flex-direction: row;
+  }
+  .litButton{
+    border-radius: 0px;
+    width: 20%;
+    height: 60px;
+    margin:0;
+
+  }
+
+}

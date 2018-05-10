@@ -16,7 +16,10 @@ import { DialogNewgarden0Component } from '../../dialog-newgarden/dialog-newgard
 import 'rxjs/add/operator/delay';
 
 declare var iniciar: any;
+declare var window:any;
 declare var motor: any;
+declare var vec3:any;
+declare var hammertime: any;
 
 
 @Component({
@@ -28,6 +31,8 @@ declare var motor: any;
 })
 export class GardenComponent {
   private garden = new Garden("");
+
+  private mobile=false;
 
 
   private temperatura = 0;
@@ -229,15 +234,18 @@ export class GardenComponent {
           this.garden.plants = data.plants;
 
           this.inicializar();
-          this.listarPaises();
-          this.mostrarCiudad();
-          if (this.garden.city !== undefined) {
-            this.visible = true;
-            this.getTiempo();
-            this.getPrevision();
-          } else {
-            this.visible = false;
+          if(!this.mobile){
+            this.listarPaises();
+            this.mostrarCiudad();
+            if (this.garden.city !== undefined) {
+              this.visible = true;
+              this.getTiempo();
+              this.getPrevision();
+            } else {
+              this.visible = false;
+            }
           }
+          
         }
       },
         error => {
@@ -621,14 +629,21 @@ export class GardenComponent {
         });
 
     }
-
+    
 
   ngOnInit() {
+    if (typeof window.orientation !== 'undefined') { 
+      this.mobile=true;
+     }
+
     this.firstgarden();
     this.ActualizarPagina();
     this.accion = 'Editar';
     this.mostrar();
+    new hammertime();
   }
+
+
 
 
 }

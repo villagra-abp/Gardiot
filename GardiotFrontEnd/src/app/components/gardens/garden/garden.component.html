@@ -38,8 +38,15 @@
       </ul>
     </div>
   </nav>
-  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
-  <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult">
+  <canvas id="myCanvas" 
+  oncontextmenu="return false;" 
+  onmousedown="mouse_down(event);" 
+  onmousewheel="scrolling(event);" 
+  ondrop="drop(event);" 
+  ondragover="allowDrop(event);" 
+  width="1800" 
+  height="1170"></canvas>
+  <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
     <i onclick="this.parentNode.classList.toggle('infoOcult')">Cerrar</i>
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
@@ -78,7 +85,7 @@
   </section>
   <section class="litButtons">
     <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;" onclick="motor.toggleVista(event)" (click)="this.toggleState()"></div>
-    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;" onclick="document.getElementById('formulario').classList.toggle('infoOcult')">
+    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;" onclick="document.getElementById('formulario').classList.toggle('infoOcult')" *ngIf="!mobile">
     </div>
     <div class="toggleDeko litButton orange" id="plus" style="background-position: 4px 4px;" onclick="plusZoom()"></div>
     <div class="toggleDeko litButton orange" id="sub" style="background-position: 4px 164px;" onclick="subZoom()"></div>

@@ -17,6 +17,9 @@ export class GardenService {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.apiURL = "https://gardiot.ovh/api/";
     }
+    else{
+			this.apiURL = "http://192.168.100.3:3000/api/";
+		  }
   }
 
   details() {
