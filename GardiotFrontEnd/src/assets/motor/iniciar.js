@@ -61,12 +61,11 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.glProgram = [];
 
 
-
   //program 0 = cartoon
   //program 1 = estandar
   window.program = 1;
-  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
-  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
+  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs'/*, 'shadow.vs'*/];
+  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs'/*, 'shadow.fs'*/];
 
   //inicializamos el gestor de recursos
   window.gestor = new TGestorRecursos();

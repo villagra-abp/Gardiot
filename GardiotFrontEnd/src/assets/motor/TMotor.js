@@ -84,8 +84,8 @@ class TMotor {
 	}
 
 	draw() {
-		window.program=1;
-		gl.useProgram(glProgram[1]);
+		//window.program=1;
+		//gl.useProgram(glProgram[1]);
 		//parámetros básicos de webGL
 		gl.viewport(0, 0, canvas.width, canvas.height);
 		gl.clearColor(0.98, 0.98, 0.98, 1);

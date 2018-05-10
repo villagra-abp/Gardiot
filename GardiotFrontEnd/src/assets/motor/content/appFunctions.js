@@ -37,7 +37,7 @@ function animLoop() {
 
     }
 
-    motor.drawSombras();
+    //motor.drawSombras();
     motor.draw();
   }
   requestAnimationFrame(animLoop, canvas);
