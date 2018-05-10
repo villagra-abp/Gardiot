@@ -40,6 +40,9 @@ class TRecursoTextura extends TRecurso {
     else if (window.location.toString().indexOf('localhost:8080') >= 0) {
       relURL = '/recursos/texturas/' + nombre;
     }
+    else{
+      relURL = 'http://192.168.100.3:4200/assets/motor/recursos/texturas/' + nombre;
+    }
     this._img.src = relURL;
   }
 

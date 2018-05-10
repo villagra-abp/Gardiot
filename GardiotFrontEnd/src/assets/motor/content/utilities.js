@@ -10,6 +10,10 @@ var loadTextResource = function (url, callback) {
     else if (window.location.toString().indexOf('localhost:8080') >= 0) {
         resURL = url;
     }
+    else{
+        resURL = "http://192.168.100.3:4200/assets/motor"+url;
+      }
+      console.log(resURL);
     request.open('GET', resURL, false);
     request.onload = function () {
         if (request.status < 200 || request.status > 299) {
@@ -44,6 +48,9 @@ function updateMyPlant(garden, plant, soil, x, y) {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
         url = `https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
     }
+    else{
+        url = `http://192.168.100.3:3000/api/myPlant/${garden}/${plant.id}`;
+      }
 
     xhr.open('PUT', url, true);
 
@@ -75,6 +82,10 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
         url = `https://gardiot.ovh/api/myPlant/${garden}`;
     }
+    else{
+        url = `http://192.168.100.3:3000/api/myPlant/${garden}`;
+      }
+    
 
     xhr.open('POST', url, true);
 
@@ -123,6 +134,9 @@ function deleteMyPlant(garden, plant) {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
         url = `https://gardiot.ovh/api/myPlant/${garden}/${plant.id}`;
     }
+    else{
+        url = `http://192.168.100.3:3000/api/myPlant/${garden}/${plant.id}`;
+      }
 
     xhr.open('DELETE', url, true);
 
