@@ -1,9 +1,9 @@
 <div>
   <section>
-    <div class="divPhoto" (click)="selectPhoto($event)">
+    <article class="divPhoto" (click)="selectPhoto($event)">
       <div></div>
       <i class="material-icons">file_upload</i>
-    </div>
+    </article>
     <input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
     <dl class="row">
       <dd class="col-sm-12">{{user.name}} {{user.lastName}}</dd>
