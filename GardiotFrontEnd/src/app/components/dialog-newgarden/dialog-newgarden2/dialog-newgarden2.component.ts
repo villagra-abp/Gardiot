@@ -132,13 +132,20 @@ export class DialogNewgarden2Component implements OnInit {
       if (input.value.length == 5) {
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
+            console.log(data);
             let sp = document.querySelector('#ciudad');
             if (data.length > 0) {
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
-              if (data[0].adminName3 !== undefined) {
-                this.garden.city = data[0].adminName3;
-                sp.innerHTML = data[0].adminName3;
+              if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
+              this.garden.city = data[0].adminName3;
+              //this.city = data[0].adminName3;
+              //console.log(this.city);
+              }
+              else if (data[0].placeName !== undefined) {
+                this.garden.city = data[0].placeName;
+                //this.city = data[0].placeName;
+                //console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
@@ -181,9 +188,15 @@ export class DialogNewgarden2Component implements OnInit {
             if (data.length > 0) {
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
-              if (data[0].adminName3 !== undefined) {
-                this.garden.city = data[0].adminName3;
-                //sp.innerHTML = data[0].adminName3;
+              if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
+              this.garden.city = data[0].adminName3;
+              //this.city = data[0].adminName3;
+              //console.log(this.city);
+              }
+              else if (data[0].placeName !== undefined) {
+                this.garden.city = data[0].placeName;
+                //this.city = data[0].placeName;
+                //console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;

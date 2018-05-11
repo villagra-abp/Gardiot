@@ -25,6 +25,7 @@ router.post('/register', function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
+		photo: request.body.photo,
 	};
 	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
@@ -309,7 +310,8 @@ router.post('/admin/user', passport.authenticate('jwt', {session: false}), route
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
-		admin: request.body.admin
+		admin: request.body.admin,
+		photo: request.body.photo
 	};
 	userData = filter(userData);
 	if (typeof userData.id==='undefined' || typeof userData.password==='undefined')

@@ -1,5 +1,5 @@
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
-  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm">
+  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == false" >
     <article class="search">
       <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
     </article>
@@ -29,7 +29,7 @@
       </form> -->
       <ul class="nav navbar-nav">
         <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3dmodel}}" alt="no sale la imagen" width="90px" height="90px" class="img" title="{{plantmotor.commonName}}" >
+          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="no sale la imagen" width="90px" height="90px" class="img" title="{{plantmotor.commonName}}" >
           <!-- <div class="text">{{plantmotor.commonName}}</div> -->
         </li>
         <li>

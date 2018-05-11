@@ -58,8 +58,9 @@ function updateMyPlant(garden, plant, soil, x, y) {
             plantsMap.set(x + '-' + y, plant.id);//Para la iluminación
         }
     }
-    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant.plant + '&soil=' + soil;
 
+    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant.plant + '&soil=' + soil;
+    
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['Bearer']);
     xhr.send(params);
@@ -105,8 +106,8 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
             motor.escalarMalla(respuesta.myPlant, datos.escalado);
         }
     }
-
-    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant + '&soil=' + soil;
+    var seed = new Date().toISOString().slice(0,10);
+    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant + '&soil=' + soil + '&seed=' + seed;
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['Bearer']);

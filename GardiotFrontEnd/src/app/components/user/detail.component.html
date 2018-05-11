@@ -29,8 +29,8 @@
   </div>
   <section class="herramienta">
     <article class="form-row">
-      <div class="form-group col-md-6">
-        <canvas [routerLink]="[gardenRoute]" id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="450"
+      <div class="form-group col-md-6" (click) = "goGarden()" >
+        <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="450"
           height="350"></canvas>
       </div>
     </article>

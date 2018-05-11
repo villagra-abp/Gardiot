@@ -108,6 +108,10 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  goGarden(){
+    this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
+  }
+
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
   mostrar() {
     this._detailService.details(this.user)
@@ -195,23 +199,28 @@ export class DetailComponent implements OnInit {
 
   mostrartask() {
     let f = new Date();
-    let fecha_actual, fecha_pasada, fecha_futura;
+    let fechas=[];
 
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM');
+    fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()-1);
-    fecha_pasada = this.datePipe.transform(f, 'yyyy-MM');
-    f.setMonth(f.getMonth()+2);
-    fecha_futura = this.datePipe.transform(f, 'yyyy-MM');
-    this._taskService.detailsAll([fecha_actual, fecha_pasada, fecha_futura])
+
+
+      this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-        this.tasks = [];
+
         for (let key$ in data) {
-          this.addEvent(data[key$].name + " " + data[key$].commonName, this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'), this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          this.tasks.push(data[key$]);
+          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+          // console.log(data[key$]);
+          this.addEvent(data[key$].name + " " + data[key$].commonName,
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
+
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   cerrarfeed(id:number) {

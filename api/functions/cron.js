@@ -86,10 +86,10 @@ var forgetPasswordTokenJob = new CronJob({
 });
 
 var nextMonthTasks = new CronJob({
-  cronTime: '00 00 00 22 * *',
+  cronTime: '00 00 00 1 * *',
   onTick: function() {
     if (connection) {
-      connection.query('SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant WHERE TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND MONTH(date) = MONTH(NOW()) AND YEAR(date) = YEAR(NOW()) GROUP BY tPlant, myPlant, treatmentPlant', function (error, rows) {
+        connection.query('SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant WHERE TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND MONTH(date) = (MONTH(NOW())-1) AND YEAR(date) = YEAR(NOW()) GROUP BY tPlant, myPlant, treatmentPlant', function (error, rows) {
         if (error)
           console.log("CronJob: Failed to retrieve tasks. Error: " + error.message);
         else {
@@ -100,19 +100,38 @@ var nextMonthTasks = new CronJob({
             sqlBase = '(' + rows[i].tPlant + ',' + rows[i].treatmentPlant + ',' + rows[i].myPlant + ',' + rows[i].tPlant;
             var next = new Date(rows[i].date);
             next.setDate(next.getDate() + rows[i].frequency);
-            while (now.getMonth() + 1 >= next.getMonth()) {
+            while (now.getMonth() >= next.getMonth()) {
               sql += sqlBase + ',' + dateFormat(next) + '),';
               next.setDate(next.getDate() + rows[i].frequency);
             }
           }
-          if (sqlBase != '') {
-            sql = sql.slice(0, -1);
-            connection.query(sql, function (err, result) {
-              if (err)
-                console.log("CronJob: Failed inserting next month tasks. Error: " + err.message);
-              
-            });
-          }
+          connection.query('SELECT DISTINCT initDate, finalDate, TreatmentPlant.plant, treatment, myPlant FROM TreatmentPlant, Task, MyPlant, Garden WHERE TreatmentPlant.treatment = Task.treatmentPlant AND TreatmentPlant.plant = Task.tPlant AND Task.myPlant = MyPlant.id AND MyPlant.garden = Garden.id AND Garden.user = "' + user + '" AND MONTH(initDate) = MONTH(NOW()) OR MONTH(finalDate) = MONTH(NOW())', function (err, row) {
+            if (err)
+              callback(err , null);
+            else {
+              for (var i = 0; typeof row[i]!== 'undefined'; i++) {
+                let ini = new Date(row[i].initDate);
+                let fin = new Date(row[i].finalDate);
+
+                if (ini.getMonth() < new Date().getMonth())
+                  ini = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
+      
+                let nextMonth = ini.getMonth() + 1;
+                while (ini.getMonth() < nextMonth && ini <= fin) {	
+                  sql += sqlBase + ',"' + dateFormat(ini) + '"),';
+                  ini.setDate(ini.getDate() + 1);
+                }
+              }
+            }
+            if (sqlBase != '') {
+              sql = sql.slice(0, -1);
+              connection.query(sql, function (err, result) {
+                if (err)
+                  console.log("CronJob: Failed inserting next month tasks. Error: " + err.message);
+                
+              });
+            }
+          });
         }    
       });
     }
