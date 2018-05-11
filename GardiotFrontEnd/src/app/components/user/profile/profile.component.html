@@ -1,0 +1,21 @@
+<div>
+  <section>
+    <div class="divPhoto" (click)="selectPhoto($event)">
+      <div></div>
+      <i class="material-icons">file_upload</i>
+    </div>
+    <input type="file" (change)="uploadPhoto($event)" ng2FileSelect [uploader]="uploader" />
+    <dl class="row">
+      <dd class="col-sm-12">{{user.name}} {{user.lastName}}</dd>
+      <dd class="col-sm-12">{{user.id}}</dd>
+      <dd class="col-sm-12">{{user.birthDate | date}}</dd>
+      <dd class="col-sm-12">{{user.countryCode}}</dd>
+      <dd class="col-sm-12">{{user.city}}</dd>
+    </dl>
+    <button [routerLink]="['/editprofile']" class="btn btn-outline-primary">Editar perfil</button>
+    <mat-dialog-actions>
+      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success btn-2g  btn-2" href="#">Aceptar</button>
+      <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-secondary btn-3g  btn-3">Cancelar</button>
+    </mat-dialog-actions>
+  </section>
+</div>

@@ -1,0 +1,54 @@
+div{
+  width: 100%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+}
+section{
+  margin-top: -26px;
+}
+
+mat-dialog-actions{
+padding: 2.5px;
+}
+button{
+margin: auto;
+}
+
+
+input[type="file"]{
+  display: none;
+}
+.divPhoto>i{
+  display: none;
+}
+.divPhoto>div{
+  display: none;
+}
+.divPhoto:hover{
+  position:relative;
+}
+.divPhoto:hover>div{
+  display: block;
+  position: absolute;
+  border-radius: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.divPhoto:hover>i{
+  filter:brightness(600%) !important;
+  color: #fff;
+  display: block;
+  position: absolute;
+  font-size: 90px;
+  margin-top: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
