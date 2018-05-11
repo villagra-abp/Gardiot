@@ -10,6 +10,7 @@ import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import { DialogHelpGardenComponent } from '../../dialog-gardenhelp/dialog-help-garden.component';
+import { DialogAllGardensComponent } from '../../dialog-allgardens/dialog-allgardens';
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogNewgarden0Component } from '../../dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
@@ -75,7 +76,9 @@ export class GardenComponent {
   private nombreDia5 = "";
 
   private tercerDia: string = "";
-  private visible = false;
+  private visible = 0;//0 visualización
+                      //1 edición
+                      //2 jardín externo
   private haveWeather = false;
 
   private sunrise;
@@ -238,11 +241,8 @@ export class GardenComponent {
             this.listarPaises();
             this.mostrarCiudad();
             if (this.garden.city !== undefined) {
-              this.visible = true;
               this.getTiempo();
               this.getPrevision();
-            } else {
-              this.visible = false;
             }
           }
           
@@ -274,11 +274,14 @@ export class GardenComponent {
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
         }
-        console.log(data);
+        else{
+          this.haveWeather=false;
+        }
 
 
       },
         error => {
+          this.haveWeather=false;
           console.error(error);
           localStorage.clear();
           sessionStorage.clear();
@@ -342,9 +345,13 @@ export class GardenComponent {
 
           this.ordenarTemperatura();
         }
+        else{
+          this.haveWeather=false;
+        }
 
       },
         error => {
+          this.haveWeather=false;
           console.error(error);
         });
   }
@@ -478,6 +485,16 @@ export class GardenComponent {
     let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
       width: '600px'
     });
+    
+  }
+  openDialog2(id: number, tipo: number){
+    this._gardenService.getGardens()
+    .subscribe(gardens=>{
+      let dialogRef2 = this.dialog.open(DialogAllGardensComponent, {
+        width: '600px', data: gardens
+      });
+    })
+    
   }
 
   resizeCanvas() {
@@ -497,8 +514,7 @@ export class GardenComponent {
   }
 
   toggleState() {
-    this.accion == 'Editar' ? this.accion = 'Modo vista' : this.accion = 'Editar';
-    this.visible ? this.visible = false : this.visible = true;
+    this.visible == 0 ? this.visible=1 : this.visible=0;
     document.getElementById('formulario').classList.add('infoOcult');
   }
 

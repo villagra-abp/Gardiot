@@ -33,6 +33,17 @@ export class GardenService {
       })
   }
 
+  getGardens(){
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`
+    });
+
+    return this.http.get(this.apiURL + "gardens/9/1", { headers })
+      .map(res => {
+        return res.json();
+      });
+  }
+
   firstgarden() {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`

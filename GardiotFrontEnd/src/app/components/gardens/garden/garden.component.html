@@ -1,5 +1,5 @@
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
-  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == false" >
+  <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == 1" >
     <article class="search">
       <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
     </article>
@@ -7,7 +7,8 @@
       <button class="btn btn-default" type="submit">Buscar</button>
     </article>
   </form>
-  <nav class="navbar navbar-default nav superior" role="navigation" *ngIf="visible == false">
+  <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
+  <nav class="navbar navbar-default nav superior" role="navigation" *ngIf="visible == 1">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
     <div class="navbar-header">
@@ -84,6 +85,7 @@
     </div>
   </section>
   <section class="litButtons">
+      
     <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;" onclick="motor.toggleVista(event)" (click)="this.toggleState()"></div>
     <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;" onclick="document.getElementById('formulario').classList.toggle('infoOcult')" *ngIf="!mobile">
     </div>
@@ -92,7 +94,7 @@
     <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;" (click)="this.openDialog(1, 2)"></div>
     <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;" onmouseup="deletePlant()" [hidden]="isDragging()"></div>
   </section>
-  <div id="prevision" *ngIf="visible == true && haveWeather == true" oncontextmenu="return false;">
+  <div id="prevision" *ngIf="visible==0 && haveWeather == true" oncontextmenu="return false;">
     <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
     <span class="interactiveButton" style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para abrir</span>
     <div class="tiempo">
