@@ -5,7 +5,7 @@ var garden = {};
 garden.getGarden = function(number, page, callback) {
   if(connection) {
     let minPeak = (page - 1) * number;
-    connection.query('SELECT id, title FROM Garden LIMIT ' + minPeak + ',' + number , function (error, rows){
+    connection.query('SELECT id, title, name FROM Garden, User WHERE Garden.user = User.id LIMIT ' + minPeak + ',' + number , function (error, rows){
       if(error)
         callback (error, null);
       else
