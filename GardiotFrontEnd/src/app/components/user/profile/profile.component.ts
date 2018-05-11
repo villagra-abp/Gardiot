@@ -49,12 +49,13 @@ export class ProfileComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
-        document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
+        document.querySelector('.divPhoto').setAttribute('style', `width: 63%; height: 12.5em;
+          margin-left: 4em;
           background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
-          border: 2px solid #000;
+          border: 2px solid #ffb200;
           border-radius: 200px;
           cursor: pointer;
           `);

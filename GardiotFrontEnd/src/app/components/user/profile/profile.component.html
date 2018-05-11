@@ -12,10 +12,10 @@
       <dd class="col-sm-12">{{user.countryCode}}</dd>
       <dd class="col-sm-12">{{user.city}}</dd>
     </dl>
-    <button [routerLink]="['/editprofile']" class="btn btn-outline-primary">Editar perfil</button>
+    <!-- <button [routerLink]="['/editprofile']" class="btn btn-outline-primary">Editar perfil</button> -->
     <mat-dialog-actions>
-      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success btn-2g  btn-2" href="#">Aceptar</button>
-      <button mat-raise-button (click)="onCloseCancel()" type="button" class="btn btn-secondary btn-3g  btn-3">Cancelar</button>
+
+      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-outline-primary" href="#">Editar</button>
     </mat-dialog-actions>
   </section>
 </div>
