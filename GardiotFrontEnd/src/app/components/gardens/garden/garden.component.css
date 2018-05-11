@@ -161,7 +161,7 @@ h1, h2{
 
 
 .toggleDeko{
-  background: url('../../../../assets/images/icon/buttons.png');
+  /*background: url('../../../../assets/images/icon/buttons.png');*/
   /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/
 }
 
@@ -181,7 +181,13 @@ h1, h2{
   width: 40px;
   height: 40px;
   margin:0;
+  background-position: center; 
+  background-repeat: no-repeat;
   cursor:pointer;
+}
+.litButton>img{
+  width: 80%; 
+  margin: 10%;
 }
 .litButton:not(:last-of-type){
   margin-bottom: 15px;
@@ -195,6 +201,7 @@ h1, h2{
 }
 .yellow{
   background-color: #0036ff;
+  
 }
 /*end buttons*/
 
@@ -379,6 +386,13 @@ img:hover{
     height: 60px;
     margin:0;
 
+  }
+  .litButton:not(:last-of-type){
+    border-right: .1em solid #fff;
+  }
+  .litButton>img{
+    width: 50%; 
+    margin: 25%;
   }
 
 }

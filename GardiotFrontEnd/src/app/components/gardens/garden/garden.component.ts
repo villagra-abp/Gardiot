@@ -124,6 +124,9 @@ export class GardenComponent {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.photoURL = "/app/assets";
     }
+    else{
+      this.photoURL = "/assets";
+    }
   }
 
 
@@ -263,7 +266,7 @@ export class GardenComponent {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          this.haveWeather = true;
+          
           var aux = data.main.temp - 273;
           this.temperatura = aux;
           var sunrise = new Date();
@@ -274,14 +277,12 @@ export class GardenComponent {
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
         }
-        else{
-          this.haveWeather=false;
-        }
+
 
 
       },
         error => {
-          this.haveWeather=false;
+
           console.error(error);
           localStorage.clear();
           sessionStorage.clear();
@@ -293,7 +294,8 @@ export class GardenComponent {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          this.haveWeather = true;
+          try{
+          
           var date = new Date();
           var today = new Date();
           var todayDay = today.getDate();
@@ -344,14 +346,17 @@ export class GardenComponent {
 
 
           this.ordenarTemperatura();
+          this.haveWeather = true;
         }
-        else{
-          this.haveWeather=false;
+        catch(e){
+
         }
+      }
+
 
       },
         error => {
-          this.haveWeather=false;
+
           console.error(error);
         });
   }
@@ -658,8 +663,6 @@ export class GardenComponent {
     this.mostrar();
     new hammertime();
   }
-
-
 
 
 }

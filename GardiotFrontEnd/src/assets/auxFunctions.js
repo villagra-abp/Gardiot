@@ -22,11 +22,16 @@ function hammertime() {
     var pinch = new Hammer.Pinch();
     var rotate = new Hammer.Rotate();
 
+    var pan = new Hammer.Pan();
+    var press = new Hammer.Press();
+
     // we want to detect both the same time
     pinch.recognizeWith(rotate);
+    pan.recognizeWith(press);
 
     // add to the Manager
     mc.add([pinch, rotate]);
+    mc.add([pan, press]);
 
     var liveScale = 1;
     var currentRotation = 0;
@@ -35,46 +40,44 @@ function hammertime() {
     var scale = 1, last_scale = 1,
         rotation = 0, last_rotation, dragReady = 0, start_rotation = 0;
 
+    var liveScale = 1;
+    var currentRotation = 0, lastRotation, startRotation;
+    var currentScale = 0;
+
     var lastPosX = 0, lastPosY = 0, posX = 0, posY = 0;
 
-    mc.on("pinch pinchstart pinchend rotate rotatestart rotateend pan press panstart panend tap multitap", function (e) {
+    mc.on("rotate rotatestart rotateend pan press panstart panend tap multitap", function (e) {
         e.preventDefault();
         var is_touch_device = 'ontouchstart' in document.documentElement;
         let canvas = document.querySelector('#myCanvas');
 
+
         switch (e.type) {
             case 'rotatestart':
-                alert("rotate");
-                last_scale = scale;
-                last_rotation = rotation;
-                start_rotation = e.rotation;
+                currentRotation = Math.round(e.rotation);
+                currentScale = Math.round(e.scale);
                 break;
-
-            case 'rotateend':
-                last_scale = scale;
-                last_rotation = rotation;
-                break;
-
             case 'rotate':
-                var diff = start_rotation - e.rotation;
-                rotation = last_rotation - diff;
 
-                break;
-            case 'pinch':
+                var diff = Math.round(e.rotation) - currentRotation;
+                var diffScale;
+                e.pointers = [];
 
-                scale = scale = Math.max(1, Math.min(last_scale * e.scale, 10));
+                if (window.mode == 1) {
+                    diffScale = currentScale - e.scale;
+                    motor.rotarCamara("dynamicCamera", diff, "z");
+                    motor.moverCamara("dynamicCamera", 0, diffScale, 0);
 
-                break;
-            case 'pinchstart':
-                if (is_touch_device) {
-                    last_scale = scale;
+                } else {
+                    diffScale = 1 + (currentScale - e.scale);
+                    motor.rotarCamaraOrbital("dynamicCamera", diff, "y");
+                    motor.escalarCamara("dynamicCamera", diffScale);
                 }
+                currentRotation = Math.round(e.rotation);
+                currentScale = e.scale;
 
                 break;
-            case 'pinchend':
-                last_scale = scale;
 
-                break;
             case 'panstart':
                 window.originClickY = (e.center.y / canvas.offsetHeight);
                 window.originClickX = (e.center.x / canvas.offsetWidth);
@@ -86,33 +89,66 @@ function hammertime() {
                     if (!dragging) {
                         let ejeY = window.originClickY - (e.center.y / canvas.offsetHeight);
                         let ejeX = window.originClickX - (e.center.x / canvas.offsetWidth);
-                        motor.moverCamara("dynamicCamera", ejeX*4 , 0, ejeY *4);
+                        motor.moverCamara("dynamicCamera", ejeX * 6, 0, ejeY * 6);
                         window.originClickY = (e.center.y / canvas.offsetHeight);
                         window.originClickX = (e.center.x / canvas.offsetWidth);
                     }
                     else {
+                        let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
+                        for (let plant of window.jardin.plants) {
+                            if (plant.isDragging) {
+                                motor.moverMallaA(plant.id, point[0], 0, point[2]);
+                                break;
+                            }
+                        }
+
                     }
                 }
                 break;
 
             case 'panend':
+                let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
+                let coordX = Math.round(point[0]);
+                let coordY = Math.round(point[2]);
+                for (let plant of window.jardin.plants) {
+                    if (plant.isDragging) {
+                        plant.isDragging = false;
+                        window.dragging = false;
+                        if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
+                            let occupied = false;
+                            for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
+                                if (value.x == coordX && value.y == coordY) {
+                                    motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                                    occupied = true;
+                                    break;
+                                }
+                            }
+                            if (!occupied)
+                                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
+                        }
+                        else {
+                                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                        }
+                        break;
+                    }
+                }
 
                 break;
-
             case 'tap':
-
                 break;
             case 'press':
-                /*let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
+                if (window.mode == 1) {
+                    let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
                     let coordX = Math.round(point[0]);
                     let coordY = Math.round(point[2]);
                     for (let plant of window.jardin.plants) {
                         if (plant.x == coordX && plant.y == coordY) {
-                        plant.isDragging = true;
-                        window.dragging = true;
-                        break;
+                            plant.isDragging = true;
+                            window.dragging = true;
+                            break;
                         }
-                    }*/
+                    }
+                }
                 break;
             case 'multitap':
                 break;

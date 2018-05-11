@@ -13,7 +13,7 @@ var loadTextResource = function (url, callback) {
     else{
         resURL = "http://192.168.100.3:4200/assets/motor"+url;
       }
-      console.log(resURL);
+
     request.open('GET', resURL, false);
     request.onload = function () {
         if (request.status < 200 || request.status > 299) {

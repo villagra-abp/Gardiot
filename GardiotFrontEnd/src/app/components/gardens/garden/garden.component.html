@@ -86,13 +86,24 @@
   </section>
   <section class="litButtons">
       
-    <div class="toggleDeko litButton yellow" id="plt" style="background-position: 4px 132px;" onclick="motor.toggleVista(event)" (click)="this.toggleState()"></div>
-    <div class="toggleDeko litButton yellow" id="edit" style="background-position: 4px 38px;" onclick="document.getElementById('formulario').classList.toggle('infoOcult')" *ngIf="!mobile">
+    <div class="toggleDeko litButton yellow" id="plt" onclick="motor.toggleVista(event)" (click)="this.toggleState()">
+      <img src="{{photoURL}}/images/icon/plant.png" alt="plant"/>
     </div>
-    <div class="toggleDeko litButton orange" id="plus" style="background-position: 4px 4px;" onclick="plusZoom()"></div>
-    <div class="toggleDeko litButton orange" id="sub" style="background-position: 4px 164px;" onclick="subZoom()"></div>
-    <div class="toggleDeko litButton orange" id="help" style="background-position: 4px 68px;" (click)="this.openDialog(1, 2)"></div>
-    <div class="toggleDeko litButton red" id="del" style="background-position: 4px 100px;" onmouseup="deletePlant()" [hidden]="isDragging()"></div>
+    <div class="toggleDeko litButton yellow" id="edit" onclick="document.getElementById('formulario').classList.toggle('infoOcult')" *ngIf="!mobile">
+        <img src="{{photoURL}}/images/icon/edit.png" alt="edit"/>
+    </div>
+    <div class="toggleDeko litButton orange" id="plus" onclick="plusZoom()">
+        <img src="{{photoURL}}/images/icon/plus.png" alt="plus"/>
+    </div>
+    <div class="toggleDeko litButton orange" id="sub" onclick="subZoom()">
+        <img src="{{photoURL}}/images/icon/sub.png" alt="sub" />
+    </div>
+    <div class="toggleDeko litButton orange" id="help" (click)="this.openDialog(1, 2)">
+        <img src="{{photoURL}}/images/icon/ask.png" alt="ask"/>
+    </div>
+    <div class="toggleDeko litButton red" id="del" onmouseup="deletePlant()" [hidden]="isDragging()">
+        <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish"/>
+    </div>
   </section>
   <div id="prevision" *ngIf="visible==0 && haveWeather == true" oncontextmenu="return false;">
     <span class="interactiveButton" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">Flecha para cerrar</span>
