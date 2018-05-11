@@ -252,6 +252,9 @@ function setupWebGL(programC) {
         glProgram[1].hovered = gl.getUniformLocation(glProgram[1], "uHovered");
         //matriz de normales
         glProgram[1].normalMatrixUniform = gl.getUniformLocation(glProgram[1], "uNormalMatrix");
+    //Backface culling
+    gl.enable(gl.CULL_FACE);
+    gl.cullFace(gl.BACK);
 
         glProgram[1].ka = gl.getUniformLocation(glProgram[1], "material.Ka");
         glProgram[1].kd = gl.getUniformLocation(glProgram[1], "material.Kd");
