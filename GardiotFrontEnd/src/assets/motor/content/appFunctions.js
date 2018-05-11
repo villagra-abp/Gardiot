@@ -239,11 +239,12 @@ function mouse_up(e) {
           if (plant.isDragging) {
             plant.isDragging = false;
             window.dragging = false;
+            let datos = dataPlants[plant.model.toUpperCase()];
             if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
               let occupied = false;
               for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
                 if (value.x == coordX && value.y == coordY) {
-                  motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                  motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
                   occupied = true;
                   break;
                 }
@@ -258,7 +259,7 @@ function mouse_up(e) {
               if (xPos >= 90 * cv.offsetWidth / 100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10 * cv.offsetHeight / 100)
                 deleteMyPlant(window.jardin.id, plant);
               else
-                motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
             }
             cv.removeAttribute('rotando-camara');
             window.originClickX = undefined;

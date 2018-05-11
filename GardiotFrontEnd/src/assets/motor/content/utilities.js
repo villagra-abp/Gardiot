@@ -230,7 +230,9 @@ function setupWebGL() {
     //profundidad
     //gl.enable(gl.DEPTH_TEST);
 
-    
+    //Backface culling
+    gl.enable(gl.CULL_FACE);
+    gl.cullFace(gl.BACK);
 
     //Nos traemos las matrices, projection, model y view al motor
     glProgram[window.program].mMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMMatrix");
