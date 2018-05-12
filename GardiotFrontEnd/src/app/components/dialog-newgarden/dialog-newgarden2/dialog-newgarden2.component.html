@@ -3,8 +3,8 @@
     <h4>¡Danos tu ubicación!</h4>
     <p>Si nos das tu ubicacíon podremos hacerte recomendaciones de plantas e informarte de la meteorología del lugar</p>
     <form (ngSubmit)="searchZip2()" #forma="ngForm" class="needs-validation" novalidate>
-<img src="{{photoURL}}/images/imgGardiot/señal.png" class="rounded mx-auto d-block" width="30%" height="30%" alt="Logo">
-
+      <img src="{{photoURL}}/images/imgGardiot/señal.png" class="rounded mx-auto d-block" width="30%" height="30%" alt="Logo">
+      <span id="ciudad">{{garden.city}}</span>
       <div class="form-group col-md-8">
         <label for="pais">País</label>
         <select2 id="pais" class="form-control" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
@@ -17,13 +17,13 @@
       </div>
     </form>
     <div>
-      <p>Ciudad</p>
-      <span id="ciudad">{{garden.city}}</span>
     </div>
 
     <mat-dialog-actions>
-      <button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Siguiente</button>
-      <button mat-raise-button (click)="onCloseAtras()" type="button" class="btn btn-success" href="#">Atrás</button>
+      <ul class="nav justify-content-end">
+        <li class="nav-item"><button mat-raise-button (click)="onCloseAtras()" type="button" class="btn btn-secondary" href="#">Atrás</button></li>
+        <li class="nav-item"><button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Siguiente</button></li>
+      </ul>
     </mat-dialog-actions>
   </section>
 </div>

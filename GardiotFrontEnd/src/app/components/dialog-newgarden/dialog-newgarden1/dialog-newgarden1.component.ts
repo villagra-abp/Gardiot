@@ -38,7 +38,6 @@ export class DialogNewgarden1Component implements OnInit {
     this._gardenService.details().subscribe(data => {
         if (data != null) {
           this.garden = data;
-              console.log(this.garden);
         }
       },
       error => {
@@ -65,9 +64,7 @@ export class DialogNewgarden1Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden2Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '45em', disableClose: true, data: {}});
   }
 
   ngOnInit() {
