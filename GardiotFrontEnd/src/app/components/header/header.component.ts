@@ -88,7 +88,6 @@ export class HeaderComponent implements OnInit {
 
     openDialog() {
       let dialogRef = this.dialog.open(ProfileComponent, {
-        disableClose: true,
         width: '25em',
         data: { }
       });

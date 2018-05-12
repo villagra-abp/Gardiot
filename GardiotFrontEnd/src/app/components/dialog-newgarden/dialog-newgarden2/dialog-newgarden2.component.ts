@@ -67,15 +67,11 @@ export class DialogNewgarden2Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden3Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '55em', disableClose: true, data: {}});
   }
   openDialogAtras() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '45em', disableClose: true, data: {}});
   }
 
   listarPaises() {
