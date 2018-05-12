@@ -233,10 +233,36 @@ function renderShadows() {
 //inicializamos parámetros básicos de WebGL
 function setupWebGL() {
 
-    
+    gl.useProgram(glProgram[2]);
+
+    gl.clearColor(0.98, 0.98, 0.98, 1);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.enable(gl.DEPTH_TEST);
+
+    shadowFramebuffer = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
+
+    shadowDepthTexture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, shadowDepthTextureSize, shadowDepthTextureSize, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+
+    renderBuffer = gl.createRenderbuffer();
+    gl.bindRenderbuffer(gl.RENDERBUFFER, renderBuffer);
+    gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, shadowDepthTextureSize, shadowDepthTextureSize);
+
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, shadowDepthTexture, 0);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderBuffer);
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   
     glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
     
+    
+
+    gl.useProgram(glProgram[1]);
+
     gl.clearColor(0.98, 0.98, 0.98, 1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.enable(gl.CULL_FACE);
@@ -272,7 +298,7 @@ function setupWebGL() {
     glProgram[1].shin = gl.getUniformLocation(glProgram[1], "propiedades.shininess");
     glProgram[1].opac = gl.getUniformLocation(glProgram[1], "propiedades.opacity");
 
-    
+    gl.useProgram(glProgram[window.program]);
 
 
 }

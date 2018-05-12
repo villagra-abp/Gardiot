@@ -26,7 +26,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.transition = false;
   window.escala = 1;
   window.cont = 19;
-  window.camHeight = 4;
+  window.camHeight = 6;
 
 
   window.mode = 0;
@@ -43,7 +43,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.lightProjectionMatrix = [];
 
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
-  mat4.ortho(lightProjectionMatrix, -25.0, 25.0, -25.0, 25.0, 0.1, 150);  
+  mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);  
 
   window.viewMatrix = [];//matriz view
   window.viewLightMatrix = []; //view matrix from light
@@ -300,11 +300,10 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   motor.moverLuz("luna", 0.0, -500.0, 0.0);
   motor.rotarLuz("sol", -90, 'x');
   motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 50.0, 0.0);
+  motor.moverLuz("luz3", 0.0, 100.0, 0.0);
   motor.activarLuz("luz1");
   motor.activarLuz("sol");
   motor.activarLuz("luz3");
-
 
 
   //motor.moverMalla("malla1", -9, -15, -30);

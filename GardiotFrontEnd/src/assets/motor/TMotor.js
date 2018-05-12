@@ -84,8 +84,13 @@ class TMotor {
 	}
 
 	draw() {
+		window.program=1;
+		gl.useProgram(glProgram[1]);
+
 
 		gl.viewport(0, 0, canvas.width, canvas.height);
+		gl.clearColor(0.98, 0.98, 0.98, 1);
+  		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		//dibujar las luces
 		this.dibujarLucesActivas();
@@ -99,21 +104,21 @@ class TMotor {
 		this.escena.draw();
 
 	}
-
 	drawSombras() {
 		window.program=2;
 		gl.useProgram(glProgram[2]);
 
-		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+		gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
 
-		gl.viewport(0, 0, 2048, 2048);
+		gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
 		gl.clearColor(0, 0, 0, 1);
 		gl.clearDepth(1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
+		this.dibujarLucesActivas();
 		this.escena.draw();
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
 	}
 
 

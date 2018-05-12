@@ -6,6 +6,7 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+    motor.drawSombras();
     motor.draw();
   }
   requestAnimationFrame(animLoop, canvas);
@@ -265,9 +266,9 @@ function plusZoom() {
   let p = vec3.fromValues(-0.5, 0.5, 0.5);
   let pos = motor.getPosCamaraActiva();
 
-  if (pos[1] > camHeight / 2) {
+  
 
-
+  if(pos[1] > camHeight){
     if (window.mode == 0) {
       motor.escalarCamara("dynamicCamera", 0.9);
       //motor.escalarCamara("dynamicCamera", 0.95);
@@ -275,8 +276,8 @@ function plusZoom() {
       motor.moverCamara("dynamicCamera", 0, -p[1], 0);
     }
   }
-
 }
+
 
 function subZoom() {
   let p = vec3.fromValues(-0.5, 0.5, 0.5);
@@ -302,7 +303,7 @@ function scrolling(e) {
 
     let p = vec3.fromValues(-1.0, 1.0, 1.0);
     let pos = motor.getPosCamaraActiva();
-    if (e.deltaY < 0 && pos[1] > camHeight / 2) {
+    if (e.deltaY < 0 && pos[1] > camHeight) {
 
       motor.escalarCamara("dynamicCamera", 0.9);
 

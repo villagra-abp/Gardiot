@@ -154,6 +154,7 @@ registerLocaleData(localeEs);
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
     HelpComponent,
+    DialogNewgarden0Component,
     DialogNewgarden1Component,
     DialogNewgarden2Component,
     DialogNewgarden3Component,

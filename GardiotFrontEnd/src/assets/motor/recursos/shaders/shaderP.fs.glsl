@@ -58,17 +58,33 @@ float decodeFloat (vec4 color) {
     1.0 / (256.0 * 256.0 * 256.0),
     1.0 / (256.0 * 256.0),
     1.0 / 256.0,
-    1
+    1.0
   );
   return dot(color, bitShift);
 }
 
+float unpackDepth(const in vec4 rgbaDepth) {
+        const vec4 bitShift = vec4(1.0, 1.0/256.0, 1.0/(256.0 * 256.0), 1.0/(256.0*256.0*256.0));
+        float depth = dot(rgbaDepth, bitShift);
+        return depth;
+    }
+
 void main()
 {
-  vec3 fragmentDepth = shadowPos.xyz;
-  float shadowAcneRemover = 0.007;
-  fragmentDepth.z -= shadowAcneRemover;
+  vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
+  //float shadowAcneRemover = 0.001;
+  //fragmentDepth.z -= shadowAcneRemover;
 
+  highp vec4 rgba_depth = texture2D(depthColorTexture, fragmentDepth.xy);
+  highp float depth=unpackDepth(rgba_depth);
+
+  highp float visibility = 1.0;
+  highp float bias = 0.0;
+
+  if(fragmentDepth.z>(depth-bias)){
+	  visibility=0.5;
+  }
+	/*
   float texelSize = 1.0 / 1024.0;
   float amountInLight = 0.0;
 
@@ -89,7 +105,12 @@ void main()
   }
   amountInLight /= 9.0;
 
+  vec3 shadowCoord = (shadowPos.xyz/shadowPos.w)/2.0 + 0.5;
+        vec4 rgbaDepth = texture2D(depthColorTexture, shadowCoord.xy);
+        float depth = unpackDepth(rgbaDepth);
+        float visibility = (shadowCoord.z > depth + 0.0015) ? 0.7 : 1.0;
 
+*/
 
 	vec3 N=normalize(vTVertNormal.xyz);
 	vec3 V=normalize(-vTVertPosition);
@@ -156,15 +177,16 @@ void main()
 			}
 			else{
 				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-				gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
+				//gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 			}
 		}
 		else
-			gl_FragColor=vec4(texel.rgb, propiedades.opacity);
+			gl_FragColor=vec4(texel.rgb*visibility, propiedades.opacity);
 	}
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
-		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+		gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 	}
 
 
