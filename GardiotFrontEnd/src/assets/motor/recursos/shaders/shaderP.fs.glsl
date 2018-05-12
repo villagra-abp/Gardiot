@@ -48,19 +48,47 @@ uniform int uHovered;
 uniform sampler2D uShadowMap;
 varying vec4 vPositionFromLight;
 
-float unpackDepth(const in vec4 rgbaDepth) {
-        const vec4 bitShift = vec4(1.0, 1.0/256.0, 1.0/(256.0 * 256.0), 1.0/(256.0*256.0*256.0));
-        float depth = dot(rgbaDepth, bitShift);
-        return depth;
-    }
+varying vec2 vDepthUv;
+varying vec4 shadowPos;
+
+uniform sampler2D depthColorTexture;
+
+float decodeFloat (vec4 color) {
+  const vec4 bitShift = vec4(
+    1.0 / (256.0 * 256.0 * 256.0),
+    1.0 / (256.0 * 256.0),
+    1.0 / 256.0,
+    1
+  );
+  return dot(color, bitShift);
+}
 
 void main()
 {
+  vec3 fragmentDepth = shadowPos.xyz;
+  float shadowAcneRemover = 0.007;
+  fragmentDepth.z -= shadowAcneRemover;
 
-	vec3 shadowCoord = (vPositionFromLight.xyz/vPositionFromLight.w)/2.0 + 0.5;
-    vec4 rgbaDepth = texture2D(uShadowMap, shadowCoord.xy);
-    float depth = unpackDepth(rgbaDepth);
-    float visibility = (shadowCoord.z > depth + 0.0015) ? 0.7 : 1.0;
+  float texelSize = 1.0 / 1024.0;
+  float amountInLight = 0.0;
+
+  // Check whether or not the current fragment and the 8 fragments surrounding
+  // the current fragment are in the shadow. We then average out whether or not
+  // all of these fragments are in the shadow to determine the shadow contribution
+  // of the current fragment.
+  // So if 4 out of 9 fragments that we check are in the shadow then we'll say that
+  // this fragment is 4/9ths in the shadow so it'll be a little brighter than something
+  // that is 9/9ths in the shadow.
+  for (int x = -1; x <= 1; x++) {
+    for (int y = -1; y <= 1; y++) {
+      float texelDepth = decodeFloat(texture2D(depthColorTexture, fragmentDepth.xy + vec2(x, y) * texelSize));
+      if (fragmentDepth.z < texelDepth) {
+        amountInLight += 1.0;
+      }
+    }
+  }
+  amountInLight /= 9.0;
+
 
 
 	vec3 N=normalize(vTVertNormal.xyz);
@@ -128,7 +156,7 @@ void main()
 			}
 			else{
 				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
 			}
 		}
 		else

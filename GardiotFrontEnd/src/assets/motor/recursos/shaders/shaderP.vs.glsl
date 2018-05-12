@@ -21,6 +21,11 @@ uniform mat4 uMVPMatrixFromLight; //modelViewProjection Matrix from light
 
 uniform mat4 uNormalMatrix;
 
+const mat4 texUnitConverter = mat4(0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.5, 0.5, 1.0);
+
+varying vec2 vDepthUv;
+varying vec4 shadowPos;
+
 
 
 void main()
@@ -29,7 +34,8 @@ void main()
 
 	gl_Position = uMVPMatrix * vec4(aVertPosition, 1.0);
 	vPositionFromLight = uMVPMatrixFromLight * vec4(aVertPosition, 1.0);
-
+	shadowPos=texUnitConverter * uMVPMatrixFromLight * vec4(aVertPosition, 1.0);
+	
 	vFragTexCoord = aVertTexCoord;
 
 	//Transformed vertex positions and vertex normals

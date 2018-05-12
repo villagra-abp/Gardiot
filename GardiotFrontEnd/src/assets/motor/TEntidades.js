@@ -184,7 +184,7 @@ class TMalla extends TEntidad {
     }
 
     beginDraw(variable) {
-        this._malla.draw(variable);
+        window.program==2?this._malla.drawSombras():this._malla.draw(variable);
     }
     endDraw() { }
 }

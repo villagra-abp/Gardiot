@@ -145,14 +145,32 @@ class TRecursoMalla extends TRecurso {
     }
 
     //===================GET ATTRIBUTES DEL SHADER===============
-    this.vertexPosAttribute = gl.getAttribLocation(glProgram[window.program], "aVertPosition");
-    this.vertexNormAttribute = gl.getAttribLocation(glProgram[window.program], "aVertNormal");
-    this.vertexTexCoordAttribute = gl.getAttribLocation(glProgram[window.program], "aVertTexCoord");
+    this.vertexPosAttribute = gl.getAttribLocation(glProgram[1], "aVertPosition");
+    this.vertexNormAttribute = gl.getAttribLocation(glProgram[1], "aVertNormal");
+    this.vertexTexCoordAttribute = gl.getAttribLocation(glProgram[1], "aVertTexCoord");
+
+    this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
 
 
 
   }
 
+  drawSombras(){
+    //Cálculo de la matrix model view projection desde la luz
+    let lightProjectionViewModelMatrix=[];
+    mat4.multiply(lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
+    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, lightProjectionViewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
+
+    //Pasamos los buffers de posición de vértices
+    gl.enableVertexAttribArray(this.vertexPosAttribute);
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
+    gl.vertexAttribPointer(this.vertexPosAttributeShadows, 3, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
+    //dibujamos en el canvas el objeto
+    gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
+  }
 
   draw(variable) {
     //console.log(window.program);
@@ -170,8 +188,8 @@ class TRecursoMalla extends TRecurso {
 
     //Cálculo de la matrix model view projection desde la luz
     let lightProjectionViewModelMatrix=[];
-    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, viewLightMatrix);
-
+    mat4.multiply(lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
+    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, lightProjectionViewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
 
 

@@ -6,38 +6,6 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
-    if (window.transition) {
-      motor.moverCamara("dynamicCamera", window.step[0], window.step[4], window.step[1]);
-      //motor.escalarMalla("dynamicCamera", 1+window.step[2]);
-      window.escala += window.step[2];
-      console.log(escala, step[2]);
-      let sc = [];
-      mat4.fromScaling(sc, vec3.fromValues(escala, escala, escala));
-      motor.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix = sc;
-
-      motor.rotarCamara("dynamicCamera", window.step[3], "x");
-
-      let pos = motor.getPosCamaraActiva();
-      //console.log(pos);
-
-      if (window.cont == 0) {
-        motor.moverCamaraA("dynamicCamera", 0, camHeight, 0);
-        motor.resetOrbital("dynamicCamera");
-        window.transition = false;
-        window.rotY = true;
-      }
-      window.cont--;
-    }
-    else if (cont < 0 && cont >= -10) {
-      //motor.rotarCamara("dynamicCamera", window.step[4], "z");
-      cont--;
-    }
-    else {
-      cont = 19;
-
-    }
-
-    //motor.drawSombras();
     motor.draw();
   }
   requestAnimationFrame(animLoop, canvas);

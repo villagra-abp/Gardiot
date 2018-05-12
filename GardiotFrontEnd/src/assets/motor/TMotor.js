@@ -84,17 +84,12 @@ class TMotor {
 	}
 
 	draw() {
-		//window.program=1;
-		//gl.useProgram(glProgram[1]);
-		//parámetros básicos de webGL
+
 		gl.viewport(0, 0, canvas.width, canvas.height);
-		gl.clearColor(0.98, 0.98, 0.98, 1);
-  		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		//dibujar las luces
 		this.dibujarLucesActivas();
 
-		//inicializar viewport
 		//this.iterar();
 
 		//inicializar cámara
@@ -128,6 +123,9 @@ class TMotor {
 			p = 0;
 		else if (shader == 'realista')
 			p = 1;
+		else if(shader == 'sombras'){
+			p=2;
+		}
 		if (p >= 0) {
 			window.program = p;
 			gl.useProgram(glProgram[p]);
@@ -481,6 +479,7 @@ class TMotor {
 		else {
 			mat4.frustum(projectionMatrix, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
 		}
+		
 
 		//recorrer al árbol a la inversa desde la cámara a la raíz
 		let auxStack = [];
@@ -541,7 +540,7 @@ class TMotor {
 			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}
 		this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
-		motor.escalarMalla("sol", 10);
+		motor.escalarMalla("sol", 0.5);
 		this.luzRegistro.push(luz);
 		this.luzActiva.push(0);
 		return luz;
@@ -655,11 +654,13 @@ class TMotor {
 			this.luzRegistro[pos].dad.entity.rotar(grados, eje);
 
 
+			if(typeof this.luzRegistro[i].entityorigin !== 'undefined'){
+				let lDir = this.luzRegistro[i].entity.origin.slice(0);
+				vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
 
-			let lDir = this.luzRegistro[i].entity.origin.slice(0);
-			vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
-
-			this.luzRegistro[i].entity.direccion = lDir;
+				this.luzRegistro[i].entity.direccion = lDir;
+			}
+			
 			return true;
 		}
 
@@ -760,6 +761,8 @@ class TMotor {
 				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
 
 
+				gl.uniformMatrix4fv(glProgram[window.program].lvMatrixUniform, false, viewLightMatrix);
+				gl.uniformMatrix4fv(glProgram[window.program].lpMatrixUniform, false, lightProjectionMatrix);
 				contLuces++;
 			}
 		}

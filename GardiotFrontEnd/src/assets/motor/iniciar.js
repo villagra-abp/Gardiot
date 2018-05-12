@@ -41,9 +41,11 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.camaraActiva = null;
   window.projectionMatrix = [];//matriz proyección
   window.lightProjectionMatrix = [];
-  mat4.ortho(lightProjectionMatrix, -40, 40, -40, 40, -40.0, 80);
-  window.viewMatrix = [];//matriz view
 
+  //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
+  mat4.ortho(lightProjectionMatrix, -25.0, 25.0, -25.0, 25.0, 0.1, 150);  
+
+  window.viewMatrix = [];//matriz view
   window.viewLightMatrix = []; //view matrix from light
 
   //DragAndDrop
@@ -63,102 +65,26 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
 
   //program 0 = cartoon
   //program 1 = estandar
-  window.program = 1;
-  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs'/*, 'shadow.vs'*/];
-  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs'/*, 'shadow.fs'*/];
+  window.program = 2;
+  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
+  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
+
+  window.shadowFramebuffer=null;
+  window.shadowDepthTexture=null;
+  window.renderBuffer=null;
+  window.shadowDepthTextureSize=1024;
 
   //inicializamos el gestor de recursos
   window.gestor = new TGestorRecursos();
 
   iniciamosWebGL('myCanvas');
   cargarShaders();
+  setupWebGL();
 
 
 
   //fachada
   window.motor = new TMotor(gestor);
-
-  //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
-  //var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
-
-  //camara de vista
-  motor.crearNodoCamara("dynamicCamera", true, undefined);
-
-  //camara de edición
-  //motor.crearNodoCamara("dynamicCamera", true, undefined);
-
-  //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
-  //motor.siguienteMallaAnimada("animacion");
-
-
-  //window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
-
-  //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
-
-  //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
-
-  motor.escalarMalla("malla4", 0.2);
-
-  //suelo
-  let adjustX = 0, adjustY = 0;
-  let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-
-  motor.crearNodoMalla("around", "around", undefined, undefined);
-  motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);
-  for (let i = -width; i <= width; i++) {
-    for (let j = -length; j <= length; j++) {
-      motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
-      motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
-      motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
-      //HACEDLO CON LAS PLANTAS
-    }
-  }
-  //  Pruebas Valla JARDIN
-
-    // VALLADO
-    /* Consideramos length y width como unidades de suelo*/
-
-    /* Construimos en el lado derecho del suelo tantas vallas
-      como bloques de suelo y las colocamos en su lugar */
-    let valla = 1;
-    let desfase=0.5;
-    // VALLA derecha.
-    for (var i = -width; i < width; i++) {
-      motor.crearNodoMalla("valla"+i, "valla", "maderablanca.jpg", undefined);
-      motor.rotarMalla("valla"+i, -90, "z");
-      motor.escalarMallaXYZ("valla"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
-      motor.moverMalla("valla"+i, i*valla+desfase, 0, (length+desfase-0.038)); /* FONDO - altura - izda dcha*/
-
-    }
-    // VALLA izquierda.
-    for (var i = -width; i < width; i++) {
-      motor.crearNodoMalla("valla2"+i, "valla", "maderablanca.jpg", undefined);
-      motor.rotarMalla("valla2"+i, -90, "z");
-      motor.escalarMallaXYZ("valla2"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
-      motor.moverMalla("valla2"+i, i*valla+desfase, 0, (-length-desfase)); /* FONDO - altura - izda dcha*/
-
-    }
-    // VALLA trasera.
-    for (var i = -length; i < length; i++) {
-      motor.crearNodoMalla("valla3"+i, "valla", "maderablanca.jpg", undefined);
-      motor.rotarMalla("valla3"+i, -90, "z");
-      motor.rotarMalla("valla3"+i, 90, "x");
-      motor.escalarMallaXYZ("valla3"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
-      motor.moverMalla("valla3"+i, width+desfase, 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
-
-    }
-    // VALLA delantera.
-    for (var i = -length; i < length; i++) {
-      motor.crearNodoMalla("valla4"+i, "valla", "maderablanca.jpg", undefined);
-      motor.rotarMalla("valla4"+i, -90, "z");
-      motor.rotarMalla("valla4"+i, 90, "x");
-      motor.escalarMallaXYZ("valla4"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
-      motor.moverMalla("valla4"+i, (-width-desfase), 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
-
-    }
 
   window.dataPlants = {
     LECHUGA: {
@@ -243,6 +169,93 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     }
   };
 
+
+  window.sol;
+  window.luna;
+  //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
+  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
+  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
+
+  //camara de vista
+  motor.crearNodoCamara("dynamicCamera", true, undefined);
+
+  //camara de edición
+  //motor.crearNodoCamara("dynamicCamera", true, undefined);
+
+  //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
+  //motor.siguienteMallaAnimada("animacion");
+
+
+  //window.malla2 = motor.crearNodoMalla("malla2", "bote", "madera.jpg",  undefined);
+
+  //window.malla3 = motor.crearNodoMalla("malla3", "chair", undefined);
+
+  //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
+
+  motor.escalarMalla("malla4", 0.2);
+
+  //suelo
+  let adjustX = 0, adjustY = 0;
+  let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
+
+  motor.crearNodoMalla("around", "around", undefined, undefined);
+  motor.escalarMallaXYZ("around", 500, 0.1, 500);
+  motor.moverMalla("around", 0, -0.11, 0);
+  for (let i = -width; i <= width; i++) {
+    for (let j = -length; j <= length; j++) {
+      motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
+      motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
+      motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+      //HACEDLO CON LAS PLANTAS
+    }
+  }
+  //  Pruebas Valla JARDIN
+
+    // VALLADO
+    /* Consideramos length y width como unidades de suelo*/
+
+    /* Construimos en el lado derecho del suelo tantas vallas
+      como bloques de suelo y las colocamos en su lugar */
+    let valla = 1;
+    let desfase=0.5;
+    // VALLA derecha.
+    for (var i = -width; i < width; i++) {
+      motor.crearNodoMalla("valla"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla"+i, -90, "z");
+      motor.escalarMallaXYZ("valla"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla"+i, i*valla+desfase, 0, (length+desfase-0.038)); /* FONDO - altura - izda dcha*/
+
+    }
+    // VALLA izquierda.
+    for (var i = -width; i < width; i++) {
+      motor.crearNodoMalla("valla2"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla2"+i, -90, "z");
+      motor.escalarMallaXYZ("valla2"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla2"+i, i*valla+desfase, 0, (-length-desfase)); /* FONDO - altura - izda dcha*/
+
+    }
+    // VALLA trasera.
+    for (var i = -length; i < length; i++) {
+      motor.crearNodoMalla("valla3"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla3"+i, -90, "z");
+      motor.rotarMalla("valla3"+i, 90, "x");
+      motor.escalarMallaXYZ("valla3"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla3"+i, width+desfase, 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
+
+    }
+    // VALLA delantera.
+    for (var i = -length; i < length; i++) {
+      motor.crearNodoMalla("valla4"+i, "valla", "maderablanca.jpg", undefined);
+      motor.rotarMalla("valla4"+i, -90, "z");
+      motor.rotarMalla("valla4"+i, 90, "x");
+      motor.escalarMallaXYZ("valla4"+i,0.15, valla, 0.2); /* alto - LARGO - ancho */
+      motor.moverMalla("valla4"+i, (-width-desfase), 0, i*valla+desfase); /* FONDO - altura - izda dcha*/
+
+    }
+
+
+
   // plantas dragables
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
@@ -285,10 +298,12 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   motor.moverLuz("luz1", 10.0, 10.0, 0.0);
   motor.moverLuz("sol", 0.0, 500.0, 0.0);
   motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  //motor.moverLuz("luz3", 0.0, -10.0, 0.0);
+  motor.rotarLuz("sol", -90, 'x');
+  motor.rotarLuz("luz3", -90, 'x');
+  motor.moverLuz("luz3", 0.0, 50.0, 0.0);
   motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  //motor.activarLuz("luz3");
+  motor.activarLuz("luz3");
 
 
 
@@ -306,7 +321,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
     sunset = new Date(2018, 11, 11, 20, 14, 42);
   }
-
+  if(typeof sol !== 'undefined' && typeof luna !== 'undefined'){
   let today = new Date();
   let minuteOfDay = today.getHours() * 60 + today.getMinutes();
   window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
@@ -329,7 +344,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
 
   iluminarAstro(minuteOfDay);
   rotarSol();
-
+  }
 
 
 
