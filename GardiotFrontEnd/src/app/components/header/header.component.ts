@@ -1,6 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../classes/user.class';
+import { ProfileComponent } from '../user/profile/profile.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +13,11 @@ import { User } from '../../classes/user.class';
 
 export class HeaderComponent implements OnInit {
   user = new User("");
-  constructor(private userService: UserService,
-    private _ngZone: NgZone) {
+  constructor(
+    private userService: UserService,
+    private _ngZone: NgZone,
+    private dialog: MatDialog,
+    ) {
   }
 
   toggleMenu(e) {
@@ -79,6 +84,19 @@ export class HeaderComponent implements OnInit {
       this.userService.isAdmin = false;
     }
   }
+
+
+    openDialog() {
+      let dialogRef = this.dialog.open(ProfileComponent, {
+        width: '25em',
+        data: { }
+      });
+    }
+
+
+
+
+
 }
 
 //sidebar
@@ -101,4 +119,6 @@ if (window.location.toString().indexOf("admin") >= 0) {
     });
 
   });
+
+
 }

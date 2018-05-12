@@ -1,0 +1,64 @@
+div{
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  padding: 1em;
+  /* border: 2px solid #ffb200; */
+  /* border-radius: 20px/50px; */
+  /* background-clip: padding-box; */
+
+}
+article{
+  align-content: center;
+}
+
+dl{
+    background-color: #f3f3f3;
+    margin-top: 2em;
+}
+dd{
+  text-align: center;
+  margin-top: 0.5em;
+
+}
+mat-dialog-actions{
+padding: 2.5px;
+}
+button{
+margin: auto;
+}
+
+
+input[type="file"]{
+  display: none;
+}
+.divPhoto>i{
+  display: none;
+  align-content: center;
+}
+.divPhoto>div{
+  display: none;
+}
+.divPhoto:hover{
+  position:relative;
+}
+.divPhoto:hover>div{
+  display: block;
+  position: absolute;
+  border-radius: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.divPhoto:hover>i{
+  filter:brightness(600%) !important;
+  color: #fff;
+  display: block;
+  position: absolute;
+  font-size: 90px;
+  margin-top: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+}
