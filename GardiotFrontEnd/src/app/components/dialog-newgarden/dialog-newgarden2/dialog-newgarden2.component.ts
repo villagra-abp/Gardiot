@@ -178,6 +178,7 @@ export class DialogNewgarden2Component implements OnInit {
     console.log(input);
     if (this.garden.countryCode != undefined) {
       if (input.length == 5) {
+        console.log("entra");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input)
           .subscribe(data => {
             //let sp = document.querySelector('#ciudad');
@@ -212,6 +213,7 @@ export class DialogNewgarden2Component implements OnInit {
               //sp.innerHTML = 'Código postal no encontrado';
             }
             input = '';
+            
 
           },
             error => {
