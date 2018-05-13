@@ -10,6 +10,7 @@ class TRecursoTextura extends TRecurso {
   cargarFichero(nombre) {
     window.loading.push(1);
     this._img.onload = function () {
+      //creamos y configuramos la textura
       this.texture = gl.createTexture();
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this.texture);
@@ -19,8 +20,6 @@ class TRecursoTextura extends TRecurso {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
       gl.generateMipmap(gl.TEXTURE_2D);
-      //gl.bindTexture(gl.TEXTURE_2D, null);
-
 
       window.loading.pop();
 
@@ -46,8 +45,4 @@ class TRecursoTextura extends TRecurso {
     this._img.src = relURL;
   }
 
-  get index() {
-    console.log(this._nombre);
-    return this._index;
-  }
 }

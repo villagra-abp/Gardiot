@@ -178,23 +178,18 @@ function cargarShaders() {
 
     for (let i = 0; i < vertexShaders.length && i < fragmentShaders.length; i++) {
         vs[i] = gestor.getRecurso(vertexShaders[i], 'shader').shader,
-            fs[i] = gestor.getRecurso(fragmentShaders[i], 'shader').shader;
+        fs[i] = gestor.getRecurso(fragmentShaders[i], 'shader').shader;
 
         //Ya tenemos los shaders aquí! (formato texto)
         //console.log(vs);
         //console.log(fs);
 
-        //Aqui viene WebGL
-        //compilamos los shaders
-        glVertexShader[i] = makeShader(vs[i], gl.VERTEX_SHADER);
-        glFragmentShader[i] = makeShader(fs[i], gl.FRAGMENT_SHADER);
-
         //creamos el programa
         glProgram[i] = gl.createProgram();
 
         //añadimos los shaders al programa
-        gl.attachShader(glProgram[i], glVertexShader[i]);
-        gl.attachShader(glProgram[i], glFragmentShader[i]);
+        gl.attachShader(glProgram[i], makeShader(vs[i], gl.VERTEX_SHADER));
+        gl.attachShader(glProgram[i], makeShader(fs[i], gl.FRAGMENT_SHADER));
         gl.linkProgram(glProgram[i]);
 
 
@@ -233,6 +228,9 @@ function renderShadows() {
 //inicializamos parámetros básicos de WebGL
 function setupWebGL() {
 
+    //dibujar las luces
+	
+
     gl.useProgram(glProgram[2]);
 
     gl.clearColor(0.98, 0.98, 0.98, 1);
@@ -256,10 +254,12 @@ function setupWebGL() {
     gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderBuffer);
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-  
+    gl.bindTexture(gl.TEXTURE_2D, null);
+    gl.bindRenderbuffer(gl.RENDERBUFFER, null);
+
     glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
-    
-    
+
+
 
     gl.useProgram(glProgram[1]);
 
@@ -281,7 +281,7 @@ function setupWebGL() {
     glProgram[1].lmvpMatrixUniform = gl.getUniformLocation(glProgram[1], "uMVPMatrixFromLight");
     glProgram[1].lpMatrixUniform = gl.getUniformLocation(glProgram[1], "uPMatrixFromLight");
     glProgram[1].lvMatrixUniform = gl.getUniformLocation(glProgram[1], "uVMatrixFromLight");
- 
+
 
     glProgram[1].samplerUniform = gl.getUniformLocation(glProgram[1], "uSampler");
     glProgram[1].textured = gl.getUniformLocation(glProgram[1], "uTextured");

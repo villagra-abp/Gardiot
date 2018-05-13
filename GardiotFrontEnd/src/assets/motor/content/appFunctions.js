@@ -6,7 +6,7 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
-    motor.drawSombras();
+    //motor.drawSombras();
     motor.draw();
    
   }
@@ -15,7 +15,6 @@ function animLoop() {
 
 
 function drag(e) {
-  console.log('draggin');
   console.log(e.target.id);
   e.dataTransfer.setData("text", e.target.id);
 }
@@ -26,7 +25,6 @@ function allowDrop(e) {
 }
 
 function drop(e) {
-  console.log('dropping');
   e.preventDefault();
   e.stopPropagation();
   let plant = e.dataTransfer.getData("text").split('-');
@@ -248,9 +246,9 @@ function mouse_up(e) {
   }
 }
 
-function deletePlant() {
-  if (window.mode != 0 && window.dragging) {
-
+function deletePlant(e) {
+  e.stopPropagation();
+  if (window.mode == 1  && window.dragging) {
     for (let plant of window.jardin.plants) {
       if (plant.isDragging) {
         plant.isDragging = false;

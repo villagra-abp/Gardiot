@@ -25,7 +25,6 @@ class TRecursoMalla extends TRecurso {
     //ATTRIBUTES
     this.vertexPosAttribute;
 
-
     //auxVar
     this.viewModelMatrix = [];
     this.normalMatrix = [];
@@ -50,24 +49,15 @@ class TRecursoMalla extends TRecurso {
     //console.log("meshes:");
     //console.log(objeto.meshes);
     //almacenamos los vértices del objeto
-
-    for (var i = 0; i < objeto.meshes.length; i++) {
+    //this._vertices = [].concat([objeto.meshes]);
+    //for (var i = 0; i < objeto.meshes.length; i++) {
 
       //console.log(objeto.meshes[i].vertices);
-      this._vertices.push(objeto.meshes[i].vertices);
-    }
-    //this._vertices=objeto.meshes[0].vertices;
+    this._vertices=objeto.meshes[0].vertices;
+
 
     //almacenamos el índice de caras
-    let auxVertexIndex = [];
-    for (var k = 0; k < objeto.meshes.length; k++) {
-      for (let i = 0; i < objeto.meshes[k].faces.length; i++) {
-        for (let j = 0; j < objeto.meshes[k].faces[i].length; j++) {
-          auxVertexIndex.push(objeto.meshes[k].faces[i][j]);
-        }
-      }
-      this._verticesIndex.push(auxVertexIndex);
-    }
+    this._verticesIndex = [].concat.apply([], objeto.meshes[0].faces);
 
 
     //almacenamos las coordenadas de textura
@@ -102,11 +92,7 @@ class TRecursoMalla extends TRecurso {
 
 
     //almacenamos las normales de los vértices
-    for (var k = 0; k < objeto.meshes.length; k++) {
-      if (objeto.meshes[k].normals !== undefined) {
-        this._normales.push(objeto.meshes[k].normals);
-      }
-    }
+    this._normales.push(objeto.meshes[0].normals);
 
     //cargamos la textura
     if (textura !== undefined) {
@@ -119,15 +105,15 @@ class TRecursoMalla extends TRecurso {
     //se lo pasamos al programa
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferVertices);
     //asignamos los vértices leídos al buffer
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices[0]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this._vertices), gl.STATIC_DRAW);
 
     //==============CREACIÓN BUFFER DE ÍNDICES==============
     //Ahora vamos a crear el índice de vértices
     //(esto es como indicarle a WebGL los vértices que componen cada cara)
     this.bufferIndex = gl.createBuffer();
-    this.bufferIndex.number_vertex_points = this._verticesIndex[0].length;
+    this.bufferIndex.number_vertex_points = this._verticesIndex.length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex[0]), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this._verticesIndex), gl.STATIC_DRAW);
 
     if (this._textureCoords.length > 0) {
       //==============CREACIÓN BUFFER DE COORDENADAS DE TEXTURA==============
@@ -148,7 +134,6 @@ class TRecursoMalla extends TRecurso {
     this.vertexPosAttribute = gl.getAttribLocation(glProgram[1], "aVertPosition");
     this.vertexNormAttribute = gl.getAttribLocation(glProgram[1], "aVertNormal");
     this.vertexTexCoordAttribute = gl.getAttribLocation(glProgram[1], "aVertTexCoord");
-
     this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
 
 
@@ -192,7 +177,6 @@ class TRecursoMalla extends TRecurso {
     mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, lightProjectionViewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
 
-
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);
 
@@ -202,7 +186,7 @@ class TRecursoMalla extends TRecurso {
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
     //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
-    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0 && 1==3) {
+    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0) {
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
@@ -217,7 +201,7 @@ class TRecursoMalla extends TRecurso {
     }
 
 
-    //Pasamos los materiales
+    //Pasamos los materiales al shader
     if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
       //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
@@ -228,8 +212,6 @@ class TRecursoMalla extends TRecurso {
       gl.uniform1f(glProgram[window.program].opac, this.opacity);
     }
 
-
-
     //Pasamos el array de normales al shader
     if (this._normales[0].length > 0) {
       gl.enableVertexAttribArray(this.vertexNormAttribute);
@@ -237,15 +219,14 @@ class TRecursoMalla extends TRecurso {
       gl.vertexAttribPointer(this.vertexNormAttribute, 3, gl.FLOAT, false, 0, 0);
     }
 
-    //Decimos si le aplicamos la luz estándar o no al objeto
-    if (this.nombre == 'sol') {
-      gl.uniform1i(glProgram[window.program].lighted, 0);
+    //Variables que determinan el coloreado de un objeto
+    //Si pasamos el ratón por encima se verán más brillantes,
+    //si pasamos por una celda ocupada mientras arrastramos,
+    //la celda se coloreará roja, etc.
+    if(variable === undefined){
+      gl.uniform1i(glProgram[window.program].hovered, 0);
     }
-    else {
-      gl.uniform1i(glProgram[window.program].lighted, 1);
-    }
-
-    if (variable == true) {
+    else if (variable == true) {
       gl.uniform1i(glProgram[window.program].hovered, 1);
     }
     else if (variable == "green") {
@@ -253,9 +234,6 @@ class TRecursoMalla extends TRecurso {
     }
     else if (variable == "red") {
       gl.uniform1i(glProgram[window.program].hovered, 3);
-    }
-    else {
-      gl.uniform1i(glProgram[window.program].hovered, 0);
     }
 
 

@@ -1,12 +1,12 @@
-function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:03:23')*/, sunset /*= new Date('December 25, 1995 20:55:44')*/) {
-  // console.log(jardinBBDD);
+function iniciar(accion, jardinBBDD, sunrise, sunset) {
+//Variable que contiene el canvas
   window.canvas = null;
 
   window.jardin = jardinBBDD;
   //console.log(window.plantas);
   window.loading = [];//array que estará vacío si no hay nada cargándose
 
-  //bucle movimiento
+  //Variables para el bucle de movimiento
   window.frames = 0;
   window.fpsInterval = 0;
   window.startTime = 0;
@@ -17,15 +17,13 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.interval;
 
 
+  //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
   window.colorCell = [];
 
+  //Rotaciones de la cámara y altura de esta
   window.rotationCamX = -40;
   window.rotationCamY = -45;
-  window.step = [0, 0, 0];
-  window.transition = false;
-  window.escala = 1;
-  window.cont = 19;
   window.camHeight = 6;
 
 
@@ -38,34 +36,27 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   window.matrixStack = [];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
   matrixStack.push(matrixModel);
-  window.camaraActiva = null;
   window.projectionMatrix = [];//matriz proyección
-  window.lightProjectionMatrix = [];
-
-  //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
+  window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
   mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);  
+  //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
+  
 
   window.viewMatrix = [];//matriz view
   window.viewLightMatrix = []; //view matrix from light
 
   //DragAndDrop
   window.dragging = false;
-  for (let value of window.jardin.plants) {
-    value.isDragging = false;
-  }
 
   //declaramos las variables necesarias para ejecutar el programa
-  //las variables de WebGL empezarán siempre por gl para distinguirlas de
-  //las variables del motor gráfico
   window.gl = null;
-  window.glVertexShader = [];
-  window.glFragmentShader = [];
   window.glProgram = [];
 
 
   //program 0 = cartoon
   //program 1 = estandar
-  window.program = 2;
+  //program 2 = shadows
+  //window.program = 1;
   window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
   window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
 
@@ -82,10 +73,10 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   setupWebGL();
 
 
-
-  //fachada
+  //Se inicia el motor
   window.motor = new TMotor(gestor);
 
+  //Datos de plantas como el escalado, etc. para que se dibujen bien
   window.dataPlants = {
     LECHUGA: {
       textura: 'lechuga.jpg',
@@ -193,7 +184,7 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
 
   //var malla4=motor.crearNodoMalla("malla4", "perejil", undefined);
 
-  motor.escalarMalla("malla4", 0.2);
+  //motor.escalarMalla("malla4", 0.2);
 
   //suelo
   let adjustX = 0, adjustY = 0;
@@ -254,12 +245,9 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
 
     }
 
-
-
   // plantas dragables
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
-
     let resource = jardin.plants[i].model;
     if (typeof resource !== 'undefined') {
       plantsMap.set(jardin.plants[i].x + '-' + jardin.plants[i].y, jardin.plants[i].id);
@@ -306,15 +294,6 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   motor.activarLuz("luz3");
 
 
-  //motor.moverMalla("malla1", -9, -15, -30);
-
-  motor.escalarMalla("malla2", 0.5);
-  motor.moverMalla("malla2", 0, 1, 0);
-
-  motor.moverMalla("malla3", 15, 25, 0);
-  motor.escalarMalla("malla3", 6);
-  motor.rotarMalla("malla3", 40, "x");
-
   /* POSICION DEL SOL */
   if (typeof sunrise === 'undefined' && typeof sunset === 'undefined') {
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
@@ -346,37 +325,23 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
   }
 
 
-
-
-  //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
-  //motor.rotarCamaraOrbital("dynamicCamera", -45, "x");
-
-  //motor.moverCamaraA("dynamicCamera", 0,10, 0);
-
-
-  //motor.rotarCamaraOrbital("dynamicCamera", -90, "x");
-
   motor.activarCamara("dynamicCamera");
 
   //dependiendo de si estamos en modo visión o modo edición, habrá una cámara u otra
   if (accion == 'detail') {
     window.mode = 0;
-    //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
     motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight * 2);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
-
-    //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
-    //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
-
-    motor.startDrawing('shaderP.vs', 'shaderP.fs');
+    motor.startDrawing();
   }
+
   else if (accion == 'edit') {
     window.mode = 1;
     motor.rotarCamara("dynamicCamera", -90, "x");
     motor.moverCamara("dynamicCamera", 0, camHeight / 2, 0);
 
-    motor.startDrawing('shaderP.vs', 'shaderP.fs');
+    motor.startDrawing();
   }
   else if (accion == 'home') {
     window.mode = 0;
@@ -388,11 +353,8 @@ function iniciar(accion, jardinBBDD, sunrise /*= new Date('December 25, 1995 07:
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
     //motor.rotarCamaraOrbital("dynamicCamera", 25, "x");
 
-    motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
+    motor.startDrawingStatic();
   }
-
-
-  //motor.startDrawingStatic('shaderP.vs', 'shaderP.fs');
 
 }
 

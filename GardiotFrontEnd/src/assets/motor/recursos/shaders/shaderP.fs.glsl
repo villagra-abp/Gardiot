@@ -51,7 +51,7 @@ varying vec4 vPositionFromLight;
 varying vec2 vDepthUv;
 varying vec4 shadowPos;
 
-uniform sampler2D depthColorTexture;
+
 
 float decodeFloat (vec4 color) {
   const vec4 bitShift = vec4(
@@ -166,7 +166,7 @@ void main()
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-		if(uLighted==1){
+
 			if(uHovered==1){
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0), propiedades.opacity);
 			}
@@ -179,15 +179,13 @@ void main()
 			else{
 				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 				//gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
-				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 			}
-		}
-		else
-			gl_FragColor=vec4(texel.rgb*visibility, propiedades.opacity);
+
 	}
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
-		gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 	}
 
 

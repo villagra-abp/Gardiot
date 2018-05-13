@@ -1,47 +1,41 @@
 
-//Clase de la fachada del motor de TAG
-
+//Clase de la fachada del motor
 class TMotor {
 
 	constructor(gestorRecursos) {
 		this.escena = new TNodo('Raiz', undefined, undefined);
 		this.gestorRecursos = gestorRecursos;
 		this.luzRegistro = [];
-		this.luzActiva = [];
-		this.animRegistro = [];
 		this.lucesActivas = 0;
+		this.animRegistro = [];
+
 		this.camaraRegistro = [];
 		this.camaraActiva = -1;
 		this.camaraPosition = [];
 
 		this.mallaRegistro = [];
 		this.running = false;
-		this.vertexShader;
-		this.fragmentShader;
+
 	}
 
-
 	//empezamos a dibujar con los shaders que le pasemos por parámetro
-	startDrawing(vs, fs) {
+	startDrawing() {
 		this.running = true;
-		fpsInterval = 1000 / 60;
+		fpsInterval = 1000 / 30;
 		then = Date.now();
 		startTime = then;
-		if (vs !== undefined && fs !== undefined) {
-			this.vertexShader = vs;
-			this.fragmentShader = fs;
-		}
+
 		if (iniciamosWebGL('myCanvas')) {
 			//Esto es la inicialización de la librería gráfica
 			//configuramos los shaders y le pasamos el nombre de los ficheros
 			//que tenemos en recursos/shaders
 			//esta función está en content/utilities
-			//cargarShaders();
 
 			//bucle de animación en utilities.js
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					
 					animLoop();
 					motor.allLoaded();
 				}
@@ -58,19 +52,15 @@ class TMotor {
 	}
 
 	//igual que startDrawing pero solo hace un draw
-	startDrawingStatic(vs, fs) {
-		if (vs !== undefined && fs !== undefined) {
-			this.vertexShader = vs;
-			this.fragmentShader = fs;
-		}
+	startDrawingStatic() {
 		if (iniciamosWebGL('myCanvas')) {
 			cargarShaders();
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
-					motor.draw();
+					this.draw();
 					motor.allLoaded();
-
+					
 				}
 			}, 100);
 		}
@@ -84,45 +74,32 @@ class TMotor {
 	}
 
 	draw() {
-		window.program=1;
+		window.program = 1;
 		gl.useProgram(glProgram[1]);
-
 
 		gl.viewport(0, 0, canvas.width, canvas.height);
 		gl.clearColor(0.98, 0.98, 0.98, 1);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		//gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
-		  
-		gl.activeTexture(gl.TEXTURE0);
-      	gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
 
-		//dibujar las luces
 		this.dibujarLucesActivas();
-
-		//this.iterar();
-
+		
 		//inicializar cámara
 		this.dibujarCamaraActiva();
 
 		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 		this.escena.draw();
-
-		//gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
 	}
-	drawSombras() {
-		window.program=2;
-		gl.useProgram(glProgram[2]);
 
-		
+	drawSombras() {
+		window.program = 2;
+		gl.useProgram(glProgram[2]);
 
 		gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
 		gl.clearColor(0, 0, 0, 1);
-		//gl.clearDepth(1.0);
+		gl.clearDepth(1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		this.dibujarLucesActivas();
 		this.escena.draw();
-
 	}
 
 
@@ -132,8 +109,8 @@ class TMotor {
 			p = 0;
 		else if (shader == 'realista')
 			p = 1;
-		else if(shader == 'sombras'){
-			p=2;
+		else if (shader == 'sombras') {
+			p = 2;
 		}
 		if (p >= 0) {
 			window.program = p;
@@ -148,19 +125,19 @@ class TMotor {
 	toggleVista() {
 
 		if (window.mode == 0) {//visualización
-			motor.resetOrbital("dynamicCamera");
+			this.resetOrbital("dynamicCamera");
 			window.rotationCamX = -40;
 			window.rotationCamY = -45;
 			window.mode = 1;
-			motor.rotarCamaraA("dynamicCamera", -90, "x");
-			//motor.rotarCamara("dynamicCamera", rotationCamY, "z");
-			motor.moverCamaraA("dynamicCamera", 0, camHeight, 0);
+			this.rotarCamaraA("dynamicCamera", -90, "x");
+			//this.rotarCamara("dynamicCamera", rotationCamY, "z");
+			this.moverCamaraA("dynamicCamera", 0, camHeight, 0);
 
 
-			//motor.resetOrbital("dynamicCamera");
-			//motor.rotarCamaraA("dynamicCamera", -90, "x");
-			/*let pos=motor.getCamaraActiva().dad.dad.entity.matrix;
-			window.escala=motor.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
+			//this.resetOrbital("dynamicCamera");
+			//this.rotarCamaraA("dynamicCamera", -90, "x");
+			/*let pos=this.getCamaraActiva().dad.dad.entity.matrix;
+			window.escala=this.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
 			//console.log(pos[12], pos[13], pos[14]);
 			//console.log(esc);
 			//rotationCamY%=360;
@@ -169,22 +146,22 @@ class TMotor {
 			window.transition=true;*/
 			//window.now=[rotationCamX, rotationCamY];
 			//console.log(now);
-			//motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
 		}
 		else if (window.mode == 1) {//edición
-			motor.resetOrbital("dynamicCamera");
+			this.resetOrbital("dynamicCamera");
 			window.mode = 0;
 			window.rotationCamX = -40;
 			window.rotationCamY = -45;
-			motor.rotarCamaraA("dynamicCamera", 0, "x");
-			//motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-			motor.moverCamaraA("dynamicCamera", 0, camHeight, camHeight * 2);
-			motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
-			motor.rotarCamara("dynamicCamera", rotationCamX, "x");
+			this.rotarCamaraA("dynamicCamera", 0, "x");
+			//this.rotarCamara("dynamicCamera", -rotationCamX, "x");
+			this.moverCamaraA("dynamicCamera", 0, camHeight, camHeight * 2);
+			this.rotarCamaraOrbital("dynamicCamera", 0, "y");
+			this.rotarCamara("dynamicCamera", rotationCamX, "x");
 			//window.transition=true;
 			//window.now=[rotationCamX, rotationCamY];
 			//console.log(now);
-			//motor.moverCamaraA("dynamicCamera", 0, 10, 0);
+			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
 
 		}
 	}
@@ -230,18 +207,18 @@ class TMotor {
 		return cam;
 	}
 
-
+	/**
+	 * Movimiento de la cámara nombre en los parámetros x, y z.
+	 * Además, tiene en cuenta los límites de 
+	 * @param  {string} nombre
+	 * @param  {number} x
+	 * @param  {number} y
+	 * @param  {number} z
+	 */
 	moverCamara(nombre, x, y, z) {
-		var pos = -1;
-
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			let position = motor.getPosCamaraActiva();
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
+			let position = this.getPosCamaraActiva();
 			if (window.mode == 1 && !window.transition) {
 				if (position[0] < (-jardin.width / 2) && x < 0) {
 					x = 0;
@@ -253,12 +230,12 @@ class TMotor {
 					z = 0;
 				}
 
-				this.camaraRegistro[pos].dad.dad.entity.trasladar(x, y, z);
+				camera.dad.dad.entity.trasladar(x, y, z);
 
 			}
 
 			else if (!window.transition) {
-				position = motor.getCamaraActiva().dad.dad.entity.matrix;
+				position = this.getCamaraActiva().dad.dad.entity.matrix;
 				let length = Math.max(jardin.width / 2, jardin.length / 2);
 				if (position[12] < ((-length) - 2) && x < 0) {
 					x = 0;
@@ -270,108 +247,61 @@ class TMotor {
 					z = 0;
 				}
 
-				this.camaraRegistro[pos].dad.dad.entity.trasladar(x, y, z);
+				camera.dad.dad.entity.trasladar(x, y, z);
 
 			}
 			else {
-				this.camaraRegistro[pos].dad.dad.entity.trasladar(x, y, z);
+				camera.dad.dad.entity.trasladar(x, y, z);
 			}
-
-
-
 			return true;
 		}
 
 	}
-	moverCamaraA(nombre, x, y, z) {
-		var pos = -1;
 
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			let matrix = this.camaraRegistro[pos].dad.dad.entity.matrix;
+	/**
+	 * @param  {string} nombre
+	 * @param  {number} x
+	 * @param  {number} y
+	 * @param  {number} z
+	 */
+	moverCamaraA(nombre, x, y, z) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
+			let matrix = camera.dad.dad.entity.matrix;
 			matrix[12] = x;
 			matrix[13] = y;
 			matrix[14] = z;
-			//this.camaraRegistro[pos].dad.dad.entity.matrix=matrix;
 
 			return true;
 		}
 	}
-	/*
-	  zoomCamara(nombre, factor){
-		var pos = -1;
-	
-			for (var i = 0; i< this.camaraRegistro.length; i++){
-				if(nombre == this.camaraRegistro[i].name){
-					pos = i;
-					break;
-				}
-			}
-			if(pos>=0){
-		  let a=this.getPosCamaraActiva().slice(0);
-		  let traslacion=vec3.fromValues(a[0], a[1], a[2]);
-		  vec3.scale(traslacion, traslacion, factor);
-		  console.log(traslacion);
-				this.camaraRegistro[pos].dad.dad.entity.trasladar(traslacion[0],traslacion[1],traslacion[2]);
-				return true;
-			}
-	
-	  }
-	
-	  zoomCamaraParalela(nombre, factor){
-		var pos = -1;
-	
-			for (var i = 0; i< this.camaraRegistro.length; i++){
-				if(nombre == this.camaraRegistro[i].name){
-					pos = i;
-					break;
-				}
-			}
-			if(pos>=0){
-		  let a=this.camaraRegistro[pos].entity.getParams();
-		  console.log(a);
-				this.camaraRegistro[pos].entity.setParams(a[0]-factor, a[1]+factor,
-		  a[2]-factor, a[3]+factor, a[4], a[5]);
-		  console.log(this.camaraRegistro[pos].entity.getParams());
-				return true;
-			}
-	
-	  }
-	*/
-	//Orientación de la cámara
-	rotarCamara(nombre, grados, eje) {
-		var pos = -1;
 
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
+	/**
+	 * Rotar la orientación de la cámara
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 * @param  {string} eje
+	 */
+	rotarCamara(nombre, grados, eje) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
 			if (eje == 'z')
 				rotationCamY += grados;
-			this.camaraRegistro[pos].dad.entity.rotar(grados, eje);
+			camera.dad.entity.rotar(grados, eje);
 			return true;
 		}
 
 	}
 
+	/**
+	 * Rotar la orientación de la cámara a una orientación exacta
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 * @param  {string} eje
+	 */
 	rotarCamaraA(nombre, grados, eje) {
-		var pos = -1;
-
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
 			let dir = [];
 			if (eje == 'x') {
 				dir = [1.0, 0.0, 0.0];
@@ -382,117 +312,116 @@ class TMotor {
 			}
 			let rad = Math.PI * grados / 180;
 
-			mat4.fromRotation(this.camaraRegistro[pos].dad.entity.matrix, rad, dir);
+			mat4.fromRotation(camera.dad.entity.matrix, rad, dir);
 			return true;
 		}
 
 	}
 
 
+	/**
+	 * Rotar la cámara alrededor del punto 0, 0, 0
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 * @param  {string} eje
+	 */
 	rotarCamaraOrbital(nombre, grados, eje) {
-		var pos = -1;
-
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
 			if (eje == 'x') {
 				rotationCamX += grados;
 				grados > 0 ? rotationCamX = Math.min(rotationCamX, 70) : rotationCamX = Math.max(rotationCamX, 0);
 				let rad = Math.PI * rotationCamX / 180;
-				mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.entity.matrix, rad, [1.0, 0.0, 0.0]);
+				mat4.fromRotation(camera.dad.dad.dad.entity.matrix, rad, [1.0, 0.0, 0.0]);
 			}
 			else if (eje == 'y') {
 				rotationCamY += grados;
 				let rad = Math.PI * rotationCamY / 180;
-				mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
+				mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
 			}
 
 			return true;
 		}
 	}
 
+	/**
+	 * Reestablecer la rotación orbital de la cámara
+	 * @param  {string} nombre
+	 */
 	resetOrbital(nombre) {
-		var pos = -1;
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
 
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
+			mat4.fromRotation(camera.dad.dad.dad.entity.matrix, 0, [1.0, 0.0, 0.0]);
 
-			mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.entity.matrix, 0, [1.0, 0.0, 0.0]);
-
-			mat4.fromRotation(this.camaraRegistro[pos].dad.dad.dad.dad.entity.matrix, 0, [0.0, 1.0, 0.0]);
+			mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, 0, [0.0, 1.0, 0.0]);
 
 			return true;
 		}
 	}
 
+	/**
+	 * Escalar
+	 * @param  {string} nombre
+	 * @param  {number} q
+	 */
 	escalarCamara(nombre, q) {
-		var pos = -1;
-
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			this.camaraRegistro[pos].dad.dad.dad.dad.dad.entity.escalar(q, q, q);
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
+			camera.dad.dad.dad.dad.dad.entity.escalar(q, q, q);
 
 			return true;
 		}
 	}
-	/** se le pasa el nombre por parametro y activa dicha camara */
-	activarCamara(nombre) {
-		var pos = -1;
 
-		for (var i = 0; i < this.camaraRegistro.length; i++) {
-			//console.log(this.camaraRegistro[i].name);
-			if (nombre == this.camaraRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		//console.log("pos " + pos);
-		if (pos >= 0) {
-			this.camaraActiva = pos;
-			window.camaraActiva=this.camaraRegistro[this.camaraActiva];
+	/**
+	 * Cambiar la cámara activa
+	 * @param  {string} nombre
+	 */
+	activarCamara(nombre) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
+			this.camaraActiva = this.camaraRegistro.indexOf(camera);
 			return this.camaraRegistro[this.camaraActiva];
 		} else {
 			return false;
 		}
 	}
-
+	/**
+	 * Obtener la cámara activa
+	 */
 	getCamaraActiva() {
 		return this.camaraRegistro[this.camaraActiva];
 	}
 
+
+	/**
+	 * Obtener la posición de la cámara activa
+	 */
 	getPosCamaraActiva() {
 		let position = vec3.create();
 		vec3.transformMat4(position, position, this.camaraPosition);
 		return position;
 	}
 
-	dibujarCamaraActiva() {
 
-		if (!camaraActiva.entity._isPerspective) {
-			mat4.ortho(projectionMatrix, camaraActiva.entity._left * 10, camaraActiva.entity._right * 10, camaraActiva.entity._bottom * 10, camaraActiva.entity._top * 10, camaraActiva.entity._near, camaraActiva.entity._far * 100);
+	/**
+	 * Dibujar la cámara activa, obteniendo la matrix proyección y vista
+	 */
+	dibujarCamaraActiva() {
+		let camera = this.getCamaraActiva();
+
+		if (!camera.entity._isPerspective) {
+			mat4.ortho(projectionMatrix, camera.entity._left * 10, camera.entity._right * 10, camera.entity._bottom * 10, camera.entity._top * 10, camera.entity._near, camera.entity._far * 100);
 		}
 		else {
-			mat4.frustum(projectionMatrix, camaraActiva.entity._left, camaraActiva.entity._right, camaraActiva.entity._bottom, camaraActiva.entity._top, camaraActiva.entity._near, camaraActiva.entity._far);
+			mat4.frustum(projectionMatrix, camera.entity._left, camera.entity._right, camera.entity._bottom, camera.entity._top, camera.entity._near, camera.entity._far);
 		}
-		
+
 
 		//recorrer al árbol a la inversa desde la cámara a la raíz
 		let auxStack = [];
-		let auxCamara = camaraActiva;
+		let auxCamara = camera;
 		while (auxCamara = auxCamara.dad) {
 			if (auxCamara.entity !== undefined)
 				auxStack.push(auxCamara.entity.matrix);
@@ -516,7 +445,7 @@ class TMotor {
 		//console.log(aux[12], aux[13], aux[14]);
 
 		//pasar matrices a WebGL
-		gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, auxMatrix);
+		gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, viewMatrix);
 		gl.uniformMatrix4fv(glProgram[window.program].pMatrixUniform, false, projectionMatrix);
 	}
 	//=================================FIN CÁMARA============================
@@ -548,10 +477,9 @@ class TMotor {
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		}
-		this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
-		motor.escalarMalla("sol", 0.5);
+		//this.crearNodoMalla("sol", "sol", "sol.jpg", luz);
+		//this.escalarMalla("sol", 0.5);
 		this.luzRegistro.push(luz);
-		this.luzActiva.push(0);
 		return luz;
 	}
 
@@ -563,8 +491,8 @@ class TMotor {
 	 * la dirección de la luz, en forma de vec3
 	   * @param  {string} nombre
 	   * @param  {double} intensidad
-	 * @param  {int} amplitud
-	 * @param  {[double, double, double]} direccion
+	 	* @param  {int} amplitud
+	 	* @param  {[double, double, double]} direccion
 	   * @param  {TNodo | undefined} hermano
 	   * @return {TNodo}
 	   */
@@ -584,25 +512,21 @@ class TMotor {
 		}
 		//this.crearNodoMalla("cubo", "cubo", undefined, luz);
 		this.luzRegistro.push(luz);
-		this.luzActiva.push(0);
 		return luz;
 	}
 
 	//True if can activate, false otherwise
+	/**
+	 * Activar una luz si se puede
+	 * @param  {string} nombre
+	 */
 	activarLuz(nombre) {
 		if (this.lucesActivas < 5) {
-			var pos = -1;
-
-			for (var i = 0; i < this.luzRegistro.length; i++) {
-				if (nombre == this.luzRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-			if (pos >= 0) {
-				this.luzActiva[pos] = 1;
+			let luz = this.luzRegistro.find(x => x.name == nombre);
+			if (luz !== undefined) {
+				luz.activa = true;
 				this.lucesActivas++;
-				return this.luzRegistro[pos];
+				return luz;
 			} else {
 				return false;
 			}
@@ -612,109 +536,101 @@ class TMotor {
 		}
 	}
 
-	//True if can deactivate, false otherwise
+	/**
+	 * Desactivar la luz que le pasemos por parámetro
+	 * @param  {string} nombre
+	 */
 	desactivarLuz(nombre) {
-		var pos = -1;
-
-		for (var i = 0; i < this.luzRegistro.length; i++) {
-			if (nombre == this.luzRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			this.luzActiva[pos] = 0;
+		let luz = this.luzRegistro.find(x => x.name == nombre);
+		if (luz !== undefined) {
+			luz.activa = false;
 			this.lucesActivas--;
-			/*if(this.running){
-					configurarShaders(this.vertexShader, this.fragmentShader);
-				}*/
-			return this.luzRegistro[pos];
+			return luz;
 		} else {
 			return false;
 		}
 
 	}
-	//TODO
+
+
+	/**
+	 * Mover la luz "nombre" en x, y, z
+	 * @param  {string} nombre
+	 * @param  {number} x
+	 * @param  {number} y
+	 * @param  {number} z
+	 */
 	moverLuz(nombre, x, y, z) {
-		var pos = -1;
-
-		for (var i = 0; i < this.luzRegistro.length; i++) {
-			if (nombre == this.luzRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			this.luzRegistro[pos].dad.dad.entity.trasladar(x, y, z);
+		let luz = this.luzRegistro.find(x => x.name == nombre);
+		if (luz !== undefined) {
+			luz.dad.dad.entity.trasladar(x, y, z);
 			return true;
 		}
 	}
 
+
+	/**
+	 * Rotar la orientación de la luz
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 * @param  {string} eje
+	 */
 	rotarLuz(nombre, grados, eje) {
-		var pos = -1;
+		let luz = this.luzRegistro.find(x => x.name == nombre);
+		if (luz !== undefined) {
+			luz.dad.entity.rotar(grados, eje);
+			if (typeof luz.entityorigin !== 'undefined') {
+				let lDir = luz.entity.origin.slice(0);
+				vec4.transformMat4(lDir, lDir, luz.dad.entity.matrix);
 
-		for (var i = 0; i < this.luzRegistro.length; i++) {
-			if (nombre == this.luzRegistro[i].name) {
-				pos = i;
-				break;
+				luz.entity.direccion = lDir;
 			}
-		}
-		if (pos >= 0) {
-			this.luzRegistro[pos].dad.entity.rotar(grados, eje);
 
-
-			if(typeof this.luzRegistro[i].entityorigin !== 'undefined'){
-				let lDir = this.luzRegistro[i].entity.origin.slice(0);
-				vec4.transformMat4(lDir, lDir, this.luzRegistro[i].dad.entity.matrix);
-
-				this.luzRegistro[i].entity.direccion = lDir;
-			}
-			
 			return true;
 		}
-
 	}
+
+	/**
+	 * Movimiento de la luz del sol entorno al 0,0,0
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 */
 	rotarLuzOrbital(nombre, grados) {
-		var pos = -1;
-
-		for (var i = 0; i < this.luzRegistro.length; i++) {
-			if (nombre == this.luzRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-
-			this.luzRegistro[pos].dad.dad.dad.entity.rotar(grados, "z");
+		let luz = this.luzRegistro.find(x => x.name == nombre);
+		if (luz !== undefined) {
+			luz.dad.dad.dad.entity.rotar(grados, "z");
 
 			return true;
 		}
 	}
+
+
+	/**
+	 * Movimiento de la luz del sol entorno al 0,0,0 a unos grados exactos
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 */
 	rotarLuzOrbitalA(nombre, grados) {
-		var pos = -1;
-
-		for (var i = 0; i < this.luzRegistro.length; i++) {
-			if (nombre == this.luzRegistro[i].name) {
-				pos = i;
-				break;
-			}
-		}
-		if (pos >= 0) {
-			let mat = this.luzRegistro[pos].dad.dad.dad.entity.matrix;
-			mat4.fromRotation(mat, grados * Math.PI / 180, [0.0, 0.0, 1.0]);
+		let luz = this.luzRegistro.find(x => x.name == nombre);
+		if (luz !== undefined) {
+			mat4.fromRotation(luz.dad.dad.dad.entity.matrix, grados * Math.PI / 180, [0.0, 0.0, 1.0]);
 
 			return true;
 		}
 	}
 
+	/**
+	 * Dibujar en la escena las luces que tengamos activas
+	 */
 	dibujarLucesActivas() {
 		//dibujar ambient light
 		let contLuces = 0;
 		for (let i = 0; i < this.luzRegistro.length; i++) {
-			if (this.luzActiva[i] == 1) {
+			let luz = this.luzRegistro[i];
+			if (luz.activa) {
 
 				let auxStack = [];
-				let auxLuz = this.luzRegistro[i];
+				let auxLuz = luz;
 				while (auxLuz = auxLuz.dad) {
 					if (auxLuz.entity !== undefined)
 						auxStack.push(auxLuz.entity.matrix);
@@ -747,27 +663,27 @@ class TMotor {
 				//console.log(this.luzRegistro[i].entity.tipo);
 				let isActive, lightPosUniformLocation, lightIntUniformLocation,
 					lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
-				if (this.luzRegistro[i].entity.tipo == "puntual") {
+				if (luz.entity.tipo == "puntual") {
 					isActive = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
 					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
 					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
 					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
 				}
-				else if (this.luzRegistro[i].entity.tipo == "dirigida") {
+				else if (luz.entity.tipo == "dirigida") {
 					isActive = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
 					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
 					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
 					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
 					lightDirUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
 					lightAmpUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
-					gl.uniform4fv(lightDirUniformLocation, this.luzRegistro[i].entity.direccion);
-					gl.uniform1f(lightAmpUniformLocation, this.luzRegistro[i].entity.amplitud);
+					gl.uniform4fv(lightDirUniformLocation, luz.entity.direccion);
+					gl.uniform1f(lightAmpUniformLocation, luz.entity.amplitud);
 				}
 
 				gl.uniform1i(isActive, 1);
 				gl.uniform4fv(lightPosUniformLocation, lPos);
-				gl.uniform3fv(lightIntUniformLocation, this.luzRegistro[i].entity.intensidad);
-				gl.uniform3fv(lightSpecUniformLocation, this.luzRegistro[i].entity.intensidadSpecular);
+				gl.uniform3fv(lightIntUniformLocation, luz.entity.intensidad);
+				gl.uniform3fv(lightSpecUniformLocation, luz.entity.intensidadSpecular);
 
 
 				gl.uniformMatrix4fv(glProgram[window.program].lvMatrixUniform, false, viewLightMatrix);
@@ -807,119 +723,91 @@ class TMotor {
 		return malla;
 	}
 
+	/**
+	 * Mover la malla en x, y, z
+	 * @param  {string} nombre
+	 * @param  {nombre} x
+	 * @param  {nombre} y
+	 * @param  {nombre} z
+	 */
 	moverMalla(nombre, x, y, z) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-		if (pos >= 0) {
-			this.mallaRegistro[pos].dad.dad.dad.entity.trasladar(x, y, z);
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			malla.dad.dad.dad.entity.trasladar(x, y, z);
 			return true;
 		}
 
 	}
-
+	/**
+	 * Mover la malla a la posición x, y, z
+	 * @param  {string} nombre
+	 * @param  {nombre} x
+	 * @param  {nombre} y
+	 * @param  {nombre} z
+	 */
 	moverMallaA(nombre, x, y, z) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-		if (pos >= 0) {
-			let matrix = this.mallaRegistro[pos].dad.dad.dad.entity.matrix;
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			let matrix = malla.dad.dad.dad.entity.matrix;
 			matrix[12] = x;
 			matrix[13] = y;
 			matrix[14] = z;
-			this.mallaRegistro[pos].dad.dad.dad.entity.matrix = matrix;
 			return true;
 		}
-
 	}
-
+	/**
+	 * Rotar una malla en un eje
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 * @param  {string} eje
+	 */
 	rotarMalla(nombre, grados, eje) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-		if (pos >= 0) {
-			this.mallaRegistro[pos].dad.dad.entity.rotar(grados, eje);
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			malla.dad.dad.entity.rotar(grados, eje);
 			return true;
 		}
 
 	}
-
-	//Escalado general de la malla
+	/**
+	 * Escalar la malla en q
+	 * @param  {string} nombre
+	 * @param  {number} q
+	 */
 	escalarMalla(nombre, q) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-		if (pos >= 0) {
-			this.mallaRegistro[pos].dad.entity.escalar(q, q, q);
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			malla.dad.entity.escalar(q, q, q);
 			return true;
 		}
 
 	}
 
-	//Escalado de la malla especificando los parámetros x, y, z
+	/**
+	 * Escalar la malla especificando los parámetros x, y, z
+	 * @param  {string} nombre
+	 * @param  {number} x
+	 * @param  {number} y
+	 * @param  {number} z
+	 */
 	escalarMallaXYZ(nombre, x, y, z) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-		if (pos >= 0) {
-			this.mallaRegistro[pos].dad.entity.escalar(x, y, z);
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			malla.dad.entity.escalar(x, y, z);
 			return true;
 		}
 
 	}
 
-
+	/**
+	 * Eliminar la malla de la escena que pasemos por parámetro
+	 * @param  {string} nombre
+	 */
 	borrarMalla(nombre) {
-		var pos = -1;
-
-		for (var i = 0; i < this.mallaRegistro.length; i++) {
-			if (this.mallaRegistro[i] != undefined) {
-				if (nombre == this.mallaRegistro[i].name) {
-					pos = i;
-					break;
-				}
-			}
-		}
-
-		if (pos >= 0) {
-			console.log("borrado");
-			this.mallaRegistro[pos].dad.dad.dad.dad.removeChild(this.mallaRegistro[pos].dad.dad.dad);
-			this.mallaRegistro[pos] = undefined;
+		let malla = this.mallaRegistro.find(x => x.name == nombre);
+		if (malla !== undefined) {
+			malla.dad.dad.dad.dad.removeChild(malla.dad.dad.dad);
+			malla = undefined;
 		}
 	}
 

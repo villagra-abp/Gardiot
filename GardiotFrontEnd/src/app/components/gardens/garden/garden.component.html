@@ -101,7 +101,7 @@
     <div class="toggleDeko litButton orange" id="help" (click)="this.openDialog(1, 2)">
         <img src="{{photoURL}}/images/icon/ask.png" alt="ask"/>
     </div>
-    <div class="toggleDeko litButton red" id="del" onmouseup="deletePlant()" [hidden]="isDragging()">
+    <div class="toggleDeko litButton red" id="del" onmouseup="deletePlant(event)" [hidden]="isDragging()">
         <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish"/>
     </div>
   </section>
