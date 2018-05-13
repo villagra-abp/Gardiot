@@ -90,7 +90,11 @@ class TMotor {
 
 		gl.viewport(0, 0, canvas.width, canvas.height);
 		gl.clearColor(0.98, 0.98, 0.98, 1);
-  		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		//gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
+		  
+		gl.activeTexture(gl.TEXTURE0);
+      	gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
 
 		//dibujar las luces
 		this.dibujarLucesActivas();
@@ -103,21 +107,21 @@ class TMotor {
 		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 		this.escena.draw();
 
+		//gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
 	}
 	drawSombras() {
 		window.program=2;
 		gl.useProgram(glProgram[2]);
 
-		gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
+		
 
 		gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
 		gl.clearColor(0, 0, 0, 1);
-		gl.clearDepth(1.0);
+		//gl.clearDepth(1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		this.dibujarLucesActivas();
 		this.escena.draw();
-
-		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
 	}
 

@@ -8,6 +8,7 @@ function animLoop() {
     then = now - (elapsed % fpsInterval);
     motor.drawSombras();
     motor.draw();
+   
   }
   requestAnimationFrame(animLoop, canvas);
 }

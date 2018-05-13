@@ -202,7 +202,7 @@ class TRecursoMalla extends TRecurso {
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
     //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
-    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0) {
+    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0 && 1==3) {
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
