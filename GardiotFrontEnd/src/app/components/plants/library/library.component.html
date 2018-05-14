@@ -35,17 +35,30 @@
       <section class="card-columns">
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <div class="view view-first">
-            <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+            <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px">
             <div class="mask">
               <h2>{{plant.commonName}} </h2>
               <p>{{plant.name}}</p>
-              <a href="#" class="info">Ver más</a>
+              <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a>
             </div>
           </div>
           <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
           <section class="card-body">
             <h4>{{plant.commonName}} </h4>
             <p>{{plant.name}}</p>
+
+            <p>{{plant.depth}} cm</p>
+            <p>{{plant.distance}} cm</p>
+            <p>{{plant.diseaseResist}} cm</p>
+            <p>{{plant.commonName}} cm</p>
+            <!-- <ul class="list-group">
+              <li  class="list-group-item">Nombre común: {{plant.commonName}}</li>
+              <li *ngIf="plant.scientificName !=undefined" class="list-group-item">Nombre científico: {{plant.scientificName}}</li>
+              <li *ngIf="plant.family !=undefined" class="list-group-item">Familia: {{plant.family}}</li>
+              <li *ngIf="plant.depth !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">Profundidad {{plant.depth}} cm</li>
+              <li *ngIf="plant.distance !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">Distancia {{plant.distance}} cm</li>
+              <li *ngIf="plant.diseaseResist !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">Resistencia{{plant.diseaseResist}}</li>
+            </ul> -->
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
                 <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
