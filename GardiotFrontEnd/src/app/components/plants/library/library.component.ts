@@ -115,7 +115,7 @@ export class LibraryComponent implements OnInit {
           obs.next(aux);
           obs.complete();
         });
-        
+
 
 
 
