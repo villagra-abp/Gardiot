@@ -75,6 +75,7 @@
 }
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
   text-decoration: none;
+  color:#ffb200;
 }
 #sidebar-wrapper.sidebar-toggle {
   transition: all 0.3s ease-out;
@@ -90,13 +91,17 @@ i{
 
 /*HEADER USER*/
 .header{
-  background-color: #299654 !important;
+  background-color: #299654;
 }
 .navbar-brand>img{
   width: 140px;
 }
 #navbarSupportedContent > ul > li > a{
-  color: #fff !important;
+  color: #fff ;
+}
+#navbarSupportedContent > ul > li > a:hover, #navbarSupportedContent > ul > li > a:focus{
+  text-decoration: none;
+  color:#ffb200;
 }
 button{
   background: rgba(255, 255, 255, 0.5);
@@ -140,6 +145,7 @@ button{
 
     }
 }
+
 
 #photoMenu{
   width: auto;

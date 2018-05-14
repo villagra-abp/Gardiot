@@ -1,13 +1,12 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
-    <h1>Gestión de usuarios</h1>
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="user.id" class="form-control" name="id" placeholder="Buscar por e-mail">
       </article>
       <article class="form-group col-md-6">
         <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
+        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
       </article>
       <article class="form-group col-md-2">
         <button [routerLink]="['/admin/newuser']" class="btn btn-outline-primary"><i class="material-icons">add_circle</i></button>

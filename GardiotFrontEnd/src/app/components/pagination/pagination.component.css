@@ -1,0 +1,10 @@
+.page-link{
+  color: #343a40;
+}
+button{
+  border: none;
+  background-color: #f3f3f3;
+}
+button:hover{
+  color: #ffb200;
+}
