@@ -241,7 +241,11 @@ function setupWebGL() {
     gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
 
     shadowDepthTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0+window.index);
     gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
+    window.shadowIndex=parseInt(''+(window.index));
+    window.index++;
+
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, shadowDepthTextureSize, shadowDepthTextureSize, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);

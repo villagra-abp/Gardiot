@@ -191,8 +191,11 @@ class TRecursoMalla extends TRecurso {
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
-      gl.activeTexture(gl.TEXTURE0);
+
+      gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
       gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
+
+      gl.uniform1i(glProgram[window.program].samplerUniform, this._textura._img.index);
 
       gl.uniform1i(glProgram[window.program].textured, 1);
     }

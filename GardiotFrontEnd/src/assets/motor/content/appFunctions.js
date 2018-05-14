@@ -6,7 +6,7 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
-    //motor.drawSombras();
+    motor.drawSombras();
     motor.draw();
    
   }

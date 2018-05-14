@@ -16,7 +16,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.frameCount = 0;
   window.interval;
 
-
+  window.index=0;
+  window.shadowIndex=0;
   //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
   window.colorCell = [];
@@ -288,7 +289,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   motor.moverLuz("luna", 0.0, -500.0, 0.0);
   motor.rotarLuz("sol", -90, 'x');
   motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 100.0, 0.0);
+  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
   motor.activarLuz("luz1");
   motor.activarLuz("sol");
   motor.activarLuz("luz3");

@@ -71,21 +71,21 @@ float unpackDepth(const in vec4 rgbaDepth) {
 
 void main()
 {
-	/*
+	
   vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
-  //float shadowAcneRemover = 0.001;
-  //fragmentDepth.z -= shadowAcneRemover;
+  float shadowAcneRemover = 0.001;
+  fragmentDepth.z -= shadowAcneRemover;
 
   highp vec4 rgba_depth = texture2D(uShadowMap, fragmentDepth.xy);
-  highp float depth=unpackDepth(rgba_depth);
+  highp float depth=decodeFloat(rgba_depth);
 
   highp float visibility = 1.0;
-  highp float bias = 0.0;
+  highp float bias = 0.001;
 
   if(fragmentDepth.z>(depth-bias)){
-	  visibility=0.5;
+	  visibility=0.1;
   }
-	
+	/*
   float texelSize = 1.0 / 1024.0;
   float amountInLight = 0.0;
 
@@ -106,10 +106,10 @@ void main()
   }
   amountInLight /= 9.0;
 */
-  vec3 shadowCoord = (shadowPos.xyz/shadowPos.w);
+ /*vec3 shadowCoord = (shadowPos.xyz/shadowPos.w);
         vec4 rgbaDepth = texture2D(uShadowMap, shadowCoord.xy);
         float depth = unpackDepth(rgbaDepth);
-        float visibility = (shadowCoord.z > depth) ? 0.7 : 1.0;
+        float visibility = (shadowCoord.z > depth) ? 0.5 : 1.0;*/
 
 
 
@@ -177,9 +177,9 @@ void main()
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
 			}
 			else{
-				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 				//gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
-				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+				//gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 			}
 
 	}
