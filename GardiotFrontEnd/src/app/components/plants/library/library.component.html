@@ -1,6 +1,5 @@
 <div class="evolver">
   <div class="container main-container">
-    <h1>Biblioteca</h1>
     <div class="wrap">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
         <article class="form-group col-md-4">
@@ -8,7 +7,7 @@
         </article>
         <article class="form-group col-md-6">
           <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-          <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
+          <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
         </article>
         <article class="form-group col-md-2">
           <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
