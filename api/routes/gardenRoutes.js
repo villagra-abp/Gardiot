@@ -42,7 +42,6 @@ router.get('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 				garden.length=data[0].length;
 				//garden.longitude=data[0].longitude;
 				//garden.latitude=data[0].latitude;
-				garden.soil=data[0].soil;
 				//garden.countryCode=data[0].countryCode;
 				//garden.city=data[0].city;
 				garden.plants=[];
@@ -77,7 +76,6 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 			garden.length=data[0].length;
 			garden.longitude=data[0].longitude;
 			garden.latitude=data[0].latitude;
-			garden.soil=data[0].soil;
 			garden.countryCode=data[0].countryCode;
 			garden.city=data[0].city;
 			garden.plants=[];
@@ -99,42 +97,6 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 	});
 });
 
-/*router.get('/gardenByUser/:id', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	if(!validator.isEmail(request.params.id) && !isEmail.validate(request.params.id))
-		response.status(400).json({"Mensaje":"Email no válido"});
-	else {
-		gardenModel.getGardenByUser(request.params.id, function (error, data) {
-			if (error)
-				response.status(500).json({"Mensaje":error.message});
-			else if (typeof data !== 'undefined' && data.length > 0) {
-				let garden={};
-				garden.id=data[0].gardenId;
-				garden.title=data[0].title;
-				garden.width=data[0].width;
-				garden.length=data[0].length;
-				//garden.longitude=data[0].longitude;
-				//garden.latitude=data[0].latitude;
-				garden.soil=data[0].soil;
-				//garden.countryCode=data[0].countryCode;
-				//garden.city=data[0].city;
-				garden.plants=[];
-				for(let i=0; i<data.length; i++){
-					garden.plants.push({"id": data[i].id,
-										"name": data[i].commonName,
-										"plant": data[i].plant,
-										"model": data[i]._3DModel,
-										"x": data[i].xCoordinate,
-										"y": data[i].yCoordinate,
-										"seed": data[i].seed});
-				}
-
-				response.status(200).json(garden);
-			}
-			else 
-				response.status(200).json({"Mensaje":"Este usuario no tiene jardín."});
-		});
-	}
-});*/
 
 router.get('/firstgardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
 	var user = request.user.id;
@@ -158,14 +120,14 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
 		length: request.body.length,
 		latitude: request.body.latitude,
 		longitude: request.body.longitude,
-		soil: request.body.soil,
 		user: request.user.id,
 		countryCode: request.body.countryCode,
 		city: request.body.city,
 		zip: request.body.zip,
+		public: request.body.public
 	};
 	gardenData = filter(gardenData);
-	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.soil=== 'undefined' || typeof gardenData.user=== 'undefined'){
+	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.user=== 'undefined'){
     response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
   }
 	else {
@@ -197,10 +159,10 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 			length: request.body.length,
 			latitude: request.body.latitude,
 			longitude: request.body.longitude,
-			soil: request.body.soil,
 			countryCode: request.body.countryCode,
 			city: request.body.city,
 			zip: request.body.zip,
+			public: request.body.public
 		};
 		gardenData = filter(gardenData);
 		if (typeof gardenData.width === 'undefined' || typeof gardenData.length === 'undefined')
@@ -281,7 +243,6 @@ router.get('/gardenShared/:token', function (request, response) {
 					garden.length=data[0].length;
 					//garden.longitude=data[0].longitude;
 					//garden.latitude=data[0].latitude;
-					garden.soil=data[0].soil;
 					//garden.countryCode=data[0].countryCode;
 					//garden.city=data[0].city;
 					garden.plants=[];
@@ -311,7 +272,6 @@ function validateInput(data) {
 	if (typeof data.lenght!=='undefined' && !validator.isInt(data.lenght)) resp += 'Largo no válido, ';
 	if (typeof data.latitude!=='undefined' && typeof data.longitude!=='undefined' && !validator.isLatLong(data.latitude + ',' + data.longitude)) resp += 'Latitud y/o longitud no válidas, ';
 	if (typeof data.countryCode!== 'undefined' && !validator.isISO31661Alpha2(data.countryCode)) resp += 'País no válido, ';
-	if (typeof data.soil!=='undefined' && !validator.isInt(data.soil)) resp += 'Suelo no válido, ';
 	if (typeof data.zip!=='undefined' && !validator.isPostalCode(data.zip)) resp += 'Código postal no válido, ';
 	if (typeof data.email!== 'undefined' && !validator.isEmail(data.email) && !isEmail.validate(data.email)) resp += 'Email no válido, ';
 	if (resp) resp = resp.slice(0, -2);

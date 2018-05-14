@@ -28,10 +28,11 @@ class TRecursoMalla extends TRecurso {
     //auxVar
     this.viewModelMatrix = [];
     this.normalMatrix = [];
-
-    this.hovered = false;
+    this.projectionViewModelMatrix=[];
+    this.lightProjectionViewModelMatrix=[];
 
   }
+
   cargarFichero(nombre, textura) {
     window.loading.push(1);
     let objeto;
@@ -39,20 +40,15 @@ class TRecursoMalla extends TRecurso {
     loadJSONResource('/recursos/mallas/' + nombre + '.json', function (modelErr, modelObj) {
       if (modelErr) {
 
-        alert("fail to cargar malla " + nombre);
+        alert("Error al cargar la malla " + nombre);
       }
       else {
         objeto = modelObj;
         window.loading.pop();
       }
     });
-    //console.log("meshes:");
-    //console.log(objeto.meshes);
-    //almacenamos los vértices del objeto
-    //this._vertices = [].concat([objeto.meshes]);
-    //for (var i = 0; i < objeto.meshes.length; i++) {
 
-      //console.log(objeto.meshes[i].vertices);
+    //almacenamos los vértices del objeto
     this._vertices=objeto.meshes[0].vertices;
 
 
@@ -135,17 +131,13 @@ class TRecursoMalla extends TRecurso {
     this.vertexNormAttribute = gl.getAttribLocation(glProgram[1], "aVertNormal");
     this.vertexTexCoordAttribute = gl.getAttribLocation(glProgram[1], "aVertTexCoord");
     this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
-
-
-
   }
 
   drawSombras(){
     //Cálculo de la matrix model view projection desde la luz
-    let lightProjectionViewModelMatrix=[];
-    mat4.multiply(lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
-    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, lightProjectionViewModelMatrix);
-    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
+    mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
+    mat4.multiply(this.lightProjectionViewModelMatrix, lightProjectionMatrix, this.lightProjectionViewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[2].lmvpMatrixUniform, false, this.lightProjectionViewModelMatrix);
 
     //Pasamos los buffers de posición de vértices
     gl.enableVertexAttribArray(this.vertexPosAttribute);
@@ -158,7 +150,6 @@ class TRecursoMalla extends TRecurso {
   }
 
   draw(variable) {
-    //console.log(window.program);
     //Cálculo de matriz normal
     mat4.multiply(this.viewModelMatrix, viewMatrix, matrixModel);
     mat4.invert(this.normalMatrix, this.viewModelMatrix);
@@ -166,16 +157,14 @@ class TRecursoMalla extends TRecurso {
     gl.uniformMatrix4fv(glProgram[window.program].normalMatrixUniform, false, this.normalMatrix);
 
     //Cálculo de la matrix model view projection
-    let projectionViewModelMatrix=[];
-    mat4.multiply(projectionViewModelMatrix, projectionMatrix, this.viewModelMatrix);
+    mat4.multiply(this.projectionViewModelMatrix, projectionMatrix, this.viewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].mvMatrixUniform, false, this.viewModelMatrix);
-    gl.uniformMatrix4fv(glProgram[window.program].mvpMatrixUniform, false, projectionViewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].mvpMatrixUniform, false, this.projectionViewModelMatrix);
 
     //Cálculo de la matrix model view projection desde la luz
-    let lightProjectionViewModelMatrix=[];
-    mat4.multiply(lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
-    mat4.multiply(lightProjectionViewModelMatrix, lightProjectionMatrix, lightProjectionViewModelMatrix);
-    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, lightProjectionViewModelMatrix);
+    mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
+    mat4.multiply(this.lightProjectionViewModelMatrix, lightProjectionMatrix, this.lightProjectionViewModelMatrix);
+    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, this.lightProjectionViewModelMatrix);
 
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);
@@ -186,15 +175,12 @@ class TRecursoMalla extends TRecurso {
     gl.vertexAttribPointer(this.vertexPosAttribute, 3, gl.FLOAT, false, 0, 0);
 
     //Si tenemos textura la activamos y pasamos los buffers de coordenadas de textura
-    if (this._textura !== undefined && this._textureCoords.length > 0 && window.loading.length == 0) {
+    if (this._textura !== undefined && this._textureCoords.length > 0) {
       gl.enableVertexAttribArray(this.vertexTexCoordAttribute);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
-
       gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
-      gl.bindTexture(gl.TEXTURE_2D, this._textura._img.texture);
-
       gl.uniform1i(glProgram[window.program].samplerUniform, this._textura._img.index);
 
       gl.uniform1i(glProgram[window.program].textured, 1);

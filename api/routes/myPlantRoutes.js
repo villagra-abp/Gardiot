@@ -43,10 +43,9 @@ router.post('/myPlant/:garden', passport.authenticate('jwt', {session: false}), 
 	    seed: request.body.seed,
 	    number: request.body.number,
 	    plant: request.body.plant,
-	    soil: request.body.soil
 	};
 	myPlantData = filter(myPlantData);
-	if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
+	if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined')
 		response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 	else if (!validator.isInt(request.params.garden, {gt: 0}))
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
@@ -95,10 +94,9 @@ router.put('/myPlant/:garden/:id', passport.authenticate('jwt', {session: false}
 		    seed: request.body.seed,
 		    number: request.body.number,
 		    plant: request.body.plant,
-		    soil: request.body.soil
 		};
 		myPlantData = filter(myPlantData);
-		if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined' || typeof myPlantData.soil=== 'undefined')
+		if (typeof myPlantData.xCoordinate=== 'undefined' || typeof myPlantData.yCoordinate=== 'undefined' || typeof myPlantData.plant=== 'undefined')
 			response.status(400).json({"Mensaje":"Faltan parámetros necesarios"});
 		else {
 			myPlantModel.isOwner(request.user.id, request.params.garden, function (error, owner) {
@@ -183,7 +181,6 @@ function validateInput(data) {
   if (typeof data.number!=='undefined' && !validator.isInt(data.number)) resp += 'Número no válido, ';
   if (typeof data.plant!=='undefined' && !validator.isInt(data.plant)) resp += 'Planta no válida, ';
   if (typeof data.garden!=='undefined' && !validator.isInt(data.garden)) resp += 'Jardín no válido, ';
-  if (typeof data.soil!=='undefined' && !validator.isInt(data.soil)) resp += 'Suelo no válido, ';
   if (typeof data.seed!=='undefined' && !validator.isISO8601(data.seed)) resp += 'Fecha no válida, ';
   if (resp) resp = resp.slice(0, -2);
   return resp;
