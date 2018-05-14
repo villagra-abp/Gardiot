@@ -64,10 +64,10 @@ router.put('/moveTask/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:newDate', 
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		taskModel.moveTask (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.newDate, function (error, data) {
+		taskModel.moveTask (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.newDate, request.user.id, function (error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
-			else if (data == 1)
+			else if (data > 0)
 				response.status(200).json({"Mensaje":"Actualizado."});
 			else
 				response.status(400).json({"Mensaje":"No actualizado"});
@@ -79,10 +79,10 @@ router.put('/taskDone/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:dateDone',
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		taskModel.setTaskDone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.dateDone, function (error, data) {
+		taskModel.setTaskDone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.dateDone, request.user.id, function (error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
-			else if (data == 1)
+			else if (data > 0)
 				response.status(200).json({"Mensaje":"Actualizado."});
 			else
 				response.status(400).json({"Mensaje":"No actualizado"});
@@ -94,10 +94,10 @@ router.put('/taskUndone/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date', passpor
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
 	else {
-		taskModel.setTaskUndone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, function (error, data) {
+		taskModel.setTaskUndone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.user.id, function (error, data) {
 			if (error)
 				response.status(500).json({"Mensaje":error.message});
-			else if (data == 1)
+			else if (data > 0)
 				response.status(200).json({"Mensaje":"Actualizado."});
 			else
 				response.status(400).json({"Mensaje":"No actualizado"});
