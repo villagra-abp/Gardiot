@@ -8,6 +8,8 @@ import { Family } from "../../../classes/family.class";
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { Select2OptionData } from 'ng2-select2';
 
 
 @Component({
@@ -18,11 +20,14 @@ import { MatDialog } from '@angular/material';
 export class LibraryComponent implements OnInit {
 
   private plants: any[] = [];
+  private families: any[] = [];
   private plant = new Plant();
   private numeroItems: number;
   private paginaActual: number = 1;
   private elementosPorPagina: number = 6;
   private estado: boolean = false;// false es listado y true buscador
+  private familyData: Observable<Array<Select2OptionData>>;
+  private startFamily: Observable<string>;
 
   constructor(
     private _plantService: PlantService,
@@ -39,6 +44,7 @@ export class LibraryComponent implements OnInit {
           this.plants = [];
           for (let key$ in data) {
             this.plants.push(data[key$]);
+            console.log(this.plants);
           }
         },
         error => {
@@ -97,6 +103,35 @@ export class LibraryComponent implements OnInit {
       });
   }
 
+  getFamilies(){
+    this._plantService.detailsAllFamilies()
+      .subscribe(data => {
+        let aux = [];
+        aux.push({ id: 0, text: "Selecciona una familia" });
+        for (let i = 0; i < data.length; i++) {
+          aux.push({ id: data[i].id, text: data[i].name });
+        }
+
+        this.familyData = Observable.create((obs) => {
+          obs.next(aux);
+          obs.complete();
+        });
+        
+
+
+
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+  saveFamily(e) {
+    if (e.value != 0 && e.value !== undefined) {
+      this.plant.family = e.value;
+    }
+  }
+
   ActualizarPagina() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.paginaActual = params['pag'];
@@ -146,6 +181,7 @@ export class LibraryComponent implements OnInit {
   ngOnInit() {
     this.comprobaciones();
     this.ActualizarPagina();
+    this.getFamilies();
 
   }
 
