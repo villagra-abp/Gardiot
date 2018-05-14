@@ -124,6 +124,7 @@ router.post('/garden', passport.authenticate('jwt', {session: false}), routeRequ
 		countryCode: request.body.countryCode,
 		city: request.body.city,
 		zip: request.body.zip,
+		public: request.body.public
 	};
 	gardenData = filter(gardenData);
 	if (typeof gardenData.width=== 'undefined' || typeof gardenData.length=== 'undefined' || typeof gardenData.user=== 'undefined'){
@@ -161,6 +162,7 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 			countryCode: request.body.countryCode,
 			city: request.body.city,
 			zip: request.body.zip,
+			public: request.body.public
 		};
 		gardenData = filter(gardenData);
 		if (typeof gardenData.width === 'undefined' || typeof gardenData.length === 'undefined')
