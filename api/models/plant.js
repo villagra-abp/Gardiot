@@ -14,7 +14,7 @@ plant.getPlants = function(number, page, orderBy, sort, callback) {
       orderByParam = 'commonName ' + orderSentence;
     else if (orderBy.toUpperCase() === 'FAMILY')
       orderByParam = 'Family.id ' + orderSentence + ', commonName';
-    connection.query('SELECT Plant.id, family, commonName, photo, scientificName, depth, distance, diseaseResist FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
+    connection.query('SELECT Plant.id, family, name, commonName, photo, scientificName, depth, distance, diseaseResist FROM Plant, Family WHERE Plant.family = Family.id ORDER BY ' + orderByParam + ' LIMIT ' + minPeak  + ',' + number , function (error, rows){
       if(error)
         callback(error, null);
       else
