@@ -10,17 +10,18 @@ class TRecursoTextura extends TRecurso {
   cargarFichero(nombre) {
     window.loading.push(1);
     this._img.onload = function () {
+      //creamos y configuramos la textura
       this.texture = gl.createTexture();
-      gl.activeTexture(gl.TEXTURE0);
+      gl.activeTexture(gl.TEXTURE0+window.index);
       gl.bindTexture(gl.TEXTURE_2D, this.texture);
+      this.index=parseInt(''+(window.index));
+      window.index++;
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
       gl.generateMipmap(gl.TEXTURE_2D);
-      //gl.bindTexture(gl.TEXTURE_2D, null);
-
 
       window.loading.pop();
 
@@ -40,11 +41,10 @@ class TRecursoTextura extends TRecurso {
     else if (window.location.toString().indexOf('localhost:8080') >= 0) {
       relURL = '/recursos/texturas/' + nombre;
     }
+    else{
+      relURL = 'http://192.168.100.3:4200/assets/motor/recursos/texturas/' + nombre;
+    }
     this._img.src = relURL;
   }
 
-  get index() {
-    console.log(this._nombre);
-    return this._index;
-  }
 }
