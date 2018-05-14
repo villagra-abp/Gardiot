@@ -40,7 +40,7 @@ app.use('/api', require('./routes/finderRoutes'));
 app.use('/api', require('./routes/gardenRoutes'));
 app.use('/api', require('./routes/uploadRoutes'));
 app.use('/api', require('./routes/myPlantRoutes'));
-app.use('/api', require('./routes/soilRoutes'));
+//app.use('/api', require('./routes/soilRoutes'));
 app.use('/api', require('./routes/productRoutes'));
 app.use('/api', require('./routes/feedRoutes'));
 app.use('/api', require('./routes/treatmentRoutes'));
