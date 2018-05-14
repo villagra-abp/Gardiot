@@ -10,6 +10,7 @@ varying mat4 vView;
 varying vec3 vTVertPosition;
 varying vec4 vTVertNormal;
 varying vec3 vVertNormal;
+varying vec4 shadowPos;
 
 
 struct LightProperties
@@ -40,16 +41,11 @@ uniform Propiedades propiedades;
 uniform LightProperties uLight[cULights];
 uniform LightProperties uSpotLight[cUSpotLights];
 uniform sampler2D uSampler;
+uniform sampler2D uShadowMap;
 uniform int uTextured;
 uniform int uLighted;
 uniform int uNLights;
 uniform int uHovered;
-
-uniform sampler2D uShadowMap;
-varying vec4 vPositionFromLight;
-
-varying vec2 vDepthUv;
-varying vec4 shadowPos;
 
 
 
@@ -63,55 +59,23 @@ float decodeFloat (vec4 color) {
   return dot(color, bitShift);
 }
 
-float unpackDepth(const in vec4 rgbaDepth) {
-        const vec4 bitShift = vec4(1.0, 1.0/256.0, 1.0/(256.0 * 256.0), 1.0/(256.0*256.0*256.0));
-        float depth = dot(rgbaDepth, bitShift);
-        return depth;
-    }
 
 void main()
 {
 	
-  vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
-  float shadowAcneRemover = 0.001;
-  fragmentDepth.z -= shadowAcneRemover;
+	vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
+	float shadowAcneRemover = 0.001;
+	fragmentDepth.z -= shadowAcneRemover;
 
-  highp vec4 rgba_depth = texture2D(uShadowMap, fragmentDepth.xy);
-  highp float depth=decodeFloat(rgba_depth);
+	highp vec4 rgba_depth = texture2D(uShadowMap, fragmentDepth.xy);
+	highp float depth=decodeFloat(rgba_depth);
 
-  highp float visibility = 1.0;
-  highp float bias = 0.001;
+	highp float visibility = 1.0;
+	highp float bias = 0.001;
 
-  if(fragmentDepth.z>(depth-bias)){
-	  visibility=0.1;
-  }
-	/*
-  float texelSize = 1.0 / 1024.0;
-  float amountInLight = 0.0;
-
-  // Check whether or not the current fragment and the 8 fragments surrounding
-  // the current fragment are in the shadow. We then average out whether or not
-  // all of these fragments are in the shadow to determine the shadow contribution
-  // of the current fragment.
-  // So if 4 out of 9 fragments that we check are in the shadow then we'll say that
-  // this fragment is 4/9ths in the shadow so it'll be a little brighter than something
-  // that is 9/9ths in the shadow.
-  for (int x = -1; x <= 1; x++) {
-    for (int y = -1; y <= 1; y++) {
-      float texelDepth = decodeFloat(texture2D(depthColorTexture, fragmentDepth.xy + vec2(x, y) * texelSize));
-      if (fragmentDepth.z < texelDepth) {
-        amountInLight += 1.0;
-      }
-    }
-  }
-  amountInLight /= 9.0;
-*/
- /*vec3 shadowCoord = (shadowPos.xyz/shadowPos.w);
-        vec4 rgbaDepth = texture2D(uShadowMap, shadowCoord.xy);
-        float depth = unpackDepth(rgbaDepth);
-        float visibility = (shadowCoord.z > depth) ? 0.5 : 1.0;*/
-
-
+	if(fragmentDepth.z>(depth-bias)){
+		visibility=0.1;
+	}
 
 	vec3 N=normalize(vTVertNormal.xyz);
 	vec3 V=normalize(-vTVertPosition);
@@ -168,18 +132,17 @@ void main()
 		texel=texture2D(uSampler, vFragTexCoord);
 
 			if(uHovered==1){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
 			}
 			else if(uHovered==2){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0)*visibility, propiedades.opacity);
 			}
 			else if(uHovered==3){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
 			}
 			else{
 				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-				//gl_FragColor=vec4(texel.rgb*vLight*amountInLight, propiedades.opacity);
-				//gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+
 			}
 
 	}

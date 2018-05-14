@@ -18,24 +18,25 @@ class TMotor {
 
 	}
 
-	//empezamos a dibujar con los shaders que le pasemos por parámetro
+
+	/**
+	 * Empezar el dibujado de la escena, este método se encarga de poner en marcha
+	 * el bucle de animación cuando todos los recursos se han cargado
+	 */
 	startDrawing() {
 		this.running = true;
+		//Asignamos el rendimiento del motor a 30fps
 		fpsInterval = 1000 / 30;
 		then = Date.now();
 		startTime = then;
 
+		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-			//Esto es la inicialización de la librería gráfica
-			//configuramos los shaders y le pasamos el nombre de los ficheros
-			//que tenemos en recursos/shaders
-			//esta función está en content/utilities
 
 			//bucle de animación en utilities.js
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
-					
 					animLoop();
 					motor.allLoaded();
 				}
@@ -46,12 +47,19 @@ class TMotor {
 		}
 	}
 
-	//pausa del bucle de dibujado
+
+	/**
+	 * Pausa del bucle de dibujado
+	 */
 	stopDrawing() {
 		this.running = false;
 	}
 
-	//igual que startDrawing pero solo hace un draw
+
+	/**
+	 * Hace lo mismo que el startDrawing pero solo realiza un dibujado
+	 * Con él podemos obtener una imagen estática
+	 */
 	startDrawingStatic() {
 		if (iniciamosWebGL('myCanvas')) {
 			cargarShaders();
@@ -75,17 +83,17 @@ class TMotor {
 
 	draw() {
 		window.program = 1;
-		gl.useProgram(glProgram[1]);
+		gl.useProgram(glProgram[window.program]);
 
 		gl.activeTexture(gl.TEXTURE0+window.shadowIndex);
 		gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
 		gl.uniform1i(glProgram[window.program].shadowMapUniform, 0);
 
-
 		gl.viewport(0, 0, canvas.width, canvas.height);
 		gl.clearColor(0.98, 0.98, 0.98, 1);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
+		gl.enable(gl.DEPTH_TEST);
+		
 		this.dibujarLucesActivas();
 		
 		//inicializar cámara
@@ -98,20 +106,18 @@ class TMotor {
 	drawSombras() {
 		window.program = 2;
 		gl.useProgram(glProgram[2]);
+
 		gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
-		//gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
-		//gl.bindRenderbuffer(gl.RENDERBUFFER, renderBuffer);
 
 		gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
 		gl.clearColor(0, 0, 0, 1);
-		gl.clearDepth(1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		gl.clearDepth(1.0);
+
 		this.dibujarLucesActivas();
 		this.escena.draw();
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-		//gl.bindTexture(gl.TEXTURE_2D, null);
-		//gl.bindRenderbuffer(gl.RENDERBUFFER, null);
 	}
 
 
@@ -126,6 +132,7 @@ class TMotor {
 		}
 		if (p >= 0) {
 			window.program = p;
+			setupWebGL();
 			gl.useProgram(glProgram[p]);
 
 			return true;
@@ -249,13 +256,13 @@ class TMotor {
 			else if (!window.transition) {
 				position = this.getCamaraActiva().dad.dad.entity.matrix;
 				let length = Math.max(jardin.width / 2, jardin.length / 2);
-				if (position[12] < ((-length) - 2) && x < 0) {
+				if (position[12] < ((-length) - 10) && x < 0) {
 					x = 0;
-				} else if (position[12] > ((length) + 2) && x > 0) {
+				} else if (position[12] > ((length) + 10) && x > 0) {
 					x = 0;
-				} if (position[14] > ((length) + 2) && z > 0) {
+				} if (position[14] > ((length) +10) && z > 0) {
 					z = 0;
-				} else if (position[14] < ((-length) - 2) && z < 0) {
+				} else if (position[14] < ((-length) - 10) && z < 0) {
 					z = 0;
 				}
 
@@ -430,7 +437,6 @@ class TMotor {
 			mat4.frustum(projectionMatrix, camera.entity._left, camera.entity._right, camera.entity._bottom, camera.entity._top, camera.entity._near, camera.entity._far);
 		}
 
-
 		//recorrer al árbol a la inversa desde la cámara a la raíz
 		let auxStack = [];
 		let auxCamara = camera;
@@ -438,8 +444,8 @@ class TMotor {
 			if (auxCamara.entity !== undefined)
 				auxStack.push(auxCamara.entity.matrix);
 		}
+		
 		//tenemos el recorrido de la cámara a la raíz en auxStack
-		//console.log(auxStack);
 
 		//recorremos la lista auxiliar invertida
 		let auxMatrix = mat4.create();
@@ -451,14 +457,9 @@ class TMotor {
 		mat4.invert(auxMatrix, auxMatrix);
 		viewMatrix = auxMatrix;
 
-		let aux = [];
-		mat4.invert(aux, viewMatrix);
-		//gl.uniform3f(glProgram[0].eyePos, aux[12], aux[13], aux[14]);
-		//console.log(aux[12], aux[13], aux[14]);
 
 		//pasar matrices a WebGL
 		gl.uniformMatrix4fv(glProgram[window.program].vMatrixUniform, false, viewMatrix);
-		gl.uniformMatrix4fv(glProgram[window.program].pMatrixUniform, false, projectionMatrix);
 	}
 	//=================================FIN CÁMARA============================
 
@@ -708,7 +709,7 @@ class TMotor {
 
 	//=================================INICIO MALLAS============================
 	/**
-	 * se le pasa un recurso y un hermano si queremos que
+	 * Se le pasa un recurso y un hermano si queremos que
 	 * cuelgue de la estructura de alguno de ellos.
 	 * @param  {string} nombre
 	 * @param  {[type]} recurso
@@ -782,7 +783,7 @@ class TMotor {
 
 	}
 	/**
-	 * Escalar la malla en q
+	 * Escalar la malla con el factor q
 	 * @param  {string} nombre
 	 * @param  {number} q
 	 */
