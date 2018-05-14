@@ -19,9 +19,9 @@
             <label for="scientificName">Nombre Científico</label>
             <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
             <label for="initDatePlant">Inicio de plantación</label>
-            <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control" id="initDatePlant" name="initDatePlant" >
+            <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control" id="initDatePlant" name="initDatePlant">
             <label for="finDatePlant">Fin de plantación</label>
-            <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant" >
+            <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant">
             <label for="tipo">Tipo de hoja</label>
             <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
               <option value="undefined">Todos</option>
@@ -34,7 +34,15 @@
       </section>
       <section class="card-columns">
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+          <div class="view view-first">
+            <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+            <div class="mask">
+              <h2>{{plant.commonName}} </h2>
+              <p>{{plant.name}}</p>
+              <a href="#" class="info">Ver más</a>
+            </div>
+          </div>
+          <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
           <section class="card-body">
             <h4>{{plant.commonName}} </h4>
             <p>{{plant.name}}</p>
