@@ -142,7 +142,6 @@ function get2DPoint(point3D, width, height) {
   
   function get3DPoint(point2D, width, height) {
     let x = (point2D[0] / width)*2-1;
-
   
     let y = 1-(point2D[1] / height)*2;
 
