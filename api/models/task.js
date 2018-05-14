@@ -227,7 +227,6 @@ task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate
 	if (connection) {
 		connection.query('UPDATE Task T, (SELECT MyPlant.id FROM MyPlant, Plant, Garden WHERE MyPlant.plant = Plant.id AND Plant.id = ' + mPlant + ' AND Garden.user = "' + user+ '") M SET T.date = "'+newDate+'" WHERE T.date="'+date+'" AND T.tPlant=' + tPlant + ' AND T.treatmentPlant=' + treatmentPlant + ' AND T.myPlant= M.id AND T.mPlant=' + mPlant, function(error, row) {
 			if (error) {
-				console.log(error);
 				callback(error, null);
 			}
 			else
