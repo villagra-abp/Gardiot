@@ -44,6 +44,7 @@ export class LibraryComponent implements OnInit {
           this.plants = [];
           for (let key$ in data) {
             this.plants.push(data[key$]);
+            console.log(this.plants);
           }
         },
         error => {
