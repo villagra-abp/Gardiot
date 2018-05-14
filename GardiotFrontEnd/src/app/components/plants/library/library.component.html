@@ -41,6 +41,7 @@
                   <option value="perenne">Perenne</option>
                 </select>
               </div>
+              
             
               <div class = "form-group col-md-4">
                 <label for="initDatePlant">Inicio de plantación</label>
@@ -61,17 +62,29 @@
               <div class="form-group col-md-12">
                 <button class="btn btn-default" type="submit">Filtrar</button>
               </div>
-              
             
           </form>
         </div>
       </section>
       <section class="card-columns">
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{plant.photo}}" alt="no sale la imagen" width="100px" height="200px" [routerLink]="['/plant', plant.id]">
+          <div class="view view-first">
+            <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px">
+            <div class="mask">
+              <h2>{{plant.scientificName}} </h2>
+              <p>{{plant.name}}</p>
+              <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a>
+            </div>
+          </div>
+          <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
           <section class="card-body">
             <h4>{{plant.commonName}} </h4>
-            <p>{{plant.name}}</p>
+              <p>
+                <img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm
+                <img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm
+                <img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}} º
+              </p>
+
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
                 <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
