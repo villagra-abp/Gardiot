@@ -25,3 +25,9 @@ img:hover{
   transform:scale(1.1);
 
 }
+
+/* Para los buscadores */
+
+.filter {
+  float: right;
+}
