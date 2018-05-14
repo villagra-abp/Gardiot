@@ -92,6 +92,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogAllGardensComponent } from './components/dialog-allgardens/dialog-allgardens';
 import { DialogHelpGardenComponent } from './components/dialog-gardenhelp/dialog-help-garden.component';
 import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -153,12 +154,13 @@ registerLocaleData(localeEs);
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
     HelpComponent,
+    DialogNewgarden0Component,
     DialogNewgarden1Component,
     DialogNewgarden2Component,
     DialogNewgarden3Component,
     DialogHelpGardenComponent,
     DialogTaskComponent,
-    DialogNewgarden0Component,
+    DialogAllGardensComponent,
     ProfileComponent
 
   ],
@@ -201,7 +203,7 @@ registerLocaleData(localeEs);
     DialogNewgarden1Component,
     DialogNewgarden2Component,
     DialogNewgarden3Component,
-    DialogTaskComponent,
+    DialogAllGardensComponent,
     ProfileComponent
   ],
   bootstrap: [AppComponent]
