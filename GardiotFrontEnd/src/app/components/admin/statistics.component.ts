@@ -41,14 +41,7 @@ export class StatisticsComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.autoLogInGrafana();
-  }
-
-  autoLogInGrafana(){
-   this._userService.logInGrafana()
-     .subscribe(data => {
-       console.log(data);
-      });
+    
   }
 
   // openDialog(){

@@ -112,3 +112,9 @@ p{
 .view-first:hover a.info {
     transition-delay: 0.2s;
 }
+
+/* Para los buscadores */
+
+.filter {
+  float: right;
+}
