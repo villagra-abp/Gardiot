@@ -5,6 +5,9 @@
   overflow:hidden;
   color: #fff;
 }
+.card-body {
+    padding-bottom: 0;
+}
 .buttonAdmin{
   margin-top:1em;
   margin-left: 0.4em;
@@ -17,6 +20,15 @@
 p{
   text-align: center;
   font-size: smaller;
+}
+
+.iconplant{
+  max-width: 15px;
+  max-height: 15px;
+  background-color: #fff;
+  border: 1px;
+  margin-left: 1em;
+  margin-right: 0.3em;
 }
 
 

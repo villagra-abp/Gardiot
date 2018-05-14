@@ -16,53 +16,53 @@
       <section class="form-row">
         <div id="demo" class="collapse">
           <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-          <div class="container filter">
-            <div class = "row">
-              <div class = "col-md-4">
-                <label for="family" >Familia</label>
+            <div class="container filter">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="family">Familia</label>
+                </div>
+                <div class="col-md-4">
+                  <select2 id="family" class="campo" [width]="200" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
+                  </select2>
+                </div>
               </div>
-              <div class = "col-md-4">
-                <select2 id="family" class="campo" [width]="200" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
-                </select2>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="scientificName">Nombre Científico</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+                </div>
               </div>
-            </div>
-            <div class = "row">
-              <div class = "col-md-4">
-                <label for="scientificName">Nombre Científico</label>
-              </div>
-              <div class = "col-md-6">
-                <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
-              </div>
-            </div>
-            <div class = "row">
-              <div class = "col-md-4">
-                <label for="initDatePlant">Inicio de plantación</label>
-              </div>
-              <div class = "col-md-6">
-                <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control " id="initDatePlant" name="initDatePlant" >
-              </div>  
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="initDatePlant">Inicio de plantación</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control " id="initDatePlant" name="initDatePlant">
+                </div>
 
-            </div>
-            <div class = "row">
-              <div class = "col-md-4">
-                <label for="finDatePlant">Fin de plantación</label>
               </div>
-              <div class = "col-md-6">
-                <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant" >
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="finDatePlant">Fin de plantación</label>
+                </div>
+                <div class="col-md-6">
+                  <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant">
+                </div>
               </div>
-            </div>
-            <div class = "row">
-              <div class = "col-md-4">
-                <label for="tipo">Tipo de hoja</label>
-              </div>
-              <div class = "col-md-6">
-                <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="tipo">Tipo de hoja</label>
+                </div>
+                <div class="col-md-6">
+                  <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
                   <option value="undefined">Todos</option>
                   <option value="caduca">Caduca</option>
                   <option value="perenne">Perenne</option>
                 </select>
+                </div>
               </div>
-            </div>
               <button class="btn btn-default" type="submit">Filtrar</button>
             </div>
           </form>
@@ -73,7 +73,7 @@
           <div class="view view-first">
             <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px">
             <div class="mask">
-              <h2>{{plant.commonName}} </h2>
+              <h2>{{plant.scientificName}} </h2>
               <p>{{plant.name}}</p>
               <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a>
             </div>
@@ -81,20 +81,12 @@
           <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
           <section class="card-body">
             <h4>{{plant.commonName}} </h4>
-            <p>{{plant.name}}</p>
+              <p>
+                <img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm
+                <img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm
+                <img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}} º
+              </p>
 
-            <p>{{plant.depth}} cm</p>
-            <p>{{plant.distance}} cm</p>
-            <p>{{plant.diseaseResist}} cm</p>
-            <p>{{plant.commonName}} cm</p>
-            <!-- <ul class="list-group">
-              <li  class="list-group-item">Nombre común: {{plant.commonName}}</li>
-              <li *ngIf="plant.scientificName !=undefined" class="list-group-item">Nombre científico: {{plant.scientificName}}</li>
-              <li *ngIf="plant.family !=undefined" class="list-group-item">Familia: {{plant.family}}</li>
-              <li *ngIf="plant.depth !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">Profundidad {{plant.depth}} cm</li>
-              <li *ngIf="plant.distance !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">Distancia {{plant.distance}} cm</li>
-              <li *ngIf="plant.diseaseResist !=undefined" class="list-group-item"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">Resistencia{{plant.diseaseResist}}</li>
-            </ul> -->
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
                 <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
