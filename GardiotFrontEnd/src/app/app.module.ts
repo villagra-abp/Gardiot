@@ -12,7 +12,6 @@ import { TaskService } from "./services/task.service";
 import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
-// import {PopupModule} from 'ng2-opd-popup'; // VENTANA EMERGENTE
 import { Select2Module } from 'ng2-select2';
 import { FileSelectDirective } from 'ng2-file-upload';
 import {Ng2ImgMaxModule} from "ng2-img-max";
@@ -53,7 +52,7 @@ import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 import { DetailComponent } from './components/user/detail.component';
-import { ProfileComponent } from './components/user/profile.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { EditProfileComponent } from './components/user/editprofile.component';
 import { ResendComponent } from './components/manage/resend.component';
 //plants
@@ -93,6 +92,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogAllGardensComponent } from './components/dialog-allgardens/dialog-allgardens';
 import { DialogHelpGardenComponent } from './components/dialog-gardenhelp/dialog-help-garden.component';
 import { HelpComponent } from './components/help/help.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -102,6 +102,7 @@ import { DialogNewgarden2Component } from './components/dialog-newgarden/dialog-
 import { DialogNewgarden3Component } from './components/dialog-newgarden/dialog-newgarden3/dialog-newgarden3.component';
 import { DialogTaskComponent } from './components/calendar/dialog-task/dialog-task.component';
 import { DialogNewgarden0Component } from './components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
+
 
 registerLocaleData(localeEs);
 
@@ -114,7 +115,6 @@ registerLocaleData(localeEs);
     LogoutComponent,
     RegisterComponent,
     DetailComponent,
-    ProfileComponent,
     EditProfileComponent,
     ConfirmationComponent,
     ResendComponent,
@@ -154,12 +154,14 @@ registerLocaleData(localeEs);
     NewtreatmentsplantsComponent,
     DialogDeleteComponent,
     HelpComponent,
+    DialogNewgarden0Component,
     DialogNewgarden1Component,
     DialogNewgarden2Component,
     DialogNewgarden3Component,
     DialogHelpGardenComponent,
     DialogTaskComponent,
-    DialogNewgarden0Component
+    DialogAllGardensComponent,
+    ProfileComponent
 
   ],
   imports: [
@@ -201,7 +203,8 @@ registerLocaleData(localeEs);
     DialogNewgarden1Component,
     DialogNewgarden2Component,
     DialogNewgarden3Component,
-    DialogTaskComponent
+    DialogAllGardensComponent,
+    ProfileComponent
   ],
   bootstrap: [AppComponent]
 })

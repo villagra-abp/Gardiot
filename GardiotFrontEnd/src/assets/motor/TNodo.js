@@ -63,7 +63,6 @@ class TNodo {
 
     draw() {
         if (this._active == 1) {
-
             if (this._entity !== undefined) {
                 if (this.name == hovered)
                     this._entity.beginDraw(true);

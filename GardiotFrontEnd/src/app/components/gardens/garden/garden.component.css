@@ -161,7 +161,7 @@ h1, h2{
 
 
 .toggleDeko{
-  background: url('../../../../assets/images/icon/buttons.png');
+  /*background: url('../../../../assets/images/icon/buttons.png');*/
   /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/
 }
 
@@ -181,7 +181,13 @@ h1, h2{
   width: 40px;
   height: 40px;
   margin:0;
+  background-position: center; 
+  background-repeat: no-repeat;
   cursor:pointer;
+}
+.litButton>img{
+  width: 80%; 
+  margin: 10%;
 }
 .litButton:not(:last-of-type){
   margin-bottom: 15px;
@@ -195,6 +201,7 @@ h1, h2{
 }
 .yellow{
   background-color: #0036ff;
+  
 }
 /*end buttons*/
 
@@ -331,7 +338,7 @@ img{
   -webkit-transition: all 500ms ease-in-out; /*  IE 9 */
   -moz-transition: all 500ms ease-in-out; /*  Firefox */
   -ms-transition: all 500ms ease-in-out; /* Safari and Chrome */
--o-transition: all 500ms ease-in-out;   /* Opera  */
+  -o-transition: all 500ms ease-in-out;   /* Opera  */
 }
 
 .text{
@@ -360,4 +367,32 @@ img:hover{
 .text:hover{
   transform:translate(0px,0px);
   opacity: 1;
+}
+
+@media (max-width: 600px) {
+
+  .litButtons{
+    width: 100%;
+    min-height: 60px;
+    height: 60px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    flex-direction: row;
+  }
+  .litButton{
+    border-radius: 0px;
+    width: 20%;
+    height: 60px;
+    margin:0;
+
+  }
+  .litButton:not(:last-of-type){
+    border-right: .1em solid #fff;
+  }
+  .litButton>img{
+    width: 50%; 
+    margin: 25%;
+  }
+
 }

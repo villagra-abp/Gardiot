@@ -45,9 +45,7 @@ export class DialogNewgarden0Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '45em', disableClose: true, data: {}});
   }
 
   saveGarden() {

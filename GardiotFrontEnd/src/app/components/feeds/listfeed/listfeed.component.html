@@ -1,13 +1,12 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
-    <h1>Consejos</h1>
     <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="feed.name" class="form-control" name="name" placeholder="Título">
       </article>
       <article class="form-group col-md-6">
         <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">add</i></button>
+        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
       </article>
       <article class="form-group col-md-2 nav justify-content-end">
         <button [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
@@ -15,19 +14,19 @@
     </form>
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="content">Texto</label>
             <input type="text" [(ngModel)]="feed.text" class="form-control" id="content" name="content">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-4">
             <label for="inicio">Inicio</label>
             <input type="date" [(ngModel)]="feed.dateInit" class="form-control" id="inicio" name="inicio">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-4">
             <label for="fin">Fin</label>
             <input type="date" [(ngModel)]="feed.dateFinal" class="form-control" id="fin" name="fin">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-12S">
             <button class="btn btn-default" type="submit">Filtrar</button>
           </div>
 

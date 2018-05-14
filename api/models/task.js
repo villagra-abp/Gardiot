@@ -11,7 +11,7 @@ task.getMyTasksForToday = function (number, page, user, callback) {
 		let month = TodayDate.getMonth() + 1;
 		let day = TodayDate.getDate();
 		let rightDate = '' + year + '-' + month + '-' + day;
-		connection.query('SELECT Treatment.id AS treatment, Treatment.name, Plant.commonName, MyPlant.id AS myplant, Plant.id AS plant, MyPlant.name, Garden.title FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date = "' + rightDate + '" ORDER BY Plant.commonName LIMIT ' + minPeak + ',' + number, function(error, row) {
+		connection.query('SELECT Treatment.id AS treatment, Treatment.name, Plant.commonName, MyPlant.id AS myplant, Plant.id AS plant, MyPlant.name, Garden.title FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date = "' + rightDate + '" GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Plant.commonName LIMIT ' + minPeak + ',' + number, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -22,7 +22,7 @@ task.getMyTasksForToday = function (number, page, user, callback) {
 
 task.getMyTasksByDate = function (number, page, user, date, callback) {
 	if (connection) {
-		connection.query('SELECT Treatment.id AS treatment, Treatment.name, Plant.commonName, MyPlant.id AS myplant, Plant.id AS plant, MyPlant.name, Garden.title FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date = "' + date + '" ORDER BY Plant.commonName LIMIT ' + minPeak + ',' + number, function(error, row) {
+		connection.query('SELECT Treatment.id AS treatment, Treatment.name, Plant.commonName, MyPlant.id AS myplant, Plant.id AS plant, MyPlant.name, Garden.title FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date = "' + date + '" GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Plant.commonName LIMIT ' + minPeak + ',' + number, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -36,7 +36,7 @@ task.getMyTasksByMonth = function (user, date, callback) {
 		let dateM = new Date(date);
 		let month = dateM.getMonth() + 1;
 		let year = dateM.getFullYear();
-		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
+		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Task.date ', function(error, row) {
 			if (error)
 				callback(error, null);
 			else {
@@ -46,7 +46,7 @@ task.getMyTasksByMonth = function (user, date, callback) {
 					connection.query('SELECT tPlant, myPlant, treatmentPlant, MAX(date) AS date, frequency FROM Task, TreatmentPlant, MyPlant, Garden WHERE TreatmentPlant.plant = Task.tPlant AND Task.myPlant = MyPlant.id AND Garden.id = MyPlant.garden AND Garden.user = "' + user + '" AND TreatmentPlant.treatment = Task.treatmentPlant AND frequency IS NOT NULL AND MONTH(date) = MONTH("' + dateFormat(monthBefore) +'") AND YEAR(date) = YEAR("' + dateFormat(monthBefore) + '") GROUP BY tPlant, myPlant, treatmentPlant', function (error, rows) {
 						if (error)
 						  callback (error, null);
-						else {
+						else if (rows.length > 0){
 							var sql = 'INSERT INTO Task (tPlant, treatmentPlant, myPlant, mPlant, date) VALUES ';
 							var sqlBase = '';
 							var monthRequested = new Date(date);
@@ -85,7 +85,7 @@ task.getMyTasksByMonth = function (user, date, callback) {
 										if (err)
 											callback(err, null);
 										else {										
-											connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' ORDER BY Task.date ', function(error, row) {
+											connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND MONTH(Task.date) = ' + month + ' AND YEAR(Task.date) = ' + year + ' GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Task.date ', function(error, row) {
 												if (error)
 													callback(error, null);
 												else 
@@ -97,6 +97,8 @@ task.getMyTasksByMonth = function (user, date, callback) {
 							});
 							
 						}
+						else
+							callback(null, null);
 					});				
 				}	
 				else 
@@ -210,7 +212,7 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 	}
 }
 
-task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate, callback) { //Mover tarea de sitio
+/*task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate, callback) { //Mover tarea de sitio
 	if (connection) {
 		connection.query('UPDATE Task SET date = "'+newDate+'" WHERE date="'+date+'" AND tPlant=' + tPlant + ' AND treatmentPlant=' + treatmentPlant + ' AND myPlant=' + myPlant + ' AND mPlant=' + mPlant, function(error, row) {
 			if (error)
@@ -219,11 +221,23 @@ task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate
 				callback(null, row.affectedRows);
 		});
 	}
+}*/
+
+task.moveTask = function (myPlant, mPlant, tPlant, treatmentPlant, date, newDate, user, callback) { //Mover tarea de sitio
+	if (connection) {
+		connection.query('UPDATE Task T, (SELECT MyPlant.id FROM MyPlant, Plant, Garden WHERE MyPlant.plant = Plant.id AND Plant.id = ' + mPlant + ' AND Garden.user = "' + user+ '") M SET T.date = "'+newDate+'" WHERE T.date="'+date+'" AND T.tPlant=' + tPlant + ' AND T.treatmentPlant=' + treatmentPlant + ' AND T.myPlant= M.id AND T.mPlant=' + mPlant, function(error, row) {
+			if (error) {
+				callback(error, null);
+			}
+			else
+				callback(null, row.affectedRows);
+		});
+	}
 }
 
-task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, dateDone, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, dateDone, user, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
-		connection.query('UPDATE Task SET dateDone = "' + dateDone + '" WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
+		connection.query('UPDATE Task T, (SELECT MyPlant.id FROM MyPlant, Plant, Garden WHERE MyPlant.plant = Plant.id AND Plant.id = ' + mPlant + ' AND Garden.user = "' + user+ '") M SET T.dateDone = "' + dateDone + '" WHERE T.date="'+date+'" AND T.tPlant =' + tPlant + ' AND T.treatmentPlant =' + treatmentPlant + ' AND T.myPlant = M.id  AND T.mPlant =' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else
@@ -232,9 +246,9 @@ task.setTaskDone = function (myPlant, mPlant, tPlant, treatmentPlant, date, date
 	}
 }
 
-task.setTaskUndone = function (myPlant, mPlant, tPlant, treatmentPlant, date, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
+task.setTaskUndone = function (myPlant, mPlant, tPlant, treatmentPlant, date, user, callback) { //Un usuario puede marcar como hecha la de otro. Revisar
 	if (connection) {
-		connection.query('UPDATE Task SET dateDone = null WHERE date="'+date+'" AND tPlant =' + tPlant + ' AND treatmentPlant =' + treatmentPlant + ' AND myPlant =' + myPlant + ' AND mPlant =' + mPlant, function(error, row) {
+		connection.query('UPDATE Task T, (SELECT MyPlant.id FROM MyPlant, Plant, Garden WHERE MyPlant.plant = Plant.id AND Plant.id = ' + mPlant + ' AND Garden.user = "' + user+ '") M SET T.dateDone = null WHERE T.date="'+date+'" AND T.tPlant =' + tPlant + ' AND T.treatmentPlant =' + treatmentPlant + ' AND T.myPlant = M.id  AND T.mPlant =' + mPlant, function(error, row) {
 			if (error)
 				callback(error, null);
 			else

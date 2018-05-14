@@ -4,7 +4,7 @@ var myPlant = {};
 
 myPlant.getMyPlantsByGarden = function(garden, user, callback) {
   if(connection) {
-    connection.query('SELECT MyPlant.id, MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name AS soil FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ' , function (error, rows){
+    connection.query('SELECT MyPlant.id, MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName FROM MyPlant, Garden, Plant WHERE MyPlant.plant = Plant.id AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND Garden.user = "' + user + '" ' , function (error, rows){
       if(error)
         callback (error, null);
       else
@@ -16,7 +16,7 @@ myPlant.getMyPlantsByGarden = function(garden, user, callback) {
 
 myPlant.getMyPlantById = function(garden, user, id, callback) {
 	if (connection) {
-		connection.query('SELECT MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName, Soil.name FROM MyPlant, Soil, Garden, Plant WHERE MyPlant.plant = Plant.id  AND Plant.id = ' + id + ' AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND MyPlant.soil = Soil.id AND Garden.user = "' + user + '" ', function(error, row) {
+		connection.query('SELECT MyPlant.name, xCoordinate, yCoordinate, seed, number, plant, Plant.commonName FROM MyPlant, Garden, Plant WHERE MyPlant.plant = Plant.id  AND Plant.id = ' + id + ' AND Garden.id = MyPlant.garden AND MyPlant.garden = ' + garden + ' AND Garden.user = "' + user + '" ', function(error, row) {
 			if (error)
 				callback (error, null);
 			else
@@ -52,7 +52,6 @@ myPlant.updateMyPlant = function(id, data, callback) {
     sql += ' WHERE id = "' + id +'"';
     connection.query(sql, function(error, result) {
       if (error){
-        console.log(error);
         callback(error, null);
       }
       else{

@@ -10,13 +10,17 @@ import { AppComponent } from "../../../app.component";
 import { Observable } from 'rxjs/Observable';
 import { Select2OptionData } from 'ng2-select2';
 import { DialogHelpGardenComponent } from '../../dialog-gardenhelp/dialog-help-garden.component';
+import { DialogAllGardensComponent } from '../../dialog-allgardens/dialog-allgardens';
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogNewgarden0Component } from '../../dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
 import 'rxjs/add/operator/delay';
 
 declare var iniciar: any;
+declare var window:any;
 declare var motor: any;
+declare var vec3:any;
+declare var hammertime: any;
 
 
 @Component({
@@ -28,6 +32,8 @@ declare var motor: any;
 })
 export class GardenComponent {
   private garden = new Garden("");
+
+  private mobile=false;
 
 
   private temperatura = 0;
@@ -70,7 +76,9 @@ export class GardenComponent {
   private nombreDia5 = "";
 
   private tercerDia: string = "";
-  private visible = false;
+  private visible = 0;//0 visualización
+                      //1 edición
+                      //2 jardín externo
   private haveWeather = false;
 
   private sunrise;
@@ -115,6 +123,9 @@ export class GardenComponent {
     }
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.photoURL = "/app/assets";
+    }
+    else{
+      this.photoURL = "/assets";
     }
   }
 
@@ -229,15 +240,15 @@ export class GardenComponent {
           this.garden.plants = data.plants;
 
           this.inicializar();
-          this.listarPaises();
-          this.mostrarCiudad();
-          if (this.garden.city !== undefined) {
-            this.visible = true;
-            this.getTiempo();
-            this.getPrevision();
-          } else {
-            this.visible = false;
+          if(!this.mobile){
+            this.listarPaises();
+            this.mostrarCiudad();
+            if (this.garden.city !== undefined) {
+              this.getTiempo();
+              this.getPrevision();
+            }
           }
+          
         }
       },
         error => {
@@ -255,7 +266,7 @@ export class GardenComponent {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          this.haveWeather = true;
+          
           var aux = data.main.temp - 273;
           this.temperatura = aux;
           var sunrise = new Date();
@@ -266,11 +277,12 @@ export class GardenComponent {
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
         }
-        console.log(data);
+
 
 
       },
         error => {
+
           console.error(error);
           localStorage.clear();
           sessionStorage.clear();
@@ -282,7 +294,8 @@ export class GardenComponent {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          this.haveWeather = true;
+          try{
+          
           var date = new Date();
           var today = new Date();
           var todayDay = today.getDate();
@@ -333,10 +346,17 @@ export class GardenComponent {
 
 
           this.ordenarTemperatura();
+          this.haveWeather = true;
         }
+        catch(e){
+
+        }
+      }
+
 
       },
         error => {
+
           console.error(error);
         });
   }
@@ -470,6 +490,16 @@ export class GardenComponent {
     let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
       width: '600px'
     });
+    
+  }
+  openDialog2(id: number, tipo: number){
+    this._gardenService.getGardens()
+    .subscribe(gardens=>{
+      let dialogRef2 = this.dialog.open(DialogAllGardensComponent, {
+        width: '600px', data: gardens
+      });
+    })
+    
   }
 
   resizeCanvas() {
@@ -489,8 +519,7 @@ export class GardenComponent {
   }
 
   toggleState() {
-    this.accion == 'Editar' ? this.accion = 'Modo vista' : this.accion = 'Editar';
-    this.visible ? this.visible = false : this.visible = true;
+    this.visible == 0 ? this.visible=1 : this.visible=0;
     document.getElementById('formulario').classList.add('infoOcult');
   }
 
@@ -589,7 +618,7 @@ export class GardenComponent {
     this._gardenService.firstgarden()
       .subscribe(data => {
         if (data.Mensaje == "No existe") {
-          this.dialog.open(DialogNewgarden0Component, { width: '60em', data: { id: 1 } });
+          this.dialog.open(DialogNewgarden0Component, { width: '60em', disableClose: true, data: { id: 1 } });
         }
       },
         error => {
@@ -621,13 +650,18 @@ export class GardenComponent {
         });
 
     }
-
+    
 
   ngOnInit() {
+    if (typeof window.orientation !== 'undefined') { 
+      this.mobile=true;
+     }
+
     this.firstgarden();
     this.ActualizarPagina();
     this.accion = 'Editar';
     this.mostrar();
+    new hammertime();
   }
 
 

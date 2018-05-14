@@ -3,7 +3,7 @@ import { LoginComponent } from "./components/manage/login.component";
 import { LogoutComponent } from "./components/manage/logout.component";
 import { RegisterComponent } from "./components/manage/register.component";
 import { DetailComponent } from "./components/user/detail.component";
-import { ProfileComponent } from "./components/user/profile.component";
+// import { ProfileComponent } from "./components/user/profile.component";
 import { EditProfileComponent } from "./components/user/editprofile.component";
 import { ConfirmationComponent } from "./components/manage/confirmation.component";
 import { ResendComponent } from "./components/manage/resend.component";
@@ -41,7 +41,7 @@ const app_routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'admin',  component: AdminComponent, children: admin_routes,canActivate: [AuthguardGuard] },//routerAdmin
   { path: 'detail', component: DetailComponent, canActivate: [AuthguardGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
+  // { path: 'profile', component: ProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },

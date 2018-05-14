@@ -67,15 +67,11 @@ export class DialogNewgarden2Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden3Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '55em', disableClose: true, data: {}});
   }
   openDialogAtras() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
-      width: '800px',
-      data: {}
-    });
+      width: '45em', disableClose: true, data: {}});
   }
 
   listarPaises() {
@@ -182,6 +178,7 @@ export class DialogNewgarden2Component implements OnInit {
     console.log(input);
     if (this.garden.countryCode != undefined) {
       if (input.length == 5) {
+        console.log("entra");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input)
           .subscribe(data => {
             //let sp = document.querySelector('#ciudad');
@@ -216,6 +213,7 @@ export class DialogNewgarden2Component implements OnInit {
               //sp.innerHTML = 'Código postal no encontrado';
             }
             input = '';
+            
 
           },
             error => {

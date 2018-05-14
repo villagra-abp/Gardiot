@@ -10,6 +10,7 @@ varying mat4 vView;
 varying vec3 vTVertPosition;
 varying vec4 vTVertNormal;
 varying vec3 vVertNormal;
+varying vec4 shadowPos;
 
 
 struct LightProperties
@@ -40,28 +41,41 @@ uniform Propiedades propiedades;
 uniform LightProperties uLight[cULights];
 uniform LightProperties uSpotLight[cUSpotLights];
 uniform sampler2D uSampler;
+uniform sampler2D uShadowMap;
 uniform int uTextured;
 uniform int uLighted;
 uniform int uNLights;
 uniform int uHovered;
 
-uniform sampler2D uShadowMap;
-varying vec4 vPositionFromLight;
 
-float unpackDepth(const in vec4 rgbaDepth) {
-        const vec4 bitShift = vec4(1.0, 1.0/256.0, 1.0/(256.0 * 256.0), 1.0/(256.0*256.0*256.0));
-        float depth = dot(rgbaDepth, bitShift);
-        return depth;
-    }
+
+float decodeFloat (vec4 color) {
+  const vec4 bitShift = vec4(
+    1.0 / (256.0 * 256.0 * 256.0),
+    1.0 / (256.0 * 256.0),
+    1.0 / 256.0,
+    1.0
+  );
+  return dot(color, bitShift);
+}
+
 
 void main()
 {
+	
+	vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
+	float shadowAcneRemover = 0.001;
+	fragmentDepth.z -= shadowAcneRemover;
 
-	vec3 shadowCoord = (vPositionFromLight.xyz/vPositionFromLight.w)/2.0 + 0.5;
-    vec4 rgbaDepth = texture2D(uShadowMap, shadowCoord.xy);
-    float depth = unpackDepth(rgbaDepth);
-    float visibility = (shadowCoord.z > depth + 0.0015) ? 0.7 : 1.0;
+	highp vec4 rgba_depth = texture2D(uShadowMap, fragmentDepth.xy);
+	highp float depth=decodeFloat(rgba_depth);
 
+	highp float visibility = 1.0;
+	highp float bias = 0.001;
+
+	if(fragmentDepth.z>(depth-bias)){
+		visibility=0.1;
+	}
 
 	vec3 N=normalize(vTVertNormal.xyz);
 	vec3 V=normalize(-vTVertPosition);
@@ -116,23 +130,21 @@ void main()
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-		if(uLighted==1){
+
 			if(uHovered==1){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
 			}
 			else if(uHovered==2){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0)*visibility, propiedades.opacity);
 			}
 			else if(uHovered==3){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
 			}
 			else{
-				//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+
 			}
-		}
-		else
-			gl_FragColor=vec4(texel.rgb, propiedades.opacity);
+
 	}
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
