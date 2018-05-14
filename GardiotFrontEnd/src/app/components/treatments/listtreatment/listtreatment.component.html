@@ -14,9 +14,13 @@
     </form>
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-        <label for="content">Descripción</label>
-        <input type="text" [(ngModel)]="treatment.description" class="form-control" id="content" name="content" placeholder="Contenido">
-        <button class="btn btn-default" type="submit">Filtrar</button>
+        <div class = "form-group col-md-4">
+          <label for="content">Descripción</label>
+          <input type="text" [(ngModel)]="treatment.description" class="form-control" id="content" name="content" placeholder="Contenido">
+        </div>
+        <div class = "form-group col-md-12">
+          <button class="btn btn-default" type="submit">Filtrar</button>
+        </div>
       </form>
     </div>
     <table class="table table-hover" *ngIf="numeroItems!=0">
