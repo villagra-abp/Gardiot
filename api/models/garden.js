@@ -130,5 +130,35 @@ garden.deleteGarden = function(id, callback) {
   }
 }
 
+garden.checkMyPlantsBounds = function (id, width, length, callback) {
+  if (connection) {   
+    var sqlAddition = '';
+    if (typeof width !== 'undefined') {
+      width = (width - 1) /2;
+      sqlAddition += ' AND (xCoordinate > ' + width  + ' OR xCoordinate < ' + width*(-1) + ') ';
+    }
+    if (typeof length !== 'undefined') {
+      length = (length - 1) /2;
+      if (sqlAddition != '')
+        sqlAddition +=  ' OR (yCoordinate > ' + length  + ' OR yCoordinate < ' + length*(-1) + ') ';
+      else 
+        sqlAddition +=  ' AND (yCoordinate > ' + length  + ' OR yCoordinate < ' + length*(-1) + ') ';
+    }
+    if (sqlAddition != '') {
+      var sql = 'SELECT COUNT(*) AS number FROM MyPlant WHERE garden = ' + id + sqlAddition;
+      connection.query(sql, function (error, rows) {
+        if (error) 
+          callback(error, null);
+        else if (rows[0].number == 0)
+          callback(null, true);
+        else 
+          callback (null, false);
+      });
+    }
+    else
+      callback(null, true);
+  }
+}
+
 
 module.exports = garden;
