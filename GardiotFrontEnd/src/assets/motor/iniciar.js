@@ -170,8 +170,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.sol;
   window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 1, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -284,15 +284,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
   //luces
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 500.0, 0.0);
-  motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  motor.rotarLuz("sol", -90, 'x');
-  motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
-  motor.activarLuz("luz1");
+  //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+  motor.moverLuz("sol", 0.0, 15.0, 0.0);
+  motor.moverLuz("luna", 0.0, -15.0, 0.0);
+  //motor.rotarLuz("sol", -90, 'x');
+  //motor.rotarLuz("luz3", -90, 'x');
+ // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
+  //motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  motor.activarLuz("luz3");
+  //motor.activarLuz("luz3");
 
 
   /* POSICION DEL SOL */
@@ -312,6 +312,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
     motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
     motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    motor.rotarLuzOrbital('sol', 10, 'y');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
@@ -322,7 +323,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    rotarSol();
+    demoSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 
@@ -359,87 +360,4 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.startDrawingStatic();
   }
 
-}
-
-
-
-async function rotarSol() {
-  await sleep(300000); //5 min
-  let now = new Date();
-  let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let relationNowDay = minutesDiff * window.relationSunDay;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
-  motor.rotarLuzOrbital('sol', gradeSunPosition);
-  motor.rotarLuzOrbital('luna', gradeSunPosition);
-  window.lastTime = now;
-  iluminarAstro(now.getHours() * 60 + now.getMinutes());
-  rotarSol();
-}
-
-async function demoSol() {
-  await sleep(500);
-  let now = new Date(window.lastTime);
-  now.setHours(now.getHours() + 1);
-  let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
-  motor.rotarLuzOrbital('sol', gradeSunPosition);
-  motor.rotarLuzOrbital('luna', gradeSunPosition);
-  window.lastTime = now;
-  iluminarAstro(now.getHours() * 60 + now.getMinutes());
-  demoSol();
-}
-
-async function iluminarAstro(minuteOfDay) {
-  if (minuteOfDay >= window.minuteOfSunrise && minuteOfDay <= window.minuteOfSunset) {
-    motor.activarLuz("sol");
-    motor.desactivarLuz("luna");
-    iluminarSol(minuteOfDay);
-  }
-  else {
-    motor.activarLuz("luna");
-    motor.desactivarLuz("sol");
-    iluminarLuna(minuteOfDay);
-  }
-}
-
-async function iluminarSol(minutes) {
-  let rgb = {};
-  let minutesSinceSunrise = minutes - window.minuteOfSunrise;
-  if (minutesSinceSunrise < window.minutesOfSun / 2) {
-    let percent = minutesSinceSunrise / (window.minutesOfSun / 2);
-    let rgbMoment = { red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent };
-    rgb = { red: rgbMoment.red + rgbInit.red, green: rgbMoment.green + rgbInit.green, blue: rgbMoment.blue + rgbInit.blue }
-  }
-  else {
-    let percent = (minutesSinceSunrise - (window.minutesOfSun / 2)) / (window.minutesOfSun / 2);
-    let rgbMoment = { red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent };
-    rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
-  }
-  sol.entity.setIntensidad(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
-  sol.entity.setIntensidadSpecular(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
-}
-
-async function iluminarLuna(minutes) {
-  let rgb = {};
-  let minutesOfNight = (24 * 60) - window.minutesOfSun;
-  let minutesSinceSunset = '';
-  if (minutes > window.minuteOfSunset)
-    minutesSinceSunset = minutes - window.minuteOfSunset;
-  else
-    minutesSinceSunset = minutes + ((24 * 60) - window.minuteOfSunset);
-
-  if (minutesSinceSunset < minutesOfNight / 2) {
-    let percent = minutesSinceSunset / (minutesOfNight / 2);
-    rgb = { red: (window.rgbDiffMoon.red * percent) + window.rgbInit.red, green: (window.rgbDiffMoon.green * percent) + window.rgbInit.green, blue: (window.rgbDiffMoon.blue * percent) + window.rgbInit.blue };
-  }
-  else {
-    let percent = (minutesSinceSunset - (minutesOfNight / 2)) / (minutesOfNight / 2);
-    rgb = { red: window.rgbMoon.red - (window.rgbDiffMoon.red * percent), green: window.rgbMoon.green - (window.rgbDiffMoon.green * percent), blue: window.rgbMoon.blue - (window.rgbDiffMoon.blue * percent) };
-  }
-  luna.entity.setIntensidad(rgb.red / 255, rgb.green / 255, rgb.blue / 255);
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
