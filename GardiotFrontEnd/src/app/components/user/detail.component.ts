@@ -84,6 +84,7 @@ export class DetailComponent implements OnInit {
   private events: CalendarEvent[] = [];
   private sunrise;
   private sunset;
+  private tareas:any[] = [];
 
   constructor(
     private _detailService: UserService,
@@ -190,7 +191,7 @@ export class DetailComponent implements OnInit {
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
-        }
+        }        
       },
       error => {
         console.error(error);
@@ -216,12 +217,14 @@ export class DetailComponent implements OnInit {
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
+        console.log(this.tasks);
 
       },
         error => {
           console.error(error);
         });
   }
+
 
   cerrarfeed(id:number) {
     this._feedService.closefeed(id)
@@ -248,11 +251,34 @@ export class DetailComponent implements OnInit {
     this.refresh.next();
   }
 
+  getTasks(){
+    this._taskService.detailsSome(10)
+    .subscribe(data =>{
+      console.log(data);
+      var aux:any[] = [];
+      let auxDate;
+      let auxDate2;
+
+      auxDate= data[1].date;
+      auxDate2= data[2].date;
+      console.log(auxDate);
+      console.log(auxDate2);
+      
+
+
+
+    },
+    error =>{
+      console.error(error);
+    });
+  }
+
   ngOnInit() {
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
     this.mostrartask();
+    this.getTasks();
     this.cargarfeeds();
 
   }
