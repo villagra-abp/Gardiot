@@ -38,7 +38,6 @@ router.get('/monthTask/:date', passport.authenticate('jwt', {session: false}), r
 	else {
 		taskModel.getMyTasksByMonth (request.user.id, request.params.date, function (error, data) {
 			if (error) {
-				console.log(error.message);
 				response.status(500).json({"Mensaje":error.message});
 			}
 			else

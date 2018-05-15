@@ -16,55 +16,53 @@
       <section class="form-row">
         <div id="demo" class="collapse">
           <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-            <div class="container filter">
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="family">Familia</label>
-                </div>
-                <div class="col-md-4">
-                  <select2 id="family" class="campo" [width]="200" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
-                  </select2>
-                </div>
+       
+            
+              <div class = "form-group col-md-4">
+                <label for="family" >Familia</label>
+                <br>
+                <select2 id="family" class="campo" style="width:100%" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
+                </select2>
               </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="scientificName">Nombre Científico</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
-                </div>
+        
+            
+              <div class = "form-group col-md-4">
+                <label for="scientificName">Nombre Científico</label>
+            
+                <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
               </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="initDatePlant">Inicio de plantación</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control " id="initDatePlant" name="initDatePlant">
-                </div>
 
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="finDatePlant">Fin de plantación</label>
-                </div>
-                <div class="col-md-6">
-                  <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <label for="tipo">Tipo de hoja</label>
-                </div>
-                <div class="col-md-6">
-                  <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
+              <div class = "form-group col-md-4">
+                <label for="tipo">Tipo de hoja</label>
+              
+                <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
                   <option value="undefined">Todos</option>
                   <option value="caduca">Caduca</option>
                   <option value="perenne">Perenne</option>
                 </select>
-                </div>
               </div>
-              <button class="btn btn-default" type="submit">Filtrar</button>
-            </div>
+              
+            
+              <div class = "form-group col-md-4">
+                <label for="initDatePlant">Inicio de plantación</label>
+              
+                <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control " id="initDatePlant" name="initDatePlant" >
+              </div>  
+
+            
+           
+              <div class = "form-group col-md-4">
+                <label for="finDatePlant">Fin de plantación</label>
+              
+                <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant" >
+              </div>
+           
+           
+              
+              <div class="form-group col-md-12">
+                <button class="btn btn-default" type="submit">Filtrar</button>
+              </div>
+            
           </form>
         </div>
       </section>

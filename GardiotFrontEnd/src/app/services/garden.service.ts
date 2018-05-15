@@ -17,6 +17,9 @@ export class GardenService {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.apiURL = "https://gardiot.ovh/api/";
     }
+    else{
+			this.apiURL = "http://192.168.100.3:3000/api/";
+		  }
   }
 
   details() {
@@ -28,6 +31,17 @@ export class GardenService {
       .map(res => {
         return res.json();
       })
+  }
+
+  getGardens(){
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`
+    });
+
+    return this.http.get(this.apiURL + "gardens/9/1", { headers })
+      .map(res => {
+        return res.json();
+      });
   }
 
   firstgarden() {

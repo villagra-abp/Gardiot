@@ -176,16 +176,24 @@ router.put('/garden/:id', passport.authenticate('jwt', {session: false}), routeR
 					if (error)
 						response.status(500).json({"Mensaje":error.message});
 					else if (owner){
-						gardenData.geoHash = geo.encode(gardenData.latitude, gardenData.longitude, 8);
-						gardenModel.updateGarden(request.params.id,gardenData, function(error, data) {
+						gardenModel.checkMyPlantsBounds(request.params.id, gardenData.width, gardenData.length, function(error, inside) {
 							if (error)
 								response.status(500).json({"Mensaje":error.message});
-							else if (data == 1)
-								response.status(200).json({"Mensaje":"Actualizado"});
-							else if (data == 0)
-								response.status(404).json({"Mensaje":"No existe"});
-							else
-								response.status(500).json({"Mensaje":"Hubo un error."});
+							else if (!inside)
+								response.status(400).json({"Mensaje":"Hay plantas fuera de límites al redimensionar el jardín"});
+							else {
+								gardenData.geoHash = geo.encode(gardenData.latitude, gardenData.longitude, 8);
+								gardenModel.updateGarden(request.params.id,gardenData, function(error, data) {
+									if (error)
+										response.status(500).json({"Mensaje":error.message});
+									else if (data == 1)
+										response.status(200).json({"Mensaje":"Actualizado"});
+									else if (data == 0)
+										response.status(404).json({"Mensaje":"No existe"});
+									else
+										response.status(500).json({"Mensaje":"Hubo un error."});
+								});
+							}
 						});
 					}
 					else if (!owner) response.status(403).json({"Mensaje":"No puedes modificar un jardin de otro usuario."});
