@@ -24,9 +24,9 @@
         <div class="btn btn-primary" (click)="view = 'week'" [class.active]="view === 'week'">
           Semana
         </div>
-        <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">
+        <!-- <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">
           Día
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -133,12 +133,12 @@
 -->
 </div>
 
-<div onmouseenter="showPopover(event.target.id)" 
+<div onmouseenter="showPopover(event.target.id)"
   onmouseleave="hidePopover(event.target.id)"
   style="width: 0; height: 0"
- id="popoverError" 
- data-container="body" 
- data-toggle="popover" 
- data-placement="top" 
+ id="popoverError"
+ data-container="body"
+ data-toggle="popover"
+ data-placement="top"
  data-content="No puedes mover la tarea porque ya existe una igual en la fecha destino.">
 </div>
