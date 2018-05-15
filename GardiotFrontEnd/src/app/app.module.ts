@@ -204,6 +204,7 @@ registerLocaleData(localeEs);
     DialogNewgarden2Component,
     DialogNewgarden3Component,
     DialogAllGardensComponent,
+    DialogTaskComponent,
     ProfileComponent
   ],
   bootstrap: [AppComponent]
