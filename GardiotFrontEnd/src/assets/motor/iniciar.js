@@ -129,7 +129,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 10,
       rotZ: 0,
-      posY: 0.1
+      posY: -0.2
     },
     MARGARITA: {
       textura: 'margarita.jpg',
@@ -170,7 +170,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.sol;
   window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  window.sol = motor.crearNodoLuz("sol", 1, undefined);
+  window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
@@ -184,13 +184,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", undefined, undefined);
+  motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
   motor.moverMalla("around", 0, -0.11, 0);
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width; i <= width; i++) {
-    for (let j = -length; j <= length; j++) {
+  for (let i = -width-2; i <= width+2; i++) {
+    for (let j = -length-2; j <= length+2; j++) {
       motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
@@ -325,7 +325,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    demoSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 

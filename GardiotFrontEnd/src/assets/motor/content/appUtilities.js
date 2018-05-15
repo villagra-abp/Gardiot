@@ -233,10 +233,9 @@ async function iluminarSol(minutes) {
     let rgbMoment = { red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent };
     rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
   }
-  sol.entity.setIntensidad(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
-  sol.entity.setIntensidadSpecular(rgb.red / 100, rgb.green / 100, rgb.blue / 100);
+  sol.entity.setIntensidad(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
+  sol.entity.setIntensidadSpecular(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
 }
-
 async function iluminarLuna(minutes) {
   let rgb = {};
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
