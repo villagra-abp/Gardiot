@@ -213,7 +213,7 @@ export class GardenComponent {
     let aux = [];
     aux.push({ id: this.garden.city, text: this.garden.city });
     this.city = this.garden.city;
-    this.tiempoCity = 'El tiempo en ' + this.garden.city;
+    this.tiempoCity = this.garden.city;
     this.cityData = Observable.create((obs) => {
       obs.next(aux);
       obs.complete();
