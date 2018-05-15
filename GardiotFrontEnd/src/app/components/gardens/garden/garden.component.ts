@@ -573,8 +573,12 @@ export class GardenComponent {
   }
 
   isDragging() {
-    return false;
+    return !window.dragging;
   }
+  select2Width(){
+    return '100%';
+  }
+  
 
   //--------------------Mostrar Plantas---------------------//
   ActualizarPagina() {
@@ -652,9 +656,10 @@ export class GardenComponent {
     }
 
 
+
   ngOnInit() {
     if (typeof window.orientation !== 'undefined') {
-      this.mobile=true;
+      //this.mobile=true;
      }
 
     this.firstgarden();
