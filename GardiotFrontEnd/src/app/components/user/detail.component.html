@@ -14,21 +14,24 @@
       </article>
     </section>
   </div>
-  <section class="calendar">
+  <section class="calendar ">
     <div class="container">
-      <div class="row">
-        <div class="col-md-2">Dia</div>
-        <div class="col-md-5">Tareas</div>
+      <div class="title">
+        <h6 id="titulo">Agenda</h6>
       </div>
-      <div class="row">
-        <div class="col-md-2">Dia</div>
-        <div class="col-md-5">Tareas</div>
+      <div class="body">
+
+        <div class="row fila" *ngFor = "let grupo of tareas">
+          <div class="col-sm-2 fecha">{{grupo[0].date | date:['d']}} {{grupo[0].date | date:['LLL']}}</div>
+
+          <div class="col">        
+            <div class="row tarea rounded" *ngFor = "let tarea of grupo">
+              {{tarea.name}} {{tarea.commonName}}
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="row">
-        <div class="col-md-2">Dia</div>
-        <div class="col-md-5">Tareas</div>
-      </div>
-      <div class="row" *ngFor = "let tarea of tareas">{{tarea}}</div>
     </div>
 
   </section>

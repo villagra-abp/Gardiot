@@ -217,7 +217,7 @@ export class DetailComponent implements OnInit {
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
-        console.log(this.tasks);
+        
 
       },
         error => {
@@ -254,15 +254,28 @@ export class DetailComponent implements OnInit {
   getTasks(){
     this._taskService.detailsSome(10)
     .subscribe(data =>{
-      console.log(data);
-      var aux:any[] = [];
-      let auxDate;
-      let auxDate2;
+   
+      let aux:any[] = [];
+    
 
-      auxDate= data[1].date;
-      auxDate2= data[2].date;
-      console.log(auxDate);
-      console.log(auxDate2);
+
+      for (let i = 0; i<data.length; i++){
+
+        if(aux.length == 0){ // si está vacio
+          aux.push(data[i]);
+        }else{
+          if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+            aux.push(data[i]);
+          }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
+            this.tareas.push(aux);
+            aux = [];
+            aux.push(data[i]);
+          }
+        }
+      } //end if
+      this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+      console.log(data);
+      console.log(this.tareas);
       
 
 

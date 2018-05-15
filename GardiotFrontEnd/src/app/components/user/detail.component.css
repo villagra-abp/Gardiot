@@ -10,4 +10,45 @@
 .calendar{
 	width: 50%;
 	float: right;
+
+	
 }
+
+.body {
+	padding: 10px;
+	background-color: white;
+}
+
+.title {
+	margin-bottom: -8px;
+}
+
+#titulo {
+	background-color: #299654 !important;
+	text-align: center;
+	color : white;
+	padding : 5px;
+}
+
+.fecha {
+	width: 20%;
+	border-right: 3px solid lightblue
+
+}
+.fila {
+	margin-bottom: 5px; 
+	
+
+}
+.tarea {
+	background-color: #ebc074;
+	padding-top: 10px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom: 5px;
+	font-size: small;
+}
+
