@@ -19,6 +19,19 @@ router.get('/todayTask/:number/:page', passport.authenticate('jwt', {session: fa
 	}
 });
 
+router.get('/firstTasks/:number/:page', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0})) 
+		response.status(400).json({"Mensaje":"Petición incorrecta"});
+	else {
+		taskModel.getTasks (request.params.number, request.params.page, request.user.id, function (error, data) {
+			if (error)
+				response.status(500).json({"Mensaje":error.message});
+			else
+				response.status(200).json(data);
+		})
+	}
+});
+
 router.get('/dayTask/:number/:page/:date', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});

@@ -20,6 +20,18 @@ task.getMyTasksForToday = function (number, page, user, callback) {
 	}
 }
 
+task.getTasks = function (number, page, user, callback) {
+	if (connection) {
+		let minPeak = (page - 1) * number;
+		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date >= NOW() GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Task.date LIMIT ' + minPeak + ',' + number, function (error, row) {
+			if (error)
+				callback(error, null);
+			else
+				callback(null, row);	
+		});
+	}
+}
+
 task.getMyTasksByDate = function (number, page, user, date, callback) {
 	if (connection) {
 		connection.query('SELECT Treatment.id AS treatment, Treatment.name, Plant.commonName, MyPlant.id AS myplant, Plant.id AS plant, MyPlant.name, Garden.title FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date = "' + date + '" GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Plant.commonName LIMIT ' + minPeak + ',' + number, function(error, row) {

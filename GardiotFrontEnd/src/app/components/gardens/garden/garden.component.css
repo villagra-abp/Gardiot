@@ -53,30 +53,29 @@
 
 .tiempo{
   color:#000;
-  margin-top : 0;
-  /*padding: 1em;*/
+  margin-top : 2em;
+  padding: 1em;
 }
 .headTiempo{
-  padding: 5px;
-  border-bottom-right-radius: 12px;
-  border-top-right-radius: 5px;
+  padding: 0.3em;
   text-align: center;
-  background-color: #d3ed44;
-  color: #3e3e3e;
+  color: #fff;
+  font-size: 10px;
 }
 .today{
   min-height: 80px;
   position: relative;
-  padding-left: 10px;
-  border-bottom-right-radius: 12px;
-  border-top-right-radius: 5px;
+  padding-left: 0.5em;
+  border-radius: 25px;
+  margin-top: 1em;
+  width: 140%;
 }
 .today>img{
   position:absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-
+  top: 1em;
+  right: 1em;
+  width: 35px;
+  margin-left: 1em;
 }
 .today>p{
   margin: 0;
@@ -128,16 +127,15 @@
 .formulario{
  position: fixed;
  z-index: 20;
- padding: 0 30px 10px 30px;
- top: 100px;
+ padding: 0 1.6em 0.9em 1.6em;
+ top: 6em;
  right: 0;
- width:240px;
-
+ width:14em;
  height: auto;
  background-color: #fff;
- border-top-left-radius: 15px;
- border-bottom-left-radius: 15px;
-transition: .3s ease-in all;
+ border-radius: 15px;
+ margin-right: 1em;
+ transition: .3s ease-in all;
 }
 
 .infoOcult{
@@ -181,12 +179,12 @@ h1, h2{
   width: 40px;
   height: 40px;
   margin:0;
-  background-position: center; 
+  background-position: center;
   background-repeat: no-repeat;
   cursor:pointer;
 }
 .litButton>img{
-  width: 80%; 
+  width: 80%;
   margin: 10%;
 }
 .litButton:not(:last-of-type){
@@ -201,7 +199,7 @@ h1, h2{
 }
 .yellow{
   background-color: #0036ff;
-  
+
 }
 /*end buttons*/
 
@@ -219,19 +217,6 @@ h1, h2{
 .rotButton>img{
   width: 100%;
 }
-
-.superior{
-  position: absolute;
-  top: 100px;
-  left: 0;
-  z-index: 99999;
-}
-
-ul, li{
-  margin-top: 0.7em;
-  margin-right: 0;
-}
-
 
 body{
   padding: 0 !important;
@@ -306,68 +291,104 @@ button{
   z-index: 2;
  }
 
- .botonera{
-   position: absolute;
-   height: 300px;
-   width: 100px;
-   z-index: 10;
-   bottom: 100px;
-   right: 20px;
- }
+/* Mariano */
 
- .search{
-   /* margin-top: -3em; */
-   margin-left: 5em;
- }
- .searchbutton{
-   /* margin-top: -3em; */
-   margin-left: 0.5em;
- }
-
-
-
-img{
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  transform:scale(1);
-  -ms-transform:scale(1); /*  IE 9 */
-  -moz-transform:scale(1); /*  Firefox */
-  -webkit-transform:scale(1); /* Safari and Chrome */
-  -o-transform:scale(1); /* Opera */
-  -webkit-transition: all 500ms ease-in-out; /*  IE 9 */
-  -moz-transition: all 500ms ease-in-out; /*  Firefox */
-  -ms-transition: all 500ms ease-in-out; /* Safari and Chrome */
-  -o-transition: all 500ms ease-in-out;   /* Opera  */
+ul{
+  margin-top: 0.7em;
+  padding: 0;
+  width: 75%;
+}
+li{
+  padding: 0.3em;
 }
 
-.text{
+.search{
+  margin-top: 0.7em;
+  margin-left: 0.5em;
+}
+.search2{
+    border: none;
+}
+.searchbutton{
+  margin-top: 0.5em;
+  margin-left: 0.2em;
+    border: none;
+}
+
+.superior{
   position: absolute;
-  font-family: 'Open Sans';
-  background-color: white;
-          margin-top: -3em;
-          margin-left: 1em;
-          text-align: center;
-          transform:translate(0px);
-          -webkit-transition: all 500ms ease-in-out;
-          -moz-transition: all 500ms ease-in-out;
-          -ms-transition: all 500ms ease-in-out;
-          -o-transition: all 500ms ease-in-out;
-          opacity: 0;
-          transition: transfom opacity 1.5s;
-}
-img:hover{
-  transform:scale(0.8);
-  -ms-transform:scale(0.8); /* IE 9 */
-  -moz-transform:scale(0.8); /*Firefox */
-  -webkit-transform:scale(0.8); /* Safari and Chrome */
-  -o-transform:scale(0.8); /* Opera*/
+  top: 5em;
+  left: 0;
+  z-index: 99999;
+  padding: 0.5em;
 }
 
-.text:hover{
-  transform:translate(0px,0px);
-  opacity: 1;
+/* efecto de imagen */
+.view {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
 }
+.view .mask, .view .content {
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    margin-top: 1em;
+}
+.view img {
+    display: block;
+    position: relative
+}
+.view h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 8px;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 10px 0 0 0
+}
+
+.view-first img {
+    transition: all 0.2s linear;
+}
+.view-first .mask {
+    opacity: 0;
+    background-color: rgba(255,178,0, 0.7);
+    transition: all 0.4s ease-in-out;
+}
+.view-first h2 {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first:hover img {
+	transform: scale(1.1);
+  box-shadow: 1px 1px 9px #ffb200;
+}
+.view-first:hover .mask {
+	opacity: 1;
+}
+.view-first:hover h2 {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+
+
+
+/* fin Mariano */
+
+
+
+
+
 
 @media (max-width: 600px) {
 
@@ -391,7 +412,7 @@ img:hover{
     border-right: .1em solid #fff;
   }
   .litButton>img{
-    width: 50%; 
+    width: 50%;
     margin: 25%;
   }
 
