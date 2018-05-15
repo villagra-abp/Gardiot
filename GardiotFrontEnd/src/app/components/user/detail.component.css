@@ -6,3 +6,8 @@
 .feed{
   /* position: absolute; */
 }
+
+.calendar{
+	width: 50%;
+	float: right;
+}
