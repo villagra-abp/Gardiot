@@ -84,6 +84,7 @@ export class DetailComponent implements OnInit {
   private events: CalendarEvent[] = [];
   private sunrise;
   private sunset;
+  private tareas:any[] = [];
 
   constructor(
     private _detailService: UserService,
@@ -190,7 +191,7 @@ export class DetailComponent implements OnInit {
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
-        }
+        }        
       },
       error => {
         console.error(error);
@@ -216,12 +217,14 @@ export class DetailComponent implements OnInit {
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
+        
 
       },
         error => {
           console.error(error);
         });
   }
+
 
   cerrarfeed(id:number) {
     this._feedService.closefeed(id)
@@ -248,11 +251,47 @@ export class DetailComponent implements OnInit {
     this.refresh.next();
   }
 
+  getTasks(){
+    this._taskService.detailsSome(10)
+    .subscribe(data =>{
+   
+      let aux:any[] = [];
+    
+
+
+      for (let i = 0; i<data.length; i++){
+
+        if(aux.length == 0){ // si está vacio
+          aux.push(data[i]);
+        }else{
+          if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+            aux.push(data[i]);
+          }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
+            this.tareas.push(aux);
+            aux = [];
+            aux.push(data[i]);
+          }
+        }
+      } //end if
+      this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+      console.log(data);
+      console.log(this.tareas);
+      
+
+
+
+    },
+    error =>{
+      console.error(error);
+    });
+  }
+
   ngOnInit() {
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
     this.mostrartask();
+    this.getTasks();
     this.cargarfeeds();
 
   }
