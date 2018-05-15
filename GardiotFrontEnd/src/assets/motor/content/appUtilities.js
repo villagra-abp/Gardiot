@@ -8,7 +8,6 @@ function animLoop() {
       then = now - (elapsed % fpsInterval);
       motor.drawSombras();
       motor.draw();
-     
     }
     requestAnimationFrame(animLoop, canvas);
   }
@@ -201,8 +200,8 @@ async function demoSol() {
   console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
-  motor.rotarLuzOrbital('sol', gradeSunPosition/2, 'y');
-  motor.rotarLuzOrbital('luna', gradeSunPosition/2, 'y');
+  //motor.rotarLuzOrbital('sol', gradeSunPosition/2, 'y');
+  //motor.rotarLuzOrbital('luna', gradeSunPosition/2, 'y');
   window.lastTime = now;
   iluminarAstro(now.getHours() * 60 + now.getMinutes());
   demoSol();

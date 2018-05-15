@@ -64,7 +64,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 1024;
+  window.shadowDepthTextureSize = 2048;
 
   //Índice de texturas
   window.index = 0;
@@ -285,8 +285,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //luces
   //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 15.0, 0.0);
-  motor.moverLuz("luna", 0.0, -15.0, 0.0);
+  motor.moverLuz("sol", 0.0, 35.0, 0.0);
+  motor.moverLuz("luna", 0.0, -35.0, 0.0);
   //motor.rotarLuz("sol", -90, 'x');
   //motor.rotarLuz("luz3", -90, 'x');
  // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
@@ -312,7 +312,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
     motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
     motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
-    motor.rotarLuzOrbital('sol', 10, 'y');
+    motor.rotarLuzOrbital('sol', 5, 'y');
+    motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
