@@ -310,7 +310,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     noon.setMinutes(minuteOfSunrise + minutesOfSun/2);
     console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
     console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
-    console.log("Mediodía: " + noon.getHours() + ':' + noon.getMinutes()) + ' (90º grados de SOL)';
+    console.log("Mediodía: " + noon.getHours() + ':' + noon.getMinutes() + ' (90º grados de SOL)');
     console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
 
     if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
