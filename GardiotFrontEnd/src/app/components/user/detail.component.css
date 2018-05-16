@@ -6,3 +6,98 @@
 .feed{
   /* position: absolute; */
 }
+
+#myCanvas{
+	border-style: solid;
+	border-width: 2px;
+	border-color: #299654;
+	border-radius: 5px;
+
+}
+
+
+::-webkit-scrollbar {
+      width: 10px;
+}
+
+::-webkit-scrollbar-track {
+      background-color: #f3f3f3;
+}
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.body {
+	padding: 10px;
+	height: 400px;
+	background-color: #fff;
+	overflow-y:scroll;
+	overflow-x: hidden;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #299654;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+}
+
+.title {
+	margin-bottom: -8px;
+}
+
+#titulo {
+	background-color: #299654;
+	text-align: center;
+	color : white;
+	padding : 1em;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.fecha {
+	width: 20%;
+	border-right: 3px solid #ffb200;
+	padding-right: 0px;
+
+}
+.fila {
+	margin-bottom: 5px;
+
+
+}
+
+.numero {
+	font-size: x-large;
+}
+.mes {
+	line-height:0.5;
+	font-size: x-small;
+}
+.tarea {
+	background-color: rgba(0,0,0,0.04);
+	padding-top: 10px;
+	padding-bottom:5px;
+	padding-left: 7px;
+	margin-left:1px;
+	margin-right:15px;
+	margin-bottom: 5px;
+	font-size: small;
+	border-radius: 5px;
+	border: #e0e0e0 1px solid;
+}
+
+.tarea:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+@media only screen and (max-width: 600px){
+	.body{
+		overflow-y: hidden;
+		overflow-x: hidden;
+		height: initial;
+	}
+
+}

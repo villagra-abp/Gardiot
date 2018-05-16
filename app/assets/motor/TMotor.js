@@ -61,14 +61,18 @@ class TMotor {
 	 * Con él podemos obtener una imagen estática
 	 */
 	startDrawingStatic() {
+		this.running = true;
+
+		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-			cargarShaders();
+
+			//bucle de animación en utilities.js
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
-					this.draw();
+					motor.drawSombras();
+					motor.draw();
 					motor.allLoaded();
-					
 				}
 			}, 100);
 		}
@@ -608,10 +612,10 @@ class TMotor {
 	 * @param  {string} nombre
 	 * @param  {number} grados
 	 */
-	rotarLuzOrbital(nombre, grados) {
+	rotarLuzOrbital(nombre, grados, eje) {
 		let luz = this.luzRegistro.find(x => x.name == nombre);
 		if (luz !== undefined) {
-			luz.dad.dad.dad.entity.rotar(grados, "z");
+			luz.dad.dad.dad.entity.rotar(grados, eje);
 
 			return true;
 		}

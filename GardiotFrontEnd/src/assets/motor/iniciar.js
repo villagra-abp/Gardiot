@@ -16,7 +16,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.frameCount = 0;
   window.interval;
 
-  
+
   //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
   window.colorCell = [];
@@ -38,7 +38,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   matrixStack.push(matrixModel);
   window.projectionMatrix = [];//matriz proyección
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
-  mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);
+  let anchura=12;
+  mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
 
 
@@ -64,7 +65,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 1024;
+  window.shadowDepthTextureSize = 4096;
 
   //Índice de texturas
   window.index = 0;
@@ -77,7 +78,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   cargarShaders();
   initFramebufferSombras();
   setupWebGL();
-
 
   //Se inicia el motor
   window.motor = new TMotor(gestor);
@@ -129,7 +129,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 10,
       rotZ: 0,
-      posY: 0.1
+      posY: -0.2
     },
     MARGARITA: {
       textura: 'margarita.jpg',
@@ -155,7 +155,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 0,
       posY: 0.2
     },
-    LOGO: { // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
+    LOGO: {
       textura: 'logo.jpg',
       escalado: 0.3,
       rotX: -90,
@@ -163,15 +163,20 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 90,
       posY: 0.2
 
-    }
+    },
+    SANDIA: {
+      textura: 'sandia.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.05
+    },
   };
 
-
-  window.sol;
-  window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 2, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -184,9 +189,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", undefined, undefined);
+  /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);
+  motor.moverMalla("around", 0, -0.11, 0);*/
 
   //Por último dibujamos las cuadrículas del suelo en bucle
   for (let i = -width; i <= width; i++) {
@@ -198,6 +203,16 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     }
   }
 
+/*SUELO GRANDE */
+for(let i=-1; i<=1; i++){
+  for(let j=-1; j<=1; j++){
+    motor.crearNodoMalla("sueloGrande"+i+'-'+j, "sueloGrande", "tierra.jpg", undefined);
+    motor.escalarMallaXYZ("sueloGrande"+i+'-'+j, 8, 8, 8);
+    motor.rotarMalla("sueloGrande"+i+'-'+j, -90, "x");
+    motor.moverMalla("sueloGrande"+i+'-'+j, 49*i, -0.09, 49*j);
+  }
+}
+  
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -211,7 +226,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.crearNodoMalla("valla" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla" + i, -90, "z");
     motor.escalarMallaXYZ("valla" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.038)); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.037)); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA izquierda.
@@ -228,7 +243,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.rotarMalla("valla3" + i, -90, "z");
     motor.rotarMalla("valla3" + i, 90, "x");
     motor.escalarMallaXYZ("valla3" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla3" + i, width + desfase, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla3" + i, width + desfase+0.01, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA delantera.
@@ -245,7 +260,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // plantas dragables
   //Este mapa servirá para identificar si hay una planta en una posición concreta.
   //Por ejemplo, para una planta en la posición 3, 4, la forma de añadirla al mapa será
-  //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la 
+  //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la
   //planta que hay en ella.
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
@@ -277,22 +292,22 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
       motor.moverMalla("alaA", 0.2, 0.2, 0.2);
       motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
-  
+
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
   // motor.rotarMalla("pajaro2_000000", -90, "x");
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
   //luces
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 500.0, 0.0);
-  motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  motor.rotarLuz("sol", -90, 'x');
-  motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
-  motor.activarLuz("luz1");
+  //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+  motor.moverLuz("sol", 0.0, 35.0, 0.0);
+  motor.moverLuz("luna", 0.0, -35.0, 0.0);
+  //motor.rotarLuz("sol", -90, 'x');
+  //motor.rotarLuz("luz3", -90, 'x');
+ // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
+  //motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  motor.activarLuz("luz3");
+  //motor.activarLuz("luz3");
 
 
   /* POSICION DEL SOL */
@@ -306,12 +321,53 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
-    let minutesTotalDay = 24 * 60;
+    var noon = new Date(2018, 11, 11, 0, 0, 0);
+    noon.setMinutes(minuteOfSunrise + minutesOfSun/2);
+    console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
+    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
+    console.log("Mediodía: " + noon.getHours() + ':' + noon.getMinutes() + ' (90º grados de SOL)');
+    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
+
+    if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
+      let relationNowSun = (minuteOfDay - minuteOfSunrise)/minutesOfSun;
+      let gradeSunPosition = relationNowSun * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition - 90);
+      console.log("Coloco SOL a " + gradeSunPosition + ' grados del suelo.');
+    }
+    else {
+      let minutesOfNight = (24 * 60) - minutesOfSun;
+      if (minuteOfDay < minuteOfSunrise)
+        minuteOfDay = (24 * 60) + minuteOfDay;
+      let relationNowMoon = (minuteOfDay - minuteOfSunset)/minutesOfNight;
+      let gradeSunPosition = relationNowMoon * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition + 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+      console.log("Coloco LUNA a " + gradeSunPosition + ' grados del suelo.');
+    }
+
+
+   let minutesTotalDay = 24 * 60;
     window.relationSunDay = minutesOfSun / minutesTotalDay;
+    /*console.log("Relación minutos sol/minutos día: " + relationSunDay);
     let relationNowDay = minuteOfDay * relationSunDay;
+    let relationNowDay2 = minuteOfDay / minutesTotalDay;
+    let relationToNoon = (minuteOfDay) / (minutesTotalDay + (noon.getHours() *60) + noon.getMinutes());
+    console.log("Relación ahora/día con mediodía real: " + relationToNoon);
+    //console.log("Relación ahora día (mediodía a las 12): " + relationNowDay2);
+    //console.log("Relación ahora/día: " + relationNowDay);
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
-    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
-    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    //let gradeSunPosition2 = relationNowDay2 * 360;
+    let gradeSunPosition3 = relationToNoon * 180;
+    console.log("Posición del sol considerando mediodía: " + gradeSunPosition3 + ' grados');
+    //console.log("Posición teórica del sol: " + gradeSunPosition2 + ' grados');
+    console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
+    
+    
+    motor.rotarLuzOrbital('sol', 7, 'x');
+    motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('sol', -5, 'z');
+    motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
@@ -322,7 +378,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    rotarSol();
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 
@@ -348,9 +404,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
+    let altura=Math.min(width, length);
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
-    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.moverCamaraA("dynamicCamera", 0, altura, altura * 2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
 
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");
@@ -360,5 +417,3 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
 
 }
-
-

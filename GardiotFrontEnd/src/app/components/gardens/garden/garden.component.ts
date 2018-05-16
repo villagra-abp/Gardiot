@@ -103,7 +103,7 @@ export class GardenComponent {
   //paginación y buscador
   private numeroItems: number;
   private paginaActual: number = 1;
-  private elementosPorPagina: number = 5;
+  private elementosPorPagina: number = 9;
   private estado: boolean = false;// false es listado y true buscador
   private plantmotor: number[];
   private plantsmotor: any[] = [];
@@ -213,7 +213,7 @@ export class GardenComponent {
     let aux = [];
     aux.push({ id: this.garden.city, text: this.garden.city });
     this.city = this.garden.city;
-    this.tiempoCity = 'El tiempo en ' + this.garden.city;
+    this.tiempoCity = this.garden.city;
     this.cityData = Observable.create((obs) => {
       obs.next(aux);
       obs.complete();
@@ -248,7 +248,7 @@ export class GardenComponent {
               this.getPrevision();
             }
           }
-          
+
         }
       },
         error => {
@@ -266,7 +266,7 @@ export class GardenComponent {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          
+
           var aux = data.main.temp - 273;
           this.temperatura = aux;
           var sunrise = new Date();
@@ -295,7 +295,7 @@ export class GardenComponent {
       .subscribe(data => {
         if (data.cod != '404') {
           try{
-          
+
           var date = new Date();
           var today = new Date();
           var todayDay = today.getDate();
@@ -463,6 +463,7 @@ export class GardenComponent {
 
     this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
       .subscribe(data => {
+        this.visible=0;
         this.ngOnInit();
       },
         error => {
@@ -490,7 +491,7 @@ export class GardenComponent {
     let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
       width: '600px'
     });
-    
+
   }
   openDialog2(id: number, tipo: number){
     this._gardenService.getGardens()
@@ -499,7 +500,7 @@ export class GardenComponent {
         width: '600px', data: gardens
       });
     })
-    
+
   }
 
   resizeCanvas() {
@@ -573,8 +574,12 @@ export class GardenComponent {
   }
 
   isDragging() {
-    return false;
+    return !window.dragging;
   }
+  select2Width(){
+    return '100%';
+  }
+  
 
   //--------------------Mostrar Plantas---------------------//
   ActualizarPagina() {
@@ -650,11 +655,12 @@ export class GardenComponent {
         });
 
     }
-    
+
+
 
   ngOnInit() {
-    if (typeof window.orientation !== 'undefined') { 
-      this.mobile=true;
+    if (typeof window.orientation !== 'undefined') {
+      //this.mobile=true;
      }
 
     this.firstgarden();

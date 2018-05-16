@@ -32,6 +32,7 @@ import { admin_routes } from "./admin.routes";
 import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 import { HelpComponent } from './components/help/help.component';
+import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
 
 
 const app_routes: Routes = [
@@ -54,8 +55,9 @@ const app_routes: Routes = [
   { path: 'confirmation/:key', component: ConfirmationComponent },
   { path: 'oauthconfirmation/:key', component: OauthConfirmationComponent },
   { path: 'resetPass', component: ResetPassComponent },
-  { path: 'reset-pass-back/:key', component: ResetPassBackComponent, },
-  { path: 'help', component: HelpComponent, },
+  { path: 'reset-pass-back/:key', component: ResetPassBackComponent },
+  { path: 'help', component: HelpComponent },
+  { path: 'privacyterms', component: PrivacytermsComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 

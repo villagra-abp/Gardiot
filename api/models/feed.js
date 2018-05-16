@@ -24,7 +24,7 @@ feed.getUnseenFeedsForToday = function (user, callback) {
     let month = TodayDate.getMonth() + 1;
     let day = TodayDate.getDate();
     let rightDate = '' + year + '-' + month + '-' + day;
-    connection.query('SELECT id, name, text FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.viewed = 0 AND UserFeed.user = "' + user + '" AND  dateInit <= "' + rightDate + '"  AND  dateFinal >= "' + rightDate + '"   ORDER BY Feed.name', function (error, rows) {
+    connection.query('SELECT id, name, text, viewed FROM Feed, UserFeed WHERE UserFeed.feed = Feed.id AND UserFeed.user = "' + user + '" AND  dateInit <= "' + rightDate + '"  AND  dateFinal >= "' + rightDate + '"   ORDER BY viewed, dateInit, dateFinal, Feed.name', function (error, rows) {
       if(error)
         callback (error, null);
       else

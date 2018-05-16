@@ -25,7 +25,7 @@ router.post('/register', function(request, response) {
 	var userData = {
 		id: request.body.id,
 		password: request.body.password,
-		photo: request.body.photo,
+		//password2: request.body.password2,
 	};
 	if (typeof userData.id === 'undefined' || typeof userData.password === 'undefined' || typeof request.body.password2 === 'undefined')
 		response.status(400).json({"Mensaje":"Introduce usuario y ambas contraseñas"});
@@ -109,13 +109,13 @@ router.post('/authenticate', function(request, response) {
 								});
 								response.status(200).json({"Token":token});
 							}
-							else response.status(401).json({"Mensaje":"Contraseña incorrecta"});
+							else response.status(400).json({"Mensaje":"Combinación usuario/contraseña incorrecta"});
 						});
 					}
 				}
 				else response.status(403).json({"Mensaje":"Cuenta no activa"});
 			}
-			else response.status(404).json({"Mensaje":"No existe el usuario"});
+			else response.status(400).json({"Mensaje":"Combinación usuario/contraseña incorrecta"});
 		});
 	}
 });
