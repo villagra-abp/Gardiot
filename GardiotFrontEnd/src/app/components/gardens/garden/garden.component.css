@@ -19,6 +19,10 @@
   height: 100%;
 }
 
+#prevision>span:last-of-type{
+  display: none !important;
+}
+
 #prevision{
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
@@ -26,10 +30,9 @@
   left: 0;
   min-width: 180px;
   max-width: 180px;
-  /*top: 50%;
-  transform: translateY(-50%);*/
   color: #fff;
   transition: .3s ease-in all;
+  border-radius: 15px;
 }
 
 
@@ -451,35 +454,8 @@ li{
 
   }
 
-  #prevision{
-    position:absolute;
-    background: rgba(0, 0, 0, 0.5);
-    top: 61px;
-    margin: 10%;
-    min-width: 80%;
-    bottom: 61px;
-    overflow-y: scroll;
-    /*top: 50%;
-    transform: translateY(-50%);*/
-    color: #fff;
-    transition: .3s ease-in all;
-    z-index: 21;
-  }
-  
-  #prevision>span:last-of-type{
-    display: none !important;
-  }
-  
-  #prevision>i{
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    cursor: pointer;
-    font-size: 2em;
-    z-index: 30;
-    transition: .3 ease-in all;
-  }
-  
+
+
   .previsionClosed{
     left: -1000px !important;
   }
@@ -496,11 +472,12 @@ li{
   .interactiveButton{
     cursor: pointer;
   }
-  
+
   .tiempo{
     color:#000;
     margin-top : 0;
     padding: 1em;
+    border-radius:15px;
   }
   .headTiempo{
     padding: 0.3em;
@@ -514,7 +491,7 @@ li{
     padding-left: 0.5em;
     border-radius: 18px;
     margin-top: 1em;
-  
+
   }
   .today>img{
     position:absolute;
@@ -528,19 +505,19 @@ li{
   }
   .today>span{
     color: #3e3e3e;
-  
+
   }
-  
+
   .tarjetaHoy{
     margin-top : 2em;
     padding: 1em;
     max-width: 200px;
     background-color:#63dd63;
   }
-  
+
   .hoy{
     font-size : 2em;
-  
+
   }
 
 
@@ -560,11 +537,11 @@ li{
     transition: .3s ease-in all;
     z-index: 21;
    }
-   
+
    .infoOcult{
      right: -1000px;
    }
-   
+
    .formulario>i{
      position: absolute;
      top: -30px;
@@ -576,7 +553,7 @@ li{
      margin-bottom: 0;
      margin-top: 10px;
    }
-   
+
    h1, h2{
      text-align: center;
    }
