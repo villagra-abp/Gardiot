@@ -608,10 +608,10 @@ class TMotor {
 	 * @param  {string} nombre
 	 * @param  {number} grados
 	 */
-	rotarLuzOrbital(nombre, grados) {
+	rotarLuzOrbital(nombre, grados, eje) {
 		let luz = this.luzRegistro.find(x => x.name == nombre);
 		if (luz !== undefined) {
-			luz.dad.dad.dad.entity.rotar(grados, "z");
+			luz.dad.dad.dad.entity.rotar(grados, eje);
 
 			return true;
 		}

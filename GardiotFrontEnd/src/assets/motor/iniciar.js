@@ -64,7 +64,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 1024;
+  window.shadowDepthTextureSize = 2048;
 
   //Índice de texturas
   window.index = 0;
@@ -129,7 +129,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 10,
       rotZ: 0,
-      posY: 0.1
+      posY: -0.2
     },
     MARGARITA: {
       textura: 'margarita.jpg',
@@ -170,8 +170,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.sol;
   window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 2, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -184,13 +184,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", undefined, undefined);
+  motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
   motor.moverMalla("around", 0, -0.11, 0);
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width; i <= width; i++) {
-    for (let j = -length; j <= length; j++) {
+  for (let i = -width-2; i <= width+2; i++) {
+    for (let j = -length-2; j <= length+2; j++) {
       motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
@@ -284,15 +284,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
   //luces
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 500.0, 0.0);
-  motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  motor.rotarLuz("sol", -90, 'x');
-  motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
-  motor.activarLuz("luz1");
+  //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+  motor.moverLuz("sol", 0.0, 35.0, 0.0);
+  motor.moverLuz("luna", 0.0, -35.0, 0.0);
+  //motor.rotarLuz("sol", -90, 'x');
+  //motor.rotarLuz("luz3", -90, 'x');
+ // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
+  //motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  motor.activarLuz("luz3");
+  //motor.activarLuz("luz3");
 
 
   /* POSICION DEL SOL */
@@ -312,6 +312,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
     motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
     motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    motor.rotarLuzOrbital('sol', 5, 'y');
+    motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
@@ -322,7 +325,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    rotarSol();
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 
@@ -360,5 +363,3 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
 
 }
-
-
