@@ -454,7 +454,62 @@ li{
 
   }
 
-
+  #prevision{
+ 
+    position:absolute;
+ 
+    background: rgba(0, 0, 0, 0.5);
+ 
+    top: 61px;
+ 
+    margin: 10%;
+ 
+    min-width: 80%;
+ 
+    bottom: 61px;
+ 
+    overflow-y: scroll;
+ 
+    /*top: 50%;
+ 
+    transform: translateY(-50%);*/
+ 
+    color: #fff;
+ 
+    transition: .3s ease-in all;
+ 
+    z-index: 21;
+ 
+  }
+ 
+  
+ 
+  #prevision>span:last-of-type{
+ 
+    display: none !important;
+ 
+  }
+ 
+  
+ 
+  #prevision>i{
+ 
+    position: absolute;
+ 
+    top: 3px;
+ 
+    right: 3px;
+ 
+    cursor: pointer;
+ 
+    font-size: 2em;
+ 
+    z-index: 30;
+ 
+    transition: .3 ease-in all;
+ 
+  }
+ 
 
   .previsionClosed{
     left: -1000px !important;
