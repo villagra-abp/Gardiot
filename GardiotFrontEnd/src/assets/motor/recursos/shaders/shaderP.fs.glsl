@@ -62,7 +62,7 @@ float decodeFloat (vec4 color) {
 
 void main()
 {
-	
+
 	vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
 	float shadowAcneRemover = 0.001;
 	fragmentDepth.z -= shadowAcneRemover;

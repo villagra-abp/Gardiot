@@ -211,7 +211,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // motor.crearNodoMalla("sueloGrande", "sueloGrande", "piedras.jpg", undefined);
   // motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
   // motor.rotarMalla("sueloGrande", -90, "x");
-  // motor.moverMalla("sueloGrande", 0, 0.1, 0);
+  // motor.moverMalla("sueloGrande", 0, -0.01, 0);
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -336,7 +336,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     }
     else {
       let minutesOfNight = (24 * 60) - minutesOfSun;
-      if (minuteOfDay < minuteOfSunrise) 
+      if (minuteOfDay < minuteOfSunrise)
         minuteOfDay = (24 * 60) + minuteOfDay;
       let relationNowMoon = (minuteOfDay - minuteOfSunset)/minutesOfNight;
       let gradeSunPosition = relationNowMoon * 180;
@@ -361,8 +361,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     console.log("Posición del sol considerando mediodía: " + gradeSunPosition3 + ' grados');
     //console.log("Posición teórica del sol: " + gradeSunPosition2 + ' grados');
     console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
-    
-    
+
+
     motor.rotarLuzOrbital('sol', 5, 'y');
     motor.rotarLuz('sol', -90, 'x');
     motor.rotarLuz('luna', 90, 'x');
