@@ -7,11 +7,16 @@
   /* position: absolute; */
 }
 
-#myCanvas{
+/* #myCanvas{
 	border-style: solid;
 	border-width: 2px;
 	border-color: #299654;
-	border-radius: 5px;
+	border-radius: 300px;
+
+} */
+
+#myCanvas{
+	width: 1149;
 
 }
 
@@ -29,6 +34,8 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+/* Consejos */
+
 
 .body {
 	padding: 10px;
@@ -52,7 +59,7 @@
 	background-color: #299654;
 	text-align: center;
 	color : white;
-	padding : 1em;
+	padding : 0.2em;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
@@ -61,7 +68,6 @@
 	width: 20%;
 	border-right: 3px solid #ffb200;
 	padding-right: 0px;
-
 }
 .fila {
 	margin-bottom: 5px;
