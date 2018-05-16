@@ -64,7 +64,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 1024;
+  window.shadowDepthTextureSize = 2048;
 
   //Índice de texturas
   window.index = 0;
@@ -129,7 +129,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 10,
       rotZ: 0,
-      posY: 0.1
+      posY: -0.2
     },
     MARGARITA: {
       textura: 'margarita.jpg',
@@ -178,8 +178,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.sol;
   window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 2, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
 
   //camara de vista
@@ -192,13 +192,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", undefined, undefined);
+  motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
   motor.moverMalla("around", 0, -0.11, 0);
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width; i <= width; i++) {
-    for (let j = -length; j <= length; j++) {
+  for (let i = -width-2; i <= width+2; i++) {
+    for (let j = -length-2; j <= length+2; j++) {
       motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
@@ -298,15 +298,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
   //luces
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 500.0, 0.0);
-  motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  motor.rotarLuz("sol", -90, 'x');
-  motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
-  motor.activarLuz("luz1");
+  //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+  motor.moverLuz("sol", 0.0, 35.0, 0.0);
+  motor.moverLuz("luna", 0.0, -35.0, 0.0);
+  //motor.rotarLuz("sol", -90, 'x');
+  //motor.rotarLuz("luz3", -90, 'x');
+ // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
+  //motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  motor.activarLuz("luz3");
+  //motor.activarLuz("luz3");
 
 
   /* POSICION DEL SOL */
@@ -320,12 +320,52 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
-    let minutesTotalDay = 24 * 60;
+    var noon = new Date(2018, 11, 11, 0, 0, 0);
+    noon.setMinutes(minuteOfSunrise + minutesOfSun/2);
+    console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
+    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
+    console.log("Mediodía: " + noon.getHours() + ':' + noon.getMinutes() + ' (90º grados de SOL)');
+    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
+
+    if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
+      let relationNowSun = (minuteOfDay - minuteOfSunrise)/minutesOfSun;
+      let gradeSunPosition = relationNowSun * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition - 90);
+      console.log("Coloco SOL a " + gradeSunPosition + ' grados del suelo.');
+    }
+    else {
+      let minutesOfNight = (24 * 60) - minutesOfSun;
+      if (minuteOfDay < minuteOfSunrise) 
+        minuteOfDay = (24 * 60) + minuteOfDay;
+      let relationNowMoon = (minuteOfDay - minuteOfSunset)/minutesOfNight;
+      let gradeSunPosition = relationNowMoon * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition + 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+      console.log("Coloco LUNA a " + gradeSunPosition + ' grados del suelo.');
+    }
+
+
+   let minutesTotalDay = 24 * 60;
     window.relationSunDay = minutesOfSun / minutesTotalDay;
+    /*console.log("Relación minutos sol/minutos día: " + relationSunDay);
     let relationNowDay = minuteOfDay * relationSunDay;
+    let relationNowDay2 = minuteOfDay / minutesTotalDay;
+    let relationToNoon = (minuteOfDay) / (minutesTotalDay + (noon.getHours() *60) + noon.getMinutes());
+    console.log("Relación ahora/día con mediodía real: " + relationToNoon);
+    //console.log("Relación ahora día (mediodía a las 12): " + relationNowDay2);
+    //console.log("Relación ahora/día: " + relationNowDay);
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
-    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
-    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    //let gradeSunPosition2 = relationNowDay2 * 360;
+    let gradeSunPosition3 = relationToNoon * 180;
+    console.log("Posición del sol considerando mediodía: " + gradeSunPosition3 + ' grados');
+    //console.log("Posición teórica del sol: " + gradeSunPosition2 + ' grados');
+    console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
+    
+    
+    motor.rotarLuzOrbital('sol', 5, 'y');
+    motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
@@ -336,7 +376,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    rotarSol();
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 

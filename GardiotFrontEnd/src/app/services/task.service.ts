@@ -23,6 +23,18 @@ export class TaskService {
     }
   }
 
+  detailsSome(number:number){
+    let headers = new Headers({
+      'Authorization': `Bearer ${localStorage['Bearer']}`
+    });
+
+    return this.http.get(this.apiURL + "firstTasks/" + number + "/1", { headers })
+      .map(res => {
+        return res.json();
+      })
+
+  }
+
 
   detailsAll(fechas: string) {
     let headers = new Headers({

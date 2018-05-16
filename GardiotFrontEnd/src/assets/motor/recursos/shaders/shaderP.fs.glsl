@@ -71,10 +71,10 @@ void main()
 	highp float depth=decodeFloat(rgba_depth);
 
 	highp float visibility = 1.0;
-	highp float bias = 0.001;
+	highp float bias = 0.00145;
 
 	if(fragmentDepth.z>(depth-bias)){
-		visibility=0.1;
+		visibility=0.25;
 	}
 
 	vec3 N=normalize(vTVertNormal.xyz);

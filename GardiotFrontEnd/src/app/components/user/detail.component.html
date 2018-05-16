@@ -14,25 +14,35 @@
       </article>
     </section>
   </div>
-  <div [routerLink]="['/calendar']">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
-      </div>
-    </div>
-    <br>
-    <div [ngSwitch]="view">
-      <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [locale]="locale" [refresh]="refresh" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" (eventClicked)="handleEvent('Clicked', $event.event)"
-        (eventTimesChanged)="eventTimesChanged($event)">
-      </mwl-calendar-week-view>
-    </div>
-  </div>
-  <section class="herramienta">
+  <div class="row">
+  <section class="herramienta col-lg-6">
     <article class="form-row">
-      <div class="form-group col-md-6" (click) = "goGarden()" >
-        <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="450"
-          height="350"></canvas>
+      <div class="form-group" (click) = "goGarden()" >
+        <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="520"
+          height="447"></canvas>
       </div>
     </article>
   </section>
+
+  <section class="calendar col-lg-6 ">
+  <div class="container">
+    <div class="title">
+      <h6 id="titulo">Tareas</h6>
+    </div>
+    <div class="body">
+      <div class="row fila" *ngFor = "let grupo of tareas">
+        <div class="col-sm-2 fecha">
+        <span class ="numero">{{grupo[0].date | date:['d']}}</span>
+        <span class ="mes">{{grupo[0].date | date:['LLL']}}</span>
+        </div>
+        <div class="col">
+          <div class="row tarea rounded" *ngFor = "let tarea of grupo">
+            {{tarea.name}} {{tarea.commonName}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
 </div>
