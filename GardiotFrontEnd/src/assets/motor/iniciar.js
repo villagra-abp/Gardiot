@@ -336,7 +336,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     }
     else {
       let minutesOfNight = (24 * 60) - minutesOfSun;
-      if (minuteOfDay < minuteOfSunrise) 
+      if (minuteOfDay < minuteOfSunrise)
         minuteOfDay = (24 * 60) + minuteOfDay;
       let relationNowMoon = (minuteOfDay - minuteOfSunset)/minutesOfNight;
       let gradeSunPosition = relationNowMoon * 180;
