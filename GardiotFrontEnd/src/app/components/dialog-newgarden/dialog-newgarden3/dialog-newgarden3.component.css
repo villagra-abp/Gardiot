@@ -17,3 +17,6 @@ li{
 button{
 margin: auto;
 }
+a.inline{
+  font-size: .9em;
+}
