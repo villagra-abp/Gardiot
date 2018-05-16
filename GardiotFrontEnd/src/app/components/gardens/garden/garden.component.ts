@@ -463,6 +463,7 @@ export class GardenComponent {
 
     this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
       .subscribe(data => {
+        this.visible=0;
         this.ngOnInit();
       },
         error => {

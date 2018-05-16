@@ -62,7 +62,7 @@ float decodeFloat (vec4 color) {
 
 void main()
 {
-	
+
 	vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
 	float shadowAcneRemover = 0.001;
 	fragmentDepth.z -= shadowAcneRemover;
@@ -130,7 +130,7 @@ void main()
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-
+			
 			if(uHovered==1){
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
 			}
@@ -144,11 +144,13 @@ void main()
 				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 
 			}
-
+			//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 	}
+
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
 		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+		//gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}
 
 
