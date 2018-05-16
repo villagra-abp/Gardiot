@@ -225,6 +225,10 @@ class TRecursoMalla extends TRecurso {
     else if (variable == "red") {
       gl.uniform1i(glProgram[window.program].hovered, 3);
     }
+    if(this.nombre=='sueloGrande'){
+      gl.uniform1i(glProgram[window.program].hovered, 4);
+    }
+      
 
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);

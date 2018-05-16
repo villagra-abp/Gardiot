@@ -38,7 +38,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   matrixStack.push(matrixModel);
   window.projectionMatrix = [];//matriz proyección
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
-  mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);
+  let anchura=12;
+  mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
 
 
@@ -77,7 +78,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   cargarShaders();
   initFramebufferSombras();
   setupWebGL();
-
 
   //Se inicia el motor
   window.motor = new TMotor(gestor);
@@ -155,7 +155,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 0,
       posY: 0.2
     },
-    LOGO: { // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
+    LOGO: {
       textura: 'logo.jpg',
       escalado: 0.3,
       rotX: -90,
@@ -192,13 +192,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
+  /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);
+  motor.moverMalla("around", 0, -0.11, 0);*/
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width-2; i <= width+2; i++) {
-    for (let j = -length-2; j <= length+2; j++) {
+  for (let i = -width; i <= width; i++) {
+    for (let j = -length; j <= length; j++) {
       motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
@@ -208,10 +208,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
 /*SUELO GRANDE */
 
-  /*motor.crearNodoMalla("sueloGrande", "sueloGrande", "cespedDef.jpg", undefined);
-  motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
+  motor.crearNodoMalla("sueloGrande", "sueloGrande", "suelotierra.jpg", undefined);
+  motor.escalarMallaXYZ("sueloGrande", 8, 8, 8);
   motor.rotarMalla("sueloGrande", -90, "x");
-  motor.moverMalla("sueloGrande", 0, 0.1, 0);*/
+  motor.moverMalla("sueloGrande", 0, -0.09, 0);
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -363,8 +363,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
     
     
-    motor.rotarLuzOrbital('sol', 5, 'x');
+    motor.rotarLuzOrbital('sol', 7, 'x');
     motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('sol', -5, 'z');
     motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
