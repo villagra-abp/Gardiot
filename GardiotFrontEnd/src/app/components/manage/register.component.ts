@@ -15,9 +15,9 @@ export class RegisterComponent implements OnInit {
   user = new User("");
 
   constructor(
-    private _userService: UserService,
-    private _route: Router,
-    private _appComponent: AppComponent) { }
+    public _userService: UserService,
+    public _route: Router,
+    public _appComponent: AppComponent) { }
 
   guardar() {
     console.log(this.user);

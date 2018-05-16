@@ -25,28 +25,28 @@ declare var motor: any;
 })
 
 export class NewGardenComponent implements OnInit {
-  private plant: number[];
-  private plants: any[] = [];
-  private plantmotor: number[];
-  private plantsmotor: any[] = [];
-  private idNewJardin: number;
-  private garden = new Garden("");
-  private accion: string;
+  public plant: number[];
+  public plants: any[] = [];
+  public plantmotor: number[];
+  public plantsmotor: any[] = [];
+  public idNewJardin: number;
+  public garden = new Garden("");
+  public accion: string;
 
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 8;
-  private estado: boolean = false;// false es listado y true buscador
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 8;
+  public estado: boolean = false;// false es listado y true buscador
 
 
 
   constructor(
-    private _gardenService: GardenService,
-    private _plantService: PlantService,
-    private _route: Router,
-    private datePipe: DatePipe,
-    private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
+    public _gardenService: GardenService,
+    public _plantService: PlantService,
+    public _route: Router,
+    public datePipe: DatePipe,
+    public dialog: MatDialog,
+    public activatedRoute: ActivatedRoute,
   ) { }
 
   // @HostListener('document:keyup', ['$event'])

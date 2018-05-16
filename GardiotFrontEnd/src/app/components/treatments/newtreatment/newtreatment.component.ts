@@ -11,11 +11,11 @@ import { Treatment } from "../../../classes/treatment.class";
 export class NewtreatmentComponent implements OnInit {
 
   treatment = new Treatment();
-  private treatments: any[] = [];
+  public treatments: any[] = [];
 
   constructor(
-    private _treatmentService: TreatmentService,
-    private _appComponent: AppComponent,
+    public _treatmentService: TreatmentService,
+    public _appComponent: AppComponent,
   ) { }
 
   guardar() {

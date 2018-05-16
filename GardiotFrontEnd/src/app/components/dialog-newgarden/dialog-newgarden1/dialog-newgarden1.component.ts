@@ -14,15 +14,15 @@ import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden
   styleUrls: ['./dialog-newgarden1.component.css']
 })
 export class DialogNewgarden1Component implements OnInit {
-  private garden = new Garden("");
-  private photoURL = "";
+  public garden = new Garden("");
+  public photoURL = "";
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden1Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private dialog: MatDialog,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public dialog: MatDialog,
   ) {
 
     if(window.location.toString().indexOf("localhost")>=0){

@@ -13,11 +13,11 @@ import { Product } from "../../../classes/product.class";
 export class NewproductComponent implements OnInit {
 
   product = new Product();
-  private products: any[] = [];
+  public products: any[] = [];
 
   constructor(
-    private _productService: ProductService,
-    private _appComponent: AppComponent,
+    public _productService: ProductService,
+    public _appComponent: AppComponent,
   ) { }
 
   guardar() {

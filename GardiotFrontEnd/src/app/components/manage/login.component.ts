@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { UserService } from "../../services/user.service";
+import { User } from "../../classes/user.class";
 import { AppComponent } from "../../app.component";
 
 
@@ -13,20 +14,25 @@ import { AppComponent } from "../../app.component";
 })
 export class LoginComponent implements OnInit {
 
-  user: Object = {
-    id: "",
-    name: "",
-    password: "",
-    password2: "",
-    oldPassword: "",
-    plan: "",
-    birthDate: new Date(),
+  user: User = {
+    id: '',
+    name: '',
+    lastName: '',
+    password: '',
+    password2: '',
+    oldPassword: '',
+    photo: '',
+    countryCode: '',
+    city: '',
+    birthDate: '',
+    active: 0,
+    admin: 0
   }
 
   constructor(
-    private _loginService: UserService,
-    private _route: Router,
-    private _appComponent: AppComponent) { }
+    public _loginService: UserService,
+    public _route: Router,
+    public _appComponent: AppComponent) { }
 
   //logueo de usuario y comprobación de si es admin o no
   guardar() {

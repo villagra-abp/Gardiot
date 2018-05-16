@@ -11,7 +11,7 @@ import { UserService } from "../../services/user.service";
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  private plants: any[] = [];
+  public plants: any[] = [];
 
   constructor() { }
 

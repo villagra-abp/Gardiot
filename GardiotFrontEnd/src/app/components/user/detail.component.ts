@@ -73,26 +73,26 @@ export class DetailComponent implements OnInit {
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   viewDate: Date = new Date();
-  private user = new User("");
-  private gardenRoute = "";
-  private feeds: any[] = [];
-  private feed = new Feed();
-  private garden = new Garden("");
-  private tasks: any[] = [];
-  private task = new Task();
-  private refresh: Subject<any> = new Subject();
-  private events: CalendarEvent[] = [];
-  private sunrise;
-  private sunset;
-  private tareas:any[] = [];
+  public user = new User("");
+  public gardenRoute = "";
+  public feeds: any[] = [];
+  public feed = new Feed();
+  public garden = new Garden("");
+  public tasks: any[] = [];
+  public task = new Task();
+  public refresh: Subject<any> = new Subject();
+  public events: CalendarEvent[] = [];
+  public sunrise;
+  public sunset;
+  public tareas:any[] = [];
 
   constructor(
-    private _detailService: UserService,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private _taskService: TaskService,
-    private _feedService: FeedService,
-    private datePipe: DatePipe,
+    public _detailService: UserService,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public _taskService: TaskService,
+    public _feedService: FeedService,
+    public datePipe: DatePipe,
 
   ) { }
 //------ comprobamos si es su primera vez en la app------//

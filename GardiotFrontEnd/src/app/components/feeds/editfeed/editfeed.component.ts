@@ -14,14 +14,14 @@ import { DatePipe } from '@angular/common';
 export class EditfeedComponent implements OnInit {
 
   feed = new Feed();
-  private feeds: any[] = [];
+  public feeds: any[] = [];
 
   constructor(
-    private _feedService: FeedService,
-    private _appComponent: AppComponent,
-    private _router: ActivatedRoute,
-    private _route: Router,
-    private datePipe: DatePipe,
+    public _feedService: FeedService,
+    public _appComponent: AppComponent,
+    public _router: ActivatedRoute,
+    public _route: Router,
+    public datePipe: DatePipe,
   ) { }
 
 

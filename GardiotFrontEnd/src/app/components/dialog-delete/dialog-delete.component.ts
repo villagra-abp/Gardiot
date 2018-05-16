@@ -18,11 +18,11 @@ export class DialogDeleteComponent implements OnInit {
   constructor(
     public thisDialogRef: MatDialogRef<DialogDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _productService: ProductService,
-    private _treatmentService: TreatmentService,
-    private _feedService: FeedService,
-    private _plantService: PlantService,
-    private _userService: UserService,
+    public _productService: ProductService,
+    public _treatmentService: TreatmentService,
+    public _feedService: FeedService,
+    public _plantService: PlantService,
+    public _userService: UserService,
   ) { }
 
   onCloseConfirm() {

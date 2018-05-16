@@ -13,7 +13,8 @@ import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
 import { Select2Module } from 'ng2-select2';
-import { FileSelectDirective } from 'ng2-file-upload';
+//import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import {Ng2ImgMaxModule} from "ng2-img-max";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -105,6 +106,7 @@ import { DialogNewgarden0Component } from './components/dialog-newgarden/dialog-
 import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
 
 
+
 registerLocaleData(localeEs);
 
 
@@ -133,7 +135,6 @@ registerLocaleData(localeEs);
     CalendarComponent,
     OauthConfirmationComponent,
     DesarrolloComponent,
-    FileSelectDirective,
     PlantComponent,
     PaginationComponent,
     NewplantComponent,
@@ -172,6 +173,7 @@ registerLocaleData(localeEs);
     HttpModule,
     Select2Module,
     Ng2ImgMaxModule,
+    FileUploadModule,
     TabModule,
     CommonModule,
     BrowserAnimationsModule,

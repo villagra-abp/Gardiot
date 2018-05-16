@@ -14,18 +14,18 @@ import { MatDialog } from '@angular/material';
 })
 export class AdminListUsersComponent {
 
-  private users: any[] = [];
-  private user = new User();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 5;
-  private estado: boolean = false;// false es listado y true buscador
+  public users: any[] = [];
+  public user = new User();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 5;
+  public estado: boolean = false;// false es listado y true buscador
 
   constructor(
-    private _detailService: UserService,
-    private _route: Router,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _detailService: UserService,
+    public _route: Router,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 
