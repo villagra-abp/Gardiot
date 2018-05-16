@@ -4,16 +4,26 @@
 iframe{
   /* padding-top: 1%; */
   max-height: 680px;
-  min-height: 500px;
+  min-height: 540px;
 }
 
-.mat-tab {
+section, mat-tab {
+  margin-left: auto;
+  margin-right: auto;
 
+}
+
+section{
+  align-items: center;
+  text-align: center;
+  height:unset!important;
 }
 
 .mat-tab{
-    /* height:unset!important; */
-    /* width: unset!important;
-    /* height: unset!important; */
+    -moz-transition: none;
+   -webkit-transition: none;
+   -o-transition: color 0 ease-in;
+   transition: none;
+
 }
 /******* FIN ESTILO ESTADISTICAS *******/
