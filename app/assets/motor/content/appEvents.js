@@ -285,12 +285,12 @@ function scrolling(e) {
 
     let p = vec3.fromValues(-1.0, 1.0, 1.0);
     let pos = motor.getPosCamaraActiva();
-    if (e.deltaY < 0 && pos[1] > camHeight/2) {
+    if (e.deltaY < 0 && pos[1] > 3) {
 
       motor.escalarCamara("dynamicCamera", 0.9);
 
     }
-    else if (e.deltaY > 0 && pos[1] < camHeight + (camHeight / 2)) {
+    else if (e.deltaY > 0 && pos[1] < 5) {
       motor.escalarCamara("dynamicCamera", 1.1);
     }
 
@@ -304,11 +304,11 @@ function scrolling(e) {
     let vector = vec3.fromValues(point[0] - camera[0], point[1] - camera[1], point[2] - camera[2]);
     vec3.normalize(vector, vector);
     vec3.scale(vector, vector, 1);
-    if (e.deltaY < 0 && camera[1] > (camHeight / 2)) {
+    if (e.deltaY < 0 && camera[1] > 4) {
       motor.moverCamara("dynamicCamera", vector[0], vector[1], vector[2]);
     }
 
-    else if (e.deltaY > 0 && camera[1] < camHeight + (camHeight / 2)) {
+    else if (e.deltaY > 0 && camera[1] < 8) {
       motor.moverCamara("dynamicCamera", -vector[0], -vector[1], -vector[2]);
     }
   }

@@ -65,7 +65,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 2048;
+  window.shadowDepthTextureSize = 4096;
 
   //Índice de texturas
   window.index = 0;
@@ -204,11 +204,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
 
 /*SUELO GRANDE */
-
-  motor.crearNodoMalla("sueloGrande", "sueloGrande", "suelotierra.jpg", undefined);
-  motor.escalarMallaXYZ("sueloGrande", 8, 8, 8);
-  motor.rotarMalla("sueloGrande", -90, "x");
-  motor.moverMalla("sueloGrande", 0, -0.09, 0);
+for(let i=-1; i<=1; i++){
+  for(let j=-1; j<=1; j++){
+    motor.crearNodoMalla("sueloGrande"+i+'-'+j, "sueloGrande", "tierra.jpg", undefined);
+    motor.escalarMallaXYZ("sueloGrande"+i+'-'+j, 8, 8, 8);
+    motor.rotarMalla("sueloGrande"+i+'-'+j, -90, "x");
+    motor.moverMalla("sueloGrande"+i+'-'+j, 49*i, -0.09, 49*j);
+  }
+}
+  
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -222,7 +226,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.crearNodoMalla("valla" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla" + i, -90, "z");
     motor.escalarMallaXYZ("valla" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.038)); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.037)); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA izquierda.
@@ -239,7 +243,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.rotarMalla("valla3" + i, -90, "z");
     motor.rotarMalla("valla3" + i, 90, "x");
     motor.escalarMallaXYZ("valla3" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla3" + i, width + desfase, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla3" + i, width + desfase+0.01, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA delantera.
