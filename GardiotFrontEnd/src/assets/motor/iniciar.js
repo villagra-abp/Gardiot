@@ -16,7 +16,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.frameCount = 0;
   window.interval;
 
-  
+
   //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
   window.colorCell = [];
@@ -163,7 +163,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 90,
       posY: 0.2
 
-    }
+    },
+    SANDIA: {
+      textura: 'sandia.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.05
+    },
   };
 
 
@@ -198,6 +206,12 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     }
   }
 
+/*SUELO GRANDE */
+
+  // motor.crearNodoMalla("sueloGrande", "sueloGrande", "piedras.jpg", undefined);
+  // motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
+  // motor.rotarMalla("sueloGrande", -90, "x");
+  // motor.moverMalla("sueloGrande", 0, 0.1, 0);
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -245,7 +259,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // plantas dragables
   //Este mapa servirá para identificar si hay una planta en una posición concreta.
   //Por ejemplo, para una planta en la posición 3, 4, la forma de añadirla al mapa será
-  //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la 
+  //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la
   //planta que hay en ella.
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
@@ -277,7 +291,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
       motor.moverMalla("alaA", 0.2, 0.2, 0.2);
       motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
-  
+
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
   // motor.rotarMalla("pajaro2_000000", -90, "x");

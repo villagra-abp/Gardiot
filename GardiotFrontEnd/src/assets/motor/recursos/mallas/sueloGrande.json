@@ -1,0 +1,328 @@
+{
+	 "rootnode": {
+		 "name": "RootNode"
+		,"transformation": [
+			 1
+			,0
+			,0
+			,0
+			,0
+			,1
+			,0
+			,0
+			,0
+			,0
+			,1
+			,0
+			,0
+			,0
+			,0
+			,1
+		]
+		,"children": [
+			{
+				 "name": "Plane"
+				,"transformation": [
+					 2024.24
+					,0
+					,0
+					,0
+					,0
+					,-0.000329791
+					,2024.24
+					,0
+					,0
+					,-2024.24
+					,-0.000329791
+					,0
+					,0
+					,0
+					,0
+					,1
+				]
+				,"meshes": [
+					 0
+				]
+			}
+			,{
+				 "name": "Lamp"
+				,"transformation": [
+					 -29.0865
+					,56.6393
+					,77.1101
+					,1367.84
+					,-5.5189
+					,79.4672
+					,-60.4525
+					,1744.9
+					,-95.5171
+					,-21.8391
+					,-19.9883
+					,-476.92
+					,0
+					,0
+					,0
+					,1
+				]
+			}
+			,{
+				 "name": "Camera"
+				,"transformation": [
+					 -65.1558
+					,-32.4013
+					,68.5921
+					,748.113
+					,-44.5271
+					,89.5396
+					,-1.19209e-005
+					,534.367
+					,-61.417
+					,-30.5421
+					,-72.7676
+					,650.764
+					,0
+					,0
+					,0
+					,1
+				]
+			}
+		]
+	}
+	,"flags": 8
+	,"meshes": [
+		{
+			 "name": "Plane.001"
+			,"materialindex": 0
+			,"primitivetypes": 4
+			,"vertices": [
+				 -3.0889
+				,-3.0889
+				,0
+				,3.0889
+				,-3.0889
+				,0
+				,3.0889
+				,3.0889
+				,0
+				,-3.0889
+				,3.0889
+				,0
+			]
+			,"normals": [
+				 0
+				,0
+				,1
+				,0
+				,0
+				,1
+				,0
+				,0
+				,1
+				,0
+				,0
+				,1
+			]
+			,"tangents": [
+				 1
+				,0
+				,0
+				,1
+				,2.3255e-007
+				,0
+				,1
+				,0
+				,0
+				,1
+				,0
+				,0
+			]
+			,"bitangents": [
+				 2.71308e-007
+				,-1
+				,0
+				,0
+				,-1
+				,0
+				,2.71308e-007
+				,-1
+				,0
+				,2.71308e-007
+				,-1
+				,0
+			]
+			,"numuvcomponents": [
+				 2
+			]
+			,"texturecoords": [
+				[
+					 -24.1057
+					,-24.1057
+					,25.1057
+					,-24.1057
+					,25.1057
+					,25.1057
+					,-24.1057
+					,25.1057
+				]
+			]
+			,"faces": [
+				[
+					 0
+					,1
+					,2
+				]
+				,[
+					 0
+					,2
+					,3
+				]
+			]
+		}
+	]
+	,"materials": [
+		{
+			 "properties": [
+				{
+					 "key": "?mat.name"
+					,"semantic": 0
+					,"index": 0
+					,"type": 3
+					,"value": "suelo"
+				}
+				,{
+					 "key": "$clr.diffuse"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0.64
+						,0.64
+						,0.64
+					]
+				}
+				,{
+					 "key": "$clr.emissive"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,0
+					]
+				}
+				,{
+					 "key": "$clr.ambient"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,0
+					]
+				}
+				,{
+					 "key": "$clr.specular"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0.25
+						,0.25
+						,0.25
+					]
+				}
+				,{
+					 "key": "$mat.shinpercent"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": 9.60784
+				}
+				,{
+					 "key": "$mat.shininess"
+					,"semantic": 0
+					,"index": 0
+					,"type": 1
+					,"value": 9.60784
+				}
+				,{
+					 "key": "$tex.file"
+					,"semantic": 1
+					,"index": 0
+					,"type": 3
+					,"value": "piedras.jpg"
+				}
+				,{
+					 "key": "$tex.uvtrafo"
+					,"semantic": 1
+					,"index": 0
+					,"type": 1
+					,"value": [
+						 0
+						,0
+						,1
+						,1
+						,0
+					]
+				}
+				,{
+					 "key": "$tex.uvwsrc"
+					,"semantic": 1
+					,"index": 0
+					,"type": 4
+					,"value": 0
+				}
+			]
+		}
+	]
+	,"lights": [
+		{
+			 "name": "Lamp"
+			,"type": 1
+			,"attenuationconstant": 1
+			,"attenuationlinear": 1
+			,"attenuationquadratic": 0
+			,"diffusecolor": [
+				 100
+				,100
+				,100
+			]
+			,"specularcolor": [
+				 100
+				,100
+				,100
+			]
+			,"ambientcolor": [
+				 0
+				,0
+				,0
+			]
+			,"direction": [
+				 0
+				,0
+				,0
+			]
+		}
+	]
+	,"cameras": [
+		{
+			 "name": "Camera"
+			,"aspect": 1920
+			,"clipplanefar": 1000
+			,"clipplanenear": 0.1
+			,"horizontalfov": 0.0174533
+			,"up": [
+				 0
+				,1
+				,0
+			]
+			,"lookat": [
+				 -0.685913
+				,0
+				,0.727661
+			]
+		}
+	]
+}

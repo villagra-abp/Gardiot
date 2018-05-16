@@ -191,7 +191,8 @@ export class DetailComponent implements OnInit {
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
-        }        
+        }   
+        console.log(this.feeds);
       },
       error => {
         console.error(error);
@@ -274,11 +275,6 @@ export class DetailComponent implements OnInit {
         }
       } //end if
       this.tareas.push(aux); // se introducen las ultimas tareas del bucle
-      console.log(data);
-      console.log(this.tareas);
-      
-
-
 
     },
     error =>{
