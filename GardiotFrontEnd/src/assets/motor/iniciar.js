@@ -306,12 +306,49 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
-    let minutesTotalDay = 24 * 60;
+    var noon = new Date(2018, 11, 11, 0, 0, 0);
+    noon.setMinutes(minuteOfSunrise + minutesOfSun/2);
+    console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
+    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
+    console.log("Mediodía: " + noon.getHours() + ':' + noon.getMinutes() + ' (90º grados de SOL)');
+    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
+
+    if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
+      let relationNowSun = (minuteOfDay - minuteOfSunrise)/minutesOfSun;
+      let gradeSunPosition = relationNowSun * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition - 90);
+      console.log("Coloco SOL a " + gradeSunPosition + ' grados del suelo.');
+    }
+    else {
+      let minutesOfNight = (24 * 60) - minutesOfSun;
+      if (minuteOfDay < minuteOfSunrise) 
+        minuteOfDay = (24 * 60) + minuteOfDay;
+      let relationNowMoon = (minuteOfDay - minuteOfSunset)/minutesOfNight;
+      let gradeSunPosition = relationNowMoon * 180;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition + 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+      console.log("Coloco LUNA a " + gradeSunPosition + ' grados del suelo.');
+    }
+
+
+   let minutesTotalDay = 24 * 60;
     window.relationSunDay = minutesOfSun / minutesTotalDay;
+    /*console.log("Relación minutos sol/minutos día: " + relationSunDay);
     let relationNowDay = minuteOfDay * relationSunDay;
+    let relationNowDay2 = minuteOfDay / minutesTotalDay;
+    let relationToNoon = (minuteOfDay) / (minutesTotalDay + (noon.getHours() *60) + noon.getMinutes());
+    console.log("Relación ahora/día con mediodía real: " + relationToNoon);
+    //console.log("Relación ahora día (mediodía a las 12): " + relationNowDay2);
+    //console.log("Relación ahora/día: " + relationNowDay);
     let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
-    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
-    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    //let gradeSunPosition2 = relationNowDay2 * 360;
+    let gradeSunPosition3 = relationToNoon * 180;
+    console.log("Posición del sol considerando mediodía: " + gradeSunPosition3 + ' grados');
+    //console.log("Posición teórica del sol: " + gradeSunPosition2 + ' grados');
+    console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
+    
+    
     motor.rotarLuzOrbital('sol', 5, 'y');
     motor.rotarLuz('sol', -90, 'x');
     motor.rotarLuz('luna', 90, 'x');

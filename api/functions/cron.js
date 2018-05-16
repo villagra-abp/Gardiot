@@ -170,7 +170,6 @@ var autoWeeklyFeed = new CronJob({
   },
   start: false,
   timeZone: 'Europe/Madrid',
-  runOnInit: true
 });
 
 forgetPasswordTokenJob.start();
