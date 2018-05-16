@@ -208,10 +208,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
 /*SUELO GRANDE */
 
-  // motor.crearNodoMalla("sueloGrande", "sueloGrande", "piedras.jpg", undefined);
-  // motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
-  // motor.rotarMalla("sueloGrande", -90, "x");
-  // motor.moverMalla("sueloGrande", 0, -0.01, 0);
+  /*motor.crearNodoMalla("sueloGrande", "sueloGrande", "cespedDef.jpg", undefined);
+  motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
+  motor.rotarMalla("sueloGrande", -90, "x");
+  motor.moverMalla("sueloGrande", 0, 0.1, 0);*/
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -361,9 +361,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     console.log("Posición del sol considerando mediodía: " + gradeSunPosition3 + ' grados');
     //console.log("Posición teórica del sol: " + gradeSunPosition2 + ' grados');
     console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
-
-
-    motor.rotarLuzOrbital('sol', 5, 'y');
+    
+    
+    motor.rotarLuzOrbital('sol', 5, 'x');
     motor.rotarLuz('sol', -90, 'x');
     motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
@@ -402,9 +402,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
+    let altura=Math.min(width, length);
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
-    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.moverCamaraA("dynamicCamera", 0, altura, altura * 2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
 
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");

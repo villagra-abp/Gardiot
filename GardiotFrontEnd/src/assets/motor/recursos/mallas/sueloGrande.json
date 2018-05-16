@@ -625,13 +625,13 @@
 	]
 	,"materials": [
 		{
-			 "properties": [
+			"properties": [
 				{
 					 "key": "?mat.name"
 					,"semantic": 0
 					,"index": 0
 					,"type": 3
-					,"value": "suelo"
+					,"value": "Material.001"
 				}
 				,{
 					 "key": "$clr.diffuse"
@@ -639,9 +639,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.64
-						,0.64
-						,0.64
+						 0.94
+						,0.94
+						,0.94
 					]
 				}
 				,{
@@ -661,9 +661,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0
-						,0
-						,0
+						 0.64
+						,0.64
+						,0.64
 					]
 				}
 				,{
@@ -672,9 +672,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.25
-						,0.25
-						,0.25
+						 0.14
+						,0.14
+						,0.14
 					]
 				}
 				,{
@@ -689,7 +689,7 @@
 					,"semantic": 0
 					,"index": 0
 					,"type": 1
-					,"value": 9.60784
+					,"value": 19.60784
 				}
 				,{
 					 "key": "$tex.file"

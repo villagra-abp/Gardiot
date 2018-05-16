@@ -89,6 +89,7 @@ class TRecursoMalla extends TRecurso {
 
     //almacenamos las normales de los vértices
     this._normales.push(objeto.meshes[0].normals);
+    console.log(this._normales);
 
     //cargamos la textura
     if (textura !== undefined) {

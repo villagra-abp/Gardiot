@@ -44,5 +44,26 @@
     </div>
   </div>
 </section>
+
+<section class="feeds col-lg-12">
+  <div class="title">
+    <h6 id="titulo">Consejos</h6>
+  </div>
+  <div class="body">
+    <div class="row fila " *ngFor = "let feed of feeds">
+      <div class="col-sm-2 fecha">
+      <span class ="numero">new</span>
+      
+      </div>
+      <div class="col">
+        <div class="row tarea rounded">
+          <p class="col-md-12 ">{{feed.name}}</p>
+          <p class="col-md-12 ">{{feed.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
 </div>
 </div>
