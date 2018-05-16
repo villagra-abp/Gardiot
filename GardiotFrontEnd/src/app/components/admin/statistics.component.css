@@ -1,30 +1,29 @@
 /******* ESTILO ESTADISTICAS *******/
 /******* Julián Sánchez García *******/
-*{
-  /* margin: 0; */
-}
-.titulo{
-  display: inline;
-}
+
 iframe{
-  padding-top: 1%;
-}
-h1{
-  color:  #fbb200;
-  font-size: 1.6em;
-}
-i{
-  float: left;
+  /* padding-top: 1%; */
+  max-height: 680px;
+  min-height: 540px;
 }
 
-h4{
+section, mat-tab {
+  margin-left: auto;
+  margin-right: auto;
+
 }
-fieldset{
-  border-color: #fbb200;
+
+section{
+  align-items: center;
+  text-align: center;
+  height:unset!important;
 }
+
 .mat-tab{
-    /* height:unset!important; */
-    /* width: unset!important;
-    /* height: unset!important; */
+    -moz-transition: none;
+   -webkit-transition: none;
+   -o-transition: color 0 ease-in;
+   transition: none;
+
 }
 /******* FIN ESTILO ESTADISTICAS *******/
