@@ -174,9 +174,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     },
   };
 
-
-  window.sol;
-  window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
   window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
