@@ -208,7 +208,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
 /*SUELO GRANDE */
 
-  // motor.crearNodoMalla("sueloGrande", "sueloGrande", "cesped.jpg", undefined);
+  // motor.crearNodoMalla("sueloGrande", "sueloGrande", "piedras.jpg", undefined);
   // motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
   // motor.rotarMalla("sueloGrande", -90, "x");
   // motor.moverMalla("sueloGrande", 0, 0.1, 0);
