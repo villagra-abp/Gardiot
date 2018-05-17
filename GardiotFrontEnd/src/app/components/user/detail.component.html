@@ -35,11 +35,10 @@
   <section class="herramienta row ">
     <article class="form-row">
       <div class="form-group" (click) = "goGarden()" >
-        <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="260"
-          height="260"></canvas>
+        <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="350"
+          height="300"></canvas>
       </div>
     </article>
-
     <article >
       <section class="row icono">
         <div class="icon">
@@ -48,7 +47,7 @@
         </div>
         <div class="icon">
           <img src="{{photoURL}}/images/imgGardiot/flower.png" class="rounded mx-auto d-block icon" alt="Logo">
-          <p>8</p>
+          <p>{{garden.plants.length}}</p>
         </div>
       </section>
       <section class="row icono">
@@ -58,12 +57,11 @@
         </div>
         <div class="icon">
           <img src="{{photoURL}}/images/imgGardiot/ubicacion.png" class="rounded mx-auto d-block icon" alt="Logo">
-          <p>Tobarra</p>
+          <p>{{garden.city}}</p>
         </div>
       </section>
     </article>
   </section>
-
   <section class="feeds row">
     <div class="title">
       <h6 id="titulo2">Consejos</h6>
@@ -71,12 +69,12 @@
     <div class="body2">
       <div class="row fila " *ngFor = "let feed of feeds">
         <div class="col-sm-1 ">
-        <span class ="mes">Nuevo</span>
+        <span *ngIf="feed.viewed==0" class ="mes">Nuevo</span>
         </div>
         <div class="col">
           <div class="row tarea rounded">
             <p class="col-md-11 title_conejo">{{feed.name}}</p>
-            <button type="button" class="close col-md-1" aria-label="Close" (click)="cerrarfeed(feed.id)"><i class="material-icons">visibility</i></button>
+            <button *ngIf="feed.viewed==0" type="button" class="close col-md-1" aria-label="Close" (click)="cerrarfeed(feed.id)"><i class="material-icons">visibility</i></button>
             <p class="col-md-12 text_conejo">{{feed.text}}</p>
           </div>
         </div>
