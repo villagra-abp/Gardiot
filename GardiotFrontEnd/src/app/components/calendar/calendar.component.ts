@@ -80,11 +80,9 @@ export class CalendarComponent implements OnInit {
 
   private tasks: any[] = [];
   private task = new Task();
-
   private treatments: any[] = [];
   private treatment = new Task();
   private monthsLoaded: string[] = [];
-
   private contador: number=0;
 
 
@@ -180,12 +178,12 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService: TaskService,
-    private _route: Router,
-    private _appComponent: AppComponent,
-    private datePipe: DatePipe,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _taskService: TaskService,
+    public _route: Router,
+    public _appComponent: AppComponent,
+    public datePipe: DatePipe,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 
@@ -270,8 +268,6 @@ export class CalendarComponent implements OnInit {
       let task = this.tasks[event.id];
       this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'), fecha_actual)
         .subscribe(data => {
-          //console.log(data);
-          //console.log(event);
           event.actions = this.undoneActions;
           event.color = colors.green;
           event.draggable = false;
@@ -358,7 +354,7 @@ export class CalendarComponent implements OnInit {
         this.monthsLoaded.push(fechas[i]);
 
         //console.log(this.monthsLoaded);
-        
+
         for (let key$ in data) {
           this.tasks.push(data[key$]);
           //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
@@ -375,7 +371,7 @@ export class CalendarComponent implements OnInit {
           console.error(error);
         });
     }
-    
+
   }
   changeMonth(){
     let dates=[];
@@ -415,11 +411,11 @@ export class CalendarComponent implements OnInit {
           console.error(error);
         });
       }
-      
+
     }
     //console.log(this.monthsLoaded);
 
-    
+
   }
 
   ngOnInit() {

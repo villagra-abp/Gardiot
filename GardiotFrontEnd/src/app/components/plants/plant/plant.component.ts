@@ -17,30 +17,30 @@ import { ProductTreatment } from "../../../classes/producttreatment.class";
 })
 export class PlantComponent implements OnInit {
 
-  private plant = new Plant();
-  private product = new Product();
-  private treatment = new Treatment();
-  private treatments: any[] = [];
-  private products: any[] = [];
-  private productTreatments: any[] = [];
+  public plant = new Plant();
+  public product = new Product();
+  public treatment = new Treatment();
+  public treatments: any[] = [];
+  public products: any[] = [];
+  public productTreatments: any[] = [];
 
-  private producttreatment = new ProductTreatment();
+  public producttreatment = new ProductTreatment();
 
-  private iniSiembra: String;
-  private finSiembra: String;
-  private iniFlores: String;
-  private finFlores: String;
-  private iniRecolectar: String;
-  private finRecolectar: String;
+  public iniSiembra: String;
+  public finSiembra: String;
+  public iniFlores: String;
+  public finFlores: String;
+  public iniRecolectar: String;
+  public finRecolectar: String;
 
   mes: String;
 
   constructor(
-    private _plantService: PlantService,
-    private _treatmentPlantService: TreatmentPlantService,
-    private _router: ActivatedRoute,
-    private user: UserService,
-    private _route: Router) { }
+    public _plantService: PlantService,
+    public _treatmentPlantService: TreatmentPlantService,
+    public _router: ActivatedRoute,
+    public user: UserService,
+    public _route: Router) { }
 
   mostrar(numplant: number) {
     this._plantService.details(numplant)

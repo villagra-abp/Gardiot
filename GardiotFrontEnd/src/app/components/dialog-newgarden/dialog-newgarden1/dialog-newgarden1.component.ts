@@ -14,15 +14,15 @@ import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden
   styleUrls: ['./dialog-newgarden1.component.css']
 })
 export class DialogNewgarden1Component implements OnInit {
-  private garden = new Garden("");
-  private photoURL = "";
+  public garden = new Garden("");
+  public photoURL = "";
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden1Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private dialog: MatDialog,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public dialog: MatDialog,
   ) {
 
     if(window.location.toString().indexOf("localhost")>=0){
@@ -38,8 +38,10 @@ export class DialogNewgarden1Component implements OnInit {
     this._gardenService.details().subscribe(data => {
         if (data != null) {
           console.log(data);
-          this.garden = data;
-          console.log(this.garden);
+          this.garden=data;
+          this.garden.length!==undefined?this.garden.length=(this.garden.length-1)/2:this.garden.length=6;
+          this.garden.width!==undefined?this.garden.width=(this.garden.width-1)/2:this.garden.width=6;
+
         }
       },
       error => {
@@ -48,8 +50,12 @@ export class DialogNewgarden1Component implements OnInit {
   }
 
   saveGarden() {
+    this.garden.length=(this.garden.length*2)+1;
+    this.garden.width=(this.garden.width*2)+1;
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
+        this.openDialog();
+        this.thisDialogRef.close('Guardado');
       },
         error => {
           let v = JSON.parse(error._body);
@@ -59,8 +65,7 @@ export class DialogNewgarden1Component implements OnInit {
 
   onCloseConfirm() {
     this.saveGarden();
-    this.openDialog();
-    this.thisDialogRef.close('Guardado');
+    
 
   }
 

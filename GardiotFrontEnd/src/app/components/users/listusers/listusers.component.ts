@@ -14,18 +14,18 @@ import { MatDialog } from '@angular/material';
 })
 export class AdminListUsersComponent {
 
-  private users: any[] = [];
-  private user = new User();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 5;
-  private estado: boolean = false;// false es listado y true buscador
+  public users: any[] = [];
+  public user = new User();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 5;
+  public estado: boolean = false;// false es listado y true buscador
 
   constructor(
-    private _detailService: UserService,
-    private _route: Router,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _detailService: UserService,
+    public _route: Router,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 
@@ -81,6 +81,7 @@ export class AdminListUsersComponent {
     console.log(this.user);
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
+        
         console.log(data);
         if (data[0] != undefined) {
           this.users = [];
@@ -92,10 +93,12 @@ export class AdminListUsersComponent {
           for (let key$ in data) {
             this.users.push(data[key$]);
           }
+
         }else{
           this.users = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
+
         }
       },
       error => {

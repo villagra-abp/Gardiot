@@ -17,17 +17,17 @@ import { TreatmentPlantService } from "../../../services/treatmentplant.service"
 })
 export class DialogTaskComponent implements OnInit {
 
-  private nameTreatment = new Treatment();
-  private plant = new Plant();
-  private product = new Product();
-  private products: any[] = [];
+  public nameTreatment = new Treatment();
+  public plant = new Plant();
+  public product = new Product();
+  public products: any[] = [];
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _treatmentService: TreatmentService,
-    private _plantService: PlantService,
-    private _treatmentPlantService: TreatmentPlantService,
+    public _treatmentService: TreatmentService,
+    public _plantService: PlantService,
+    public _treatmentPlantService: TreatmentPlantService,
 
 
   ) { }

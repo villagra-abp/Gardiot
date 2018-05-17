@@ -16,24 +16,24 @@ import { DialogNewgarden1Component } from '../dialog-newgarden1/dialog-newgarden
   styleUrls: ['./dialog-newgarden2.component.css']
 })
 export class DialogNewgarden2Component implements OnInit {
-  private garden = new Garden("");
-  private idNewJardin: number;
-  private countryData: Observable<Array<Select2OptionData>>;
-  private startCountry: Observable<string>;
-  private cityData: Observable<Array<Select2OptionData>>;
-  private startCity: Observable<string>;
-  private countries: any[] = [];
-  private cities: any[] = [];
-  private zip: string = "";
+  public garden = new Garden("");
+  public idNewJardin: number;
+  public countryData: Observable<Array<Select2OptionData>>;
+  public startCountry: Observable<string>;
+  public cityData: Observable<Array<Select2OptionData>>;
+  public startCity: Observable<string>;
+  public countries: any[] = [];
+  public cities: any[] = [];
+  public zip: string = "";
 
-  private photoURL = "";
+  public photoURL = "";
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden2Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private dialog: MatDialog,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public dialog: MatDialog,
   ) {
     if(window.location.toString().indexOf("localhost")>=0){
       this.photoURL="/assets";
@@ -57,9 +57,9 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
   onCloseConfirm() {
-    this.openDialog();
+    
     this.saveGarden();
-    this.thisDialogRef.close('Guardado');
+    
   }
 
   onCloseAtras() {
@@ -228,6 +228,8 @@ export class DialogNewgarden2Component implements OnInit {
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
+        this.openDialog();
+        this.thisDialogRef.close('Guardado');
       },
         error => {
           let v = JSON.parse(error._body);

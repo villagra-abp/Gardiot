@@ -12,11 +12,11 @@ import { Feed } from "../../../classes/feed.class";
 export class NewfeedComponent implements OnInit {
 
   feed = new Feed();
-  private feeds: any[] = [];
+  public feeds: any[] = [];
 
   constructor(
-    private _feedService: FeedService,
-    private _appComponent: AppComponent,
+    public _feedService: FeedService,
+    public _appComponent: AppComponent,
   ) { }
 
   guardar() {
