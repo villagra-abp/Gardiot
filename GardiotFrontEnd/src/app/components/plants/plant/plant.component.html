@@ -10,26 +10,20 @@
         <dl>
           <dt *ngIf="plant.commonName !=undefined">{{plant.commonName}}</dt>
           <dt *ngIf="plant.scientificName !=undefined">{{plant.scientificName}}</dt>
-          <dt *ngIf="plant.family !=undefined">Familia </dt>hola<dd>{{plant.family}}</dd>
+          <dd *ngIf="plant.family !=undefined"></dd>
           <dd *ngIf="plant.depth !=undefined"><img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra" style="margin-right: 5px">{{plant.depth}} cm</dd>
           <dd *ngIf="plant.distance !=undefined"><img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra" style="margin-right: 5px">{{plant.distance}} cm</dd>
           <dd *ngIf="plant.diseaseResist !=undefined"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo" style="margin-right: 5px">{{plant.diseaseResist}} º C</dd>
         </dl>
+        <article class="fechas" class="row">
+              <span *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="col-md-4"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></span>
+              <span *ngIf="iniFlores !=undefined && finFlores !=undefined" class="col-md-4"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></span>
+              <span *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="col-md-4"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Floración"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></span>
+        </article>
       </div>
     </article>
 
-    <dl>
-      <dt>Coffee</dt>
-      <dd>Black hot drink</dd>
-      <dt>Milk</dt>
-      <dd>White cold drink</dd>
-    </dl>
 
-    <article class="fechas" class="row">
-          <span *ngIf="iniSiembra !=undefined && finSiembra !=undefined" class="col-md-4"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></span>
-          <span *ngIf="iniFlores !=undefined && finFlores !=undefined" class="col-md-4"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></span>
-          <span *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined" class="col-md-4"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Floración"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></span>
-    </article>
 
     <article class="row description">
       <p *ngIf="plant.description !=undefined">{{plant.description}}</p>

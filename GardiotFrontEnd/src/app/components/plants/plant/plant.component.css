@@ -24,10 +24,10 @@
   font-weight: bold;
 }
 p.fechas{
-  display: inline;
+  display: flex;
   margin-left: 0;
-  align-items: center;
-  text-align: center;
+  align-items: left;
+  text-align: left;
 }
 article{
   margin-right: auto;
@@ -57,10 +57,24 @@ li{
   font-size: .9em;
 }
 
-section{
-  margin-right: auto;
-  margin-right: 200px;
-}
 .vistaUser{
   margin-right: 200px;
+}
+dl {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0
+}
+dt {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0
+}
+dd {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0
 }
