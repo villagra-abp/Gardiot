@@ -182,8 +182,8 @@ async function rotarSol() {
   await sleep(300000); //5 min
   let now = new Date();
   let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let relationNowDay = minutesDiff * window.relationSunDay;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  let relationNowDay = minutesDiff / (24*60);
+  let gradeSunPosition = relationNowDay * 360;
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   window.lastTime = now;
@@ -192,13 +192,13 @@ async function rotarSol() {
 }
 
 async function demoSol() {
-  await sleep(500);
+  await sleep(200);
   let now = new Date(window.lastTime);
   now.setHours(now.getHours() + 1);
   let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let relationNowDay = minutesDiff * window.relationSunDay;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
+  let relationNowDay = minutesDiff / (24*60);
+  let gradeSunPosition = relationNowDay * 360;
+  //console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   //window.factorIlumination=Math.sin(Math.radians(gradeSunPosition))+0.2;
