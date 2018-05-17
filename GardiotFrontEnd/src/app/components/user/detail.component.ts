@@ -143,7 +143,7 @@ export class DetailComponent implements OnInit {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
         this.temperature =  data.main.temp -273;
-        
+
         var sunrise = new Date();
         var sunset = new Date();
         sunrise.setTime(data.sys.sunrise * 1000);
@@ -212,28 +212,27 @@ export class DetailComponent implements OnInit {
   mostrartask() {
     let f = new Date();
     let fechas=[];
-
     fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()-1);
-
-
       this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-
         for (let key$ in data) {
           this.tasks.push(data[key$]);
-          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-          // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
-console.log(this.tasks);
-
       },
         error => {
           console.error(error);
         });
+
+        this._taskService.percent().subscribe(data => {
+            console.log(data);
+        },
+          error => {
+            console.error(error);
+          });
   }
 
 

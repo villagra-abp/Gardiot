@@ -24,6 +24,9 @@ img{
 p{
 	text-align: center;
 }
+.texto_dato{
+		font-weight: bold;
+}
 .hecho{
 	color: #299654;
 }
