@@ -37,6 +37,7 @@ class TMotor {
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					motor.draw();
 					animLoop();
 					motor.allLoaded();
 				}
@@ -70,6 +71,7 @@ class TMotor {
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					motor.draw();
 					motor.drawSombras();
 					motor.draw();
 					motor.allLoaded();

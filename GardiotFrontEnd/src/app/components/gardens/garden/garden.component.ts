@@ -31,92 +31,92 @@ declare var hammertime: any;
   ]
 })
 export class GardenComponent {
-  private garden = new Garden("");
+  public garden = new Garden("");
 
-  private mobile=false;
+  public mobile=false;
 
 
-  private temperatura = 0;
-  private prevHoy = [];
-  private prevMan = [];
-  private prevDia3 = [];
-  private prevDia4 = [];
-  private prevDia5 = [];
+  public temperatura = 0;
+  public prevHoy = [];
+  public prevMan = [];
+  public prevDia3 = [];
+  public prevDia4 = [];
+  public prevDia5 = [];
 
-  private fotoHoy = "default";
-  private fotoMan = "default";
-  private fotoDia3 = "default";
-  private fotoDia4 = "default";
-  private fotoDia5 = "default";
+  public fotoHoy = "default";
+  public fotoMan = "default";
+  public fotoDia3 = "default";
+  public fotoDia4 = "default";
+  public fotoDia5 = "default";
 
-  private statusHoy = "Clear";
-  private statusMan = "Clear";
-  private statusDia3 = "Clear";
-  private statusDia4 = "Clear";
-  private statusDia5 = "Clear";
+  public statusHoy = "Clear";
+  public statusMan = "Clear";
+  public statusDia3 = "Clear";
+  public statusDia4 = "Clear";
+  public statusDia5 = "Clear";
 
-  private colorHoy = "#fcfcfc";
-  private colorMan = "#fcfcfc";
-  private colorDia3 = "#fcfcfc";
-  private colorDia4 = "#fcfcfc";
-  private colorDia5 = "#fcfcfc";
+  public colorHoy = "#fcfcfc";
+  public colorMan = "#fcfcfc";
+  public colorDia3 = "#fcfcfc";
+  public colorDia4 = "#fcfcfc";
+  public colorDia5 = "#fcfcfc";
 
-  private maxMan = 0;
-  private maxDia3 = 0;
-  private maxDia4 = 0;
-  private maxDia5 = 0;
+  public maxMan = 0;
+  public maxDia3 = 0;
+  public maxDia4 = 0;
+  public maxDia5 = 0;
 
-  private minMan = 0;
-  private minDia3 = 0;
-  private minDia4 = 0;
-  private minDia5 = 0;
+  public minMan = 0;
+  public minDia3 = 0;
+  public minDia4 = 0;
+  public minDia5 = 0;
 
-  private nombreDia3 = "";
-  private nombreDia4 = "";
-  private nombreDia5 = "";
+  public nombreDia3 = "";
+  public nombreDia4 = "";
+  public nombreDia5 = "";
 
-  private tercerDia: string = "";
-  private visible = 0;//0 visualización
+  public tercerDia: string = "";
+  public visible = 0;//0 visualización
                       //1 edición
                       //2 jardín externo
-  private haveWeather = false;
+  public haveWeather = false;
 
-  private sunrise;
-  private sunset;
+  public sunrise;
+  public sunset;
 
-  private countries: any[] = [];
-  private cities: any[] = [];
-  private zip: string = "";
-  private countryData: Observable<Array<Select2OptionData>>;
-  private startCountry: Observable<string>;
-  private cityData: Observable<Array<Select2OptionData>>;
-  private startCity: Observable<string>;
-  private city: string;
-  private tiempoCity: string = "El tiempo";
+  public countries: any[] = [];
+  public cities: any[] = [];
+  public zip: string = "";
+  public countryData: Observable<Array<Select2OptionData>>;
+  public startCountry: Observable<string>;
+  public cityData: Observable<Array<Select2OptionData>>;
+  public startCity: Observable<string>;
+  public city: string;
+  public tiempoCity: string = "El tiempo";
 
 
-  private photoURL = "";
-  private accion: string;
-  private width: number;
-  private length: number;
+  public photoURL = "";
+  public accion: string;
+  public width: number;
+  public length: number;
 
   //paginación y buscador
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 9;
-  private estado: boolean = false;// false es listado y true buscador
-  private plantmotor: number[];
-  private plantsmotor: any[] = [];
-  private plant = new Plant();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 9;
+  public estado: boolean = false;// false es listado y true buscador
+  public plantmotor: number[];
+  public plantsmotor: any[] = [];
+  public plant = new Plant();
 
 
   constructor(
-    private _gardenService: GardenService,
-    private _plantService: PlantService,
-    private _route: Router,
-    private _appComponent: AppComponent,
-    private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
+    public _gardenService: GardenService,
+    public _plantService: PlantService,
+    public _route: Router,
+    public _appComponent: AppComponent,
+    public dialog: MatDialog,
+    public activatedRoute: ActivatedRoute,
   ) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.photoURL = "/assets";

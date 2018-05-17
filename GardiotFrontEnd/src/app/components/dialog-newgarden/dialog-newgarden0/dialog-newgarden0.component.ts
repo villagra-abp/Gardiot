@@ -14,14 +14,14 @@ import { DialogNewgarden1Component } from '../dialog-newgarden1/dialog-newgarden
   styleUrls: ['./dialog-newgarden0.component.css']
 })
 export class DialogNewgarden0Component implements OnInit {
-  private photoURL = "";
-  private garden = new Garden('');
+  public photoURL = "";
+  public garden = new Garden('');
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden0Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _route: Router,
-    private dialog: MatDialog,
-    private _gardenService: GardenService,
+    public _route: Router,
+    public dialog: MatDialog,
+    public _gardenService: GardenService,
   ) {
       if(window.location.toString().indexOf("localhost")>=0){
         this.photoURL="/assets";

@@ -17,20 +17,20 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class NewtreatmentsplantsComponent implements OnInit {
 
-  private treatmentPlant = new TreatmentPlant();
-  private productTreatment = new ProductTreatment();
-  private treatments: any[] = [];
-  private products: any[] = [];
-  private treatmentsPlants: any[] = [];
-  private idPlant: number;
+  public treatmentPlant = new TreatmentPlant();
+  public productTreatment = new ProductTreatment();
+  public treatments: any[] = [];
+  public products: any[] = [];
+  public treatmentsPlants: any[] = [];
+  public idPlant: number;
 
   constructor(
-    private _treatmentService: TreatmentService,
-    private _productService: ProductService,
-    private _treatmentPlantService: TreatmentPlantService,
-    private _appComponent: AppComponent,
-    private _router: ActivatedRoute,
-    private _route: Router
+    public _treatmentService: TreatmentService,
+    public _productService: ProductService,
+    public _treatmentPlantService: TreatmentPlantService,
+    public _appComponent: AppComponent,
+    public _router: ActivatedRoute,
+    public _route: Router
   ) { }
 
   guardar() {

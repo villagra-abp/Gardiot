@@ -12,16 +12,16 @@ import { MatDialog } from '@angular/material';
 })
 export class ListtreatmentComponent implements OnInit {
 
-  private treatments: any[] = [];
-  private treatment = new Treatment();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 6;
-  private estado: boolean = false;// false es listado y true buscador
+  public treatments: any[] = [];
+  public treatment = new Treatment();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 6;
+  public estado: boolean = false;// false es listado y true buscador
 
   constructor(
-    private _treatmentService: TreatmentService,
-    private activatedRoute: ActivatedRoute,
+    public _treatmentService: TreatmentService,
+    public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
   ) { }
 

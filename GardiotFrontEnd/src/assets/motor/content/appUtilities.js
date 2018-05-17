@@ -77,6 +77,7 @@ function setupWebGL() {
     glProgram[window.program].textured = gl.getUniformLocation(glProgram[window.program], "uTextured");
     glProgram[window.program].lighted = gl.getUniformLocation(glProgram[window.program], "uLighted");
     glProgram[window.program].hovered = gl.getUniformLocation(glProgram[window.program], "uHovered");
+    glProgram[window.program].factor = gl.getUniformLocation(glProgram[window.program], "uFactor");
     //matriz de normales
     glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
     //Backface culling
@@ -200,6 +201,7 @@ async function demoSol() {
   console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
+  //window.factorIlumination=Math.sin(Math.radians(gradeSunPosition))+0.2;
   //motor.rotarLuzOrbital('sol', gradeSunPosition/2, 'y');
   //motor.rotarLuzOrbital('luna', gradeSunPosition/2, 'y');
   window.lastTime = now;

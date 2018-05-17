@@ -13,7 +13,8 @@ import { TreatmentPlantService } from "./services/treatmentplant.service";
 import { Ng2ImgMaxService } from "ng2-img-max";
 //libreries
 import { Select2Module } from 'ng2-select2';
-import { FileSelectDirective } from 'ng2-file-upload';
+//import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import {Ng2ImgMaxModule} from "ng2-img-max";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -45,8 +46,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 //garden
 import { GardenComponent } from './components/gardens/garden/garden.component';
 import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
-import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
-import { UserdataComponent } from './components/users/userdata/userdata.component';
 //user
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
@@ -105,6 +104,7 @@ import { DialogNewgarden0Component } from './components/dialog-newgarden/dialog-
 import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
 
 
+
 registerLocaleData(localeEs);
 
 
@@ -126,14 +126,11 @@ registerLocaleData(localeEs);
     NewuserComponent,
     GardenComponent,
     EditGardenComponent,
-    NewGardenComponent,
     StatisticsComponent,
-    UserdataComponent,
     LibraryComponent,
     CalendarComponent,
     OauthConfirmationComponent,
     DesarrolloComponent,
-    FileSelectDirective,
     PlantComponent,
     PaginationComponent,
     NewplantComponent,
@@ -172,6 +169,7 @@ registerLocaleData(localeEs);
     HttpModule,
     Select2Module,
     Ng2ImgMaxModule,
+    FileUploadModule,
     TabModule,
     CommonModule,
     BrowserAnimationsModule,

@@ -13,13 +13,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class EdittreatmentComponent implements OnInit {
 
   treatment = new Treatment();
-  private treatments: any[] = [];
+  public treatments: any[] = [];
 
   constructor(
-    private _treatmentService: TreatmentService,
-    private _appComponent: AppComponent,
-    private _router: ActivatedRoute,
-    private _route: Router,
+    public _treatmentService: TreatmentService,
+    public _appComponent: AppComponent,
+    public _router: ActivatedRoute,
+    public _route: Router,
   ) { }
 
   guardar() {

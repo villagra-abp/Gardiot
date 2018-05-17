@@ -78,14 +78,14 @@ export class CalendarComponent implements OnInit {
 
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
-  private tasks: any[] = [];
-  private task = new Task();
+  public tasks: any[] = [];
+  public task = new Task();
 
-  private treatments: any[] = [];
-  private treatment = new Task();
-  private monthsLoaded: string[] = [];
+  public treatments: any[] = [];
+  public treatment = new Task();
+  public monthsLoaded: string[] = [];
 
-  private contador: number=0;
+  public contador: number=0;
 
 
 
@@ -180,12 +180,12 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService: TaskService,
-    private _route: Router,
-    private _appComponent: AppComponent,
-    private datePipe: DatePipe,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _taskService: TaskService,
+    public _route: Router,
+    public _appComponent: AppComponent,
+    public datePipe: DatePipe,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 

@@ -11,9 +11,9 @@ import { AppComponent } from "../../app.component";
 export class ConfirmationComponent implements OnInit {
 
   constructor(
-    private _comprobationService: UserService,
-    private _router: ActivatedRoute,
-    private _appComponent: AppComponent) { }
+    public _comprobationService: UserService,
+    public _router: ActivatedRoute,
+    public _appComponent: AppComponent) { }
 
 
 
