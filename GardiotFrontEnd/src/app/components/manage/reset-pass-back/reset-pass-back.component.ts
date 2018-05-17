@@ -16,9 +16,9 @@ export class ResetPassBackComponent implements OnInit {
   password = "";
   password2 = "";
   constructor(
-    private _appComponent:AppComponent,
-    private router: ActivatedRoute,
-    private _newPass: UserService
+    public _appComponent:AppComponent,
+    public router: ActivatedRoute,
+    public _newPass: UserService
 
   ) { }
   //Enviar los nuevos datos del usuario a UserService para guardarlos

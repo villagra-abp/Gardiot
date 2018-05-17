@@ -19,22 +19,22 @@ import { Select2OptionData } from 'ng2-select2';
 })
 export class LibraryComponent implements OnInit {
 
-  private plants: any[] = [];
-  private families: any[] = [];
-  private plant = new Plant();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 6;
-  private estado: boolean = false;// false es listado y true buscador
-  private familyData: Observable<Array<Select2OptionData>>;
-  private startFamily: Observable<string>;
+  public plants: any[] = [];
+  public families: any[] = [];
+  public plant = new Plant();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 6;
+  public estado: boolean = false;// false es listado y true buscador
+  public familyData: Observable<Array<Select2OptionData>>;
+  public startFamily: Observable<string>;
 
   constructor(
-    private _plantService: PlantService,
-    private _route: Router,
-    private activatedRoute: ActivatedRoute,
-    private user: UserService,
-    private dialog: MatDialog,
+    public _plantService: PlantService,
+    public _route: Router,
+    public activatedRoute: ActivatedRoute,
+    public user: UserService,
+    public dialog: MatDialog,
   ) { }
 
   mostrar() {

@@ -11,17 +11,17 @@ import { MatDialog } from '@angular/material';
 })
 export class ListfeedComponent implements OnInit {
 
-  private feeds: any[] = [];
-  private feed = new Feed();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 4;
-  private estado: boolean = false;// false es listado y true buscador
+  public feeds: any[] = [];
+  public feed = new Feed();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 4;
+  public estado: boolean = false;// false es listado y true buscador
 
   constructor(
-    private _feedService: FeedService,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _feedService: FeedService,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
   mostrar() {

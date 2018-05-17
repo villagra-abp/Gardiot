@@ -27,11 +27,11 @@ export class AdminProfileComponent implements OnInit{
 
 
   constructor(
-    private _detailService:UserService,
-    private _route:Router,
-    private _appComponent:AppComponent,
-    private datePipe: DatePipe,
-    private _renderer:Renderer){ }
+    public _detailService:UserService,
+    public _route:Router,
+    public _appComponent:AppComponent,
+    public datePipe: DatePipe,
+    public _renderer:Renderer){ }
 
     @HostListener('document:keyup', ['$event'])
     searchZip(event: KeyboardEvent): void {

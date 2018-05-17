@@ -178,12 +178,12 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService: TaskService,
-    private _route: Router,
-    private _appComponent: AppComponent,
-    private datePipe: DatePipe,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _taskService: TaskService,
+    public _route: Router,
+    public _appComponent: AppComponent,
+    public datePipe: DatePipe,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 

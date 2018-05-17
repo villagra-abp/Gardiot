@@ -89,7 +89,6 @@ class TRecursoMalla extends TRecurso {
 
     //almacenamos las normales de los vértices
     this._normales.push(objeto.meshes[0].normals);
-    console.log(this._normales);
 
     //cargamos la textura
     if (textura !== undefined) {
@@ -225,6 +224,14 @@ class TRecursoMalla extends TRecurso {
     else if (variable == "red") {
       gl.uniform1i(glProgram[window.program].hovered, 3);
     }
+    if(this.nombre=='sueloGrande'){
+      gl.uniform1i(glProgram[window.program].hovered, 4);
+      gl.uniform1f(glProgram[window.program].factor, window.factorIlumination);
+    }
+    else if(this.nombre.indexOf('sueloExt')>=0){
+      gl.uniform1i(glProgram[window.program].hovered, 5);
+    }
+      
 
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);

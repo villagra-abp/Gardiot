@@ -16,10 +16,10 @@ export class ResetPassComponent implements OnInit {
   public correo;
   public apiURL:string="https://gardiot.ovh/api/";
   constructor(
-    private _appComponent:AppComponent,
-    private _resetPassword:UserService,
-    private _isAdmin:UserService,
-    private _userExist:UserService,
+    public _appComponent:AppComponent,
+    public _resetPassword:UserService,
+    public _isAdmin:UserService,
+    public _userExist:UserService,
   ) {}
 
   isAdmin(){

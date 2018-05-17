@@ -15,17 +15,17 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 export class NewplantComponent implements OnInit {
   plant = new Plant();
   // treatmentPlant=new TreatmentPlant();
-  private plants: any[] = [];
-  private families: any[] = [];
-  // private treatments:any[]=[];
-  // private treatmentsPlants:any[]=[];
+  public plants: any[] = [];
+  public families: any[] = [];
+  // public treatments:any[]=[];
+  // public treatmentsPlants:any[]=[];
   uploader: FileUploader;
 
   constructor(
-    private _plantService: PlantService,
-    // private _treatmentService:TreatmentService,
-    private _appComponent: AppComponent,
-    private _ng2ImgMax: Ng2ImgMaxService,
+    public _plantService: PlantService,
+    // public _treatmentService:TreatmentService,
+    public _appComponent: AppComponent,
+    public _ng2ImgMax: Ng2ImgMaxService,
 
   ) { }
 

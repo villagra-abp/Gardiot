@@ -19,6 +19,19 @@ router.get('/todayTask/:number/:page', passport.authenticate('jwt', {session: fa
 	}
 });
 
+router.get('/todayPercent', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
+	taskModel.getTodayCompletedPercent(request.user.id, function (error, data) {
+		if (error)
+			response.status(500).json({"Mensaje":error.message});
+		else {
+			let percent = ((data[0].done/data[0].total) * 100);
+			if (percent == null || percent == 'NaN')
+				percent = 0;
+			response.status(200).json({"Mensaje": percent});
+		}
+	});
+});
+
 router.get('/firstTasks/:number/:page', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.number, {gt: 0}) || !validator.isInt(request.params.page, {gt: 0})) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});

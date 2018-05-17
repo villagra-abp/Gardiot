@@ -12,8 +12,8 @@ import { NgForm } from '@angular/forms';
 export class NewuserComponent implements OnInit {
 
   user = new User();
-  constructor(private _newUserServce: UserService,
-    private _appComponent: AppComponent) { }
+  constructor(public _newUserServce: UserService,
+    public _appComponent: AppComponent) { }
 
   guardarUsuario(forma: NgForm) {
     if (forma.value.admin == true) {
