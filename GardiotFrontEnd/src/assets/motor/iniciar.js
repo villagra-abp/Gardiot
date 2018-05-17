@@ -98,7 +98,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 0,
       rotZ: 90,
-      posY: 0.1
+      posY: 0
     },
     TOMATE: {
       textura: 'tomatera.png',
