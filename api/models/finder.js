@@ -80,12 +80,16 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		if(sort.toUpperCase() === 'DESC')
 			sql += 'DESC ';
 		sql += 'LIMIT ' + minPeak + ',' + number;
-		connection.query(sql, function(error, rows) {
-			if (error)
-				callback(error, null);
-			else
-				callback(null, rows);
-		});
+		if (sqlParams != '') {
+			connection.query(sql, function(error, rows) {
+				if (error)
+					callback(error, null);
+				else
+					callback(null, rows);
+			});
+		}
+		else 
+			callback (null, null);		
 	}
 }
 
