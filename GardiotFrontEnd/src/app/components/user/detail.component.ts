@@ -86,6 +86,7 @@ export class DetailComponent implements OnInit {
   private sunset;
   private tareas:any[] = [];
   private photoURL = "";
+  private temperature = 0;
 
 
   constructor(
@@ -141,6 +142,8 @@ export class DetailComponent implements OnInit {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
+        this.temperature =  data.main.temp -273;
+        
         var sunrise = new Date();
         var sunset = new Date();
         sunrise.setTime(data.sys.sunrise * 1000);
