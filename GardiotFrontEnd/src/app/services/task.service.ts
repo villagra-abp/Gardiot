@@ -86,4 +86,14 @@ export class TaskService {
         return res.json();
       })
   }
+
+  percent(){
+        let headers = new Headers({
+          'Authorization': `Bearer ${localStorage['Bearer']}`
+        });
+        return this.http.get(this.apiURL + "todayPercent", { headers })
+          .map(res => {
+            return res.json();
+          })
+  }
 }

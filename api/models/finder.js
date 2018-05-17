@@ -37,7 +37,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 	if (connection) {
 		let minPeak = (page - 1) * number;
 		var sql = 'SELECT COUNT(*) OVER () AS num, Q.* ' + skeleton[model.toUpperCase()]['SELECT'] + ' FROM ' + skeleton[model.toUpperCase()]['FROM'] + ' Q ';
-
+		
 		let sqlParams = '';
 		for (var key in data) {
 			if (typeof data[key]!== 'undefined') {
@@ -82,6 +82,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		sql += 'LIMIT ' + minPeak + ',' + number;
 		if (sqlParams != '') {
 			connection.query(sql, function(error, rows) {
+
 				if (error)
 					callback(error, null);
 				else

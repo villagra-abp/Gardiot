@@ -73,18 +73,21 @@ export class DetailComponent implements OnInit {
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   viewDate: Date = new Date();
-  public user = new User("");
-  public gardenRoute = "";
-  public feeds: any[] = [];
-  public feed = new Feed();
-  public garden = new Garden("");
-  public tasks: any[] = [];
-  public task = new Task();
-  public refresh: Subject<any> = new Subject();
-  public events: CalendarEvent[] = [];
-  public sunrise;
-  public sunset;
-  public tareas:any[] = [];
+  private user = new User("");
+  private gardenRoute = "";
+  private feeds: any[] = [];
+  private feed = new Feed();
+  private garden = new Garden("");
+  private tasks: any[] = [];
+  private task = new Task();
+  private refresh: Subject<any> = new Subject();
+  private events: CalendarEvent[] = [];
+  private sunrise;
+  private sunset;
+  private tareas:any[] = [];
+  private photoURL = "";
+  private temperature = 0;
+
 
   constructor(
     public _detailService: UserService,
@@ -94,7 +97,13 @@ export class DetailComponent implements OnInit {
     public _feedService: FeedService,
     public datePipe: DatePipe,
 
-  ) { }
+  ) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }}
 //------ comprobamos si es su primera vez en la app------//
   checkGarden() {
     this._gardenService.firstgarden().subscribe(data => {
@@ -133,6 +142,8 @@ export class DetailComponent implements OnInit {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
+        this.temperature =  data.main.temp -273;
+
         var sunrise = new Date();
         var sunset = new Date();
         sunrise.setTime(data.sys.sunrise * 1000);
@@ -191,8 +202,7 @@ export class DetailComponent implements OnInit {
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
-        }   
-        console.log(this.feeds);
+        }
       },
       error => {
         console.error(error);
@@ -202,28 +212,27 @@ export class DetailComponent implements OnInit {
   mostrartask() {
     let f = new Date();
     let fechas=[];
-
     fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
     f.setMonth(f.getMonth()-1);
-
-
       this._taskService.detailsAll(fechas[0])
       .subscribe(data => {
-
         for (let key$ in data) {
           this.tasks.push(data[key$]);
-          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-          // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
-        
-
       },
         error => {
           console.error(error);
         });
+
+        this._taskService.percent().subscribe(data => {
+            console.log(data);
+        },
+          error => {
+            console.error(error);
+          });
   }
 
 
@@ -253,11 +262,11 @@ export class DetailComponent implements OnInit {
   }
 
   getTasks(){
-    this._taskService.detailsSome(10)
+    this._taskService.detailsSome(15)
     .subscribe(data =>{
-   
+
       let aux:any[] = [];
-    
+
 
 
       for (let i = 0; i<data.length; i++){
@@ -280,6 +289,20 @@ export class DetailComponent implements OnInit {
     error =>{
       console.error(error);
     });
+  }
+
+  dotask(tarea:Task){
+    let f = new Date();
+    let fecha_actual: string;
+    f.getDate();
+    f.getMonth() + 1;
+    f.getFullYear();
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), fecha_actual)
+      .subscribe(data => {
+        this.refresh.next();
+      });
+
   }
 
   ngOnInit() {
