@@ -185,6 +185,5 @@ export class PlantComponent implements OnInit {
       }
     });
 
-
   }
 }
