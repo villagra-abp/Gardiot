@@ -78,9 +78,9 @@ export class DialogTaskComponent implements OnInit {
       });
   }
 
-  onCloseConfirm() {
-    this.thisDialogRef.close('Confirm');
-  }
+  // onCloseConfirm() {
+  //   this.thisDialogRef.close('Confirm');
+  // }
 
   ngOnInit() {
     this.mostrar();

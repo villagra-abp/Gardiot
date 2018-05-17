@@ -1,18 +1,23 @@
-section{
-    /* width: 100%; */
-    /* margin: 0 auto; */
-    background: rgba(255,255,255,0.1);
-    /* padding: 35px; */
-    border: 3px solid #fff;
-    border-radius: 20px/50px;
-    background-clip: padding-box;
-    /* text-align: center; */
-    /* margin: 0; */
+/* Julián Sánchez García.
+   Ingeniería Multimedia UA 2018 */
+@media (max-width: 580px) {
+  .imagen{
+    padding-bottom: 6%;
+    padding-right: 2%;
+  }
+}
+/* FULLSCREEN */
+.imagen {
+  padding-right: 6%;
 }
 section{
-  /* margin-top: -26px; */
+    /* margin-right: auto;
+    margin-left: auto; */
 }
-
+span{
+  font-weight: bold;
+  font-size: 2em;
+}
 mat-dialog-actions{
   padding: 2.5px;
 }
@@ -21,13 +26,19 @@ button{
 }
 .producto{
   font-size: .8em;
+  overflow-y: auto;
+  max-height: 200px;
+  overflow-x:hidden;
+  text-align: justify;
 }
-/* .scroll {
-     width:628px;
-     height:315px;
-     overflow:auto;
-} */
-span{
-  font-size: 2em;
+.tratamiento{
+  text-align: justify;
+  font-size: .9em;
+}
+.nombrePlanta{
   font-weight: bold;
+  /* font-size: 1.2em; */
+}
+.cursiva{
+  font-style: italic;
 }
