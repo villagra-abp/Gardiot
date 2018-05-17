@@ -10,9 +10,8 @@
   <div class="row">
     <div class="col-sm-4">
       <h6 class="nombrePlanta">{{plant.commonName}}</h6>
-      <img class="imagen" src="{{plant.photo}}" alt="{{plant.photo}}" width="150" height="150">
+      <img class="imagen" src="{{plant.photo}}" alt="{{plant.photo}}" width="auto" height="auto">
     </div>
-
     <div class="col-sm-8 producto">
       <div *ngFor="let product of products">
         <h6 *ngIf="this.products !== undefined">Producto recomendado</h6>
