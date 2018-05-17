@@ -1,8 +1,6 @@
 <div class="container main-container">
   <div class="row">
-
-    <div class="card bg-dark text-white">
-  <!-- <img class="card-img" src=".../100px270/#55595c:#373a3c/text:Card image" alt="Card image"> -->
+    <!-- <div class="card bg-dark text-white">
   <canvas  id="myCanvas" class="card-img" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1149"
     height="270"></canvas>
   <div class="card-img-overlay">
@@ -10,56 +8,81 @@
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
     <p class="card-text">Last updated 3 mins ago</p>
   </div>
+</div> -->
+<section class="calendar col-lg-5 ">
+<div class="container">
+  <div class="title">
+    <h6 id="titulo">Tareas</h6>
+  </div>
+  <div class="body">
+    <div class="row fila" *ngFor = "let grupo of tareas">
+      <div class="col-sm-2 fecha">
+      <span class ="numero">{{grupo[0].date | date:['d']}}</span>
+      <span class ="mes">{{grupo[0].date | date:['LLL']}}</span>
+      </div>
+      <div class="col">
+        <div class="row tarea rounded" *ngFor = "let tarea of grupo">
+          <p class="col-sm-9 text_conejo">{{tarea.name}} {{tarea.commonName}}</p>
+          <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
+          <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-  <!-- <section class="herramienta col-lg-12">
+</section>
+<div class="col-lg-7">
+  <section class="herramienta row ">
     <article class="form-row">
       <div class="form-group" (click) = "goGarden()" >
         <canvas  id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="260"
           height="260"></canvas>
       </div>
     </article>
-  </section> -->
 
-  <section class="calendar col-lg-6 ">
-  <div class="container">
+    <article >
+      <section class="row icono">
+        <div class="icon">
+          <img src="{{photoURL}}/images/imgGardiot/checklist.png" class="rounded mx-auto d-block " alt="Logo">
+          <p>60%</p>
+        </div>
+        <div class="icon">
+          <img src="{{photoURL}}/images/imgGardiot/flower.png" class="rounded mx-auto d-block icon" alt="Logo">
+          <p>8</p>
+        </div>
+      </section>
+      <section class="row icono">
+        <div class="icon">
+          <img src="{{photoURL}}/images/imgGardiot/temperature.png" class="rounded mx-auto d-block icon" alt="Logo">
+          <p>16º</p>
+        </div>
+        <div class="icon">
+          <img src="{{photoURL}}/images/imgGardiot/ubicacion.png" class="rounded mx-auto d-block icon" alt="Logo">
+          <p>Tobarra</p>
+        </div>
+      </section>
+    </article>
+  </section>
+
+  <section class="feeds row">
     <div class="title">
-      <h6 id="titulo">Tareas</h6>
+      <h6 id="titulo2">Consejos</h6>
     </div>
-    <div class="body">
-      <div class="row fila" *ngFor = "let grupo of tareas">
-        <div class="col-sm-2 fecha">
-        <span class ="numero">{{grupo[0].date | date:['d']}}</span>
-        <span class ="mes">{{grupo[0].date | date:['LLL']}}</span>
+    <div class="body2">
+      <div class="row fila " *ngFor = "let feed of feeds">
+        <div class="col-sm-1 ">
+        <span class ="mes">Nuevo</span>
         </div>
         <div class="col">
-          <div class="row tarea rounded" *ngFor = "let tarea of grupo">
-            {{tarea.name}} {{tarea.commonName}}
+          <div class="row tarea rounded">
+            <p class="col-md-11 title_conejo">{{feed.name}}</p>
+            <button type="button" class="close col-md-1" aria-label="Close" (click)="cerrarfeed(feed.id)"><i class="material-icons">visibility</i></button>
+            <p class="col-md-12 text_conejo">{{feed.text}}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="feeds col-lg-6">
-  <div class="title">
-    <h6 id="titulo">Consejos</h6>
-  </div>
-  <div class="body">
-    <div class="row fila " *ngFor = "let feed of feeds">
-      <div class="col-sm-1 ">
-      <span class ="mes">Nuevo</span>
-      </div>
-      <div class="col">
-        <div class="row tarea rounded">
-          <p class="col-md-11 ">{{feed.name}}</p>
-          <button type="button" class="close col-md-1" aria-label="Close" (click)="cerrarfeed(feed.id)"><span aria-hidden="true">&times;</span></button>
-          <p class="col-md-12 ">{{feed.text}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+  </section>
+</div>
 </div>
 </div>

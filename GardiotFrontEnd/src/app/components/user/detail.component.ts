@@ -85,6 +85,8 @@ export class DetailComponent implements OnInit {
   private sunrise;
   private sunset;
   private tareas:any[] = [];
+  private photoURL = "";
+
 
   constructor(
     private _detailService: UserService,
@@ -94,7 +96,13 @@ export class DetailComponent implements OnInit {
     private _feedService: FeedService,
     private datePipe: DatePipe,
 
-  ) { }
+  ) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }}
 //------ comprobamos si es su primera vez en la app------//
   checkGarden() {
     this._gardenService.firstgarden().subscribe(data => {
@@ -191,7 +199,7 @@ export class DetailComponent implements OnInit {
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
-        }   
+        }
         console.log(this.feeds);
       },
       error => {
@@ -218,7 +226,7 @@ export class DetailComponent implements OnInit {
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
-        
+
 
       },
         error => {
@@ -253,11 +261,11 @@ export class DetailComponent implements OnInit {
   }
 
   getTasks(){
-    this._taskService.detailsSome(10)
+    this._taskService.detailsSome(15)
     .subscribe(data =>{
-   
+
       let aux:any[] = [];
-    
+
 
 
       for (let i = 0; i<data.length; i++){
@@ -280,6 +288,20 @@ export class DetailComponent implements OnInit {
     error =>{
       console.error(error);
     });
+  }
+
+  dotask(tarea:Task){
+    let f = new Date();
+    let fecha_actual: string;
+    f.getDate();
+    f.getMonth() + 1;
+    f.getFullYear();
+    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), fecha_actual)
+      .subscribe(data => {
+        this.refresh.next();
+      });
+
   }
 
   ngOnInit() {
