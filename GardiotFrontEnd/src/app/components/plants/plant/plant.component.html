@@ -48,7 +48,7 @@
         <img *ngIf="treatment.icon !=undefined" class="iconplant" src="{{treatment.icon}}" alt="Tratamiento">
         <h5 *ngIf="treatment.name !=undefined">{{treatment.name}}</h5>
         <p *ngIf="treatment.description !=undefined">{{treatment.description}}</p>
-        <h6 *ngIf="productTreatments !=undefined">Productos</h6>
+        <h6 *ngIf="productTreatments !== undefined">Productos</h6>
         <ul *ngFor="let producttreatment of productTreatments">
           <li class="list-group-item" *ngIf="treatment.id == producttreatment.treatment">{{producttreatment.name}}</li>
         </ul>

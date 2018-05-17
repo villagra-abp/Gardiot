@@ -61,14 +61,18 @@ class TMotor {
 	 * Con él podemos obtener una imagen estática
 	 */
 	startDrawingStatic() {
+		this.running = true;
+
+		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-			cargarShaders();
+
+			//bucle de animación en utilities.js
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					motor.drawSombras();
 					motor.draw();
 					motor.allLoaded();
-					
 				}
 			}, 100);
 		}
