@@ -22,7 +22,14 @@
       </div>
       <div class="col">
         <div class="row tarea rounded" *ngFor = "let tarea of grupo">
-          <p class="col-sm-9 text_conejo">{{tarea.name}} {{tarea.commonName}}</p>
+
+          <img *ngIf="tarea.name=='Regar'" src="{{photoURL}}/images/icon/regar.png" class="rounded mx-auto d-block icontarea" alt="Logo">
+          <img *ngIf="tarea.name=='Fertilizar'" src="{{photoURL}}/images/icon/fertilizar.png" class="rounded mx-auto d-block icontarea" alt="Logo">
+          <img *ngIf="tarea.name=='Podar'" src="{{photoURL}}/images/icon/podar.png" class="rounded mx-auto d-block icontarea" alt="Logo">
+          <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/recolectar.png" class="rounded mx-auto d-block icontarea" alt="Logo">
+          <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Logo">
+          <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
+          <!--{{tarea.name}}   -->
           <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
           <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
         </div>

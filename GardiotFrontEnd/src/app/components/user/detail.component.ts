@@ -200,7 +200,6 @@ export class DetailComponent implements OnInit {
         for (let key$ in data) {
           this.feeds.push(data[key$]);
         }
-        console.log(this.feeds);
       },
       error => {
         console.error(error);
@@ -226,7 +225,7 @@ export class DetailComponent implements OnInit {
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
         }
-
+console.log(this.tasks);
 
       },
         error => {

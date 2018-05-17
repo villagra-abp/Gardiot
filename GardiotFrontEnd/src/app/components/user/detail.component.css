@@ -9,6 +9,11 @@ img{
 .icon{
 	margin-left: 4em;
 }
+.icontarea{
+	margin-left: 0;
+	width: 25px;
+	height: 25px;
+}
 .text_conejo{
 	text-align: left;
 }
@@ -34,9 +39,6 @@ p{
 .material-icons:hover{
 	color: #299654;
 }
-
-
-
 
 ::-webkit-scrollbar {
       width: 10px;
