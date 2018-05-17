@@ -52,6 +52,6 @@
       </tbody>
     </table>
     <p *ngIf="numeroItems==0">Esta busqueda no tiene resultados</p>
-    <app-pagination [count]="this.numeroItems" [type]="3" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+    <app-pagination [count]="this.numeroItems" [type]="3" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
   </div>
 </div>

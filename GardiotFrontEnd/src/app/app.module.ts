@@ -46,8 +46,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 //garden
 import { GardenComponent } from './components/gardens/garden/garden.component';
 import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
-import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
-import { UserdataComponent } from './components/users/userdata/userdata.component';
 //user
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
@@ -128,9 +126,7 @@ registerLocaleData(localeEs);
     NewuserComponent,
     GardenComponent,
     EditGardenComponent,
-    NewGardenComponent,
     StatisticsComponent,
-    UserdataComponent,
     LibraryComponent,
     CalendarComponent,
     OauthConfirmationComponent,

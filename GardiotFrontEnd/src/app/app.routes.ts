@@ -25,7 +25,6 @@ import { AdminComponent } from './components/admin/admin.component';
 //GardenComponent
 import { GardenComponent } from './components/gardens/garden/garden.component';
 import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
-import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
 import { AuthguardGuard } from "./authguard.guard";
 //mas rutas
 import { admin_routes } from "./admin.routes";
@@ -46,7 +45,6 @@ const app_routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
-  { path: 'newgarden', component: NewGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'newplant', component: NewplantComponent, canActivate: [AuthguardGuard] },
   { path: 'editplant/:id', component: EditplantComponent, canActivate: [AuthguardGuard] },
