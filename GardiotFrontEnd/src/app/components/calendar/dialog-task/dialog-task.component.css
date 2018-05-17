@@ -4,16 +4,22 @@
   .imagen{
     padding-bottom: 6%;
     padding-right: 2%;
+    border-radius: 50%;
   }
 }
 /* FULLSCREEN */
 .imagen {
   padding-right: 6%;
+  max-width: 230px;
+  border-radius: 5%;
 }
 section{
     /* margin-right: auto;
     margin-left: auto; */
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
+
 span{
   font-weight: bold;
   font-size: 2em;
@@ -30,6 +36,8 @@ button{
   max-height: 200px;
   overflow-x:hidden;
   text-align: justify;
+  padding-left: 3%;
+
 }
 .tratamiento{
   text-align: justify;
