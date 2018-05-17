@@ -34,8 +34,7 @@ export class DialogNewgarden0Component implements OnInit {
 
   onCloseConfirm() {
     this.saveGarden();
-    this.openDialog();
-    this.thisDialogRef.close('Empezar');
+    
   }
 
   onCloseOmit() {
@@ -51,6 +50,8 @@ export class DialogNewgarden0Component implements OnInit {
   saveGarden() {
     this._gardenService.insertGarden(this.garden)
       .subscribe(data => {
+        this.openDialog();
+        this.thisDialogRef.close('Empezar');
       },
         error => {
           let v = JSON.parse(error._body);

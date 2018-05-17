@@ -57,9 +57,9 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
   onCloseConfirm() {
-    this.openDialog();
+    
     this.saveGarden();
-    this.thisDialogRef.close('Guardado');
+    
   }
 
   onCloseAtras() {
@@ -228,6 +228,8 @@ export class DialogNewgarden2Component implements OnInit {
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
+        this.openDialog();
+        this.thisDialogRef.close('Guardado');
       },
         error => {
           let v = JSON.parse(error._body);
