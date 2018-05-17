@@ -47,6 +47,7 @@ uniform int uLighted;
 uniform int uNLights;
 uniform int uHovered;
 uniform float uFactor;
+uniform int uNight;
 
 
 
@@ -75,7 +76,13 @@ void main()
 	highp float bias = 0.00154;
 
 	if(fragmentDepth.z>(depth-bias)){
-		visibility=0.25;
+		if(uNight==1){
+			visibility=0.8;
+		}
+		else{
+			visibility=0.25;
+		}
+		
 	}
 
 	vec3 N=normalize(vTVertNormal.xyz);

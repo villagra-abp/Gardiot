@@ -59,4 +59,26 @@ Math.radians = function(degrees) {
         opened[i].querySelector('i:last-of-type').style.visibility='hidden';
     }
   }
+
+  function closeEdit(e, element){
+    
+    if(element.style.visibility=='initial'){
+        e.stopPropagation();
+        e.preventDefault();
+        element.style.visibility='hidden';
+        element.parentNode.classList.remove('selected');
+        document.getElementById('formulario').classList.add('infoOcult');
+    }
+
+  }
+  function closeWeather(e, element){
+    
+    if(element.style.visibility=='initial'){
+        e.stopPropagation();
+        e.preventDefault();
+        element.style.visibility='hidden';
+        element.parentNode.classList.remove('selected');
+        document.getElementById('prevision').classList.add('previsionClosed');
+    }
+  }
   
