@@ -38,7 +38,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   matrixStack.push(matrixModel);
   window.projectionMatrix = [];//matriz proyección
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
-  mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);
+  let anchura=12;
+  mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
 
 
@@ -64,7 +65,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 2048;
+  window.shadowDepthTextureSize = 4096;
 
   //Índice de texturas
   window.index = 0;
@@ -77,7 +78,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   cargarShaders();
   initFramebufferSombras();
   setupWebGL();
-
 
   //Se inicia el motor
   window.motor = new TMotor(gestor);
@@ -155,7 +155,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 0,
       posY: 0.2
     },
-    LOGO: { // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
+    LOGO: {
       textura: 'logo.jpg',
       escalado: 0.3,
       rotX: -90,
@@ -189,13 +189,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
+  /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);
+  motor.moverMalla("around", 0, -0.11, 0);*/
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width-2; i <= width+2; i++) {
-    for (let j = -length-2; j <= length+2; j++) {
+  for (let i = -width; i <= width; i++) {
+    for (let j = -length; j <= length; j++) {
       motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
       motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
       motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
@@ -204,11 +204,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
 
 /*SUELO GRANDE */
-
-  /*motor.crearNodoMalla("sueloGrande", "sueloGrande", "cespedDef.jpg", undefined);
-  motor.escalarMallaXYZ("sueloGrande", 6, 6, 0);
-  motor.rotarMalla("sueloGrande", -90, "x");
-  motor.moverMalla("sueloGrande", 0, 0.1, 0);*/
+for(let i=-1; i<=1; i++){
+  for(let j=-1; j<=1; j++){
+    motor.crearNodoMalla("sueloGrande"+i+'-'+j, "sueloGrande", "tierra.jpg", undefined);
+    motor.escalarMallaXYZ("sueloGrande"+i+'-'+j, 8, 8, 8);
+    motor.rotarMalla("sueloGrande"+i+'-'+j, -90, "x");
+    motor.moverMalla("sueloGrande"+i+'-'+j, 49*i, -0.09, 49*j);
+  }
+}
+  
 
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
@@ -222,7 +226,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.crearNodoMalla("valla" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla" + i, -90, "z");
     motor.escalarMallaXYZ("valla" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.038)); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.037)); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA izquierda.
@@ -239,7 +243,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.rotarMalla("valla3" + i, -90, "z");
     motor.rotarMalla("valla3" + i, 90, "x");
     motor.escalarMallaXYZ("valla3" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla3" + i, width + desfase, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
+    motor.moverMalla("valla3" + i, width + desfase+0.01, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA delantera.
@@ -360,8 +364,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     console.log("Posición inicial del sol: "+ gradeSunPosition + ' grados');*/
     
     
-    motor.rotarLuzOrbital('sol', 5, 'x');
+    motor.rotarLuzOrbital('sol', 7, 'x');
     motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('sol', -5, 'z');
     motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
