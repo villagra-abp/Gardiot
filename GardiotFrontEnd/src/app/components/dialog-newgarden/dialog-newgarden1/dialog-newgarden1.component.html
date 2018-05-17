@@ -15,11 +15,11 @@
           <img src="{{photoURL}}/images/imgGardiot/tamanyo.png" class="rounded mx-auto d-block" width="80%" height="90%" alt="Logo">
         </div>
         <div class="form-group col-md-6">
-          <label for="length">Largo:{{garden.length===undefined ? 4 : garden.length}}m</label>
-          <input class="form-control" type="range" [(ngModel)]="garden.length" min="2" max="10" step="1" name="length" id="length_garden" required>
+          <label for="length">Largo: {{garden.length===undefined ? 6 : garden.length}}m</label>
+          <input class="form-control" type="range" [(ngModel)]="garden.length" min="2" max="9" step="1" name="length" id="length_garden" required>
 
-          <label for="width">Ancho:{{garden.width===undefined ? 4 : garden.width}}m</label>
-          <input class="form-control" type="range" [(ngModel)]="garden.width" min="2" max="10" step="1" name="width" id="width_garden" required>
+          <label for="width">Ancho: {{garden.width===undefined ? 6 : garden.width}}m</label>
+          <input class="form-control" type="range" [(ngModel)]="garden.width" min="2" max="9" step="1" name="width" id="width_garden" required>
         </div>
       </div>
     </form>
