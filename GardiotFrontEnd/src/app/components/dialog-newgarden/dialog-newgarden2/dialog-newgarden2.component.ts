@@ -46,7 +46,9 @@ export class DialogNewgarden2Component implements OnInit {
   getid() {
     this._gardenService.details().subscribe(data => {
         if (data != null) {
+          console.log(data);
           this.garden = data;
+          console.log(this.garden);
         }
       },
       error => {

@@ -5,10 +5,36 @@ function main () {
     //insertUsuarios(100);
     if (!process.argv[2] || !process.argv[3])
         console.log("Esta función se ejecuta mediante: node fillDB.js *numUsuarios* *numPlantasPorUsuario*");
-    else
-        insertMyPlant(process.argv[2], process.argv[3]);
+    else {
+        for (let i = 1; i<= process.argv[2]; i++) {
+            authenticate(process.argv[2], function (error, token) {
+                if (error) {
+                    console.log("Error autenticando usuario: " + error);
+                    process.exit(0);
+                }
+                else if (token) {
+                    insertMyPlant(process.argv[3], token);
+                }
+            });          
+        }
+            
+    }        
 }
 main();
+
+function authenticate (id, callback) {
+    request.post(url + 'authenticate', {
+        form: {
+            id: 'user' + id + '@gmail.com',
+            password: 'perro1234',
+        }
+    }, function(error, response, body){
+        if (error) 
+            callback(error, null);      
+        else 
+            callback(null, JSON.parse(body).Token);
+    });
+}
 
 function insertUsuarios (num) {
     for (var id = 1; id<=num; id++) {
@@ -40,46 +66,29 @@ function insertUsuarios (num) {
     }   
 }
 
-function insertMyPlant (users, myPlants) {
-    for (var id = 1; id<=users; id++) {
-        request.post(url + 'authenticate', {
-            form: {
-                id: 'user' + id + '@gmail.com',
-                password: 'perro1234',
-            }
-        }, function(error, response, body){
-            if (error) {
-                console.log("Error autenticando usuario: " + error);
-                return 0;
-            }
-            else {
-                var token = JSON.parse(body).Token;
-                var plantsInserted = 0
-                var max = 3, min = -3;
-                var gardens = 0;
-                for (var i = min; i <= max && plantsInserted < myPlants; i++) {
-                    for (var j = min; j <= max && plantsInserted < myPlants; j++) {
-                        plantsInserted ++;
-                        request.post(url + 'myPlant/' + plantsInserted, {
-                            auth: {
-                              'bearer': token
-                            },
-                            form: {
-                                xCoordinate: i,
-                                yCoordinate: j,
-                                plant: 1
-                            }
-                        }, function (error, response, body) {
-                            if (error) {
-                                console.log("Error insertando plantas: " +error);  
-                                return 0;
-                            } 
-                        });
-                    }
+function insertMyPlant (myPlants, token) {  
+    var plantsInserted = 0
+    var max = 3, min = -3;
+    for (var i = min; i <= max && plantsInserted < myPlants; i++) {
+        for (var j = min; j <= max && plantsInserted < myPlants; j++) {
+            plantsInserted ++;
+            request.post(url + 'myPlant/' + plantsInserted, {
+                auth: {
+                    'bearer': token
+                },
+                form: {
+                    xCoordinate: i,
+                    yCoordinate: j,
+                    plant: 1
                 }
-            }               
-        });
-    } 
+            }, function (error, response, body) {
+                if (error) {
+                    console.log("Error insertando plantas: " +error);  
+                    return 0;
+                } 
+            });
+        }
+    }   
 }
 
 /*
