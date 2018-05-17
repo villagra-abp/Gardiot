@@ -44,7 +44,7 @@
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
-    <i class="material-icons" onclick="this.parentNode.classList.toggle('infoOcult')">close</i>
+
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
         <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
@@ -84,36 +84,32 @@
       <div class="toggleDeko litButton red" id="del" onmouseup="deletePlant(event)" [hidden]="isDragging()" >
           <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
         </div>
-        <div class="toggleDeko litButton yellow" id="plt" 
-    onclick="document.getElementById('prevision').classList.toggle('previsionClosed'); 
-            document.getElementById('formulario').classList.add('infoOcult');" *ngIf="visible==0 && haveWeather == true">
-      <i class="material-icons">cloud</i>
+        <div class="toggleDeko litButton desplegable yellow" id="plt" 
+    onclick="openWeather(this)" *ngIf="haveWeather == true">
+      <i class="material-icons">cloud</i> <span>Previsión</span> <i style="visibility:hidden" class="material-icons">close</i>
     </div>
-      <div class="toggleDeko litButton yellow" id="plt" onclick="motor.toggleVista(event);
-      document.getElementById('prevision').classList.add('previsionClosed');
-      document.getElementById('formulario').classList.add('infoOcult');" (click)="this.toggleState()">
-          <img src="{{photoURL}}/images/icon/plant.png" alt="plant" />
+    <div class="toggleDeko litButton desplegable yellow" id="edit" 
+    onclick="openInfo(this);">
+      <img src="{{photoURL}}/images/icon/edit.png" alt="edit" /> <span>Editar información</span> <i style="visibility:hidden" class="material-icons">close</i>
+    </div>
+      <div class="toggleDeko litButton desplegable yellow" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
+          <img src="{{photoURL}}/images/icon/plant.png" alt="plant" /> <span>Cambiar de modo</span><i style="visibility:hidden" class="material-icons">close</i>
         </div>
     
     
-    <div class="toggleDeko litButton yellow" id="edit" 
-    onclick="document.getElementById('formulario').classList.toggle('infoOcult'); 
-            document.getElementById('prevision').classList.add('previsionClosed')">
-      <img src="{{photoURL}}/images/icon/edit.png" alt="edit" />
-    </div>
+    
     <div class="toggleDeko litButton orange" id="plus" onclick="plusZoom()">
       <img src="{{photoURL}}/images/icon/plus.png" alt="plus" />
     </div>
     <div class="toggleDeko litButton orange" id="sub" onclick="subZoom()">
       <img src="{{photoURL}}/images/icon/sub.png" alt="sub" />
     </div>
-    <div class="toggleDeko litButton orange" id="help" (click)="this.openDialog(1, 2)">
-      <img src="{{photoURL}}/images/icon/ask.png" alt="ask" />
+    <div class="toggleDeko litButton desplegable orange" id="help" onclick="openHelp()" (click)="this.openDialog(1, 2)">
+      <img src="{{photoURL}}/images/icon/ask.png" alt="ask" /> <span>Ayuda</span><i style="visibility:hidden" class="material-icons">close</i>
     </div>
     
   </section>
-  <div id="prevision" class="previsionClosed" *ngIf="visible==0 && haveWeather == true" oncontextmenu="return false;">
-    <i class="material-icons" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">close</i>
+  <div id="prevision" class="previsionClosed" *ngIf="haveWeather == true" oncontextmenu="return false;">
     <!--<span class="interactiveButton" 
     style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" 
     onclick="document.getElementById('prevision').classList.toggle('previsionClosed');"> <i class="material-icons">cloud</i></span>-->

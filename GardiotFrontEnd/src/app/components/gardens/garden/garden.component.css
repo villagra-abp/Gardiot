@@ -25,14 +25,15 @@
 
 #prevision{
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  top: 100px;
-  left: 0;
-  min-width: 180px;
-  max-width: 180px;
+  background:rgba(48, 145, 145, 0.7);
+  top: 120px;
+  right: 60px;
+  min-width: 240px;
+  max-width: 240px;
+  border-bottom-left-radius: 15px;
   color: #fff;
-  transition: .3s ease-in all;
-  border-radius: 15px;
+  transition: .2s ease-in all;
+  z-index:1;
 }
 
 
@@ -43,11 +44,12 @@
   cursor: pointer;
   font-size: 2em;
   z-index: 30;
+  
   transition: .3 ease-in all;
 }
 
 .previsionClosed{
-  left: -250px !important;
+  right: -240px !important;
 }
 .previsionClosed>span:last-of-type{
   position: absolute;
@@ -61,7 +63,6 @@
 
 .tiempo{
   color:#000;
-  margin-top : 2em;
   padding: 1em;
 }
 .headTiempo{
@@ -136,22 +137,26 @@
 
   .formulario{
 
-    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+  background:rgba(48, 145, 145, 0.7);
+  top: 180px;
+  right: 60px;
+  min-width: 240px;
+  max-width: 240px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+  transition: .2s ease-in all;
+  z-index:1;
 
-    color: #fff;
-
-
- position: fixed;
  z-index: 20;
  padding: 0 1.6em 0.9em 1.6em;
- top: 6em;
- right: 0;
- width:14em;
- height: auto;
 
- border-radius: 15px;
- margin-right: 1em;
- transition: .3s ease-in all;
+ min-width: 240px;
+  max-width: 240px;
+
+
+ border-bottom-left-radius: 15px;
+
 }
 
 .infoOcult{
@@ -159,6 +164,7 @@
 }
 
 .formulario>i{
+  
   position: absolute;
   top: -30px;
   right: 0;
@@ -183,27 +189,42 @@ h1, h2{
 
 /*buttons*/
 .litButtons{
-  position: fixed;
-  width: 40px;
-  height: 315px;
-  bottom: 20px;
-  right: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+position: absolute;
+top: 60px;
+right: 0;
+bottom: 0;
+background: #309191 !important;
+transform: translateX(240px);
+z-index:33;
 }
 .litButton{
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
+
+  width: 300px;
+  height: 60px;
+  padding: 10px;
   margin:0;
   background-position: center;
   background-repeat: no-repeat;
+  color: #fff;
   cursor:pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background: #309191 !important;
+  transition: .2s ease-in all;
+  z-index:22;
+}
+.litButton.desplegable:hover{
+  transform: translateX(-240px);
+}
+.litButton.desplegable.selected{
+  transform: translateX(-240px);
 }
 .litButton>img{
-  width: 80%;
-  margin: 10%;
+  width: 40px;
+  height: 40px;
+
 }
 .litButton>i{
   color: #fff;
@@ -213,9 +234,10 @@ h1, h2{
   margin-top: 7px;
 
 }
-.litButton:not(:last-of-type){
-  margin-bottom: 15px;
+.litButton>span{
+  margin-left: 10px;
 }
+
 
 .red{
   background-color: rgb(226, 0, 26);
@@ -227,22 +249,20 @@ h1, h2{
   background-color: #0036ff;
 
 }
+
+.toggleDeko.litButton.red{
+  position: absolute;
+  bottom: 50px;
+  right: 110px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  z-index: 30;
+
+}
 /*end buttons*/
 
 /*Additional buttons*/
-.rotButton{
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 50px;
-  border: none;
-  width: 100px;
-  background: none;
-  z-index: 15;
-}
-.rotButton>img{
-  width: 100%;
-}
 
 body{
   padding: 0 !important;
@@ -469,14 +489,15 @@ li{
     bottom: 61px;
  
     overflow-y: scroll;
- 
+
+    
     /*top: 50%;
  
     transform: translateY(-50%);*/
  
     color: #fff;
  
-    transition: .3s ease-in all;
+    transition: .2s ease-in all;
  
     z-index: 21;
  
@@ -589,7 +610,7 @@ li{
     /*top: 50%;
     transform: translateY(-50%);*/
     color: #fff;
-    transition: .3s ease-in all;
+    transition: .2s ease-in all;
     z-index: 21;
    }
 

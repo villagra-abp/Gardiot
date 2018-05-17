@@ -79,7 +79,7 @@ export class GardenComponent {
   public visible = 0;//0 visualización
                       //1 edición
                       //2 jardín externo
-  public haveWeather = false;
+  public haveWeather = true;
 
   public sunrise;
   public sunset;
@@ -349,8 +349,11 @@ export class GardenComponent {
           this.haveWeather = true;
         }
         catch(e){
-
+          this.haveWeather = false;
         }
+      }
+      else{
+        this.haveWeather = true;
       }
 
 
