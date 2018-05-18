@@ -147,6 +147,7 @@ garden.checkMyPlantsBounds = function (id, width, length, callback) {
     if (sqlAddition != '') {
       var sql = 'SELECT COUNT(*) AS number FROM MyPlant WHERE garden = ' + id + sqlAddition;
       connection.query(sql, function (error, rows) {
+        console.log(rows);
         if (error) 
           callback(error, null);
         else if (rows[0].number == 0)
