@@ -157,6 +157,7 @@ export class GardenService {
 
   }
 
+  
   modifyGarden2(garden: Garden) {
     
     let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;

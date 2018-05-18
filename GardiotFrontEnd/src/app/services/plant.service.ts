@@ -98,12 +98,13 @@ export class PlantService {
 		if(plant.family == 0){
 			plant.family = undefined;
 		}
-		let body = `commonName=${plant.commonName}`;
-		body += `&scientificName=${plant.scientificName}`;
-		body += `&leaveType=${plant.leaveType}`;
-		body += `&initDatePlant=${plant.initDatePlant}`;
-		body += `&finDatePlant=${plant.finDatePlant}`;
-		body += `&family=${plant.family}`;
+		let body='';
+		if(plant.commonName!==undefined){body += `&commonName=${plant.commonName}`}
+		if(plant.scientificName!==undefined){body += `&scientificName=${plant.scientificName}`};
+		if(plant.leaveType!==undefined){body += `&leaveType=${plant.leaveType}`}
+		if(plant.initDatePlant!==undefined){body += `&initDatePlant=${plant.initDatePlant}`}
+		if(plant.finDatePlant!==undefined){body += `&finDatePlant=${plant.finDatePlant}`}
+		if(plant.family!==undefined){body += `&family=${plant.family}`}
 		let headers = new Headers({
 			'Authorization': `Bearer ${localStorage['Bearer']}`,
 			'Content-Type': 'application/x-www-form-urlencoded'
