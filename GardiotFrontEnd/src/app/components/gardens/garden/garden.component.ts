@@ -76,7 +76,7 @@ export class GardenComponent {
   public nombreDia5 = "";
 
   public tercerDia: string = "";
-  public visible = 0;//0 visualización
+  public visible = 1;//0 visualización
                       //1 edición
                       //2 jardín externo
   public haveWeather = true;
@@ -239,13 +239,18 @@ export class GardenComponent {
           this.garden.city = data.city;
           this.garden.plants = data.plants;
 
-          this.inicializar();
+          
           if(!this.mobile){
             this.listarPaises();
             this.mostrarCiudad();
-            if (this.garden.city !== undefined) {
+            console.log(this.garden.city);
+            if (this.garden.city !== undefined && this.garden.city!=null) {
               this.getTiempo();
               this.getPrevision();
+            }else{
+              (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top='120px';
+              this.haveWeather=false;
+              this.inicializar();
             }
           }
 
@@ -265,6 +270,7 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
+        console.log(data);
         if (data.cod != '404') {
 
           var aux = data.main.temp - 273;
@@ -276,8 +282,10 @@ export class GardenComponent {
 
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
+          
         }
-
+        this.inicializar();
+        
 
 
       },
@@ -346,13 +354,16 @@ export class GardenComponent {
 
 
           this.ordenarTemperatura();
+          (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top='180px';
           this.haveWeather = true;
         }
         catch(e){
+          (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top='120px';
           this.haveWeather = false;
         }
       }
       else{
+        (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top='120px';
         this.haveWeather = true;
       }
 
@@ -528,7 +539,8 @@ export class GardenComponent {
   }
 
   inicializar() {
-    new iniciar("detail", this.garden, this.sunrise, this.sunset);
+    //new iniciar("detail", this.garden, this.sunrise, this.sunset);
+    new iniciar("edit", this.garden, this.sunrise, this.sunset);
     let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
     let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
     let canvas = document.querySelector('canvas');

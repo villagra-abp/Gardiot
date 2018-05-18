@@ -8,17 +8,7 @@
     </article>
   </form> -->
   <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
-  <nav class="plantsMenu" role="navigation" *ngIf="visible == 1">
-    <!-- El logotipo y el icono que despliega el menú se agrupan
-         para mostrarlos mejor en los dispositivos móviles -->
-    <div>
-      <button type="button">
-        <span>Desplegar navegación</span>
-        <i class="material-icons">spa</i>
-      </button>
-    </div>
-    <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-         otro elemento que se pueda ocultar al minimizar la barra -->
+  <nav class="plantsMenu" *ngIf="visible == 1">
     <div>
       <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
         <article class="search">
@@ -55,11 +45,11 @@
             </div>
             <div>
               <label for="length"><b>Largo:</b> {{length}} metros</label>
-              <input class="form-control" type="range" [(ngModel)]="length" min="2" max="10" step="1" name="length" id="length_garden" required>
+              <input class="form-control" type="range" [(ngModel)]="length" min="2" max="9" step="1" name="length" id="length_garden" required>
             </div>
             <div>
               <label for="width"><b>Ancho:</b> {{width}} metros</label>
-              <input class="form-control" type="range" [(ngModel)]="width" min="2" max="10" step="1" name="width" id="width_garden" required>
+              <input class="form-control" type="range" [(ngModel)]="width" min="2" max="9" step="1" name="width" id="width_garden" required>
             </div>
             <div>
               <label for="countries"><b>País:</b></label>

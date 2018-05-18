@@ -240,17 +240,17 @@ z-index:33;
 
 #del{
   position: absolute;
-  bottom: 71px;
-  right: 131px;
-  width: 70px;
-  height: 70px;
+  bottom: 60px;
+  right: 121px;
+  width: 60px;
+  height: 60px;
   border-radius: 35px;
   background-color: rgb(226, 0, 26) !important;
 
 }
 #del>img{
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 
 
@@ -355,6 +355,8 @@ button{
  .plantsMenu{
    position: absolute;
    background: rgb(48, 145, 145);
+   padding: 1em;
+   color:#fff;
    max-width: 200px;
  }
 
