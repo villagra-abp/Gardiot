@@ -34,7 +34,7 @@ export class PlantComponent implements OnInit {
   public iniRecolectar: String;
   public finRecolectar: String;
 
-  public administrador: boolean;
+  public tieneProducto:any;
 
   mes: String;
 
@@ -81,7 +81,7 @@ export class PlantComponent implements OnInit {
         for (let key$ in data) {
           this.treatments.push(data[key$]);
           this.showProductPlant(data[key$].id, numplant);
-
+          // console.log("this.treatments[0] "+this.treatments[0].id);
         }
       },
       error => {
@@ -95,6 +95,8 @@ export class PlantComponent implements OnInit {
       .subscribe(data => {
         for (let key$ in data) {
           this.productTreatments.push(data[key$]);
+          // console.log("productTreatments "+this.productTreatments[0].treatment);
+          // this.tieneProducto = this.productTreatments[0].treatment.id;
         }
       },
       error => {
@@ -139,13 +141,13 @@ export class PlantComponent implements OnInit {
     }
     return this.mes;
   }
+
   comprobaciones() {
     if (this.user.isUserAuthenticated()) {
       this.user.isAuthenticated = this.user.isUserAuthenticated();
       this.user.isUserAdmin().subscribe(data => {
         if (data) {
           this.user.isAdmin = true;
-          this.administrador = true;
           document.querySelector('.evolver').classList.add('vistaAdmin');
         }
         else {

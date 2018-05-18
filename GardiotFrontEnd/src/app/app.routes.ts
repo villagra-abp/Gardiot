@@ -32,6 +32,7 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 import { HelpComponent } from './components/help/help.component';
 import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
+import { ApipageComponent } from './components/apipage/apipage.component';
 
 
 const app_routes: Routes = [
@@ -56,6 +57,7 @@ const app_routes: Routes = [
   { path: 'reset-pass-back/:key', component: ResetPassBackComponent },
   { path: 'help', component: HelpComponent },
   { path: 'privacyterms', component: PrivacytermsComponent },
+  { path: 'apipage', component: ApipageComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 
