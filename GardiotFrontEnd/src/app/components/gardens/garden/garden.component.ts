@@ -76,7 +76,7 @@ export class GardenComponent {
   public nombreDia5 = "";
 
   public tercerDia: string = "";
-  public visible = 1;//0 visualización
+  public visible = 0;//0 visualización
   //1 edición
   //2 jardín externo
   public haveWeather = true;
@@ -103,7 +103,7 @@ export class GardenComponent {
   //paginación y buscador
   public numeroItems: number;
   public paginaActual: number = 1;
-  public elementosPorPagina: number = 10;
+  public elementosPorPagina: number = 8;
   public estado: boolean = false;// false es listado y true buscador
   public plantmotor: number[];
   public plantsmotor: any[] = [];
@@ -569,8 +569,8 @@ export class GardenComponent {
   }
 
   inicializar() {
-    //new iniciar("detail", this.garden, this.sunrise, this.sunset);
-    new iniciar("edit", this.garden, this.sunrise, this.sunset);
+    new iniciar("detail", this.garden, this.sunrise, this.sunset);
+    //new iniciar("edit", this.garden, this.sunrise, this.sunset);
     let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
     let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
     let canvas = document.querySelector('canvas');
