@@ -5,7 +5,7 @@ var routeRequirements = function (request, response, next) {
 		response.status(403).json({"Mensaje":"Un administrador no puede ejecutar esta acción"});	
 	else if (request.path.indexOf('admin')!=-1 &&  request.user.admin == 0)
 		response.status(403).json({"Mensaje":"Permiso denegado"});
-	else if (request.user.active == 0)
+	else if (request.hostname =='gardiot.ovh' && request.user.active == 0)
 		response.status(403).json({"Mensaje":"Cuenta no activa"});
 	else if (request.user.dateDelete)
 		response.status(403).json({"Mensaje":"Cuenta dada de baja"});
@@ -32,7 +32,7 @@ var adminAllowed = [];
 adminAllowed.push({method: 'GET', path: 'Admin'});
 adminAllowed.push({method: 'GET', path: 'user'});
 adminAllowed.push({method: 'PUT', path: 'user'});
-adminAllowed.push({method: 'GET', path: 'find'});
+adminAllowed.push({method: 'POST', path: 'find'});
 adminAllowed.push({method: 'GET', path: 'treatmentPlant'});
 adminAllowed.push({method: 'GET', path: 'treatment'});
 adminAllowed.push({method: 'GET', path: 'product'});

@@ -14,9 +14,9 @@ import { MatDialog } from '@angular/material';
 export class HeaderComponent implements OnInit {
   user = new User("");
   constructor(
-    private userService: UserService,
-    private _ngZone: NgZone,
-    private dialog: MatDialog,
+    public userService: UserService,
+    public _ngZone: NgZone,
+    public dialog: MatDialog,
     ) {
   }
 

@@ -8,30 +8,30 @@
     </article>
   </form> -->
   <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
-  <nav class="navbar navbar-default nav superior" role="navigation" *ngIf="visible == 1">
+  <nav class="plantsMenu" role="navigation" *ngIf="visible == 1">
     <!-- El logotipo y el icono que despliega el menú se agrupan
          para mostrarlos mejor en los dispositivos móviles -->
-    <div class="navbar-header">
-      <button type="button" class="btn btn-success" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Desplegar navegación</span>
+    <div>
+      <button type="button">
+        <span>Desplegar navegación</span>
         <i class="material-icons">spa</i>
       </button>
     </div>
     <!-- Agrupar los enlaces de navegación, los formularios y cualquier
          otro elemento que se pueda ocultar al minimizar la barra -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <form (ngSubmit)="this.searchcontent(1,5)" class="form-row " #forma="ngForm">
+    <div>
+      <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
         <article class="search">
-          <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
+          <input type="text" [(ngModel)]="plant.commonName"  name="commonName" placeholder="Buscar en gardiot">
         </article>
         <article class="searchbutton">
           <button class="btn btn-outline-success search2" type="submit"><i class="material-icons">search</i></button>
         </article>
       </form>
-      <ul class=" card-columns">
-        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" class="view view-first" draggable="true" ondragstart="drag(event);">
+      <ul>
+        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
           <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta" width="70px" height="70px">
-          <div class="mask">
+          <div>
             <h2>{{plantmotor.commonName}}</h2>
             <!-- <p>Your Text</p> -->
           </div>
@@ -44,7 +44,7 @@
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
-    <i class="material-icons" onclick="this.parentNode.classList.toggle('infoOcult')">close</i>
+
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
         <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
@@ -80,40 +80,37 @@
       </div>
     </div>
   </section>
+  <div class="toggleDeko litButton" id="del" onmouseup="deletePlant(event)" [hidden]="isDragging()" >
+    <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
+  </div>
   <section class="litButtons">
-      <div class="toggleDeko litButton red" id="del" onmouseup="deletePlant(event)" [hidden]="isDragging()" >
-          <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
-        </div>
-        <div class="toggleDeko litButton yellow" id="plt" 
-    onclick="document.getElementById('prevision').classList.toggle('previsionClosed'); 
-            document.getElementById('formulario').classList.add('infoOcult');" *ngIf="visible==0 && haveWeather == true">
-      <i class="material-icons">cloud</i>
+      
+        <div class="toggleDeko litButton desplegable" id="plt" 
+    onclick="openWeather(this)" *ngIf="haveWeather == true">
+      <i class="material-icons">cloud</i> <span>Previsión</span> <i style="visibility:hidden" onclick="closeWeather(event, this)" class="material-icons">close</i>
     </div>
-      <div class="toggleDeko litButton yellow" id="plt" onclick="motor.toggleVista(event);
-      document.getElementById('prevision').classList.add('previsionClosed');
-      document.getElementById('formulario').classList.add('infoOcult');" (click)="this.toggleState()">
-          <img src="{{photoURL}}/images/icon/plant.png" alt="plant" />
+    <div class="toggleDeko litButton desplegable" id="edit" 
+    onclick="openInfo(this);">
+      <img src="{{photoURL}}/images/icon/edit.png" alt="edit" /> <span>Editar información</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
+    </div>
+      <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
+          <img src="{{photoURL}}/images/icon/plant.png" alt="plant" /> <span>Cambiar de modo</span><i style="visibility:hidden" class="material-icons">close</i>
         </div>
     
     
-    <div class="toggleDeko litButton yellow" id="edit" 
-    onclick="document.getElementById('formulario').classList.toggle('infoOcult'); 
-            document.getElementById('prevision').classList.add('previsionClosed')">
-      <img src="{{photoURL}}/images/icon/edit.png" alt="edit" />
-    </div>
-    <div class="toggleDeko litButton orange" id="plus" onclick="plusZoom()">
+    
+    <div class="toggleDeko litButton" id="plus" onclick="plusZoom()">
       <img src="{{photoURL}}/images/icon/plus.png" alt="plus" />
     </div>
-    <div class="toggleDeko litButton orange" id="sub" onclick="subZoom()">
+    <div class="toggleDeko litButton" id="sub" onclick="subZoom()">
       <img src="{{photoURL}}/images/icon/sub.png" alt="sub" />
     </div>
-    <div class="toggleDeko litButton orange" id="help" (click)="this.openDialog(1, 2)">
-      <img src="{{photoURL}}/images/icon/ask.png" alt="ask" />
+    <div class="toggleDeko litButton desplegable" id="help" onclick="openHelp()" (click)="this.openDialog(1, 2)">
+      <img src="{{photoURL}}/images/icon/ask.png" alt="ask" /> <span>Ayuda</span><i style="visibility:hidden" class="material-icons">close</i>
     </div>
     
   </section>
-  <div id="prevision" class="previsionClosed" *ngIf="visible==0 && haveWeather == true" oncontextmenu="return false;">
-    <i class="material-icons" onclick="document.getElementById('prevision').classList.toggle('previsionClosed')">close</i>
+  <div id="prevision" class="previsionClosed" *ngIf="haveWeather == true" oncontextmenu="return false;">
     <!--<span class="interactiveButton" 
     style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" 
     onclick="document.getElementById('prevision').classList.toggle('previsionClosed');"> <i class="material-icons">cloud</i></span>-->

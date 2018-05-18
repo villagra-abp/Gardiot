@@ -1,23 +1,66 @@
 .iconplant{
-  max-width: 25px;
-  max-height: 25px;
+  max-width: 30px;
+  max-height: 30px;
+  padding-right: 3%;
+}
+.caracteristicas{
+  margin-left: 0;
+}
+.description{
+  margin-top: 2%;
+}
+.list-group{
+  padding: 0;
+  margin: 0;
+  font-size: .8em;
+}
+.imagen{
+  min-width: 450px;
+  min-height: 300px;
+  max-height: 300px;
+  border-radius: 5%;
+}
+.nombre{
+  font-weight: bold;
+}
+p.fechas{
+  display: flex;
+  margin-left: 0;
+  align-items: left;
+  text-align: left;
+}
+article{
+  margin-right: auto;
+  margin-left: auto;
 }
 
-img{
-  width: 50%;
-  height: 80%;
+div{
+  border: 1px solid black;
+  padding: 1%;
+}
+
+article{
+  border: 1px solid black;
+  padding: 1%;
+}
+section{
+  border: 1px solid black;
+  padding: 1%;
+
 }
 
 ul{
-  text-align: center;
+  max-width: 400px;
 }
-article{
-  padding: 0.2em;
-  margin:0.4em;
-  margin-top: 1.2em;
+li{
+  text-decoration: none;
+  font-size: .9em;
 }
 
-/* dl {
+.vistaUser{
+  margin-right: 200px;
+}
+dl {
   width: 100%;
   overflow: hidden;
   padding: 0;
@@ -25,14 +68,13 @@ article{
 }
 dt {
   float: left;
-  width: 50%;
- adjust the width; make sure the total of both is 100%
+  width: 100%;
   padding: 0;
   margin: 0
 }
-dd{
+dd {
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 0;
-  margin: 0;
-} */
+  margin: 0
+}

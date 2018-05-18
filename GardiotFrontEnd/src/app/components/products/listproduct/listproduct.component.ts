@@ -12,17 +12,17 @@ import { MatDialog } from '@angular/material';
 })
 export class ListproductComponent implements OnInit {
 
-  private products: any[] = [];
-  private product = new Product();
-  private numeroItems: number;
-  private paginaActual: number = 1;
-  private elementosPorPagina: number = 4;
-  private estado: boolean = false;// false es listado y true buscador
+  public products: any[] = [];
+  public product = new Product();
+  public numeroItems: number;
+  public paginaActual: number = 1;
+  public elementosPorPagina: number = 4;
+  public estado: boolean = false;// false es listado y true buscador
   dialogResult = "";
 
   constructor(
-    private _productService: ProductService,
-    private activatedRoute: ActivatedRoute,
+    public _productService: ProductService,
+    public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
   ) { }
 

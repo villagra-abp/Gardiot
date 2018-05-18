@@ -90,12 +90,12 @@ export class DetailComponent implements OnInit {
 
 
   constructor(
-    private _detailService: UserService,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private _taskService: TaskService,
-    private _feedService: FeedService,
-    private datePipe: DatePipe,
+    public _detailService: UserService,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public _taskService: TaskService,
+    public _feedService: FeedService,
+    public datePipe: DatePipe,
 
   ) {
     if(window.location.toString().indexOf("localhost")>=0){

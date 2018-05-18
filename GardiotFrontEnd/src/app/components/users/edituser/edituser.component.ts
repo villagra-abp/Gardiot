@@ -30,13 +30,13 @@ export class EdituserComponent implements OnInit {
   uploader: FileUploader;
 
   oldId: String;
-  private users: any[] = [];
+  public users: any[] = [];
 
-  constructor(private _editUserService: UserService,
-    private _appComponent: AppComponent,
-    private _router: ActivatedRoute,
-    private datePipe: DatePipe,
-    private _route: Router) { }
+  constructor(public _editUserService: UserService,
+    public _appComponent: AppComponent,
+    public _router: ActivatedRoute,
+    public datePipe: DatePipe,
+    public _route: Router) { }
 
   guardarUsuario(forma: NgForm) {
     console.log(forma.value);

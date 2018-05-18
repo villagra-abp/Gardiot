@@ -15,19 +15,19 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
 })
 export class ProfileComponent implements OnInit {
 
-  private  user = new User("");
-  private  countries: any[] = [];
-  private  cities: any[] = [];
-  private  selected: string = "";
-  private  imgUrl: string = 'https://gardiot.ovh/uploads/avatar/';
-  private  uploader: FileUploader;
+  public  user = new User("");
+  public  countries: any[] = [];
+  public  cities: any[] = [];
+  public  selected: string = "";
+  public  imgUrl: string = 'https://gardiot.ovh/uploads/avatar/';
+  public  uploader: FileUploader;
 
   constructor(
     public thisDialogRef: MatDialogRef<ProfileComponent>,
-    private _detailService: UserService,
-    private _route: Router,
-    private _ng2ImgMax: Ng2ImgMaxService,
-    private _renderer: Renderer
+    public _detailService: UserService,
+    public _route: Router,
+    public _ng2ImgMax: Ng2ImgMaxService,
+    public _renderer: Renderer
   ) {
 
   }

@@ -13,12 +13,12 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class EditproductComponent implements OnInit {
 
   product = new Product();
-  private products: any[] = [];
+  public products: any[] = [];
   constructor(
-    private _productService: ProductService,
-    private _appComponent: AppComponent,
-    private _router: ActivatedRoute,
-    private _route: Router,
+    public _productService: ProductService,
+    public _appComponent: AppComponent,
+    public _router: ActivatedRoute,
+    public _route: Router,
   ) { }
 
   guardar() {

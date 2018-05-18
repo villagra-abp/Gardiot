@@ -15,8 +15,8 @@ export class AdminComponent {
   users:any[] = [];
 
   constructor(
-    private _detailService:UserService,
-    private _route:Router){ }
+    public _detailService:UserService,
+    public _route:Router){ }
 
 
 

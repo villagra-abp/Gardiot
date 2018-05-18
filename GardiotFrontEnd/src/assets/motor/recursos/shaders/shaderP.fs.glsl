@@ -46,6 +46,8 @@ uniform int uTextured;
 uniform int uLighted;
 uniform int uNLights;
 uniform int uHovered;
+uniform float uFactor;
+uniform int uNight;
 
 
 
@@ -71,10 +73,16 @@ void main()
 	highp float depth=decodeFloat(rgba_depth);
 
 	highp float visibility = 1.0;
-	highp float bias = 0.00145;
+	highp float bias = 0.00154;
 
 	if(fragmentDepth.z>(depth-bias)){
-		visibility=0.25;
+		if(uNight==1){
+			visibility=0.8;
+		}
+		else{
+			visibility=0.25;
+		}
+		
 	}
 
 	vec3 N=normalize(vTVertNormal.xyz);
@@ -139,6 +147,12 @@ void main()
 			}
 			else if(uHovered==3){
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
+			}
+			else if(uHovered==4){
+				gl_FragColor=vec4(texel.rgb*vec3(uFactor, uFactor, uFactor), propiedades.opacity);
+			}
+			else if(uHovered==5){
+				gl_FragColor=vec4(texel.rgb*vec3(uFactor, uFactor, uFactor)*visibility, propiedades.opacity);
 			}
 			else{
 				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);

@@ -20,6 +20,17 @@ task.getMyTasksForToday = function (number, page, user, callback) {
 	}
 }
 
+task.getTodayCompletedPercent = function (user, callback) {
+	if (connection) {
+		connection.query('SELECT COUNT(*) AS total, COUNT(dateDone) AS done FROM Task, Garden, MyPlant WHERE Garden.user = "' + user + '" AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND DAYOFYEAR(date) = DAYOFYEAR(NOW())', function (error, result) {
+			if (error)
+				callback(error, null);
+			else 
+				callback(null, result);			
+		});
+	}
+}
+
 task.getTasks = function (number, page, user, callback) {
 	if (connection) {
 		let minPeak = (page - 1) * number;

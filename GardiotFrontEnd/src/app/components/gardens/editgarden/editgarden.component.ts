@@ -33,9 +33,9 @@ export class EditGardenComponent implements OnInit {
 
 
   constructor(
-    private _gardenService: GardenService,
-    private _route: Router,
-    private _appComponent: AppComponent) { }
+    public _gardenService: GardenService,
+    public _route: Router,
+    public _appComponent: AppComponent) { }
 
   @HostListener('document:keyup', ['$event'])
 
