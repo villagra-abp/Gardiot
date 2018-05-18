@@ -41,6 +41,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
+  window.alturaLuz=0;
 
 
   window.viewMatrix = [];//matriz view
@@ -369,7 +370,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    demoSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 

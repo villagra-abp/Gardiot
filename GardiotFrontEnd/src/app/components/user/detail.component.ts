@@ -87,6 +87,7 @@ export class DetailComponent implements OnInit {
   private tareas:any[] = [];
   private photoURL = "";
   private temperature = 0;
+  private plantNumber = 0;
 
 
   constructor(
@@ -176,6 +177,7 @@ export class DetailComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
+          this.plantNumber = this.garden.plants.length;
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
@@ -199,6 +201,7 @@ export class DetailComponent implements OnInit {
   cargarfeeds() {
     this._feedService.showfeeds()
       .subscribe(data => {
+        console.log("entra");
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
@@ -262,6 +265,7 @@ export class DetailComponent implements OnInit {
   }
 
   getTasks(){
+    this.tareas = [];
     this._taskService.detailsSome(15)
     .subscribe(data =>{
 
@@ -301,6 +305,7 @@ export class DetailComponent implements OnInit {
     this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), fecha_actual)
       .subscribe(data => {
         this.refresh.next();
+        this.getTasks();
       });
 
   }

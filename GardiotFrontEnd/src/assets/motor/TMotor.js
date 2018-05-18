@@ -665,6 +665,8 @@ class TMotor {
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
 
+				window.alturaLuz=parseInt(''+auxMatrix[13]);
+
 
 				//el resultado lo invertimos y tenemos la matrix View desde la luz
 				mat4.invert(viewLightMatrix, auxMatrix.slice(0));
