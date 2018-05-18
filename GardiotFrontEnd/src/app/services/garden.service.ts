@@ -7,10 +7,10 @@ import 'rxjs/Rx';
 @Injectable()
 export class GardenService {
 
-  private apiURL: string = "";
+  public apiURL: string = "";
 
 
-  constructor(private http: Http, private _route: Router) {
+  constructor(public http: Http, public _route: Router) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.apiURL = "http://localhost:3000/api/";
     }
@@ -157,7 +157,7 @@ export class GardenService {
 
   }
 
-  
+
   modifyGarden2(garden: Garden) {
     
     let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;

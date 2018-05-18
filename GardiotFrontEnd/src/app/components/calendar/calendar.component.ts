@@ -79,12 +79,12 @@ export class CalendarComponent implements OnInit {
 
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
-  private tasks: any[] = [];
-  private task = new Task();
-  private treatments: any[] = [];
-  private treatment = new Task();
-  private monthsLoaded: string[] = [];
-  private contador: number=0;
+  public tasks: any[] = [];
+  public task = new Task();
+  public treatments: any[] = [];
+  public treatment = new Task();
+  public monthsLoaded: string[] = [];
+  public contador: number=0;
 
 
 
