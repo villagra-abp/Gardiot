@@ -6,7 +6,7 @@
   <div class="card-img-overlay">
     <h5 class="card-title">{{garden.title}}</h5>
     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text">Last updated 3 mins ago</p>
+    <img src="user.photo" alt="asd">
   </div>
 </div> -->
     <section class="calendar col-lg-5 ">
@@ -28,7 +28,6 @@
                 <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
                 <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
                 <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
-                <!--{{tarea.name}}   -->
                 <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
                 <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
               </div>
@@ -43,6 +42,7 @@
           <div class="form-group" (click)="goGarden()">
             <canvas id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="350" height="300"></canvas>
           </div>
+          <!-- <img src="{{user.photo}}" alt="asd"> -->
         </article>
         <article>
           <section class="row icono">
