@@ -7,10 +7,10 @@ import 'rxjs/Rx';
 @Injectable()
 export class GardenService {
 
-  private apiURL: string = "";
+  public apiURL: string = "";
 
 
-  constructor(private http: Http, private _route: Router) {
+  constructor(public http: Http, public _route: Router) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.apiURL = "http://localhost:3000/api/";
     }
@@ -149,12 +149,14 @@ export class GardenService {
       'Authorization': `Bearer ${localStorage['Bearer']}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     });
+    console.log(body);
     return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers })
       .map(res => {
         return res.json();
       })
 
   }
+
 
   modifyGarden2(garden: Garden) {
     

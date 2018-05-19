@@ -8,39 +8,27 @@
     </article>
   </form> -->
   <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
-  <nav class="plantsMenu" role="navigation" *ngIf="visible == 1">
-    <!-- El logotipo y el icono que despliega el menú se agrupan
-         para mostrarlos mejor en los dispositivos móviles -->
-    <div>
-      <button type="button">
-        <span>Desplegar navegación</span>
-        <i class="material-icons">spa</i>
-      </button>
-    </div>
-    <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-         otro elemento que se pueda ocultar al minimizar la barra -->
-    <div>
+  <nav class="plantsMenu" *ngIf="visible == 1">
       <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
-        <article class="search">
-          <input type="text" [(ngModel)]="plant.commonName"  name="commonName" placeholder="Buscar en gardiot">
-        </article>
-        <article class="searchbutton">
-          <button class="btn btn-outline-success search2" type="submit"><i class="material-icons">search</i></button>
-        </article>
+          <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar en gardiot">
       </form>
+      <section class="list">
+
+      
       <ul>
         <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta" width="70px" height="70px">
-          <div>
-            <h2>{{plantmotor.commonName}}</h2>
-            <!-- <p>Your Text</p> -->
-          </div>
+        <div>
+          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
+        </div>
+          <span>{{plantmotor.commonName}}</span>
+
         </li>
       </ul>
+    </section>
       <div>
         <app-pagination [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
       </div>
-    </div>
+
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
@@ -55,11 +43,11 @@
             </div>
             <div>
               <label for="length"><b>Largo:</b> {{length}} metros</label>
-              <input class="form-control" type="range" [(ngModel)]="length" min="2" max="10" step="1" name="length" id="length_garden" required>
+              <input class="form-control" type="range" [(ngModel)]="length" min="2" max="9" step="1" name="length" id="length_garden" required>
             </div>
             <div>
               <label for="width"><b>Ancho:</b> {{width}} metros</label>
-              <input class="form-control" type="range" [(ngModel)]="width" min="2" max="10" step="1" name="width" id="width_garden" required>
+              <input class="form-control" type="range" [(ngModel)]="width" min="2" max="9" step="1" name="width" id="width_garden" required>
             </div>
             <div>
               <label for="countries"><b>País:</b></label>
@@ -67,6 +55,7 @@
               <select2 id="pais" [width]="select2Width()" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
               </select2>
             </div>
+
             <div>
               <label for="countries"><b>Código postal:</b></label>
               <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />

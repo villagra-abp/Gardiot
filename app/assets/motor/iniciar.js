@@ -3,7 +3,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.canvas = null;
 
   window.jardin = jardinBBDD;
-  //console.log(window.plantas);
   window.loading = [];//array que estará vacío si no hay nada cargándose
 
   //Variables para el bucle de movimiento
@@ -38,8 +37,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   matrixStack.push(matrixModel);
   window.projectionMatrix = [];//matriz proyección
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
-  mat4.ortho(lightProjectionMatrix, -10.0, 10.0, -10.0, 10.0, 0.1, 150);
+  let anchura = 12;
+  mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
+  window.alturaLuz=0;
 
 
   window.viewMatrix = [];//matriz view
@@ -64,11 +65,11 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.shadowFramebuffer = null;
   window.shadowDepthTexture = null;
   window.renderBuffer = null;
-  window.shadowDepthTextureSize = 1024;
+  window.shadowDepthTextureSize = 4096;
 
   //Índice de texturas
   window.index = 0;
-  window.indexShadow=0;//Índice de la textura de sombras
+  window.indexShadow = 0;//Índice de la textura de sombras
 
   //inicializamos el gestor de recursos
   window.gestor = new TGestorRecursos();
@@ -77,7 +78,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   cargarShaders();
   initFramebufferSombras();
   setupWebGL();
-
 
   //Se inicia el motor
   window.motor = new TMotor(gestor);
@@ -98,7 +98,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 0,
       rotZ: 90,
-      posY: 0.1
+      posY: 0
     },
     TOMATE: {
       textura: 'tomatera.png',
@@ -129,7 +129,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 10,
       rotZ: 0,
-      posY: 0.1
+      posY: -0.2
     },
     MARGARITA: {
       textura: 'margarita.jpg',
@@ -155,7 +155,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 0,
       posY: 0.2
     },
-    LOGO: { // motor.escalarMallaXYZ("logo", 0.2, 0.2, 0.2);
+    LOGO: {
       textura: 'logo.jpg',
       escalado: 0.3,
       rotX: -90,
@@ -163,16 +163,22 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotZ: 90,
       posY: 0.2
 
-    }
+    },
+    SANDIA: {
+      textura: 'sandia.jpg',
+      escalado: 0.3,
+      rotX: -90,
+      rotY: 0,
+      rotZ: 0,
+      posY: 0.05
+    },
   };
 
-
-  window.sol;
-  window.luna;
   //motor.crearNodoLuzDirigida("luz1", 10, [0.0, -10.0, 0.0], 1.7, undefined);
-  //window.sol = motor.crearNodoLuz("sol", 1.7, undefined);
-  //window.luna = motor.crearNodoLuz("luna", 1.7, undefined);
+  window.sol = motor.crearNodoLuz("sol", 2, undefined);
+  window.luna = motor.crearNodoLuz("luna", 1, undefined);
   var luz3 = motor.crearNodoLuz("luz3", 0.7, undefined);
+  window.factorIlumination = 1;
 
   //camara de vista
   motor.crearNodoCamara("dynamicCamera", true, undefined);
@@ -184,17 +190,36 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Primero creamos el espacio de alrededor del jardín
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
-  motor.crearNodoMalla("around", "around", undefined, undefined);
+  /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);
+  motor.moverMalla("around", 0, -0.11, 0);*/
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width; i <= width; i++) {
-    for (let j = -length; j <= length; j++) {
-      motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
-      motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
-      motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
-      //HACEDLO CON LAS PLANTAS
+  for (let i = -width - 2; i <= width + 2; i++) {
+    for (let j = -length - 2; j <= length + 2; j++) {
+
+      if (i < -width || i > width || j < -length || j > length) {
+        motor.crearNodoMalla("sueloExt" + i + '-' + j, "sueloExt", "tierra.jpg", undefined);
+        motor.escalarMallaXYZ("sueloExt" + i + '-' + j, 0.5, 0.1, 0.5);
+        motor.moverMalla("sueloExt" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+      }
+      else {
+        motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
+        motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
+        motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+        //HACEDLO CON LAS PLANTAS
+      }
+
+    }
+  }
+
+  /*SUELO GRANDE */
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      motor.crearNodoMalla("sueloGrande" + i + '-' + j, "sueloGrande", "tierra.jpg", undefined);
+      motor.escalarMallaXYZ("sueloGrande" + i + '-' + j, 8, 8, 8);
+      motor.rotarMalla("sueloGrande" + i + '-' + j, -90, "x");
+      motor.moverMalla("sueloGrande" + i + '-' + j, 49 * i, -0.01, 49 * j);
     }
   }
 
@@ -210,15 +235,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   for (var i = -width; i < width; i++) {
     motor.crearNodoMalla("valla" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla" + i, -90, "z");
-    motor.escalarMallaXYZ("valla" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.038)); /* FONDO - altura - izda dcha*/
+    motor.escalarMallaXYZ("valla" + i, 0.15, valla, 0.4); /* alto - LARGO - ancho */
+    motor.moverMalla("valla" + i, i * valla + desfase, 0, (length + desfase - 0.037)); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA izquierda.
   for (var i = -width; i < width; i++) {
     motor.crearNodoMalla("valla2" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla2" + i, -90, "z");
-    motor.escalarMallaXYZ("valla2" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
+    motor.escalarMallaXYZ("valla2" + i, 0.15, valla, 0.4); /* alto - LARGO - ancho */
     motor.moverMalla("valla2" + i, i * valla + desfase, 0, (-length - desfase)); /* FONDO - altura - izda dcha*/
 
   }
@@ -227,8 +252,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.crearNodoMalla("valla3" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla3" + i, -90, "z");
     motor.rotarMalla("valla3" + i, 90, "x");
-    motor.escalarMallaXYZ("valla3" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
-    motor.moverMalla("valla3" + i, width + desfase, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
+    motor.escalarMallaXYZ("valla3" + i, 0.15, valla, 0.4); /* alto - LARGO - ancho */
+    motor.moverMalla("valla3" + i, width + desfase + 0.01, 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
 
   }
   // VALLA delantera.
@@ -236,7 +261,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     motor.crearNodoMalla("valla4" + i, "valla", "maderablanca.jpg", undefined);
     motor.rotarMalla("valla4" + i, -90, "z");
     motor.rotarMalla("valla4" + i, 90, "x");
-    motor.escalarMallaXYZ("valla4" + i, 0.15, valla, 0.2); /* alto - LARGO - ancho */
+    motor.escalarMallaXYZ("valla4" + i, 0.15, valla, 0.4); /* alto - LARGO - ancho */
     motor.moverMalla("valla4" + i, (-width - desfase), 0, i * valla + desfase); /* FONDO - altura - izda dcha*/
 
   }
@@ -269,14 +294,14 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
 
 
-    //ANIMACION
-    /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
-      motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
-      motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
+  //ANIMACION
+  /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
+    motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
+    motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
 
-      motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
-      motor.moverMalla("alaA", 0.2, 0.2, 0.2);
-      motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
+    motor.moverMalla("pajaro", 0.2, 0.2, 0.2);
+    motor.moverMalla("alaA", 0.2, 0.2, 0.2);
+    motor.moverMalla("alaB", 0.2, 0.2, 0.2);*/
 
 
   // motor.escalarMalla("pajaro2_000000", 2.1);
@@ -284,15 +309,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 
   //luces
-  motor.moverLuz("luz1", 10.0, 10.0, 0.0);
-  motor.moverLuz("sol", 0.0, 500.0, 0.0);
-  motor.moverLuz("luna", 0.0, -500.0, 0.0);
-  motor.rotarLuz("sol", -90, 'x');
-  motor.rotarLuz("luz3", -90, 'x');
-  motor.moverLuz("luz3", 0.0, 4.0, 0.0);
-  motor.activarLuz("luz1");
+  //motor.moverLuz("luz1", 10.0, 10.0, 0.0);
+  motor.moverLuz("sol", 0.0, 35.0, 0.0);
+  motor.moverLuz("luna", 0.0, -35.0, 0.0);
+  //motor.rotarLuz("sol", -90, 'x');
+  //motor.rotarLuz("luz3", -90, 'x');
+  // motor.moverLuz("luz3", 0.0, 4.0, 0.0);
+  //motor.activarLuz("luz1");
   motor.activarLuz("sol");
-  motor.activarLuz("luz3");
+  //motor.activarLuz("luz3");
 
 
   /* POSICION DEL SOL */
@@ -306,12 +331,34 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
-    let minutesTotalDay = 24 * 60;
-    window.relationSunDay = minutesOfSun / minutesTotalDay;
-    let relationNowDay = minuteOfDay * relationSunDay;
-    let gradeSunPosition = (relationNowDay * 360) / minutesTotalDay;
-    motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
-    motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+    console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
+    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
+    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
+
+    if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
+      let relationNowSun = (minuteOfDay - minuteOfSunrise) / minutesOfSun;
+      let gradeSunPosition = relationNowSun * 180;
+      factorIlumination = Math.sin(Math.radians(gradeSunPosition))+0.2;
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition - 90);
+      console.log("Coloco SOL a " + gradeSunPosition + ' grados del suelo.');
+    }
+    else {
+      let minutesOfNight = (24 * 60) - minutesOfSun;
+      if (minuteOfDay < minuteOfSunrise)
+        minuteOfDay = (24 * 60) + minuteOfDay;
+      let relationNowMoon = (minuteOfDay - minuteOfSunset) / minutesOfNight;
+      let gradeSunPosition = relationNowMoon * 180;
+      factorIlumination = Math.sin(Math.radians(gradeSunPosition));
+      motor.rotarLuzOrbitalA('sol', gradeSunPosition + 90);
+      motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
+      console.log("Coloco LUNA a " + gradeSunPosition + ' grados del suelo.');
+    }
+
+    motor.rotarLuzOrbital('sol', 7, 'x');
+    motor.rotarLuz('sol', -90, 'x');
+    motor.rotarLuz('sol', -5, 'z');
+    motor.rotarLuz('luna', 90, 'x');
     window.lastTime = today;
 
     /* COLOR DEL SOL */
@@ -322,7 +369,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
     window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
     iluminarAstro(minuteOfDay);
-    rotarSol();
+    rotarSol(); //CUANDO VAYA BIEN CAMBIAR POR rotarSol
   }
 
 
@@ -348,9 +395,10 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
+    let altura = Math.min(width, length);
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
-    motor.moverCamaraA("dynamicCamera", -camHeight, camHeight, camHeight);
-    motor.rotarCamara("dynamicCamera", rotationCamY, "y");
+    motor.moverCamaraA("dynamicCamera", 0, altura, altura * 2);
+    motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
 
     //motor.rotarCamaraOrbital("dynamicCamera", 45, "y");

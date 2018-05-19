@@ -1,0 +1,43 @@
+/* span{
+  font-size: .9em;
+}
+
+section{
+  margin-right: auto;
+  margin-left: auto;
+} */
+
+mat-expansion-panel{
+  width: 1000px;
+  padding: 1%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+mat-panel-description{
+  font-size: .7em;
+  text-align: center;
+  padding: 1%;
+}
+li{
+  font-weight: bold;
+}
+
+pre{
+
+}
+mat-panel-title{
+  font-style: italic;
+  font-style: italic;font-weight: bold;
+}
+.encabezado{
+  margin-left: 130px;
+  margin-right: 130px;
+  padding: 2%;
+}
+h3{
+
+}
+p{
+  font-size: .9em;
+}

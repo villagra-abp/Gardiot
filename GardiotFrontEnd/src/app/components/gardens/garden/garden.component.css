@@ -240,17 +240,17 @@ z-index:33;
 
 #del{
   position: absolute;
-  bottom: 71px;
-  right: 131px;
-  width: 70px;
-  height: 70px;
+  bottom: 60px;
+  right: 121px;
+  width: 60px;
+  height: 60px;
   border-radius: 35px;
   background-color: rgb(226, 0, 26) !important;
 
 }
 #del>img{
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 
 
@@ -355,8 +355,96 @@ button{
  .plantsMenu{
    position: absolute;
    background: rgb(48, 145, 145);
-   max-width: 200px;
+   top: 60px;
+   bottom: 0px;
+   padding: 1em .5em 0 .5em;
+   color:#fff;
+   max-width: 350px;
+   min-width: 150px;
+   width: 200px;
+   resize: horizontal;
+   overflow: auto;
+   display: flex;
+   flex-direction: column;
  }
+ .plantsMenu>form{
+   position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+    .plantsMenu>form>input{
+      width: 100%;
+      height: 40px;
+      margin: 0;
+    }
+    .plantsMenu>form>button{
+      width: 100%;
+      height: 30px;
+      display: flex;
+      align-content: center;
+    }
+  .plantsMenu>section{
+    flex-grow: 2;
+    margin-top: 1em;
+  }
+
+  .plantsMenu>section>ul{
+    position: relative;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-wrap:wrap;
+    vertical-align: flex-start;
+    list-style-type: none;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    
+  }
+  .plantsMenu>section>ul>li{
+    width: 46%;
+    margin: 2%;
+    height: 140px;
+    
+  }
+  .plantsMenu>section>ul>li:hover>div{
+    transform: scale(1.1);
+    
+  }
+  
+
+  .plantsMenu>section>ul>li>div{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    margin-bottom: 5px;
+    border: 1px solid #234;
+
+    text-align: justify !important;
+    overflow: hidden;
+    transition: .2s all;
+    cursor: pointer;
+  }
+  
+  .plantsMenu>section>ul>li>div>img{
+    width: 100%;
+    position: absolute;
+    text-align: initial;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .plantsMenu>section>ul>li{
+    text-align: center;
+  }
+
+  .plantsMenu>div{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
 
 
 /* Mariano */

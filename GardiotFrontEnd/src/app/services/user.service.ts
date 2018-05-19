@@ -11,7 +11,7 @@ export class UserService {
   public isAdmin: boolean;
   public isAuthenticated: boolean;
 
-  constructor(private http: Http, private _route: Router) {
+  constructor(public http: Http, public _route: Router) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.apiURL = "http://localhost:3000/api/";
     }

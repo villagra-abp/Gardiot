@@ -73,20 +73,21 @@ export class DetailComponent implements OnInit {
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   viewDate: Date = new Date();
-  private user = new User("");
-  private gardenRoute = "";
-  private feeds: any[] = [];
-  private feed = new Feed();
-  private garden = new Garden("");
-  private tasks: any[] = [];
-  private task = new Task();
-  private refresh: Subject<any> = new Subject();
-  private events: CalendarEvent[] = [];
-  private sunrise;
-  private sunset;
-  private tareas:any[] = [];
-  private photoURL = "";
-  private temperature = 0;
+  public user = new User("");
+  public gardenRoute = "";
+  public feeds: any[] = [];
+  public feed = new Feed();
+  public garden = new Garden("");
+  public tasks: any[] = [];
+  public task = new Task();
+  public refresh: Subject<any> = new Subject();
+  public events: CalendarEvent[] = [];
+  public sunrise;
+  public sunset;
+  public tareas:any[] = [];
+  public photoURL = "";
+  public temperature = 0;
+  public plantNumber = 0;
 
 
   constructor(
@@ -176,6 +177,7 @@ export class DetailComponent implements OnInit {
           this.garden.countryCode = data.countryCode;
           this.garden.city = data.city;
           this.garden.plants = data.plants;
+          this.plantNumber = this.garden.plants.length;
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
@@ -199,6 +201,7 @@ export class DetailComponent implements OnInit {
   cargarfeeds() {
     this._feedService.showfeeds()
       .subscribe(data => {
+        console.log("entra");
         this.feeds = [];
         for (let key$ in data) {
           this.feeds.push(data[key$]);
@@ -262,6 +265,7 @@ export class DetailComponent implements OnInit {
   }
 
   getTasks(){
+    this.tareas = [];
     this._taskService.detailsSome(15)
     .subscribe(data =>{
 
@@ -301,6 +305,7 @@ export class DetailComponent implements OnInit {
     this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), fecha_actual)
       .subscribe(data => {
         this.refresh.next();
+        this.getTasks();
       });
 
   }

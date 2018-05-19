@@ -135,17 +135,17 @@ garden.checkMyPlantsBounds = function (id, width, length, callback) {
     var sqlAddition = '';
     if (typeof width !== 'undefined') {
       width = (width - 1) /2;
-      sqlAddition += ' AND (xCoordinate > ' + width  + ' OR xCoordinate < ' + width*(-1) + ') ';
+      sqlAddition += ' (xCoordinate > ' + width  + ' OR xCoordinate < ' + width*(-1) + ') ';
     }
     if (typeof length !== 'undefined') {
       length = (length - 1) /2;
       if (sqlAddition != '')
         sqlAddition +=  ' OR (yCoordinate > ' + length  + ' OR yCoordinate < ' + length*(-1) + ') ';
       else 
-        sqlAddition +=  ' AND (yCoordinate > ' + length  + ' OR yCoordinate < ' + length*(-1) + ') ';
+        sqlAddition +=  ' (yCoordinate > ' + length  + ' OR yCoordinate < ' + length*(-1) + ') ';
     }
     if (sqlAddition != '') {
-      var sql = 'SELECT COUNT(*) AS number FROM MyPlant WHERE garden = ' + id + sqlAddition;
+      var sql = 'SELECT COUNT(*) AS number FROM MyPlant WHERE garden = ' + id + ' AND (' + sqlAddition + ')';
       connection.query(sql, function (error, rows) {
         if (error) 
           callback(error, null);

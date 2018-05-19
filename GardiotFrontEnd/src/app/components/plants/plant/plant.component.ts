@@ -8,6 +8,7 @@ import { TreatmentPlantService } from "../../../services/treatmentplant.service"
 import { Treatment } from "../../../classes/treatment.class";
 import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class PlantComponent implements OnInit {
   public iniRecolectar: String;
   public finRecolectar: String;
 
+  public tieneProducto:any;
+
   mes: String;
 
   constructor(
@@ -56,28 +59,18 @@ export class PlantComponent implements OnInit {
         this.plant.distance = data[0].distance;
         this.plant.diseaseResist = data[0].diseaseResist;
 
-        //this.plant.initDatePlant=data[0].initDatePlant;
         this.iniSiembra = this.dameMes(data[0].initDatePlant);
-        //this.plant.finDatePlant=data[0].finDatePlant;
         this.finSiembra = this.dameMes(data[0].finDatePlant);
-        //this.plant.initDateBloom=data[0].initDateBloom;
         this.iniFlores = this.dameMes(data[0].initDateBloom);
-        //this.plant.finDateBloom=data[0].finDateBloom;
         this.finFlores = this.dameMes(data[0].finDateBloom);
-        //this.plant.initDateHarvest=data[0].initDateHarvest;
         this.iniRecolectar = this.dameMes(data[0].initDateHarvest);
-        //this.plant.finDateHarvest=data[0].finDateHarvest;
         this.finRecolectar = this.dameMes(data[0].finDateHarvest);
 
         this.plant.leaveType = data[0].leaveType;
         // this.plant.commonName=data[0].3DModel;
-
-
-
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
-
       });
 
   }
@@ -88,6 +81,7 @@ export class PlantComponent implements OnInit {
         for (let key$ in data) {
           this.treatments.push(data[key$]);
           this.showProductPlant(data[key$].id, numplant);
+          // console.log("this.treatments[0] "+this.treatments[0].id);
         }
       },
       error => {
@@ -101,6 +95,8 @@ export class PlantComponent implements OnInit {
       .subscribe(data => {
         for (let key$ in data) {
           this.productTreatments.push(data[key$]);
+          // console.log("productTreatments "+this.productTreatments[0].treatment);
+          // this.tieneProducto = this.productTreatments[0].treatment.id;
         }
       },
       error => {
@@ -145,18 +141,21 @@ export class PlantComponent implements OnInit {
     }
     return this.mes;
   }
+
   comprobaciones() {
     if (this.user.isUserAuthenticated()) {
       this.user.isAuthenticated = this.user.isUserAuthenticated();
       this.user.isUserAdmin().subscribe(data => {
         if (data) {
           this.user.isAdmin = true;
+          document.querySelector('.evolver').classList.add('vistaAdmin');
         }
         else {
           this.user.isAdmin = false;
         }
       }, error => {
         this.user.isAdmin = false;
+
       });
     }
     else {
@@ -172,6 +171,8 @@ export class PlantComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.comprobaciones();
 
     this._router.params.subscribe(params => {
       if (params['id'] != null) {
