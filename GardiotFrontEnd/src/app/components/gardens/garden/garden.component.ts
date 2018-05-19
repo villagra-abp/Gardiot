@@ -4,6 +4,7 @@ import { DatePipe } from "@angular/common";
 import { FormsModule, NgForm } from "@angular/forms";
 import { GardenService } from "../../../services/garden.service";
 import { Garden } from "../../../classes/garden.class";
+import { UserService } from "../../../services/user.service";
 import { PlantService } from "../../../services/plant.service";
 import { Plant } from "../../../classes/plant.class";
 import { AppComponent } from "../../../app.component";
@@ -114,6 +115,7 @@ export class GardenComponent {
   constructor(
     public _gardenService: GardenService,
     public _plantService: PlantService,
+    public _userService: UserService,
     public _route: Router,
     public _appComponent: AppComponent,
     public dialog: MatDialog,
@@ -701,13 +703,22 @@ export class GardenComponent {
 
   }
 
+  checkAdmin(){
+      this._userService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
+  }
+
 
 
   ngOnInit() {
     if (typeof window.orientation !== 'undefined') {
       //this.mobile=true;
     }
-
+    
     this.firstgarden();
     this.ActualizarPagina();
     this.accion = 'Editar';
