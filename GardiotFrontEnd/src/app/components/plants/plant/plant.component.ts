@@ -34,8 +34,6 @@ export class PlantComponent implements OnInit {
   public iniRecolectar: String;
   public finRecolectar: String;
 
-  public tieneProducto:any;
-
   mes: String;
 
   constructor(
@@ -81,7 +79,6 @@ export class PlantComponent implements OnInit {
         for (let key$ in data) {
           this.treatments.push(data[key$]);
           this.showProductPlant(data[key$].id, numplant);
-          // console.log("this.treatments[0] "+this.treatments[0].id);
         }
       },
       error => {
@@ -93,16 +90,19 @@ export class PlantComponent implements OnInit {
   showProductPlant(treatment: number, idPlant: number) {
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        for (let key$ in data) {
-          this.productTreatments.push(data[key$]);
-          // console.log("productTreatments "+this.productTreatments[0].treatment);
-          // this.tieneProducto = this.productTreatments[0].treatment.id;
+        console.log(data);
+        if (data.length == 0) {
+            console.log("No hay");
+        }else{
+          for (let key$ in data) {
+            this.productTreatments.push(data[key$]);
+            console.log("data.length "+data.length);
+          }
         }
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
-
   }
 
   dameMes(fechas) {
@@ -173,6 +173,7 @@ export class PlantComponent implements OnInit {
   ngOnInit() {
 
     this.comprobaciones();
+
 
     this._router.params.subscribe(params => {
       if (params['id'] != null) {
