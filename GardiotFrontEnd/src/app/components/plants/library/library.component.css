@@ -12,6 +12,7 @@
   margin:1.5em;
   overflow:hidden;
   color: #fff;
+  cursor: default;
 }
 .card-body {
     padding-bottom: 0;
@@ -21,7 +22,9 @@
 .buttonAdmin{
   margin-top:1em;
   margin-left: 0.4em;
+  margin-right: 0.4em;
   padding-left: 0.2em;
+  padding-right: 0.2em;
 }
 
 .search{
@@ -35,10 +38,13 @@ p{
 .iconplant{
   max-width: 15px;
   max-height: 15px;
-  background-color: #fff;
   border: 1px;
   margin-left: 0.2em;
   margin-right: 0.2em;
+}
+
+.iconbutton{
+  border: none;
 }
 
 

@@ -59,7 +59,7 @@
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <div class="view view-first">
             <img class="card-img-top" src="{{plant.photo}}" alt="planta" height="110px">
-            <div class="mask">
+            <div  [routerLink]="['/plant', plant.id]" class="mask">
               <h2>{{plant.scientificName}} </h2>
               <p>{{plant.name}}</p>
               <!-- <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a> -->
@@ -75,13 +75,13 @@
               </p>
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
+                <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary"><i class="material-icons">mode_edit</i></button>
+                <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
+                <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
               </div>
             </div>
           </section>
