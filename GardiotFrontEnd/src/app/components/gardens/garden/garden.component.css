@@ -194,56 +194,6 @@ h1, h2{
 }
 
 
-/*buttons*/
-.litButtons{
-position: absolute;
-top: 60px;
-right: 0;
-bottom: 0;
-background: #309191 !important;
-transform: translateX(240px);
-z-index:33;
-}
-.litButton{
-
-  width: 300px;
-  height: 60px;
-  padding: 10px;
-  margin:0;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #fff;
-  cursor:pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: #309191;
-  transition: .2s ease-in all;
-  z-index:22;
-}
-.litButton.desplegable:hover{
-  transform: translateX(-240px);
-}
-.litButton.desplegable.selected{
-  transform: translateX(-240px);
-}
-.litButton>img{
-  width: 40px;
-  height: 40px;
-
-}
-.litButton>i{
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  margin-left: 8px;
-  margin-top: 7px;
-
-}
-.litButton>span{
-  margin-left: 10px;
-}
 
 #del{
   position: absolute;
@@ -548,7 +498,59 @@ li{
 
 /* fin Mariano */
 
+@media (min-width: 600px) {
+/*buttons*/
+.litButtons{
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  background: #309191 !important;
+  transform: translateX(240px);
+  z-index:33;
+  }
+  .litButton{
+  
+    width: 300px;
+    height: 60px;
+    padding: 10px;
+    margin:0;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    cursor:pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    background: #309191;
+    transition: .2s ease-in all;
+    z-index:22;
+  }
+  .litButton.desplegable:hover{
+    transform: translateX(-240px);
+  }
+  .litButton.desplegable.selected{
+    transform: translateX(-240px);
+  }
+  .litButton>img{
+    width: 40px;
+    height: 40px;
+  
+  }
+  .litButton>i{
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+    margin-top: 7px;
+  
+  }
+  .litButton>span{
+    margin-left: 10px;
+  }
 
+}
 
 
 
@@ -556,6 +558,7 @@ li{
 @media (max-width: 600px) {
 
   .litButtons{
+    position: absolute;
     width: 100%;
     min-height: 61px;
     height: 61px;
@@ -564,6 +567,7 @@ li{
     right: 0;
     left: 0;
     flex-direction: row;
+    transform: initial;
   }
   .litButton{
     color: #fff;

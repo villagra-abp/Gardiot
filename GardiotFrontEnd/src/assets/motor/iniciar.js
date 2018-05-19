@@ -295,13 +295,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
 
   //ANIMACION
-    motor.crearNodoAnimacion("pajaro", "pajaro", 140, undefined);
+    /*motor.crearNodoAnimacion("pajaro", "pajaro", 140, undefined);
     motor.crearNodoAnimacion("alaA", "ala", 140, undefined);
     motor.crearNodoAnimacion("alaB", "alab", 140, undefined);
 
     motor.moverMalla("pajaro", 0, 0, 0);
     motor.moverMalla("alaA", 0, 0, 0);
-    motor.moverMalla("alaB", 0, 0, 0);
+    motor.moverMalla("alaB", 0, 0, 0);*/
 
 
 
