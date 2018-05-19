@@ -40,7 +40,7 @@ declare var window: any;
 
 const colors: any = {
   red: {
-    primary: '#ad2121',
+    primary:  '#ad2121',
     secondary: '#FAE3E3'
   },
   blue: {
@@ -262,7 +262,6 @@ export class CalendarComponent implements OnInit {
     fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
 
     if (action == 'Edited') {
-      //console.log('deberias saltar el pop up');
       this.dialog.open(DialogTaskComponent, { width: '800px', data: { id: 1 } });
 
     }
@@ -283,8 +282,7 @@ export class CalendarComponent implements OnInit {
       let task = this.tasks[event.id];
       this._taskService.undoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'))
         .subscribe(data => {
-          //console.log(data);
-          //console.log(event);
+
           event.draggable = true;
           event.actions = this.doneActions;
           event.color = colors.red;

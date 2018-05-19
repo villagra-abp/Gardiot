@@ -38,6 +38,7 @@ class TMotor {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
 					motor.draw();
+
 					animLoop();
 					motor.allLoaded();
 				}
@@ -104,6 +105,9 @@ class TMotor {
 		
 		//inicializar cámara
 		this.dibujarCamaraActiva();
+
+		//iteraciones pajaro 
+		this.iterar();
 
 		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 		this.escena.draw();

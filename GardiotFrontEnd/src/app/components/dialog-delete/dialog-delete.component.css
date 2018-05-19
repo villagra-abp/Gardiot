@@ -54,15 +54,14 @@ margin: auto;
     border-radius: 40px;
 }
 .btn-3 {
-    background: #cb4e4e;
     color: #fff;
-    box-shadow: 0 6px #ab3c3c;
+    box-shadow: 0 6px #64676a;
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
 }
 
 .btn-3g:hover {
-    box-shadow: 0 4px #ab3c3c;
+    box-shadow: 0 4px #64676a;
     top: 2px;
 }
