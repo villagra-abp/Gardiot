@@ -3,7 +3,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.canvas = null;
 
   window.jardin = jardinBBDD;
-  //console.log(window.plantas);
   window.loading = [];//array que estará vacío si no hay nada cargándose
 
   //Variables para el bucle de movimiento

@@ -102,6 +102,7 @@ import { DialogNewgarden3Component } from './components/dialog-newgarden/dialog-
 import { DialogTaskComponent } from './components/calendar/dialog-task/dialog-task.component';
 import { DialogNewgarden0Component } from './components/dialog-newgarden/dialog-newgarden0/dialog-newgarden0.component';
 import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
+import { ApipageComponent } from './components/apipage/apipage.component';
 
 
 
@@ -160,7 +161,8 @@ registerLocaleData(localeEs);
     DialogTaskComponent,
     DialogAllGardensComponent,
     ProfileComponent,
-    PrivacytermsComponent
+    PrivacytermsComponent,
+    ApipageComponent
 
   ],
   imports: [

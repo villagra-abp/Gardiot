@@ -73,21 +73,21 @@ export class DetailComponent implements OnInit {
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
   viewDate: Date = new Date();
-  private user = new User("");
-  private gardenRoute = "";
-  private feeds: any[] = [];
-  private feed = new Feed();
-  private garden = new Garden("");
-  private tasks: any[] = [];
-  private task = new Task();
-  private refresh: Subject<any> = new Subject();
-  private events: CalendarEvent[] = [];
-  private sunrise;
-  private sunset;
-  private tareas:any[] = [];
-  private photoURL = "";
-  private temperature = 0;
-  private plantNumber = 0;
+  public user = new User("");
+  public gardenRoute = "";
+  public feeds: any[] = [];
+  public feed = new Feed();
+  public garden = new Garden("");
+  public tasks: any[] = [];
+  public task = new Task();
+  public refresh: Subject<any> = new Subject();
+  public events: CalendarEvent[] = [];
+  public sunrise;
+  public sunset;
+  public tareas:any[] = [];
+  public photoURL = "";
+  public temperature = 0;
+  public plantNumber = 0;
 
 
   constructor(
