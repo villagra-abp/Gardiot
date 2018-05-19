@@ -25,10 +25,10 @@
     </article>
 
     <!-- FECHAS  -->
-    <article class="fechas" class="row">
-        <div *ngIf="iniSiembra !=undefined && finSiembra !=undefined"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></div>
-        <div *ngIf="iniFlores !=undefined && finFlores !=undefined"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></div>
-        <div *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Floración"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></div>
+    <article class="row fechas">
+      <div *ngIf="iniSiembra !=undefined && finSiembra !=undefined"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></div>
+      <div *ngIf="iniFlores !=undefined && finFlores !=undefined"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></div>
+      <div *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Floración"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></div>
     </article>
 
     <!-- DESCIPCION DE PLANTA -->
@@ -51,6 +51,7 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
+                  <img class="iconoProducto" src="assets/images/icon/producto.png" alt="producto">
                   Productos
                 </mat-panel-title>
               </mat-expansion-panel-header>
@@ -60,7 +61,6 @@
               </span>
             </mat-expansion-panel>
           </mat-accordion>
-
       </section>
     </div>
 </div>
