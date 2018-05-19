@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
 import { Task } from "../../classes/task.class";
+import { UserService } from "../../services/user.service";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
@@ -182,6 +183,7 @@ export class CalendarComponent implements OnInit {
     public _taskService: TaskService,
     public _route: Router,
     public _appComponent: AppComponent,
+    public _userService: UserService,
     public datePipe: DatePipe,
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
@@ -419,7 +421,17 @@ export class CalendarComponent implements OnInit {
 
   }
 
+  checkAdmin(){
+      this._userService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
+  }
+
   ngOnInit() {
+    this.checkAdmin();
     this.mostrar();
   }
 }
