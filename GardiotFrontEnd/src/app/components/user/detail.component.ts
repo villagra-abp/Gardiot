@@ -197,20 +197,7 @@ export class DetailComponent implements OnInit {
   }
 
 
-
-  cargarfeeds() {
-    this._feedService.showfeeds()
-      .subscribe(data => {
-        console.log("entra");
-        this.feeds = [];
-        for (let key$ in data) {
-          this.feeds.push(data[key$]);
-        }
-      },
-      error => {
-        console.error(error);
-      });
-  }
+// calendario
 
   mostrartask() {
     let f = new Date();
@@ -231,23 +218,13 @@ export class DetailComponent implements OnInit {
         });
 
         this._taskService.percent().subscribe(data => {
-            console.log(data);
+            console.log('hola'+data.Object );
         },
           error => {
             console.error(error);
           });
   }
 
-
-  cerrarfeed(id:number) {
-    this._feedService.closefeed(id)
-      .subscribe(data => {
-        this.cargarfeeds();
-      },
-      error => {
-        console.error(error);
-      });
-  }
 
   addEvent(Ttitle: string, Tstart: string, Tend: string): void {
     this.events.push({
@@ -264,17 +241,12 @@ export class DetailComponent implements OnInit {
     this.refresh.next();
   }
 
+
   getTasks(){
     this.tareas = [];
-    this._taskService.detailsSome(15)
-    .subscribe(data =>{
-
+    this._taskService.detailsSome(15).subscribe(data =>{
       let aux:any[] = [];
-
-
-
       for (let i = 0; i<data.length; i++){
-
         if(aux.length == 0){ // si está vacio
           aux.push(data[i]);
         }else{
@@ -288,7 +260,6 @@ export class DetailComponent implements OnInit {
         }
       } //end if
       this.tareas.push(aux); // se introducen las ultimas tareas del bucle
-
     },
     error =>{
       console.error(error);
@@ -307,17 +278,49 @@ export class DetailComponent implements OnInit {
         this.refresh.next();
         this.getTasks();
       });
+  }
 
+  // feed
+    cargarfeeds() {
+      this._feedService.showfeeds()
+        .subscribe(data => {
+          this.feeds = [];
+          for (let key$ in data) {
+            this.feeds.push(data[key$]);
+          }
+        },
+        error => {
+          console.error(error);
+        });
+    }
+
+    cerrarfeed(id:number) {
+      this._feedService.closefeed(id).subscribe(data => {
+          this.cargarfeeds();
+        },
+        error => {
+          console.error(error);
+        });
+    }
+
+
+  checkAdmin(){
+      this._detailService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
   }
 
   ngOnInit() {
+    this.checkAdmin();
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
     this.mostrartask();
     this.getTasks();
     this.cargarfeeds();
-
   }
 
 

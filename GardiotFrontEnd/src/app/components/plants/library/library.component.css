@@ -1,4 +1,12 @@
+.galeria{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .card{
+  width: 10em !important;
   background-color: #343a40;
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   margin:1.5em;
@@ -7,6 +15,8 @@
 }
 .card-body {
     padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 .buttonAdmin{
   margin-top:1em;
@@ -19,7 +29,7 @@
 }
 p{
   text-align: center;
-  font-size: smaller;
+  font-size: 10px;
 }
 
 .iconplant{
@@ -27,8 +37,8 @@ p{
   max-height: 15px;
   background-color: #fff;
   border: 1px;
-  margin-left: 1em;
-  margin-right: 0.3em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
 }
 
 
@@ -41,8 +51,12 @@ p{
     box-shadow: 1px 1px 9px #f3f3f3;
     cursor: default;
 }
+
+.mask{
+      cursor:pointer;
+}
 .view .mask, .view .content {
-    width: 300px;
+    width: 160px;
     height: 200px;
     position: absolute;
     overflow: hidden;
@@ -51,14 +65,14 @@ p{
 }
 .view img {
     display: block;
-    position: relative
+    position: relative;
 }
 .view h2 {
     text-transform: uppercase;
     color: #fff;
     text-align: center;
     position: relative;
-    font-size: 17px;
+    font-size: 12px;
     padding: 10px;
     background: rgba(0, 0, 0, 0.8);
     margin: 20px 0 0 0
@@ -66,7 +80,7 @@ p{
 .view p {
     font-family: Georgia, serif;
     font-style: italic;
-    font-size: 12px;
+    font-size: 10px;
     position: relative;
     color: #fff;
     padding: 10px 20px 20px;
@@ -75,7 +89,7 @@ p{
 .view a.info {
     display: inline-block;
     text-decoration: none;
-    padding: 7px 14px;
+    padding: 3px 7px;
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -101,7 +115,7 @@ p{
 	transition: all 0.2s linear;
 }
 .view-first a.info{
-    opacity: 0;
+  opacity: 0;
 	transition: all 0.2s ease-in-out;
 }
 .view a.info:hover {
