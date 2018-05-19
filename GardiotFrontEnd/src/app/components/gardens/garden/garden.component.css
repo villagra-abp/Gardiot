@@ -574,7 +574,7 @@ li{
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     padding: 5px;
     color: #fff;
     border-radius: 0px;
@@ -593,9 +593,9 @@ li{
   }
   .litButton>span{
     flex-grow: 2;
-    align-self: center;
     font-size: 10px;
   }
+
   .litButton>i:last-of-type{
     display: none;
   }
