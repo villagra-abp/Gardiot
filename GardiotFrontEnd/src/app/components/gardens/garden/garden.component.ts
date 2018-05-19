@@ -111,6 +111,8 @@ export class GardenComponent {
   public plant = new Plant();
   public searchPlant: string;
 
+ 
+
 
   constructor(
     public _gardenService: GardenService,
@@ -119,7 +121,7 @@ export class GardenComponent {
     public _route: Router,
     public _appComponent: AppComponent,
     public dialog: MatDialog,
-    public activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute
   ) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.photoURL = "/assets";
@@ -132,15 +134,38 @@ export class GardenComponent {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
+
+    let canvas = document.querySelector('canvas');
+    if (canvas != null) {
+      canvas.width = canvasEvolver.offsetWidth;
+      canvas.height = canvasEvolver.offsetHeight;
+
+      let desvX = (canvas.width - 1200) * 0.0008;
+      let desvY = (canvas.height - 974) * 0.00072;
+      let pos = motor.getPosCamaraActiva();
+      //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+      motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    }
+    let time=Date.now();
+    if((time-window.timer)>1000){
+      this.mostrarplantasmotor();
+      window.timer=Date.now();
+    }
+  }
+
+
 
   @HostListener('document:keyup', ['$event'])
 
   searchZip(event: KeyboardEvent): void {
     console.log((<HTMLInputElement>event.srcElement).value);
     if (event.srcElement.id == 'commonName') {
-      let sPlant =new Plant();
-      sPlant.commonName=(<HTMLInputElement>event.srcElement).value;
-      this._plantService.searchAll(sPlant, 1, 8)
+      let sPlant = new Plant();
+      sPlant.commonName = (<HTMLInputElement>event.srcElement).value;
+      this._plantService.searchAll(sPlant, 1, this.elementosPorPagina)
         .subscribe(data => {
           if (data[0] != undefined) {
             this.plantsmotor = [];
@@ -549,20 +574,12 @@ export class GardenComponent {
 
   }
 
+
   resizeCanvas() {
-    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
 
-    let canvas = document.querySelector('canvas');
-    canvas.width = canvasEvolver.offsetWidth;
-    canvas.height = canvasEvolver.offsetHeight;
-
-    let desvX = (canvas.width - 1200) * 0.0008;
-    let desvY = (canvas.height - 974) * 0.00072;
-    let pos = motor.getPosCamaraActiva();
-    //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
-    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
-
-
+    /*
+        
+    */
   }
 
   toggleState() {
@@ -583,7 +600,7 @@ export class GardenComponent {
     let desvY = (canvas.height - 974) * 0.00072;
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
-    window.addEventListener("resize", this.resizeCanvas);
+    window.timer=0;
   }
 
 
@@ -650,6 +667,15 @@ export class GardenComponent {
   }
 
   mostrarplantasmotor() {
+
+    if (window.innerHeight < 750) {
+      this.elementosPorPagina = 6;
+    } else if (window.innerHeight < 950) {
+      this.elementosPorPagina = 8;
+    }
+    else if (window.innerHeight < 1150) {
+      this.elementosPorPagina = 10;
+    }
     if (this.estado == false) {
       this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
         .subscribe(data => {
@@ -703,13 +729,13 @@ export class GardenComponent {
 
   }
 
-  checkAdmin(){
-      this._userService.isUserAdmin()
-        .subscribe(data => {
-          if(data){
-            this._route.navigate(['/admin/statistics']);
-          }
-        });
+  checkAdmin() {
+    this._userService.isUserAdmin()
+      .subscribe(data => {
+        if (data) {
+          this._route.navigate(['/admin/statistics']);
+        }
+      });
   }
 
 
@@ -718,7 +744,8 @@ export class GardenComponent {
     if (typeof window.orientation !== 'undefined') {
       //this.mobile=true;
     }
-    
+
+
     this.firstgarden();
     this.ActualizarPagina();
     this.accion = 'Editar';

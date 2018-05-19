@@ -50,9 +50,10 @@ export class DialogNewgarden1Component implements OnInit {
   }
 
   saveGarden() {
-    this.garden.length=(this.garden.length*2)+1;
-    this.garden.width=(this.garden.width*2)+1;
-    this._gardenService.modifyGarden2(this.garden)
+    let gardenCopy=JSON.parse(JSON.stringify(this.garden));
+    gardenCopy.length=(this.garden.length*2)+1;
+    gardenCopy.width=(this.garden.width*2)+1;
+    this._gardenService.modifyGarden2(gardenCopy)
       .subscribe(data => {
         this.openDialog();
         this.thisDialogRef.close('Guardado');

@@ -23,45 +23,9 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  z-index: 40;
 }
 
-#prevision>span:last-of-type{
-  display: none !important;
-}
-
-#prevision{
-  position: absolute;
-  background:rgba(48, 145, 145, 0.7);
-  top: 120px;
-  right: 60px;
-  min-width: 240px;
-  max-width: 240px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-  transition: .2s ease-in all;
-  z-index:1;
-}
-
-
-#prevision>i{
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  cursor: pointer;
-  font-size: 2em;
-  z-index: 30;
-
-  transition: .3 ease-in all;
-}
-
-.previsionClosed{
-  right: -240px !important;
-}
-.previsionClosed>span:last-of-type{
-  position: absolute;
-  left: 250px !important;
-  display: inline-block !important;
-}
 
 .interactiveButton{
   cursor: pointer;
@@ -140,43 +104,6 @@
 
 
 
-
-  .formulario{
-
-    position: absolute;
-  background:rgba(48, 145, 145, 0.7);
-  top: 180px;
-  right: 60px;
-  min-width: 240px;
-  max-width: 240px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-  transition: .2s ease-in all;
-  z-index:1;
-
- z-index: 20;
- padding: 0 1.6em 0.9em 1.6em;
-
- min-width: 240px;
-  max-width: 240px;
-
-
- border-bottom-left-radius: 15px;
-
-}
-
-.infoOcult{
-  right: -240px;
-}
-
-.formulario>i{
-
-  position: absolute;
-  top: -30px;
-  right: 0;
-  cursor: pointer;
-  color: #fff;
-}
 label{
   margin-bottom: 0;
   margin-top: 10px;
@@ -193,56 +120,6 @@ h1, h2{
 }
 
 
-/*buttons*/
-.litButtons{
-position: absolute;
-top: 60px;
-right: 0;
-bottom: 0;
-background: #309191 !important;
-transform: translateX(240px);
-z-index:33;
-}
-.litButton{
-
-  width: 300px;
-  height: 60px;
-  padding: 10px;
-  margin:0;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #fff;
-  cursor:pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  background: #309191;
-  transition: .2s ease-in all;
-  z-index:22;
-}
-.litButton.desplegable:hover{
-  transform: translateX(-240px);
-}
-.litButton.desplegable.selected{
-  transform: translateX(-240px);
-}
-.litButton>img{
-  width: 40px;
-  height: 40px;
-
-}
-.litButton>i{
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  margin-left: 8px;
-  margin-top: 7px;
-
-}
-.litButton>span{
-  margin-left: 10px;
-}
 
 #del{
   position: absolute;
@@ -393,21 +270,22 @@ button{
   .plantsMenu>section{
     flex-grow: 2;
     margin-top: 1em;
+    height: 70%;
   }
 
   .plantsMenu>section>ul{
     position: relative;
     width: 100%;
+    height: 100%;
     padding: 0;
-    display: flex;
-    flex-wrap:wrap;
-    vertical-align: flex-start;
+    
     list-style-type: none;
     margin-bottom: 1em;
     margin-top: 1em;
 
   }
   .plantsMenu>section>ul>li{
+    display: inline-block;
     width: 46%;
     margin: 2%;
     height: 140px;
@@ -425,7 +303,7 @@ button{
     height: 80px;
     background-color: #fff;
     margin-bottom: 5px;
-    border: 1px solid #234;
+    border: 1px solid #fff;
 
     text-align: justify !important;
     overflow: hidden;
@@ -546,7 +424,137 @@ li{
 
 /* fin Mariano */
 
+@media (min-width: 600px) {
+/*buttons*/
+.litButtons{
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  background: #309191 !important;
+  transform: translateX(240px);
+  z-index:33;
+  }
+  .litButton{
+  
+    width: 300px;
+    height: 60px;
+    padding: 10px;
+    margin:0;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    cursor:pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    background: #309191;
+    transition: .2s ease-in all;
+    z-index:22;
+  }
+  .litButton.desplegable:hover{
+    transform: translateX(-240px);
+  }
+  .litButton.desplegable.selected{
+    transform: translateX(-240px);
+  }
+  .litButton>img{
+    width: 40px;
+    height: 40px;
+  
+  }
+  .litButton>i{
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+    margin-top: 7px;
+  
+  }
+  .litButton>span{
+    margin-left: 10px;
+  }
 
+  
+#prevision>span:last-of-type{
+  display: none !important;
+}
+
+#prevision{
+  position: absolute;
+  background:rgba(48, 145, 145, 0.7);
+  top: 120px;
+  right: 60px;
+  min-width: 240px;
+  max-width: 240px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+  transition: .2s ease-in all;
+  z-index:1;
+}
+
+
+#prevision>i{
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+  font-size: 2em;
+  z-index: 30;
+
+  transition: .3 ease-in all;
+}
+
+.previsionClosed{
+  right: -240px !important;
+}
+.previsionClosed>span:last-of-type{
+  position: absolute;
+  left: 250px !important;
+  display: inline-block !important;
+}
+
+
+
+.formulario{
+
+  position: absolute;
+background:rgba(48, 145, 145, 0.7);
+top: 180px;
+right: 60px;
+min-width: 240px;
+max-width: 240px;
+border-bottom-left-radius: 15px;
+color: #fff;
+transition: .2s ease-in all;
+z-index:1;
+
+z-index: 20;
+padding: 0 1.6em 0.9em 1.6em;
+
+min-width: 240px;
+max-width: 240px;
+
+
+border-bottom-left-radius: 15px;
+
+}
+
+.infoOcult{
+right: -240px;
+}
+
+.formulario>i{
+
+position: absolute;
+top: -30px;
+right: 0;
+cursor: pointer;
+color: #fff;
+}
+
+}
 
 
 
@@ -554,6 +562,8 @@ li{
 @media (max-width: 600px) {
 
   .litButtons{
+    position: absolute;
+    background: #309191 !important;
     width: 100%;
     min-height: 61px;
     height: 61px;
@@ -561,14 +571,21 @@ li{
     bottom: 0;
     right: 0;
     left: 0;
+    display: flex;
     flex-direction: row;
   }
   .litButton{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     color: #fff;
+    padding: 5px;
     border-radius: 0px;
-    width: 20%;
-    height: 61px;
+    width: 25%;
+    height: 70px;
     margin:0;
+    text-align: center;
 
   }
   .litButton:not(:last-of-type){
@@ -577,17 +594,18 @@ li{
   .litButton>img{
     width: 30px;
     height: 30px;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-top: 15px;
-
   }
-  .litButton>i{
-    width: 50%;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-top: 15px;
+  .litButton>span{
 
+    font-size: 10px;
+  }
+
+  .litButton>i:last-of-type{
+    display: none;
+  }
+
+  .big{
+    display: none;
   }
 
   #prevision{
@@ -600,7 +618,7 @@ li{
 
     margin: 10%;
 
-    min-width: 80%;
+    width: 80%;
 
     bottom: 61px;
 
@@ -715,9 +733,10 @@ li{
 
   /*formulario lateral derecho*/
   .formulario{
+
     position:absolute;
     background: rgba(0, 0, 0, 0.5);
-    top: 61px;
+    top: 61px !important;
     margin: 10%;
     min-width: 80%;
     bottom: 61px;

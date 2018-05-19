@@ -85,6 +85,7 @@ export class DetailComponent implements OnInit {
   public sunrise;
   public sunset;
   public tareas:any[] = [];
+  public checkTareas = false;
   public photoURL = "";
   private imgUrl ="";
   public temperature = 0;
@@ -154,6 +155,7 @@ export class DetailComponent implements OnInit {
 
         sunset.setTime(data.sys.sunset * 1000);
         this.sunset = sunset;
+        new iniciar("home", this.garden, this.sunrise, this.sunset);
 
       },
       error => {
@@ -183,7 +185,7 @@ export class DetailComponent implements OnInit {
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
-          new iniciar("home", this.garden, this.sunrise, this.sunset);
+          
         } else {
           // this._route.navigate(['/newgarden']);
         }
@@ -247,20 +249,26 @@ export class DetailComponent implements OnInit {
     this.tareas = [];
     this._taskService.detailsSome(15).subscribe(data =>{
       let aux:any[] = [];
-      for (let i = 0; i<data.length; i++){
-        if(aux.length == 0){ // si está vacio
-          aux.push(data[i]);
-        }else{
-          if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+      console.log(data);
+      if(data.length !=0){
+        
+        for (let i = 0; i<data.length; i++){
+          if(aux.length == 0){ // si está vacio
             aux.push(data[i]);
-          }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
-            this.tareas.push(aux);
-            aux = [];
-            aux.push(data[i]);
+          }else{
+            if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+              aux.push(data[i]);
+            }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
+              this.tareas.push(aux);
+              aux = [];
+              aux.push(data[i]);
+            }
           }
-        }
-      } //end if
-      this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+        } //end if
+        this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+      }
+
+      this.checkTareas = true;
     },
     error =>{
       console.error(error);

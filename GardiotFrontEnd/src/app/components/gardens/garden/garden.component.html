@@ -20,12 +20,12 @@
         <div>
           <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
         </div>
-          <span>{{plantmotor.commonName}}</span>
+        <span>{{plantmotor.commonName}}</span>
 
         </li>
       </ul>
     </section>
-    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
@@ -77,22 +77,32 @@
     </div>
     <div class="toggleDeko litButton desplegable" id="edit"
     onclick="openInfo(this);">
-      <img src="{{photoURL}}/images/icon/edit.png" alt="edit" /> <span>Editar información</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
+    <i class="material-icons">
+      border_color
+      </i> <span>Editar datos</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
     </div>
       <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
-          <img src="{{photoURL}}/images/icon/plant.png" alt="plant" /> <span>Cambiar de modo</span><i style="visibility:hidden" class="material-icons">close</i>
+        <i class="material-icons">
+          switch_camera
+          </i> <span>Cambiar modo</span><i style="visibility:hidden" class="material-icons">close</i>
         </div>
 
 
 
-    <div class="toggleDeko litButton" id="plus" onclick="plusZoom()">
-      <img src="{{photoURL}}/images/icon/plus.png" alt="plus" />
+    <div class="toggleDeko litButton big" id="plus" onclick="plusZoom()">
+      <i class="material-icons">
+        add
+        </i> 
     </div>
-    <div class="toggleDeko litButton" id="sub" onclick="subZoom()">
-      <img src="{{photoURL}}/images/icon/sub.png" alt="sub" />
+    <div class="toggleDeko litButton big" id="sub" onclick="subZoom()">
+      <i class="material-icons">
+        remove
+        </i> 
     </div>
     <div class="toggleDeko litButton desplegable" id="help" onclick="openHelp()" (click)="this.openDialog(1, 2)">
-      <img src="{{photoURL}}/images/icon/ask.png" alt="ask" /> <span>Ayuda</span><i style="visibility:hidden" class="material-icons">close</i>
+      <i class="material-icons">
+        help_outline
+        </i> <span>Ayuda</span><i style="visibility:hidden" class="material-icons">close</i>
     </div>
 
   </section>
