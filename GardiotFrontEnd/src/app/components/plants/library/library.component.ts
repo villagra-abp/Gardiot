@@ -55,6 +55,7 @@ export class LibraryComponent implements OnInit {
   }
 
   searchcontent(page: number, items: number) {
+    console.log(this.plant);
     this._plantService.searchAll(this.plant, page, items)
       .subscribe(data => {
         if (data[0] != undefined) {
@@ -106,11 +107,12 @@ export class LibraryComponent implements OnInit {
     this._plantService.detailsAllFamilies()
       .subscribe(data => {
         let aux = [];
-        aux.push({ id: 0, text: "Selecciona una familia" });
+        
         for (let i = 0; i < data.length; i++) {
           aux.push({ id: data[i].id, text: data[i].name });
         }
-
+        this.families = aux;
+        console.log(this.families);
         this.familyData = Observable.create((obs) => {
           obs.next(aux);
           obs.complete();

@@ -19,8 +19,15 @@
               <div class = "form-group col-md-4">
                 <label for="family" >Familia</label>
                 <br>
-                <select2 id="family" class="campo" style="width:100%" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
-                </select2>
+                <!-- <select2 id="family" class="campo" style="width:100%" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
+                </select2> -->
+                <select id="family" name="family" class="form-control" [(ngModel)]="plant.family" >
+                  <option value="undefined">Selecciona una familia</option>
+                  <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
+                </select> 
+
+
+                 
               </div>
               <div class = "form-group col-md-4">
                 <label for="scientificName">Nombre Científico</label>

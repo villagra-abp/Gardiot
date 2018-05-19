@@ -304,7 +304,17 @@ export class DetailComponent implements OnInit {
     }
 
 
+  checkAdmin(){
+      this._detailService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
+  }
+
   ngOnInit() {
+    this.checkAdmin();
     this.checkGarden();
     this.mostrar();
     this.mostrar2();
