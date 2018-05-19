@@ -23,6 +23,7 @@
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  z-index: 40;
 }
 
 #prevision>span:last-of-type{
@@ -393,21 +394,22 @@ button{
   .plantsMenu>section{
     flex-grow: 2;
     margin-top: 1em;
+    height: 70%;
   }
 
   .plantsMenu>section>ul{
     position: relative;
     width: 100%;
+    height: 100%;
     padding: 0;
-    display: flex;
-    flex-wrap:wrap;
-    vertical-align: flex-start;
+    
     list-style-type: none;
     margin-bottom: 1em;
     margin-top: 1em;
 
   }
   .plantsMenu>section>ul>li{
+    display: inline-block;
     width: 46%;
     margin: 2%;
     height: 140px;
@@ -425,7 +427,7 @@ button{
     height: 80px;
     background-color: #fff;
     margin-bottom: 5px;
-    border: 1px solid #234;
+    border: 1px solid #fff;
 
     text-align: justify !important;
     overflow: hidden;

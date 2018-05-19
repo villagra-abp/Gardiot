@@ -15,7 +15,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.frameCount = 0;
   window.interval;
 
-
   //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
   window.colorCell = [];
@@ -40,7 +39,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
-  window.alturaLuz=0;
+  window.alturaLuz;
+  window.velocidadOrbital=1;
 
 
   window.viewMatrix = [];//matriz view
@@ -327,32 +327,35 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   if (typeof sol !== 'undefined' && typeof luna !== 'undefined') {
     let today = new Date();
+
     let minuteOfDay = today.getHours() * 60 + today.getMinutes();
     window.minuteOfSunrise = sunrise.getHours() * 60 + sunrise.getMinutes();
     window.minuteOfSunset = sunset.getHours() * 60 + sunset.getMinutes();
     window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
     console.log("Si no encuentra datos de OWM, mostrará 8:42 y 20:14");
-    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (0º grados de SOL)');
-    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (180º grados de SOL)');
+    console.log("Amanecer: " + sunrise.getHours() + ':' + sunrise.getMinutes() + ' (10º grados de SOL)');
+    console.log("Anochecer: " + sunset.getHours() + ':' + sunset.getMinutes() + ' (170º grados de SOL)');
 
     if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
       let relationNowSun = (minuteOfDay - minuteOfSunrise) / minutesOfSun;
-      let gradeSunPosition = relationNowSun * 180;
+      let gradeSunPosition = (relationNowSun * 160)+10;
       factorIlumination = Math.sin(Math.radians(gradeSunPosition))+0.2;
       motor.rotarLuzOrbitalA('sol', gradeSunPosition - 90);
       motor.rotarLuzOrbitalA('luna', gradeSunPosition - 90);
       console.log("Coloco SOL a " + gradeSunPosition + ' grados del suelo.');
+      window.velocidadOrbital=minutesOfSun/(60*24/2);
     }
     else {
       let minutesOfNight = (24 * 60) - minutesOfSun;
       if (minuteOfDay < minuteOfSunrise)
         minuteOfDay = (24 * 60) + minuteOfDay;
       let relationNowMoon = (minuteOfDay - minuteOfSunset) / minutesOfNight;
-      let gradeSunPosition = relationNowMoon * 180;
+      let gradeSunPosition = (relationNowMoon * 160)+10;
       factorIlumination = Math.sin(Math.radians(gradeSunPosition));
       motor.rotarLuzOrbitalA('sol', gradeSunPosition + 90);
       motor.rotarLuzOrbitalA('luna', gradeSunPosition + 90);
       console.log("Coloco LUNA a " + gradeSunPosition + ' grados del suelo.');
+      window.velocidadOrbital=minutesOfNight/(60*24/2);
     }
 
     motor.rotarLuzOrbital('sol', 7, 'x');

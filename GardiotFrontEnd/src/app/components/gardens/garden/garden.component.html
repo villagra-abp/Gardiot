@@ -20,12 +20,12 @@
         <div>
           <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
         </div>
-          <span>{{plantmotor.commonName}}</span>
+        <span>{{plantmotor.commonName}}</span>
 
         </li>
       </ul>
     </section>
-    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
+    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">

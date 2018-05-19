@@ -230,6 +230,7 @@ class TRecursoMalla extends TRecurso {
     }
     else if(this.nombre.indexOf('sueloExt')>=0){
       gl.uniform1i(glProgram[window.program].hovered, 5);
+      gl.uniform1f(glProgram[window.program].factor, window.factorIlumination);
     }
       
 
