@@ -12,6 +12,7 @@
   margin:1.5em;
   overflow:hidden;
   color: #fff;
+  cursor: default;
 }
 .card-body {
     padding-bottom: 0;
@@ -21,7 +22,9 @@
 .buttonAdmin{
   margin-top:1em;
   margin-left: 0.4em;
+  margin-right: 0.4em;
   padding-left: 0.2em;
+  padding-right: 0.2em;
 }
 
 .search{
@@ -35,10 +38,13 @@ p{
 .iconplant{
   max-width: 15px;
   max-height: 15px;
-  background-color: #fff;
   border: 1px;
   margin-left: 0.2em;
   margin-right: 0.2em;
+}
+
+.iconbutton{
+  border: none;
 }
 
 
@@ -51,6 +57,10 @@ p{
     box-shadow: 1px 1px 9px #f3f3f3;
     cursor: default;
 }
+
+.mask{
+      cursor:pointer;
+}
 .view .mask, .view .content {
     width: 160px;
     height: 200px;
@@ -61,7 +71,7 @@ p{
 }
 .view img {
     display: block;
-    position: relative
+    position: relative;
 }
 .view h2 {
     text-transform: uppercase;
@@ -85,7 +95,7 @@ p{
 .view a.info {
     display: inline-block;
     text-decoration: none;
-    padding: 7px 14px;
+    padding: 3px 7px;
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -111,7 +121,7 @@ p{
 	transition: all 0.2s linear;
 }
 .view-first a.info{
-    opacity: 0;
+  opacity: 0;
 	transition: all 0.2s ease-in-out;
 }
 .view a.info:hover {

@@ -24,7 +24,7 @@ export class LibraryComponent implements OnInit {
   public plant = new Plant();
   public numeroItems: number;
   public paginaActual: number = 1;
-  public elementosPorPagina: number = 10;
+  public elementosPorPagina: number = 15;
   public estado: boolean = false;// false es listado y true buscador
   public familyData: Observable<Array<Select2OptionData>>;
   public startFamily: Observable<string>;
@@ -55,7 +55,6 @@ export class LibraryComponent implements OnInit {
   }
 
   searchcontent(page: number, items: number) {
-    console.log(this.plant);
     this._plantService.searchAll(this.plant, page, items)
       .subscribe(data => {
         if (data[0] != undefined) {
@@ -107,7 +106,7 @@ export class LibraryComponent implements OnInit {
     this._plantService.detailsAllFamilies()
       .subscribe(data => {
         let aux = [];
-        
+
         for (let i = 0; i < data.length; i++) {
           aux.push({ id: data[i].id, text: data[i].name });
         }

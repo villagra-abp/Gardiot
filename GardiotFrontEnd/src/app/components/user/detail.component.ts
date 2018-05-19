@@ -24,7 +24,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs/Subject';
+ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -86,6 +86,7 @@ export class DetailComponent implements OnInit {
   public sunset;
   public tareas:any[] = [];
   public photoURL = "";
+  private imgUrl ="";
   public temperature = 0;
   public plantNumber = 0;
 
@@ -101,14 +102,16 @@ export class DetailComponent implements OnInit {
   ) {
     if(window.location.toString().indexOf("localhost")>=0){
       this.photoURL="/assets";
+      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
     }
     else if(window.location.toString().indexOf("gardiot")>=0){
       this.photoURL="/app/assets";
-    }}
+      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    }
+  }
 //------ comprobamos si es su primera vez en la app------//
   checkGarden() {
     this._gardenService.firstgarden().subscribe(data => {
-      console.log(data.Mensaje);
         if (data.Mensaje == "Existe") {
         }else{
           this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
@@ -124,21 +127,20 @@ export class DetailComponent implements OnInit {
   }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
-  mostrar() {
-    this._detailService.details(this.user)
-      .subscribe(data => {
-        this.user.id = data.id;
-        this.user.birthDate = data.birthDate;
-        this.user.photo = data.photo;
-        this.user.name = data.name;
-      },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
-      });
-  }
+  // mostrar() {
+  //   this._detailService.details(this.user).subscribe(data => {
+  //       // this.user.id = data.id;
+  //       // this.user.birthDate = data.birthDate;
+  //       this.user.photo = this.imgUrl+ data.photo;
+  //       // this.user.name = data.name;
+  //     },
+  //     error => {
+  //       console.error(error);
+  //       localStorage.clear();
+  //       sessionStorage.clear();
+  //       this._route.navigate(['/login']);
+  //     });
+  // }
 
   getTiempo() {
     this._gardenService.tiempo(this.garden)
@@ -218,7 +220,6 @@ export class DetailComponent implements OnInit {
         });
 
         this._taskService.percent().subscribe(data => {
-            console.log('hola'+data.Object );
         },
           error => {
             console.error(error);
@@ -316,11 +317,11 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.checkAdmin();
     this.checkGarden();
-    this.mostrar();
+    // this.mostrar();
     this.mostrar2();
     this.mostrartask();
     this.getTasks();
-    this.cargarfeeds();
+    this.cargarfeeds(); 
   }
 
 

@@ -1,7 +1,7 @@
 <div class="evolver">
   <div class="container main-container">
     <div class="wrap">
-      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+      <form (ngSubmit)="this.searchcontent(1,15)" class="form-row" #forma="ngForm">
         <article class="form-group col-md-4">
           <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
         </article>
@@ -24,10 +24,10 @@
                 <select id="family" name="family" class="form-control" [(ngModel)]="plant.family" >
                   <option value="undefined">Selecciona una familia</option>
                   <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
-                </select> 
+                </select>
 
 
-                 
+
               </div>
               <div class = "form-group col-md-4">
                 <label for="scientificName">Nombre Científico</label>
@@ -59,10 +59,10 @@
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <div class="view view-first">
             <img class="card-img-top" src="{{plant.photo}}" alt="planta" height="110px">
-            <div class="mask">
+            <div  [routerLink]="['/plant', plant.id]" class="mask">
               <h2>{{plant.scientificName}} </h2>
               <p>{{plant.name}}</p>
-              <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a>
+              <!-- <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a> -->
             </div>
           </div>
           <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
@@ -75,13 +75,13 @@
               </p>
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info"><i class="material-icons">assignment</i></button>
+                <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary"><i class="material-icons">mode_edit</i></button>
+                <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
+                <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
               </div>
             </div>
           </section>
