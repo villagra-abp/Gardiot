@@ -15,22 +15,28 @@
           <h6 id="titulo">Tareas</h6>
         </div>
         <div class="body">
-          <div class="row fila" *ngFor="let grupo of tareas">
-            <div class="col-sm-2 fecha">
-              <span class="numero">{{grupo[0].date | date:['d']}}</span>
-              <span class="mes">{{grupo[0].date | date:['LLL']}}</span>
-            </div>
-            <div class="col">
-              <div class="row tarea rounded" *ngFor="let tarea of grupo">
-                <img *ngIf="tarea.name=='Regar'" src="{{photoURL}}/images/icon/regar.png" class="rounded mx-auto d-block icontarea" alt="Regar">
-                <img *ngIf="tarea.name=='Fertilizar'" src="{{photoURL}}/images/icon/fertilizar.png" class="rounded mx-auto d-block icontarea" alt="Fertilizar">
-                <img *ngIf="tarea.name=='Podar'" src="{{photoURL}}/images/icon/podar.png" class="rounded mx-auto d-block icontarea" alt="Podar">
-                <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
-                <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
-                <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
-                <!--{{tarea.name}}   -->
-                <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
-                <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
+          <div *ngIf="checkTareas == true">
+            <div *ngIf="tareas.length == 0" class="noTarea" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
+            <div *ngIf="tareas.length != 0">
+              <div class="row fila" *ngFor="let grupo of tareas">
+                <div class="col-sm-2 fecha">
+                  <span class="numero">{{grupo[0].date | date:['d']}}</span>
+                  <span class="mes">{{grupo[0].date | date:['LLL']}}</span>
+                </div>
+                <div class="col">
+
+                  <div class="row tarea rounded" *ngFor="let tarea of grupo">
+                    <img *ngIf="tarea.name=='Regar'" src="{{photoURL}}/images/icon/regar.png" class="rounded mx-auto d-block icontarea" alt="Regar">
+                    <img *ngIf="tarea.name=='Fertilizar'" src="{{photoURL}}/images/icon/fertilizar.png" class="rounded mx-auto d-block icontarea" alt="Fertilizar">
+                    <img *ngIf="tarea.name=='Podar'" src="{{photoURL}}/images/icon/podar.png" class="rounded mx-auto d-block icontarea" alt="Podar">
+                    <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
+                    <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
+                    <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
+                    <!--{{tarea.name}}   -->
+                    <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
+                    <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
