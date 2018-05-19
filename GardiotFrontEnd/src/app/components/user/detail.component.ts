@@ -155,6 +155,7 @@ export class DetailComponent implements OnInit {
 
         sunset.setTime(data.sys.sunset * 1000);
         this.sunset = sunset;
+        new iniciar("home", this.garden, this.sunrise, this.sunset);
 
       },
       error => {
@@ -184,7 +185,7 @@ export class DetailComponent implements OnInit {
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
-          new iniciar("home", this.garden, this.sunrise, this.sunset);
+          
         } else {
           // this._route.navigate(['/newgarden']);
         }

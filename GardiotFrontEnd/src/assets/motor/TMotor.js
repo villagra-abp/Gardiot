@@ -32,17 +32,17 @@ class TMotor {
 
 		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-
+			motor.draw();
+			animLoop();
 			//bucle de animación en utilities.js
-			window.interval = setInterval(function () {
+			/*window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
 					motor.draw();
-
 					animLoop();
 					motor.allLoaded();
 				}
-			}, 100);
+			}, 100);*/
 		}
 		else {
 			alert("No funciona WebGL");
@@ -89,10 +89,9 @@ class TMotor {
 	}
 
 	draw() {
-		window.program = 1;
 		gl.useProgram(glProgram[window.program]);
 
-		gl.activeTexture(gl.TEXTURE0+window.shadowIndex);
+		gl.activeTexture(gl.TEXTURE0 + window.shadowIndex);
 		gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
 		gl.uniform1i(glProgram[window.program].shadowMapUniform, 0);
 
@@ -100,21 +99,17 @@ class TMotor {
 		gl.clearColor(0.98, 0.98, 0.98, 1);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		gl.enable(gl.DEPTH_TEST);
-		
+
 		this.dibujarLucesActivas();
-		
+
 		//inicializar cámara
 		this.dibujarCamaraActiva();
-
-		//iteraciones pajaro 
-		this.iterar();
 
 		//dibujado del árbol, cuando llegue a la hoja, la dibujará en el canvas
 		this.escena.draw();
 	}
 
 	drawSombras() {
-		window.program = 2;
 		gl.useProgram(glProgram[2]);
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
@@ -124,7 +119,7 @@ class TMotor {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		gl.clearDepth(1.0);
 
-		this.dibujarLucesActivas();
+		this.dibujarLucesActivasSombras();
 		this.escena.draw();
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
@@ -270,7 +265,7 @@ class TMotor {
 					x = 0;
 				} else if (position[12] > ((length) + 10) && x > 0) {
 					x = 0;
-				} if (position[14] > ((length) +10) && z > 0) {
+				} if (position[14] > ((length) + 10) && z > 0) {
 					z = 0;
 				} else if (position[14] < ((-length) - 10) && z < 0) {
 					z = 0;
@@ -454,7 +449,7 @@ class TMotor {
 			if (auxCamara.entity !== undefined)
 				auxStack.push(auxCamara.entity.matrix);
 		}
-		
+
 		//tenemos el recorrido de la cámara a la raíz en auxStack
 
 		//recorremos la lista auxiliar invertida
@@ -642,6 +637,37 @@ class TMotor {
 		}
 	}
 
+	dibujarLucesActivasSombras(){
+	//dibujar ambient light
+	let contLuces = 0;
+	for (let i = 0; i < this.luzRegistro.length; i++) {
+		let luz = this.luzRegistro[i];
+		if (luz.activa) {
+
+			let auxStack = [];
+			let auxLuz = luz;
+			while (auxLuz = auxLuz.dad) {
+				if (auxLuz.entity !== undefined)
+					auxStack.push(auxLuz.entity.matrix);
+			}
+
+			//tenemos el recorrido de la cámara a la raíz en auxStack
+			//console.log(auxStack);
+
+			//recorremos la lista auxiliar invertida
+			let auxMatrix = mat4.create();
+			for (let i = auxStack.length - 1; i >= 0; i--) {
+				let au = [];
+				mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
+			}
+
+
+			//el resultado lo invertimos y tenemos la matrix View desde la luz
+			mat4.invert(viewLightMatrix, auxMatrix.slice(0));
+		}
+	}
+}
+
 	/**
 	 * Dibujar en la escena las luces que tengamos activas
 	 */
@@ -669,50 +695,50 @@ class TMotor {
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
 
-				window.alturaLuz=parseInt(''+auxMatrix[13]);
-
 
 				//el resultado lo invertimos y tenemos la matrix View desde la luz
 				mat4.invert(viewLightMatrix, auxMatrix.slice(0));
 
+					//calculamos la posición de la luz
+					let lPos = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+					let aux = vec4.fromValues(1.0, 1.0, 1.0, 0.0);
 
-				//calculamos la posición de la luz
-				let lPos = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-				let aux = vec4.fromValues(1.0, 1.0, 1.0, 0.0);
-
-				vec4.transformMat4(lPos, lPos, auxMatrix);
-				vec4.subtract(lPos, lPos, aux);
-
-
-				//se la pasamos al shader
-				//console.log(this.luzRegistro[i].entity.tipo);
-				let isActive, lightPosUniformLocation, lightIntUniformLocation,
-					lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
-				if (luz.entity.tipo == "puntual") {
-					isActive = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
-					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
-					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
-					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
-				}
-				else if (luz.entity.tipo == "dirigida") {
-					isActive = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
-					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
-					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
-					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
-					lightDirUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
-					lightAmpUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
-					gl.uniform4fv(lightDirUniformLocation, luz.entity.direccion);
-					gl.uniform1f(lightAmpUniformLocation, luz.entity.amplitud);
-				}
-
-				gl.uniform1i(isActive, 1);
-				gl.uniform4fv(lightPosUniformLocation, lPos);
-				gl.uniform3fv(lightIntUniformLocation, luz.entity.intensidad);
-				gl.uniform3fv(lightSpecUniformLocation, luz.entity.intensidadSpecular);
+					vec4.transformMat4(lPos, lPos, auxMatrix);
+					vec4.subtract(lPos, lPos, aux);
 
 
-				gl.uniformMatrix4fv(glProgram[window.program].lvMatrixUniform, false, viewLightMatrix);
-				gl.uniformMatrix4fv(glProgram[window.program].lpMatrixUniform, false, lightProjectionMatrix);
+					//se la pasamos al shader
+					//console.log(this.luzRegistro[i].entity.tipo);
+					let isActive, lightPosUniformLocation, lightIntUniformLocation,
+						lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
+					if (luz.entity.tipo == "puntual") {
+						isActive = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
+						lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+						lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+						lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
+					}
+					else if (luz.entity.tipo == "dirigida") {
+						isActive = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
+						lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
+						lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
+						lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
+						lightDirUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
+						lightAmpUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
+						gl.uniform4fv(lightDirUniformLocation, luz.entity.direccion);
+						gl.uniform1f(lightAmpUniformLocation, luz.entity.amplitud);
+					}
+
+					gl.uniform1i(isActive, 1);
+					gl.uniform4fv(lightPosUniformLocation, lPos);
+					gl.uniform3fv(lightIntUniformLocation, luz.entity.intensidad);
+					gl.uniform3fv(lightSpecUniformLocation, luz.entity.intensidadSpecular);
+
+
+
+
+					gl.uniformMatrix4fv(glProgram[window.program].lvMatrixUniform, false, viewLightMatrix);
+					gl.uniformMatrix4fv(glProgram[window.program].lpMatrixUniform, false, lightProjectionMatrix);
+
 				contLuces++;
 			}
 		}
