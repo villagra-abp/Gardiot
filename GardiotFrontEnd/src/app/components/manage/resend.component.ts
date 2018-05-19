@@ -12,8 +12,8 @@ export class ResendComponent implements OnInit {
   user = new User("");
 
   constructor(
-    private _resendService: UserService,
-    private _route: Router) { }
+    public _resendService: UserService,
+    public _route: Router) { }
 
   enviarEmail() {
     this._resendService.resendConfirmation()

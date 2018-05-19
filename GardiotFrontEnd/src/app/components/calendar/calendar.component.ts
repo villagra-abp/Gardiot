@@ -34,6 +34,7 @@ import {
 import { CustomDateFormatter } from './customdate.provider';
 declare var showPopover: any;
 declare var hidePopover: any;
+declare var window: any;
 
 
 const colors: any = {
@@ -78,14 +79,12 @@ export class CalendarComponent implements OnInit {
 
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
 
-  private tasks: any[] = [];
-  private task = new Task();
-
-  private treatments: any[] = [];
-  private treatment = new Task();
-  private monthsLoaded: string[] = [];
-
-  private contador: number=0;
+  public tasks: any[] = [];
+  public task = new Task();
+  public treatments: any[] = [];
+  public treatment = new Task();
+  public monthsLoaded: string[] = [];
+  public contador: number=0;
 
 
 
@@ -180,12 +179,12 @@ export class CalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(
-    private _taskService: TaskService,
-    private _route: Router,
-    private _appComponent: AppComponent,
-    private datePipe: DatePipe,
-    private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog,
+    public _taskService: TaskService,
+    public _route: Router,
+    public _appComponent: AppComponent,
+    public datePipe: DatePipe,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
   ) { }
 
 
@@ -270,8 +269,6 @@ export class CalendarComponent implements OnInit {
       let task = this.tasks[event.id];
       this._taskService.DoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'), fecha_actual)
         .subscribe(data => {
-          //console.log(data);
-          //console.log(event);
           event.actions = this.undoneActions;
           event.color = colors.green;
           event.draggable = false;
@@ -319,13 +316,13 @@ export class CalendarComponent implements OnInit {
             let bb;
             if (currentMonth == taskMonth && cellsOfCalendar[i].innerHTML == taskDay) {
               bb = cellsOfCalendar[i].parentElement.getBoundingClientRect();
-              let pop = document.getElementById('popoverError');
-              pop.style.position = 'absolute';
-              pop.style.top = bb.top + 'px';
-              pop.style.left = (bb.left + bb.right) / 2 + 'px';
+              window.pop = document.getElementById('popoverError');
+              window.pop.style.position = 'absolute';
+              window.pop.style.top = bb.top + 'px';
+              window.pop.style.left = (bb.left + bb.right) / 2 + 'px';
               showPopover('popoverError');
-              setTimeout(function () {
-                hidePopover('popoverError');
+              window.setTimeout(function () {
+                hidePopover(window.pop);
               }, 4000);
             }
 
@@ -358,7 +355,7 @@ export class CalendarComponent implements OnInit {
         this.monthsLoaded.push(fechas[i]);
 
         //console.log(this.monthsLoaded);
-        
+
         for (let key$ in data) {
           this.tasks.push(data[key$]);
           //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
@@ -375,7 +372,7 @@ export class CalendarComponent implements OnInit {
           console.error(error);
         });
     }
-    
+
   }
   changeMonth(){
     let dates=[];
@@ -415,11 +412,11 @@ export class CalendarComponent implements OnInit {
           console.error(error);
         });
       }
-      
+
     }
     //console.log(this.monthsLoaded);
 
-    
+
   }
 
   ngOnInit() {

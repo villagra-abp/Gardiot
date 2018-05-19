@@ -25,7 +25,6 @@ import { AdminComponent } from './components/admin/admin.component';
 //GardenComponent
 import { GardenComponent } from './components/gardens/garden/garden.component';
 import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
-import { NewGardenComponent } from './components/gardens/newgarden/newgarden.component';
 import { AuthguardGuard } from "./authguard.guard";
 //mas rutas
 import { admin_routes } from "./admin.routes";
@@ -33,6 +32,7 @@ import { ResetPassComponent } from './components/manage/reset-pass.component';
 import { ResetPassBackComponent } from './components/manage/reset-pass-back/reset-pass-back.component';
 import { HelpComponent } from './components/help/help.component';
 import { PrivacytermsComponent } from './components/privacyterms/privacyterms.component';
+import { ApipageComponent } from './components/apipage/apipage.component';
 
 
 const app_routes: Routes = [
@@ -46,7 +46,6 @@ const app_routes: Routes = [
   { path: 'editprofile', component: EditProfileComponent, canActivate: [AuthguardGuard] },
   { path: 'garden', component: GardenComponent, canActivate: [AuthguardGuard] },
   { path: 'editgarden', component: EditGardenComponent, canActivate: [AuthguardGuard] },
-  { path: 'newgarden', component: NewGardenComponent, canActivate: [AuthguardGuard] },
   { path: 'plants', component: LibraryComponent, canActivate: [AuthguardGuard] },
   { path: 'newplant', component: NewplantComponent, canActivate: [AuthguardGuard] },
   { path: 'editplant/:id', component: EditplantComponent, canActivate: [AuthguardGuard] },
@@ -58,6 +57,7 @@ const app_routes: Routes = [
   { path: 'reset-pass-back/:key', component: ResetPassBackComponent },
   { path: 'help', component: HelpComponent },
   { path: 'privacyterms', component: PrivacytermsComponent },
+  { path: 'apipage', component: ApipageComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'detail' }
 ];
 

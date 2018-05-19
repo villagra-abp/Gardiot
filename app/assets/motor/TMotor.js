@@ -37,6 +37,7 @@ class TMotor {
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					motor.draw();
 					animLoop();
 					motor.allLoaded();
 				}
@@ -70,6 +71,7 @@ class TMotor {
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
+					motor.draw();
 					motor.drawSombras();
 					motor.draw();
 					motor.allLoaded();
@@ -662,6 +664,8 @@ class TMotor {
 					let au = [];
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
+
+				window.alturaLuz=parseInt(''+auxMatrix[13]);
 
 
 				//el resultado lo invertimos y tenemos la matrix View desde la luz

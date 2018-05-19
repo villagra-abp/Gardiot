@@ -11,10 +11,10 @@ import { AppComponent } from "../../app.component";
 export class OauthConfirmationComponent implements OnInit {
 
   constructor(
-    private _comprobationService: UserService,
-    private _router: ActivatedRoute,
-    private _appComponent: AppComponent,
-    private _route: Router) { }
+    public _comprobationService: UserService,
+    public _router: ActivatedRoute,
+    public _appComponent: AppComponent,
+    public _route: Router) { }
 
 
 

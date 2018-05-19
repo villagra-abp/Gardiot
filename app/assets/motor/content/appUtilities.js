@@ -77,6 +77,8 @@ function setupWebGL() {
     glProgram[window.program].textured = gl.getUniformLocation(glProgram[window.program], "uTextured");
     glProgram[window.program].lighted = gl.getUniformLocation(glProgram[window.program], "uLighted");
     glProgram[window.program].hovered = gl.getUniformLocation(glProgram[window.program], "uHovered");
+    glProgram[window.program].factor = gl.getUniformLocation(glProgram[window.program], "uFactor");
+    glProgram[window.program].noche = gl.getUniformLocation(glProgram[window.program], "uNight");
     //matriz de normales
     glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
     //Backface culling
@@ -181,8 +183,8 @@ async function rotarSol() {
   await sleep(300000); //5 min
   let now = new Date();
   let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let relationNowDay = minutesDiff * window.relationSunDay;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
+  let relationNowDay = minutesDiff / (24*60);
+  let gradeSunPosition = relationNowDay * 360;
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   window.lastTime = now;
@@ -191,15 +193,16 @@ async function rotarSol() {
 }
 
 async function demoSol() {
-  await sleep(500);
+  await sleep(200);
   let now = new Date(window.lastTime);
   now.setHours(now.getHours() + 1);
   let minutesDiff = Math.abs(now - window.lastTime) / 60000;
-  let relationNowDay = minutesDiff * window.relationSunDay;
-  let gradeSunPosition = (relationNowDay * 360) / (24 * 60);
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
+  let relationNowDay = minutesDiff / (24*60);
+  let gradeSunPosition = relationNowDay * 360;
+  //console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
+  window.factorIlumination=Math.sin(Math.radians(gradeSunPosition))+0.2;
   //motor.rotarLuzOrbital('sol', gradeSunPosition/2, 'y');
   //motor.rotarLuzOrbital('luna', gradeSunPosition/2, 'y');
   window.lastTime = now;
@@ -212,11 +215,13 @@ async function iluminarAstro(minuteOfDay) {
     motor.activarLuz("sol");
     motor.desactivarLuz("luna");
     iluminarSol(minuteOfDay);
+    gl.uniform1i(glProgram[window.program].noche, 0);
   }
   else {
     motor.activarLuz("luna");
     motor.desactivarLuz("sol");
     iluminarLuna(minuteOfDay);
+    gl.uniform1i(glProgram[window.program].noche, 1);
   }
 }
 
@@ -253,7 +258,8 @@ async function iluminarLuna(minutes) {
     let percent = (minutesSinceSunset - (minutesOfNight / 2)) / (minutesOfNight / 2);
     rgb = { red: window.rgbMoon.red - (window.rgbDiffMoon.red * percent), green: window.rgbMoon.green - (window.rgbDiffMoon.green * percent), blue: window.rgbMoon.blue - (window.rgbDiffMoon.blue * percent) };
   }
-  luna.entity.setIntensidad(rgb.red / 255, rgb.green / 255, rgb.blue / 255);
+  luna.entity.setIntensidad(0.1, 0.1, 0.1);
+  window.factorIlumination=0.2;
 }
 
 function sleep(ms) {

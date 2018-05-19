@@ -7,10 +7,10 @@ import 'rxjs/Rx';
 @Injectable()
 export class GardenService {
 
-  private apiURL: string = "";
+  public apiURL: string = "";
 
 
-  constructor(private http: Http, private _route: Router) {
+  constructor(public http: Http, public _route: Router) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.apiURL = "http://localhost:3000/api/";
     }
@@ -67,6 +67,7 @@ export class GardenService {
   }
 
   insertGarden(garden: Garden) {
+    console.log(garden);
     garden.soil = "1";
 
     let body = `title=${garden.title}`;
@@ -148,6 +149,7 @@ export class GardenService {
       'Authorization': `Bearer ${localStorage['Bearer']}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     });
+    console.log(body);
     return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers })
       .map(res => {
         return res.json();
@@ -155,13 +157,16 @@ export class GardenService {
 
   }
 
+
   modifyGarden2(garden: Garden) {
+    
     let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;
     body += `&longitude=${garden.longitude}&countryCode=${garden.countryCode}&city=${garden.city}`;
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     });
+    console.log(body);
     return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers })
       .map(res => {
         return res.json();

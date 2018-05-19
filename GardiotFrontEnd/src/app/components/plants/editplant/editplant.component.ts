@@ -18,17 +18,17 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class EditplantComponent implements OnInit {
 
   plant = new Plant();
-  private plants: any[] = [];
-  private families: any[] = [];
+  public plants: any[] = [];
+  public families: any[] = [];
   uploader: FileUploader;
 
   constructor(
-    private _plantService: PlantService,
-    private _appComponent: AppComponent,
-    private _ng2ImgMax: Ng2ImgMaxService,
-    private datePipe: DatePipe,
-    private _router: ActivatedRoute,
-    private _route: Router
+    public _plantService: PlantService,
+    public _appComponent: AppComponent,
+    public _ng2ImgMax: Ng2ImgMaxService,
+    public datePipe: DatePipe,
+    public _router: ActivatedRoute,
+    public _route: Router
 
   ) { }
 

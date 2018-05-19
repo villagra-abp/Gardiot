@@ -14,14 +14,14 @@ import { DialogNewgarden2Component } from '../dialog-newgarden2/dialog-newgarden
   styleUrls: ['./dialog-newgarden3.component.css']
 })
 export class DialogNewgarden3Component implements OnInit {
-  private garden = new Garden("");
-  private photoURL = "";
+  public garden = new Garden("");
+  public photoURL = "";
   constructor(
     public thisDialogRef: MatDialogRef<DialogNewgarden3Component>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _gardenService: GardenService,
-    private _route: Router,
-    private dialog: MatDialog,
+    public _gardenService: GardenService,
+    public _route: Router,
+    public dialog: MatDialog,
   ) {
 
     if(window.location.toString().indexOf("localhost")>=0){
@@ -45,8 +45,7 @@ export class DialogNewgarden3Component implements OnInit {
 
   onCloseConfirm() {
     this.saveGarden();
-    window.location.reload();
-    this.thisDialogRef.close('Guardado');
+    
   }
 
   onCloseAtras() {
@@ -62,6 +61,8 @@ export class DialogNewgarden3Component implements OnInit {
   saveGarden() {
     this._gardenService.modifyGarden2(this.garden)
       .subscribe(data => {
+        window.location.reload();
+        this.thisDialogRef.close('Guardado');
       },
         error => {
           let v = JSON.parse(error._body);

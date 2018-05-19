@@ -11,7 +11,7 @@ export class TaskService {
   public isAdmin: boolean;
   public isAuthenticated: boolean;
 
-  constructor(private http: Http, private _route: Router) {
+  constructor(public http: Http, public _route: Router) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.apiURL = "http://localhost:3000/api/";
     }
@@ -85,5 +85,15 @@ export class TaskService {
       .map(res => {
         return res.json();
       })
+  }
+
+  percent(){
+        let headers = new Headers({
+          'Authorization': `Bearer ${localStorage['Bearer']}`
+        });
+        return this.http.get(this.apiURL + "todayPercent", { headers })
+          .map(res => {
+            return res.json();
+          })
   }
 }

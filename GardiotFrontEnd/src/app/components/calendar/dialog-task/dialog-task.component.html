@@ -1,28 +1,29 @@
+<!-- Interfaz detalle de tarea. Julián Sánchez García. Ingeniería Multimedia UA 2018  -->
 <section>
   <div class="tratamiento">
-    <span><img src="{{nameTreatment.icon}}" alt="{{nameTreatment.icon}}" width="30" height="30">
+    <span><img src="{{nameTreatment.icon}}" alt="{{nameTreatment.icon}}" width="auto" height="30px">
       {{this.nameTreatment.name}}
     </span>
-    <p>{{this.nameTreatment.description}}</p>
+    <p class="descripcion">{{this.nameTreatment.description}}</p>
   </div>
 
   <div class="row">
     <div class="col-sm-4">
-      <h6>{{plant.commonName}}</h6>
-      <img src="{{plant.photo}}" alt="{{plant.photo}}" width="150" height="150">
+      <h6 class="nombrePlanta">{{plant.commonName}}</h6>
+      <img class="imagen" src="{{plant.photo}}" alt="{{plant.photo}}" width="auto" height="auto">
     </div>
-    <div class="col-sm-8">
-      <div *ngFor="let product of products" class="producto">
+    <div class="col-sm-8 producto">
+      <div *ngFor="let product of products">
         <h6 *ngIf="this.products !== undefined">Producto recomendado</h6>
         <dl>
           <dt>{{this.product.name}}</dt>
-          <dd>{{this.product.type}}</dd>
+          <dd class="cursiva">{{this.product.type}}</dd>
         </dl>
         <p>{{this.product.description}}</p>
       </div>
     </div>
   </div>
-  <mat-dialog-actions>
+  <!-- <mat-dialog-actions>
     <button mat-raise-button  (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Cerrar</button>
-  </mat-dialog-actions>
+  </mat-dialog-actions> -->
 </section>

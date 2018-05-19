@@ -32,7 +32,7 @@ var adminAllowed = [];
 adminAllowed.push({method: 'GET', path: 'Admin'});
 adminAllowed.push({method: 'GET', path: 'user'});
 adminAllowed.push({method: 'PUT', path: 'user'});
-adminAllowed.push({method: 'GET', path: 'find'});
+adminAllowed.push({method: 'POST', path: 'find'});
 adminAllowed.push({method: 'GET', path: 'treatmentPlant'});
 adminAllowed.push({method: 'GET', path: 'treatment'});
 adminAllowed.push({method: 'GET', path: 'product'});

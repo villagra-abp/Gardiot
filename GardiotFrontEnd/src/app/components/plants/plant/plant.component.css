@@ -1,38 +1,154 @@
-.iconplant{
-  max-width: 25px;
-  max-height: 25px;
-}
+/* Julián Sánchez García.
+   Ingeniería Multimedia UA 2018 */
 
-img{
-  width: 50%;
-  height: 80%;
-}
-
-ul{
-  text-align: center;
+/* CONTENEDOR PRINCIPAL */
+.vistaUser{
+  margin-right: 130px;
+  margin-left: 130px;
 }
 article{
-  padding: 0.2em;
-  margin:0.4em;
-  margin-top: 1.2em;
+  margin-right: auto;
+  margin-left: auto;
+}
+div,article,section{
+  /* border: 1px solid black; */
+  padding: 1%;
 }
 
-/* dl {
+/*  IMAGENES ICONOS */
+.iconplant{
+  max-width: 30px;
+  max-height: 30px;
+  /* min-width: 25px;
+  min-height: 25px; */
+  padding-right: 3%;
+}
+.iconoTrata{
+  max-width: 25px;
+  height: 25px;
+}
+.imagen{
+  min-width: 450px;
+  max-width: 470px;
+  min-height: 260px;
+  max-height: 260px;
+  border-radius: 5%;
+  margin-top: 2%;
+}
+
+/*  BLOQUE caracteristicas PLANTA */
+dl.caracteristicas {
   width: 100%;
   overflow: hidden;
   padding: 0;
   margin: 0
 }
-dt {
+dt.caracteristicas {
   float: left;
-  width: 50%;
- adjust the width; make sure the total of both is 100%
+  width: 100%;
   padding: 0;
   margin: 0
 }
-dd{
+dd.caracteristicas {
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 0;
-  margin: 0;
-} */
+  margin: 0
+}
+.caracteristicas{
+  margin-left: 0;
+  text-align: center;
+}
+.nombreA{
+  font-size: 2.5em;
+}
+.nombreB{
+  font-size: 2em;
+  font-style: italic;
+}
+.familia{
+  font-size: 1.5em;
+}
+.prof{
+  font-size: 1.3em;
+}
+.distance{
+  font-size: 1.3em;
+}
+.resist{
+  font-size: 1.3em;
+}
+.descriptionPlanta{
+  margin-top: 2%;
+  font-size: .9em;
+  text-align: justify;
+  padding: 15px;
+
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  /* border: 1px solid #ffb200; */
+  border: 1px solid rgba(255, 178, 0, .3);
+}
+
+/* FECHAS */
+.fechas{
+  margin-left: auto;
+  margin-right: auto;
+  display:inline-flex;
+  text-align: justify;
+}
+
+
+/* TRATAMIENTOS */
+.nombreTrata{
+  font-weight: bold;
+}
+.descriptionTrata{
+  font-size: .9em;
+  /* border: 1px solid #ffb200; */
+  text-align: justify;
+}
+
+/* PRODUCTOS */
+ul{
+  /* max-width: 400px; */
+}
+li{
+  text-decoration: none;
+  /* font-size: .9em; */
+}
+
+.productoTrata{
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  /* border: 1px solid #ffb200; */
+  border: 1px solid rgba(255, 178, 0, .3);
+
+  margin-top: 2%;
+
+}
+
+
+mat-accordion{
+  /* -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: color 0 ease-in;
+    transition: none; */
+    /* border:none !important;
+    outline:none; */
+}
+mat-expansion-panel{
+  background-color: #f3f3f3;
+  /* border:none !important;
+  outline:none; */
+}
+mat-panel-title{
+/* border:none !important;
+outline:none; */
+}
+mat-expansion-panel-header{
+  /* border:none !important;
+  outline:none; */
+}
