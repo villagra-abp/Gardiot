@@ -90,13 +90,14 @@ export class PlantComponent implements OnInit {
   showProductPlant(treatment: number, idPlant: number) {
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         if (data.length == 0) {
-            console.log("No hay");
+            // console.log("No hay");
         }else{
           for (let key$ in data) {
             this.productTreatments.push(data[key$]);
-            console.log("data.length "+data.length);
+            // console.log("data.length "+data.length);
+            // this.encuentraProducto();
           }
         }
       },
@@ -170,10 +171,14 @@ export class PlantComponent implements OnInit {
           });
   }
 
+  // encuentraProducto(){
+  //   let registro=this.productTreatments.find(x=>x.treatment==this.treatment.id);
+  //   console.log("Registro "+registro);
+  // }
+
   ngOnInit() {
 
     this.comprobaciones();
-
 
     this._router.params.subscribe(params => {
       if (params['id'] != null) {
