@@ -118,6 +118,9 @@ li{
   text-decoration: none;
   /* font-size: .9em; */
 }
+p.listaProductos{
+  font-style: italic;
+}
 
 .productoTrata{
   border-radius: 25px 25px 25px 25px;
