@@ -24,7 +24,7 @@ export class LibraryComponent implements OnInit {
   public plant = new Plant();
   public numeroItems: number;
   public paginaActual: number = 1;
-  public elementosPorPagina: number = 6;
+  public elementosPorPagina: number = 10;
   public estado: boolean = false;// false es listado y true buscador
   public familyData: Observable<Array<Select2OptionData>>;
   public startFamily: Observable<string>;
