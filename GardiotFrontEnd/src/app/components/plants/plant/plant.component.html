@@ -53,7 +53,7 @@
               </mat-expansion-panel-header>
               <!-- LISTA DE PRODUCTOS -->
               <span *ngFor="let producttreatment of productTreatments">
-                <p *ngIf="treatment.id == producttreatment.treatment">{{producttreatment.name}}</p>
+                <p class="listaProductos"*ngIf="treatment.id == producttreatment.treatment">{{producttreatment.name}}</p>
               </span>
             </mat-expansion-panel>
           </mat-accordion>

@@ -14,7 +14,7 @@
       </form>
       <section class="list">
 
-      
+
       <ul>
         <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
         <div>
@@ -25,10 +25,7 @@
         </li>
       </ul>
     </section>
-      <div>
-        <app-pagination [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
-      </div>
-
+    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false" (onPrev)="prevPage()" (onNext)="nextPage()" (onPage)="goToPage($event)"></app-pagination>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
@@ -73,21 +70,21 @@
     <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
   </div>
   <section class="litButtons">
-      
-        <div class="toggleDeko litButton desplegable" id="plt" 
+
+        <div class="toggleDeko litButton desplegable" id="plt"
     onclick="openWeather(this)" *ngIf="haveWeather == true">
       <i class="material-icons">cloud</i> <span>Previsión</span> <i style="visibility:hidden" onclick="closeWeather(event, this)" class="material-icons">close</i>
     </div>
-    <div class="toggleDeko litButton desplegable" id="edit" 
+    <div class="toggleDeko litButton desplegable" id="edit"
     onclick="openInfo(this);">
       <img src="{{photoURL}}/images/icon/edit.png" alt="edit" /> <span>Editar información</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
     </div>
       <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
           <img src="{{photoURL}}/images/icon/plant.png" alt="plant" /> <span>Cambiar de modo</span><i style="visibility:hidden" class="material-icons">close</i>
         </div>
-    
-    
-    
+
+
+
     <div class="toggleDeko litButton" id="plus" onclick="plusZoom()">
       <img src="{{photoURL}}/images/icon/plus.png" alt="plus" />
     </div>
@@ -97,11 +94,11 @@
     <div class="toggleDeko litButton desplegable" id="help" onclick="openHelp()" (click)="this.openDialog(1, 2)">
       <img src="{{photoURL}}/images/icon/ask.png" alt="ask" /> <span>Ayuda</span><i style="visibility:hidden" class="material-icons">close</i>
     </div>
-    
+
   </section>
   <div id="prevision" class="previsionClosed" *ngIf="haveWeather == true" oncontextmenu="return false;">
-    <!--<span class="interactiveButton" 
-    style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;" 
+    <!--<span class="interactiveButton"
+    style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;"
     onclick="document.getElementById('prevision').classList.toggle('previsionClosed');"> <i class="material-icons">cloud</i></span>-->
     <div class="tiempo">
       <div class="headTiempo">

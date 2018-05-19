@@ -170,7 +170,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 0,
       rotZ: 0,
-      posY: 0.05
+      posY: -0.1
     },
   };
 
