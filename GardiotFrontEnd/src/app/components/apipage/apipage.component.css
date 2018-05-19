@@ -1,11 +1,5 @@
-/* span{
-  font-size: .9em;
-}
-
-section{
-  margin-right: auto;
-  margin-left: auto;
-} */
+/* Julián Sánchez García.
+   Ingeniería Multimedia UA 2018 */
 
 mat-expansion-panel{
   width: 1000px;
@@ -18,20 +12,19 @@ mat-expansion-panel{
 }
 
 mat-panel-description{
-  font-size: .7em;
-  text-align: center;
+  font-size: .8em;
+  text-align: left;
+  align-items: flex-start;
   padding: 1%;
 }
 li{
   font-weight: bold;
 }
 
-pre{
-
-}
 mat-panel-title{
   font-style: italic;
-  font-style: italic;font-weight: bold;
+  font-weight: bold;
+  padding: 1%;
 }
 .encabezado{
   margin-left: 130px;
