@@ -39,7 +39,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
   //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
-  window.alturaLuz;
   window.velocidadOrbital=1;
 
 
@@ -153,7 +152,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
       rotX: -90,
       rotY: 0,
       rotZ: 0,
-      posY: 0.2
+      posY: 0.0
     },
     LOGO: {
       textura: 'logo.jpg',

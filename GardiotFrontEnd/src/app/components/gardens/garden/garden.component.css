@@ -26,43 +26,6 @@
   z-index: 40;
 }
 
-#prevision>span:last-of-type{
-  display: none !important;
-}
-
-#prevision{
-  position: absolute;
-  background:rgba(48, 145, 145, 0.7);
-  top: 120px;
-  right: 60px;
-  min-width: 240px;
-  max-width: 240px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-  transition: .2s ease-in all;
-  z-index:1;
-}
-
-
-#prevision>i{
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  cursor: pointer;
-  font-size: 2em;
-  z-index: 30;
-
-  transition: .3 ease-in all;
-}
-
-.previsionClosed{
-  right: -240px !important;
-}
-.previsionClosed>span:last-of-type{
-  position: absolute;
-  left: 250px !important;
-  display: inline-block !important;
-}
 
 .interactiveButton{
   cursor: pointer;
@@ -141,43 +104,6 @@
 
 
 
-
-  .formulario{
-
-    position: absolute;
-  background:rgba(48, 145, 145, 0.7);
-  top: 180px;
-  right: 60px;
-  min-width: 240px;
-  max-width: 240px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-  transition: .2s ease-in all;
-  z-index:1;
-
- z-index: 20;
- padding: 0 1.6em 0.9em 1.6em;
-
- min-width: 240px;
-  max-width: 240px;
-
-
- border-bottom-left-radius: 15px;
-
-}
-
-.infoOcult{
-  right: -240px;
-}
-
-.formulario>i{
-
-  position: absolute;
-  top: -30px;
-  right: 0;
-  cursor: pointer;
-  color: #fff;
-}
 label{
   margin-bottom: 0;
   margin-top: 10px;
@@ -550,6 +476,84 @@ li{
     margin-left: 10px;
   }
 
+  
+#prevision>span:last-of-type{
+  display: none !important;
+}
+
+#prevision{
+  position: absolute;
+  background:rgba(48, 145, 145, 0.7);
+  top: 120px;
+  right: 60px;
+  min-width: 240px;
+  max-width: 240px;
+  border-bottom-left-radius: 15px;
+  color: #fff;
+  transition: .2s ease-in all;
+  z-index:1;
+}
+
+
+#prevision>i{
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+  font-size: 2em;
+  z-index: 30;
+
+  transition: .3 ease-in all;
+}
+
+.previsionClosed{
+  right: -240px !important;
+}
+.previsionClosed>span:last-of-type{
+  position: absolute;
+  left: 250px !important;
+  display: inline-block !important;
+}
+
+
+
+.formulario{
+
+  position: absolute;
+background:rgba(48, 145, 145, 0.7);
+top: 180px;
+right: 60px;
+min-width: 240px;
+max-width: 240px;
+border-bottom-left-radius: 15px;
+color: #fff;
+transition: .2s ease-in all;
+z-index:1;
+
+z-index: 20;
+padding: 0 1.6em 0.9em 1.6em;
+
+min-width: 240px;
+max-width: 240px;
+
+
+border-bottom-left-radius: 15px;
+
+}
+
+.infoOcult{
+right: -240px;
+}
+
+.formulario>i{
+
+position: absolute;
+top: -30px;
+right: 0;
+cursor: pointer;
+color: #fff;
+}
+
 }
 
 
@@ -575,8 +579,8 @@ li{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 5px;
     color: #fff;
+    padding: 5px;
     border-radius: 0px;
     width: 25%;
     height: 70px;
@@ -592,7 +596,7 @@ li{
     height: 30px;
   }
   .litButton>span{
-    flex-grow: 2;
+
     font-size: 10px;
   }
 
@@ -614,7 +618,7 @@ li{
 
     margin: 10%;
 
-    min-width: 80%;
+    width: 80%;
 
     bottom: 61px;
 
@@ -729,9 +733,10 @@ li{
 
   /*formulario lateral derecho*/
   .formulario{
+
     position:absolute;
     background: rgba(0, 0, 0, 0.5);
-    top: 61px;
+    top: 61px !important;
     margin: 10%;
     min-width: 80%;
     bottom: 61px;
