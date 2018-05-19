@@ -51,6 +51,10 @@ p{
     box-shadow: 1px 1px 9px #f3f3f3;
     cursor: default;
 }
+
+.mask{
+      cursor:pointer;
+}
 .view .mask, .view .content {
     width: 160px;
     height: 200px;
@@ -61,7 +65,7 @@ p{
 }
 .view img {
     display: block;
-    position: relative
+    position: relative;
 }
 .view h2 {
     text-transform: uppercase;
@@ -85,7 +89,7 @@ p{
 .view a.info {
     display: inline-block;
     text-decoration: none;
-    padding: 7px 14px;
+    padding: 3px 7px;
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -111,7 +115,7 @@ p{
 	transition: all 0.2s linear;
 }
 .view-first a.info{
-    opacity: 0;
+  opacity: 0;
 	transition: all 0.2s ease-in-out;
 }
 .view a.info:hover {
