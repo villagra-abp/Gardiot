@@ -145,6 +145,24 @@ p{
 	background-color: rgba(0,0,0,0.1);
 }
 
+.noTarea {
+	background-color: rgba(0,0,0,0.04);
+	padding-top: 10px;
+	padding-bottom:5px;
+	padding-left: 7px;
+	margin-left:1px;
+	margin-right:15px;
+	margin-bottom: 5px;
+	font-size: small;
+	border-radius: 5px;
+	border: #e0e0e0 1px solid;
+}
+
+.noTarea:hover {
+	background-color: rgba(0,0,0,0.1);
+	cursor: pointer;
+}
+
 @media only screen and (max-width: 600px){
 	.body{
 		overflow-y: hidden;

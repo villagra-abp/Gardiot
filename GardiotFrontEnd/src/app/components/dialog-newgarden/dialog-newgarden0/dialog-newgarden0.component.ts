@@ -40,6 +40,7 @@ export class DialogNewgarden0Component implements OnInit {
   onCloseOmit() {
     this.saveGarden();
     this.thisDialogRef.close('Empezar');
+    
   }
 
   openDialog() {
