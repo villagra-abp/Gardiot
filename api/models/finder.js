@@ -35,6 +35,7 @@ var finder = {};
 
 finder.find = function(model, data, number, page, order, sort, callback) {
 	if (connection) {
+		var badCharacter = false;
 		let minPeak = (page - 1) * number;
 		var sql = 'SELECT COUNT(*) OVER () AS num, Q.* ' + skeleton[model.toUpperCase()]['SELECT'] + ' FROM ' + skeleton[model.toUpperCase()]['FROM'] + ' Q ';
 		
@@ -57,8 +58,11 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 					else
 						sqlParams += ' ' + key + ' = ' + data[key] + ' AND';
 				}
-				else if (isASCII(data[key]) || isEmail.validate(data[key]))
+				else if (isASCII(data[key]) || isEmail.validate(data[key])){
 					sqlParams += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
+					}else{
+						badCharacter = true;
+					}
 			}
 		}
 		if (Object.keys(data).length > 0 && sqlParams != '') {
@@ -80,7 +84,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 		if(sort.toUpperCase() === 'DESC')
 			sql += 'DESC ';
 		sql += 'LIMIT ' + minPeak + ',' + number;
-		if (sqlParams != '') {
+		if (!badCharacter) {
 			connection.query(sql, function(error, rows) {
 
 				if (error)

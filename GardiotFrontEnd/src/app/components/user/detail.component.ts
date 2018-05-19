@@ -266,7 +266,7 @@ export class DetailComponent implements OnInit {
 
   getTasks(){
     this.tareas = [];
-    this._taskService.detailsSome(15)
+    this._taskService.detailsSome(30)
     .subscribe(data =>{
 
       let aux:any[] = [];
