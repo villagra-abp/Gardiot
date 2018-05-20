@@ -10,6 +10,8 @@ import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-plant',
@@ -41,7 +43,9 @@ export class PlantComponent implements OnInit {
     public _treatmentPlantService: TreatmentPlantService,
     public _router: ActivatedRoute,
     public user: UserService,
+    public dialog: MatDialog,
     public _route: Router) { }
+
 
   mostrar(numplant: number) {
     this._plantService.details(numplant)
@@ -169,6 +173,12 @@ export class PlantComponent implements OnInit {
           error => {
             console.error(JSON.parse(error._body).Mensaje);
           });
+  }
+  openDialog(id: number, tipo: number) {
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '40em',
+      data: { idObject: id, typeObject: tipo }
+    });
   }
 
   // encuentraProducto(){
