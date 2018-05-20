@@ -9,6 +9,18 @@
   margin-right: 130px;
   margin-left: 130px;
 }
+.buttonAdmin{
+  margin-top:1em;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+
+}
+.buttonAdmin button{
+  margin-bottom: 100%
+  /* border: none; */
+}
 article{
   margin-right: auto;
   margin-left: auto;
