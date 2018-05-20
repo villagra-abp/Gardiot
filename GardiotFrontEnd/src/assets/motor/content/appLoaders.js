@@ -1,11 +1,9 @@
+
+
 function loadAnimation () {
   //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion")
 
-  
-
-
-  //ANIMACION
   /*  motor.crearNodoAnimacion("pajaro", "pajaro", 80, undefined);
     motor.crearNodoAnimacion("alaA", "ala", 80, undefined);
     motor.crearNodoAnimacion("alaB", "alab", 80, undefined);
@@ -48,9 +46,8 @@ function loadPlants () {
 }
 
 
-function loadSoil () {
+function loadSoil (width, length) {
   //Primero creamos el espacio de alrededor del jardín
-  let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
   /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
   motor.escalarMallaXYZ("around", 500, 0.1, 500);
   motor.moverMalla("around", 0, -0.11, 0);*/
@@ -70,7 +67,6 @@ function loadSoil () {
         motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
         //HACEDLO CON LAS PLANTAS
       }
-
     }
   }
 }
@@ -86,7 +82,7 @@ function loadExtSoil () {
     }
   }
 }
-function loadFence () {
+function loadFence (width, length) {
   // VALLADO
   /* Consideramos length y width como unidades de suelo*/
 
@@ -165,30 +161,34 @@ function loadSun () {
   window.minutesOfSun = minuteOfSunset - minuteOfSunrise; // Minutos de sol diarios
   window.minutesOfNight = minutesOfNight = (24 * 60) - minutesOfSun;
 
-  let relation, offset;
+  let relation, offset, ilumOffset = 0;
   if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
     relation = (minuteOfDay - minuteOfSunrise) / minutesOfSun;
     offset = -90;
-    factorIlumination = Math.sin(Math.radians(gradeSunPosition))+0.2;
+    ilumOffset = 0.2;
   }
   else {
     if (minuteOfDay < minuteOfSunrise)
         minuteOfDay = (24 * 60) + minuteOfDay;
     relation = (minuteOfDay - minuteOfSunset) / minutesOfNight;
     offset = 90;
-    factorIlumination = Math.sin(Math.radians(gradeSunPosition));
   }
-
   let gradePosition = relation * 180;
-  motor.rotarLuzOrbitalA('sol', gradeSunPosition + offset);
-  motor.rotarLuzOrbitalA('luna', gradeSunPosition + offset);
+  factorIlumination = Math.sin(Math.radians(gradePosition)) + ilumOffset;
+  motor.rotarLuzOrbitalA('sol', gradePosition + offset);
+  motor.rotarLuzOrbitalA('luna', gradePosition + offset);
 
   iluminarAstro(minuteOfDay);
   rotarSol();  
 }
 
 function loadEntities () {
-
+  let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
+  loadSoil(width, length);
+  loadExtSoil();
+  loadFence(width, length);
+  loadPlants();
+  loadSun();
 }
 
 //Datos de plantas como el escalado, etc. para que se dibujen bien

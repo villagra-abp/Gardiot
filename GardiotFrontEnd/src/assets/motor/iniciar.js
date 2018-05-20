@@ -86,6 +86,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   motor.crearNodoCamara("dynamicCamera", true, undefined);
   motor.activarCamara("dynamicCamera");
 
+  loadEntities();
+
   //dependiendo de si estamos en modo visión o modo edición, la cámara estará en un sitio u otro
   //Aquí colocamos la cámara y llamamos al dibujado de la escena
   if (accion == 'detail') {
