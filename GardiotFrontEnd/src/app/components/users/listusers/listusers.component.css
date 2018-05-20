@@ -7,7 +7,7 @@
 div,article,section{
   /* border: 1px solid green; */
 }
-input,label, select{
+input,label, select,option{
   font-size: .9em;
   padding: 0;
   margin: 0;
@@ -20,7 +20,7 @@ th{
 
 td{
   font-size: .8em;
-  font-style: italic;
+  /* font-style: italic; */
 }
 .nombre{
   /* padding-right: 20%;
