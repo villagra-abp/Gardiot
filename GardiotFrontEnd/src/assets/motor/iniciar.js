@@ -300,7 +300,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
     motor.moverMalla("pajaro", 0, -4, 0);
     motor.moverMalla("alaA", 0, -4, 0);
-    motor.moverMalla("alaB", 0, -4, 0);
+    motor.moverMalla("alaB", 0, -4, 0);*/
 
 
 
