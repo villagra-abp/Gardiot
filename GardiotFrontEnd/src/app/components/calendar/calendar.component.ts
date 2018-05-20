@@ -271,7 +271,7 @@ export class CalendarComponent implements OnInit {
     fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
 
     if (action == 'Edited') {
-      this.dialog.open(DialogTaskComponent, { width: '800px', data: { id: 1 } });
+      this.dialog.open(DialogTaskComponent, { width: '800px', height:'800px', data: { id: 1 } });
 
     }
     else if (action == 'Done') {
@@ -340,7 +340,7 @@ export class CalendarComponent implements OnInit {
     }
     else {
       let task = this.tasks[event.id];
-      this.dialog.open(DialogTaskComponent, { width: '800px', data: { mPlant: task.mPlant, myPlant: task.myPlant, tPlant: task.tPlant, treatmentPlant: task.treatmentPlant } });
+      this.dialog.open(DialogTaskComponent, { width: '800px',height:'auto', data: { mPlant: task.mPlant, myPlant: task.myPlant, tPlant: task.tPlant, treatmentPlant: task.treatmentPlant } });
     }
 
   }
@@ -391,7 +391,7 @@ export class CalendarComponent implements OnInit {
               data[key$].dateDone != null);
 
           }else if(data[key$].name =='Fumigar'){
-            this.addEvent('<img src="'+this.photoURL+'/images/icon/fumigar.png" class=" icontarea" alt="Fumugar">' + " " + data[key$].commonName,
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/fumigar.png" class=" icontarea" alt="Fumigar">' + " " + data[key$].commonName,
               this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
               this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
               parseInt(key$),

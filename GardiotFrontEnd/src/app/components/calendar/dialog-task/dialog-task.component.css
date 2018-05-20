@@ -16,8 +16,8 @@
 section{
     /* margin-right: auto;
     margin-left: auto; */
-    margin-top: 3%;
-    margin-bottom: 3%;
+    /* margin-top: 3%;
+    margin-bottom: 3%; */
 }
 
 span{
@@ -27,9 +27,9 @@ span{
 mat-dialog-actions{
   padding: 2.5px;
 }
-button{
+/* button{
   margin: 3px;
-}
+} */
 .producto{
   font-size: .8em;
   overflow-y: auto;
