@@ -110,7 +110,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
-    let altura = Math.min(width, length);
+    let altura = Math.min(camHeight/2, camHeight);
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
     motor.moverCamaraA("dynamicCamera", 0, altura, altura * 2);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");

@@ -11,14 +11,16 @@ varying vec3 vVertNormal; //Normals untransformed
 varying mat4 vView; //Passing viewMatrix to Fragment shader
 varying vec3 vTVertPosition; //transformed vertexPosition
 varying vec4 vTVertNormal; //transformed vertexNormal
-varying vec4 shadowPos;
+varying vec4 shadowPos[7];
+varying float vLightCount;
 
 uniform mat4 uMMatrix;
 uniform mat4 uVMatrix;
 uniform mat4 uMVMatrix; //modelViewMatrix
 uniform mat4 uMVPMatrix; //modelViewProjection Matrix
-uniform mat4 uMVPMatrixFromLight; //modelViewProjection Matrix from light
+uniform mat4 uMVPMatrixFromLight[7]; //modelViewProjection Matrix from light
 uniform mat4 uNormalMatrix;
+uniform int uLightCount;
 
 const mat4 texUnitConverter = mat4(0.5, 0.0, 0.0, 0.0, 
 									0.0, 0.5, 0.0, 0.0, 
@@ -26,13 +28,17 @@ const mat4 texUnitConverter = mat4(0.5, 0.0, 0.0, 0.0,
 									0.5, 0.5, 0.5, 1.0);
 
 
-
 void main()
 {
 	vView=uVMatrix;
 
+	vLightCount=float(uLightCount);
 	gl_Position = uMVPMatrix * vec4(aVertPosition, 1.0);
-	shadowPos=texUnitConverter * uMVPMatrixFromLight * vec4(aVertPosition, 1.0);
+
+	for(int i=0; i<7; i++){
+		if(i>=uLightCount){break;}
+		shadowPos[i]=texUnitConverter * uMVPMatrixFromLight[i] * vec4(aVertPosition, 1.0);
+	}
 	
 	vFragTexCoord = aVertTexCoord;
 
