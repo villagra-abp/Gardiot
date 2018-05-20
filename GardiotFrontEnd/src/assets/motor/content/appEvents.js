@@ -1,12 +1,27 @@
 
 function drag(e) {
-  console.log(e.target.id);
+  window.dragging = true;
   e.dataTransfer.setData("text", e.target.id);
 }
+
 
 function allowDrop(e) {
   e.preventDefault();
   e.stopPropagation();
+}
+
+function dragCanvas(e){
+  if (window.dragging) {
+    e.preventDefault();
+    e.stopPropagation();
+    let cv = document.querySelector('#myCanvas');
+    let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
+    let p = [Math.round(point[0]), Math.round(point[2])];
+    if (plantsMap.has(p[0] + '-' + p[1]))
+      colorCell = ["suelo" + p[0] + '-' + p[1], "red"];
+    else
+      colorCell = ["suelo" + p[0] + '-' + p[1], "green"];
+  }
 }
 
 function drop(e) {
@@ -23,14 +38,21 @@ function drop(e) {
     for (let value of window.jardin.plants) {
       if (value.x == coordX && value.y == coordY) {
         occupied = true;
+
         break;
       }
     }
-    if (!occupied)
+    if (!occupied) {
       insertMyPlant(window.jardin.id, plant[0], window.jardin.soil, coordX, coordY, plant[1]);
-  }
-}
 
+    }
+  }
+  colorCell=[];
+  plant.x = coordX;
+  plant.y = coordY;
+  plantsMap.set(coordX + '-' + coordY, plant.id);//Para la iluminación
+  window.dragging = false;
+}
 
 function mouse_move(e) {
   if (typeof projectionMatrix !== 'undefined') {
@@ -229,18 +251,24 @@ function mouse_up(e) {
   }
 }
 
+function disableDragging(e){
+  window.dragging=false;
+}
+
 function deletePlant(e) {
+  e.preventDefault();
   e.stopPropagation();
   if (window.mode == 1 && window.dragging) {
     for (let plant of window.jardin.plants) {
       if (plant.isDragging) {
         plant.isDragging = false;
-        window.dragging = false;
+        window.dragging=false;
 
         deleteMyPlant(window.jardin.id, plant);
-
+        colorCell=[];
       }
     }
+    
   }
 }
 

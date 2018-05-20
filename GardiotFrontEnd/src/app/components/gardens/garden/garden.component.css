@@ -329,98 +329,10 @@ button{
     right: 10px;
   }
 
+  .btn{
+    float: right;
+  }
 
-
-/* Mariano */
-/*
-ul{
-  margin-top: 0.7em;
-  padding: 0;
-  width: 75%;
-}
-li{
-  padding: 0.3em;
-}
-
-.search{
-  margin-top: 0.7em;
-  margin-left: 0.5em;
-}
-.search2{
-    border: none;
-}
-.searchbutton{
-  margin-top: 0.5em;
-  margin-left: 0.2em;
-    border: none;
-}
-
-.superior{
-  position: absolute;
-  top: 5em;
-  left: 0;
-  z-index: 99999;
-  padding: 0.5em;
-}*/
-
-/* efecto de imagen */
-/*
-.view {
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    cursor: default;
-}
-.view .mask, .view .content {
-    width: 70px;
-    height: 30px;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    margin-top: 1em;
-}
-.view img {
-    display: block;
-    position: relative
-}
-.view h2 {
-    text-transform: uppercase;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    font-size: 8px;
-    padding: 6px;
-    background: rgba(0, 0, 0, 0.8);
-    margin: 10px 0 0 0
-}
-
-.view-first img {
-    transition: all 0.2s linear;
-}
-.view-first .mask {
-    opacity: 0;
-    background-color: rgba(255,178,0, 0.7);
-    transition: all 0.4s ease-in-out;
-}
-.view-first h2 {
-    transform: translateY(-100px);
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-}
-
-.view-first:hover img {
-	transform: scale(1.1);
-  box-shadow: 1px 1px 9px #ffb200;
-}
-.view-first:hover .mask {
-	opacity: 1;
-}
-.view-first:hover h2 {
-    opacity: 1;
-    transform: translateY(0px);
-}
-*/
 
 /* fin Mariano */
 
@@ -554,6 +466,10 @@ cursor: pointer;
 color: #fff;
 }
 
+.mobile{
+  display: none;
+}
+
 }
 
 
@@ -620,11 +536,13 @@ color: #fff;
 
     width: 80%;
 
-    bottom: 61px;
+    height: auto;
+
+    max-height: 70%;
 
     overflow-y: scroll;
 
-
+    border-radius: 10px;
     /*top: 50%;
 
     transform: translateY(-50%);*/
@@ -645,39 +563,31 @@ color: #fff;
 
   }
 
+  #prevision>.tiempo{
+    display: flex;
+    flex-wrap: wrap;
+  }
 
+  #prevision>.tiempo>.today{
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-  #prevision>i{
+  #prevision>.tiempo>.no{
+    min-width: 48% !important;
+    max-width: 48% !important;
+    margin: 1%;
+  }
 
-    position: absolute;
-
-    top: 3px;
-
-    right: 3px;
-
-    cursor: pointer;
-
-    font-size: 2em;
-
-    z-index: 30;
-
-    transition: .3 ease-in all;
-
+  .minima{
+    display: none;
   }
 
 
   .previsionClosed{
-    left: -1000px !important;
+    transform: translateY(1000px);
   }
-  .previsionClosed>span:first-of-type{
 
-    left: -1000px !important;
-  }
-  .previsionClosed>span:last-of-type{
-    position: absolute;
-    left: 3px !important;
-    display: inline-block !important;
-  }
 
   .interactiveButton{
     cursor: pointer;
@@ -705,10 +615,10 @@ color: #fff;
   }
   .today>img{
     position:absolute;
-    top: 1em;
-    right: 1em;
-    width: 35px;
-    margin-left: 1em;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+
   }
   .today>p{
     margin: 0;
@@ -732,6 +642,11 @@ color: #fff;
 
 
   /*formulario lateral derecho*/
+  #formulario{
+
+    transition: .2s ease-in all;
+    z-index: 21;
+   }
   .formulario{
 
     position:absolute;
@@ -741,7 +656,8 @@ color: #fff;
     min-width: 80%;
     bottom: 61px;
     overflow-y: scroll;
-    padding-top: 1em;
+    padding: 1em;
+    border-radius: 10px;
     /*top: 50%;
     transform: translateY(-50%);*/
     color: #fff;
@@ -749,17 +665,18 @@ color: #fff;
     z-index: 21;
    }
 
-   .infoOcult{
-     right: -1000px;
+   .mobile{
+     position: absolute;
+     top: 10px;
+     right: 10px;
+     z-index: 50;
    }
 
-   .formulario>i{
-     position: absolute;
-     top: -30px;
-     right: 0;
-     cursor: pointer;
-     color: #fff;
+   .infoOcult{
+     transform: translateY(1000px);
    }
+
+
    label{
      margin-bottom: 0;
      margin-top: 10px;
@@ -780,14 +697,5 @@ color: #fff;
 
    }
 
-   #formulario>i{
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    cursor: pointer;
-    font-size: 2em;
-    z-index: 30;
-    transition: .3 ease-in all;
-  }
 
 }

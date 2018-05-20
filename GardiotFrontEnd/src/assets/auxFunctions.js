@@ -113,4 +113,15 @@ function closeWeather(e, element) {
     }
   }
 }
+function closeWeatherMobile(e) {
+
+  document.getElementById('prevision').classList.add('previsionClosed');
+
+}
+
+function closeEditMobile(e) {
+
+  document.querySelector('.formulario').classList.add('infoOcult');
+
+}
 
