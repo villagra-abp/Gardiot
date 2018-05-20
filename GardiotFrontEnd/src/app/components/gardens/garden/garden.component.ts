@@ -667,8 +667,10 @@ export class GardenComponent {
   }
 
   mostrarplantasmotor() {
-
-    if (window.innerHeight < 750) {
+    if (window.innerWidth < 600) {
+      this.elementosPorPagina = 4;
+    }
+    else if (window.innerHeight < 750) {
       this.elementosPorPagina = 6;
     } else if (window.innerHeight < 950) {
       this.elementosPorPagina = 8;

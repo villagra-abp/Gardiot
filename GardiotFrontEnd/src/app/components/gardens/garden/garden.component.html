@@ -1,3 +1,22 @@
+<nav class="plantsMenu" *ngIf="visible == 1">
+  <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
+      <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar plantas">
+  </form>
+  <section class="list">
+
+
+  <ul>
+    <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
+    <div>
+      <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
+    </div>
+    <span>{{plantmotor.commonName}}</span>
+
+    </li>
+  </ul>
+</section>
+<app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
+</nav>
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
   <!-- <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == 1" >
     <article class="search">
@@ -8,25 +27,7 @@
     </article>
   </form> -->
   <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
-  <nav class="plantsMenu" *ngIf="visible == 1">
-      <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
-          <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar en gardiot">
-      </form>
-      <section class="list">
 
-
-      <ul>
-        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-        <div>
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
-        </div>
-        <span>{{plantmotor.commonName}}</span>
-
-        </li>
-      </ul>
-    </section>
-    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
-  </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event); dragCanvas(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
     <i class="material-icons mobile" onclick="closeEditMobile(event)">close</i>

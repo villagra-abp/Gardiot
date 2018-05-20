@@ -235,99 +235,6 @@ button{
   z-index: 2;
  }
 
- .plantsMenu{
-   position: absolute;
-   background: rgb(48, 145, 145);
-   top: 60px;
-   bottom: 0px;
-   padding: 1em .5em 0 .5em;
-   color:#fff;
-   max-width: 350px;
-   min-width: 150px;
-   width: 200px;
-   resize: horizontal;
-   overflow: auto;
-   display: flex;
-   flex-direction: column;
- }
- .plantsMenu>form{
-   position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
- }
-    .plantsMenu>form>input{
-      width: 100%;
-      height: 40px;
-      margin: 0;
-    }
-    .plantsMenu>form>button{
-      width: 100%;
-      height: 30px;
-      display: flex;
-      align-content: center;
-    }
-  .plantsMenu>section{
-    flex-grow: 2;
-    margin-top: 1em;
-    height: 70%;
-  }
-
-  .plantsMenu>section>ul{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    
-    list-style-type: none;
-    margin-bottom: 1em;
-    margin-top: 1em;
-
-  }
-  .plantsMenu>section>ul>li{
-    display: inline-block;
-    width: 46%;
-    margin: 2%;
-    height: 140px;
-
-  }
-  .plantsMenu>section>ul>li:hover>div{
-    transform: scale(1.1);
-
-  }
-
-
-  .plantsMenu>section>ul>li>div{
-    position: relative;
-    width: 100%;
-    height: 80px;
-    background-color: #fff;
-    margin-bottom: 5px;
-    border: 1px solid #fff;
-
-    text-align: justify !important;
-    overflow: hidden;
-    transition: .2s all;
-    cursor: pointer;
-  }
-
-  .plantsMenu>section>ul>li>div>img{
-    width: 100%;
-    position: absolute;
-    text-align: initial;
-    margin: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .plantsMenu>section>ul>li{
-    text-align: center;
-  }
-
-  .plantsMenu>div{
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
 
   .btn{
     float: right;
@@ -469,6 +376,102 @@ color: #fff;
 .mobile{
   display: none;
 }
+
+
+.plantsMenu{
+  position: absolute;
+  background: rgb(48, 145, 145);
+  top: 60px;
+  bottom: 0px;
+  padding: 1em .5em 0 .5em;
+  color:#fff;
+  max-width: 350px;
+  min-width: 150px;
+  width: 200px;
+  resize: horizontal;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+.plantsMenu>form{
+  position: relative;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+}
+   .plantsMenu>form>input{
+     width: 100%;
+     height: 40px;
+     margin: 0;
+   }
+   .plantsMenu>form>button{
+     width: 100%;
+     height: 30px;
+     display: flex;
+     align-content: center;
+   }
+ .plantsMenu>section{
+   flex-grow: 2;
+   margin-top: 1em;
+   height: 70%;
+ }
+
+ .plantsMenu>section>ul{
+   position: relative;
+   width: 100%;
+   height: 100%;
+   padding: 0;
+   
+   list-style-type: none;
+   margin-bottom: 1em;
+   margin-top: 1em;
+
+ }
+ .plantsMenu>section>ul>li{
+   display: inline-block;
+   width: 46%;
+   margin: 2%;
+   height: 140px;
+
+ }
+ .plantsMenu>section>ul>li:hover>div{
+   transform: scale(1.1);
+
+ }
+
+
+ .plantsMenu>section>ul>li>div{
+   position: relative;
+   width: 100%;
+   height: 80px;
+   background-color: #fff;
+   margin-bottom: 5px;
+   border: 1px solid #fff;
+
+   text-align: justify !important;
+   overflow: hidden;
+   transition: .2s all;
+   cursor: pointer;
+ }
+
+ .plantsMenu>section>ul>li>div>img{
+   width: 100%;
+   position: absolute;
+   text-align: initial;
+   margin: 0;
+   top: 50%;
+   transform: translateY(-50%);
+ }
+ .plantsMenu>section>ul>li{
+   text-align: center;
+ }
+
+ .plantsMenu>div{
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+ }
 
 }
 
@@ -698,4 +701,102 @@ color: #fff;
    }
 
 
+   
+ .plantsMenu{
+  position: fixed;
+  background: rgb(48, 145, 145);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+
+  color:#fff;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  z-index: 250 !important;
+}
+.plantsMenu>form{
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 79%;
+}
+   .plantsMenu>form>input{
+     width: 100%;
+     height: 40px;
+     margin: 0;
+   }
+   .plantsMenu>form>button{
+     width: 100%;
+     height: 30px;
+     display: flex;
+     align-content: center;
+   }
+ .plantsMenu>section{
+  width: 100%;
+  height: 100%;
+ }
+
+ .plantsMenu>section>ul{
+   position: relative;
+   width:100%;
+   height: 100%;
+   padding: 0;
+   display: flex;
+   list-style-type: none;
+  margin: 0;
+
+ }
+ .plantsMenu>section>ul>li{
+   width: 25%;
+   height: 100%;
+  padding-bottom: 5px;
+
+ }
+
+
+ .plantsMenu>section>ul>li>div{
+   position: relative;
+   width: 100%;
+   height: 75px;
+   background-color: #fff;
+  margin: 0;
+   border: 1px solid #fff;
+
+   text-align: justify !important;
+   overflow: hidden;
+   transition: .2s all;
+   cursor: pointer;
+ }
+
+ .plantsMenu>section>ul>li>div>img{
+   width: 100%;
+   position: absolute;
+   text-align: initial;
+   margin: 0;
+   top: 50%;
+   transform: translateY(-50%);
+ }
+ .plantsMenu>section>ul>li>span{
+  margin: 0;
+  font-size: 10px;
+}
+ .plantsMenu>section>ul>li{
+   text-align: center;
+ }
+
+ .plantsMenu>div{
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+ }
+
+ .plantsMenu>app-pagination{
+   position: fixed;
+   top: 100px;
+   width: 21%;
+   right: 0;
+ }
 }
