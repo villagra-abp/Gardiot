@@ -3,7 +3,7 @@
     <div class="wrap">
       <form (ngSubmit)="this.searchcontent(1,15)" class="form-row" #forma="ngForm">
         <article class="form-group col-md-4">
-          <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
+          <input type="text" [(ngModel)]="plant.commonName" class="form-control col-md-6" name="commonName" placeholder="Buscar en gardiot">
         </article>
         <article class="form-group col-md-6">
           <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
@@ -21,18 +21,18 @@
                 <br>
                 <!-- <select2 id="family" class="campo" style="width:100%" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
                 </select2> -->
-                <select id="family" name="family" class="form-control" [(ngModel)]="plant.family" >
+                <select id="family" name="family" class="form-control col-md-6" [(ngModel)]="plant.family" >
                   <option value="undefined">Selecciona una familia</option>
                   <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
                 </select>
               </div>
               <div class = "form-group col-md-4">
                 <label for="scientificName">Nombre Científico</label>
-                <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+                <input type="text" [(ngModel)]="plant.scientificName" class="form-control col-md-6" id="scientificName" name="scientificName" placeholder="Nombre científico">
               </div>
               <div class = "form-group col-md-4">
                 <label for="tipo">Tipo de hoja</label>
-                <select [(ngModel)]="plant.leaveType" class="form-control" id="tipo" name="tipo" default="">
+                <select [(ngModel)]="plant.leaveType" class="form-control col-md-6" id="tipo" name="tipo" default="">
                   <option value="undefined">Todos</option>
                   <option value="caduca">Caduca</option>
                   <option value="perenne">Perenne</option>
@@ -40,11 +40,11 @@
               </div>
               <div class = "form-group col-md-4">
                 <label for="initDatePlant">Inicio de plantación</label>
-                <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control " id="initDatePlant" name="initDatePlant" >
+                <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control col-md-6 " id="initDatePlant" name="initDatePlant" >
               </div>
               <div class = "form-group col-md-4">
                 <label for="finDatePlant">Fin de plantación</label>
-                <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant" >
+                <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control col-md-6" id="finDatePlant" name="finDatePlant" >
               </div>
               <div class="form-group col-md-12">
                 <button class="btn btn-default" type="submit">Filtrar</button>

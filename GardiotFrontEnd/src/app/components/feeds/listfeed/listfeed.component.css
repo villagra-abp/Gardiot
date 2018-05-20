@@ -4,9 +4,6 @@
 /* Julián Sánchez García.
    Ingeniería Multimedia UA 2018 */
 
-div,article,section{
-  /* border: 1px solid green; */
-}
 input,label{
   font-size: .9em;
   padding: 0;
@@ -22,10 +19,6 @@ td{
   font-size: .8em;
   font-style: italic;
 }
-.nombre{
-  /* padding-right: 20%;
-  width: 20%; */
-}
 form{
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
@@ -40,8 +33,3 @@ form{
   font-style: italic;
   font-size: 1.2em;
 }
-
-/* border-radius: 25px 25px 25px 25px;
--moz-border-radius: 25px 25px 25px 25px;
--webkit-border-radius: 25px 25px 25px 25px;
-border: 1px solid rgba(255, 178, 0, .3); */
