@@ -247,7 +247,7 @@ window.dataPlants = {
     rotX: -90,
     rotY: 0,
     rotZ: 0,
-    posY: 0.5
+    posY: 0.3
   },
   CYCA: {
     textura: 'cyca2.jpg',
