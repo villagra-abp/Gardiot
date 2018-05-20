@@ -15,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-admin-edit-user',
   templateUrl: './edituser.component.html',
-  styles: []
+  styleUrls: ['./edituser.component.css']
 })
 export class EdituserComponent implements OnInit {
   user = new User("");

@@ -12,20 +12,21 @@ form{
   padding: 1%;
   margin-bottom: 1%;
 }
-input, textarea{
-  width: 100%;
+input{
+  /* width: 100%; */
 }
 
-label, input, textarea{
+label, input{
   font-size: .9em;
-  padding: 1%;
-  padding-left: 0;
-  margin: 0;
+  /* padding: 1%; */
+  /* padding-left: 0;
+  margin: 0; */
 }
 label{
   font-style: italic;
-  font-weight: bold;
 }
-.btn{
-  margin: 1%;
+
+.checkAdmin input{
+  margin-left: 1%;
+  /* margin-top: -1%; */
 }

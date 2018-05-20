@@ -31,7 +31,7 @@ export class DialogTaskComponent implements OnInit {
 
 
   ) { }
-  // {mPlant: task.mPlant,myPlant:task.myPlant,tPlant:task.tPlant,treatmentPlant:task.treatmentPlant}
+
   mostrar(){
     // TRATAMIENTO
     this._treatmentService.details(this.data.treatmentPlant)

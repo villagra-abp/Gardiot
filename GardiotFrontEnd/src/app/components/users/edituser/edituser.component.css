@@ -12,20 +12,32 @@ form{
   padding: 1%;
   margin-bottom: 1%;
 }
-input, textarea{
-  width: 100%;
-}
 
-label, input, textarea{
+label, input, textarea, select2, option{
   font-size: .9em;
-  padding: 1%;
   padding-left: 0;
   margin: 0;
+}
+.bttn{
+  width: 80%;
+}
+.imagen {
+  width: 100%;
+}
+.imagen button {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
 }
 label{
   font-style: italic;
   font-weight: bold;
 }
-.btn{
-  margin: 1%;
+.checkAdmin{
+  margin-top: 1%;
+}
+.checkAdmin label{
+  margin-left: 2%;
+  margin-top: -1%;
 }

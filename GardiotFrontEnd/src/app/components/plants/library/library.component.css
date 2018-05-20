@@ -146,8 +146,47 @@ p{
 }
 
 /* Para los buscadores */
-
-
 .select2 .select2-container .select2-container--default .select2-container--focus {
   width: 100% !important;
+}
+
+
+/* Julián Sánchez García.
+Ingeniería Multimedia UA 2018 */
+.search{
+ border: none;
+}
+div,article,section, option, select{
+  /* border: 1px solid green; */
+}
+input,label,option,select{
+  font-size: .9em;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+select{
+  width: 100%;
+}
+th{
+  font-size: .9em;
+  font-weight: bold;
+}
+
+td{
+  font-size: .8em;
+  font-style: italic;
+}
+form{
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.resultado{
+  margin-top: 5%;
+  font-style: italic;
+  font-size: 1.2em;
 }

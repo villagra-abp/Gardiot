@@ -2,19 +2,28 @@ div{
     width: 100%;
     margin: 0 auto;
     background: rgba(255,255,255,0.1);
-    padding: 35px;
+    /* padding: 35px; */
     border: 2px solid #fff;
     border-radius: 20px/50px;
     background-clip: padding-box;
     text-align: center;
 }
-section{
-  margin-top: -26px;
+
+.foto{
+  max-width: 250px;
+  min-width: 150px;
+  margin-left: -4%;
+  min-height: inherit;
+  max-height: inherit;
 }
+/* section{
+  margin-top: -26px;
+} */
 
 mat-dialog-actions{
 padding: 2.5px;
 }
 button{
-margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
