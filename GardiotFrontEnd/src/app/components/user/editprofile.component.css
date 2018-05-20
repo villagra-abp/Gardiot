@@ -1,4 +1,55 @@
 #photoProfile{
   width: 200px;
-  margin-bottom: 20px;
+  /* margin-bottom: 3%; */
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+.perfil div{
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  /* text-align: center; */
+  padding: 1%;
+}
+.perfil label, input{
+  font-size: .9em;
+  padding: 1%;
+  margin: 0;
+}
+.bloqueFoto{
+  float: right;
+}
+.bloqueDatos{
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  border: 1px solid rgba(255, 178, 0, .3);
+  padding: 1%;
+  margin-bottom: 2%;
+}
+.bloqueContra{
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  border: 1px solid rgba(255, 178, 0, .3);
+  padding: 1%;
+}
+.entradaFoto{
+  padding: 3%;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  width: 100%;
+}
+.bttn{
+  width: 100%;
+  font-size: .9em;
+}
+.form-group{
+  margin: 0;
+  padding: 0;
 }

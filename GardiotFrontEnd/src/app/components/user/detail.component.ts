@@ -24,7 +24,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs/Subject';
+ import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -85,7 +85,9 @@ export class DetailComponent implements OnInit {
   public sunrise;
   public sunset;
   public tareas:any[] = [];
+  public checkTareas = false;
   public photoURL = "";
+  private imgUrl ="";
   public temperature = 0;
   public plantNumber = 0;
 
@@ -101,14 +103,16 @@ export class DetailComponent implements OnInit {
   ) {
     if(window.location.toString().indexOf("localhost")>=0){
       this.photoURL="/assets";
+      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
     }
     else if(window.location.toString().indexOf("gardiot")>=0){
       this.photoURL="/app/assets";
-    }}
+      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    }
+  }
 //------ comprobamos si es su primera vez en la app------//
   checkGarden() {
     this._gardenService.firstgarden().subscribe(data => {
-      console.log(data.Mensaje);
         if (data.Mensaje == "Existe") {
         }else{
           this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
@@ -124,21 +128,20 @@ export class DetailComponent implements OnInit {
   }
 
   //Recoge los datos del usuario logueado y los guarda para mostrarlos
-  mostrar() {
-    this._detailService.details(this.user)
-      .subscribe(data => {
-        this.user.id = data.id;
-        this.user.birthDate = data.birthDate;
-        this.user.photo = data.photo;
-        this.user.name = data.name;
-      },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
-      });
-  }
+  // mostrar() {
+  //   this._detailService.details(this.user).subscribe(data => {
+  //       // this.user.id = data.id;
+  //       // this.user.birthDate = data.birthDate;
+  //       this.user.photo = this.imgUrl+ data.photo;
+  //       // this.user.name = data.name;
+  //     },
+  //     error => {
+  //       console.error(error);
+  //       localStorage.clear();
+  //       sessionStorage.clear();
+  //       this._route.navigate(['/login']);
+  //     });
+  // }
 
   getTiempo() {
     this._gardenService.tiempo(this.garden)
@@ -152,6 +155,7 @@ export class DetailComponent implements OnInit {
 
         sunset.setTime(data.sys.sunset * 1000);
         this.sunset = sunset;
+        new iniciar("home", this.garden, this.sunrise, this.sunset);
 
       },
       error => {
@@ -181,7 +185,7 @@ export class DetailComponent implements OnInit {
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
-          new iniciar("home", this.garden, this.sunrise, this.sunset);
+          
         } else {
           // this._route.navigate(['/newgarden']);
         }
@@ -197,20 +201,7 @@ export class DetailComponent implements OnInit {
   }
 
 
-
-  cargarfeeds() {
-    this._feedService.showfeeds()
-      .subscribe(data => {
-        console.log("entra");
-        this.feeds = [];
-        for (let key$ in data) {
-          this.feeds.push(data[key$]);
-        }
-      },
-      error => {
-        console.error(error);
-      });
-  }
+// calendario
 
   mostrartask() {
     let f = new Date();
@@ -231,23 +222,12 @@ export class DetailComponent implements OnInit {
         });
 
         this._taskService.percent().subscribe(data => {
-            console.log(data);
         },
           error => {
             console.error(error);
           });
   }
 
-
-  cerrarfeed(id:number) {
-    this._feedService.closefeed(id)
-      .subscribe(data => {
-        this.cargarfeeds();
-      },
-      error => {
-        console.error(error);
-      });
-  }
 
   addEvent(Ttitle: string, Tstart: string, Tend: string): void {
     this.events.push({
@@ -264,31 +244,31 @@ export class DetailComponent implements OnInit {
     this.refresh.next();
   }
 
+
   getTasks(){
     this.tareas = [];
-    this._taskService.detailsSome(15)
-    .subscribe(data =>{
-
+    this._taskService.detailsSome(15).subscribe(data =>{
       let aux:any[] = [];
-
-
-
-      for (let i = 0; i<data.length; i++){
-
-        if(aux.length == 0){ // si está vacio
-          aux.push(data[i]);
-        }else{
-          if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+      console.log(data);
+      if(data.length !=0){
+        
+        for (let i = 0; i<data.length; i++){
+          if(aux.length == 0){ // si está vacio
             aux.push(data[i]);
-          }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
-            this.tareas.push(aux);
-            aux = [];
-            aux.push(data[i]);
+          }else{
+            if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+              aux.push(data[i]);
+            }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
+              this.tareas.push(aux);
+              aux = [];
+              aux.push(data[i]);
+            }
           }
-        }
-      } //end if
-      this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+        } //end if
+        this.tareas.push(aux); // se introducen las ultimas tareas del bucle
+      }
 
+      this.checkTareas = true;
     },
     error =>{
       console.error(error);
@@ -307,17 +287,49 @@ export class DetailComponent implements OnInit {
         this.refresh.next();
         this.getTasks();
       });
+  }
 
+  // feed
+    cargarfeeds() {
+      this._feedService.showfeeds()
+        .subscribe(data => {
+          this.feeds = [];
+          for (let key$ in data) {
+            this.feeds.push(data[key$]);
+          }
+        },
+        error => {
+          console.error(error);
+        });
+    }
+
+    cerrarfeed(id:number) {
+      this._feedService.closefeed(id).subscribe(data => {
+          this.cargarfeeds();
+        },
+        error => {
+          console.error(error);
+        });
+    }
+
+
+  checkAdmin(){
+      this._detailService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
   }
 
   ngOnInit() {
+    this.checkAdmin();
     this.checkGarden();
-    this.mostrar();
+    // this.mostrar();
     this.mostrar2();
     this.mostrartask();
     this.getTasks();
-    this.cargarfeeds();
-
+    this.cargarfeeds(); 
   }
 
 

@@ -15,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
-  // styleUrls: ['profile.component.css']
+  styleUrls: ['editprofile.component.css']
 })
 
 export class EditProfileComponent implements OnInit {
@@ -210,7 +210,17 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
+  checkAdmin(){
+      this._detailService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
+  }
+
   ngOnInit() {
+    this.checkAdmin();
     this.uploader = new FileUploader({ url: this._detailService.apiURL + 'uploadAvatar', itemAlias: 'photo' });
     this.mostrar();
 

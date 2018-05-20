@@ -2,9 +2,24 @@
    Ingeniería Multimedia UA 2018 */
 
 /* CONTENEDOR PRINCIPAL */
+/* div{
+  border: 1px solid green;
+} */
 .vistaUser{
   margin-right: 130px;
   margin-left: 130px;
+}
+.buttonAdmin{
+  margin-top:1em;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+
+}
+.buttonAdmin button{
+  margin-bottom: 100%
+  /* border: none; */
 }
 article{
   margin-right: auto;
@@ -16,6 +31,11 @@ div,article,section{
 }
 
 /*  IMAGENES ICONOS */
+.iconoProducto{
+  max-width: 30px;
+  max-height: 30px;
+  margin-right: 3%;
+}
 .iconplant{
   max-width: 30px;
   max-height: 30px;
@@ -34,6 +54,9 @@ div,article,section{
   max-height: 260px;
   border-radius: 5%;
   margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 /*  BLOQUE caracteristicas PLANTA */
@@ -70,13 +93,20 @@ dd.caracteristicas {
   font-size: 1.5em;
 }
 .prof{
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .distance{
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .resist{
-  font-size: 1.3em;
+  font-size: 1.2em;
+}
+
+.iconitos{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 140px;
 }
 .descriptionPlanta{
   margin-top: 2%;
@@ -92,11 +122,10 @@ dd.caracteristicas {
 }
 
 /* FECHAS */
-.fechas{
+.fechas div{
   margin-left: auto;
   margin-right: auto;
-  display:inline-flex;
-  text-align: justify;
+  text-align: center;
 }
 
 
@@ -117,6 +146,9 @@ ul{
 li{
   text-decoration: none;
   /* font-size: .9em; */
+}
+p.listaProductos{
+  font-style: italic;
 }
 
 .productoTrata{

@@ -1,17 +1,30 @@
+.galeria{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .card{
+  width: 10em !important;
   background-color: #343a40;
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   margin:1.5em;
   overflow:hidden;
   color: #fff;
+  cursor: default;
 }
 .card-body {
     padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 .buttonAdmin{
   margin-top:1em;
   margin-left: 0.4em;
+  margin-right: 0.4em;
   padding-left: 0.2em;
+  padding-right: 0.2em;
 }
 
 .search{
@@ -19,16 +32,19 @@
 }
 p{
   text-align: center;
-  font-size: smaller;
+  font-size: 10px;
 }
 
 .iconplant{
   max-width: 15px;
   max-height: 15px;
-  background-color: #fff;
   border: 1px;
-  margin-left: 1em;
-  margin-right: 0.3em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+.iconbutton{
+  border: none;
 }
 
 
@@ -41,8 +57,12 @@ p{
     box-shadow: 1px 1px 9px #f3f3f3;
     cursor: default;
 }
+
+.mask{
+      cursor:pointer;
+}
 .view .mask, .view .content {
-    width: 300px;
+    width: 160px;
     height: 200px;
     position: absolute;
     overflow: hidden;
@@ -51,14 +71,14 @@ p{
 }
 .view img {
     display: block;
-    position: relative
+    position: relative;
 }
 .view h2 {
     text-transform: uppercase;
     color: #fff;
     text-align: center;
     position: relative;
-    font-size: 17px;
+    font-size: 12px;
     padding: 10px;
     background: rgba(0, 0, 0, 0.8);
     margin: 20px 0 0 0
@@ -66,7 +86,7 @@ p{
 .view p {
     font-family: Georgia, serif;
     font-style: italic;
-    font-size: 12px;
+    font-size: 10px;
     position: relative;
     color: #fff;
     padding: 10px 20px 20px;
@@ -75,7 +95,7 @@ p{
 .view a.info {
     display: inline-block;
     text-decoration: none;
-    padding: 7px 14px;
+    padding: 3px 7px;
     background: #000;
     color: #fff;
     text-transform: uppercase;
@@ -101,7 +121,7 @@ p{
 	transition: all 0.2s linear;
 }
 .view-first a.info{
-    opacity: 0;
+  opacity: 0;
 	transition: all 0.2s ease-in-out;
 }
 .view a.info:hover {
@@ -126,8 +146,47 @@ p{
 }
 
 /* Para los buscadores */
-
-
 .select2 .select2-container .select2-container--default .select2-container--focus {
   width: 100% !important;
+}
+
+
+/* Julián Sánchez García.
+Ingeniería Multimedia UA 2018 */
+.search{
+ border: none;
+}
+div,article,section, option, select{
+  /* border: 1px solid green; */
+}
+input,label,option,select{
+  font-size: .9em;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+select{
+  width: 100%;
+}
+th{
+  font-size: .9em;
+  font-weight: bold;
+}
+
+td{
+  font-size: .8em;
+  font-style: italic;
+}
+form{
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.resultado{
+  margin-top: 5%;
+  font-style: italic;
+  font-size: 1.2em;
 }

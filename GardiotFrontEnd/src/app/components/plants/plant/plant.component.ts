@@ -10,6 +10,8 @@ import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-plant',
@@ -34,8 +36,6 @@ export class PlantComponent implements OnInit {
   public iniRecolectar: String;
   public finRecolectar: String;
 
-  public tieneProducto:any;
-
   mes: String;
 
   constructor(
@@ -43,7 +43,9 @@ export class PlantComponent implements OnInit {
     public _treatmentPlantService: TreatmentPlantService,
     public _router: ActivatedRoute,
     public user: UserService,
+    public dialog: MatDialog,
     public _route: Router) { }
+
 
   mostrar(numplant: number) {
     this._plantService.details(numplant)
@@ -81,7 +83,6 @@ export class PlantComponent implements OnInit {
         for (let key$ in data) {
           this.treatments.push(data[key$]);
           this.showProductPlant(data[key$].id, numplant);
-          // console.log("this.treatments[0] "+this.treatments[0].id);
         }
       },
       error => {
@@ -93,16 +94,20 @@ export class PlantComponent implements OnInit {
   showProductPlant(treatment: number, idPlant: number) {
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        for (let key$ in data) {
-          this.productTreatments.push(data[key$]);
-          // console.log("productTreatments "+this.productTreatments[0].treatment);
-          // this.tieneProducto = this.productTreatments[0].treatment.id;
+        // console.log(data);
+        if (data.length == 0) {
+            // console.log("No hay");
+        }else{
+          for (let key$ in data) {
+            this.productTreatments.push(data[key$]);
+            // console.log("data.length "+data.length);
+            // this.encuentraProducto();
+          }
         }
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
-
   }
 
   dameMes(fechas) {
@@ -169,6 +174,17 @@ export class PlantComponent implements OnInit {
             console.error(JSON.parse(error._body).Mensaje);
           });
   }
+  openDialog(id: number, tipo: number) {
+    let dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '40em',
+      data: { idObject: id, typeObject: tipo }
+    });
+  }
+
+  // encuentraProducto(){
+  //   let registro=this.productTreatments.find(x=>x.treatment==this.treatment.id);
+  //   console.log("Registro "+registro);
+  // }
 
   ngOnInit() {
 

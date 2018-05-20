@@ -32,16 +32,17 @@ class TMotor {
 
 		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-
+			motor.draw();
+			animLoop();
 			//bucle de animación en utilities.js
-			window.interval = setInterval(function () {
+			/*window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
 					motor.draw();
 					animLoop();
 					motor.allLoaded();
 				}
-			}, 100);
+			}, 100);*/
 		}
 		else {
 			alert("No funciona WebGL");
@@ -88,20 +89,23 @@ class TMotor {
 	}
 
 	draw() {
-		window.program = 1;
 		gl.useProgram(glProgram[window.program]);
+		for (let i = 0; i < viewLightMatrix.length; i++) {
+			gl.activeTexture(gl.TEXTURE0 + i);
+			gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
+			gl.uniform1i(glProgram[window.program].shadowMapUniform[i], i);
+		}
 
-		gl.activeTexture(gl.TEXTURE0+window.shadowIndex);
-		gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
-		gl.uniform1i(glProgram[window.program].shadowMapUniform, 0);
+
+		gl.uniform1i(glProgram[window.program].cont, viewLightMatrix.length);
 
 		gl.viewport(0, 0, canvas.width, canvas.height);
 		gl.clearColor(0.98, 0.98, 0.98, 1);
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 		gl.enable(gl.DEPTH_TEST);
-		
+
 		this.dibujarLucesActivas();
-		
+
 		//inicializar cámara
 		this.dibujarCamaraActiva();
 
@@ -110,20 +114,24 @@ class TMotor {
 	}
 
 	drawSombras() {
-		window.program = 2;
 		gl.useProgram(glProgram[2]);
 
-		gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
 
-		gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
-		gl.clearColor(0, 0, 0, 1);
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		gl.clearDepth(1.0);
 
-		this.dibujarLucesActivas();
-		this.escena.draw();
+		this.dibujarLucesActivasSombras();
+		for (window.i = 0; i < viewLightMatrix.length; i++) {
+			gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer[i]);
 
-		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+			gl.viewport(0, 0, shadowDepthTextureSize, shadowDepthTextureSize);
+			gl.clearColor(0, 0, 0, 1);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			gl.clearDepth(1.0);
+			this.escena.draw();
+			gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+		}
+
+
+
 	}
 
 
@@ -163,14 +171,11 @@ class TMotor {
 			//this.rotarCamaraA("dynamicCamera", -90, "x");
 			/*let pos=this.getCamaraActiva().dad.dad.entity.matrix;
 			window.escala=this.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
-			//console.log(pos[12], pos[13], pos[14]);
-			//console.log(esc);
 			//rotationCamY%=360;
 	  
 			window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, (camHeight-pos[13])/20];
 			window.transition=true;*/
 			//window.now=[rotationCamX, rotationCamY];
-			//console.log(now);
 			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
 		}
 		else if (window.mode == 1) {//edición
@@ -185,7 +190,6 @@ class TMotor {
 			this.rotarCamara("dynamicCamera", rotationCamX, "x");
 			//window.transition=true;
 			//window.now=[rotationCamX, rotationCamY];
-			//console.log(now);
 			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
 
 		}
@@ -208,7 +212,6 @@ class TMotor {
 	crearNodoCamara(nombre, perspective, hermano) {
 
 		if (hermano !== undefined) {
-			//console.log("crea un hermano");
 			var escCam = new TNodo(nombre + "_S", new TTransf(), hermano.dad);
 			var orbCamY = new TNodo(nombre + "_ROY", new TTransf(), escCam);
 			var orbCamX = new TNodo(nombre + "_ROX", new TTransf(), orbCamY);
@@ -217,7 +220,6 @@ class TMotor {
 
 			var cam = new TNodo(nombre, new TCamara(perspective), rotCam);
 		} else {
-			//console.log("crea en raiz");
 			var escCam = new TNodo(nombre + "_S", new TTransf(), this.escena);
 			var orbCamY = new TNodo(nombre + "_ROY", new TTransf(), escCam);
 			var orbCamX = new TNodo(nombre + "_ROX", new TTransf(), orbCamY);
@@ -266,7 +268,7 @@ class TMotor {
 					x = 0;
 				} else if (position[12] > ((length) + 10) && x > 0) {
 					x = 0;
-				} if (position[14] > ((length) +10) && z > 0) {
+				} if (position[14] > ((length) + 10) && z > 0) {
 					z = 0;
 				} else if (position[14] < ((-length) - 10) && z < 0) {
 					z = 0;
@@ -450,7 +452,7 @@ class TMotor {
 			if (auxCamara.entity !== undefined)
 				auxStack.push(auxCamara.entity.matrix);
 		}
-		
+
 		//tenemos el recorrido de la cámara a la raíz en auxStack
 
 		//recorremos la lista auxiliar invertida
@@ -484,13 +486,11 @@ class TMotor {
 		let i = intensidad;
 
 		if (hermano !== undefined) {
-			//console.log("crea un hermano");
 			var rotOrb = new TNodo(nombre + "_RO", new TTransf(), hermano.dad);
 			var traLuz = new TNodo(nombre + "_T", new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("puntual", i, i, i, i, i, i, undefined, undefined), rotLuz);
 		} else {
-			//console.log("crea en raiz");
 			var rotOrb = new TNodo(nombre + "_RO", new TTransf(), this.escena);
 			var traLuz = new TNodo(nombre + "_T", new TTransf(), rotOrb);
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
@@ -519,12 +519,10 @@ class TMotor {
 		let i = intensidad;
 
 		if (hermano !== undefined) {
-			//console.log("crea un hermano");
 			var traLuz = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
 		} else {
-			//console.log("crea en raiz");
 			var traLuz = new TNodo(nombre + "_T", new TTransf(), this.escena);
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
@@ -638,10 +636,7 @@ class TMotor {
 		}
 	}
 
-	/**
-	 * Dibujar en la escena las luces que tengamos activas
-	 */
-	dibujarLucesActivas() {
+	dibujarLucesActivasSombras() {
 		//dibujar ambient light
 		let contLuces = 0;
 		for (let i = 0; i < this.luzRegistro.length; i++) {
@@ -665,11 +660,38 @@ class TMotor {
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
 
-				window.alturaLuz=parseInt(''+auxMatrix[13]);
-
 
 				//el resultado lo invertimos y tenemos la matrix View desde la luz
-				mat4.invert(viewLightMatrix, auxMatrix.slice(0));
+				viewLightMatrix[contLuces] = [];
+				mat4.invert(viewLightMatrix[contLuces], auxMatrix.slice(0));
+				contLuces++;
+			}
+		}
+	}
+
+	/**
+	 * Dibujar en la escena las luces que tengamos activas
+	 */
+	dibujarLucesActivas() {
+		//dibujar ambient light
+		let contLuces = 0;
+		for (let i = 0; i < this.luzRegistro.length; i++) {
+			let luz = this.luzRegistro[i];
+			if (luz.activa) {
+				let auxStack = [];
+				let auxLuz = luz;
+				while (auxLuz = auxLuz.dad) {
+					if (auxLuz.entity !== undefined)
+						auxStack.push(auxLuz.entity.matrix);
+				}
+
+				//tenemos el recorrido de la cámara a la raíz en auxStack
+				//recorremos la lista auxiliar invertida
+				let auxMatrix = mat4.create();
+				for (let i = auxStack.length - 1; i >= 0; i--) {
+					let au = [];
+					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
+				}
 
 
 				//calculamos la posición de la luz
@@ -706,9 +728,6 @@ class TMotor {
 				gl.uniform3fv(lightIntUniformLocation, luz.entity.intensidad);
 				gl.uniform3fv(lightSpecUniformLocation, luz.entity.intensidadSpecular);
 
-
-				gl.uniformMatrix4fv(glProgram[window.program].lvMatrixUniform, false, viewLightMatrix);
-				gl.uniformMatrix4fv(glProgram[window.program].lpMatrixUniform, false, lightProjectionMatrix);
 				contLuces++;
 			}
 		}
@@ -727,14 +746,11 @@ class TMotor {
 	crearNodoMalla(nombre, recurso, textura, hermano) {
 
 		if (hermano !== undefined) {
-			//console.log("crea un hermano");
-
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
 			var malla = new TNodo(nombre, new TMalla(recurso, textura), escMalla);
 		} else {
-			//console.log("crea en raiz");
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
@@ -843,9 +859,6 @@ class TMotor {
 	crearNodoAnimacion(nombre, recurso, numeroFrames, hermano) {
 
 		if (hermano !== undefined) {
-			//console.log("crea un hermano");
-
-
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
@@ -859,8 +872,6 @@ class TMotor {
 				}
 			}
 		} else {
-			//console.log("crea en raiz");
-
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), this.escena);
 			var rotMalla = new TNodo(nombre + "_R", new TTransf(), traMalla);
 			var escMalla = new TNodo(nombre + "_S", new TTransf(), rotMalla);
@@ -879,7 +890,6 @@ class TMotor {
 		}
 		this.animRegistro.push(animacion);
 		this.mallaRegistro.push(animacion);
-		console.log(this.animRegistro);
 		return malla;
 	}
 	iterar() {
@@ -907,18 +917,12 @@ class TMotor {
 				break;
 			}
 		}
-		//console.log("malla activa");
 		this.animRegistro[pos]._childs[activa]._active = 0;
-		//console.log(this.animRegistro[pos]._childs[activa]);
 		activa++;
 		if (activa >= numMallas) {
 			activa = 0;
 		}
-
 		this.animRegistro[pos]._childs[activa]._active = 1;
-		//console.log(this.animRegistro[pos]._childs[activa]);
-
-
 	}
 
 

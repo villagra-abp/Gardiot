@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-admin-listusers',
   templateUrl: './listusers.component.html',
-  styleUrls: []
+  styleUrls: ['./listusers.component.css']
 })
 export class AdminListUsersComponent {
 
@@ -81,7 +81,7 @@ export class AdminListUsersComponent {
     console.log(this.user);
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
-        
+
         console.log(data);
         if (data[0] != undefined) {
           this.users = [];

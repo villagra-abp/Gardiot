@@ -4,6 +4,7 @@ import { DatePipe } from "@angular/common";
 import { FormsModule, NgForm } from "@angular/forms";
 import { GardenService } from "../../../services/garden.service";
 import { Garden } from "../../../classes/garden.class";
+import { UserService } from "../../../services/user.service";
 import { PlantService } from "../../../services/plant.service";
 import { Plant } from "../../../classes/plant.class";
 import { AppComponent } from "../../../app.component";
@@ -111,13 +112,16 @@ export class GardenComponent {
   public searchPlant: string;
 
 
+
+
   constructor(
     public _gardenService: GardenService,
     public _plantService: PlantService,
+    public _userService: UserService,
     public _route: Router,
     public _appComponent: AppComponent,
     public dialog: MatDialog,
-    public activatedRoute: ActivatedRoute,
+    public activatedRoute: ActivatedRoute
   ) {
     if (window.location.toString().indexOf("localhost") >= 0) {
       this.photoURL = "/assets";
@@ -130,15 +134,38 @@ export class GardenComponent {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
+
+    let canvas = document.querySelector('canvas');
+    if (canvas != null) {
+      canvas.width = canvasEvolver.offsetWidth;
+      canvas.height = canvasEvolver.offsetHeight;
+
+      let desvX = (canvas.width - 1200) * 0.0008;
+      let desvY = (canvas.height - 974) * 0.00072;
+      let pos = motor.getPosCamaraActiva();
+      //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
+      motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
+    }
+    let time = Date.now();
+    if ((time - window.timer) > 1000) {
+      this.mostrarplantasmotor();
+      window.timer = Date.now();
+    }
+  }
+
+
 
   @HostListener('document:keyup', ['$event'])
 
   searchZip(event: KeyboardEvent): void {
     console.log((<HTMLInputElement>event.srcElement).value);
     if (event.srcElement.id == 'commonName') {
-      let sPlant =new Plant();
-      sPlant.commonName=(<HTMLInputElement>event.srcElement).value;
-      this._plantService.searchAll(sPlant, 1, 8)
+      let sPlant = new Plant();
+      sPlant.commonName = (<HTMLInputElement>event.srcElement).value;
+      this._plantService.searchAll(sPlant, 1, this.elementosPorPagina)
         .subscribe(data => {
           if (data[0] != undefined) {
             this.plantsmotor = [];
@@ -273,7 +300,7 @@ export class GardenComponent {
           if (!this.mobile) {
             this.listarPaises();
             this.mostrarCiudad();
-            console.log(this.garden.city);
+            // console.log(this.garden.city);
             if (this.garden.city !== undefined && this.garden.city != null) {
               this.getTiempo();
               this.getPrevision();
@@ -300,7 +327,7 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         if (data.cod != '404') {
 
           var aux = data.main.temp - 273;
@@ -502,7 +529,6 @@ export class GardenComponent {
     return dia;
   }
 
-
   edit() {
 
     this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
@@ -533,7 +559,7 @@ export class GardenComponent {
 
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
-      width: '600px'
+      width: '400px'
     });
 
   }
@@ -547,24 +573,27 @@ export class GardenComponent {
 
   }
 
+
   resizeCanvas() {
-    let canvasEvolver = (<HTMLElement>document.querySelector('.canvasEvolver'));
 
-    let canvas = document.querySelector('canvas');
-    canvas.width = canvasEvolver.offsetWidth;
-    canvas.height = canvasEvolver.offsetHeight;
+    /*
 
-    let desvX = (canvas.width - 1200) * 0.0008;
-    let desvY = (canvas.height - 974) * 0.00072;
-    let pos = motor.getPosCamaraActiva();
-    //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
-    motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
-
-
+    */
   }
 
   toggleState() {
-    this.visible == 0 ? this.visible = 1 : this.visible = 0;
+    if (this.visible == 0) {
+      if (typeof window.orientation !== 'undefined') {
+        (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
+      }
+      this.visible = 1;
+    } else {
+      this.visible = 0;
+      if (typeof window.orientation !== 'undefined') {
+        (<HTMLElement>document.querySelector('app-header')).style.display = 'initial';
+      }
+    }
+
     document.getElementById('formulario').classList.add('infoOcult');
   }
 
@@ -581,7 +610,7 @@ export class GardenComponent {
     let desvY = (canvas.height - 974) * 0.00072;
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
-    window.addEventListener("resize", this.resizeCanvas);
+    window.timer = 0;
   }
 
 
@@ -648,6 +677,17 @@ export class GardenComponent {
   }
 
   mostrarplantasmotor() {
+    if (window.innerWidth < 600) {
+      this.elementosPorPagina = 4;
+    }
+    else if (window.innerHeight < 750) {
+      this.elementosPorPagina = 6;
+    } else if (window.innerHeight < 950) {
+      this.elementosPorPagina = 8;
+    }
+    else if (window.innerHeight < 1150) {
+      this.elementosPorPagina = 10;
+    }
     if (this.estado == false) {
       this._plantService.detailsAll(this.paginaActual, this.elementosPorPagina)
         .subscribe(data => {
@@ -701,12 +741,22 @@ export class GardenComponent {
 
   }
 
+  checkAdmin() {
+    this._userService.isUserAdmin()
+      .subscribe(data => {
+        if (data) {
+          this._route.navigate(['/admin/statistics']);
+        }
+      });
+  }
+
 
 
   ngOnInit() {
     if (typeof window.orientation !== 'undefined') {
       //this.mobile=true;
     }
+
 
     this.firstgarden();
     this.ActualizarPagina();

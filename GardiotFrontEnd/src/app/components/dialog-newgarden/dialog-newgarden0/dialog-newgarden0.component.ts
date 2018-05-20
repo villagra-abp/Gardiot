@@ -33,13 +33,13 @@ export class DialogNewgarden0Component implements OnInit {
    }
 
   onCloseConfirm() {
-    this.saveGarden();
+    this.saveGarden(1);
     
   }
 
   onCloseOmit() {
-    this.saveGarden();
-    this.thisDialogRef.close('Empezar');
+    this.saveGarden(0);
+     
   }
 
   openDialog() {
@@ -47,11 +47,17 @@ export class DialogNewgarden0Component implements OnInit {
       width: '45em', disableClose: true, data: {}});
   }
 
-  saveGarden() {
+  saveGarden(next) {
     this._gardenService.insertGarden(this.garden)
       .subscribe(data => {
-        this.openDialog();
-        this.thisDialogRef.close('Empezar');
+        if(next == 1){
+          this.openDialog();
+          this.thisDialogRef.close('Empezar');
+        }else{
+          this.thisDialogRef.close('Empezar');
+          this._route.navigate(['detail']);
+        }
+
       },
         error => {
           let v = JSON.parse(error._body);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TaskService } from "../../services/task.service";
 import { Task } from "../../classes/task.class";
+import { UserService } from "../../services/user.service";
 import { Treatment } from "../../classes/treatment.class";
 import { AppComponent } from "../../app.component";
 import { RouterLink, ActivatedRoute, Params } from '@angular/router';
@@ -39,7 +40,7 @@ declare var window: any;
 
 const colors: any = {
   red: {
-    primary: '#ad2121',
+    primary:  '#ad2121',
     secondary: '#FAE3E3'
   },
   blue: {
@@ -85,6 +86,8 @@ export class CalendarComponent implements OnInit {
   public treatment = new Task();
   public monthsLoaded: string[] = [];
   public contador: number=0;
+
+  private photoURL='';
 
 
 
@@ -182,10 +185,18 @@ export class CalendarComponent implements OnInit {
     public _taskService: TaskService,
     public _route: Router,
     public _appComponent: AppComponent,
+    public _userService: UserService,
     public datePipe: DatePipe,
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-  ) { }
+  ) {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.photoURL="/assets";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.photoURL="/app/assets";
+    }
+  }
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -260,8 +271,7 @@ export class CalendarComponent implements OnInit {
     fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
 
     if (action == 'Edited') {
-      //console.log('deberias saltar el pop up');
-      this.dialog.open(DialogTaskComponent, { width: '800px', data: { id: 1 } });
+      this.dialog.open(DialogTaskComponent, { width: '800px', height:'800px', data: { id: 1 } });
 
     }
     else if (action == 'Done') {
@@ -281,8 +291,7 @@ export class CalendarComponent implements OnInit {
       let task = this.tasks[event.id];
       this._taskService.undoneTask(task.mPlant, task.myPlant, task.tPlant, task.treatmentPlant, this.datePipe.transform(event.start.toString(), 'yyyy-MM-dd'))
         .subscribe(data => {
-          //console.log(data);
-          //console.log(event);
+
           event.draggable = true;
           event.actions = this.doneActions;
           event.color = colors.red;
@@ -330,10 +339,8 @@ export class CalendarComponent implements OnInit {
         });
     }
     else {
-      // alert("click standar");
       let task = this.tasks[event.id];
-      // llamada pop Up
-      this.dialog.open(DialogTaskComponent, { width: '800px', data: { mPlant: task.mPlant, myPlant: task.myPlant, tPlant: task.tPlant, treatmentPlant: task.treatmentPlant } });
+      this.dialog.open(DialogTaskComponent, { width: '800px',height:'auto', data: { mPlant: task.mPlant, myPlant: task.myPlant, tPlant: task.tPlant, treatmentPlant: task.treatmentPlant } });
     }
 
   }
@@ -353,18 +360,51 @@ export class CalendarComponent implements OnInit {
       this._taskService.detailsAll(fechas[i])
       .subscribe(data => {
         this.monthsLoaded.push(fechas[i]);
-
-        //console.log(this.monthsLoaded);
-
         for (let key$ in data) {
           this.tasks.push(data[key$]);
+          if(data[key$].name =='Regar'){
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/regar.png" class=" icontarea" alt="Regar">' + " " + data[key$].commonName,
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              parseInt(key$),
+              data[key$].dateDone != null);
+
+          }else if(data[key$].name =='Fertilizar'){
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/fertilizar.png" class="icontarea" alt="Fertilizar">' + " " + data[key$].commonName,
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              parseInt(key$),
+              data[key$].dateDone != null);
+
+          }else if(data[key$].name =='Podar'){
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/podar.png" class="icontarea" alt="Podar">'+ " " + data[key$].commonName,
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              parseInt(key$),
+              data[key$].dateDone != null);
+
+          }else if(data[key$].name =='Recolectar'){
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/cosechar.png" class="icontarea" alt="Recolectar">' + " " + data[key$].commonName,
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              parseInt(key$),
+              data[key$].dateDone != null);
+
+          }else if(data[key$].name =='Fumigar'){
+            this.addEvent('<img src="'+this.photoURL+'/images/icon/fumigar.png" class=" icontarea" alt="Fumigar">' + " " + data[key$].commonName,
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+              parseInt(key$),
+              data[key$].dateDone != null);
+          }
+
           //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
           // console.log(data[key$]);
-          this.addEvent(data[key$].name + " " + data[key$].commonName,
-            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-            parseInt(key$),
-            data[key$].dateDone != null);
+          // this.addEvent(data[key$].name + " " + data[key$].commonName,
+          //   this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+          //   this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+          //   parseInt(key$),
+          //   data[key$].dateDone != null);
         }
 
       },
@@ -419,7 +459,17 @@ export class CalendarComponent implements OnInit {
 
   }
 
+  checkAdmin(){
+      this._userService.isUserAdmin()
+        .subscribe(data => {
+          if(data){
+            this._route.navigate(['/admin/statistics']);
+          }
+        });
+  }
+
   ngOnInit() {
+    this.checkAdmin();
     this.mostrar();
   }
 }
