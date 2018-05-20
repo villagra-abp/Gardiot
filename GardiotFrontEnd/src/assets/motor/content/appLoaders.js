@@ -125,7 +125,7 @@ function loadFence (width, length) {
   }
 }
 
-function loadSun () {
+function loadSun (sunrise, sunset) {
   window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
   window.factorIlumination = 1;
@@ -182,13 +182,13 @@ function loadSun () {
   rotarSol();  
 }
 
-function loadEntities () {
+function loadEntities (sunrise, sunset) {
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
   loadSoil(width, length);
   loadExtSoil();
   loadFence(width, length);
   loadPlants();
-  loadSun();
+  loadSun(sunrise, sunset);
 }
 
 //Datos de plantas como el escalado, etc. para que se dibujen bien
