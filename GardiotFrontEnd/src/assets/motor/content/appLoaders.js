@@ -192,6 +192,7 @@ function loadEntities () {
 }
 
 //Datos de plantas como el escalado, etc. para que se dibujen bien
+//Datos de plantas como el escalado, etc. para que se dibujen bien
 window.dataPlants = {
   LECHUGA: {
     textura: 'lechuga.jpg',
@@ -262,7 +263,7 @@ window.dataPlants = {
     rotX: -90,
     rotY: 0,
     rotZ: 0,
-    posY: 0.2
+    posY: 0.0
   },
   LOGO: {
     textura: 'logo.jpg',
@@ -271,7 +272,6 @@ window.dataPlants = {
     rotY: 0,
     rotZ: 90,
     posY: 0.2
-
   },
   SANDIA: {
     textura: 'sandia.jpg',
