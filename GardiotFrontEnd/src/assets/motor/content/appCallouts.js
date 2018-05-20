@@ -58,7 +58,6 @@ function updateMyPlant(garden, plant, soil, x, y) {
         let respuesta = JSON.parse(xhr.responseText);
 
         if (xhr.status == "200") {
-            console.log(window.dataPlants[plant.model.toUpperCase()]);
             motor.moverMallaA(plant.id, x, window.dataPlants[plant.model.toUpperCase()].posY, y); //Esta llamada tal vez es innecesaria
             plantsMap.delete(plant.x + '-' + plant.y);//Para la iluminación
             plant.x = x;
@@ -93,7 +92,6 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
         let respuesta = JSON.parse(xhr.responseText);
         //console.log(respuesta.Mensaje);
         if (xhr.status == 200) {
-            console.log(respuesta);
             let value = {
                 id: respuesta.myPlant,
                 isDragging: false,

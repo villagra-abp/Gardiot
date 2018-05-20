@@ -23,4 +23,5 @@ img{
 .omitir{
   color: green;
   margin-left: 90%;
+  cursor : pointer;
 }
