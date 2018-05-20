@@ -347,7 +347,7 @@ max-width: 240px;
 border-bottom-left-radius: 15px;
 color: #fff;
 transition: .2s ease-in all;
-z-index:1;
+
 
 z-index: 20;
 padding: 0 1.6em 0.9em 1.6em;
@@ -515,7 +515,6 @@ color: #fff;
     height: 30px;
   }
   .litButton>span{
-
     font-size: 10px;
   }
 
@@ -528,42 +527,22 @@ color: #fff;
   }
 
   #prevision{
-
-    position:absolute;
-
-    background: rgba(0, 0, 0, 0.5);
-
+    position:fixed;
+    background: rgba(0, 0, 0, 0.7);
     top: 61px;
-
     margin: 10%;
-
     width: 80%;
-
     height: auto;
-
     max-height: 70%;
-
     overflow-y: scroll;
-
     border-radius: 10px;
-    /*top: 50%;
-
-    transform: translateY(-50%);*/
-
     color: #fff;
-
     transition: .2s ease-in all;
-
-    z-index: 21;
-
+    z-index: 300;
   }
 
-
-
   #prevision>span:last-of-type{
-
     display: none !important;
-
   }
 
   #prevision>.tiempo{
@@ -643,21 +622,15 @@ color: #fff;
 
   }
 
-
-  /*formulario lateral derecho*/
-  #formulario{
-
-    transition: .2s ease-in all;
-    z-index: 21;
-   }
   .formulario{
 
-    position:absolute;
-    background: rgba(0, 0, 0, 0.5);
+    position:fixed;
+    background: rgba(0, 0, 0, 0.7);
     top: 61px !important;
     margin: 10%;
     min-width: 80%;
-    bottom: 61px;
+    height: auto;
+    max-height: 70%;
     overflow-y: scroll;
     padding: 1em;
     border-radius: 10px;
@@ -665,7 +638,11 @@ color: #fff;
     transform: translateY(-50%);*/
     color: #fff;
     transition: .2s ease-in all;
-    z-index: 21;
+    z-index:300;
+   }
+
+   .formulario>div>div>form>div>div:first-of-type{
+     display: none;
    }
 
    .mobile{
