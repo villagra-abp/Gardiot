@@ -203,8 +203,6 @@ async function demoSol() {
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   window.factorIlumination=Math.sin(Math.radians(gradeSunPosition))+0.2;
-  //motor.rotarLuzOrbital('sol', gradeSunPosition/2, 'y');
-  //motor.rotarLuzOrbital('luna', gradeSunPosition/2, 'y');
   window.lastTime = now;
   iluminarAstro(now.getHours() * 60 + now.getMinutes());
   demoSol();
@@ -241,6 +239,7 @@ async function iluminarSol(minutes) {
   sol.entity.setIntensidad(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
   sol.entity.setIntensidadSpecular(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
 }
+
 async function iluminarLuna(minutes) {
   let rgb = {};
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
