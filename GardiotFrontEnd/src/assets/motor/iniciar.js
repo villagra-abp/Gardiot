@@ -59,21 +59,24 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
   window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
 
-  window.shadowFramebuffer = null;
-  window.shadowDepthTexture = null;
-  window.renderBuffer = null;
+  window.shadowFramebuffer = [];
+  window.shadowDepthTexture = [];
+  window.renderBuffer = [];
   window.shadowDepthTextureSize = 4096;
 
   //Índice de texturas
   window.index = 0;
-  window.indexShadow = 0;//Índice de la textura de sombras
+  window.shadowIndex = [];//Índice de la textura de sombras
 
   //inicializamos el gestor de recursos
   window.gestor = new TGestorRecursos();
 
   iniciamosWebGL('myCanvas');
   cargarShaders();
-  initFramebufferSombras();
+  for(let i=0; i<7; i++){
+    initFramebufferSombras(i);
+  }
+  
   setupWebGL();
 
   //Se inicia el motor

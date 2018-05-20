@@ -10,7 +10,7 @@ varying mat4 vView;
 varying vec3 vTVertPosition;
 varying vec4 vTVertNormal;
 varying vec3 vVertNormal;
-varying vec4 shadowPos;
+varying vec4 shadowPos[7];
 
 
 struct LightProperties
@@ -41,7 +41,7 @@ uniform Propiedades propiedades;
 uniform LightProperties uLight[cULights];
 uniform LightProperties uSpotLight[cUSpotLights];
 uniform sampler2D uSampler;
-uniform sampler2D uShadowMap;
+uniform sampler2D uShadowMap[7];
 uniform int uTextured;
 uniform int uLighted;
 uniform int uNLights;
@@ -49,7 +49,7 @@ uniform int uHovered;
 uniform float uFactor;
 uniform int uNight;
 
-
+varying float vLightCount;
 
 float decodeFloat (vec4 color) {
   const vec4 bitShift = vec4(
@@ -64,25 +64,31 @@ float decodeFloat (vec4 color) {
 
 void main()
 {
+	highp float visibility=0.0;
+	for(int i=0; i<7; i++){
+		if(float(i)>=vLightCount){break;}
+			vec3 fragmentDepth = shadowPos[i].xyz/shadowPos[i].w;
+			float shadowAcneRemover = 0.001;
+			fragmentDepth.z -= shadowAcneRemover;
 
-	vec3 fragmentDepth = shadowPos.xyz/shadowPos.w;
-	float shadowAcneRemover = 0.001;
-	fragmentDepth.z -= shadowAcneRemover;
+			highp vec4 rgba_depth = texture2D(uShadowMap[i], fragmentDepth.xy);
+			highp float depth=decodeFloat(rgba_depth);
 
-	highp vec4 rgba_depth = texture2D(uShadowMap, fragmentDepth.xy);
-	highp float depth=decodeFloat(rgba_depth);
+			
+			highp float bias = 0.00154;
 
-	highp float visibility = 1.0;
-	highp float bias = 0.00154;
-
-	if(fragmentDepth.z>(depth-bias)){
-		if(uNight==1){
-			visibility=0.8;
-		}
-		else{
-			visibility=0.25;
-		}
-		
+			if(fragmentDepth.z>(depth-bias)){
+				if(uNight==i){
+					visibility+=0.8/vLightCount;
+				}
+				else{
+					visibility+=0.25/vLightCount;
+				}
+				
+			}
+			else{
+				visibility+=1.0/vLightCount;
+			}
 	}
 
 	vec3 N=normalize(vTVertNormal.xyz);

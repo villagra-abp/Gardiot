@@ -60,7 +60,13 @@ function cargarShaders() {
 //inicializamos parámetros básicos de WebGL
 function setupWebGL() {
 
-  glProgram[window.program].shadowMapUniform = gl.getUniformLocation(glProgram[window.program], "uShadowMap");
+  glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
+
+  glProgram[window.program].shadowMapUniform = [];
+  glProgram[window.program].shadowMapUniform[0] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[0]");
+
+  glProgram[window.program].lmvpMatrixUniform = [];
+  glProgram[window.program].lmvpMatrixUniform[0] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[0]");
 
   //Nos traemos las matrices, projection, model y view al motor
   glProgram[window.program].pMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrix");
@@ -68,7 +74,7 @@ function setupWebGL() {
   glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
   glProgram[window.program].mvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVMatrix");
   glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
-  glProgram[window.program].lmvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight");
+  
   glProgram[window.program].lpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrixFromLight");
   glProgram[window.program].lvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrixFromLight");
 
@@ -79,6 +85,7 @@ function setupWebGL() {
   glProgram[window.program].hovered = gl.getUniformLocation(glProgram[window.program], "uHovered");
   glProgram[window.program].factor = gl.getUniformLocation(glProgram[window.program], "uFactor");
   glProgram[window.program].noche = gl.getUniformLocation(glProgram[window.program], "uNight");
+  glProgram[window.program].cont = gl.getUniformLocation(glProgram[window.program], "uLightCount");
   //matriz de normales
   glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
   //Backface culling
@@ -92,29 +99,29 @@ function setupWebGL() {
 
 }
 
-function initFramebufferSombras() {
-  glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
+function initFramebufferSombras(i) {
+  
 
 
-  shadowFramebuffer = gl.createFramebuffer();
-  gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer);
+  shadowFramebuffer[i] = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer[i]);
 
-  shadowDepthTexture = gl.createTexture();
+  shadowDepthTexture[i] = gl.createTexture();
   gl.activeTexture(gl.TEXTURE0 + window.index);
-  gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture);
-  window.shadowIndex = parseInt('' + (window.index));
+  gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
+  window.shadowIndex.push(parseInt('' + (window.index)));
   window.index++;
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, shadowDepthTextureSize, shadowDepthTextureSize, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
-  renderBuffer = gl.createRenderbuffer();
-  gl.bindRenderbuffer(gl.RENDERBUFFER, renderBuffer);
+  renderBuffer[i] = gl.createRenderbuffer();
+  gl.bindRenderbuffer(gl.RENDERBUFFER, renderBuffer[i]);
   gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT16, shadowDepthTextureSize, shadowDepthTextureSize);
 
-  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, shadowDepthTexture, 0);
-  gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderBuffer);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, shadowDepthTexture[i], 0);
+  gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, renderBuffer[i]);
 
   gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   gl.bindTexture(gl.TEXTURE_2D, null);
@@ -252,13 +259,13 @@ function iluminarAstro(minuteOfDay) {
     motor.activarLuz("sol");
     motor.desactivarLuz("luna");
     iluminarSol(minuteOfDay);
-    gl.uniform1i(glProgram[window.program].noche, 0);
+    gl.uniform1i(glProgram[window.program].noche, -1);
   }
   else {
     motor.activarLuz("luna");
     motor.desactivarLuz("sol");
     iluminarLuna(minuteOfDay);
-    gl.uniform1i(glProgram[window.program].noche, 1);
+    gl.uniform1i(glProgram[window.program].noche, 0);
   }
 }
 
@@ -276,7 +283,7 @@ function iluminarSol(minutes) {
     rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
   }
   window.factorIlumination = 1-Math.abs((minutes-(window.minutesOfSun))/(window.minutesOfSun));      
-  gl.uniform1i(glProgram[window.program].noche, 0);
+  gl.uniform1i(glProgram[window.program].noche, -1);
   window.velocidadOrbital=(60*24/2)/minutesOfSun;
   sol.entity.setIntensidad(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
   sol.entity.setIntensidadSpecular(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
@@ -286,7 +293,8 @@ async function iluminarLuna(minutes){
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
   window.velocidadOrbital=(60*24/2)/minutesOfNight;
   luna.entity.setIntensidad(0.1, 0.1, 0.1);
-  gl.uniform1i(glProgram[window.program].noche, 1);
+  luna.entity.setIntensidadSpecular(0.1, 0.1, 0.1);
+  gl.uniform1i(glProgram[window.program].noche, 0);
   window.factorIlumination = 0.2;
 }
 /*

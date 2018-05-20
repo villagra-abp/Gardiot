@@ -128,6 +128,7 @@ function loadFence (width, length) {
 function loadSun () {
   window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
+
   window.factorIlumination = 1;
 
   /* POSICIONES INICIALES */
@@ -138,6 +139,7 @@ function loadSun () {
   motor.rotarLuz('sol', -5, 'z');
   motor.rotarLuz('luna', 90, 'x');
   motor.activarLuz("sol");
+
 
   /* COLOR DEL SOL */
   window.rgbInit = { red: 182, green: 126, blue: 91 };
@@ -173,7 +175,7 @@ function loadSun () {
     relation = (minuteOfDay - minuteOfSunset) / minutesOfNight;
     offset = 90;
   }
-  let gradePosition = relation * 180;
+  let gradePosition = (relation * 160)+10;
   factorIlumination = Math.sin(Math.radians(gradePosition)) + ilumOffset;
   motor.rotarLuzOrbitalA('sol', gradePosition + offset);
   motor.rotarLuzOrbitalA('luna', gradePosition + offset);
