@@ -4,20 +4,19 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="name_feed">Nombre</label>
-					<input type="text" class="form-control" [(ngModel)]="feed.name" name="name" id="name_feed" required>
+					<input type="text" class="form-control col-md" [(ngModel)]="feed.name" name="name" id="name_feed" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<textarea class="form-control" [(ngModel)]="feed.text" name="text" placeholder="Consejo" required rows="3" required></textarea>
+				<textarea class="form-control col-md" [(ngModel)]="feed.text" name="text" placeholder="Consejo" required rows="3" required></textarea>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="dateInit">Inicio</label>
-					<input type="date" class="form-control" [(ngModel)]="feed.dateInit" name="dateInit" id="dateInit">
-				</div>
-				<div class="form-group col-md-6">
+					<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateInit" name="dateInit" id="dateInit">
+
 					<label for="dateFinal">Fin</label>
-					<input type="date" class="form-control" [(ngModel)]="feed.dateFinal" name="dateFinal" id="dateFinal">
+					<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateFinal" name="dateFinal" id="dateFinal">
 				</div>
 			</div>
 

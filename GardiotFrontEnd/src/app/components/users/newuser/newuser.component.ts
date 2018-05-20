@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-admin-user',
   templateUrl: './newuser.component.html',
-  styles: []
+  styleUrls: ['./newuser.component.css']
 })
 export class NewuserComponent implements OnInit {
 

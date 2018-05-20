@@ -300,7 +300,7 @@ export class GardenComponent {
           if (!this.mobile) {
             this.listarPaises();
             this.mostrarCiudad();
-            console.log(this.garden.city);
+            // console.log(this.garden.city);
             if (this.garden.city !== undefined && this.garden.city != null) {
               this.getTiempo();
               this.getPrevision();
@@ -327,7 +327,7 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         if (data.cod != '404') {
 
           var aux = data.main.temp - 273;
@@ -559,7 +559,7 @@ export class GardenComponent {
 
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogHelpGardenComponent, {
-      width: '600px'
+      width: '400px'
     });
 
   }
@@ -577,7 +577,7 @@ export class GardenComponent {
   resizeCanvas() {
 
     /*
-        
+
     */
   }
 

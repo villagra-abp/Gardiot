@@ -15,7 +15,7 @@ declare var $: any;
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
-  // styleUrls: ['profile.component.css']
+  styleUrls: ['editprofile.component.css']
 })
 
 export class EditProfileComponent implements OnInit {
