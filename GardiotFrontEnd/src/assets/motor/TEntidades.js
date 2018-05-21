@@ -184,6 +184,7 @@ class TMalla extends TEntidad {
     }
 
     beginDraw(variable) {
+        //Comprobación básica si estamos en un programa normal o en el de sombras
         gl.getParameter(gl.CURRENT_PROGRAM).samplerUniform!==undefined?this._malla.draw(variable):this._malla.drawSombras();
     }
     endDraw() { }
