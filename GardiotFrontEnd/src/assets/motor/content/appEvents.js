@@ -54,7 +54,7 @@ function drop(e) {
     }
 
     if (!occupied) {
-      insertMyPlant(window.jardin.id, plant[0], window.jardin.soil, coordX, coordY, plant[1]);
+      insertMyPlant(window.jardin.id, plant[0], coordX, coordY, plant[1]);
 
     }
   }
