@@ -1,17 +1,25 @@
-//bucle de animación
+/**
+ * Realiza la iteracion de dibujado segun fps
+ */
 function animLoop() {
-  now = Date.now();
-  elapsed = now - then;
+  let now = Date.now();
+  let elapsed = now - then;
 
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+
     motor.drawSombras();
     motor.draw();
   }
   requestAnimationFrame(animLoop, canvas);
 }
 
+/**
+ * Compilar el shader que le pasemos por parámetro
+ * @param  {String} src
+ * @param  {number} type 
+ */
 function makeShader(src, type) {
   //compilar el vertex shader
   let shader = gl.createShader(type);
@@ -24,19 +32,18 @@ function makeShader(src, type) {
   return shader;
 }
 
-
-//función para inicializar los shaders
-function cargarShaders() {
-  //aquí dentro cogemos los recursos del directorio
+/**
+ * Inicializa shaders
+ */
+function cargarShaders(vertexShaders, fragmentShaders) {
   let vs = [];
   let fs = [];
 
   for (let i = 0; i < vertexShaders.length && i < fragmentShaders.length; i++) {
     vs[i] = gestor.getRecurso(vertexShaders[i], 'shader').shader,
       fs[i] = gestor.getRecurso(fragmentShaders[i], 'shader').shader;
-    //creamos el programa
-    glProgram[i] = gl.createProgram();
 
+    glProgram[i] = gl.createProgram();
     //añadimos los shaders al programa
     gl.attachShader(glProgram[i], makeShader(vs[i], gl.VERTEX_SHADER));
     gl.attachShader(glProgram[i], makeShader(fs[i], gl.FRAGMENT_SHADER));
@@ -47,12 +54,12 @@ function cargarShaders() {
       alert("No se puede inicializar el shader");
     }
   }
-
   gl.useProgram(glProgram[window.program]);
-
 }
 
-//inicializamos parámetros básicos de WebGL
+/**
+ * Incializa parametros basicos de WebGL
+ */
 function setupWebGL() {
 
   glProgram[2].lmvpMatrixUniform = gl.getUniformLocation(glProgram[2], "uMVPMatrixFromLight");
@@ -73,7 +80,6 @@ function setupWebGL() {
   glProgram[window.program].lpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrixFromLight");
   glProgram[window.program].lvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrixFromLight");
 
-
   glProgram[window.program].samplerUniform = gl.getUniformLocation(glProgram[window.program], "uSampler");
   glProgram[window.program].textured = gl.getUniformLocation(glProgram[window.program], "uTextured");
   glProgram[window.program].lighted = gl.getUniformLocation(glProgram[window.program], "uLighted");
@@ -83,7 +89,6 @@ function setupWebGL() {
   glProgram[window.program].cont = gl.getUniformLocation(glProgram[window.program], "uLightCount");
   //matriz de normales
   glProgram[window.program].normalMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uNormalMatrix");
-  //Backface culling
 
   glProgram[window.program].ka = gl.getUniformLocation(glProgram[window.program], "material.Ka");
   glProgram[window.program].kd = gl.getUniformLocation(glProgram[window.program], "material.Kd");
@@ -94,17 +99,19 @@ function setupWebGL() {
 
 }
 
+/**
+ * Inicializa los framebuffers de sombras
+ * @param  {number} i Iterador 
+ */
 function initFramebufferSombras(i) {
   
-
-
   shadowFramebuffer[i] = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer[i]);
 
   shadowDepthTexture[i] = gl.createTexture();
   gl.activeTexture(gl.TEXTURE0 + window.index);
   gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
-  window.shadowIndex.push(parseInt('' + (window.index)));
+  shadowDepthTexture[i].index=parseInt(''+window.index);
   window.index++;
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -123,6 +130,13 @@ function initFramebufferSombras(i) {
   gl.bindRenderbuffer(gl.RENDERBUFFER, null);
 }
 
+/**
+ * Obtiene el punto x, y de la pantalla a partir de una coordenada 3D
+ * @param  {Array} point3D
+ * @param  {number} width  
+ * @param  {number} height 
+ * @returns {Array} 
+ */
 function get2DPoint(point3D, width, height) {
   let viewProjectionMatrix = [];
   mat4.multiply(viewProjectionMatrix, projectionMatrix, viewMatrix);
@@ -143,28 +157,31 @@ function get2DPoint(point3D, width, height) {
   return [winX, winY];
 }
 
+/**
+ * Transforma un click en 2D en la coordenada 3D del mundo (siempre en altura y=0, al nivel del suelo)
+ * @param  {Array} point2D
+ * @param  {number} width  
+ * @param  {number} height 
+ * @returns {Array} 
+ */
 function get3DPoint(point2D, width, height) {
   let x = (point2D[0] / width) * 2 - 1;
-
   let y = 1 - (point2D[1] / height) * 2;
-
   let viewProjectionMatrix = [];
   mat4.multiply(viewProjectionMatrix, projectionMatrix, viewMatrix);
-
   let invert = [];
   mat4.invert(invert, viewProjectionMatrix);
-
   let pointaux = [];
   vec3.transformMat4(pointaux, [0, 0, 0], viewProjectionMatrix);
-
   let point = [x, y, pointaux[2]];
-
   vec3.transformMat4(point, point, invert);
   return point;
 }
 
-
-
+/**
+ * Inicia el contexto WebGl
+ * @param  {number} idCanvas
+ */
 function iniciamosWebGL(idCanvas) {
   canvas = document.getElementById(idCanvas);
   try {
@@ -174,7 +191,6 @@ function iniciamosWebGL(idCanvas) {
     }
     return false;
   }
-
   catch (e) {
     return false;
   }
@@ -193,8 +209,9 @@ async function rotarSol() {
   rotarSol();
 }*/
 
-
-
+/**
+ * Rota los astros cada X tiempo recursivamente
+ */
 async function rotarSol(){
   await sleep(300000); //5 min
   let now = new Date();
@@ -202,6 +219,9 @@ async function rotarSol(){
   rotarSol();
 }
 
+/**
+ * Demo para comprobar el ciclo de un dia en pocos segundos
+ */
 async function demoSol() {
   await sleep(100);
   let now = new Date(window.lastTime);
@@ -210,6 +230,10 @@ async function demoSol() {
   demoSol();
 }
 
+/**
+ * Calcula cuantos grados rotar en funcion del tiempo transcurrido desde la ultima vez
+ * @param  {Date} now
+ */
 function calcularPosicionAstros(now){
   let minuteOfDay = now.getHours() * 60 + now.getMinutes();
   let minutesDiff = Math.abs(now - window.lastTime) / 20000;
@@ -239,6 +263,8 @@ function calcularPosicionAstros(now){
       if (minuteOfDay >= window.minuteOfSunrise && now.getHours()<14) {
         motor.rotarLuzOrbitalA('luna', 100);
         motor.rotarLuzOrbitalA('sol', -80);
+          //inclinación lateral para evitar errores
+        motor.rotarLuzOrbital('sol', 10, 'x');
         motor.desactivarLuz('luna');
         motor.activarLuz('sol');
         iluminarSol(minuteOfDay);
@@ -248,6 +274,10 @@ function calcularPosicionAstros(now){
   window.lastTime = now;
 }
 
+/**
+ * Ilumina sol o luna en funcion de los minutos transcurridos en el dia
+ * @param  {number} minuteOfDay
+ */
 function iluminarAstro(minuteOfDay) {
   if (minuteOfDay >= window.minuteOfSunrise && minuteOfDay <= window.minuteOfSunset) {
     motor.activarLuz("sol");
@@ -263,6 +293,10 @@ function iluminarAstro(minuteOfDay) {
   }
 }
 
+/**
+ * Ilumina el sol en funcion de los minutos transcurridos en el dia
+ * @param  {number} minutes
+ */
 function iluminarSol(minutes) {
   let rgb = {};
   let minutesSinceSunrise = minutes - window.minuteOfSunrise;
@@ -283,11 +317,15 @@ function iluminarSol(minutes) {
   sol.entity.setIntensidadSpecular(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
 }
 
-async function iluminarLuna(minutes){
+/**
+ * Ilumina la luna en funcion de los minutos transcurridos en el dia. Pasadas las doce, suma un dia entero a los minutos transcurridos
+ * @param  {number} minutes
+ */
+function iluminarLuna(minutes){
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
   window.velocidadOrbital=(60*24/2)/minutesOfNight;
-  luna.entity.setIntensidad(0.1, 0.1, 0.1);
-  luna.entity.setIntensidadSpecular(0.1, 0.1, 0.1);
+  luna.entity.setIntensidad(0.3, 0.3, 0.3);
+  luna.entity.setIntensidadSpecular(0.3, 0.3, 0.3);
   gl.uniform1i(glProgram[window.program].noche, 0);
   window.factorIlumination = 0.2;
 }

@@ -16,7 +16,7 @@ function animLoop() {
 }
 
 /**
- * Controla el zoom de la cámara en el modo edición
+ * Compilar el shader que le pasemos por parámetro
  * @param  {String} src
  * @param  {number} type 
  */
@@ -100,7 +100,7 @@ function setupWebGL() {
 }
 
 /**
- * Inicializa el framebuffer de sombras
+ * Inicializa los framebuffers de sombras
  * @param  {number} i Iterador 
  */
 function initFramebufferSombras(i) {
@@ -131,7 +131,7 @@ function initFramebufferSombras(i) {
 }
 
 /**
- * Obtiene el punto x,y solicitado
+ * Obtiene el punto x, y de la pantalla a partir de una coordenada 3D
  * @param  {Array} point3D
  * @param  {number} width  
  * @param  {number} height 
@@ -158,7 +158,7 @@ function get2DPoint(point3D, width, height) {
 }
 
 /**
- * Obtiene el punto  solicitado en tres dimensiones
+ * Transforma un click en 2D en la coordenada 3D del mundo (siempre en altura y=0, al nivel del suelo)
  * @param  {Array} point2D
  * @param  {number} width  
  * @param  {number} height 
@@ -324,8 +324,8 @@ function iluminarSol(minutes) {
 function iluminarLuna(minutes){
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
   window.velocidadOrbital=(60*24/2)/minutesOfNight;
-  luna.entity.setIntensidad(0.1, 0.1, 0.1);
-  luna.entity.setIntensidadSpecular(0.1, 0.1, 0.1);
+  luna.entity.setIntensidad(0.3, 0.3, 0.3);
+  luna.entity.setIntensidadSpecular(0.3, 0.3, 0.3);
   gl.uniform1i(glProgram[window.program].noche, 0);
   window.factorIlumination = 0.2;
 }

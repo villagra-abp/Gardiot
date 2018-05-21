@@ -760,7 +760,6 @@ class TMotor {
 
 	//=================================FIN MALLAS============================
 
-
 	//============================Animaciones==========================
 	//
 	//Nombre, nombre del recurso y si tiene un hermano o no
