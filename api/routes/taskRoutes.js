@@ -104,7 +104,7 @@ router.put('/moveTask/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:newDate', 
 router.put('/taskDone/:myPlant/:mPlant/:tPlant/:treatmentPlant/:date/:dateDone', passport.authenticate('jwt', {session: false}), routeRequirements, function (request, response) {
 	if (!validator.isInt(request.params.myPlant, {gt: 0}) || !validator.isInt(request.params.mPlant, {gt: 0}) || !validator.isInt(request.params.treatmentPlant, {gt: 0}) || !validator.isISO8601(request.params.date)) 
 		response.status(400).json({"Mensaje":"Petición incorrecta"});
-	else if (dateFormat(request.params.dateDone) != dateFormat(new Date()))
+	else if (dateFormat(request.params.dateDone) > dateFormat(new Date()))
 		response.status(400).json({"Mensaje":"No puedes haber hecho ya una tarea del futuro"});
 	else {
 		taskModel.setTaskDone (request.params.myPlant, request.params.mPlant, request.params.tPlant, request.params.treatmentPlant, request.params.date, request.params.dateDone, request.user.id, function (error, data) {
