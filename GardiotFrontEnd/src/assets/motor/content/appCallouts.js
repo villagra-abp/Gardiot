@@ -106,6 +106,11 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
 
             window.jardin.plants.push(value);
             let datos = dataPlants[model.toUpperCase()];
+            if(typeof datos=='undefined'){
+                datos=dataPlants['LOGO'];
+                value.model='logo';
+                model='logo';
+            }
 
             motor.crearNodoMalla(respuesta.myPlant, model, datos.textura, undefined);
             motor.moverMallaA(respuesta.myPlant, x, datos.posY, y);

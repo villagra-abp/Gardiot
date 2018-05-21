@@ -1,11 +1,12 @@
 //bucle de animación
 function animLoop() {
-  now = Date.now();
-  elapsed = now - then;
+  let now = Date.now();
+  let elapsed = now - then;
 
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+
     motor.drawSombras();
     motor.draw();
   }
@@ -26,7 +27,7 @@ function makeShader(src, type) {
 
 
 //función para inicializar los shaders
-function cargarShaders() {
+function cargarShaders(vertexShaders, fragmentShaders) {
   //aquí dentro cogemos los recursos del directorio
   let vs = [];
   let fs = [];
@@ -109,7 +110,7 @@ function initFramebufferSombras(i) {
   shadowDepthTexture[i] = gl.createTexture();
   gl.activeTexture(gl.TEXTURE0 + window.index);
   gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
-  window.shadowIndex.push(parseInt('' + (window.index)));
+  shadowDepthTexture[i].index=parseInt(''+window.index);
   window.index++;
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -245,6 +246,8 @@ function calcularPosicionAstros(now){
       if (minuteOfDay >= window.minuteOfSunrise && now.getHours()<14) {
         motor.rotarLuzOrbitalA('luna', 100);
         motor.rotarLuzOrbitalA('sol', -80);
+          //inclinación lateral para evitar errores
+        motor.rotarLuzOrbital('sol', 10, 'x');
         motor.desactivarLuz('luna');
         motor.activarLuz('sol');
         iluminarSol(minuteOfDay);

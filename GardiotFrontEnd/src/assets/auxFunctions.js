@@ -125,3 +125,7 @@ function closeEditMobile(e) {
 
 }
 
+function changeShaders(e){
+  window.program==1?motor.usarShader('cartoon'):motor.usarShader('realista');
+}
+

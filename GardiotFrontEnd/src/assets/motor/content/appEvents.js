@@ -10,7 +10,7 @@ function allowDrop(e) {
   e.stopPropagation();
 }
 
-function dragCanvas(e){
+function dragCanvas(e) {
   if (window.dragging) {
     e.preventDefault();
     e.stopPropagation();
@@ -35,19 +35,16 @@ function drop(e) {
 
   if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
     let occupied = false;
-    for (let value of window.jardin.plants) {
-      if (value.x == coordX && value.y == coordY) {
-        occupied = true;
-
-        break;
-      }
+    if (plantsMap.has(coordX + '-' + coordY)) {
+      occupied = true;
     }
+
     if (!occupied) {
       insertMyPlant(window.jardin.id, plant[0], window.jardin.soil, coordX, coordY, plant[1]);
 
     }
   }
-  colorCell=[];
+  colorCell = [];
   plant.x = coordX;
   plant.y = coordY;
   plantsMap.set(coordX + '-' + coordY, plant.id);//Para la iluminación
@@ -119,12 +116,9 @@ function mouse_move(e) {
         else
           colorCell = ["suelo" + p[0] + '-' + p[1], "green"];
 
-
-        for (let plant of window.jardin.plants) {
-          if (plant.isDragging) {
-            motor.moverMallaA(plant.id, point[0], 0, point[2]);
-            break;
-          }
+        let plant = window.jardin.plants.find(x => x.isDragging);
+        if (plant) {
+          motor.moverMallaA(plant.id, point[0], 0, point[2]);
         }
       }
       else if (plantsMap.has(p[0] + '-' + p[1])) {
@@ -155,12 +149,10 @@ function mouse_down(e) {
           let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
           let coordX = Math.round(point[0]);
           let coordY = Math.round(point[2]);
-          for (let plant of window.jardin.plants) {
-            if (plant.x == coordX && plant.y == coordY) {
-              plant.isDragging = true;
-              window.dragging = true;
-              break;
-            }
+          let plant = window.jardin.plants.find(x => x.x == coordX && x.y == coordY);
+          if (plant) {
+            plant.isDragging = true;
+            window.dragging = true;
           }
           if (!dragging) {
             cv.setAttribute('moviendo-camara', 'true');
@@ -208,19 +200,17 @@ function mouse_up(e) {
         let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
         let coordX = Math.round(point[0]);
         let coordY = Math.round(point[2]);
-        for (let plant of window.jardin.plants) {
-          if (plant.isDragging) {
+        let plant=window.jardin.plants.find(x=>x.isDragging);
+          if (plant) {
             plant.isDragging = false;
             window.dragging = false;
             let datos = dataPlants[plant.model.toUpperCase()];
             if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
               let occupied = false;
-              for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
-                if (value.x == coordX && value.y == coordY) {
-                  motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
+              if(plantsMap.has(coordX+'-'+coordY)){
+                motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
                   occupied = true;
                   break;
-                }
               }
               if (!occupied)
                 updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
@@ -239,7 +229,6 @@ function mouse_up(e) {
             window.originClickY = undefined;
             break;
           }
-        }
       }
 
 
@@ -251,24 +240,22 @@ function mouse_up(e) {
   }
 }
 
-function disableDragging(e){
-  window.dragging=false;
+function disableDragging(e) {
+  window.dragging = false;
 }
 
 function deletePlant(e) {
   e.preventDefault();
   e.stopPropagation();
   if (window.mode == 1 && window.dragging) {
-    for (let plant of window.jardin.plants) {
-      if (plant.isDragging) {
+    let plant=window.jardin.plants.find(x=>x.isDragging);
+      if (plant) {
         plant.isDragging = false;
-        window.dragging=false;
+        window.dragging = false;
 
         deleteMyPlant(window.jardin.id, plant);
-        colorCell=[];
+        colorCell = [];
       }
-    }
-    
   }
 }
 
@@ -427,12 +414,11 @@ function hammertime() {
           }
           else {
             let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
-            for (let plant of window.jardin.plants) {
-              if (plant.isDragging) {
+            let plant=window.jardin.plants.find(x=>x.isDragging);
+              if (plant) {
                 motor.moverMallaA(plant.id, point[0], 0, point[2]);
                 break;
               }
-            }
 
           }
           break;
@@ -442,18 +428,16 @@ function hammertime() {
             let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
             let coordX = Math.round(point[0]);
             let coordY = Math.round(point[2]);
-            for (let plant of window.jardin.plants) {
-              if (plant.isDragging) {
+            let plant=window.jardin.plants.find(x=>x.isDragging);
+            if (plant) {
                 plant.isDragging = false;
                 window.dragging = false;
                 if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
                   let occupied = false;
-                  for (let value of window.jardin.plants) { //Si encuentra una planta con las mismas coordenadas, la devuelve a la pos original
-                    if (value.x == coordX && value.y == coordY) {
+                  if(plantsMap.has(coordX+'-'+coordY)){
                       motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                       occupied = true;
                       break;
-                    }
                   }
                   if (!occupied)
                     updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
@@ -462,7 +446,6 @@ function hammertime() {
                   motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                 }
                 break;
-              }
             }
           }
 
@@ -474,12 +457,9 @@ function hammertime() {
             let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
             let coordX = Math.round(point[0]);
             let coordY = Math.round(point[2]);
-            for (let plant of window.jardin.plants) {
-              if (plant.x == coordX && plant.y == coordY) {
-                plant.isDragging = true;
+            if(plantsMap.has(coordX+'-'+coordY)){
+              plant.isDragging = true;
                 window.dragging = true;
-                break;
-              }
             }
           }
           break;

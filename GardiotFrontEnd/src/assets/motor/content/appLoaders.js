@@ -27,12 +27,16 @@ function loadPlants () {
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
     let resource = jardin.plants[i].model;
-    if (typeof resource !== 'undefined') {
+    if (typeof resource != 'undefined') {
       plantsMap.set(jardin.plants[i].x + '-' + jardin.plants[i].y, jardin.plants[i].id);
       resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
       resource = resource.toUpperCase();
-
-      motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
+      if(typeof dataPlants[resource] == 'undefined'){
+        jardin.plants[i].model='logo';
+        resource='LOGO';
+      }
+        
+        motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
       motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
       if (dataPlants[resource].rotX != 0)
         motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
@@ -41,6 +45,8 @@ function loadPlants () {
       if (dataPlants[resource].rotZ != 0)
         motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
       motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
+
+      
     }
   }
 }
@@ -53,8 +59,8 @@ function loadSoil (width, length) {
   motor.moverMalla("around", 0, -0.11, 0);*/
 
   //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width - 2; i <= width + 2; i++) {
-    for (let j = -length - 2; j <= length + 2; j++) {
+  for (let i = -width - 3; i <= width + 3; i++) {
+    for (let j = -length - 3; j <= length + 3; j++) {
 
       if (i < -width || i > width || j < -length || j > length) {
         motor.crearNodoMalla("sueloExt" + i + '-' + j, "sueloExt", "tierra.jpg", undefined);
@@ -134,9 +140,9 @@ function loadSun (sunrise, sunset) {
   /* POSICIONES INICIALES */
   motor.moverLuz("sol", 0.0, 35.0, 0.0);
   motor.moverLuz("luna", 0.0, -35.0, 0.0);
-  motor.rotarLuzOrbital('sol', 7, 'x');
   motor.rotarLuz('sol', -90, 'x');
-  motor.rotarLuz('sol', -5, 'z');
+  motor.rotarLuz('sol', 20, 'z');
+
   motor.rotarLuz('luna', 90, 'x');
   motor.activarLuz("sol");
 
@@ -179,6 +185,9 @@ function loadSun (sunrise, sunset) {
   factorIlumination = Math.sin(Math.radians(gradePosition)) + ilumOffset;
   motor.rotarLuzOrbitalA('sol', gradePosition + offset);
   motor.rotarLuzOrbitalA('luna', gradePosition + offset);
+
+    //inclinación lateral para evitar errores
+    motor.rotarLuzOrbital('sol', 10, 'x');
 
   iluminarAstro(minuteOfDay);
   rotarSol();  
