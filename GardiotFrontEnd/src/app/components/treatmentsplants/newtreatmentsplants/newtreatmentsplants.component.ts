@@ -9,7 +9,9 @@ import { TreatmentPlant } from "../../../classes/treatmentplant.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Router, ActivatedRoute } from "@angular/router";
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { PlantService } from "../../../services/plant.service";
+import { Plant } from "../../../classes/plant.class";
+
 
 @Component({
   selector: 'app-newtreatmentsplants',
@@ -24,14 +26,17 @@ export class NewtreatmentsplantsComponent implements OnInit {
   public products: any[] = [];
   public treatmentsPlants: any[] = [];
   public idPlant: number;
+  public plant = new Plant();
 
   constructor(
     public _treatmentService: TreatmentService,
     public _productService: ProductService,
+    public _plantService: PlantService,
     public _treatmentPlantService: TreatmentPlantService,
     public _appComponent: AppComponent,
     public _router: ActivatedRoute,
     public _route: Router
+
   ) { }
 
   guardar() {
@@ -40,7 +45,8 @@ export class NewtreatmentsplantsComponent implements OnInit {
     console.log(this.productTreatment.product);
     this._treatmentPlantService.savetreatment(this.treatmentPlant, this.idPlant)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("El tratamiento y los productos se han guardado", "primary", "plants?pag=1");
+        let v = JSON.parse(data._body);
+        this._appComponent.mensajeEmergente("Insertado nuevo tratamiento y productos", "primary", "");
       },
       error => {
         let v = JSON.parse(error._body);
@@ -81,6 +87,19 @@ export class NewtreatmentsplantsComponent implements OnInit {
         console.error(error);
       });
   }
+  mostrarPlanta(numplant: number) {
+    this._plantService.details(numplant)
+      .subscribe(data => {
+        console.log(data);
+        this.plant.id = data[0].id;
+        this.plant.commonName = data[0].commonName;
+        this.plant.photo = data[0].photo;
+      },
+      error => {
+        console.error(JSON.parse(error._body).Mensaje);
+      });
+
+  }
 
   getID() {
     this._router.params.subscribe(params => {
@@ -96,5 +115,6 @@ export class NewtreatmentsplantsComponent implements OnInit {
     this.mostrarTratamientos();
     this.mostrarProductos();
     this.getID();
+    this.mostrarPlanta(this.idPlant);
   }
 }
