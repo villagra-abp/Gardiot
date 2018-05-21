@@ -1,11 +1,6 @@
-/* Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 */
-
-div{
-  /* border: 1px solid green; */
+.search{
+  border: none;
 }
-
-
 form{
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
@@ -18,7 +13,6 @@ form{
 label, input, textarea, select, option{
   font-size: .9em;
 }
-
 
 label{
   font-style: italic;

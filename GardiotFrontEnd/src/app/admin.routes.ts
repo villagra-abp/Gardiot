@@ -18,9 +18,7 @@ import { TreatmentComponent } from './components/treatments/treatment/treatment.
 import { NewproductComponent } from './components/products/newproduct/newproduct.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
 import { ListproductComponent } from './components/products/listproduct/listproduct.component';
-import { ProductComponent } from './components/products/product/product.component';
 //feed
-import { FeedComponent } from './components/feeds/feed/feed.component';
 import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
@@ -45,12 +43,10 @@ export const admin_routes: Routes = [
   { path: 'newtreatment', component: NewtreatmentComponent,  canActivate: [AdminguardGuard] },
   //product
   { path: 'products', component: ListproductComponent,  canActivate: [AdminguardGuard] },
-  { path: 'product/:id', component: ProductComponent,  canActivate: [AdminguardGuard] },
   { path: 'editproduct/:id', component: EditproductComponent,  canActivate: [AdminguardGuard] },
   { path: 'newproduct', component: NewproductComponent,  canActivate: [AdminguardGuard] },
   //feed
   { path: 'feeds', component: ListfeedComponent,  canActivate: [AdminguardGuard] },
-  { path: 'feed/:id', component: FeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'editfeed/:id', component: EditfeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'newfeed', component: NewfeedComponent,  canActivate: [AdminguardGuard] },
   //newtreatmentsplants

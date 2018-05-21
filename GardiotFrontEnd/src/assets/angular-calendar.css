@@ -127,13 +127,11 @@
   background-color: #e0e0e0 !important; }
 
 .cal-month-view .cal-open-day-events {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content:flex-start;
-  align-items:flex-start;
-
-
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: row !important;
+  justify-content:flex-start !important;
+  align-items:flex-start !important;
   color: white;
   background-color: #343a40 !important;
   width: 100% !important;
@@ -354,9 +352,9 @@
 
 
   .ng-tns-c3-0,.ng-tns-c3-1,.ng-tns-c3-2,.ng-tns-c3-3,.ng-tns-c3-4{
-    width: 12em;
-    padding: 0.3em;
-    padding-left: 0.5em;
+    width: 12em !important;
+    padding: 0.3em !important;
+    padding-left: 0.5em !important;
 
   }
 

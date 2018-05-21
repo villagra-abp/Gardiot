@@ -68,9 +68,7 @@ import { TreatmentComponent } from './components/treatments/treatment/treatment.
 import { NewproductComponent } from './components/products/newproduct/newproduct.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
 import { ListproductComponent } from './components/products/listproduct/listproduct.component';
-import { ProductComponent } from './components/products/product/product.component';
 //feed
-import { FeedComponent } from './components/feeds/feed/feed.component';
 import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
@@ -143,8 +141,6 @@ registerLocaleData(localeEs);
     NewproductComponent,
     EditproductComponent,
     ListproductComponent,
-    ProductComponent,
-    FeedComponent,
     NewfeedComponent,
     EditfeedComponent,
     ListfeedComponent,

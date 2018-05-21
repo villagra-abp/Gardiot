@@ -1,8 +1,5 @@
-/* Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 */
-
-div{
-  /* border: 1px solid green; */
+.search{
+  border: none;
 }
 .nombre input{
   display: flex-block;

@@ -23,7 +23,7 @@
           <input type="type" [(ngModel)]="product.type" class="form-control" id="type" name="type" placeholder="Tipo">
         </div>
         <div class = "form-group col-md-12">
-          <button class="btn btn-default" type="submit">Filtrar</button>
+          <button class="btn btn-outline-info search" type="submit"><i class="material-icons">search</i></button>
         </div>
       </form>
 
@@ -45,9 +45,9 @@
           <th scope="row">{{product.name}}</th>
           <td>{{product.type}}</td>
           <td>{{product.description}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/editproduct/',product.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button class="btn btn-outline-primary search" [routerLink]="['/admin/editproduct/',product.id]"><i class="material-icons">mode_edit</i></button></td>
           <!-- <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-          <td><button class="btn btn-outline-danger" (click)="openDialog(product.id,1)"><i class="material-icons">delete</i></button></td>
+          <td><button class="btn btn-outline-danger search" (click)="openDialog(product.id,1)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>
