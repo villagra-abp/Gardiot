@@ -100,7 +100,7 @@ void main()
 
 
 	for(int i=0; i<cULights; i++){
-		if(uLight[i].isActive==1){
+		if(uLight[i].isActive==0){break;}
 			vec3 L = normalize(vec3(vView*vec4(uLight[i].position.xyz, 1.0))-vTVertPosition);
 			diffuse += max(dot(L, N), 0.0);
 
@@ -111,14 +111,14 @@ void main()
 			}
 			vLight +=  material.Kd * diffuse * uLight[i].color;
 			vLight +=  material.Ks* specular * uLight[i].specColor;
-		}
+
 	}
 
 
 
 	for(int i=0; i<cUSpotLights; i++){
 		//Calculate SpotLight
-		if(uSpotLight[i].isActive==1){
+		if(uSpotLight[i].isActive==0){break;}
 			highp float spotLimit=uSpotLight[i].amplitude;
 			highp vec3 spotDirection=uSpotLight[i].direction.xyz;
 			highp float spotEffect=dot(-normalize(spotDirection), normalize(uSpotLight[i].position.xyz-vVertPosition));
@@ -137,14 +137,16 @@ void main()
 				vLight  +=  material.Kd * diffuse * uSpotLight[i].color;
 				vLight +=  material.Ks* specular * uSpotLight[i].specColor;
 			}
-		}
+
 	}
 
 
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-			
+			if(uHovered==0){
+				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+			}
 			if(uHovered==1){
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
 			}
@@ -160,10 +162,7 @@ void main()
 			else if(uHovered==5){
 				gl_FragColor=vec4(texel.rgb*vec3(uFactor, uFactor, uFactor)*visibility, propiedades.opacity);
 			}
-			else{
-				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 
-			}
 			//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 	}
 
