@@ -22,7 +22,7 @@
   border-bottom: 0; }
 
 .cal-month-view .cal-cell-top {
-  min-height: 78px;
+  min-height: 10px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1; }
@@ -51,7 +51,7 @@
           align-items: stretch; }
 
 .cal-month-view .cal-day-cell {
-  min-height: 100px; }
+  min-height: 70px; }
 
 .cal-month-view .cal-day-cell:not(:last-child) {
   border-right: 1px solid #e1e1e1; }
@@ -62,7 +62,7 @@
 .cal-month-view .cal-day-badge {
   margin-top: 18px;
   margin-left: 10px;
-  background-color: #ffb200;
+  background-color: #63d297;
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
@@ -347,19 +347,16 @@
   height: 0;
   border-color: transparent;
   border-style: solid; }
+.ng-tns-c3-0,.ng-tns-c3-1,.ng-tns-c3-2,.ng-tns-c3-3,.ng-tns-c3-4{
+  width: 12em !important;
+  padding: 0.3em !important;
+  padding-left: 0.5em !important;
 
-
-
-
-  .ng-tns-c3-0,.ng-tns-c3-1,.ng-tns-c3-2,.ng-tns-c3-3,.ng-tns-c3-4{
-    width: 12em !important;
-    padding: 0.3em !important;
-    padding-left: 0.5em !important;
-
-  }
-
-
-  .icontarea{
-  	width: 25px;
-  	height: 25px;
-  }
+}
+.icontarea{
+	width: 25px;
+	height: 25px;
+}
+.cal-event a{
+  color: #343a40;
+}
