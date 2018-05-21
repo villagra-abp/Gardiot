@@ -96,8 +96,9 @@
 						</div>
 					</div>
 				</div>
-			<button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
-			<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
+
+			<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
+			<button [routerLink]="['/plant', plant.id]" class="btn btn-outline-danger">Cancelar</button>
 		</form>
 	</section>
 </div>
