@@ -95,7 +95,7 @@
 				</div>
 
 			<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-			<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+			<button [routerLink]="['/plant', plant.id]" class="btn btn-outline-danger">Cancelar</button>
 		</form>
 	</section>
 </div>
