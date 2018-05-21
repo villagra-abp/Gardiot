@@ -338,10 +338,12 @@ export class GardenComponent {
 
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
-          this.haveWeather=false;
+          this.haveWeather=true;
+          (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '180px';
         }
         else{
-          this.haveWeather=true;
+          this.haveWeather=false;
+          (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
         }
         
         this.inicializar();
