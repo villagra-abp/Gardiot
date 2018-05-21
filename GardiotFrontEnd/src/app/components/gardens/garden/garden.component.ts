@@ -298,12 +298,11 @@ export class GardenComponent {
 
 
           if (!this.mobile) {
-            this.listarPaises();
+            //this.listarPaises();
             this.mostrarCiudad();
             // console.log(this.garden.city);
             if (this.garden.city !== undefined && this.garden.city != null) {
               this.getTiempo();
-              this.getPrevision();
             } else {
               (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
               this.haveWeather = false;
@@ -339,12 +338,13 @@ export class GardenComponent {
 
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
-
+          this.haveWeather=false;
         }
+        else{
+          this.haveWeather=true;
+        }
+        
         this.inicializar();
-
-
-
       },
         error => {
 
@@ -360,7 +360,6 @@ export class GardenComponent {
       .subscribe(data => {
         if (data.cod != '404') {
           try {
-
             var date = new Date();
             var today = new Date();
             var todayDay = today.getDate();
@@ -421,7 +420,7 @@ export class GardenComponent {
         }
         else {
           (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
-          this.haveWeather = true;
+          this.haveWeather = false;
         }
 
 
@@ -583,6 +582,7 @@ export class GardenComponent {
 
   toggleState() {
     if (this.visible == 0) {
+      this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
         (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
       }
@@ -754,15 +754,25 @@ export class GardenComponent {
 
   ngOnInit() {
     if (typeof window.orientation !== 'undefined') {
-      //this.mobile=true;
+      new hammertime();
     }
+
+    let aux = [];
+    aux.push({ id: 0, text: "Cargando países..." });
+    this.countryData = Observable.create((obs) => {
+      obs.next(aux);
+      obs.complete();
+    });
+    this.startCountry = Observable.create((obs) => {
+      obs.next(0);
+      obs.complete();
+    });
 
 
     this.firstgarden();
-    this.ActualizarPagina();
     this.accion = 'Editar';
     this.mostrar();
-    new hammertime();
+    
   }
 
 
