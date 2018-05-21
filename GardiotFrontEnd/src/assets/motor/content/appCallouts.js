@@ -1,3 +1,8 @@
+/**
+ * Carga un recurso contenido en una carpeta local
+ * @param  {string} url
+ * @param  {Function} callback
+ */
 var loadTextResource = function (url, callback) {
     var request = new XMLHttpRequest();
     let resURL = '';
@@ -25,6 +30,11 @@ var loadTextResource = function (url, callback) {
     request.send();
 };
 
+/**
+ * Carga un recurso mediante la funcion anterior y lo parsea en JSON
+ * @param  {string} url
+ * @param  {Function} callback
+ */
 var loadJSONResource = function (url, callback) {
     loadTextResource(url, function (err, result) {
         if (err) {
@@ -39,7 +49,14 @@ var loadJSONResource = function (url, callback) {
     });
 };
 
-function updateMyPlant(garden, plant, soil, x, y) {
+/**
+ * Realiza una llamada a la API para actualizar los datos de una MyPlant 
+ * @param  {number} garden
+ * @param  {number} plant
+ * @param  {number} x
+ * @param  {number} y
+ */
+function updateMyPlant(garden, plant, x, y) {
     let xhr = new XMLHttpRequest(),
         url;
     if (window.location.toString().indexOf("localhost") >= 0) {
@@ -58,7 +75,7 @@ function updateMyPlant(garden, plant, soil, x, y) {
         let respuesta = JSON.parse(xhr.responseText);
 
         if (xhr.status == "200") {
-            motor.moverMallaA(plant.id, x, window.dataPlants[plant.model.toUpperCase()].posY, y); //Esta llamada tal vez es innecesaria
+            motor.moverMallaA(plant.id, x, window.dataPlants[plant.model.toUpperCase()].posY, y); 
             plantsMap.delete(plant.x + '-' + plant.y);//Para la iluminación
             plant.x = x;
             plant.y = y;
@@ -66,14 +83,22 @@ function updateMyPlant(garden, plant, soil, x, y) {
         }
     }
 
-    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant.plant + '&soil=' + soil;
+    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant.plant;
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['Bearer']);
     xhr.send(params);
 }
 
-function insertMyPlant(garden, plant, soil, x, y, model) {
+/**
+ * Realiza una llamada a la API para insertar una MyPlant 
+ * @param  {number} garden
+ * @param  {number} plant
+ * @param  {number} x
+ * @param  {number} y
+ * @param  {string} model
+ */
+function insertMyPlant(garden, plant, x, y, model) {
     let xhr = new XMLHttpRequest(),
         url;
     if (window.location.toString().indexOf("localhost") >= 0) {
@@ -86,11 +111,9 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
         url = `http://192.168.100.3:3000/api/myPlant/${garden}`;
     }
 
-
     xhr.open('POST', url, true);
     xhr.onload = function () {
         let respuesta = JSON.parse(xhr.responseText);
-        //console.log(respuesta.Mensaje);
         if (xhr.status == 200) {
             let value = {
                 id: respuesta.myPlant,
@@ -117,13 +140,18 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
         }
     }
     var seed = new Date().toISOString().slice(0, 10);
-    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant + '&soil=' + soil + '&seed=' + seed;
+    let params = 'xCoordinate=' + x + '&yCoordinate=' + y + '&plant=' + plant + '&seed=' + seed;
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['Bearer']);
     xhr.send(params);
 }
 
+/**
+ * Realiza una llamada a la API para eliminar una MyPlant 
+ * @param  {number} garden
+ * @param  {number} plant
+ */
 function deleteMyPlant(garden, plant) {
     let xhr = new XMLHttpRequest(),
         url;
@@ -145,13 +173,10 @@ function deleteMyPlant(garden, plant) {
         if (xhr.status == "200") {
             motor.borrarMalla(plant.id);
             let index = window.jardin.plants.indexOf(plant);
-
             plantsMap.delete(plant.x + '-' + plant.y);//Para la iluminación
-
             window.jardin.plants.splice(index, 1);
         }
     }
-
     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage['Bearer']);
     xhr.send(null);
 }

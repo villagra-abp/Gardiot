@@ -34,7 +34,7 @@ task.getTodayCompletedPercent = function (user, callback) {
 task.getTasks = function (number, page, user, callback) {
 	if (connection) {
 		let minPeak = (page - 1) * number;
-		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND Task.date >= NOW() GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Task.date LIMIT ' + minPeak + ',' + number, function (error, row) {
+		connection.query('SELECT Treatment.name, Plant.commonName, MyPlant.name AS namemyplant, Garden.title, Task.* FROM User, Garden, MyPlant, Plant, Task, TreatmentPlant, Treatment WHERE User.id = Garden.user AND Garden.id = MyPlant.garden AND MyPlant.id = Task.myPlant AND Task.treatmentPlant = TreatmentPlant.treatment AND Task.tPlant = TreatmentPlant.plant AND TreatmentPlant.treatment = Treatment.id AND TreatmentPlant.plant = Plant.id AND User.id = "' + user + '" AND DAYOFYEAR(Task.date) >= DAYOFYEAR(NOW()) GROUP BY Task.date, tPlant, treatmentPlant ORDER BY Task.date LIMIT ' + minPeak + ',' + number, function (error, row) {
 			if (error)
 				callback(error, null);
 			else

@@ -26,6 +26,7 @@ p{
 }
 .texto_dato{
 		font-weight: bold;
+		margin: 0.2em;;
 }
 .hecho{
 	color: #299654;

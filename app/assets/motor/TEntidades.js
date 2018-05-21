@@ -184,7 +184,7 @@ class TMalla extends TEntidad {
     }
 
     beginDraw(variable) {
-        window.program==2?this._malla.drawSombras():this._malla.draw(variable);
+        gl.getParameter(gl.CURRENT_PROGRAM).samplerUniform!==undefined?this._malla.draw(variable):this._malla.drawSombras();
     }
     endDraw() { }
 }

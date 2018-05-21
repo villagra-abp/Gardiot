@@ -14,7 +14,7 @@
   background-color: #299654 ;
   display: flex;
   align-items: center;
-  z-index: 999999;
+  z-index: 200;
   }
   .navbar-header>div{
     max-height: 46px;
@@ -45,7 +45,7 @@
   color: white;
   position: fixed;
   height: 100%;
-  z-index: 999999;
+  z-index: 200;
 }
 #sidebar-wrapper>img{
   display:none;

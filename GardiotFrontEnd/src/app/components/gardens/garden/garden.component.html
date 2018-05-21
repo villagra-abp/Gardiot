@@ -1,3 +1,4 @@
+
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
   <!-- <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == 1" >
     <article class="search">
@@ -9,30 +10,30 @@
   </form> -->
   <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
   <nav class="plantsMenu" *ngIf="visible == 1">
-      <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
-          <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar en gardiot">
-      </form>
-      <section class="list">
-
-
-      <ul>
-        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-        <div>
-          <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
-        </div>
-        <span>{{plantmotor.commonName}}</span>
-
-        </li>
-      </ul>
-    </section>
-    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
+    <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
+        <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar plantas">
+    </form>
+    <section class="list">
+  
+  
+    <ul>
+      <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
+      <div>
+        <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
+      </div>
+      <span>{{plantmotor.commonName}}</span>
+  
+      </li>
+    </ul>
+  </section>
+  <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
   </nav>
-  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event);" width="1800" height="1170"></canvas>
+  <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event); dragCanvas(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
-
+    <i class="material-icons mobile" onclick="closeEditMobile(event)">close</i>
     <div class="row animated fadeIn fast">
       <div class="col-md-12">
-        <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
+        <form (ngSubmit)="edit()" onsubmit="closeWeatherMobile(event)" #forma="ngForm" novalidate="">
           <div class="form-group">
             <div>
               <label for="title"><b>Título:</b> </label>
@@ -52,7 +53,6 @@
               <select2 id="pais" [width]="select2Width()" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
               </select2>
             </div>
-
             <div>
               <label for="countries"><b>Código postal:</b></label>
               <input class="form-control" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
@@ -61,12 +61,12 @@
               <label for="countries"><b>Ciudad:</b> {{city}}</label>
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-primary">Actualizar</button>
+          <button type="submit" class="btn">Actualizar</button>
         </form>
       </div>
     </div>
   </section>
-  <div class="toggleDeko litButton" id="del" onmouseup="deletePlant(event)" [hidden]="isDragging()" >
+  <div class="toggleDeko litButton" id="del" onmouseup="deletePlant(event)" ondragover="allowDrop(event);" ondrop="disableDragging(event)" [hidden]="isDragging()" >
     <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
   </div>
   <section class="litButtons">
@@ -107,9 +107,7 @@
 
   </section>
   <div id="prevision" class="previsionClosed" *ngIf="haveWeather == true" oncontextmenu="return false;">
-    <!--<span class="interactiveButton"
-    style="display: none; cursor:pointer; transition: .3s ease-in all; min-width: 200px;"
-    onclick="document.getElementById('prevision').classList.toggle('previsionClosed');"> <i class="material-icons">cloud</i></span>-->
+    <i class="material-icons mobile" onclick="closeWeatherMobile(event)">close</i>
     <div class="tiempo">
       <div class="headTiempo">
         <h4>{{tiempoCity}}</h4>
@@ -119,22 +117,22 @@
         <span>Ahora</span>
         <img src="{{photoURL}}/images/imgWeather/{{fotoHoy}}.png">
       </div>
-      <div class="today" [ngStyle]="getMyStyles(maxMan, this.statusMan)">
+      <div class="no today" [ngStyle]="getMyStyles(maxMan, this.statusMan)">
         <p><span class="maxima">{{maxMan | number:'.0-0'}}º</span> <span class="minima">{{minMan | number:'.0-0'}}º</span></p>
         <span>Mañana</span>
         <img src="{{photoURL}}/images/imgWeather/{{fotoMan}}.png">
       </div>
-      <div class="today" [ngStyle]="getMyStyles(maxDia3, this.statusDia3)">
+      <div class="no today" [ngStyle]="getMyStyles(maxDia3, this.statusDia3)">
         <p><span class="maxima">{{maxDia3 | number:'.0-0'}}º</span> <span class="minima">{{minDia3 | number:'.0-0'}}º</span></p>
         <span>{{nombreDia3}}</span>
         <img src="{{photoURL}}/images/imgWeather/{{fotoDia3}}.png">
       </div>
-      <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia4)">
+      <div class="no today" [ngStyle]="getMyStyles(maxDia4, this.statusDia4)">
         <p><span class="maxima">{{maxDia4 | number:'.0-0'}}º</span> <span class="minima">{{minDia4 | number:'.0-0'}}º</span></p>
         <span>{{nombreDia4}}</span>
         <img src="{{photoURL}}/images/imgWeather/{{fotoDia4}}.png">
       </div>
-      <div class="today" [ngStyle]="getMyStyles(maxDia4, this.statusDia5)">
+      <div class="no today" [ngStyle]="getMyStyles(maxDia4, this.statusDia5)">
         <p><span class="maxima">{{maxDia5 | number:'.0-0'}}º</span> <span class="minima">{{minDia5 | number:'.0-0'}}º</span></p>
         <span>{{nombreDia5}}</span>
         <img src="{{photoURL}}/images/imgWeather/{{fotoDia5}}.png">

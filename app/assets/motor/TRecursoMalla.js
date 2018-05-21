@@ -135,7 +135,7 @@ class TRecursoMalla extends TRecurso {
 
   drawSombras(){
     //Cálculo de la matrix model view projection desde la luz
-    mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
+    mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix[window.i], matrixModel);
     mat4.multiply(this.lightProjectionViewModelMatrix, lightProjectionMatrix, this.lightProjectionViewModelMatrix);
     gl.uniformMatrix4fv(glProgram[2].lmvpMatrixUniform, false, this.lightProjectionViewModelMatrix);
 
@@ -160,11 +160,15 @@ class TRecursoMalla extends TRecurso {
     mat4.multiply(this.projectionViewModelMatrix, projectionMatrix, this.viewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].mvMatrixUniform, false, this.viewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].mvpMatrixUniform, false, this.projectionViewModelMatrix);
-
+ 
     //Cálculo de la matrix model view projection desde la luz
-    mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix, matrixModel);
-    mat4.multiply(this.lightProjectionViewModelMatrix, lightProjectionMatrix, this.lightProjectionViewModelMatrix);
-    gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform, false, this.lightProjectionViewModelMatrix);
+    for(let i=0; i<viewLightMatrix.length; i++){
+      this.lightProjectionViewModelMatrix[i]=[];
+      mat4.multiply(this.lightProjectionViewModelMatrix[i], viewLightMatrix[0], matrixModel);
+      mat4.multiply(this.lightProjectionViewModelMatrix[i], lightProjectionMatrix, this.lightProjectionViewModelMatrix[i]);
+      gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform[0], false, this.lightProjectionViewModelMatrix[i]);
+  
+    }
 
     //Pasamos la matriz modelo al shader
     gl.uniformMatrix4fv(glProgram[window.program].mMatrixUniform, false, matrixModel);
@@ -192,7 +196,6 @@ class TRecursoMalla extends TRecurso {
 
     //Pasamos los materiales al shader
     if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
-      //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
       gl.uniform3fv(glProgram[window.program].kd, this.Kd);
       gl.uniform3fv(glProgram[window.program].ks, this.Ks);
@@ -230,6 +233,7 @@ class TRecursoMalla extends TRecurso {
     }
     else if(this.nombre.indexOf('sueloExt')>=0){
       gl.uniform1i(glProgram[window.program].hovered, 5);
+      gl.uniform1f(glProgram[window.program].factor, window.factorIlumination);
     }
       
 

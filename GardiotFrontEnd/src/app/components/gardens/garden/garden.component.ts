@@ -149,10 +149,10 @@ export class GardenComponent {
       //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
       motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     }
-    let time=Date.now();
-    if((time-window.timer)>1000){
+    let time = Date.now();
+    if ((time - window.timer) > 1000) {
       this.mostrarplantasmotor();
-      window.timer=Date.now();
+      window.timer = Date.now();
     }
   }
 
@@ -529,7 +529,6 @@ export class GardenComponent {
     return dia;
   }
 
-
   edit() {
 
     this._gardenService.modifyGarden(this.garden, (this.width * 2) + 1, (this.length * 2) + 1)
@@ -583,7 +582,18 @@ export class GardenComponent {
   }
 
   toggleState() {
-    this.visible == 0 ? this.visible = 1 : this.visible = 0;
+    if (this.visible == 0) {
+      if (typeof window.orientation !== 'undefined') {
+        (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
+      }
+      this.visible = 1;
+    } else {
+      this.visible = 0;
+      if (typeof window.orientation !== 'undefined') {
+        (<HTMLElement>document.querySelector('app-header')).style.display = 'initial';
+      }
+    }
+
     document.getElementById('formulario').classList.add('infoOcult');
   }
 
@@ -600,7 +610,7 @@ export class GardenComponent {
     let desvY = (canvas.height - 974) * 0.00072;
     motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     motor.moverCamaraA("camara2", 0, (100 * -desvY), 0);
-    window.timer=0;
+    window.timer = 0;
   }
 
 
@@ -667,8 +677,10 @@ export class GardenComponent {
   }
 
   mostrarplantasmotor() {
-
-    if (window.innerHeight < 750) {
+    if (window.innerWidth < 600) {
+      this.elementosPorPagina = 4;
+    }
+    else if (window.innerHeight < 750) {
       this.elementosPorPagina = 6;
     } else if (window.innerHeight < 950) {
       this.elementosPorPagina = 8;
