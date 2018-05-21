@@ -90,6 +90,7 @@ export class DetailComponent implements OnInit {
   private imgUrl ="";
   public temperature = 0;
   public plantNumber = 0;
+  private percentTareas= 0;
 
 
   constructor(
@@ -185,7 +186,7 @@ export class DetailComponent implements OnInit {
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
           }
-          
+
         } else {
           // this._route.navigate(['/newgarden']);
         }
@@ -203,60 +204,65 @@ export class DetailComponent implements OnInit {
 
 // calendario
 
-  mostrartask() {
-    let f = new Date();
-    let fechas=[];
-    fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
-    f.setMonth(f.getMonth()-1);
-      this._taskService.detailsAll(fechas[0])
-      .subscribe(data => {
-        for (let key$ in data) {
-          this.tasks.push(data[key$]);
-          this.addEvent(data[key$].name + " " + data[key$].commonName,
-            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-            this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-        }
-      },
-        error => {
-          console.error(error);
-        });
+  // mostrartask() {
+  //   let f = new Date();
+  //   let fechas=[];
+  //   fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
+  //   // f.setMonth(f.getMonth()-1);
+  //     this._taskService.detailsAll(fechas[0])
+  //     .subscribe(data => {
+  //
+  //       for (let key$ in data) {
+  //         this.tasks.push(data[key$]);
+  //         this.addEvent(data[key$].name + " " + data[key$].commonName,
+  //           this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
+  //           this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
+  //       }
+  //     },
+  //       error => {
+  //         console.error(error);
+  //       });
+  //
+  //       this._taskService.percent().subscribe(data => {
+  //       },
+  //         error => {
+  //           console.error(error);
+  //         });
+  // }
 
-        this._taskService.percent().subscribe(data => {
-        },
-          error => {
-            console.error(error);
-          });
-  }
 
-
-  addEvent(Ttitle: string, Tstart: string, Tend: string): void {
-    this.events.push({
-      title: Ttitle,
-      start: startOfDay(new Date(Tstart)),
-      end: endOfDay(new Date(Tend)),
-      color: colors.red,
-      draggable: false,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
-    });
-    this.refresh.next();
-  }
+  // addEvent(Ttitle: string, Tstart: string, Tend: string): void {
+  //   this.events.push({
+  //     title: Ttitle,
+  //     start: startOfDay(new Date(Tstart)),
+  //     end: endOfDay(new Date(Tend)),
+  //     color: colors.red,
+  //     draggable: false,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     }
+  //   });
+  //   this.refresh.next();
+  // }
 
 
   getTasks(){
     this.tareas = [];
+          this._taskService.percent().subscribe(data => {
+            this.percentTareas= data.Mensaje;
+          },
+            error => {
+              console.error(error);
+            });
     this._taskService.detailsSome(15).subscribe(data =>{
       let aux:any[] = [];
-      console.log(data);
       if(data.length !=0){
-        
         for (let i = 0; i<data.length; i++){
           if(aux.length == 0){ // si está vacio
             aux.push(data[i]);
           }else{
-            if(data[i].date == data[i-1].date){ // si las fechas coinciden lo agrupamos
+              if(this.datePipe.transform(data[i].date , 'yyyy-MM-dd')==this.datePipe.transform(data[i-1].date, 'yyyy-MM-dd') ){ // si las fechas coinciden lo agrupamos
               aux.push(data[i]);
             }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
               this.tareas.push(aux);
@@ -273,6 +279,7 @@ export class DetailComponent implements OnInit {
     error =>{
       console.error(error);
     });
+
   }
 
   dotask(tarea:Task){
@@ -327,9 +334,9 @@ export class DetailComponent implements OnInit {
     this.checkGarden();
     // this.mostrar();
     this.mostrar2();
-    this.mostrartask();
+    // this.mostrartask();
     this.getTasks();
-    this.cargarfeeds(); 
+    this.cargarfeeds();
   }
 
 
