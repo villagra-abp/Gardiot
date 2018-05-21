@@ -2,7 +2,7 @@ div{
   width: 100%;
   margin: 0 auto;
   background: rgba(255,255,255,0.1);
-  padding: 1em;
+  padding: 1%;
   /* border: 2px solid #ffb200; */
   /* border-radius: 20px/50px; */
   /* background-clip: padding-box; */
@@ -22,7 +22,7 @@ dd{
 
 }
 mat-dialog-actions{
-padding: 2.5px;
+/* padding: 2.5px; */
 }
 button{
 margin: auto;

@@ -171,6 +171,8 @@ export class DetailComponent implements OnInit {
           this.plantNumber = this.garden.plants.length;
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
+          }else{
+            new iniciar("home", this.garden);
           }
 
         } else {

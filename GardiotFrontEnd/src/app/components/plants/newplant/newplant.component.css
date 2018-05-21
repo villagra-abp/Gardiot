@@ -1,6 +1,11 @@
 .search{
   border: none;
 }
+input{
+  margin-bottom: -2%;
+  margin-left: 3%;
+  width: 90%;
+}
 form{
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
