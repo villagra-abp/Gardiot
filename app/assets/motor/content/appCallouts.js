@@ -90,7 +90,6 @@ function insertMyPlant(garden, plant, soil, x, y, model) {
     xhr.open('POST', url, true);
     xhr.onload = function () {
         let respuesta = JSON.parse(xhr.responseText);
-        //console.log(respuesta.Mensaje);
         if (xhr.status == 200) {
             let value = {
                 id: respuesta.myPlant,

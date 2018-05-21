@@ -34,11 +34,6 @@ function cargarShaders() {
   for (let i = 0; i < vertexShaders.length && i < fragmentShaders.length; i++) {
     vs[i] = gestor.getRecurso(vertexShaders[i], 'shader').shader,
       fs[i] = gestor.getRecurso(fragmentShaders[i], 'shader').shader;
-
-    //Ya tenemos los shaders aquí! (formato texto)
-    //console.log(vs);
-    //console.log(fs);
-
     //creamos el programa
     glProgram[i] = gl.createProgram();
 
@@ -165,7 +160,6 @@ function get3DPoint(point2D, width, height) {
   let point = [x, y, pointaux[2]];
 
   vec3.transformMat4(point, point, invert);
-  //console.log(point);
   return point;
 }
 

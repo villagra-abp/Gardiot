@@ -1,5 +1,7 @@
 
-
+/**
+	 * Carga de la animación del aleteo del pajaro
+	 */
 function loadAnimation () {
   //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion")
@@ -17,9 +19,12 @@ function loadAnimation () {
   // motor.rotarMalla("pajaro2_000000", -90, "x");
   // motor.moverMalla("pajaro2_000000", 30, -15, 15);
 }
+
+/**
+	 * Carga de plantas desde la BD al jardin
+	 */
 function loadPlants () {
   window.dragging = false;
-  // plantas dragables
   //Este mapa servirá para identificar si hay una planta en una posición concreta.
   //Por ejemplo, para una planta en la posición 3, 4, la forma de añadirla al mapa será
   //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la
@@ -51,34 +56,33 @@ function loadPlants () {
   }
 }
 
-
+/**
+	 * Carga del suelo que compone el area del jardin
+	 * @param  {number} width
+	 * @param  {number} length
+	 */
 function loadSoil (width, length) {
-  //Primero creamos el espacio de alrededor del jardín
-  /*motor.crearNodoMalla("around", "around", "cespedDef.jpg", undefined);
-  motor.escalarMallaXYZ("around", 500, 0.1, 500);
-  motor.moverMalla("around", 0, -0.11, 0);*/
-
-  //Por último dibujamos las cuadrículas del suelo en bucle
-  for (let i = -width - 3; i <= width + 3; i++) {
-    for (let j = -length - 3; j <= length + 3; j++) {
+  for (let i = -width - 2; i <= width + 2; i++) {
+    for (let j = -length - 2; j <= length + 2; j++) {
 
       if (i < -width || i > width || j < -length || j > length) {
         motor.crearNodoMalla("sueloExt" + i + '-' + j, "sueloExt", "tierra.jpg", undefined);
         motor.escalarMallaXYZ("sueloExt" + i + '-' + j, 0.5, 0.1, 0.5);
-        motor.moverMalla("sueloExt" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
+        motor.moverMalla("sueloExt" + i + '-' + j, i, -0.1, j);
       }
       else {
         motor.crearNodoMalla("suelo" + i + '-' + j, "sueloPolly", "cespedDef.jpg", undefined);
         motor.escalarMallaXYZ("suelo" + i + '-' + j, 0.5, 0.1, 0.5);
-        motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);//POR FAVOR NO TOCAR EL SUELO, SI QUERÉIS AJUSTAR LAS ALTURAS
-        //HACEDLO CON LAS PLANTAS
+        motor.moverMalla("suelo" + i + '-' + j, i, -0.1, j);
       }
     }
   }
 }
 
+/**
+	 * Carga del suelo exterior al jardín
+	 */
 function loadExtSoil () {
-  /*SUELO GRANDE */
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       motor.crearNodoMalla("sueloGrande" + i + '-' + j, "sueloGrande", "tierra.jpg", undefined);
@@ -88,8 +92,13 @@ function loadExtSoil () {
     }
   }
 }
+
+/**
+	 * Carga de la valla que cubre el perimetro del jardin
+	 * @param  {number} width
+	 * @param  {number} length
+	 */
 function loadFence (width, length) {
-  // VALLADO
   /* Consideramos length y width como unidades de suelo*/
 
   /* Construimos en el lado derecho del suelo tantas vallas
@@ -131,6 +140,11 @@ function loadFence (width, length) {
   }
 }
 
+/**
+	 * Creacion de luces ambientales y colocacion inicial segun parametros locales
+	 * @param  {Date} sunrise
+	 * @param  {Date} sunset
+	 */
 function loadSun (sunrise, sunset) {
   window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
@@ -170,12 +184,12 @@ function loadSun (sunrise, sunset) {
   window.minutesOfNight = minutesOfNight = (24 * 60) - minutesOfSun;
 
   let relation, offset, ilumOffset = 0;
-  if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) {
+  if (minuteOfDay >= minuteOfSunrise && minuteOfDay <= minuteOfSunset) { //DIA
     relation = (minuteOfDay - minuteOfSunrise) / minutesOfSun;
     offset = -90;
     ilumOffset = 0.2;
   }
-  else {
+  else { //NOCHE
     if (minuteOfDay < minuteOfSunrise)
         minuteOfDay = (24 * 60) + minuteOfDay;
     relation = (minuteOfDay - minuteOfSunset) / minutesOfNight;
@@ -193,6 +207,11 @@ function loadSun (sunrise, sunset) {
   rotarSol();  
 }
 
+/**
+	 * Funcion que llama a las anteriores de carga
+	 * @param  {Date} sunrise
+	 * @param  {Date} sunset
+	 */
 function loadEntities (sunrise, sunset) {
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
   loadSoil(width, length);
@@ -202,8 +221,9 @@ function loadEntities (sunrise, sunset) {
   loadSun(sunrise, sunset);
 }
 
-//Datos de plantas como el escalado, etc. para que se dibujen bien
-//Datos de plantas como el escalado, etc. para que se dibujen bien
+/**
+ * Datos de plantas como el escalado, etc. para que se dibujen bien
+ */
 window.dataPlants = {
   LECHUGA: {
     textura: 'lechuga.jpg',

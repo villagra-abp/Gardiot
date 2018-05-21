@@ -1,16 +1,26 @@
-
+/**
+ * Establece el parametro de identificacion de la planta arrastrada
+ * @param  {String} e
+ */
 function drag(e) {
   window.dragging = true;
   e.dataTransfer.setData("text", e.target.id);
 }
 
-
+/**
+ * Bloquea los disparadores de evento por defecto de JS
+ * @param  {String} e
+ */
 function allowDrop(e) {
   e.preventDefault();
   e.stopPropagation();
 }
 
-function dragCanvas(e) {
+/**
+ * Establece el color de celda sobre la que se esta arrastrando
+ * @param  {String} e
+ */
+function dragCanvas(e){
   if (window.dragging) {
     e.preventDefault();
     e.stopPropagation();
@@ -24,6 +34,10 @@ function dragCanvas(e) {
   }
 }
 
+/**
+ * Inserta la planta en el jardin al soltar el click del raton
+ * @param  {String} e
+ */
 function drop(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -51,6 +65,10 @@ function drop(e) {
   window.dragging = false;
 }
 
+/**
+ * Controla las acciones asociadas al movimiento del raton sobre el canvas, camara principalmente
+ * @param  {String} e
+ */
 function mouse_move(e) {
   if (typeof projectionMatrix !== 'undefined') {
     let cv = document.querySelector('#myCanvas'),
@@ -58,34 +76,24 @@ function mouse_move(e) {
       y = e.clientY;
 
     if (cv.getAttribute('moviendo-camara')) {
-      //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
       let ejeY = window.originClickY - (y / cv.offsetHeight);
       let ejeX = window.originClickX - (x / cv.offsetWidth);
-      //esto será lo bueno
       let pos = motor.getPosCamaraActiva();
       let movPosible = pos[1] * 0.6;
 
       if (window.mode == 0) {//modo visualización
-
         e.preventDefault();
         e.stopPropagation();
-        //nuevo movimiento
-
         motor.moverCamara("dynamicCamera", ejeX * 10, 0, ejeY * 10);
-        //motor.moverCamara("dynamicCamera", -ejeY*10, 0, ejeY*10);
       }
       else {
         let dir = vec3.fromValues(ejeX * 10, 0, ejeY * 10);
         let rad = Math.PI * rotationCamY / 180;
         vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), rad);
         vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI * 45 / 180);
-
         motor.moverCamara("dynamicCamera", dir[0], 0, dir[2]);
       }
-
-
       //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
-      //de mouse_move
       window.originClickX = x / cv.offsetWidth;
       window.originClickY = y / cv.offsetHeight;
     }
@@ -133,19 +141,18 @@ function mouse_move(e) {
   }
 }
 
-
-
+/**
+ * Controla las acciones asociadas al los clicks derecho (rotar) e izquierdo (seleccionar planta) del raton
+ * @param  {String} e
+ */
 function mouse_down(e) {
   let cv = document.querySelector('#myCanvas'),
     x = e.clientX,
     y = e.clientY;
   if (!cv.getAttribute('rotando-camara') && !cv.getAttribute('moviendo-camara') && !window.dragging) {
     switch (e.which) {
-
       case 1: //Izquierdo
         if (window.mode == 1) {
-          //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
-          //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
           let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
           let coordX = Math.round(point[0]);
           let coordY = Math.round(point[2]);
@@ -162,7 +169,6 @@ function mouse_down(e) {
           cv.setAttribute('moviendo-camara', 'true');
           //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
           //de mouse_move
-
         }
         window.originClickX = x / cv.offsetWidth;
         window.originClickY = y / cv.offsetHeight;
@@ -179,6 +185,10 @@ function mouse_down(e) {
   }
 }
 
+/**
+ * Controla las acciones asociadas al levantar el dedo del ratón. Derecho (detener rotacion), izquierdo (colocar planta seleccionada)
+ * @param  {String} e
+ */
 function mouse_up(e) {
   colorCell = [];
   let cv = document.querySelector('#myCanvas')
@@ -187,11 +197,8 @@ function mouse_up(e) {
       if (!cv.getAttribute('moviendo-camara')) {
         window.originClickX = undefined;
         window.originClickY = undefined;
-
-        //console.log(`UP-> Posición: ${fila} - ${columna}`);
         cv.removeAttribute('rotando-camara');
       }
-
       break;
     case 1: //Izquierdo
       if (window.mode != 0 && window.dragging) {
@@ -213,7 +220,7 @@ function mouse_up(e) {
                   break;
               }
               if (!occupied)
-                updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
+                updateMyPlant(window.jardin.id, plant, coordX, coordY);
             }
             else {
               let rect = cv.getBoundingClientRect();
@@ -230,20 +237,24 @@ function mouse_up(e) {
             break;
           }
       }
-
-
-      //console.log(`UP-> Posición: ${fila} - ${columna}`);
       cv.removeAttribute('moviendo-camara');
-
       break;
 
   }
 }
 
-function disableDragging(e) {
-  window.dragging = false;
+/**
+ * Desactiva la variable general que controla el dragging
+ * @param  {String} e
+ */
+function disableDragging(e){
+  window.dragging=false;
 }
 
+/**
+ * Elimina una MyPlant
+ * @param  {String} e
+ */
 function deletePlant(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -259,8 +270,10 @@ function deletePlant(e) {
   }
 }
 
+/**
+ * Zoom in
+ */
 function plusZoom() {
-
   if (window.mode == 0) {
     let pos = motor.getPosCamaraActiva();
     if (pos[1] > 3) {
@@ -276,7 +289,9 @@ function plusZoom() {
   }
 }
 
-
+/**
+ * Zoom out
+ */
 function subZoom() {
   if (window.mode == 0) {
     let pos = motor.getPosCamaraActiva();
@@ -294,8 +309,10 @@ function subZoom() {
 }
 
 
-
-//Esto es solo para el zoom de la cámara en el modo edición
+/**
+ * Controla el zoom de la cámara en el modo edición
+ * @param  {String} e
+ */
 function scrolling(e) {
   e.preventDefault();
   e.stopPropagation();
@@ -311,7 +328,6 @@ function scrolling(e) {
     else if (e.deltaY > 0 && pos[1] < 5) {
       motor.escalarCamara("dynamicCamera", 1.1);
     }
-
   }
 
   else if (window.mode == 1) {
@@ -332,7 +348,9 @@ function scrolling(e) {
   }
 }
 
-
+/**
+ * Controla el multigesto con los dispositivos tactiles
+ */
 function hammertime() {
   var is_touch_device = 'ontouchstart' in document.documentElement;
   if (is_touch_device) {
@@ -440,7 +458,7 @@ function hammertime() {
                       break;
                   }
                   if (!occupied)
-                    updateMyPlant(window.jardin.id, plant, window.jardin.soil, coordX, coordY);
+                    updateMyPlant(window.jardin.id, plant, coordX, coordY);
                 }
                 else {
                   motor.moverMallaA(plant.id, plant.x, 0, plant.y);

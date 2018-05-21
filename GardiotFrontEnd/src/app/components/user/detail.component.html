@@ -1,14 +1,5 @@
 <div class="container main-container">
   <div class="row">
-    <!-- <div class="card bg-dark text-white">
-  <canvas  id="myCanvas" class="card-img" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="1149"
-    height="270"></canvas>
-  <div class="card-img-overlay">
-    <h5 class="card-title">{{garden.title}}</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <img src="user.photo" alt="asd">
-  </div>
-</div> -->
     <section class="calendar col-lg-5 ">
       <div class="container">
         <div class="title">
@@ -33,8 +24,8 @@
                     <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
                     <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
                     <!--{{tarea.name}}   -->
-                    <button *ngIf="tarea.dateDone==null" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
-                    <i *ngIf="tarea.dateDone!=null" class="material-icons hecho">thumb_up</i>
+                    <button *ngIf="tarea.dateDone==null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
+                    <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" class="material-icons hecho">thumb_up</i>
                   </div>
                 </div>
               </div>
@@ -55,11 +46,13 @@
           <section class="row icono">
             <div class="icon">
               <img src="{{photoURL}}/images/imgGardiot/checklist.png" class="rounded mx-auto d-block " alt="Logo">
-              <p class="texto_dato">60%</p>
+              <p class="texto_dato">{{percentTareas}}%</p>
+              <p class="mes">hoy</p>
             </div>
             <div class="icon">
               <img src="{{photoURL}}/images/imgGardiot/flower.png" class="rounded mx-auto d-block icon" alt="Logo">
-              <p class="texto_dato">{{plantNumber}}</p>
+              <p class="texto_dato">{{plantNumber}} </p>
+              <p class="mes">plantas</p>
             </div>
           </section>
           <section class="row icono">
