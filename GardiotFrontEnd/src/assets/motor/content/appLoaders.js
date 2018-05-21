@@ -32,7 +32,8 @@ function loadPlants () {
   window.plantsMap = new Map();
   for (let i = 0; i < jardin.plants.length; i++) {
     let resource = jardin.plants[i].model;
-    if (typeof resource != 'undefined') {
+    if (typeof resource == 'undefined' || resource==null)
+      resource='logo';
       plantsMap.set(jardin.plants[i].x + '-' + jardin.plants[i].y, jardin.plants[i].id);
       resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
       resource = resource.toUpperCase();
@@ -51,8 +52,7 @@ function loadPlants () {
         motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
       motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
 
-      
-    }
+
   }
 }
 
