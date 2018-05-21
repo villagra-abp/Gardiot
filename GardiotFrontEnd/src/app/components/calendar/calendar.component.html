@@ -2,14 +2,14 @@
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-primary" mwlCalendarPreviousView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          Anterior
+        <div class="btn btn-outline-primary search" mwlCalendarPreviousView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+          <i class="material-icons">keyboard_arrow_left</i>
         </div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+        <div class="btn btn-outline-primary search" mwlCalendarToday [(viewDate)]="viewDate">
           Actual
         </div>
-        <div class="btn btn-primary" mwlCalendarNextView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          Próximo
+        <div class="btn btn-outline-primary search" mwlCalendarNextView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+          <i class="material-icons">keyboard_arrow_right</i>
         </div>
       </div>
     </div>
@@ -18,10 +18,10 @@
     </div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-primary" (click)="view = 'month'" [class.active]="view === 'month'">
+        <div class="btn btn-outline-primary search" (click)="view = 'month'" [class.active]="view === 'month'">
           Mes
         </div>
-        <div class="btn btn-primary" (click)="view = 'week'" [class.active]="view === 'week'">
+        <div class="btn btn-outline-primary search" (click)="view = 'week'" [class.active]="view === 'week'">
           Semana
         </div>
         <!-- <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">
