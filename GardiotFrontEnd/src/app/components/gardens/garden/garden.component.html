@@ -72,11 +72,13 @@
   <section class="litButtons">
 
         <div class="toggleDeko litButton desplegable" id="plt"
-    onclick="openWeather(this)" *ngIf="haveWeather == true">
+    onclick="openWeather(this)"
+    (click)="getPrevision()" *ngIf="haveWeather == true">
       <i class="material-icons">cloud</i> <span>Previsión</span> <i style="visibility:hidden" onclick="closeWeather(event, this)" class="material-icons">close</i>
     </div>
     <div class="toggleDeko litButton desplegable" id="edit"
-    onclick="openInfo(this);">
+    onclick="openInfo(this);"
+    (click)="listarPaises()">
     <i class="material-icons">
       border_color
       </i> <span>Editar datos</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
@@ -87,7 +89,11 @@
           </i> <span>Cambiar modo</span><i style="visibility:hidden" class="material-icons">close</i>
         </div>
 
-
+        <div class="toggleDeko litButton big desplegable" id="plus" onclick="changeShaders()">
+          <i class="material-icons">
+            compare
+            </i> <span>Cambiar visualización</span> <i style="visibility:hidden; width: 0; height: 0;" class="material-icons">close</i>
+        </div>
 
     <div class="toggleDeko litButton big" id="plus" onclick="plusZoom()">
       <i class="material-icons">

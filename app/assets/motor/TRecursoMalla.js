@@ -32,7 +32,11 @@ class TRecursoMalla extends TRecurso {
     this.lightProjectionViewModelMatrix=[];
 
   }
-
+  /**
+   * Carga un archivo JSON y crea los diferentes buffers
+   * @param  {String} nombre
+   * @param  {String} textura
+   */
   cargarFichero(nombre, textura) {
     window.loading.push(1);
     let objeto;
@@ -148,7 +152,9 @@ class TRecursoMalla extends TRecurso {
     //dibujamos en el canvas el objeto
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
   }
-
+  /**
+   * @param  {String} variable Color de la celda
+   */
   draw(variable) {
     //Cálculo de matriz normal
     mat4.multiply(this.viewModelMatrix, viewMatrix, matrixModel);
@@ -196,7 +202,6 @@ class TRecursoMalla extends TRecurso {
 
     //Pasamos los materiales al shader
     if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
-      //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
       gl.uniform3fv(glProgram[window.program].kd, this.Kd);
       gl.uniform3fv(glProgram[window.program].ks, this.Ks);

@@ -82,6 +82,8 @@ export class NewplantComponent implements OnInit {
         },
         error => console.log(error)
       );
+    }else{
+      this._appComponent.mensajeEmergente("Introduce una foto", "danger", "");
     }
   }
 
