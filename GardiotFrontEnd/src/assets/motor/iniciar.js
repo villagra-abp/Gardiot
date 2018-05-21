@@ -1,3 +1,9 @@
+/**
+ * @param  {String} accion Home, detail o edit
+ * @param  {Object} jardinBBDD Datos del jardin y array de plantas
+ * @param  {Date} sunrise Hora de amanecer
+ * @param  {Date} sunset Hora de anochecer
+ */
 function iniciar(accion, jardinBBDD, sunrise, sunset) {
   //Variable que contiene el canvas
   window.canvas = null;
@@ -28,7 +34,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
-  //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
   window.velocidadOrbital=1;
 
   window.viewMatrix = [];//matriz view

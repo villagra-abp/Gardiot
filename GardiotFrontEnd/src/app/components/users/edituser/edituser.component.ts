@@ -26,20 +26,18 @@ export class EdituserComponent implements OnInit {
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
-
   uploader: FileUploader;
-
   oldId: String;
   public users: any[] = [];
 
-  constructor(public _editUserService: UserService,
+  constructor(
+    public _editUserService: UserService,
     public _appComponent: AppComponent,
     public _router: ActivatedRoute,
     public datePipe: DatePipe,
     public _route: Router) { }
 
   guardarUsuario(forma: NgForm) {
-    console.log(forma.value);
     if (forma.value.admin == true) {
       forma.value.admin = 1;
     }
@@ -165,7 +163,11 @@ export class EdituserComponent implements OnInit {
         });
     }
   }
-
+resetpass(email: String){
+  this._editUserService.resetPassword(email).subscribe(data => {
+      this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users?pag=1");
+    })
+}
   ngOnInit() {
     this.getID();
   }
