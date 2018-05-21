@@ -75,6 +75,8 @@ export class EditplantComponent implements OnInit {
         },
         error => console.log(error)
       );
+    }else{
+      this.guardar();
     }
   }
 
