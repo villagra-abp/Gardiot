@@ -5,19 +5,22 @@
   margin-left: auto;
   display: block;
 }
-
+.divPhoto{
+  padding: 1%;
+}
 .perfil div{
   margin-right: auto;
   margin-left: auto;
   display: block;
   /* text-align: center; */
-  padding: 1%;
+  padding: .5%;
 }
 .perfil label, input{
   font-size: .9em;
-  padding: 1%;
+  /* padding: 1%; */
   margin: 0;
 }
+
 .bloqueFoto{
   float: right;
 }
@@ -26,7 +29,7 @@
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
   border: 1px solid rgba(255, 178, 0, .3);
-  padding: 1%;
+  /* padding: 1%; */
   margin-bottom: 2%;
 }
 .bloqueContra{
@@ -34,7 +37,7 @@
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
   border: 1px solid rgba(255, 178, 0, .3);
-  padding: 1%;
+  /* padding: 1%; */
 }
 .entradaFoto{
   padding: 3%;

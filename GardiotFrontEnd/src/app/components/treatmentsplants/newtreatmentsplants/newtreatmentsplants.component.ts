@@ -9,6 +9,7 @@ import { TreatmentPlant } from "../../../classes/treatmentplant.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-newtreatmentsplants',

@@ -14,15 +14,15 @@
         <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar plantas">
     </form>
     <section class="list">
-  
-  
+
+
     <ul>
       <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
       <div>
         <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
       </div>
       <span>{{plantmotor.commonName}}</span>
-  
+
       </li>
     </ul>
   </section>
@@ -96,14 +96,14 @@
         </div>
 
     <div class="toggleDeko litButton big" id="plus" onclick="plusZoom()">
-      <i class="material-icons">
+      <i title="Zoom In" class="material-icons">
         add
-        </i> 
+        </i>
     </div>
     <div class="toggleDeko litButton big" id="sub" onclick="subZoom()">
-      <i class="material-icons">
+      <i title="Zoom Out" class="material-icons">
         remove
-        </i> 
+        </i>
     </div>
     <div class="toggleDeko litButton desplegable" id="help" onclick="openHelp()" (click)="this.openDialog(1, 2)">
       <i class="material-icons">

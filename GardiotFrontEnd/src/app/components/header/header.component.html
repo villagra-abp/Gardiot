@@ -11,28 +11,28 @@
 			<img src="https://gardiot.ovh/images/light2.png" alt="Gardiot">
 			<ul class="sidebar-nav" (click)="toggleMenu()">
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/statistics']" href="#"><i class="material-icons">insert_chart</i>Estadísticas</a>
+					<a [routerLink]="['/admin/statistics']" title="Estadísticas de la plataforma" href="#"><i class="material-icons">insert_chart</i>Estadísticas</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">people</i>Usuarios</a>
+					<a [routerLink]="['admin/users']" [queryParams]="{pag: 1}" title="Lista de usuarios" href="#"><i class="material-icons">people</i>Usuarios</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">nature</i>Plantas</a>
+					<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" title="Acceso a la biblioteca" href="#"><i class="material-icons">nature</i>Plantas</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">store</i>Tratamientos</a>
+					<a [routerLink]="['/admin/treatments']" [queryParams]="{pag: 1}" title="Acceso a tratamientos" href="#"><i class="material-icons">store</i>Tratamientos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">shopping_basket</i>Productos</a>
+					<a [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" title="Acceso a productos" href="#"><i class="material-icons">shopping_basket</i>Productos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" href="#"><i class="material-icons">style</i>Consejos</a>
+					<a [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" title="Acceso a consejos" href="#"><i class="material-icons">style</i>Consejos</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/admin/profile']" href="#"><i class="material-icons">account_box</i>Perfil</a>
+					<a [routerLink]="['/admin/profile']" title="Perfil de usuario" href="#"><i class="material-icons">account_box</i>Perfil</a>
 				</li>
 				<li *ngIf="this.userService.isAuthenticated">
-					<a [routerLink]="['/logout']" href="#"><i class="material-icons">input</i>Salir</a>
+					<a [routerLink]="['/logout']" title="Salir" href="#"><i class="material-icons">input</i>Salir</a>
 				</li>
 			</ul>
 			<!-- <ul class="sidebar-nav inferior " (click)="toggleMenu()">
@@ -51,45 +51,45 @@
 <nav *ngIf="!this.userService.isAdmin" class=" navbar-light bg-light header">
 	<div class="arounder">
 		<div class="navbar user navbar-expand-lg limited">
-			<a [routerLink]="['/detail']" class="navbar-brand" href="#"><img src="https://gardiot.ovh/images/light2.png" alt="Gardiot"></a>
+			<a [routerLink]="['/detail']" class="navbar-brand" title="Perfil de usuario" href="#"><img src="https://gardiot.ovh/images/light2.png" alt="Gardiot"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item" *ngIf="this.userService.isAuthenticated">
-						<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="nav-link" href="#"><i class="material-icons">library_books</i>Biblioteca</a>
+						<a [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="nav-link" title="Acceso a la biblioteca" href="#"><i class="material-icons">library_books</i>Biblioteca</a>
 					</li>
 					<li class="nav-item" *ngIf="this.userService.isAuthenticated">
-						<a [routerLink]="['/garden']" [queryParams]="{pag: 1}" class="nav-link" href="#"><i class="material-icons">nature_people</i>Jardín</a>
+						<a [routerLink]="['/garden']" [queryParams]="{pag: 1}" class="nav-link" title="Acceso a tu jardín" href="#"><i class="material-icons">nature_people</i>Jardín</a>
 					</li>
 					<li class="nav-item" *ngIf="this.userService.isAuthenticated">
-						<a [routerLink]="['/calendar']" [queryParams]="{pag: 1}" class="nav-link" href="#"><i class="material-icons">calendar_today</i>Calendario</a>
+						<a [routerLink]="['/calendar']" [queryParams]="{pag: 1}" class="nav-link" title="Visita tu calendario de tareas" href="#"><i class="material-icons">calendar_today</i>Calendario</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav mr-auto bloque">
 					<li class="nav-item" *ngIf="!this.userService.isAuthenticated">
-						<a href="https://gardiot.ovh/symbiose/" class="nav-link" target="blank">Symbiose</a>
+						<a href="https://gardiot.ovh/symbiose/" class="nav-link" title="Symbiose" target="blank">Symbiose</a>
 					</li>
 					<li class="nav-item" *ngIf="!this.userService.isAuthenticated">
-						<a [routerLink]="['/login']" class="nav-link" href="#">Iniciar</a>
+						<a [routerLink]="['/login']" class="nav-link" title="Inicio sesión" href="#">Iniciar</a>
 					</li>
 					<li class="nav-item" *ngIf="!this.userService.isAuthenticated">
-						<a [routerLink]="['/register']" class="nav-link" href="#">Registrarse</a>
+						<a [routerLink]="['/register']" class="nav-link" title="Registro de usuario" href="#">Registrarse</a>
 					</li>
 					<li class="nav-item" *ngIf="!this.userService.isAuthenticated">
-						<a [routerLink]="['/help']" class="nav-link" href="#">Ayuda</a>
+						<a [routerLink]="['/help']" class="nav-link" title="Página de ayuda" href="#">Ayuda</a>
 					</li>
 					<li class="nav-item" *ngIf="!this.userService.isAuthenticated">
-						<a [routerLink]="['/apipage']" class="nav-link" href="#">Api</a>
+						<a [routerLink]="['/apipage']" class="nav-link" title="Conoce nuestra API" href="#">Api</a>
 					</li>
-					<li class="nav-item" id="photoMenu" [routerLink]="['/profile']" *ngIf="this.userService.isAuthenticated">
+					<li class="nav-item" id="photoMenu" [routerLink]="['/profile']" title="Perfil" *ngIf="this.userService.isAuthenticated">
 						<div>
 						</div>
 						<a (click)="openDialog()" class="nav-link"><i class="material-icons">account_box</i></a>
 					</li>
 					<li class="nav-item" *ngIf="this.userService.isAuthenticated">
-						<a [routerLink]="['/logout']" class="nav-link" href="#"><i class="material-icons">input</i></a>
+						<a [routerLink]="['/logout']" class="nav-link" title="Salir" href="#"><i class="material-icons">input</i></a>
 					</li>
 				</ul>
 			</div>
