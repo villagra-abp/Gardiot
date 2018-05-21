@@ -5,14 +5,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.loading = [];//array que estará vacío si no hay nada cargándose
 
   //Variables para el bucle de movimiento
-  window.frames = 0;
-  window.fpsInterval = 0;
+  window.fpsInterval = 1000 / 30;
   window.startTime = 0;
-  window.now = 0;
-  window.then = 0;
-  window.elapsed = 0;
-  window.frameCount = 0;
-  window.interval;
+  window.then = Date.now();
 
   //Variables para controlar el coloreado de celdas y plantas cuando interaccionen
   window.hovered = -1;
@@ -37,22 +32,30 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.velocidadOrbital=1;
 
   window.viewMatrix = [];//matriz view
+  window.lightTransformations = []; //Light transformations
   window.viewLightMatrix = []; //view matrix from light
   window.gl = null;
   window.glProgram = [];
-  window.program = 1;//program 0 = cartoon - program 1 = estandar - program 2 = shadows
-  window.vertexShaders = ['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'];
-  window.fragmentShaders = ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs'];
+
+
+  //program 0 = cartoon
+  //program 1 = estandar
+  //program 2 = shadows
+  //window.program = 1;
+  window.program = 1;
+
+
   window.shadowFramebuffer = [];
   window.shadowDepthTexture = [];
   window.renderBuffer = [];
   window.shadowDepthTextureSize = 4096; 
   window.index = 0; //Indice de texturas
-  window.shadowIndex = [];//Indice de la textura de sombras
   window.gestor = new TGestorRecursos(); 
 
   iniciamosWebGL('myCanvas');
-  cargarShaders();
+
+  cargarShaders(['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'],
+                ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs']);
   for(let i=0; i<7; i++){
     initFramebufferSombras(i);
   }
