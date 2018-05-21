@@ -91,6 +91,8 @@ export class DetailComponent implements OnInit {
   public temperature = 0;
   public plantNumber = 0;
   private percentTareas= 0;
+  private fecha_actual="";
+  private fecha_hoy=new Date();
 
 
   constructor(
@@ -127,22 +129,6 @@ export class DetailComponent implements OnInit {
   goGarden(){
     this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
   }
-
-  //Recoge los datos del usuario logueado y los guarda para mostrarlos
-  // mostrar() {
-  //   this._detailService.details(this.user).subscribe(data => {
-  //       // this.user.id = data.id;
-  //       // this.user.birthDate = data.birthDate;
-  //       this.user.photo = this.imgUrl+ data.photo;
-  //       // this.user.name = data.name;
-  //     },
-  //     error => {
-  //       console.error(error);
-  //       localStorage.clear();
-  //       sessionStorage.clear();
-  //       this._route.navigate(['/login']);
-  //     });
-  // }
 
   getTiempo() {
     this._gardenService.tiempo(this.garden)
@@ -203,52 +189,14 @@ export class DetailComponent implements OnInit {
 
 
 // calendario
-
-  // mostrartask() {
-  //   let f = new Date();
-  //   let fechas=[];
-  //   fechas[0] = this.datePipe.transform(f, 'yyyy-MM');
-  //   // f.setMonth(f.getMonth()-1);
-  //     this._taskService.detailsAll(fechas[0])
-  //     .subscribe(data => {
-  //
-  //       for (let key$ in data) {
-  //         this.tasks.push(data[key$]);
-  //         this.addEvent(data[key$].name + " " + data[key$].commonName,
-  //           this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-  //           this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-  //       }
-  //     },
-  //       error => {
-  //         console.error(error);
-  //       });
-  //
-  //       this._taskService.percent().subscribe(data => {
-  //       },
-  //         error => {
-  //           console.error(error);
-  //         });
-  // }
-
-
-  // addEvent(Ttitle: string, Tstart: string, Tend: string): void {
-  //   this.events.push({
-  //     title: Ttitle,
-  //     start: startOfDay(new Date(Tstart)),
-  //     end: endOfDay(new Date(Tend)),
-  //     color: colors.red,
-  //     draggable: false,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true
-  //     }
-  //   });
-  //   this.refresh.next();
-  // }
-
-
   getTasks(){
     this.tareas = [];
+    let f = new Date();
+    f.getDate();
+    f.getMonth() + 1;
+    f.getFullYear();
+    this.fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
+    this.fecha_hoy=f;
           this._taskService.percent().subscribe(data => {
             this.percentTareas= data.Mensaje;
           },
@@ -283,13 +231,7 @@ export class DetailComponent implements OnInit {
   }
 
   dotask(tarea:Task){
-    let f = new Date();
-    let fecha_actual: string;
-    f.getDate();
-    f.getMonth() + 1;
-    f.getFullYear();
-    fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
-    this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), fecha_actual)
+    this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), this.fecha_actual)
       .subscribe(data => {
         this.refresh.next();
         this.getTasks();
@@ -332,9 +274,7 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.checkAdmin();
     this.checkGarden();
-    // this.mostrar();
     this.mostrar2();
-    // this.mostrartask();
     this.getTasks();
     this.cargarfeeds();
   }

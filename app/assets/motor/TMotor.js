@@ -649,18 +649,13 @@ class TMotor {
 					if (auxLuz.entity !== undefined)
 						auxStack.push(auxLuz.entity.matrix);
 				}
-
 				//tenemos el recorrido de la cámara a la raíz en auxStack
-				//console.log(auxStack);
-
 				//recorremos la lista auxiliar invertida
 				let auxMatrix = mat4.create();
 				for (let i = auxStack.length - 1; i >= 0; i--) {
 					let au = [];
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
-
-
 				//el resultado lo invertimos y tenemos la matrix View desde la luz
 				viewLightMatrix[contLuces] = [];
 				mat4.invert(viewLightMatrix[contLuces], auxMatrix.slice(0));
@@ -703,7 +698,6 @@ class TMotor {
 
 
 				//se la pasamos al shader
-				//console.log(this.luzRegistro[i].entity.tipo);
 				let isActive, lightPosUniformLocation, lightIntUniformLocation,
 					lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 				if (luz.entity.tipo == "puntual") {

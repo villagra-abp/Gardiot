@@ -61,7 +61,6 @@ function mouse_move(e) {
       y = e.clientY;
 
     if (cv.getAttribute('moviendo-camara')) {
-      //console.log(`MOUSEMOVE-> Posición: ${fila} - ${columna}`);
       let ejeY = window.originClickY - (y / cv.offsetHeight);
       let ejeX = window.originClickX - (x / cv.offsetWidth);
       //esto será lo bueno
@@ -150,8 +149,6 @@ function mouse_down(e) {
 
       case 1: //Izquierdo
         if (window.mode == 1) {
-          //console.log(x, y, cv.offsetWidth, cv.offsetHeight);
-          //console.log(`DOWN-> Posición: ${fila} - ${columna}`);
           let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
           let coordX = Math.round(point[0]);
           let coordY = Math.round(point[2]);
@@ -195,8 +192,6 @@ function mouse_up(e) {
       if (!cv.getAttribute('moviendo-camara')) {
         window.originClickX = undefined;
         window.originClickY = undefined;
-
-        //console.log(`UP-> Posición: ${fila} - ${columna}`);
         cv.removeAttribute('rotando-camara');
       }
 
@@ -241,9 +236,6 @@ function mouse_up(e) {
           }
         }
       }
-
-
-      //console.log(`UP-> Posición: ${fila} - ${columna}`);
       cv.removeAttribute('moviendo-camara');
 
       break;
