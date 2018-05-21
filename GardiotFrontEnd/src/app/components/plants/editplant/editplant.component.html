@@ -15,10 +15,10 @@
 				<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
 			</div>
 			<!-- <label for="photo_plant">Foto</label> -->
-			<div class="upload-btn-wrapper form-control foto ">
+			<!-- <div class="upload-btn-wrapper form-control foto ">
 				<button class="bttn">Selecionar imagen</button>
 				<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
-			</div>
+			</div> -->
 			<!-- <h4>Datos Técnicos</h4> -->
 			<div class="form-row">
 				<div class="form-group">
@@ -37,12 +37,15 @@
 					<label for="distance_plant">Distancia</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.distance" name="distance" id="distance_plant" placeholder="Se mide en cm" required>
 				</div>
-
 				<div class="form-group hoja">
 					<!-- <label for="photo_plant">Modelo 3D</label> -->
-					<div class="upload-btn-wrapper form-control">
+					<!-- <div class="upload-btn-wrapper form-control">
 						<button class="bttn">Modelo 3D</button>
 						<input type="file" class="form-control" name="myfile" id="photo_plant" />
+					</div> -->
+					<div class="upload-btn-wrapper form-control foto ">
+						<button class="bttn">foto</button>
+						<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
 					</div>
 					<div class="form-group">
 						<label for="leaveType">Tipo hoja</label>

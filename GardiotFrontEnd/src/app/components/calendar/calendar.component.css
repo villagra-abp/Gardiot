@@ -1,4 +1,11 @@
-
+.search{
+  border: none;
+  color: #63d297;
+}
+.search:hover{
+  background-color: #63d297;
+  color: #fff;
+}
 a{
   color: red;
 }

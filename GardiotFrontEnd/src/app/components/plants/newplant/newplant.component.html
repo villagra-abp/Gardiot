@@ -11,13 +11,13 @@
 				</div>
 			</div>
 			<br>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="photo_plant">Foto</label>
 				<div class="upload-btn-wrapper form-control ">
 					<button class="bttn">Selecionar imagen</button>
 					<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
 				</div>
-			</div>
+			</div> -->
 
 			<div class="form-group">
 				<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
@@ -47,19 +47,23 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="photo_plant">Modelo 3D</label>
-
+					<!-- <label for="photo_plant">Modelo 3D</label>
 					<div class="upload-btn-wrapper form-control ">
 						<button class="bttn">Selecionar</button>
 						<input type="file" name="myfile" id="photo_plant" />
-					</div>
+					</div> -->
+						<label for="photo_plant">Foto</label>
+						<div class="upload-btn-wrapper form-control ">
+							<button class="bttn">Selecionar imagen</button>
+							<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
+						</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="leaveType">Tipo hoja</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.leaveType" name="leaveType" id="leaveType" placeholder="Caduca o perenne" required>
 				</div>
 			</div>
-		
+
 			<!-- <h4>Calendario</h4> -->
 				<div class="row">
 					<legend class="col-md-6 mb-3">Plantación</legend>
@@ -103,7 +107,7 @@
 					</div>
 				</div>
 		</form>
-		<button (click)="this.uploadPhoto()" class="btn btn-outline-primary">Guardar cambios</button>
-		<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+		<button (click)="this.uploadPhoto()" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+		<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
 	</section>
 </div>
