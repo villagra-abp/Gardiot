@@ -196,7 +196,6 @@ class TRecursoMalla extends TRecurso {
 
     //Pasamos los materiales al shader
     if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
-      //console.log(this.Ka, this.Kd, this.Ks, this.shininess, this.opacity);
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
       gl.uniform3fv(glProgram[window.program].kd, this.Kd);
       gl.uniform3fv(glProgram[window.program].ks, this.Ks);
