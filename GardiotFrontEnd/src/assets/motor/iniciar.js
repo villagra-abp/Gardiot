@@ -28,7 +28,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
-  //mat4.frustum(lightProjectionMatrix, -1, 1, -0.7, 0.7, 1, 1000);
   window.velocidadOrbital=1;
 
   window.viewMatrix = [];//matriz view
