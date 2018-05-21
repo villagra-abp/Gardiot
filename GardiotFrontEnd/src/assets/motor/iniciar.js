@@ -1,3 +1,9 @@
+/**
+ * @param  {String} accion Home, detail o edit
+ * @param  {Object} jardinBBDD Datos del jardin y array de plantas
+ * @param  {Date} sunrise Hora de amanecer
+ * @param  {Date} sunset Hora de anochecer
+ */
 function iniciar(accion, jardinBBDD, sunrise, sunset) {
   //Variable que contiene el canvas
   window.canvas = null;
