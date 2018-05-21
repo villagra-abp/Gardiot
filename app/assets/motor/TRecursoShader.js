@@ -3,7 +3,10 @@ class TRecursoShader extends TRecurso {
     super(nombre);
     this._shader = '';
   }
-
+  /**
+   * @param  {String} nombre Ruta del archivo sin extension
+   * @return {boolean} Booleano segun si se ha cargado
+   */
   cargarFichero(nombre) {
     let cargado, shader;
     loadTextResource('/recursos/shaders/' + nombre + '.glsl', function (vsErr, vsText) {

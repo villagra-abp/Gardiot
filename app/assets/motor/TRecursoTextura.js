@@ -4,9 +4,10 @@ class TRecursoTextura extends TRecurso {
     super(nombre);
     this._img = new Image();
     this._img.texture;
-
   }
-
+  /**
+   * @param  {String} nombre Carga una textura
+   */
   cargarFichero(nombre) {
     window.loading.push(1);
     this._img.onload = function () {
