@@ -50,7 +50,6 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.renderBuffer = [];
   window.shadowDepthTextureSize = 4096; 
   window.index = 0; //Indice de texturas
-  window.shadowIndex = [];//Indice de la textura de sombras
   window.gestor = new TGestorRecursos(); 
 
   iniciamosWebGL('myCanvas');
