@@ -31,7 +31,7 @@
     </div>
   </div>
   <br>
-  <div [ngSwitch]="view">
+  <div class="calendar" [ngSwitch]="view">
     <mwl-calendar-month-view
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"

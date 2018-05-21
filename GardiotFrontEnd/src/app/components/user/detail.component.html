@@ -23,7 +23,6 @@
                     <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
                     <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
                     <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
-                    <!--{{tarea.name}}   -->
                     <button *ngIf="tarea.dateDone==null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
                     <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" class="material-icons hecho">thumb_up</i>
                   </div>
