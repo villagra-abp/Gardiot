@@ -1,9 +1,8 @@
-// Gestor de recursos. Abre cada recurso apuntando
-// a la dirección de memoria.
-
-
+/**
+	 * Gestor de recursos. Abre cada recurso apuntando
+   * a la dirección de memoria.
+	 */
 class TGestorRecursos {
-
   //Se ha creado un tipo map para que sea más sencillo el código de recuperar
   //recursos. Con el map le pasamos el nombre (rosa, shader, etc.) y si está
   //está en el map, lo devolvemos, si no, lo cargamos
@@ -11,8 +10,13 @@ class TGestorRecursos {
     this._recursos = new Map();
   }
 
-  //a getRecurso le pasaremos el nombre del recurso (rosa, shader.fs, suelo...)
-  //y el tipo, que podrá ser: malla, material, shader o textura
+  /**
+	 * Obtiene un recurso bajo los parametros especificados
+	 * @param  {String} nombre Nombre del recurso
+	 * @param  {String} tipo Malla, material, shader o textura
+   * @param  {String} textura
+   * @return {TRecurso} 
+	 */
   getRecurso(nombre, tipo, textura) {
     //Si no encuentra el recurso (es igual a undefined), lo cargamos de memoria
     if (this._recursos.get(nombre) === undefined) {

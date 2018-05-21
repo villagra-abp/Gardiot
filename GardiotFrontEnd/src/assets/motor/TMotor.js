@@ -145,18 +145,7 @@ class TMotor {
 			window.rotationCamY = -45;
 			window.mode = 1;
 			this.rotarCamaraA("dynamicCamera", -90, "x");
-			//this.rotarCamara("dynamicCamera", rotationCamY, "z");
 			this.moverCamaraA("dynamicCamera", 0, camHeight, 0);
-			//this.resetOrbital("dynamicCamera");
-			//this.rotarCamaraA("dynamicCamera", -90, "x");
-			/*let pos=this.getCamaraActiva().dad.dad.entity.matrix;
-			window.escala=this.getCamaraActiva().dad.dad.dad.dad.dad.entity.matrix.slice(0)[0];
-			//rotationCamY%=360;
-	  
-			window.step=[-pos[12]/20, -pos[14]/20, (1-escala)/20, (-90-rotationCamX)/20, (camHeight-pos[13])/20];
-			window.transition=true;*/
-			//window.now=[rotationCamX, rotationCamY];
-			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
 		}
 		else if (window.mode == 1) {//edición
 			this.resetOrbital("dynamicCamera");
@@ -164,14 +153,9 @@ class TMotor {
 			window.rotationCamX = -40;
 			window.rotationCamY = -45;
 			this.rotarCamaraA("dynamicCamera", 0, "x");
-			//this.rotarCamara("dynamicCamera", -rotationCamX, "x");
 			this.moverCamaraA("dynamicCamera", 0, camHeight, camHeight * 2);
 			this.rotarCamaraOrbital("dynamicCamera", 0, "y");
 			this.rotarCamara("dynamicCamera", rotationCamX, "x");
-			//window.transition=true;
-			//window.now=[rotationCamX, rotationCamY];
-			//this.moverCamaraA("dynamicCamera", 0, 10, 0);
-
 		}
 	}
 
@@ -181,7 +165,7 @@ class TMotor {
 	 * si hermano se deja a nulo lo crea en la raiz
 	 * si no se tiene que indicar un nodo que no sea de
 	 * transformacion
-	 * @param  {string} nombre
+	 * @param  {string} nombre 
 	 * @param  {bool} perspective
 	 * @param  {TNodo} hermano
 	 * @return {TNodo}
