@@ -27,7 +27,7 @@ router.get('/todayPercent', passport.authenticate('jwt', {session: false}), rout
 			let percent = ((data[0].done/data[0].total) * 100);
 			if (percent == null || percent == 'NaN')
 				percent = 0;
-			response.status(200).json({"Mensaje": percent});
+			response.status(200).json({"Mensaje": percent.toFixed(0)});
 		}
 	});
 });
