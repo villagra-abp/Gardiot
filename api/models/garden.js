@@ -93,7 +93,7 @@ garden.isOwner = function (user, garden, callback) {
       if (error)
         callback(error, null);
       else {
-        if (result[0].user == user) callback (null, true);
+        if (result && typeof result !== 'undefined' && result[0].user == user) callback (null, true);
         else callback (null, false);
       }
     });
