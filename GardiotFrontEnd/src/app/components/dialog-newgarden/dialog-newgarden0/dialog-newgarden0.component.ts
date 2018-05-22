@@ -29,17 +29,16 @@ export class DialogNewgarden0Component implements OnInit {
       else if(window.location.toString().indexOf("gardiot")>=0){
         this.photoURL="/app/assets";
       }
-
    }
 
   onCloseConfirm() {
     this.saveGarden(1);
-    
+
   }
 
   onCloseOmit() {
     this.saveGarden(0);
-     
+
   }
 
   openDialog() {

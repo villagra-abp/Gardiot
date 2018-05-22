@@ -76,9 +76,7 @@
 						<a [routerLink]="['/apipage']" class="nav-link" title="Conoce nuestra API" href="#">Api</a>
 					</li>
 					<li class="nav-item" id="photoMenu" [routerLink]="['/profile']" title="Perfil" *ngIf="this.userService.isAuthenticated">
-						<div>
-						</div>
-						<a (click)="openDialog()" class="nav-link"><i class="material-icons">account_box</i></a>
+						<a (click)="openDialog()" class="nav-link" href="#"><i class="material-icons">account_box</i></a>
 					</li>
 					<li class="nav-item" *ngIf="this.userService.isAuthenticated">
 						<a [routerLink]="['/logout']" class="nav-link" title="Salir" href="#"><i class="material-icons">input</i></a>
