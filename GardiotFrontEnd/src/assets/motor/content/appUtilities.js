@@ -229,7 +229,6 @@ function demoSol(i) {
     now.setMinutes(now.getMinutes() + inc);
     calcularPosicionAstros(now);
     if (((24*60)/inc) - 1 > i) {
-      console.log(now.getHours() + ':' + now.getMinutes());
       i++;
       demoSol(i);
     }
