@@ -235,10 +235,9 @@ export class GardenComponent {
             });
       }
     }
-    else{
-      new demoSol(2, 3);
+    else if (event.which == 69) {
+      new demoSol(0);
     }
-
   }
 
   listarPaises() {

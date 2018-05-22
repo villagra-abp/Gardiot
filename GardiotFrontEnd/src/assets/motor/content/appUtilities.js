@@ -245,11 +245,19 @@ async function rotarSol() {
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
  */
-function demoSol() {
-  let now = new Date(window.lastTime);
-  now.setMinutes(now.getMinutes() + 20);
-  calcularPosicionAstros(now);
-  demoSol();
+function demoSol(i) {
+  setTimeout(function () {
+    let now = new Date(window.lastTime);
+    let inc = 20;
+    now.setMinutes(now.getMinutes() + inc);
+    calcularPosicionAstros(now);
+    if (((24*60)/inc) - 1 > i) {
+      i++;
+      demoSol(i);
+    }
+    else
+      rotarSol();
+  }, 100); 
 }
 
 /**

@@ -38,7 +38,6 @@ p{
 	border-color: #ffb200;
 	border-radius: 25px;
 	margin-left: 2em;
-
 }
 .material-icons:hover{
 	color: #299654;
@@ -184,6 +183,18 @@ p{
 		overflow-y: hidden;
 		overflow-x: hidden;
 		height: initial;
+	}
+
+	#myCanvas{
+		width: 83%;
+	}
+	.icon{
+		margin-left: 5em;
+	}
+	.calendar{
+		padding-left: 0;
+		padding-right: 0;
+		margin-bottom: 2em;
 	}
 
 }

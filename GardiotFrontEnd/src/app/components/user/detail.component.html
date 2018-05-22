@@ -7,7 +7,7 @@
         </div>
         <div class="body">
           <div *ngIf="checkTareas == true">
-            <div *ngIf="tareas.length == 0" class="noTarea" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
+            <div *ngIf="tareas.length == 0" class="noTarea" title="Ir a tu jardín" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
             <div *ngIf="tareas.length != 0">
               <div class="row fila" *ngFor="let grupo of tareas">
                 <div class="col-sm-2 fecha">
@@ -15,16 +15,15 @@
                   <span class="mes">{{grupo[0].date | date:['LLL']}}</span>
                 </div>
                 <div class="col">
-
                   <div class="row tarea rounded" *ngFor="let tarea of grupo">
-                    <img *ngIf="tarea.name=='Regar'" src="{{photoURL}}/images/icon/regar.png" class="rounded mx-auto d-block icontarea" alt="Regar">
-                    <img *ngIf="tarea.name=='Fertilizar'" src="{{photoURL}}/images/icon/fertilizar.png" class="rounded mx-auto d-block icontarea" alt="Fertilizar">
-                    <img *ngIf="tarea.name=='Podar'" src="{{photoURL}}/images/icon/podar.png" class="rounded mx-auto d-block icontarea" alt="Podar">
-                    <img *ngIf="tarea.name=='Recolectar'" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
-                    <img *ngIf="tarea.name=='Fumigar'" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
+                    <img *ngIf="tarea.name=='Regar'" title="Regar" src="{{photoURL}}/images/icon/regar.png" class="rounded mx-auto d-block icontarea" alt="Regar">
+                    <img *ngIf="tarea.name=='Fertilizar'" title="Fertilizar" src="{{photoURL}}/images/icon/fertilizar.png" class="rounded mx-auto d-block icontarea" alt="Fertilizar">
+                    <img *ngIf="tarea.name=='Podar'" title="Podar" src="{{photoURL}}/images/icon/podar.png" class="rounded mx-auto d-block icontarea" alt="Podar">
+                    <img *ngIf="tarea.name=='Recolectar'" title="Recolectar" src="{{photoURL}}/images/icon/cosechar.png" class="rounded mx-auto d-block icontarea" alt="Recolectar">
+                    <img *ngIf="tarea.name=='Fumigar'" title="Fumigar" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
                     <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
-                    <button *ngIf="tarea.dateDone==null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
-                    <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" class="material-icons hecho">thumb_up</i>
+                    <button title="Marcar como hecha" *ngIf="tarea.dateDone==null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
+                    <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" title="Hecha"class="material-icons hecho">thumb_up</i>
                   </div>
                 </div>
               </div>
@@ -40,7 +39,6 @@
             <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín"/>
             <canvas style="cursor: pointer" title="Tu jardín" id="myCanvas" oncontextmenu="return false;" width="350" height="300"></canvas>
           </div>
-          <!-- <img src="{{user.photo}}" alt="asd"> -->
         </article>
         <article>
           <section class="row icono">

@@ -209,7 +209,11 @@ export class DetailComponent implements OnInit {
             error => {
               console.error(error);
             });
-    this._taskService.detailsSome(15).subscribe(data =>{
+    let tamanyo =15;
+    if(window.innerWidth <= 600){
+      tamanyo = 5;
+    }
+    this._taskService.detailsSome(tamanyo).subscribe(data =>{
       let aux:any[] = [];
       if(data.length !=0){
         for (let i = 0; i<data.length; i++){
@@ -277,7 +281,7 @@ export class DetailComponent implements OnInit {
         });
   }
 
-  ngOnInit() {
+  ngOnInit(){
     this.checkAdmin();
     this.checkGarden();
     this.mostrar2();

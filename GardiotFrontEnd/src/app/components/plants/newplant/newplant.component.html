@@ -107,7 +107,7 @@
 					</div>
 				</div>
 		</form>
-		<button (click)="this.uploadPhoto()" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
-		<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
+		<button title="Guardar" (click)="this.uploadPhoto()" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+		<button title="Cancelar" [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
 	</section>
 </div>
