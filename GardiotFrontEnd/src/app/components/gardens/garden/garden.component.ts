@@ -22,6 +22,7 @@ declare var window: any;
 declare var motor: any;
 declare var vec3: any;
 declare var hammertime: any;
+
 declare var demoSol: any;
 
 
@@ -586,11 +587,13 @@ export class GardenComponent {
 
   toggleState() {
     if (this.visible == 0) {
+      this.visible = 1;
       this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
+      
         (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
       }
-      this.visible = 1;
+      
     } else {
       this.visible = 0;
       if (typeof window.orientation !== 'undefined') {

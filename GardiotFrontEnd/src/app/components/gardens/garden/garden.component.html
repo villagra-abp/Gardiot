@@ -19,7 +19,7 @@
 
 
     <ul>
-      <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
+      <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" onclick='handlePlant(event)' draggable="true" ondragstart="drag(event);">
       <div>
         <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
       </div>
