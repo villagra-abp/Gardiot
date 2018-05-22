@@ -97,6 +97,10 @@ export class ListproductComponent implements OnInit {
       });
   }
 
+  clear(){
+    this.product = new Product();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',

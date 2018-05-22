@@ -97,6 +97,10 @@ export class ListtreatmentComponent implements OnInit {
       });
   }
 
+  clear(){
+    this.treatment = new Treatment();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',
