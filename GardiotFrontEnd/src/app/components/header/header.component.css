@@ -103,6 +103,7 @@ i{
   text-decoration: none;
   color:#ffb200;
 }
+
 button{
   background: rgba(255, 255, 255, 0.5);
 }
@@ -118,6 +119,19 @@ button{
   background-color: #299654 ;
   z-index:20;
 }
+
+/* .quedate:not([disabled]):not(.disabled).active{
+  color: #fff;
+  background-color: red;
+  border-color: #63d297;
+  box-shadow: 0 0 0 0.2rem rgba(99,210,151,.5);
+} */
+
+
+
+
+
+
 
 @media (min-width: 768px) {
   .sidebar-nav {

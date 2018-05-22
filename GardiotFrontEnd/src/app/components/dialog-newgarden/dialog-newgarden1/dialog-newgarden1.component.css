@@ -15,6 +15,23 @@ ul{
 button{
 margin: auto;
 }
-div{
-  padding: 1.2em;
+
+@media only screen and (max-width: 600px){
+  div{
+    padding: 0.2em;
+  }
+  a, button, p, label{
+    font-size: 10px;
+  }
+  h4{
+    font-size: 15px;
+  }
+  .img1{
+    width:30% ;
+    height:50%;
+  }
+  .img2{
+    width:70% ;
+    height:80%;
+  }
 }

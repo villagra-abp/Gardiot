@@ -62,7 +62,6 @@ import { LibraryComponent } from './components/plants/library/library.component'
 import { NewtreatmentComponent } from './components/treatments/newtreatment/newtreatment.component';
 import { EdittreatmentComponent } from './components/treatments/edittreatment/edittreatment.component';
 import { ListtreatmentComponent } from './components/treatments/listtreatment/listtreatment.component';
-import { TreatmentComponent } from './components/treatments/treatment/treatment.component';
 //product
 import { NewproductComponent } from './components/products/newproduct/newproduct.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
@@ -135,7 +134,6 @@ registerLocaleData(localeEs);
     NewtreatmentComponent,
     EdittreatmentComponent,
     ListtreatmentComponent,
-    TreatmentComponent,
     NewproductComponent,
     EditproductComponent,
     ListproductComponent,
