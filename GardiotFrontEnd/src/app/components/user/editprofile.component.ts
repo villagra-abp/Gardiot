@@ -90,6 +90,7 @@ export class EditProfileComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
+        console.log(this.user.photo);
         document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
           background-image: url("${this.user.photo}");
           background-position: center;

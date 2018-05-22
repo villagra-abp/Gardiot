@@ -6,11 +6,11 @@
           <input type="text" [(ngModel)]="plant.commonName" class="form-control col-md-6" name="commonName" placeholder="Buscar en gardiot">
         </article>
         <article class="form-group col-md-6">
-          <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-          <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
+          <button title="Buscar" class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+          <button title="Busqueda avanzada" data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
         </article>
         <article class="form-group col-md-2">
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
+          <button title="Crear nueva planta" *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
         </article>
       </form>
       <section class="form-row">
@@ -72,13 +72,13 @@
               </p>
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>
+                <button title="Nuevo tratamiento" *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
+                <button title="Editar planta" *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
+                <button title="Eliminar planta" *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>
               </div>
             </div>
           </section>

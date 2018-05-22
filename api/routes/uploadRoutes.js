@@ -13,7 +13,7 @@ var mime = require('mime');
 var storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
     if (req.hostname == 'gardiot.ovh')
-      cb(null, '../app/assets/images/imgProfile/');
+      cb(null, '');
     else
       cb(null, '../GardiotFrontEnd/src/assets/images/imgProfile/');
   },
