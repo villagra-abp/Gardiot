@@ -60,7 +60,7 @@ export class EditplantComponent implements OnInit {
   uploadPhoto() {
     let imgUpl = <HTMLInputElement>document.querySelector('#photo_plant');
     if (this.uploader.getNotUploadedItems().length) {
-      console.log(imgUpl.files);
+      //console.log(imgUpl.files);
       let file = [];
       file.push(imgUpl.files[0]);
       file.forEach(function() {
@@ -72,7 +72,7 @@ export class EditplantComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => console.log(error)
+        error => //console.log(error)
       );
     } else {
       this.guardar();
@@ -91,7 +91,7 @@ export class EditplantComponent implements OnInit {
       url = url.split("\\");
       url = url[url.length - 1];
       this.plant.photo = url;
-      console.log('hola guapa');
+      //console.log('hola guapa');
       this.guardar();
     };
   }
@@ -100,7 +100,7 @@ export class EditplantComponent implements OnInit {
     this._plantService.details(idPlanta)
       .subscribe(data => {
         this.plant.id = idPlanta;
-        console.log(this.plant.id);
+        //console.log(this.plant.id);
         this.plant.scientificName = data[0].scientificName;
         this.plant.commonName = data[0].commonName;
         this.plant.description = data[0].description;

@@ -21,6 +21,6 @@ export class DialogAllGardensComponent implements OnInit {
     this.thisDialogRef.close('Cancel');
   }
   ngOnInit() {
-    console.log(this.data);
+    //console.log(this.data);
   }
 }

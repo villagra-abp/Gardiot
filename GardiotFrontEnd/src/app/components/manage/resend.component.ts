@@ -18,7 +18,7 @@ export class ResendComponent implements OnInit {
   enviarEmail() {
     this._resendService.resendConfirmation()
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
       },
         error => {
 

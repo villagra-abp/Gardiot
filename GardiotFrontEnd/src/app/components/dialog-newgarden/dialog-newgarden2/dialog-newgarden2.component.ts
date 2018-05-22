@@ -45,9 +45,9 @@ export class DialogNewgarden2Component implements OnInit {
   getid() {
     this._gardenService.details().subscribe(data => {
       if (data != null) {
-        console.log(data);
+        //console.log(data);
         this.garden = data;
-        console.log(this.garden);
+        //console.log(this.garden);
       }
     },
       error => {
@@ -117,7 +117,7 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
   saveCity(e) {
-    console.log(e.value);
+    //console.log(e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.garden.city = e.value;
       this.mostrarCiudad();
@@ -131,7 +131,7 @@ export class DialogNewgarden2Component implements OnInit {
       if (input.value.length == 5) {
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
-            console.log(data);
+            //console.log(data);
             let sp = document.querySelector('#ciudad');
             if (data.length > 0) {
               this.garden.latitude = data[0].lat.toFixed(2);
@@ -139,12 +139,12 @@ export class DialogNewgarden2Component implements OnInit {
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
                 this.garden.city = data[0].adminName3;
                 //this.city = data[0].adminName3;
-                //console.log(this.city);
+                ////console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
                 //this.city = data[0].placeName;
-                //console.log(this.city);
+                ////console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
@@ -178,10 +178,10 @@ export class DialogNewgarden2Component implements OnInit {
   searchZip2(): void {
     //aqui vamos cargando las posibles ciudades a elegir
     var input = this.garden.zip;
-    console.log(input);
+    //console.log(input);
     if (this.garden.countryCode != undefined) {
       if (input.length == 5) {
-        console.log("entra");
+        //console.log("entra");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input)
           .subscribe(data => {
             //let sp = document.querySelector('#ciudad');
@@ -191,12 +191,12 @@ export class DialogNewgarden2Component implements OnInit {
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
                 this.garden.city = data[0].adminName3;
                 //this.city = data[0].adminName3;
-                //console.log(this.city);
+                ////console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
                 //this.city = data[0].placeName;
-                //console.log(this.city);
+                ////console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;

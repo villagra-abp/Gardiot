@@ -46,7 +46,7 @@ export class EditProfileComponent implements OnInit {
       this._detailService.listCitiesByZip(this.user.countryCode, input.value)
         .subscribe(data => {
           let sp = document.querySelector('#ciudad');
-          console.log(data);
+          //console.log(data);
           if (data.length > 0) {
             if (data[0].adminName3 !== undefined) {
               this.user.city = data[0].adminName3;
@@ -72,7 +72,7 @@ export class EditProfileComponent implements OnInit {
           input.value = '';
         },
           error => {
-            console.log(error);
+            //console.log(error);
           });
     }
   }
@@ -89,7 +89,7 @@ export class EditProfileComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
-        console.log(this.user.photo);
+        //console.log(this.user.photo);
         document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
           background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
@@ -128,7 +128,7 @@ export class EditProfileComponent implements OnInit {
   listarPaises() {
     this._detailService.listCoutries()
       .subscribe(data => {
-        //console.log(data.geonames);
+        ////console.log(data.geonames);
         let aux = [];
         aux.push({ id: 0, text: "Selecciona un país" });
         for (let i = 0; i < data.geonames.length; i++) {
@@ -146,7 +146,7 @@ export class EditProfileComponent implements OnInit {
 
       },
         error => {
-          console.log(error);
+          //console.log(error);
         });
 
   }
@@ -167,7 +167,7 @@ export class EditProfileComponent implements OnInit {
 
   //click en el div para seleccionar una foto
   selectPhoto(e) {
-    console.log(e);
+    //console.log(e);
     let file = <HTMLInputElement>document.querySelector('input[type="file"]');
     file.click();
   }
@@ -176,11 +176,11 @@ export class EditProfileComponent implements OnInit {
   //evento change para subir la foto al servidor
   uploadPhoto(event) {
     if (this.uploader.getNotUploadedItems().length) {
-      console.log(event.target.files);
+      //console.log(event.target.files);
       let file = [];
       file.push(event.target.files[0]);
       file.forEach(function() {
-        console.log(file);
+        //console.log(file);
       });
       this._ng2ImgMax.compress(file, 1.25).subscribe(
         result => {
@@ -189,7 +189,7 @@ export class EditProfileComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => console.log(error)
+        error => //console.log(error)
       );
     }
   }
@@ -235,7 +235,7 @@ export class EditProfileComponent implements OnInit {
     };
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log("ImageUpload:uploaded:", item, status, response);
+      //console.log("ImageUpload:uploaded:", item, status, response);
       let url = response.split(" ");
       url = url[url.length - 1];
       url = url.split("\\");

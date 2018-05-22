@@ -211,6 +211,8 @@ function mouse_up(e) {
         if (plant) {
           plant.isDragging = false;
           window.dragging = false;
+          if(plant.model==null || typeof plant.model == 'undefined')
+            plant.model='logo';
           let datos = dataPlants[plant.model.toUpperCase()];
           if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
             let occupied = false;

@@ -51,11 +51,11 @@ export class NewplantComponent implements OnInit {
   uploadPhoto() {
     let imgUpl = <HTMLInputElement>document.querySelector('#photo_plant');
     if (this.uploader.getNotUploadedItems().length) {
-      console.log(imgUpl.files);
+      //console.log(imgUpl.files);
       let file = [];
       file.push(imgUpl.files[0]);
       file.forEach(function() {
-        console.log(file);
+        //console.log(file);
       });
       this._ng2ImgMax.compress(file, 1.25).subscribe(
         result => {
@@ -64,7 +64,7 @@ export class NewplantComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => console.log(error)
+        error => //console.log(error)
       );
     } else {
       this._appComponent.mensajeEmergente("Introduce una foto", "danger", "");

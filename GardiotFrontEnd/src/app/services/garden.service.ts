@@ -67,7 +67,7 @@ export class GardenService {
   }
 
   insertGarden(garden: Garden) {
-    console.log(garden);
+    //console.log(garden);
     garden.soil = "1";
 
     let body = `title=${garden.title}`;
@@ -146,7 +146,7 @@ export class GardenService {
       'Authorization': `Bearer ${localStorage['Bearer']}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     });
-    console.log(body);
+    //console.log(body);
     return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers })
       .map(res => {
         return res.json();
@@ -163,7 +163,7 @@ export class GardenService {
       'Authorization': `Bearer ${localStorage['Bearer']}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     });
-    console.log(body);
+    //console.log(body);
     return this.http.put(this.apiURL + "garden/" + garden.id, body, { headers })
       .map(res => {
         return res.json();

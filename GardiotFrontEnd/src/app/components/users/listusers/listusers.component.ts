@@ -80,7 +80,7 @@ export class AdminListUsersComponent {
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
 
-        console.log(data);
+        //console.log(data);
         if (data[0] != undefined) {
           this.users = [];
           this.numeroItems = data[0].num;

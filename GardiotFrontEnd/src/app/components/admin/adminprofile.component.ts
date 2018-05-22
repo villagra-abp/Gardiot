@@ -41,7 +41,7 @@ export class AdminProfileComponent implements OnInit {
       this._detailService.listCitiesByZip(this.user.countryCode, input.value)
         .subscribe(data => {
           let sp = document.querySelector('#ciudad');
-          console.log(data);
+          //console.log(data);
           if (data.length > 0) {
             if (data[0].adminName3 !== undefined) {
               this.user.city = data[0].adminName3;
@@ -67,7 +67,7 @@ export class AdminProfileComponent implements OnInit {
           input.value = '';
         },
           error => {
-            console.log(error);
+            //console.log(error);
           });
     }
   }
@@ -77,7 +77,7 @@ export class AdminProfileComponent implements OnInit {
   mostrar() {
     this._detailService.details(this.user)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.user.id = data.id;
         this.user.birthDate = this.datePipe.transform(data.birthDate, 'yyyy-MM-dd');
         this.user.photo = data.photo;
@@ -127,7 +127,7 @@ export class AdminProfileComponent implements OnInit {
         }).delay(1000);
       },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
 
@@ -146,14 +146,14 @@ export class AdminProfileComponent implements OnInit {
   //Estas dos funciones son para guardar los datos
   //del país y ciudad en el objeto de usuario
   saveCountry(e) {
-    console.log(e.value);
+    //console.log(e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.user.countryCode = e.value;
     }
   }
 
   saveCity(e) {
-    console.log("save city" + e.value);
+    //console.log("save city" + e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.user.city = e.value;
       this.mostrarCiudad();
