@@ -64,7 +64,7 @@ export class NewplantComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => //console.log(error)
+        error => console.error(error)
       );
     } else {
       this._appComponent.mensajeEmergente("Introduce una foto", "danger", "");

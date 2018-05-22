@@ -72,7 +72,7 @@ export class EditplantComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => //console.log(error)
+        error => console.log(error)
       );
     } else {
       this.guardar();

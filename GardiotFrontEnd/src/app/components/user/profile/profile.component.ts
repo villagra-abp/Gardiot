@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => //console.log(error)
+        error => console.error(error)
       );
     }
   }
