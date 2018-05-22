@@ -17,10 +17,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class EditplantComponent implements OnInit {
 
-  plant = new Plant();
+  public plant = new Plant();
   public plants: any[] = [];
   public families: any[] = [];
-  uploader: FileUploader;
+  public uploader: FileUploader;
 
   constructor(
     public _plantService: PlantService,
@@ -33,15 +33,14 @@ export class EditplantComponent implements OnInit {
   ) { }
 
   guardar() {
-    console.log(this.plant);
     this._plantService.modify(this.plant)
       .subscribe(data => {
         this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plant/" + this.plant.id);
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
 
@@ -52,9 +51,9 @@ export class EditplantComponent implements OnInit {
           this.families.push(data[key$]);
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
 
   }
 
@@ -75,13 +74,12 @@ export class EditplantComponent implements OnInit {
         },
         error => console.log(error)
       );
-    }else{
+    } else {
       this.guardar();
     }
   }
 
   managePhoto() {
-
     this.uploader = new FileUploader({ url: this._plantService.apiURL + 'uploadPlant', itemAlias: 'photo' });
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
@@ -101,7 +99,6 @@ export class EditplantComponent implements OnInit {
   mostrar(idPlanta: number) {
     this._plantService.details(idPlanta)
       .subscribe(data => {
-        //this.plant.id=data[0].id;//El objeto no lleva el id
         this.plant.id = idPlanta;
         console.log(this.plant.id);
         this.plant.scientificName = data[0].scientificName;
@@ -111,44 +108,32 @@ export class EditplantComponent implements OnInit {
         this.plant.depth = data[0].depth;
         this.plant.distance = data[0].distance;
         this.plant.diseaseResist = data[0].diseaseResist;
-
         this.plant.initDatePlant = this.datePipe.transform(data[0].initDatePlant, 'yyyy-MM-dd');
         this.plant.finDatePlant = this.datePipe.transform(data[0].finDatePlant, 'yyyy-MM-dd');
         this.plant.initDateBloom = this.datePipe.transform(data[0].initDateBloom, 'yyyy-MM-dd');
         this.plant.finDateBloom = this.datePipe.transform(data[0].finDateBloom, 'yyyy-MM-dd');
         this.plant.initDateHarvest = this.datePipe.transform(data[0].initDateHarvest, 'yyyy-MM-dd');
         this.plant.finDateHarvest = this.datePipe.transform(data[0].finDateHarvest, 'yyyy-MM-dd');
-        // this.plant.initDatePlant=data[0].initDatePlant.substring(0, 10);
         this.plant.leaveType = data[0].leaveType;
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        //  this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+          //  this._route.navigate(['/login']);
+        });
 
   }
 
   formatoFecha(fecha) {
     let fech = new Date(fecha);
-    // fech.setDate(fech.getDate()+1);
     var anno = fech.getFullYear();
-    console.log(anno);
     var mes = fech.getMonth() + 1;
-    console.log(mes);
     var dia = fech.getDate();
-    console.log(dia);
-
-
     var tsetDob = this.datePipe.transform(fecha, 'yyyy-MM-dd');
-
-    //var fechaFinal =dia+'/'+mes+'/'+anno;
     var fechaFinal = anno + '-' + mes + '-' + dia;
     var fechaGuay = new Date(anno + '/' + mes + '/' + dia);
-    console.log(tsetDob);
     return (tsetDob);
-    //return fech;
   }
 
   getID() {

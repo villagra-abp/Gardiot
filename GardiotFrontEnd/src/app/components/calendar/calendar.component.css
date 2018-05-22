@@ -1,24 +1,26 @@
-.search{
+.search {
   border: none;
   color: #63d297;
 }
-.search:hover{
-  background-color: #63d297;
-  color: #fff;
-}
-.search:visited{
+
+.search:hover {
   background-color: #63d297;
   color: #fff;
 }
 
-.calendar{
+.search:visited {
+  background-color: #63d297;
+  color: #fff;
+}
+
+.calendar {
   width: 100%;
   min-height: 90px !important;
 }
 
-.btn-outline-primary:not([disabled]):not(.disabled).active{
+.btn-outline-primary:not([disabled]):not(.disabled).active {
   color: #fff;
   background-color: #63d297;
   border-color: #63d297;
-  box-shadow: 0 0 0 0.2rem rgba(99,210,151,.5);
+  box-shadow: 0 0 0 0.2rem rgba(99, 210, 151, .5);
 }

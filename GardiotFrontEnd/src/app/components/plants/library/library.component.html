@@ -16,40 +16,38 @@
       <section class="form-row">
         <div id="demo" class="collapse">
           <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-              <div class = "form-group col-md-4">
-                <label for="family" >Familia</label>
-                <br>
-                <!-- <select2 id="family" class="campo" style="width:100%" [data]="familyData | async" (valueChanged)="this.saveFamily($event)">
-                </select2> -->
-                <select id="family" name="family" class="form-control col-md-6" [(ngModel)]="plant.family" >
+            <div class="form-group col-md-4">
+              <label for="family">Familia</label>
+              <br>
+              <select id="family" name="family" class="form-control col-md-6" [(ngModel)]="plant.family">
                   <option value="undefined">Selecciona una familia</option>
                   <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
                 </select>
-              </div>
-              <div class = "form-group col-md-4">
-                <label for="scientificName">Nombre Científico</label>
-                <input type="text" [(ngModel)]="plant.scientificName" class="form-control col-md-6" id="scientificName" name="scientificName" placeholder="Nombre científico">
-              </div>
-              <div class = "form-group col-md-4">
-                <label for="tipo">Tipo de hoja</label>
-                <select [(ngModel)]="plant.leaveType" class="form-control col-md-6" id="tipo" name="tipo" default="">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="scientificName">Nombre Científico</label>
+              <input type="text" [(ngModel)]="plant.scientificName" class="form-control col-md-6" id="scientificName" name="scientificName" placeholder="Nombre científico">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="tipo">Tipo de hoja</label>
+              <select [(ngModel)]="plant.leaveType" class="form-control col-md-6" id="tipo" name="tipo" default="">
                   <option value="undefined">Todos</option>
                   <option value="caduca">Caduca</option>
                   <option value="perenne">Perenne</option>
                 </select>
-              </div>
-              <div class = "form-group col-md-4">
-                <label for="initDatePlant">Inicio de plantación</label>
-                <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control col-md-6 " id="initDatePlant" name="initDatePlant" >
-              </div>
-              <div class = "form-group col-md-4">
-                <label for="finDatePlant">Fin de plantación</label>
-                <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control col-md-6" id="finDatePlant" name="finDatePlant" >
-              </div>
-              <div class="form-group col-md-12">
-                <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
-                <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()" ><i class="material-icons">format_clear</i></button>
-              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="initDatePlant">Inicio de plantación</label>
+              <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control col-md-6 " id="initDatePlant" name="initDatePlant">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="finDatePlant">Fin de plantación</label>
+              <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control col-md-6" id="finDatePlant" name="finDatePlant">
+            </div>
+            <div class="form-group col-md-12">
+              <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
+              <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()"><i class="material-icons">format_clear</i></button>
+            </div>
           </form>
         </div>
       </section>
@@ -57,20 +55,18 @@
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <div class="view view-first">
             <img class="card-img-top" src="{{plant.photo}}" alt="planta" height="110px">
-            <div  [routerLink]="['/plant', plant.id]" class="mask">
+            <div [routerLink]="['/plant', plant.id]" class="mask">
               <h2>{{plant.scientificName}} </h2>
               <p>{{plant.name}}</p>
-              <!-- <a [routerLink]="['/plant', plant.id]" href="#" class="info">Ver más</a> -->
             </div>
           </div>
-          <!-- <img class="card-img-top" src="{{plant.photo}}" alt="planta" width="100px" height="200px" [routerLink]="['/plant', plant.id]"> -->
           <section class="card-body">
             <h4>{{plant.commonName}} </h4>
-              <p>
-                <img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm
-                <img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm
-                <img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}} º
-              </p>
+            <p>
+              <img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra">{{plant.depth}} cm
+              <img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra">{{plant.distance}} cm
+              <img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo">{{plant.diseaseResist}} º
+            </p>
             <div class="form-row buttonAdmin">
               <div class="form-group col-md-4">
                 <button title="Nuevo tratamiento" *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>

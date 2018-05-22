@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     public userService: UserService,
     public _ngZone: NgZone,
     public dialog: MatDialog,
-    ) {
+  ) {
   }
 
   toggleMenu(e) {
@@ -87,12 +87,12 @@ export class HeaderComponent implements OnInit {
   }
 
 
-    openDialog() {
-      let dialogRef = this.dialog.open(ProfileComponent, {
-        width: '25em',
-        data: { }
-      });
-    }
+  openDialog() {
+    let dialogRef = this.dialog.open(ProfileComponent, {
+      width: '25em',
+      data: {}
+    });
+  }
 
 
 

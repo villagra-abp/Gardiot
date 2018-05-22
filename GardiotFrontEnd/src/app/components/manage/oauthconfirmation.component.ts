@@ -9,14 +9,11 @@ import { AppComponent } from "../../app.component";
 })
 //Esta clase recibe el link de correo de confirmación de usuario y envía el token a la api para validarlo
 export class OauthConfirmationComponent implements OnInit {
-
   constructor(
     public _comprobationService: UserService,
     public _router: ActivatedRoute,
     public _appComponent: AppComponent,
     public _route: Router) { }
-
-
 
   ngOnInit() {
     this._router.params.subscribe(params => {
@@ -28,6 +25,4 @@ export class OauthConfirmationComponent implements OnInit {
       }
     });
   }
-
-
 }

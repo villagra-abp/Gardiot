@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
+
 import { UserService } from '../../../services/user.service';
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Treatment } from "../../../classes/treatment.class";
 import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { MatExpansionModule } from '@angular/material/expansion';
+
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
 
@@ -33,7 +35,6 @@ export class PlantComponent implements OnInit {
   public finRecolectar: String;
   public mes: String;
   public haytratamiento: number=1;
-  public hayproducto: number=1;
 
   constructor(
     public _plantService: PlantService,
@@ -63,7 +64,6 @@ export class PlantComponent implements OnInit {
         this.iniRecolectar = this.dameMes(data[0].initDateHarvest);
         this.finRecolectar = this.dameMes(data[0].finDateHarvest);
         this.plant.leaveType = data[0].leaveType;
-
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
@@ -86,9 +86,10 @@ export class PlantComponent implements OnInit {
 
   }
   showProductPlant(treatment: number, idPlant: number) {
+    this.haytratamiento=0; 
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        this.haytratamiento=0;
+        // console.log(data);
         if (data.length == 0) {
             // console.log("No hay");
         }else{

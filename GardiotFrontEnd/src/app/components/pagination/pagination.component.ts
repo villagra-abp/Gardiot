@@ -3,8 +3,6 @@ import { Input, Output, EventEmitter } from '@angular/core'
 import { PlantService } from "../../services/plant.service";
 import { UserService } from "../../services/user.service";
 
-
-
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -21,7 +19,6 @@ export class PaginationComponent implements OnInit {
   @Input() pagesToShow: number; // how many pages between next/prev
   @Input() loading: boolean; // check if content is being loaded
   @Input() type: number; // saber cual de las paginaciones debe mostrar
-
   @Output() goPrev = new EventEmitter<boolean>();
   @Output() goNext = new EventEmitter<boolean>();
   @Output() goPage = new EventEmitter<number>();
@@ -90,11 +87,7 @@ export class PaginationComponent implements OnInit {
     return pages;
   }
 
-
-
-
   ngOnInit() {
     this.lastPage();
   }
-
 }

@@ -1,6 +1,4 @@
-/******* ESTILO ESTADISTICAS *******/
-iframe{
-  /* padding-top: 1%; */
+iframe {
   max-height: 680px;
   min-height: 540px;
 }
@@ -8,20 +6,17 @@ iframe{
 section, mat-tab {
   margin-left: auto;
   margin-right: auto;
-
 }
 
-section{
+section {
   align-items: center;
   text-align: center;
-  height:unset!important;
+  height: unset !important;
 }
 
-.mat-tab{
-    -moz-transition: none;
-   -webkit-transition: none;
-   -o-transition: color 0 ease-in;
-   transition: none;
-
+.mat-tab {
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: color 0 ease-in;
+  transition: none;
 }
-/******* FIN ESTILO ESTADISTICAS *******/

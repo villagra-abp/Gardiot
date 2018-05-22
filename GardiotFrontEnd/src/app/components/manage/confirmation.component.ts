@@ -16,7 +16,6 @@ export class ConfirmationComponent implements OnInit {
     public _appComponent: AppComponent) { }
 
 
-
   ngOnInit() {
     this._router.params.subscribe(params => {
       if (params['key'] != null) {
@@ -25,9 +24,9 @@ export class ConfirmationComponent implements OnInit {
             console.log(data);
             this._appComponent.mensajeEmergente("Tu cuenta se ha activado correctamente! Loguéate ahora", "primary", "login");
           },
-          error => {
-            this._appComponent.mensajeEmergente("Ha habido un error activando tu cuenta, inténtalo más tarde", "danger", "login");
-          });
+            error => {
+              this._appComponent.mensajeEmergente("Ha habido un error activando tu cuenta, inténtalo más tarde", "danger", "login");
+            });
       }
     });
   }

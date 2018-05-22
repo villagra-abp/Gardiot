@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EditfeedComponent implements OnInit {
 
-  feed = new Feed();
+  public feed = new Feed();
   public feeds: any[] = [];
 
   constructor(
@@ -26,16 +26,14 @@ export class EditfeedComponent implements OnInit {
 
 
   guardar() {
-    console.log('entro');
-    console.log(this.feed);
     this._feedService.modify(this.feed)
       .subscribe(data => {
         this._appComponent.mensajeEmergente("El consejo se ha modificado", "primary", "admin/feeds?pag=1");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   getID() {
@@ -50,7 +48,6 @@ export class EditfeedComponent implements OnInit {
   }
 
   mostrar(idFeed: number) {
-    console.log(idFeed);
     this._feedService.details(idFeed)
       .subscribe(data => {
         this.feed.id = idFeed;
@@ -59,11 +56,11 @@ export class EditfeedComponent implements OnInit {
         this.feed.dateInit = this.datePipe.transform(data[0].dateInit, 'yyyy-MM-dd');
         this.feed.dateFinal = this.datePipe.transform(data[0].dateFinal, 'yyyy-MM-dd');
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+        });
 
   }
 

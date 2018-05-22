@@ -19,15 +19,13 @@ export class LogoutComponent implements OnInit {
           this._route.navigate(['/login']);
         }
       },
-      error => {
-        localStorage.clear();
-        this._route.navigate(['/login']);
-      });
+        error => {
+          localStorage.clear();
+          this._route.navigate(['/login']);
+        });
 
     sessionStorage.clear();
     this._logoutService.isAdmin = false;
     this._logoutService.isAuthenticated = false;
-
-
   }
 }

@@ -1,48 +1,46 @@
-div{
+div {
   width: 100%;
   margin: 0 auto;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 1%;
-  /* border: 2px solid #ffb200; */
-  /* border-radius: 20px/50px; */
-  /* background-clip: padding-box; */
-
 }
-article{
+
+article {
   align-content: center;
 }
 
-dl{
-    background-color: #f3f3f3;
-    margin-top: 2em;
+dl {
+  background-color: #f3f3f3;
+  margin-top: 2em;
 }
-dd{
+
+dd {
   text-align: center;
   margin-top: 0.5em;
-
-}
-mat-dialog-actions{
-/* padding: 2.5px; */
-}
-button{
-margin: auto;
 }
 
+button {
+  margin: auto;
+}
 
-input[type="file"]{
+input[type="file"] {
   display: none;
 }
-.divPhoto>i{
+
+.divPhoto>i {
   display: none;
   align-content: center;
 }
-.divPhoto>div{
+
+.divPhoto>div {
   display: none;
 }
-.divPhoto:hover{
-  position:relative;
+
+.divPhoto:hover {
+  position: relative;
 }
-.divPhoto:hover>div{
+
+.divPhoto:hover>div {
   display: block;
   position: absolute;
   border-radius: 200px;
@@ -52,8 +50,9 @@ input[type="file"]{
   right: 0;
   background: rgba(0, 0, 0, 0.5);
 }
-.divPhoto:hover>i{
-  filter:brightness(600%) !important;
+
+.divPhoto:hover>i {
+  filter: brightness(600%) !important;
   color: #fff;
   display: block;
   position: absolute;

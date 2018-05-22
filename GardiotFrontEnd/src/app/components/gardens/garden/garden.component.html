@@ -1,34 +1,20 @@
-
 <div class="canvasEvolver" onmousemove="mouse_move(event)" onmouseup="mouse_up(event);">
-    <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín"/>
-
-  <!-- <form (ngSubmit)="this.searchcontent(1,5)" class="form-row superior" #forma="ngForm" *ngIf="visible == 1" >
-    <article class="search">
-      <input type="text" [(ngModel)]="plant.commonName" class="form-control" name="commonName" placeholder="Buscar en gardiot">
-    </article>
-    <article class="searchbutton">
-      <button class="btn btn-default" type="submit">Buscar</button>
-    </article>
-  </form> -->
-  <!--<div style="position: absolute; margin: 200px; " (click)="this.openDialog2()">Popup jardines</div>-->
+  <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín" />
   <nav class="plantsMenu" *ngIf="visible == 1">
     <form (ngSubmit)="this.searchcontent(1,5)" #forma="ngForm">
-        <input type="text" [(ngModel)]="searchPlant"  name="commonName" id="commonName" placeholder="Buscar plantas">
+      <input type="text" [(ngModel)]="searchPlant" name="commonName" id="commonName" placeholder="Buscar plantas">
     </form>
     <section class="list">
-
-
-    <ul>
-      <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
-      <div>
-        <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
-      </div>
-      <span>{{plantmotor.commonName}}</span>
-
-      </li>
-    </ul>
-  </section>
-  <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
+      <ul>
+        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
+          <div>
+            <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
+          </div>
+          <span>{{plantmotor.commonName}}</span>
+        </li>
+      </ul>
+    </section>
+    <app-pagination class="cursorPaginas" [count]="this.numeroItems" [type]="6" [page]="this.paginaActual" [perPage]="this.elementosPorPagina" [pagesToShow]="3" [loading]="false"></app-pagination>
   </nav>
   <canvas id="myCanvas" oncontextmenu="return false;" onmousedown="mouse_down(event);" onmousewheel="scrolling(event);" ondrop="drop(event);" ondragover="allowDrop(event); dragCanvas(event);" width="1800" height="1170"></canvas>
   <section id="formulario" oncontextmenu="return false;" class="formulario infoOcult" *ngIf="!mobile">
@@ -68,34 +54,29 @@
       </div>
     </div>
   </section>
-  <div class="toggleDeko litButton" id="del" onmouseup="deletePlant(event)" ondragover="allowDrop(event);" ondrop="disableDragging(event)" [hidden]="isDragging()" >
+  <div class="toggleDeko litButton" id="del" onmouseup="deletePlant(event)" ondragover="allowDrop(event);" ondrop="disableDragging(event)" [hidden]="isDragging()">
     <img src="{{photoURL}}/images/icon/rubbish.png" alt="rubbish" />
   </div>
   <section class="litButtons">
-
-        <div class="toggleDeko litButton desplegable" id="plt"
-    onclick="openWeather(this)"
-    (click)="getPrevision()" *ngIf="haveWeather == true">
+    <div class="toggleDeko litButton desplegable" id="plt" onclick="openWeather(this)" (click)="getPrevision()" *ngIf="haveWeather == true">
       <i class="material-icons">cloud</i> <span>Previsión</span> <i style="visibility:hidden" onclick="closeWeather(event, this)" class="material-icons">close</i>
     </div>
-    <div class="toggleDeko litButton desplegable" id="edit"
-    onclick="openInfo(this);"
-    (click)="listarPaises()">
-    <i class="material-icons">
+    <div class="toggleDeko litButton desplegable" id="edit" onclick="openInfo(this);" (click)="listarPaises()">
+      <i class="material-icons">
       border_color
       </i> <span>Editar datos</span> <i style="visibility:hidden" onclick="closeEdit(event, this)" class="material-icons">close</i>
     </div>
-      <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
-        <i class="material-icons">
+    <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
+      <i class="material-icons">
           switch_camera
           </i> <span>Cambiar modo</span><i style="visibility:hidden" class="material-icons">close</i>
-        </div>
+    </div>
 
-        <div class="toggleDeko litButton big desplegable" id="plus" onclick="changeShaders()">
-          <i class="material-icons">
+    <div class="toggleDeko litButton big desplegable" id="plus" onclick="changeShaders()">
+      <i class="material-icons">
             compare
             </i> <span>Cambiar visualización</span> <i style="visibility:hidden; width: 0; height: 0;" class="material-icons">close</i>
-        </div>
+    </div>
 
     <div class="toggleDeko litButton big" id="plus" onclick="plusZoom()">
       <i title="Zoom In" class="material-icons">
@@ -148,5 +129,3 @@
     </div>
   </div>
 </div>
-
-<!--<button class="rotButton"><img src="{{photoURL}}/images/icon/rotation.png" alt="Rotate"></button>-->

@@ -12,7 +12,7 @@ import { AppComponent } from "../../app.component";
 })
 export class RegisterComponent implements OnInit {
 
-  user = new User("");
+  public user = new User("");
 
   constructor(
     public _userService: UserService,
@@ -29,11 +29,11 @@ export class RegisterComponent implements OnInit {
           this._route.navigate(['/detail']);
         }
       },
-      error => {
-        let v = JSON.parse(error._body);
-        console.log(v.Mensaje);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          console.log(v.Mensaje);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   ngOnInit() {

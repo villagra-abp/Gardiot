@@ -24,7 +24,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
- import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -66,13 +66,11 @@ declare var iniciar: any;
 
 })
 export class DetailComponent implements OnInit {
-  view: string = 'week';
-  locale: string = 'es';
-  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
-
-  weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
-
-  viewDate: Date = new Date();
+  public view: string = 'week';
+  public locale: string = 'es';
+  public weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  public weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
+  public viewDate: Date = new Date();
   public user = new User("");
   public gardenRoute = "";
   public feeds: any[] = [];
@@ -84,15 +82,15 @@ export class DetailComponent implements OnInit {
   public events: CalendarEvent[] = [];
   public sunrise;
   public sunset;
-  public tareas:any[] = [];
+  public tareas: any[] = [];
   public checkTareas = false;
   public photoURL = "";
-  private imgUrl ="";
+  private imgUrl = "";
   public temperature = 0;
   public plantNumber = 0;
-  private percentTareas= 0;
-  private fecha_actual="";
-  private fecha_hoy=new Date();
+  private percentTareas = 0;
+  private fecha_actual = "";
+  private fecha_hoy = new Date();
 
 
   constructor(
@@ -104,57 +102,55 @@ export class DetailComponent implements OnInit {
     public datePipe: DatePipe,
 
   ) {
-    if(window.location.toString().indexOf("localhost")>=0){
-      this.photoURL="/assets";
-      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.photoURL = "/assets";
+      this.imgUrl = "http://localhost:4200/assets/images/imgProfile/";
     }
-    else if(window.location.toString().indexOf("gardiot")>=0){
-      this.photoURL="/app/assets";
-      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.photoURL = "/app/assets";
+      this.imgUrl = "https://gardiot.ovh/app/assets/images/imgProfile/";
     }
-    else{
-      this.photoURL="/assets";
-      this.imgUrl="http://192.168.100.3:4200/assets/images/imgProfile/";
+    else {
+      this.photoURL = "/assets";
+      this.imgUrl = "http://192.168.100.3:4200/assets/images/imgProfile/";
     }
   }
-//------ comprobamos si es su primera vez en la app------//
+  //------ comprobamos si es su primera vez en la app------//
   checkGarden() {
     this._gardenService.firstgarden().subscribe(data => {
-        if (data.Mensaje == "Existe") {
-        }else{
-          this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
-        }
-      },
+      if (data.Mensaje == "Existe") {
+      } else {
+        this._route.navigate(['/garden'], { queryParams: { pag: '1' } });
+      }
+    },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
   }
 
-  goGarden(){
-    this._route.navigate(['/garden'], {queryParams:{pag:'1'}});
+  goGarden() {
+    this._route.navigate(['/garden'], { queryParams: { pag: '1' } });
   }
 
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        this.temperature =  data.main.temp -273;
-
+        this.temperature = data.main.temp - 273;
         var sunrise = new Date();
         var sunset = new Date();
         sunrise.setTime(data.sys.sunrise * 1000);
         this.sunrise = sunrise;
-
         sunset.setTime(data.sys.sunset * 1000);
         this.sunset = sunset;
         new iniciar("home", this.garden, this.sunrise, this.sunset);
 
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+          this._route.navigate(['/login']);
+        });
   }
 
   mostrar2() {
@@ -175,7 +171,7 @@ export class DetailComponent implements OnInit {
           this.plantNumber = this.garden.plants.length;
           if (typeof this.garden.city !== undefined && this.garden.city != null) {
             this.getTiempo();
-          }else{
+          } else {
             new iniciar("home", this.garden);
           }
 
@@ -184,45 +180,45 @@ export class DetailComponent implements OnInit {
         }
 
       },
-      error => {
-        if (JSON.parse(error._body).Mensaje == 'No existe') {
-          // this._route.navigate(['/newgarden']);
-        } else {
-          this._route.navigate(['/detail']);
-        }
-      });
+        error => {
+          if (JSON.parse(error._body).Mensaje == 'No existe') {
+            // this._route.navigate(['/newgarden']);
+          } else {
+            this._route.navigate(['/detail']);
+          }
+        });
   }
 
 
-// calendario
-  getTasks(){
+  // calendario
+  getTasks() {
     this.tareas = [];
     let f = new Date();
     f.getDate();
     f.getMonth() + 1;
     f.getFullYear();
     this.fecha_actual = this.datePipe.transform(f, 'yyyy-MM-dd');
-    this.fecha_hoy=f;
-          this._taskService.percent().subscribe(data => {
-            this.percentTareas= data.Mensaje;
-          },
-            error => {
-              console.error(error);
-            });
-    let tamanyo =15;
-    if(window.innerWidth <= 600){
+    this.fecha_hoy = f;
+    this._taskService.percent().subscribe(data => {
+      this.percentTareas = data.Mensaje;
+    },
+      error => {
+        console.error(error);
+      });
+    let tamanyo = 15;
+    if (window.innerWidth <= 600) {
       tamanyo = 5;
     }
-    this._taskService.detailsSome(tamanyo).subscribe(data =>{
-      let aux:any[] = [];
-      if(data.length !=0){
-        for (let i = 0; i<data.length; i++){
-          if(aux.length == 0){ // si está vacio
+    this._taskService.detailsSome(tamanyo).subscribe(data => {
+      let aux: any[] = [];
+      if (data.length != 0) {
+        for (let i = 0; i < data.length; i++) {
+          if (aux.length == 0) { // si está vacio
             aux.push(data[i]);
-          }else{
-              if(this.datePipe.transform(data[i].date , 'yyyy-MM-dd')==this.datePipe.transform(data[i-1].date, 'yyyy-MM-dd') ){ // si las fechas coinciden lo agrupamos
+          } else {
+            if (this.datePipe.transform(data[i].date, 'yyyy-MM-dd') == this.datePipe.transform(data[i - 1].date, 'yyyy-MM-dd')) { // si las fechas coinciden lo agrupamos
               aux.push(data[i]);
-            }else{ // si no, agrupamos, vaciamos el array y metemos el siguiente
+            } else { // si no, agrupamos, vaciamos el array y metemos el siguiente
               this.tareas.push(aux);
               aux = [];
               aux.push(data[i]);
@@ -234,13 +230,13 @@ export class DetailComponent implements OnInit {
 
       this.checkTareas = true;
     },
-    error =>{
-      console.error(error);
-    });
+      error => {
+        console.error(error);
+      });
 
   }
 
-  dotask(tarea:Task){
+  dotask(tarea: Task) {
     this._taskService.DoneTask(tarea.mPlant, tarea.myPlant, tarea.tPlant, tarea.treatmentPlant, this.datePipe.transform(tarea.date.toString(), 'yyyy-MM-dd'), this.fecha_actual)
       .subscribe(data => {
         this.refresh.next();
@@ -249,39 +245,39 @@ export class DetailComponent implements OnInit {
   }
 
   // feed
-    cargarfeeds() {
-      this._feedService.showfeeds()
-        .subscribe(data => {
-          this.feeds = [];
-          for (let key$ in data) {
-            this.feeds.push(data[key$]);
-          }
-        },
+  cargarfeeds() {
+    this._feedService.showfeeds()
+      .subscribe(data => {
+        this.feeds = [];
+        for (let key$ in data) {
+          this.feeds.push(data[key$]);
+        }
+      },
         error => {
           console.error(error);
-        });
-    }
-
-    cerrarfeed(id:number) {
-      this._feedService.closefeed(id).subscribe(data => {
-          this.cargarfeeds();
-        },
-        error => {
-          console.error(error);
-        });
-    }
-
-
-  checkAdmin(){
-      this._detailService.isUserAdmin()
-        .subscribe(data => {
-          if(data){
-            this._route.navigate(['/admin/statistics']);
-          }
         });
   }
 
-  ngOnInit(){
+  cerrarfeed(id: number) {
+    this._feedService.closefeed(id).subscribe(data => {
+      this.cargarfeeds();
+    },
+      error => {
+        console.error(error);
+      });
+  }
+
+
+  checkAdmin() {
+    this._detailService.isUserAdmin()
+      .subscribe(data => {
+        if (data) {
+          this._route.navigate(['/admin/statistics']);
+        }
+      });
+  }
+
+  ngOnInit() {
     this.checkAdmin();
     this.checkGarden();
     this.mostrar2();

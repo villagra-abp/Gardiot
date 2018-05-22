@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from "@angular/router";
@@ -24,20 +24,20 @@ export class DialogNewgarden3Component implements OnInit {
     public dialog: MatDialog,
   ) {
 
-    if(window.location.toString().indexOf("localhost")>=0){
-      this.photoURL="/assets";
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.photoURL = "/assets";
     }
-    else if(window.location.toString().indexOf("gardiot")>=0){
-      this.photoURL="/app/assets";
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.photoURL = "/app/assets";
     }
   }
 
   getid() {
     this._gardenService.details().subscribe(data => {
-        if (data != null) {
-          this.garden = data;
-        }
-      },
+      if (data != null) {
+        this.garden = data;
+      }
+    },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
@@ -45,7 +45,7 @@ export class DialogNewgarden3Component implements OnInit {
 
   onCloseConfirm() {
     this.saveGarden();
-    
+
   }
 
   onCloseAtras() {
@@ -55,7 +55,8 @@ export class DialogNewgarden3Component implements OnInit {
 
   openDialogAtras() {
     let dialogRef = this.dialog.open(DialogNewgarden2Component, {
-      width: '45em', disableClose: true, data: {}});
+      width: '45em', disableClose: true, data: {}
+    });
   }
 
   saveGarden() {
@@ -70,7 +71,7 @@ export class DialogNewgarden3Component implements OnInit {
   }
 
   ngOnInit() {
-        this.getid();
+    this.getid();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from "@angular/router";
@@ -25,34 +25,33 @@ export class DialogNewgarden1Component implements OnInit {
     public dialog: MatDialog,
   ) {
 
-    if(window.location.toString().indexOf("localhost")>=0){
-      this.photoURL="/assets";
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.photoURL = "/assets";
     }
-    else if(window.location.toString().indexOf("gardiot")>=0){
-      this.photoURL="/app/assets";
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.photoURL = "/app/assets";
     }
   }
 
 
-  getid(){
+  getid() {
     this._gardenService.details().subscribe(data => {
-        if (data != null) {
-          console.log(data);
-          this.garden=data;
-          this.garden.length!==undefined?this.garden.length=(this.garden.length-1)/2:this.garden.length=6;
-          this.garden.width!==undefined?this.garden.width=(this.garden.width-1)/2:this.garden.width=6;
-
-        }
-      },
+      if (data != null) {
+        console.log(data);
+        this.garden = data;
+        this.garden.length !== undefined ? this.garden.length = (this.garden.length - 1) / 2 : this.garden.length = 6;
+        this.garden.width !== undefined ? this.garden.width = (this.garden.width - 1) / 2 : this.garden.width = 6;
+      }
+    },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
   }
 
   saveGarden() {
-    let gardenCopy=JSON.parse(JSON.stringify(this.garden));
-    gardenCopy.length=(this.garden.length*2)+1;
-    gardenCopy.width=(this.garden.width*2)+1;
+    let gardenCopy = JSON.parse(JSON.stringify(this.garden));
+    gardenCopy.length = (this.garden.length * 2) + 1;
+    gardenCopy.width = (this.garden.width * 2) + 1;
     this._gardenService.modifyGarden2(gardenCopy)
       .subscribe(data => {
         this.openDialog();
@@ -63,16 +62,14 @@ export class DialogNewgarden1Component implements OnInit {
         });
   }
 
-
   onCloseConfirm() {
     this.saveGarden();
-    
-
   }
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden2Component, {
-      width: '45em', disableClose: true, data: {}});
+      width: '45em', disableClose: true, data: {}
+    });
   }
 
   ngOnInit() {
