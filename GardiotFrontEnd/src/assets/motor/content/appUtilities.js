@@ -244,6 +244,7 @@ async function rotarSol() {
 
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
+ * @param i Iterador recursivo
  */
 function demoSol(i) {
   setTimeout(function () {

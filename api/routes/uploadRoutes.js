@@ -4,10 +4,7 @@ var express = require('express');
 var router = express.Router();
 //require multer for the file uploads
 var multer = require('multer');
-
 var crypto = require('crypto');
-
-var mime = require('mime');
 
 //Storage para las fotos de perfil
 var storage1 = multer.diskStorage({
@@ -47,7 +44,7 @@ router.post('/uploadAvatar', function (req, res, next) {
      upload1(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          return res.status(422).send(err)
+          return res.status(422).send(err);
         }
 
        // No error occured.
@@ -61,7 +58,7 @@ router.post('/uploadPlant', function (req, res, next) {
      upload2(req, res, function (err) {
         if (err) {
           // An error occurred when uploading
-          return res.status(422).send(err)
+          return res.status(422).send(err);
         }
        // No error occured.
         path = req.file.path;
