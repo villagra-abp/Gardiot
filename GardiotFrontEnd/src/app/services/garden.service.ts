@@ -17,9 +17,9 @@ export class GardenService {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.apiURL = "https://gardiot.ovh/api/";
     }
-    else{
-			this.apiURL = "http://192.168.100.3:3000/api/";
-		  }
+    else {
+      this.apiURL = "http://192.168.100.3:3000/api/";
+    }
   }
 
   details() {
@@ -33,7 +33,7 @@ export class GardenService {
       })
   }
 
-  getGardens(){
+  getGardens() {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
@@ -136,9 +136,6 @@ export class GardenService {
     if (garden.longitude !== undefined) {
       body += `&longitude=${garden.longitude}`;
     }
-    if (garden.soil !== undefined) {
-      //body += `&soil=${garden.soil}`;
-    }
     if (garden.countryCode !== undefined) {
       body += `&countryCode=${garden.countryCode}`;
     }
@@ -159,7 +156,7 @@ export class GardenService {
 
 
   modifyGarden2(garden: Garden) {
-    
+
     let body = `id=${garden.id}&title=${garden.title}&width=${garden.width}&length=${garden.length}&latitude=${garden.latitude}`;
     body += `&longitude=${garden.longitude}&countryCode=${garden.countryCode}&city=${garden.city}`;
     let headers = new Headers({

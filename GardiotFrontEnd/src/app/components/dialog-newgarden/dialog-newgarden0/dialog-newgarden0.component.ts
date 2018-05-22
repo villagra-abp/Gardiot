@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from "@angular/router";
@@ -43,16 +43,17 @@ export class DialogNewgarden0Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
-      width: '45em', disableClose: true, data: {}});
+      width: '45em', disableClose: true, data: {}
+    });
   }
 
   saveGarden(next) {
     this._gardenService.insertGarden(this.garden)
       .subscribe(data => {
-        if(next == 1){
+        if (next == 1) {
           this.openDialog();
           this.thisDialogRef.close('Empezar');
-        }else{
+        } else {
           this.thisDialogRef.close('Empezar');
           this._route.navigate(['detail']);
         }
@@ -64,8 +65,8 @@ export class DialogNewgarden0Component implements OnInit {
   }
 
   ngOnInit() {
-      this.garden.width=2;
-      this.garden.length=2;
+    this.garden.width = 2;
+    this.garden.length = 2;
   }
 
 }

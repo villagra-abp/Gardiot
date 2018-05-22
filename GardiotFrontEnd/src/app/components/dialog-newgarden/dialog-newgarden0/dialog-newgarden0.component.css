@@ -1,35 +1,37 @@
-div{
-    width: 100%;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.1);
-    padding: 1em;
-    text-align: center;
+div {
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1em;
+  text-align: center;
 }
 
-mat-dialog-actions{
-padding: 2.5px;
+mat-dialog-actions {
+  padding: 2.5px;
 }
-button{
-margin: auto;
+
+button {
+  margin: auto;
 }
-img{
+
+img {
   width: 100%;
 }
-.omitir{
+
+.omitir {
   color: green;
   margin-left: 90%;
-  cursor : pointer;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 600px){
-  div{
+@media only screen and (max-width: 600px) {
+  div {
     padding: 0.5em;
   }
-  a, button, p{
+  a, button, p {
     font-size: 10px;
   }
-  h4{
+  h4 {
     font-size: 15px;
   }
-
 }

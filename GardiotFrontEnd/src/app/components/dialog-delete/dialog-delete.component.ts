@@ -38,9 +38,9 @@ export class DialogDeleteComponent implements OnInit {
           window.location.reload();
           this.thisDialogRef.close('Confirm');
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     }
     if (this.data.typeObject == 2) {
       this._treatmentService.deleteTrearment(this.data.idObject)
@@ -48,9 +48,9 @@ export class DialogDeleteComponent implements OnInit {
           window.location.reload();
           this.thisDialogRef.close('Confirm');
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     }
     if (this.data.typeObject == 3) {
       this._feedService.deleteFeed(this.data.idObject)
@@ -58,9 +58,9 @@ export class DialogDeleteComponent implements OnInit {
           window.location.reload();
           this.thisDialogRef.close('Confirm');
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     }
 
     if (this.data.typeObject == 4) {
@@ -69,9 +69,9 @@ export class DialogDeleteComponent implements OnInit {
           window.location.reload();
           this.thisDialogRef.close('Confirm');
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     }
 
     if (this.data.typeObject == 5) {
@@ -80,11 +80,10 @@ export class DialogDeleteComponent implements OnInit {
           window.location.reload();
           this.thisDialogRef.close('Confirm');
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     }
-
   }
 
   ngOnInit() {

@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class NewuserComponent implements OnInit {
 
-  user = new User();
+  public user = new User();
   constructor(public _newUserServce: UserService,
     public _appComponent: AppComponent) { }
 

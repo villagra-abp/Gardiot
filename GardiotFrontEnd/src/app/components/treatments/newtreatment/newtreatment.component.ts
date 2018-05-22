@@ -10,7 +10,7 @@ import { Treatment } from "../../../classes/treatment.class";
 })
 export class NewtreatmentComponent implements OnInit {
 
-  treatment = new Treatment();
+  public treatment = new Treatment();
   public treatments: any[] = [];
 
   constructor(

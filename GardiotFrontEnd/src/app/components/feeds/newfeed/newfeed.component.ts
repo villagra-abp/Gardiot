@@ -11,7 +11,7 @@ import { Feed } from "../../../classes/feed.class";
 })
 export class NewfeedComponent implements OnInit {
 
-  feed = new Feed();
+  public feed = new Feed();
   public feeds: any[] = [];
 
   constructor(
@@ -24,10 +24,10 @@ export class NewfeedComponent implements OnInit {
       .subscribe(data => {
         this._appComponent.mensajeEmergente("El consejo se ha guardado", "primary", "admin/feeds?pag=1");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   ngOnInit() {

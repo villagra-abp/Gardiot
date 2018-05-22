@@ -12,14 +12,12 @@
       </label>
 
       <button [disabled]="!forma.valid" type="submit"><img src="./assets/buttons/register.png" alt="Registrarse"></button>
-
       <a href="{{this._userService.apiURL}}auth/google"><img src="./assets/buttons/logingoogle.png" alt="Acceder con Google"></a>
       <a href="{{this._userService.apiURL}}auth/facebook"><img src="./assets/buttons/loginfacebook.png" alt="Acceder con Facebook"></a>
       <p class="message">¿Ya tienes cuenta? <a href="#" [routerLink]="['/login']">Iniciar sesión</a></p>
     </form>
   </div>
 </div>
-
 <div class="fondo">
 </div>
 <div class="fondofinal">
