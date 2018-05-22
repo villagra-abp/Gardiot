@@ -416,7 +416,6 @@ function hammertime() {
           currentScale = Math.round(e.scale);
           break;
         case 'rotate':
-        e.stopPropagation();
         let pos = motor.getPosCamaraActiva();
 
 
@@ -457,6 +456,7 @@ function hammertime() {
 
           break;
         case 'pan':
+        
           if (!dragging) {
             motor.moverCamara("dynamicCamera", (originDeltaX - e.deltaX) / 100, 0, (originDeltaY - e.deltaY) / 100);
             originDeltaX = e.deltaX;
@@ -506,7 +506,6 @@ function hammertime() {
                 else {
                   motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                 }
-                break;
 
               }
             }

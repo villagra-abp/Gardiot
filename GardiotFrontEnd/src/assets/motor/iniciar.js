@@ -34,7 +34,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.lightProjectionMatrix = [];//matriz proyección de la luz (paralela)
   let anchura = 12;
   mat4.ortho(lightProjectionMatrix, -anchura, anchura, -anchura, anchura, 0.1, 150);
-  window.velocidadOrbital=1;
+  window.velocidadOrbital = 1;
 
   window.viewMatrix = [];//matriz view
   window.lightTransformations = []; //Light transformations
@@ -43,32 +43,32 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.glProgram = [];
 
 
-  window.mobile=typeof window.orientation != 'undefined';
+  window.mobile = typeof window.orientation != 'undefined';
   //program 0 = cartoon
   //program 1 = estandar
   //program 2 = shadows
-  mobile?window.program=3:window.program=1;
+  mobile ? window.program = 3 : window.program = 1;
 
-  
+
 
   window.shadowFramebuffer = [];
   window.shadowDepthTexture = [];
   window.renderBuffer = [];
-  window.shadowDepthTextureSize = 4096; 
+  window.shadowDepthTextureSize = 4096;
   window.index = 0; //Indice de texturas
-  window.gestor = new TGestorRecursos(); 
+  window.gestor = new TGestorRecursos();
 
   iniciamosWebGL('myCanvas');
 
   cargarShaders(['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs', 'shaderMobile.vs'],
-                ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs', 'shaderMobile.fs']);
-  if(!mobile){
-    for(let i=0; i<7; i++){
+    ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs', 'shaderMobile.fs']);
+  if (!mobile) {
+    for (let i = 0; i < 7; i++) {
       initFramebufferSombras(i);
     }
   }
-  
-  
+
+
   setupWebGL();
   window.motor = new TMotor(gestor);
 
@@ -96,7 +96,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
-    let altura = Math.min(camHeight/2, camHeight);
+    let altura = Math.min(camHeight / 2, camHeight);
     //motor.rotarCamara("dynamicCamera", -rotationCamX, "x");
     motor.moverCamaraA("dynamicCamera", 0, altura, altura * 2);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
