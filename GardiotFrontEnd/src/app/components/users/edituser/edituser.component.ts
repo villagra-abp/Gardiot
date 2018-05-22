@@ -18,16 +18,16 @@ declare var $: any;
   styleUrls: ['./edituser.component.css']
 })
 export class EdituserComponent implements OnInit {
-  user = new User("");
-  countries: any[] = [];
-  cities: any[] = [];
-  zip: string = "";
-  countryData: Observable<Array<Select2OptionData>>;
-  startCountry: Observable<string>;
-  cityData: Observable<Array<Select2OptionData>>;
-  startCity: Observable<string>;
-  uploader: FileUploader;
-  oldId: String;
+  public user = new User("");
+  public countries: any[] = [];
+  public cities: any[] = [];
+  public zip: string = "";
+  public countryData: Observable<Array<Select2OptionData>>;
+  public startCountry: Observable<string>;
+  public cityData: Observable<Array<Select2OptionData>>;
+  public startCity: Observable<string>;
+  public uploader: FileUploader;
+  public oldId: String;
   public users: any[] = [];
 
   constructor(
@@ -73,12 +73,11 @@ export class EdituserComponent implements OnInit {
         this.listarPaises();
         this.mostrarCiudad();
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        //  this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+        });
   }
   listarPaises() {
     this._editUserService.listCoutries()
@@ -97,9 +96,9 @@ export class EdituserComponent implements OnInit {
           obs.complete();
         }).delay(1000);
       },
-      error => {
-        console.log(error);
-      });
+        error => {
+          console.log(error);
+        });
   }
 
   mostrarCiudad() {
@@ -158,18 +157,17 @@ export class EdituserComponent implements OnInit {
           }
           input.value = '';
         },
-        error => {
-          console.log(error);
-        });
+          error => {
+            console.log(error);
+          });
     }
   }
-resetpass(email: String){
-  this._editUserService.resetPassword(email).subscribe(data => {
+  resetpass(email: String) {
+    this._editUserService.resetPassword(email).subscribe(data => {
       this._appComponent.mensajeEmergente(data.Mensaje, "primary", "/admin/users?pag=1");
     })
-}
+  }
   ngOnInit() {
     this.getID();
   }
-
 }

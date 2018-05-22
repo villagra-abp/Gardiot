@@ -16,7 +16,7 @@ export class TreatmentPlantService {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.apiURL = "https://gardiot.ovh/api/";
     }
-    else{
+    else {
       this.apiURL = "http://192.168.100.3:3000/api/";
     }
   }
@@ -36,7 +36,6 @@ export class TreatmentPlantService {
   }
 
   saveproduct(treatment: number, product: number, idPlant: number) {
-
     let body = `plant=${idPlant}&treatment=${treatment}&product=${product}`;
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`,
@@ -62,7 +61,6 @@ export class TreatmentPlantService {
   detailsTreatment(numplant: number) {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`,
-      // 'Content-Type':'application/x-www-form-urlencoded'
     });
     return this.http.get(this.apiURL + "treatmentPlant/" + numplant + "/100/1/ASC", { headers })
       .map(res => {

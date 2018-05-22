@@ -15,7 +15,7 @@ import { Select2OptionData } from 'ng2-select2';
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
-    styleUrls: ['./library.component.css']
+  styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
 
@@ -46,9 +46,9 @@ export class LibraryComponent implements OnInit {
             this.plants.push(data[key$]);
           }
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     } else {
       this.searchcontent(this.paginaActual, this.elementosPorPagina);
     }
@@ -67,18 +67,18 @@ export class LibraryComponent implements OnInit {
           for (let key$ in data) {
             this.plants.push(data[key$]);
           }
-        }else{
+        } else {
           this.plants = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
-  clear(){
+  clear() {
     this.plant = new Plant();
   }
 
@@ -89,9 +89,9 @@ export class LibraryComponent implements OnInit {
       .subscribe(data => {
         this.ActualizarPagina();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   getitems() {
@@ -102,12 +102,12 @@ export class LibraryComponent implements OnInit {
         }
         this.mostrar();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
-  getFamilies(){
+  getFamilies() {
     this._plantService.detailsAllFamilies()
       .subscribe(data => {
         let aux = [];
@@ -126,9 +126,9 @@ export class LibraryComponent implements OnInit {
 
 
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   saveFamily(e) {

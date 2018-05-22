@@ -2,60 +2,55 @@
   <div class="container main-container">
     <div class="row">
       <div class="col-sm datos">
-        <form  (ngSubmit)="edit()" #forma="ngForm" novalidate="">
-            <div >
-              <div class="form-group">
-                <label  for="name_user">Nombre</label>
-                <input class="form-control col-md-6" type="text" [(ngModel)]="user.name" name="name" id="name_user" required>
-              </div>
-              <div class="form-group">
-                <label  for="lastname_user">Apellidos</label>
-                <input class="form-control col-md-6" type="text" [(ngModel)]="user.lastName" name="lastName" id="lastname_user">
-              </div>
-              <div class="form-group">
-                <label  for="name_user">Email</label>
-                <label for="name_user">{{this.user.id}}</label>
-              </div>
-
-              <div class="form-group">
-                <label  for="birthday_user">Fecha de nacimiento</label>
-                <input class="form-control col-md-6" type="date" [(ngModel)]="user.birthDate" name="birthDate" id="birthday_user">
-              </div>
-
-              <div class="form-group" ng-init="listarPaises()">
-                <label for="countries">País:</label>
-
-                  <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
-                  </select2>
-
-                 </div>
-              <div class="form-group">
-                  <label for="countries">Introduce tu código postal</label>
-                  <input class="form-control col-md-6" type="text" id="zipCode" (valueChanged)="this.saveCity($event)"/>
-              </div>
-
-              <div class="form-group">
-                  <label for="countries">Ciudad</label>
-                  <span id="ciudad"></span>
-              </div>
+        <form (ngSubmit)="edit()" #forma="ngForm" novalidate="">
+          <div>
+            <div class="form-group">
+              <label for="name_user">Nombre</label>
+              <input class="form-control col-md-6" type="text" [(ngModel)]="user.name" name="name" id="name_user" required>
             </div>
-            <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
-            <button [routerLink]="['/profile']" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
-          </form>
+            <div class="form-group">
+              <label for="lastname_user">Apellidos</label>
+              <input class="form-control col-md-6" type="text" [(ngModel)]="user.lastName" name="lastName" id="lastname_user">
+            </div>
+            <div class="form-group">
+              <label for="name_user">Email</label>
+              <label for="name_user">{{this.user.id}}</label>
+            </div>
+            <div class="form-group">
+              <label for="birthday_user">Fecha de nacimiento</label>
+              <input class="form-control col-md-6" type="date" [(ngModel)]="user.birthDate" name="birthDate" id="birthday_user">
+            </div>
+            <div class="form-group" ng-init="listarPaises()">
+              <label for="countries">País:</label>
+              <select2 id="pais" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+              </select2>
+            </div>
+            <div class="form-group">
+              <label for="countries">Introduce tu código postal</label>
+              <input class="form-control col-md-6" type="text" id="zipCode" (valueChanged)="this.saveCity($event)" />
+            </div>
+            <div class="form-group">
+              <label for="countries">Ciudad</label>
+              <span id="ciudad"></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+          <button [routerLink]="['/profile']" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
+        </form>
       </div>
       <div class="col-sm">
         <div class="contra">
           <div class="form-group">
             <label for="oldPassword_user">Introduce tu contraseña actual</label>
-            <input class="form-control col-md-6" [(ngModel)]="user.oldPassword" type="password" name="oldPassword" id="oldPassword_user" >
+            <input class="form-control col-md-6" [(ngModel)]="user.oldPassword" type="password" name="oldPassword" id="oldPassword_user">
           </div>
           <div class="form-group">
             <label for="password_user">Introduce tu nueva contraseña</label>
-            <input class="form-control col-md-6" [(ngModel)]="user.password" type="password" name="password" id="password_user" >
+            <input class="form-control col-md-6" [(ngModel)]="user.password" type="password" name="password" id="password_user">
           </div>
           <div class="form-group">
             <label for="password2_user">Repite tu contraseña</label>
-            <input class="form-control col-md-6" [(ngModel)]="user.password2" type="password" name="password2" id="password2_user" >
+            <input class="form-control col-md-6" [(ngModel)]="user.password2" type="password" name="password2" id="password2_user">
           </div>
         </div>
       </div>

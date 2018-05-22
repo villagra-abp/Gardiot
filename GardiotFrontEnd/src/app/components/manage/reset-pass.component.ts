@@ -12,31 +12,31 @@ export class ResetPassComponent implements OnInit {
 
   public semaforo;
   public correo;
-  public apiURL:string="https://gardiot.ovh/api/";
+  public apiURL: string = "https://gardiot.ovh/api/";
   constructor(
-    public _appComponent:AppComponent,
-    public _resetPassword:UserService,
+    public _appComponent: AppComponent,
+    public _resetPassword: UserService,
 
-  ) {}
+  ) { }
 
   resetPass(f: NgForm) {
-      var valor = f.value;
-      var email:String = valor.first;
-      // comprobar que el formulario no este vacio
-      if (valor.first != "") {
+    var valor = f.value;
+    var email: String = valor.first;
+    // comprobar que el formulario no este vacio
+    if (valor.first != "") {
       // LLAMADA A LA API
-        this._resetPassword.resetPassword(email)
-          .subscribe(data=>{
-            this._appComponent.mensajeEmergente(data.Mensaje, "primary", "login/");
+      this._resetPassword.resetPassword(email)
+        .subscribe(data => {
+          this._appComponent.mensajeEmergente(data.Mensaje, "primary", "login/");
         },
-        error => {
-          let v = JSON.parse(error._body);
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        });
-        }else{
-          this._appComponent.mensajeEmergente("Introduce un email.", "danger", "");
-      }
+          error => {
+            let v = JSON.parse(error._body);
+            this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+          });
+    } else {
+      this._appComponent.mensajeEmergente("Introduce un email.", "danger", "");
     }
+  }
 
   ngOnInit() {
 

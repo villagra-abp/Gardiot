@@ -1,41 +1,44 @@
-.galeria{
+.galeria {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.card{
+.card {
   width: 10em !important;
   background-color: #343a40;
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  margin:1.5em;
-  overflow:hidden;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 1.5em;
+  overflow: hidden;
   color: #fff;
   cursor: default;
 }
+
 .card-body {
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
-.buttonAdmin{
-  margin-top:1em;
+
+.buttonAdmin {
+  margin-top: 1em;
   margin-left: 0.4em;
   margin-right: 0.4em;
   padding-left: 0.2em;
   padding-right: 0.2em;
 }
 
-.search{
+.search {
   border: none;
 }
-p{
+
+p {
   text-align: center;
   font-size: 10px;
 }
 
-.iconplant{
+.iconplant {
   max-width: 15px;
   max-height: 15px;
   border: 1px;
@@ -43,141 +46,153 @@ p{
   margin-right: 0.2em;
 }
 
-.iconbutton{
+.iconbutton {
   border: none;
 }
 
-
-
 /* efecto de imagen */
+
 .view {
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    box-shadow: 1px 1px 9px #f3f3f3;
-    cursor: default;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  box-shadow: 1px 1px 9px #f3f3f3;
+  cursor: default;
 }
 
-.mask{
-      cursor:pointer;
+.mask {
+  cursor: pointer;
 }
+
 .view .mask, .view .content {
-    width: 160px;
-    height: 200px;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0
+  width: 160px;
+  height: 200px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0
 }
+
 .view img {
-    display: block;
-    position: relative;
+  display: block;
+  position: relative;
 }
+
 .view h2 {
-    text-transform: uppercase;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    font-size: 12px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    margin: 20px 0 0 0
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  margin: 20px 0 0 0
 }
+
 .view p {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 10px;
-    position: relative;
-    color: #fff;
-    padding: 10px 20px 20px;
-    text-align: center
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 10px;
+  position: relative;
+  color: #fff;
+  padding: 10px 20px 20px;
+  text-align: center
 }
+
 .view a.info {
-    display: inline-block;
-    text-decoration: none;
-    padding: 3px 7px;
-    background: #000;
-    color: #fff;
-    text-transform: uppercase;
-    box-shadow: 0 0 1px #000
+  display: inline-block;
+  text-decoration: none;
+  padding: 3px 7px;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 0 1px #000
 }
 
 .view-first img {
-    transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
+
 .view-first .mask {
-    opacity: 0;
-    background-color: rgba(255,178,0, 0.7);
-    transition: all 0.4s ease-in-out;
-}
-.view-first h2 {
-    transform: translateY(-100px);
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-}
-.view-first p {
-    transform: translateY(100px);
-    opacity: 0;
-	transition: all 0.2s linear;
-}
-.view-first a.info{
   opacity: 0;
-	transition: all 0.2s ease-in-out;
+  background-color: rgba(255, 178, 0, 0.7);
+  transition: all 0.4s ease-in-out;
 }
+
+.view-first h2 {
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.view-first p {
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+
+.view-first a.info {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
 .view a.info:hover {
-    box-shadow: 0 0 5px #000
+  box-shadow: 0 0 5px #000
 }
 
 .view-first:hover img {
-	transform: scale(1.1);
+  transform: scale(1.1);
 }
+
 .view-first:hover .mask {
-	opacity: 1;
+  opacity: 1;
 }
+
 .view-first:hover h2, .view-first:hover p, .view-first:hover a.info {
-    opacity: 1;
-    transform: translateY(0px);
+  opacity: 1;
+  transform: translateY(0px);
 }
+
 .view-first:hover p {
-    transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
+
 .view-first:hover a.info {
-    transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 /* Para los buscadores */
+
 .select2 .select2-container .select2-container--default .select2-container--focus {
   width: 100% !important;
 }
 
+.search {
+  border: none;
+}
 
-/* Julián Sánchez García.
-Ingeniería Multimedia UA 2018 */
-.search{
- border: none;
-}
-div,article,section, option, select{
-  /* border: 1px solid green; */
-}
-input,label,option,select{
+input, label, option, select {
   font-size: .9em;
   padding: 0;
   margin: 0;
   width: 100%;
 }
-select{
+
+select {
   width: 100%;
 }
-th{
+
+th {
   font-size: .9em;
   font-weight: bold;
 }
 
-td{
+td {
   font-size: .8em;
   font-style: italic;
 }
-form{
+
+form {
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
@@ -185,7 +200,7 @@ form{
   margin-bottom: 1%;
 }
 
-.resultado{
+.resultado {
   margin-top: 5%;
   font-style: italic;
   font-size: 1.2em;

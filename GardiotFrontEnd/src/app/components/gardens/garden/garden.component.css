@@ -1,24 +1,28 @@
-.title{
+.title {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
-.title>button{
+
+.title>button {
   height: 40px;
 }
-.herramienta{
+
+.herramienta {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   padding: 0;
 }
-.herramienta>canvas{
+
+.herramienta>canvas {
   width: 100%;
   height: 100%;
 }
-.cursorPaginas{
+
+.cursorPaginas {
   display: flex;
   text-align: center;
   margin-left: auto;
@@ -26,102 +30,87 @@
   z-index: 40;
 }
 
-
-.interactiveButton{
+.interactiveButton {
   cursor: pointer;
 }
 
-.tiempo{
-  color:#000;
+.tiempo {
+  color: #000;
   padding: 1em;
 }
-.headTiempo{
+
+.headTiempo {
   padding: 0.3em;
   text-align: center;
   color: #fff;
   font-size: 10px;
 }
-.today{
+
+.today {
   min-height: 80px;
   position: relative;
   padding-left: 0.5em;
   border-radius: 25px;
   margin-top: 1em;
-
 }
-.today>img{
-  position:absolute;
+
+.today>img {
+  position: absolute;
   top: 1em;
   right: 1em;
   width: 35px;
   margin-left: 1em;
 }
-.today>p{
+
+.today>p {
   margin: 0;
 }
-.today>span{
-  color: #3e3e3e;
 
+.today>span {
+  color: #3e3e3e;
 }
 
-.tarjetaHoy{
-  margin-top : 2em;
+.tarjetaHoy {
+  margin-top: 2em;
   padding: 1em;
   max-width: 200px;
-  background-color:#63dd63;
+  background-color: #63dd63;
 }
 
-.hoy{
-  font-size : 2em;
-
+.hoy {
+  font-size: 2em;
 }
 
-
-.casilla{
-  padding-top:.5em;
-  padding-bottom:.5em;
+.casilla {
+  padding-top: .5em;
+  padding-bottom: .5em;
   max-width: 100px;
   margin-left: .3em;
-  margin-right:.3em;
+  margin-right: .3em;
   text-align: center;
 }
-/*.casilla:nth-child(even){
-  background-color:#63dd63;
-}
-.casilla:nth-child(odd){
-  background:#fcfcfc;
-}*/
 
-.maxima{
+.maxima {
   color: #3e3e3e;
-  font-size : 2em;
+  font-size: 2em;
   font-weight: bold;
 }
-.minima{
-  font-size : 0.8em;
+
+.minima {
+  font-size: 0.8em;
   color: #3e3e3e;
 }
 
-
-
-label{
+label {
   margin-bottom: 0;
   margin-top: 10px;
 }
 
-h1, h2{
+h1, h2 {
   text-align: center;
 }
 
-
-.toggleDeko{
-  /*background: url('../../../../assets/images/icon/buttons.png');*/
-  /*background: url('https://gardiot.ovh/app/assets/images/icon/buttons.png');*/
-}
-
-
-
-#del{
+#del {
   position: absolute;
   bottom: 60px;
   right: 121px;
@@ -129,26 +118,26 @@ h1, h2{
   height: 60px;
   border-radius: 35px;
   background-color: rgb(226, 0, 26) !important;
-
 }
-#del>img{
+
+#del>img {
   width: 45px;
   height: 45px;
 }
 
-
-.red{
+.red {
   background-color: rgb(226, 0, 26);
 }
-.orange{
+
+.orange {
   background-color: #ef7f00;
 }
-.yellow{
-  background-color: #0036ff;
 
+.yellow {
+  background-color: #0036ff;
 }
 
-.toggleDeko.litButton.red{
+.toggleDeko.litButton.red {
   position: absolute;
   bottom: 50px;
   right: 110px;
@@ -156,19 +145,21 @@ h1, h2{
   height: 50px;
   border-radius: 25px;
   z-index: 30;
-
 }
+
 /*end buttons*/
 
 /*Additional buttons*/
 
-body{
+body {
   padding: 0 !important;
 }
-.borrar{
+
+.borrar {
   margin-top: 1em;
 }
-.canvasEvolver{
+
+.canvasEvolver {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -177,27 +168,27 @@ body{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  z-index:0;
+  z-index: 0;
 }
-canvas{
-margin: 0;
-padding: 0;
-width: 100% !important;
-height: 100% !important;
 
+canvas {
+  margin: 0;
+  padding: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
-button{
+
+button {
   min-height: 40px;
 }
 
-
-.selectPlantas{
+.selectPlantas {
   position: absolute;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  max-height:100%;
+  max-height: 100%;
   overflow-y: auto;
   top: 61px;
   left: 0;
@@ -205,295 +196,245 @@ button{
   width: 150px;
   padding: 10px;
   background-color: #fff;
-  z-index:1;
+  z-index: 1;
 }
 
- .selectPlantas>article{
-   min-width: 110px;
-   min-height: 200px;
-   margin-top: 5px;
- }
+.selectPlantas>article {
+  min-width: 110px;
+  min-height: 200px;
+  margin-top: 5px;
+}
 
- .selectPlantas>article>.imgPlant{
-   width: 100%;
-   height: 180px;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: contain;
-   border: 2px solid #000;
-   cursor: pointer;
- }
+.selectPlantas>article>.imgPlant {
+  width: 100%;
+  height: 180px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 2px solid #000;
+  cursor: pointer;
+}
 
-
-
- .boton-container{
+.boton-container {
   position: absolute;
   width: 150px;
-  text-align:center;
+  text-align: center;
   padding: 5px;
   background-color: #fff;
   z-index: 2;
- }
+}
 
+.btn {
+  float: right;
+}
 
-  .btn{
-    float: right;
-  }
-
-  .loadingComponent{
-    position: absolute;
-
-    left:0; 
-    right: 0; 
-    top: 0;
-    bottom: 0;
-    margin: auto; 
-  
-    width: 200px; /* Need a specific value to work */
-    height: 160px;
-  }
-
-
-/* fin Mariano */
+.loadingComponent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 200px;
+  height: 160px;
+}
 
 @media (min-width: 600px) {
-/*buttons*/
-.litButtons{
-  position: absolute;
-  top: 60px;
-  right: 0;
-  bottom: 0;
-  background: #309191 !important;
-  transform: translateX(240px);
-  z-index:33;
+  /*buttons*/
+  .litButtons {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    bottom: 0;
+    background: #309191 !important;
+    transform: translateX(240px);
+    z-index: 33;
   }
-  .litButton{
-  
+  .litButton {
     width: 300px;
     height: 60px;
     padding: 10px;
-    margin:0;
+    margin: 0;
     background-position: center;
     background-repeat: no-repeat;
     color: #fff;
-    cursor:pointer;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
     background: #309191;
     transition: .2s ease-in all;
-    z-index:22;
+    z-index: 22;
   }
-  .litButton.desplegable:hover{
+  .litButton.desplegable:hover {
     transform: translateX(-240px);
   }
-  .litButton.desplegable.selected{
+  .litButton.desplegable.selected {
     transform: translateX(-240px);
   }
-  .litButton>img{
+  .litButton>img {
     width: 40px;
     height: 40px;
-  
   }
-  .litButton>i{
+  .litButton>i {
     color: #fff;
     width: 40px;
     height: 40px;
     margin-left: 8px;
     margin-top: 7px;
-  
   }
-  .litButton>span{
+  .litButton>span {
     margin-left: 10px;
   }
-
-  
-#prevision>span:last-of-type{
-  display: none !important;
+  #prevision>span:last-of-type {
+    display: none !important;
+  }
+  #prevision {
+    position: absolute;
+    background: rgba(48, 145, 145, 0.7);
+    top: 120px;
+    right: 60px;
+    min-width: 240px;
+    max-width: 240px;
+    border-bottom-left-radius: 15px;
+    color: #fff;
+    transition: .2s ease-in all;
+    z-index: 1;
+  }
+  #prevision>i {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
+    font-size: 2em;
+    z-index: 30;
+    transition: .3 ease-in all;
+  }
+  .previsionClosed {
+    right: -240px !important;
+  }
+  .previsionClosed>span:last-of-type {
+    position: absolute;
+    left: 250px !important;
+    display: inline-block !important;
+  }
+  .formulario {
+    position: absolute;
+    background: rgba(48, 145, 145, 0.7);
+    top: 180px;
+    right: 60px;
+    min-width: 240px;
+    max-width: 240px;
+    border-bottom-left-radius: 15px;
+    color: #fff;
+    transition: .2s ease-in all;
+    z-index: 20;
+    padding: 0 1.6em 0.9em 1.6em;
+    min-width: 240px;
+    max-width: 240px;
+    border-bottom-left-radius: 15px;
+  }
+  .infoOcult {
+    right: -240px;
+  }
+  .formulario>i {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    cursor: pointer;
+    color: #fff;
+  }
+  .mobile {
+    display: none;
+  }
+  .plantsMenu {
+    position: absolute;
+    background: rgb(48, 145, 145);
+    top: 60px;
+    bottom: 0px;
+    padding: 1em .5em 0 .5em;
+    color: #fff;
+    max-width: 350px;
+    min-width: 150px;
+    width: 200px;
+    resize: horizontal;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+  }
+  .plantsMenu>form {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .plantsMenu>form>input {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+  }
+  .plantsMenu>form>button {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-content: center;
+  }
+  .plantsMenu>section {
+    flex-grow: 2;
+    margin-top: 1em;
+    height: 70%;
+  }
+  .plantsMenu>section>ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  .plantsMenu>section>ul>li {
+    display: inline-block;
+    width: 46%;
+    margin: 2%;
+    height: 140px;
+  }
+  .plantsMenu>section>ul>li:hover>div {
+    transform: scale(1.1);
+  }
+  .plantsMenu>section>ul>li>div {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    margin-bottom: 5px;
+    border: 1px solid #fff;
+    text-align: justify !important;
+    overflow: hidden;
+    transition: .2s all;
+    cursor: pointer;
+  }
+  .plantsMenu>section>ul>li>div>img {
+    width: 100%;
+    position: absolute;
+    text-align: initial;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .plantsMenu>section>ul>li {
+    text-align: center;
+  }
+  .plantsMenu>div {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
 }
-
-#prevision{
-  position: absolute;
-  background:rgba(48, 145, 145, 0.7);
-  top: 120px;
-  right: 60px;
-  min-width: 240px;
-  max-width: 240px;
-  border-bottom-left-radius: 15px;
-  color: #fff;
-  transition: .2s ease-in all;
-  z-index:1;
-}
-
-
-#prevision>i{
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  cursor: pointer;
-  font-size: 2em;
-  z-index: 30;
-
-  transition: .3 ease-in all;
-}
-
-.previsionClosed{
-  right: -240px !important;
-}
-.previsionClosed>span:last-of-type{
-  position: absolute;
-  left: 250px !important;
-  display: inline-block !important;
-}
-
-
-
-.formulario{
-
-  position: absolute;
-background:rgba(48, 145, 145, 0.7);
-top: 180px;
-right: 60px;
-min-width: 240px;
-max-width: 240px;
-border-bottom-left-radius: 15px;
-color: #fff;
-transition: .2s ease-in all;
-
-
-z-index: 20;
-padding: 0 1.6em 0.9em 1.6em;
-
-min-width: 240px;
-max-width: 240px;
-
-
-border-bottom-left-radius: 15px;
-
-}
-
-.infoOcult{
-right: -240px;
-}
-
-.formulario>i{
-
-position: absolute;
-top: -30px;
-right: 0;
-cursor: pointer;
-color: #fff;
-}
-
-.mobile{
-  display: none;
-}
-
-
-.plantsMenu{
-  position: absolute;
-  background: rgb(48, 145, 145);
-  top: 60px;
-  bottom: 0px;
-  padding: 1em .5em 0 .5em;
-  color:#fff;
-  max-width: 350px;
-  min-width: 150px;
-  width: 200px;
-  resize: horizontal;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-}
-.plantsMenu>form{
-  position: relative;
- width: 100%;
- display: flex;
- flex-direction: column;
-}
-   .plantsMenu>form>input{
-     width: 100%;
-     height: 40px;
-     margin: 0;
-   }
-   .plantsMenu>form>button{
-     width: 100%;
-     height: 30px;
-     display: flex;
-     align-content: center;
-   }
- .plantsMenu>section{
-   flex-grow: 2;
-   margin-top: 1em;
-   height: 70%;
- }
-
- .plantsMenu>section>ul{
-   position: relative;
-   width: 100%;
-   height: 100%;
-   padding: 0;
-   
-   list-style-type: none;
-   margin-bottom: 1em;
-   margin-top: 1em;
-
- }
- .plantsMenu>section>ul>li{
-   display: inline-block;
-   width: 46%;
-   margin: 2%;
-   height: 140px;
-
- }
- .plantsMenu>section>ul>li:hover>div{
-   transform: scale(1.1);
-
- }
-
-
- .plantsMenu>section>ul>li>div{
-   position: relative;
-   width: 100%;
-   height: 80px;
-   background-color: #fff;
-   margin-bottom: 5px;
-   border: 1px solid #fff;
-
-   text-align: justify !important;
-   overflow: hidden;
-   transition: .2s all;
-   cursor: pointer;
- }
-
- .plantsMenu>section>ul>li>div>img{
-   width: 100%;
-   position: absolute;
-   text-align: initial;
-   margin: 0;
-   top: 50%;
-   transform: translateY(-50%);
- }
- .plantsMenu>section>ul>li{
-   text-align: center;
- }
-
- .plantsMenu>div{
-   position: absolute;
-   bottom: 10px;
-   right: 10px;
- }
-
-}
-
-
-
 
 @media (max-width: 600px) {
-
-  .litButtons{
+  .litButtons {
     position: absolute;
     background: #309191 !important;
     width: 100%;
@@ -506,7 +447,7 @@ color: #fff;
     display: flex;
     flex-direction: row;
   }
-  .litButton{
+  .litButton {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -516,31 +457,27 @@ color: #fff;
     border-radius: 0px;
     width: 25%;
     height: 70px;
-    margin:0;
+    margin: 0;
     text-align: center;
-
   }
-  .litButton:not(:last-of-type){
+  .litButton:not(:last-of-type) {
     border-right: .1em solid #fff;
   }
-  .litButton>img{
+  .litButton>img {
     width: 30px;
     height: 30px;
   }
-  .litButton>span{
+  .litButton>span {
     font-size: 10px;
   }
-
-  .litButton>i:last-of-type{
+  .litButton>i:last-of-type {
     display: none;
   }
-
-  .big{
+  .big {
     display: none;
   }
-
-  #prevision{
-    position:fixed;
+  #prevision {
+    position: fixed;
     background: rgba(0, 0, 0, 0.7);
     top: 61px;
     margin: 10%;
@@ -553,91 +490,73 @@ color: #fff;
     transition: .2s ease-in all;
     z-index: 300;
   }
-
-  #prevision>span:last-of-type{
+  #prevision>span:last-of-type {
     display: none !important;
   }
-
-  #prevision>.tiempo{
+  #prevision>.tiempo {
     display: flex;
     flex-wrap: wrap;
   }
-
-  #prevision>.tiempo>.today{
+  #prevision>.tiempo>.today {
     width: 100%;
     margin-bottom: 10px;
   }
-
-  #prevision>.tiempo>.no{
+  #prevision>.tiempo>.no {
     min-width: 48% !important;
     max-width: 48% !important;
     margin: 1%;
   }
-
-  .minima{
+  .minima {
     display: none;
   }
-
-
-  .previsionClosed{
+  .previsionClosed {
     transform: translateY(1000px);
   }
-
-
-  .interactiveButton{
+  .interactiveButton {
     cursor: pointer;
   }
-
-  .tiempo{
-    color:#000;
-    margin-top : 0;
+  .tiempo {
+    color: #000;
+    margin-top: 0;
     padding: 1em;
-    border-radius:15px;
+    border-radius: 15px;
   }
-  .headTiempo{
+  .headTiempo {
     padding: 0.3em;
     text-align: center;
     color: #fff;
     font-size: 10px;
   }
-  .today{
+  .today {
     min-height: 80px;
     position: relative;
     padding-left: 0.5em;
     border-radius: 18px;
     margin-top: 1em;
-
   }
-  .today>img{
-    position:absolute;
+  .today>img {
+    position: absolute;
     top: 10px;
     right: 10px;
     width: 30px;
-
   }
-  .today>p{
+  .today>p {
     margin: 0;
   }
-  .today>span{
+  .today>span {
     color: #3e3e3e;
-
   }
-
-  .tarjetaHoy{
-    margin-top : 2em;
+  .tarjetaHoy {
+    margin-top: 2em;
     padding: 1em;
     max-width: 200px;
-    background-color:#63dd63;
+    background-color: #63dd63;
   }
-
-  .hoy{
-    font-size : 2em;
-
+  .hoy {
+    font-size: 2em;
   }
-
-  .formulario{
-
-    position:fixed;
+  .formulario {
+    position: fixed;
     background: rgba(0, 0, 0, 0.7);
     top: 61px !important;
     margin: 10%;
@@ -647,146 +566,123 @@ color: #fff;
     overflow-y: scroll;
     padding: 1em;
     border-radius: 10px;
-    /*top: 50%;
-    transform: translateY(-50%);*/
     color: #fff;
     transition: .2s ease-in all;
-    z-index:300;
-   }
-
-   .formulario>div>div>form>div>div:first-of-type{
-     display: none;
-   }
-
-   .mobile{
-     position: absolute;
-     top: 10px;
-     right: 10px;
-     z-index: 50;
-   }
-
-   .infoOcult{
-     transform: translateY(1000px);
-   }
-
-
-   label{
-     margin-bottom: 0;
-     margin-top: 10px;
-   }
-
-   h1, h2{
-     text-align: center;
-   }
-
-   #del{
-     position: absolute;
-     bottom: 71px;
-     right: 131px;
-     width: 50px;
-     height: 50px;
-     border-radius: 25px;
-     background-color: #f00 !important;
-
-   }
-
-
-   
- .plantsMenu{
-  position: fixed;
-  background: rgb(48, 145, 145);
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-
-  color:#fff;
-  box-sizing: border-box;
-  overflow-x: scroll;
-  display: flex;
-  flex-direction: row;
-  z-index: 250 !important;
-}
-.plantsMenu>form{
-  position: fixed;
-  top: 100px;
-  left: 0;
-  width: 79%;
-}
-   .plantsMenu>form>input{
-     width: 100%;
-     height: 40px;
-     margin: 0;
-   }
-   .plantsMenu>form>button{
-     width: 100%;
-     height: 30px;
-     display: flex;
-     align-content: center;
-   }
- .plantsMenu>section{
-  width: 100%;
-  height: 100%;
- }
-
- .plantsMenu>section>ul{
-   position: relative;
-   width:100%;
-   height: 100%;
-   padding: 0;
-   display: flex;
-   list-style-type: none;
-  margin: 0;
-
- }
- .plantsMenu>section>ul>li{
-   width: 25%;
-   height: 100%;
-  padding-bottom: 5px;
-
- }
-
-
- .plantsMenu>section>ul>li>div{
-   position: relative;
-   width: 100%;
-   height: 75px;
-   background-color: #fff;
-  margin: 0;
-   border: 1px solid #fff;
-
-   text-align: justify !important;
-   overflow: hidden;
-   transition: .2s all;
-   cursor: pointer;
- }
-
- .plantsMenu>section>ul>li>div>img{
-   width: 100%;
-   position: absolute;
-   text-align: initial;
-   margin: 0;
-   top: 50%;
-   transform: translateY(-50%);
- }
- .plantsMenu>section>ul>li>span{
-  margin: 0;
-  font-size: 10px;
-}
- .plantsMenu>section>ul>li{
-   text-align: center;
- }
-
- .plantsMenu>div{
-   position: absolute;
-   bottom: 10px;
-   right: 10px;
- }
-
- .plantsMenu>app-pagination{
-   position: fixed;
-   top: 100px;
-   width: 21%;
-   right: 0;
- }
+    z-index: 300;
+  }
+  .formulario>div>div>form>div>div:first-of-type {
+    display: none;
+  }
+  .mobile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 50;
+  }
+  .infoOcult {
+    transform: translateY(1000px);
+  }
+  label {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  #del {
+    position: absolute;
+    bottom: 71px;
+    right: 131px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #f00 !important;
+  }
+  .plantsMenu {
+    position: fixed;
+    background: rgb(48, 145, 145);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    color: #fff;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    z-index: 250 !important;
+  }
+  .plantsMenu>form {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 79%;
+  }
+  .plantsMenu>form>input {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+  }
+  .plantsMenu>form>button {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-content: center;
+  }
+  .plantsMenu>section {
+    width: 100%;
+    height: 100%;
+  }
+  .plantsMenu>section>ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+  }
+  .plantsMenu>section>ul>li {
+    width: 25%;
+    height: 100%;
+    padding-bottom: 5px;
+  }
+  .plantsMenu>section>ul>li>div {
+    position: relative;
+    width: 100%;
+    height: 75px;
+    background-color: #fff;
+    margin: 0;
+    border: 1px solid #fff;
+    text-align: justify !important;
+    overflow: hidden;
+    transition: .2s all;
+    cursor: pointer;
+  }
+  .plantsMenu>section>ul>li>div>img {
+    width: 100%;
+    position: absolute;
+    text-align: initial;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .plantsMenu>section>ul>li>span {
+    margin: 0;
+    font-size: 10px;
+  }
+  .plantsMenu>section>ul>li {
+    text-align: center;
+  }
+  .plantsMenu>div {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  .plantsMenu>app-pagination {
+    position: fixed;
+    top: 100px;
+    width: 21%;
+    right: 0;
+  }
 }

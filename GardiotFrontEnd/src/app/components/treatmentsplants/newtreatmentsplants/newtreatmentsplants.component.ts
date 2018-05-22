@@ -44,18 +44,18 @@ export class NewtreatmentsplantsComponent implements OnInit {
       .subscribe(data => {
         this._appComponent.mensajeEmergente(data.Mensaje, "primary", "");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
-      for(let cont in this.productTreatment.product) {
-        this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment, this.productTreatment.product[cont], this.idPlant)
-          .subscribe(data => {
-          },
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
+    for (let cont in this.productTreatment.product) {
+      this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment, this.productTreatment.product[cont], this.idPlant)
+        .subscribe(data => {
+        },
           error => {
             let v = JSON.parse(error._body);
           });
-      }
+    }
   }
 
   mostrarTratamientos() {
@@ -65,9 +65,9 @@ export class NewtreatmentsplantsComponent implements OnInit {
           this.treatments.push(data[key$]);
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   mostrarProductos() {
@@ -77,9 +77,9 @@ export class NewtreatmentsplantsComponent implements OnInit {
           this.products.push(data[key$]);
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
   mostrarPlanta(numplant: number) {
     this._plantService.details(numplant)
@@ -89,9 +89,9 @@ export class NewtreatmentsplantsComponent implements OnInit {
         this.plant.commonName = data[0].commonName;
         this.plant.photo = data[0].photo;
       },
-      error => {
-        console.error(JSON.parse(error._body).Mensaje);
-      });
+        error => {
+          console.error(JSON.parse(error._body).Mensaje);
+        });
 
   }
 

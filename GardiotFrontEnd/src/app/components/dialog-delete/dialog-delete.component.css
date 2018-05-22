@@ -1,67 +1,70 @@
-div{
+div {
   width: 100%;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.1);
-    padding: 35px;
-    border: 2px solid #fff;
-    border-radius: 20px/50px;
-    background-clip: padding-box;
-    text-align: center;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
 }
-section{
+
+section {
   margin-top: -26px;
 }
 
-mat-dialog-actions{
-padding: 2.5px;
+mat-dialog-actions {
+  padding: 2.5px;
 }
-button{
-margin: auto;
+
+button {
+  margin: auto;
 }
 
 .btn {
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    outline: none;
-    position: relative;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .btn-2g {
-    border-radius: 40px;
+  border-radius: 40px;
 }
+
 .btn-2 {
-    background: #17aa56;
-    color: #fff;
-    box-shadow: 0 6px #119e4d;
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+  background: #17aa56;
+  color: #fff;
+  box-shadow: 0 6px #119e4d;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 
 .btn-2g:hover {
-    box-shadow: 0 4px #119e4d;
-    top: 2px;
+  box-shadow: 0 4px #119e4d;
+  top: 2px;
 }
-
 
 .btn-3g {
-    border-radius: 40px;
+  border-radius: 40px;
 }
+
 .btn-3 {
-    color: #fff;
-    box-shadow: 0 6px #64676a;
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+  color: #fff;
+  box-shadow: 0 6px #64676a;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
 }
 
 .btn-3g:hover {
-    box-shadow: 0 4px #64676a;
-    top: 2px;
+  box-shadow: 0 4px #64676a;
+  top: 2px;
 }

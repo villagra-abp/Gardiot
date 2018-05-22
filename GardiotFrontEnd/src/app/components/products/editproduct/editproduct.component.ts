@@ -26,10 +26,10 @@ export class EditproductComponent implements OnInit {
       .subscribe(data => {
         this._appComponent.mensajeEmergente("El producto se ha modificado", "primary", "admin/products?pag=1");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   getID() {
@@ -51,11 +51,11 @@ export class EditproductComponent implements OnInit {
         this.product.type = data[0].type;
         this.product.description = data[0].description;
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+        });
 
   }
 

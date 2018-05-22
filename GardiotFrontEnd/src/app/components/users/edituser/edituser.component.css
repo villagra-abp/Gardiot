@@ -1,7 +1,8 @@
-.search{
+.search {
   border: none;
 }
-form{
+
+form {
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
@@ -10,31 +11,37 @@ form{
   margin-bottom: 1%;
 }
 
-label, input, textarea, select2, option{
+label, input, textarea, select2, option {
   font-size: .9em;
   padding-left: 0;
   margin: 0;
 }
-.bttn{
+
+.bttn {
   width: 80%;
 }
+
 .imagen {
   width: 100%;
 }
+
 .imagen button {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   display: block;
 }
-label{
+
+label {
   font-style: italic;
   font-weight: bold;
 }
-.checkAdmin{
+
+.checkAdmin {
   margin-top: 1%;
 }
-.checkAdmin label{
+
+.checkAdmin label {
   margin-left: 2%;
   margin-top: -1%;
 }

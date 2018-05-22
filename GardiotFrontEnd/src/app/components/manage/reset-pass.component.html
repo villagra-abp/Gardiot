@@ -3,7 +3,6 @@
   <section>
     <p>Estas a punto de resetear la contraseña. Introduce el email de registro y enviaremos un link al correo electrónico para poder hacerlo.</p>
   </section>
-
   <form #f="ngForm" (ngSubmit)="resetPass(f)">
     <div class="form-group">
       <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="first" ngModel required #first="ngModel">
@@ -12,5 +11,4 @@
     <button type="button" [routerLink]="['/profile']" class="btn btn-outline-danger">Cancelar</button>
   </form>
   <br>
-  <!-- <button [routerLink]="['/reset-pass-back']"  class="btn btn-primary">passBack</button> -->
 </div>

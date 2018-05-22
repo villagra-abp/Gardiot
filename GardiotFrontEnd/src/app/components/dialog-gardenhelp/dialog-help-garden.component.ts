@@ -6,26 +6,20 @@ import { Observable } from 'rxjs/Observable';
 import { GardenService } from "../../services/garden.service";
 import { Garden } from "../../classes/garden.class";
 
-
-
 @Component({
   selector: 'app-dialog-help-garden',
   templateUrl: './dialog-help-garden.component.html',
   styleUrls: ['./dialog-help-garden.component.css']
 })
-export class DialogHelpGardenComponent  implements OnInit {
+export class DialogHelpGardenComponent implements OnInit {
 
   constructor(
     public thisDialogRef: MatDialogRef<DialogHelpGardenComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-
   ) { }
-    // @HostListener('document:keyup', ['$event'])
-
-    onCloseCancel() {
-      this.thisDialogRef.close('Cancel');
-    }
-
+  onCloseCancel() {
+    this.thisDialogRef.close('Cancel');
+  }
 
   ngOnInit() {
   }

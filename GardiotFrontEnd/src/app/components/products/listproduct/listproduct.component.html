@@ -15,11 +15,9 @@
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
         <div class = "form-group col-md-4">
-          <!-- <label for="content">Descripción</label> -->
           <input type="text" [(ngModel)]="product.description" class="form-control" id="content" name="content" placeholder="Descripción">
         </div>
         <div class = "form-group col-md-4">
-          <!-- <label for="content">Tipo</label> -->
           <input type="type" [(ngModel)]="product.type" class="form-control" id="type" name="type" placeholder="Tipo">
         </div>
         <div class = "form-group col-md-12">
@@ -27,9 +25,7 @@
           <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()" ><i class="material-icons">format_clear</i></button>
         </div>
       </form>
-
     </div>
-
     <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
@@ -41,13 +37,11 @@
         </tr>
       </thead>
       <tbody>
-
         <tr *ngFor="let product of products">
           <th scope="row">{{product.name}}</th>
           <td>{{product.type}}</td>
           <td>{{product.description}}</td>
           <td><button title="Editar" class="btn btn-outline-primary search" [routerLink]="['/admin/editproduct/',product.id]"><i class="material-icons">mode_edit</i></button></td>
-          <!-- <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
           <td><button title="Eliminar" class="btn btn-outline-danger search" (click)="openDialog(product.id,1)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>

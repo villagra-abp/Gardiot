@@ -12,7 +12,7 @@ import { AppComponent } from "../../app.component";
 })
 export class RegisterComponent implements OnInit {
 
-  user = new User("");
+  public user = new User("");
   public aceptado: boolean = false;
 
 

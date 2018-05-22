@@ -12,12 +12,11 @@
       </div>
       <div class="form-group col-md-5">
         <label for="zipCode">C.P.</label>
-        <input type="text" class="form-control" [(ngModel)]="garden.zip" (change)="this.searchZip2()"  name="zip" id="zipCode" >
+        <input type="text" class="form-control" [(ngModel)]="garden.zip" (change)="this.searchZip2()" name="zip" id="zipCode">
       </div>
     </form>
     <div>
     </div>
-
     <mat-dialog-actions>
       <ul class="nav justify-content-end">
         <li class="nav-item"><button mat-raise-button (click)="onCloseAtras()" type="button" class="btn btn-secondary" href="#">Atrás</button></li>

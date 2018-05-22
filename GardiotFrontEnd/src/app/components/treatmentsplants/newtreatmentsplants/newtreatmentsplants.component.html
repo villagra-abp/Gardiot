@@ -1,17 +1,6 @@
 <div class="vistaAdmin">
   <section class="container main-container">
-    <!-- <div class="row encabezado">
-
-      <div class="col-md-6">
-        <h2 *ngIf="this.plant.id != undefined">{{this.plant.commonName}}</h2>
-        <h3>Añadir tratamiento</h3>
-        <div class="col">
-          <img *ngIf="this.plant.id != undefined" class="imagen" src="{{this.plant.photo}}" alt="{{this.plant.commonName}}" title="{{this.plant.commonName}}" width="auto" height="auto">
-        </div>
-      </div>
-    </div> -->
     <div class="row">
-
       <div class="col-4">
         <img *ngIf="this.plant.id != undefined" class="imagen" src="{{this.plant.photo}}" alt="{{this.plant.commonName}}" title="{{this.plant.commonName}}" width="auto" height="auto">
       </div>
@@ -21,7 +10,6 @@
         <button [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
       </div>
     </div>
-
     <form (ngSubmit)="this.guardar()" method="post">
       <div class="form-row">
         <div class="form-group col-md-6">

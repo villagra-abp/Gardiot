@@ -6,17 +6,17 @@ import { UserService } from "../../services/user.service";
 @Injectable()
 export class AdminguardGuard implements CanActivate {
 
-  constructor(public user:UserService, public router:Router){}
+  constructor(public user: UserService, public router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if(localStorage['Par']=='1'){
-        return true;
-      }
-      else{
-        this.router.navigate(['/detail']);
-        return false;
-      }
+    if (localStorage['Par'] == '1') {
+      return true;
+    }
+    else {
+      this.router.navigate(['/detail']);
+      return false;
+    }
   }
 }

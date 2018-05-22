@@ -7,7 +7,7 @@
         </div>
         <div class="body">
           <div *ngIf="checkTareas == true">
-            <div *ngIf="tareas.length == 0" class="noTarea" title="Ir a tu jardín" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
+            <div *ngIf="tareas.length == 0" class="noTarea" title="Ir a tu jardín" (click)="goGarden()">No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
             <div *ngIf="tareas.length != 0">
               <div class="row fila" *ngFor="let grupo of tareas">
                 <div class="col-sm-2 fecha">
@@ -23,7 +23,7 @@
                     <img *ngIf="tarea.name=='Fumigar'" title="Fumigar" src="{{photoURL}}/images/icon/fumigar.png" class="rounded mx-auto d-block icontarea" alt="Fumugar">
                     <p class="col-sm-8 text_conejo">{{tarea.commonName}}</p>
                     <button title="Marcar como hecha" *ngIf="tarea.dateDone==null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" type="button" class="close col-md-1" aria-label="Close" (click)="dotask(tarea)"><i class="material-icons">done</i></button>
-                    <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" title="Hecha"class="material-icons hecho">thumb_up</i>
+                    <i *ngIf="tarea.dateDone!=null && (grupo[0].date | date:['d'])==(fecha_actual | date:['d'])" title="Hecha" class="material-icons hecho">thumb_up</i>
                   </div>
                 </div>
               </div>
@@ -36,7 +36,7 @@
       <section class="herramienta row ">
         <article class="form-row">
           <div class="canvasHome" (click)="goGarden()">
-            <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín"/>
+            <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín" />
             <canvas style="cursor: pointer" title="Tu jardín" id="myCanvas" oncontextmenu="return false;" width="350" height="300"></canvas>
           </div>
         </article>

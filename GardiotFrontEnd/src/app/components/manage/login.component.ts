@@ -14,7 +14,7 @@ import { AppComponent } from "../../app.component";
 })
 export class LoginComponent implements OnInit {
 
-  user: User = {
+  public user: User = {
     id: '',
     name: '',
     lastName: '',
@@ -56,21 +56,18 @@ export class LoginComponent implements OnInit {
           this._route.navigate(['/detail']);
         });
 
-
-
-
       },
-      error => {
-        let v = JSON.parse(error._body);
-        console.log(v.Mensaje);
-        if (v.Mensaje == "Cuenta no activa") {
-          this._route.navigate(['/resend']);
-        }
-        else {
-          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-        }
+        error => {
+          let v = JSON.parse(error._body);
+          console.log(v.Mensaje);
+          if (v.Mensaje == "Cuenta no activa") {
+            this._route.navigate(['/resend']);
+          }
+          else {
+            this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+          }
 
-      });
+        });
   }
 
 
@@ -79,6 +76,5 @@ export class LoginComponent implements OnInit {
       this._route.navigate(['/detail']);
     }
   }
-
 
 }

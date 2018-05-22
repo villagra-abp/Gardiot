@@ -12,7 +12,7 @@ import { Product } from "../../../classes/product.class";
 })
 export class NewproductComponent implements OnInit {
 
-  product = new Product();
+  public product = new Product();
   public products: any[] = [];
 
   constructor(

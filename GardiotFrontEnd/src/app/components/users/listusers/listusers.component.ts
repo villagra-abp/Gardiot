@@ -38,11 +38,11 @@ export class AdminListUsersComponent {
             this.users.push(data[key$]);
           }
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     } else {
-      this.searchcontent(this.paginaActual,this.elementosPorPagina);
+      this.searchcontent(this.paginaActual, this.elementosPorPagina);
     }
   }
 
@@ -51,9 +51,9 @@ export class AdminListUsersComponent {
       .subscribe(data => {
         this.ActualizarPagina();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   ActualizarPagina() {
@@ -71,9 +71,9 @@ export class AdminListUsersComponent {
         }
         this.mostrar();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   searchcontent(page: number, items: number) {
@@ -92,18 +92,18 @@ export class AdminListUsersComponent {
             this.users.push(data[key$]);
           }
 
-        }else{
+        } else {
           this.users = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
 
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
-  clear(){
+  clear() {
     this.user = new User();
   }
 

@@ -14,12 +14,10 @@
 				<div class="form-group col-md-6">
 					<label for="dateInit">Inicio</label>
 					<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateInit" name="dateInit" id="dateInit">
-
 					<label for="dateFinal">Fin</label>
 					<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateFinal" name="dateFinal" id="dateFinal">
 				</div>
 			</div>
-
 			<button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
 			<button [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search "><i class="material-icons">keyboard_return</i></button>
 		</form>
