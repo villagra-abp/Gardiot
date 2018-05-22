@@ -83,8 +83,12 @@ router.put('/admin/treatment/:id', passport.authenticate('jwt', {session: false}
 						response.status(200).json({"Mensaje":"Actualizado"});
 					else if (data == 0)
 						response.status(404).json({"Mensaje":"No existe"});
-					else
-						response.status(500).json({"Mensaje":error.message});
+					else if (error) {
+						if (error.errno == '1406')
+							response.status(500).json({"Mensaje":"Texto demasiado largo"});
+						else			
+							response.status(500).json({"Mensaje":error.message});
+					}
 				});
 			}	
 		}	
@@ -100,8 +104,12 @@ router.delete('/admin/treatment/:id', passport.authenticate('jwt', {session: fal
 				response.status(200).json({"Mensaje":"Borrado"});
 			else if (data == 0)
 				response.status(404).json({"Mensaje":"No existe"});
-			else
-				response.status(500).json({"Mensaje":error.message});
+			else if (error) {
+				if (error.errno == '1406')
+					response.status(500).json({"Mensaje":"Texto demasiado largo"});
+				else			
+					response.status(500).json({"Mensaje":error.message});
+			}
 		});
 	}
 });
