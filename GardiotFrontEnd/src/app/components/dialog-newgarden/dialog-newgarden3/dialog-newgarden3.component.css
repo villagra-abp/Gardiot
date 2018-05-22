@@ -2,7 +2,7 @@ div{
     width: 100%;
     margin: 0 auto;
     background: rgba(255,255,255,0.1);
-    padding: 1.5em;
+    padding: 1em;
     text-align: center;
 }
 mat-dialog-actions{
@@ -19,4 +19,16 @@ margin: auto;
 }
 a.inline{
   font-size: .9em;
+}
+
+@media only screen and (max-width: 600px){
+  div{
+    padding: 0.2em;
+  }
+  a, button, p, label{
+    font-size: 10px;
+  }
+  h4, legend{
+    font-size: 15px;
+  }
 }

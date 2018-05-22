@@ -10,7 +10,7 @@
           <button title="Busqueda avanzada" data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
         </article>
         <article class="form-group col-md-2">
-          <button title="Crear nueva planta" *ngIf="this.user.isAdmin" [routerLink]="['/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
+          <button title="Crear nueva planta" *ngIf="this.user.isAdmin" [routerLink]="['/admin/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
         </article>
       </form>
       <section class="form-row">
@@ -75,7 +75,7 @@
                 <button title="Nuevo tratamiento" *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-info iconbutton"><i class="material-icons">assignment</i></button>
               </div>
               <div class="form-group col-md-4">
-                <button title="Editar planta" *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
+                <button title="Editar planta" *ngIf="this.user.isAdmin" [routerLink]="['/admin/editplant/',plant.id]" class="btn btn-outline-primary iconbutton"><i class="material-icons">mode_edit</i></button>
               </div>
               <div class="form-group col-md-4">
                 <button title="Eliminar planta" *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons">delete</i></button>

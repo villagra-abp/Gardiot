@@ -57,9 +57,9 @@ export class DialogNewgarden2Component implements OnInit {
   }
 
   onCloseConfirm() {
-    
+
     this.saveGarden();
-    
+
   }
 
   onCloseAtras() {
@@ -215,7 +215,7 @@ export class DialogNewgarden2Component implements OnInit {
               //sp.innerHTML = 'Código postal no encontrado';
             }
             input = '';
-            
+
 
           },
             error => {
@@ -223,6 +223,10 @@ export class DialogNewgarden2Component implements OnInit {
             });
       }
     }
+  }
+
+  select2Width() {
+    return '100%';
   }
 
   saveGarden() {

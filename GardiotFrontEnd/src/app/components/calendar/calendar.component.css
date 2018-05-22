@@ -11,11 +11,14 @@
   color: #fff;
 }
 
-.myicon{
-  /* color:#63d297 !important;
-  background-color: red; */
-}
 .calendar{
   width: 100%;
   min-height: 90px !important;
+}
+
+.btn-outline-primary:not([disabled]):not(.disabled).active{
+  color: #fff;
+  background-color: #63d297;
+  border-color: #63d297;
+  box-shadow: 0 0 0 0.2rem rgba(99,210,151,.5);
 }
