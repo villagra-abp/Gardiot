@@ -56,7 +56,7 @@ function openInfo(element) {
 
 function openEditor(element) {
   closeAll();
-  motor.toggleVista(event);
+  motor.toggleVista();
   try {
     document.getElementById('prevision').classList.add('previsionClosed');
     document.getElementById('formulario').classList.add('infoOcult');

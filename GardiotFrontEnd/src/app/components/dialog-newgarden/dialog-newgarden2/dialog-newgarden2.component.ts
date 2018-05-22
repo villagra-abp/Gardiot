@@ -25,7 +25,6 @@ export class DialogNewgarden2Component implements OnInit {
   public countries: any[] = [];
   public cities: any[] = [];
   public zip: string = "";
-
   public photoURL = "";
 
   constructor(
@@ -35,31 +34,31 @@ export class DialogNewgarden2Component implements OnInit {
     public _route: Router,
     public dialog: MatDialog,
   ) {
-    if(window.location.toString().indexOf("localhost")>=0){
-      this.photoURL="/assets";
+    if (window.location.toString().indexOf("localhost") >= 0) {
+      this.photoURL = "/assets";
     }
-    else if(window.location.toString().indexOf("gardiot")>=0){
-      this.photoURL="/app/assets";
+    else if (window.location.toString().indexOf("gardiot") >= 0) {
+      this.photoURL = "/app/assets";
     }
   }
 
   getid() {
     this._gardenService.details().subscribe(data => {
-        if (data != null) {
-          console.log(data);
-          this.garden = data;
-          console.log(this.garden);
-        }
-      },
+      if (data != null) {
+        console.log(data);
+        this.garden = data;
+        console.log(this.garden);
+      }
+    },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
       });
   }
 
   onCloseConfirm() {
-    
+
     this.saveGarden();
-    
+
   }
 
   onCloseAtras() {
@@ -69,32 +68,34 @@ export class DialogNewgarden2Component implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogNewgarden3Component, {
-      width: '55em', disableClose: true, data: {}});
+      width: '55em', disableClose: true, data: {}
+    });
   }
   openDialogAtras() {
     let dialogRef = this.dialog.open(DialogNewgarden1Component, {
-      width: '45em', disableClose: true, data: {}});
+      width: '45em', disableClose: true, data: {}
+    });
   }
 
   listarPaises() {
     this._gardenService.listCoutries().subscribe(data => {
-        let aux = [];
-        aux.push({ id: 0, text: "Ninguno" });
-        for (let i = 0; i < data.geonames.length; i++) {
-          aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
-        }
-        this.countryData = Observable.create((obs) => {
-          obs.next(aux);
-          obs.complete();
-        });
-        this.startCountry = Observable.create((obs) => {
-          obs.next(this.garden.countryCode);
-          obs.complete();
-        }).delay(1000);
-      },
-        error => {
-          console.error(error);
-        });
+      let aux = [];
+      aux.push({ id: 0, text: "Ninguno" });
+      for (let i = 0; i < data.geonames.length; i++) {
+        aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
+      }
+      this.countryData = Observable.create((obs) => {
+        obs.next(aux);
+        obs.complete();
+      });
+      this.startCountry = Observable.create((obs) => {
+        obs.next(this.garden.countryCode);
+        obs.complete();
+      }).delay(1000);
+    },
+      error => {
+        console.error(error);
+      });
   }
 
   mostrarCiudad() {
@@ -136,9 +137,9 @@ export class DialogNewgarden2Component implements OnInit {
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
-              this.garden.city = data[0].adminName3;
-              //this.city = data[0].adminName3;
-              //console.log(this.city);
+                this.garden.city = data[0].adminName3;
+                //this.city = data[0].adminName3;
+                //console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
@@ -188,9 +189,9 @@ export class DialogNewgarden2Component implements OnInit {
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
-              this.garden.city = data[0].adminName3;
-              //this.city = data[0].adminName3;
-              //console.log(this.city);
+                this.garden.city = data[0].adminName3;
+                //this.city = data[0].adminName3;
+                //console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
@@ -199,7 +200,7 @@ export class DialogNewgarden2Component implements OnInit {
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
-               // sp.innerHTML = data[0].adminName2;
+                // sp.innerHTML = data[0].adminName2;
               }
               else if (data[0].adminName1 !== undefined) {
                 this.garden.city = data[0].adminName1;
@@ -215,7 +216,7 @@ export class DialogNewgarden2Component implements OnInit {
               //sp.innerHTML = 'Código postal no encontrado';
             }
             input = '';
-            
+
 
           },
             error => {
@@ -223,6 +224,10 @@ export class DialogNewgarden2Component implements OnInit {
             });
       }
     }
+  }
+
+  select2Width() {
+    return '100%';
   }
 
   saveGarden() {

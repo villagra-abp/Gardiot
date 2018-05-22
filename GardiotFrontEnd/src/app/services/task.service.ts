@@ -18,12 +18,12 @@ export class TaskService {
     else if (window.location.toString().indexOf("gardiot") >= 0) {
       this.apiURL = "https://gardiot.ovh/api/";
     }
-    else{
+    else {
       this.apiURL = "http://192.168.100.3:3000/api/";
     }
   }
 
-  detailsSome(number:number){
+  detailsSome(number: number) {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
@@ -40,17 +40,17 @@ export class TaskService {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
-    let query='?';
-    if(fechas[0]!==undefined){
-      query += 'fecha1='+fechas[0]+'&';
-    }if(fechas[1]!==undefined){
-      query += 'fecha2='+fechas[1]+'&';
-    }if(fechas[2]!==undefined){
-      query += 'fecha3='+fechas[2]+'&';
+    let query = '?';
+    if (fechas[0] !== undefined) {
+      query += 'fecha1=' + fechas[0] + '&';
+    } if (fechas[1] !== undefined) {
+      query += 'fecha2=' + fechas[1] + '&';
+    } if (fechas[2] !== undefined) {
+      query += 'fecha3=' + fechas[2] + '&';
     }
     query = query.substring(0, query.length - 1);
 
-    return this.http.get(this.apiURL + "monthTask/"+fechas, { headers })
+    return this.http.get(this.apiURL + "monthTask/" + fechas, { headers })
       .map(res => {
         return res.json();
       })
@@ -87,7 +87,7 @@ export class TaskService {
       })
   }
 
-  percent(){
+  percent() {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });

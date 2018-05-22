@@ -34,12 +34,11 @@ export class ListtreatmentComponent implements OnInit {
             this.treatments.push(data[key$]);
           }
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     } else {
       // this.searchcontent(this.paginaActual,this.elementosPorPagina);
-      console.log("assss");
     }
   }
 
@@ -58,9 +57,9 @@ export class ListtreatmentComponent implements OnInit {
         }
         this.mostrar();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   delete(idTreatment: number) {
@@ -68,9 +67,9 @@ export class ListtreatmentComponent implements OnInit {
       .subscribe(data => {
         this.ActualizarPagina();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   searchcontent(page: number, items: number) {
@@ -86,15 +85,19 @@ export class ListtreatmentComponent implements OnInit {
           for (let key$ in data) {
             this.treatments.push(data[key$]);
           }
-        }else{
+        } else {
           this.treatments = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
+  }
+
+  clear() {
+    this.treatment = new Treatment();
   }
 
   openDialog(id: number, tipo: number) {

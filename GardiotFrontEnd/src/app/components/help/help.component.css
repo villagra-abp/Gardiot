@@ -1,43 +1,41 @@
-/* Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 */
-
 /* REGLAS */
-div, section, article{
+
+div, section, article {
   /* border: 1px solid black; */
   padding: 1%;
   margin: 0;
-  overflow-y:hidden;
-  overflow-x:hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
- /* CONTENDOR PRINCIPAL */
-.container{
+/* CONTENDOR PRINCIPAL */
+
+.container {
   margin-left: auto;
   margin-right: auto;
-  /* max-width: 80%; */
-}
-mat-panel-description{
-  font-size: .8em;
-  /* float: left; */
 }
 
-mat-tab-group{
+mat-panel-description {
+  font-size: .8em;
+}
+
+mat-tab-group {
   margin-top: 1%;
   padding: 1%;
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
-  /* border: 1px solid #ffb200; */
   border: 1px solid rgba(255, 178, 0, .3);
 }
-mat-panel-title{
+
+mat-panel-title {
   font-weight: bold;
   font-size: 1em;
 }
 
 /* IMAGENES */
-img{
-  /* border-radius: 20%; */
+
+img {
   border-radius: 26px 26px 26px 26px;
   -moz-border-radius: 26px 26px 26px 26px;
   -webkit-border-radius: 26px 26px 26px 26px;
@@ -50,20 +48,25 @@ img{
 }
 
 /* TEXTOS*/
-.intro{
+
+.intro {
   text-align: center;
 }
-.titulo{
+
+.titulo {
   margin-top: 2%;
   text-align: center;
 }
-p{
+
+p {
   font-size: .9em;
   text-align: justify;
   border-color: #25b5aa;
 }
+
 /* TERMINOS DE USO */
-.terminos{
+
+.terminos {
   font-size: .8em;
   text-align: justify;
 }

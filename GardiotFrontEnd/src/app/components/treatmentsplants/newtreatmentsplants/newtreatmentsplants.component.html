@@ -1,6 +1,15 @@
 <div class="vistaAdmin">
   <section class="container main-container">
-    <h2>Tratamiento</h2>
+    <div class="row">
+      <div class="col-4">
+        <img *ngIf="this.plant.id != undefined" class="imagen" src="{{this.plant.photo}}" alt="{{this.plant.commonName}}" title="{{this.plant.commonName}}" width="auto" height="auto">
+      </div>
+      <div class="col-4">
+        <h2 *ngIf="this.plant.id != undefined">{{this.plant.commonName}}</h2>
+        <h3>Añadir tratamiento</h3>
+        <button [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
+      </div>
+    </div>
     <form (ngSubmit)="this.guardar()" method="post">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -34,10 +43,10 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-2">
-          <button type="submit" class="btn btn-success">Añadir tratamiento</button>
+          <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
         </div>
         <div class="form-group col-md-2">
-          <button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+          <button [routerLink]="['/plant', plant.id]" class="btn btn-outline-danger">Cancelar</button>
         </div>
       </div>
     </form>

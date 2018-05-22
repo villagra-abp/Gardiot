@@ -19,17 +19,16 @@ declare var $: any;
 })
 
 export class EditProfileComponent implements OnInit {
-  user = new User("");
-  countries: any[] = [];
-  cities: any[] = [];
-  zip: string = "";
-  countryData: Observable<Array<Select2OptionData>>;
-  startCountry: Observable<string>;
-  cityData: Observable<Array<Select2OptionData>>;
-  startCity: Observable<string>;
-
-  uploader: FileUploader;
-
+  public user = new User("");
+  public countries: any[] = [];
+  public cities: any[] = [];
+  public zip: string = "";
+  public countryData: Observable<Array<Select2OptionData>>;
+  public startCountry: Observable<string>;
+  public cityData: Observable<Array<Select2OptionData>>;
+  public startCity: Observable<string>;
+  public uploader: FileUploader;
+  public imgUrl: string;
 
   constructor(
     public _detailService: UserService,
@@ -72,9 +71,9 @@ export class EditProfileComponent implements OnInit {
           }
           input.value = '';
         },
-        error => {
-          console.log(error);
-        });
+          error => {
+            console.log(error);
+          });
     }
   }
 
@@ -90,8 +89,9 @@ export class EditProfileComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
+        console.log(this.user.photo);
         document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
-          background-image: url("${this.user.photo}");
+          background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
@@ -104,12 +104,12 @@ export class EditProfileComponent implements OnInit {
         this.mostrarCiudad();
 
       },
-      error => {
-        console.error(error);
-        localStorage.clear();
-        sessionStorage.clear();
-        this._route.navigate(['/login']);
-      });
+        error => {
+          console.error(error);
+          localStorage.clear();
+          sessionStorage.clear();
+          this._route.navigate(['/login']);
+        });
 
   }
 
@@ -119,10 +119,10 @@ export class EditProfileComponent implements OnInit {
       .subscribe(data => {
         this._appComponent.mensajeEmergente("Datos modificados", "success", "profile");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   listarPaises() {
@@ -145,9 +145,9 @@ export class EditProfileComponent implements OnInit {
         }).delay(1000);
 
       },
-      error => {
-        console.log(error);
-      });
+        error => {
+          console.log(error);
+        });
 
   }
 
@@ -210,16 +210,22 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  checkAdmin(){
-      this._detailService.isUserAdmin()
-        .subscribe(data => {
-          if(data){
-            this._route.navigate(['/admin/statistics']);
-          }
-        });
+  checkAdmin() {
+    this._detailService.isUserAdmin()
+      .subscribe(data => {
+        if (data) {
+          this._route.navigate(['/admin/statistics']);
+        }
+      });
   }
 
   ngOnInit() {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    }
     this.checkAdmin();
     this.uploader = new FileUploader({ url: this._detailService.apiURL + 'uploadAvatar', itemAlias: 'photo' });
     this.mostrar();

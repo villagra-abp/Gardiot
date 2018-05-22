@@ -21,10 +21,9 @@
             <input type="checkbox" class="form-check-input" id="admin" [(ngModel)]="user.admin" name="admin" value="1">
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary">Crear</button>
-            <button [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+            <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+            <button [routerLink]="['/admin/users']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
           </div>
-
         </form>
       </div>
     </div>

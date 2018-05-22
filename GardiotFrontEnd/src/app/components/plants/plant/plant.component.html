@@ -1,5 +1,3 @@
-<!-- Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 -->
 <div class="vistaUser evolver">
     <!-- PLANTA -->
     <article class="row">
@@ -10,7 +8,8 @@
       <!-- BOTONES Admin -->
       <div class="form-row">
         <div class="form-group col-md-4 buttonAdmin">
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
+          <button type="button" [routerLink]="['/plants']" [queryParams]="{pag: 1}" title="Volver a la biblioteca" class="btn btn-outline-info volver">Volver</button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
           <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-warning iconbutton" title="Añadir tratamiento"><i class="material-icons">assignment</i></button>
           <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons" title="Eliminar">delete</i></button>
         </div>
@@ -43,7 +42,7 @@
       <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
     </article>
     <!-- BLOQUE 2 -->
-    <div class="productoTrata">
+    <div class="productoTrata" *ngIf="haytratamiento == 0">
       <h3>Tratamientos</h3>
       <!-- TRATAMIENTOS -->
       <section *ngFor="let treatment of treatments">
@@ -57,9 +56,8 @@
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                <mat-panel-title title="Productos asociados a cada tratamientos">
+                <mat-panel-title class="matpanel" title="Productos asociados a cada tratamientos">
                   <img class="iconoProducto" src="assets/images/icon/producto.png" alt="producto">
-                  Productos
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <!-- LISTA DE PRODUCTOS -->

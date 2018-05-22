@@ -7,18 +7,16 @@
       <span id="ciudad">{{garden.city}}</span>
       <div class="form-group col-md-8">
         <label for="pais">País</label>
-        <select2 id="pais" class="form-control" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
+        <select2 id="pais" [width]="select2Width()" class="form-control" [data]="countryData | async" [value]="startCountry | async" (valueChanged)="this.saveCountry($event)">
         </select2>
       </div>
       <div class="form-group col-md-5">
         <label for="zipCode">C.P.</label>
-        <input type="text" class="form-control" [(ngModel)]="garden.zip" (change)="this.searchZip2()"  name="zip" id="zipCode" >
-        
+        <input type="text" class="form-control" [(ngModel)]="garden.zip" (change)="this.searchZip2()" name="zip" id="zipCode">
       </div>
     </form>
     <div>
     </div>
-
     <mat-dialog-actions>
       <ul class="nav justify-content-end">
         <li class="nav-item"><button mat-raise-button (click)="onCloseAtras()" type="button" class="btn btn-secondary" href="#">Atrás</button></li>

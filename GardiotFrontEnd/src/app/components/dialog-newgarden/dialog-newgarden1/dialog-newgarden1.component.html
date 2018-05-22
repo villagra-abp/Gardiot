@@ -5,14 +5,14 @@
     <form (ngSubmit)="onCloseConfirm()" #forma="ngForm" class="needs-validation" novalidate>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <img src="{{photoURL}}/images/imgGardiot/nombre.PNG" class="rounded mx-auto d-block img-circle" width="40%" height="60%" alt="Logo">
-          <label for="title">Nombre</label>
+          <img src="{{photoURL}}/images/imgGardiot/nombre.PNG" class="rounded mx-auto d-block img-circle img1" width="40%" height="60%" alt="Logo">
+          <label for="title">Nombre jardín</label>
           <input class="form-control" type="text" [(ngModel)]="garden.title" name="title" id="title_garden" required>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <img src="{{photoURL}}/images/imgGardiot/tamanyo.png" class="rounded mx-auto d-block" width="80%" height="90%" alt="Logo">
+          <img src="{{photoURL}}/images/imgGardiot/tamanyo.png" class="rounded mx-auto d-block img2" width="80%" height="90%" alt="Logo">
         </div>
         <div class="form-group col-md-6">
           <label for="length">Largo: {{garden.length===undefined ? 6 : garden.length}}m</label>
@@ -27,7 +27,6 @@
       <ul class="nav justify-content-end">
         <li class="nav-item"><button mat-raise-button (click)="onCloseConfirm()" type="button" class="btn btn-success" href="#">Siguiente</button></li>
       </ul>
-
     </mat-dialog-actions>
   </section>
 </div>

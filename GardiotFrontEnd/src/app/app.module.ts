@@ -45,7 +45,6 @@ import { DesarrolloComponent } from './desarrollo/desarrollo.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 //garden
 import { GardenComponent } from './components/gardens/garden/garden.component';
-import { EditGardenComponent } from './components/gardens/editgarden/editgarden.component';
 //user
 import { NewuserComponent } from './components/users/newuser/newuser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
@@ -63,14 +62,11 @@ import { LibraryComponent } from './components/plants/library/library.component'
 import { NewtreatmentComponent } from './components/treatments/newtreatment/newtreatment.component';
 import { EdittreatmentComponent } from './components/treatments/edittreatment/edittreatment.component';
 import { ListtreatmentComponent } from './components/treatments/listtreatment/listtreatment.component';
-import { TreatmentComponent } from './components/treatments/treatment/treatment.component';
 //product
 import { NewproductComponent } from './components/products/newproduct/newproduct.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
 import { ListproductComponent } from './components/products/listproduct/listproduct.component';
-import { ProductComponent } from './components/products/product/product.component';
 //feed
-import { FeedComponent } from './components/feeds/feed/feed.component';
 import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
@@ -126,7 +122,6 @@ registerLocaleData(localeEs);
     EdituserComponent,
     NewuserComponent,
     GardenComponent,
-    EditGardenComponent,
     StatisticsComponent,
     LibraryComponent,
     CalendarComponent,
@@ -139,12 +134,9 @@ registerLocaleData(localeEs);
     NewtreatmentComponent,
     EdittreatmentComponent,
     ListtreatmentComponent,
-    TreatmentComponent,
     NewproductComponent,
     EditproductComponent,
     ListproductComponent,
-    ProductComponent,
-    FeedComponent,
     NewfeedComponent,
     EditfeedComponent,
     ListfeedComponent,

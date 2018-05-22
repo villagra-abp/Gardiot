@@ -1,10 +1,5 @@
-<!-- https://www.npmjs.com/package/ng2-paginate -->
-<!-- https://embed.plnkr.co/oyFWJe/ -->
-<!-- http://www.bentedder.com/create-a-pagination-component-in-angular-4/ -->
 <nav aria-label="Page navigation example" *ngIf="count > 0 && type==1">
   <ul class="pagination justify-content-end">
-    <!-- <span>pagina{{ page }} , de un numero de items de {{ count }} y</span>
-    <span> hay {{ totalPages() }} paginas totales </span> -->
     <li class="page-item">
       <button class="page-link" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/plants']" [queryParams]="{pag: previusPage()}"><i class="material-icons">skip_previous</i></button>
     </li>
@@ -14,9 +9,6 @@
     </li>
   </ul>
 </nav>
-
-
-
 <nav aria-label="Page navigation example" *ngIf="count > 0 && type==2">
   <ul class="pagination justify-content-end">
     <li class="page-item">
@@ -28,8 +20,6 @@
     </li>
   </ul>
 </nav>
-
-
 <nav aria-label="Page navigation example" *ngIf="count > 0  && type==3">
   <ul class="pagination justify-content-end">
     <li class="page-item">
@@ -41,8 +31,6 @@
     </li>
   </ul>
 </nav>
-
-
 <nav aria-label="Page navigation example" *ngIf="count > 0  && type==4">
   <ul class="pagination justify-content-end">
     <li class="page-item">
@@ -54,8 +42,6 @@
     </li>
   </ul>
 </nav>
-
-
 <nav aria-label="Page navigation example" *ngIf="count > 0  && type==5">
   <ul class="pagination justify-content-end">
     <li class="page-item">
@@ -67,13 +53,11 @@
     </li>
   </ul>
 </nav>
-
-
-  <ul class="pagination"  *ngIf="count > 0 && type==6">
-    <li class="">
-      <button class="btn btn-secondary btn-sm" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/garden']" [queryParams]="{pag: previusPage()}"><i class="material-icons">chevron_left</i></button>
-    </li>
-    <li class="">
-      <button class="btn btn-secondary btn-sm" (click)="onNext()" [routerLink]="['/garden']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading"><i class="material-icons">chevron_right</i></button>
-    </li>
-  </ul>
+<ul class="pagination" *ngIf="count > 0 && type==6">
+  <li class="">
+    <button class="btn btn-secondary btn-sm" [disabled]="page ==1 || loading" (click)="onPrev()" [routerLink]="['/garden']" [queryParams]="{pag: previusPage()}"><i class="material-icons">chevron_left</i></button>
+  </li>
+  <li class="">
+    <button class="btn btn-secondary btn-sm" (click)="onNext()" [routerLink]="['/garden']" [queryParams]="{pag: nextPage()}" [disabled]="lastPage() || loading"><i class="material-icons">chevron_right</i></button>
+  </li>
+</ul>

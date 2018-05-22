@@ -5,21 +5,21 @@
         <input type="text" [(ngModel)]="treatment.name" class="form-control col-md-6" name="name" placeholder="Nombre">
       </article>
       <article class="form-group col-md-6">
-        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
+        <button title="Buscar" class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button title="Bususqueda avanzada" data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
       </article>
       <article class="form-group col-md-2 nav justify-content-end">
-        <button [routerLink]="['/admin/newtreatment']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
+        <button title="Crear nuevo tratamiento" [routerLink]="['/admin/newtreatment']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-        <div class = "form-group col-md-4">
-          <!-- <label for="content">Descripción</label> -->
+        <div class="form-group col-md-4">
           <input type="text" [(ngModel)]="treatment.description" class="form-control col-md-6" id="content" name="content" placeholder="Contenido">
         </div>
-        <div class = "form-group col-md-12">
-          <button class="btn btn-default" type="submit">Filtrar</button>
+        <div class="form-group col-md-12">
+          <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
+          <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()"><i class="material-icons">format_clear</i></button>
         </div>
       </form>
     </div>
@@ -36,8 +36,8 @@
         <tr *ngFor="let treatment of treatments">
           <th scope="row">{{treatment.name}}</th>
           <td>{{treatment.description}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/edittreatment/',treatment.id]"><i class="material-icons">mode_edit</i></button></td>
-          <td><button class="btn btn-outline-danger" (click)="openDialog(treatment.id,2)"><i class="material-icons">delete</i></button></td>
+          <td><button title="Editar" class="btn btn-outline-primary search" [routerLink]="['/admin/edittreatment/',treatment.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button title="Eliminar" class="btn btn-outline-danger search" (click)="openDialog(treatment.id,2)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>

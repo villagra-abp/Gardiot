@@ -23,68 +23,55 @@ declare var motor: any;
 declare var vec3: any;
 declare var hammertime: any;
 
+declare var demoSol: any;
+
 
 @Component({
   selector: 'app-garden',
   templateUrl: './garden.component.html',
   styleUrls: ['./garden.component.css'
-    //'../editgarden/editgarden.component.css'
   ]
 })
 export class GardenComponent {
   public garden = new Garden("");
-
   public mobile = false;
-
-
   public temperatura = 0;
   public prevHoy = [];
   public prevMan = [];
   public prevDia3 = [];
   public prevDia4 = [];
   public prevDia5 = [];
-
   public fotoHoy = "default";
   public fotoMan = "default";
   public fotoDia3 = "default";
   public fotoDia4 = "default";
   public fotoDia5 = "default";
-
   public statusHoy = "Clear";
   public statusMan = "Clear";
   public statusDia3 = "Clear";
   public statusDia4 = "Clear";
   public statusDia5 = "Clear";
-
   public colorHoy = "#fcfcfc";
   public colorMan = "#fcfcfc";
   public colorDia3 = "#fcfcfc";
   public colorDia4 = "#fcfcfc";
   public colorDia5 = "#fcfcfc";
-
   public maxMan = 0;
   public maxDia3 = 0;
   public maxDia4 = 0;
   public maxDia5 = 0;
-
   public minMan = 0;
   public minDia3 = 0;
   public minDia4 = 0;
   public minDia5 = 0;
-
   public nombreDia3 = "";
   public nombreDia4 = "";
   public nombreDia5 = "";
-
   public tercerDia: string = "";
-  public visible = 0;//0 visualización
-  //1 edición
-  //2 jardín externo
+  public visible = 0;//0 visualización//1 edición//2 jardín externo
   public haveWeather = true;
-
   public sunrise;
   public sunset;
-
   public countries: any[] = [];
   public cities: any[] = [];
   public zip: string = "";
@@ -94,13 +81,10 @@ export class GardenComponent {
   public startCity: Observable<string>;
   public city: string;
   public tiempoCity: string = "El tiempo";
-
-
   public photoURL = "";
   public accion: string;
   public width: number;
   public length: number;
-
   //paginación y buscador
   public numeroItems: number;
   public paginaActual: number = 1;
@@ -110,9 +94,6 @@ export class GardenComponent {
   public plantsmotor: any[] = [];
   public plant = new Plant();
   public searchPlant: string;
-
-
-
 
   constructor(
     public _gardenService: GardenService,
@@ -142,11 +123,9 @@ export class GardenComponent {
     if (canvas != null) {
       canvas.width = canvasEvolver.offsetWidth;
       canvas.height = canvasEvolver.offsetHeight;
-
       let desvX = (canvas.width - 1200) * 0.0008;
       let desvY = (canvas.height - 974) * 0.00072;
       let pos = motor.getPosCamaraActiva();
-      //motor.moverCamaraA("camara2", 0, pos[1]+(-100*desvY), 0);
       motor.getCamaraActiva().entity.setParams(-1 - desvX, 1 + desvX, -0.7 - desvY, 0.7 + desvY, 1, 1000);
     }
     let time = Date.now();
@@ -156,12 +135,8 @@ export class GardenComponent {
     }
   }
 
-
-
   @HostListener('document:keyup', ['$event'])
-
   searchZip(event: KeyboardEvent): void {
-    console.log((<HTMLInputElement>event.srcElement).value);
     if (event.srcElement.id == 'commonName') {
       let sPlant = new Plant();
       sPlant.commonName = (<HTMLInputElement>event.srcElement).value;
@@ -187,7 +162,7 @@ export class GardenComponent {
             console.error(error);
           });
     }
-    else {
+    else if (event.srcElement.id == 'zipCode') {
       //aqui vamos cargando las posibles ciudades a elegir
       let input = (<HTMLInputElement>document.querySelector("#zipCode"));
       if (input.value.length == 5) {
@@ -235,7 +210,9 @@ export class GardenComponent {
             });
       }
     }
-
+    else if (event.which == 69) {
+      new demoSol(0);
+    }
   }
 
   listarPaises() {
@@ -246,9 +223,6 @@ export class GardenComponent {
         for (let i = 0; i < data.geonames.length; i++) {
           aux.push({ id: data.geonames[i].countryCode, text: data.geonames[i].countryName });
         }
-
-
-
         this.countryData = Observable.create((obs) => {
           obs.next(aux);
           obs.complete();
@@ -266,7 +240,6 @@ export class GardenComponent {
 
 
   mostrarCiudad() {
-
     let aux = [];
     aux.push({ id: this.garden.city, text: this.garden.city });
     this.city = this.garden.city;
@@ -298,9 +271,7 @@ export class GardenComponent {
 
 
           if (!this.mobile) {
-            //this.listarPaises();
             this.mostrarCiudad();
-            // console.log(this.garden.city);
             if (this.garden.city !== undefined && this.garden.city != null) {
               this.getTiempo();
             } else {
@@ -309,7 +280,6 @@ export class GardenComponent {
               this.inicializar();
             }
           }
-
         }
       },
         error => {
@@ -326,9 +296,7 @@ export class GardenComponent {
   getTiempo() {
     this._gardenService.tiempo(this.garden)
       .subscribe(data => {
-        // console.log(data);
         if (data.cod != '404') {
-
           var aux = data.main.temp - 273;
           this.temperatura = aux;
           var sunrise = new Date();
@@ -338,14 +306,14 @@ export class GardenComponent {
 
           sunset.setTime(data.sys.sunset * 1000);
           this.sunset = sunset;
-          this.haveWeather=true;
+          this.haveWeather = true;
           (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '180px';
         }
-        else{
-          this.haveWeather=false;
+        else {
+          this.haveWeather = false;
           (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
         }
-        
+
         this.inicializar();
       },
         error => {
@@ -424,8 +392,6 @@ export class GardenComponent {
           (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
           this.haveWeather = false;
         }
-
-
       },
         error => {
 
@@ -446,7 +412,6 @@ export class GardenComponent {
     this.colorMan = this.colorTemperatura(this.maxMan);
     auxTemp = [];
     auxNum = 0;
-
     for (var i = 0; i < this.prevDia3.length; i++) {
       auxNum = this.prevDia3[i].main.temp - 273;
       auxTemp.push(auxNum);
@@ -456,8 +421,6 @@ export class GardenComponent {
     this.colorDia3 = this.colorTemperatura(this.maxDia3);
     auxTemp = [];
     auxNum = 0;
-
-
     for (var i = 0; i < this.prevDia4.length; i++) {
       auxNum = this.prevDia4[i].main.temp - 273;
       auxTemp.push(auxNum);
@@ -467,7 +430,6 @@ export class GardenComponent {
     this.colorDia4 = this.colorTemperatura(this.maxDia4);
     auxTemp = [];
     auxNum = 0;
-
     for (var i = 0; i < this.prevDia5.length; i++) {
       auxNum = this.prevDia5[i].main.temp - 273;
       auxTemp.push(auxNum);
@@ -475,7 +437,6 @@ export class GardenComponent {
     this.maxDia5 = Math.max(...auxTemp);
     this.minDia5 = Math.min(...auxTemp);
     this.colorDia5 = this.colorTemperatura(this.maxDia5);
-
     auxTemp = [];
     auxNum = 0;
 
@@ -543,7 +504,6 @@ export class GardenComponent {
         });
   }
 
-
   //country functions
   saveCountry(e) {
     if (e.value != 0 && e.value !== undefined) {
@@ -575,20 +535,17 @@ export class GardenComponent {
   }
 
 
-  resizeCanvas() {
-
-    /*
-
-    */
-  }
+  resizeCanvas() { }
 
   toggleState() {
     if (this.visible == 0) {
+      this.visible = 1;
       this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
+      
         (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
       }
-      this.visible = 1;
+      
     } else {
       this.visible = 0;
       if (typeof window.orientation !== 'undefined') {
@@ -601,7 +558,6 @@ export class GardenComponent {
 
   inicializar() {
     new iniciar("detail", this.garden, this.sunrise, this.sunset);
-    //new iniciar("edit", this.garden, this.sunrise, this.sunset);
     let width = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetWidth;
     let height = (<HTMLElement>document.querySelector(".canvasEvolver")).offsetHeight;
     let canvas = document.querySelector('canvas');
@@ -769,12 +725,10 @@ export class GardenComponent {
       obs.next(0);
       obs.complete();
     });
-
-
     this.firstgarden();
     this.accion = 'Editar';
     this.mostrar();
-    
+
   }
 
 

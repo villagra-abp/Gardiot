@@ -28,8 +28,8 @@ class TRecursoMalla extends TRecurso {
     //auxVar
     this.viewModelMatrix = [];
     this.normalMatrix = [];
-    this.projectionViewModelMatrix=[];
-    this.lightProjectionViewModelMatrix=[];
+    this.projectionViewModelMatrix = [];
+    this.lightProjectionViewModelMatrix = [];
 
   }
   /**
@@ -53,7 +53,7 @@ class TRecursoMalla extends TRecurso {
     });
 
     //almacenamos los vértices del objeto
-    this._vertices=objeto.meshes[0].vertices;
+    this._vertices = objeto.meshes[0].vertices;
 
 
     //almacenamos el índice de caras
@@ -68,28 +68,21 @@ class TRecursoMalla extends TRecurso {
     //almacenamos el material del objeto
     if (objeto.materials.length > 0) {
       for (let i = 0; i < objeto.materials[objeto.materials.length - 1].properties.length; i++) {
-        switch (objeto.materials[objeto.materials.length - 1].properties[i].key) {
-          case "$clr.ambient": {
-            this.Ka = objeto.materials[objeto.materials.length - 1].properties[i].value;
-          }
-          case "$clr.diffuse": {
-            this.Kd = objeto.materials[objeto.materials.length - 1].properties[i].value;
-          }
-          case "$clr.specular": {
-            this.Ks = objeto.materials[objeto.materials.length - 1].properties[i].value;
-          }
-          case "$mat.shininess": {
-            this.shininess = objeto.materials[objeto.materials.length - 1].properties[i].value;
-          }
-          case "$mat.opacity": {
-            this.opacity = objeto.materials[objeto.materials.length - 1].properties[i].value;
-          }
-          default: {
-          }
-        }
+
+        if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.ambient')
+          this.Ka = objeto.materials[objeto.materials.length - 1].properties[i].value;
+
+        else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.diffuse')
+          this.Kd = objeto.materials[objeto.materials.length - 1].properties[i].value;
+        else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.specular')
+          this.Ks = objeto.materials[objeto.materials.length - 1].properties[i].value;
+        else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$mat.shininess')
+          this.shininess = objeto.materials[objeto.materials.length - 1].properties[i].value;
+        else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$mat.opacity')
+          this.opacity = objeto.materials[objeto.materials.length - 1].properties[i].value;
+
       }
     }
-
 
     //almacenamos las normales de los vértices
     this._normales.push(objeto.meshes[0].normals);
@@ -137,7 +130,7 @@ class TRecursoMalla extends TRecurso {
     this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
   }
 
-  drawSombras(){
+  drawSombras() {
     //Cálculo de la matrix model view projection desde la luz
     mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix[window.i], matrixModel);
     mat4.multiply(this.lightProjectionViewModelMatrix, lightProjectionMatrix, this.lightProjectionViewModelMatrix);
@@ -166,14 +159,14 @@ class TRecursoMalla extends TRecurso {
     mat4.multiply(this.projectionViewModelMatrix, projectionMatrix, this.viewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].mvMatrixUniform, false, this.viewModelMatrix);
     gl.uniformMatrix4fv(glProgram[window.program].mvpMatrixUniform, false, this.projectionViewModelMatrix);
- 
+
     //Cálculo de la matrix model view projection desde la luz
-    for(let i=0; i<viewLightMatrix.length; i++){
-      this.lightProjectionViewModelMatrix[i]=[];
+    for (let i = 0; i < viewLightMatrix.length; i++) {
+      this.lightProjectionViewModelMatrix[i] = [];
       mat4.multiply(this.lightProjectionViewModelMatrix[i], viewLightMatrix[0], matrixModel);
       mat4.multiply(this.lightProjectionViewModelMatrix[i], lightProjectionMatrix, this.lightProjectionViewModelMatrix[i]);
       gl.uniformMatrix4fv(glProgram[window.program].lmvpMatrixUniform[0], false, this.lightProjectionViewModelMatrix[i]);
-  
+
     }
 
     //Pasamos la matriz modelo al shader
@@ -190,7 +183,7 @@ class TRecursoMalla extends TRecurso {
       gl.bindBuffer(gl.ARRAY_BUFFER, this.bufferTextureCoords);
       gl.vertexAttribPointer(this.vertexTexCoordAttribute, 2, gl.FLOAT, false, 0, 0);
 
-      gl.activeTexture(gl.TEXTURE0+this._textura._img.index);
+      gl.activeTexture(gl.TEXTURE0 + this._textura._img.index);
       gl.uniform1i(glProgram[window.program].samplerUniform, this._textura._img.index);
 
       gl.uniform1i(glProgram[window.program].textured, 1);
@@ -221,7 +214,7 @@ class TRecursoMalla extends TRecurso {
     //Si pasamos el ratón por encima se verán más brillantes,
     //si pasamos por una celda ocupada mientras arrastramos,
     //la celda se coloreará roja, etc.
-    if(variable === undefined){
+    if (variable === undefined) {
       gl.uniform1i(glProgram[window.program].hovered, 0);
     }
     else if (variable == true) {
@@ -233,15 +226,11 @@ class TRecursoMalla extends TRecurso {
     else if (variable == "red") {
       gl.uniform1i(glProgram[window.program].hovered, 3);
     }
-    if(this.nombre=='sueloGrande'){
+    if (this.nombre == 'sueloGrande') {
       gl.uniform1i(glProgram[window.program].hovered, 4);
-      gl.uniform1f(glProgram[window.program].factor, window.factorIlumination);
     }
-    else if(this.nombre.indexOf('sueloExt')>=0){
-      gl.uniform1i(glProgram[window.program].hovered, 5);
-      gl.uniform1f(glProgram[window.program].factor, window.factorIlumination);
-    }
-      
+
+
 
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);

@@ -2,14 +2,14 @@
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-primary" mwlCalendarPreviousView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          Anterior
+        <div class="btn btn-outline-primary search" mwlCalendarPreviousView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+          <i class="material-icons">keyboard_arrow_left</i>
         </div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+        <div class="btn btn-outline-primary search" mwlCalendarToday [(viewDate)]="viewDate">
           Actual
         </div>
-        <div class="btn btn-primary" mwlCalendarNextView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
-          Próximo
+        <div class="btn btn-outline-primary search" mwlCalendarNextView (click)="changeMonth()" [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+          <i class="material-icons">keyboard_arrow_right</i>
         </div>
       </div>
     </div>
@@ -18,127 +18,25 @@
     </div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-primary" (click)="view = 'month'" [class.active]="view === 'month'">
+        <div class="btn btn-outline-primary search" (click)="view = 'month'" [class.active]="view === 'month'">
           Mes
         </div>
-        <div class="btn btn-primary" (click)="view = 'week'" [class.active]="view === 'week'">
+        <div class="btn btn-outline-primary search" (click)="view = 'week'" [class.active]="view === 'week'">
           Semana
         </div>
-        <!-- <div class="btn btn-primary" (click)="view = 'day'" [class.active]="view === 'day'">
-          Día
-        </div> -->
       </div>
     </div>
   </div>
   <br>
-  <div [ngSwitch]="view">
-    <mwl-calendar-month-view
-    *ngSwitchCase="'month'"
-    [viewDate]="viewDate"
-    [events]="events"
-    [locale]="locale"
-    [refresh]="refresh"
-    [weekStartsOn]="weekStartsOn"
-    [weekendDays]="weekendDays"
-    [activeDayIsOpen]="activeDayIsOpen"
-    (dayClicked)="dayClicked($event.day)"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
+  <div class="calendar" [ngSwitch]="view">
+    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [locale]="locale" [refresh]="refresh" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-month-view>
-    <mwl-calendar-week-view
-    *ngSwitchCase="'week'"
-    [viewDate]="viewDate"
-    [events]="events"
-    [locale]="locale"
-    [refresh]="refresh"
-    [weekStartsOn]="weekStartsOn"
-    [weekendDays]="weekendDays"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
+    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" [locale]="locale" [refresh]="refresh" [weekStartsOn]="weekStartsOn" [weekendDays]="weekendDays" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view
-    *ngSwitchCase="'day'"
-    [viewDate]="viewDate"
-    [events]="events"
-    [locale]="locale"
-    [refresh]="refresh"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)">
+    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" [locale]="locale" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-day-view>
   </div>
-
-  <!--
-
-<h3>
-  Edit events
-  <button
-    class="btn btn-primary pull-right"
-    (click)="addEvent()">
-    Add new
-  </button>
-  <div class="clearfix"></div>
-</h3>
-
-<table class="table table-bordered">
-
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Primary color</th>
-      <th>Secondary color</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th>Remove</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let event of events; let index = index">
-      <td>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="event.title"
-          (keyup)="refresh.next()">
-      </td>
-      <td>
-        <input
-          type="color"
-          [(ngModel)]="event.color.primary"
-          (change)="refresh.next()">
-      </td>
-      <td>
-        <input
-          type="color"
-          [(ngModel)]="event.color.secondary"
-          (change)="refresh.next()">
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-        <button
-          class="btn btn-danger"
-          (click)="events.splice(index, 1); refresh.next()">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-
-</table>
--->
 </div>
-
-<div onmouseenter="showPopover(event.target.id)"
-  onmouseleave="hidePopover(event.target.id)"
-  style="width: 0; height: 0"
- id="popoverError"
- data-container="body"
- data-toggle="popover"
- data-placement="top"
- data-content="No puedes mover la tarea porque ya existe una igual en la fecha destino.">
+<div onmouseenter="showPopover(event.target.id)" onmouseleave="hidePopover(event.target.id)" style="width: 0; height: 0" id="popoverError" data-container="body" data-toggle="popover" data-placement="top" data-content="No puedes mover la tarea porque ya existe una igual en la fecha destino.">
 </div>

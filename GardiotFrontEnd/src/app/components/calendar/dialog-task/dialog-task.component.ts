@@ -32,7 +32,7 @@ export class DialogTaskComponent implements OnInit {
 
   ) { }
 
-  mostrar(){
+  mostrar() {
     // TRATAMIENTO
     this._treatmentService.details(this.data.treatmentPlant)
       .subscribe(data => {
@@ -43,21 +43,21 @@ export class DialogTaskComponent implements OnInit {
           this.nameTreatment.icon = data[0].icon;
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
     // PLANTA
     this._plantService.details(this.data.mPlant)
       .subscribe(data => {
         this.plant.photo = data[0].photo;
         this.plant.commonName = data[0].commonName;
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
 
     // PRODUCTO
-    this._treatmentPlantService.showProductPlant(this.data.treatmentPlant,this.data.mPlant)
+    this._treatmentPlantService.showProductPlant(this.data.treatmentPlant, this.data.mPlant)
       .subscribe(data => {
 
         this.products = [];
@@ -73,14 +73,10 @@ export class DialogTaskComponent implements OnInit {
 
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
-
-  // onCloseConfirm() {
-  //   this.thisDialogRef.close('Confirm');
-  // }
 
   ngOnInit() {
     this.mostrar();

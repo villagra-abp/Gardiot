@@ -1,33 +1,27 @@
-<!-- Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 -->
+<div class="encabezado">
+  <h3>API</h3>
+  <p>Nos proponemos poner en abierto toda nuestra sección de la biblioteca y poner a tu disposición nuestra API con toda la documentación sobre plantas. Esta API, continúa en desarrollo y en breve proporcionaremos el servicio para obtener tu Api-Key. Continuamos
+    con el trabajo para ponder habilitar esta función lo antes posible!</p>
+  <span class="btn btn-success">GET</span>
+</div>
 
-  <div class="encabezado">
-    <h3>API</h3>
-    <p>Nos proponemos poner en abierto toda nuestra sección de la biblioteca
-      y poner a tu disposición nuestra API con toda la documentación sobre plantas.
-       Esta API, continúa en desarrollo y en breve proporcionaremos el servicio para
-       obtener tu Api-Key. Continuamos con el trabajo para ponder habilitar esta
-       función lo antes posible!</p>
-    <span class="btn btn-success">GET</span>
-  </div>
-
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /plants/:number/:page/:order/:sort
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve un número de elementos de una página especificada.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <ul>
-        <li>number: número de elementos por página.</li>
-        <li>page: página.</li>
-        <li>order: ordenar por nombre o familia de la planta (NAME o FAMILY).</li>
-        <li>sort: ordenar descendentemente, por defecto ascendente (DESC).</li>
-      </ul>
-      <pre>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /plants/:number/:page/:order/:sort
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve un número de elementos de una página especificada.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li>number: número de elementos por página.</li>
+      <li>page: página.</li>
+      <li>order: ordenar por nombre o familia de la planta (NAME o FAMILY).</li>
+      <li>sort: ordenar descendentemente, por defecto ascendente (DESC).</li>
+    </ul>
+    <pre>
         <span class="llave">"{{ '{' }}</span>
         <span>"id": number,</span>
         <span>"family": number,</span>
@@ -43,21 +37,20 @@
         <span>"name": "string"</span>
         <span class="llave">"{{ '},' }}</span>
       </pre>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /plant/:id
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve los datos de la planta del identificador que se pasa por parámetro.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <ul>
-        <li>id: identificador de la planta que se desean sus datos.</li>
-      </ul>
-      <pre>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /plant/:id
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve los datos de la planta del identificador que se pasa por parámetro.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li>id: identificador de la planta que se desean sus datos.</li>
+    </ul>
+    <pre>
         <span class="llave">"{{ '{' }}</span>
         <span>"scientificName": "string",</span>
         <span>"commonName": "string",</span>
@@ -77,41 +70,39 @@
         <span>"name": "string"</span>
         <span class="llave">"{{ '},' }}</span>
       </pre>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /numPlants
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve el número de plantas existentes en el sistema.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <pre>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /numPlants
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve el número de plantas existentes en el sistema.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <pre>
         <span class="llave2">"{{ '[' }}</span>
         <span class="llave">"{{ '{' }}</span>
         <span>"NUMPLANTAS": 10</span>
         <span class="llave">"{{ '}' }}</span>
         <span class="llave2">"{{ ']' }}</span>
       </pre>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /families/:number/:page/:sort
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve un número de elementos de una página especificada, se pueden ordenar los elementos de manera ascendente y descendente.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <ul>
-        <li>number: número de elementos por página.</li>
-        <li>page: página.</li>
-        <li>sort: ordenar descendentemente, por defecto ascendente.(DESC).</li>
-      </ul>
-      <pre>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /families/:number/:page/:sort
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve un número de elementos de una página especificada, se pueden ordenar los elementos de manera ascendente y descendente.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li>number: número de elementos por página.</li>
+      <li>page: página.</li>
+      <li>sort: ordenar descendentemente, por defecto ascendente.(DESC).</li>
+    </ul>
+    <pre>
         <span class="llave">"{{ '{' }}</span>
         <span>"id": number,</span>
         <span>"name": "string",</span>
@@ -123,45 +114,43 @@
         <span>"description": "string"</span>
         <span class="llave">"{{ '}' }}</span>
       </pre>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /family/:id
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve los datos de la familia del identificador que se pasa por parámetro.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <ul>
-        <li>id: identificador de la familia que se desean sus datos.</li>
-      </ul>
-      <pre>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /family/:id
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve los datos de la familia del identificador que se pasa por parámetro.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li>id: identificador de la familia que se desean sus datos.</li>
+    </ul>
+    <pre>
         <span class="llave">"{{ '{' }}</span>
         <span>"id": number,</span>
         <span>"name": "string",</span>
         <span>"description": "string"</span>
         <span class="llave">"{{ '}' }}</span>
       </pre>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          /numFamilies
-        </mat-panel-title>
-        <mat-panel-description>
-          Devuelve el número de familias dentro del sistema.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <ul>
-        <li>id: identificador de la familia que se desean sus datos.</li>
-      </ul>
-      <pre>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        /numFamilies
+      </mat-panel-title>
+      <mat-panel-description>
+        Devuelve el número de familias dentro del sistema.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ul>
+      <li>id: identificador de la familia que se desean sus datos.</li>
+    </ul>
+    <pre>
         <span class="llave">"{{ '{' }}</span>
         <span>"NUMFAMILIES": 28</span>
         <span class="llave">"{{ '}' }}</span>
       </pre>
-    </mat-expansion-panel>
-  </mat-accordion>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -3,15 +3,12 @@
 		<form (ngSubmit)="this.guardar()" #forma="ngForm">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<!-- <label for="name_feed">Nombre</label> -->
 					<input placeholder="Título del consejo" type="text" class="form-control col-md" [(ngModel)]="feed.name" name="name" id="name_feed" required>
 				</div>
 			</div>
-
 			<div class="form-group">
 				<textarea class="form-control col-md" [(ngModel)]="feed.text" name="text" placeholder="Consejo" required rows="3" required></textarea>
 			</div>
-
 			<div class="form-group col-md-6">
 				<label for="dateInit">Inicio</label>
 				<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateInit" name="dateInit" id="dateInit">
@@ -20,9 +17,8 @@
 				<label for="dateFinal">Fin</label>
 				<input type="date" class="form-control col-md-6" [(ngModel)]="feed.dateFinal" name="dateFinal" id="dateFinal">
 			</div>
-
-			<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-			<button [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+			<button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+			<button [routerLink]="['/admin/feeds']" [queryParams]="{pag: 1}" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
 		</form>
 	</section>
 </div>

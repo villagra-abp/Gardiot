@@ -33,9 +33,9 @@ export class ListfeedComponent implements OnInit {
             this.feeds.push(data[key$]);
           }
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     } else {
       //  this.searchcontent(this.paginaActual,this.elementosPorPagina);
     }
@@ -55,20 +55,19 @@ export class ListfeedComponent implements OnInit {
         }
         this.mostrar();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
-
 
   delete(idProduct: number) {
     this._feedService.deleteFeed(idProduct)
       .subscribe(data => {
         this.ActualizarPagina();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   searchcontent(page: number, items: number) {
@@ -84,15 +83,19 @@ export class ListfeedComponent implements OnInit {
           for (let key$ in data) {
             this.feeds.push(data[key$]);
           }
-        }else{
+        } else {
           this.feeds = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
+  }
+
+  clear() {
+    this.feed = new Feed();
   }
 
   openDialog(id: number, tipo: number) {
@@ -106,5 +109,4 @@ export class ListfeedComponent implements OnInit {
   ngOnInit() {
     this.ActualizarPagina();
   }
-
 }

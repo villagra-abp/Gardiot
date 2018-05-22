@@ -20,13 +20,12 @@ export class ResendComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
       },
-      error => {
+        error => {
 
-      });
+        });
   }
 
   ngOnInit() {
-
   }
 
 

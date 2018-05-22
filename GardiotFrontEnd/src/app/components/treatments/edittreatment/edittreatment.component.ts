@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class EdittreatmentComponent implements OnInit {
 
-  treatment = new Treatment();
+  public treatment = new Treatment();
   public treatments: any[] = [];
 
   constructor(

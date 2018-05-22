@@ -1,174 +1,207 @@
-img{
-	width: 70px;
-	height: 70px;
-}
-.icono{
-	width: 175%;
-	margin-top: 1.5em;
-}
-.icon{
-	margin-left: 4em;
-}
-.icontarea{
-	margin-left: 0;
-	width: 25px;
-	height: 25px;
-}
-.text_conejo{
-	text-align: left;
-}
-.title_conejo{
-	text-align: left;
-	font-weight: bold;
-}
-p{
-	text-align: center;
-}
-.texto_dato{
-		font-weight: bold;
-		margin: 0.2em;;
-}
-.hecho{
-	color: #299654;
+img {
+  width: 70px;
+  height: 70px;
 }
 
-#myCanvas{
-	border-style: solid;
-	border-width: 2px;
-	border-color: #ffb200;
-	border-radius: 25px;
-	margin-left: 2em;
-
+.icono {
+  width: 175%;
+  margin-top: 1.5em;
 }
-.material-icons:hover{
-	color: #299654;
+
+.icon {
+  margin-left: 4em;
+}
+
+.icontarea {
+  margin-left: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.text_conejo {
+  text-align: left;
+}
+
+.title_conejo {
+  text-align: left;
+  font-weight: bold;
+}
+
+p {
+  text-align: center;
+}
+
+.texto_dato {
+  font-weight: bold;
+  margin: 0.2em;
+  ;
+}
+
+.hecho {
+  color: #299654;
+}
+
+#myCanvas {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffb200;
+  border-radius: 25px;
+  margin-left: 2em;
+}
+
+.material-icons:hover {
+  color: #299654;
 }
 
 ::-webkit-scrollbar {
-      width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-      background-color: #f3f3f3;
+  background-color: #f3f3f3;
 }
-::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.2);
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-/* Consejos */
 
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 .body {
-	padding: 10px;
-	height: 610px;
-	background-color: #fff;
-	overflow-y:scroll;
-	overflow-x: hidden;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #299654;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+  padding: 10px;
+  height: 610px;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #299654;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-
 .body2 {
-	padding: 10px;
-	height: 280px;
-	width :100%;
-	background-color: #fff;
-	overflow-y:scroll;
-	overflow-x: hidden;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #25b5aa;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+  padding: 10px;
+  height: 280px;
+  width: 100%;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #25b5aa;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #titulo2 {
-	background-color: #25b5aa;
-	text-align: center;
-	color : white;
-	padding : 0.2em;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+  background-color: #25b5aa;
+  text-align: center;
+  color: white;
+  padding: 0.2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-
 .title {
-	margin-bottom: -8px;
+  margin-bottom: -8px;
 }
 
 #titulo {
-	background-color: #299654;
-	text-align: center;
-	color : white;
-	padding : 0.2em;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+  background-color: #299654;
+  text-align: center;
+  color: white;
+  padding: 0.2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .fecha {
-	width: 20%;
-	border-right: 3px solid #ffb200;
-	padding-right: 0px;
+  width: 20%;
+  border-right: 3px solid #ffb200;
+  padding-right: 0px;
 }
+
 .fila {
-	margin-bottom: 5px;
-
-
+  margin-bottom: 5px;
 }
 
 .numero {
-	font-size: x-large;
+  font-size: x-large;
 }
+
 .mes {
-	line-height:0.5;
-	font-size: x-small;
+  line-height: 0.5;
+  font-size: x-small;
 }
+
 .tarea {
-	background-color: rgba(0,0,0,0.04);
-	padding-top: 10px;
-	padding-bottom:5px;
-	padding-left: 7px;
-	margin-left:1px;
-	margin-right:15px;
-	margin-bottom: 5px;
-	font-size: small;
-	border-radius: 5px;
-	border: #e0e0e0 1px solid;
+  background-color: rgba(0, 0, 0, 0.04);
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  margin-left: 1px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  font-size: small;
+  border-radius: 5px;
+  border: #e0e0e0 1px solid;
 }
 
 .tarea:hover {
-	background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .noTarea {
-	background-color: rgba(0,0,0,0.04);
-	padding-top: 10px;
-	padding-bottom:5px;
-	padding-left: 7px;
-	margin-left:1px;
-	margin-right:15px;
-	margin-bottom: 5px;
-	font-size: small;
-	border-radius: 5px;
-	border: #e0e0e0 1px solid;
+  background-color: rgba(0, 0, 0, 0.04);
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  margin-left: 1px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  font-size: small;
+  border-radius: 5px;
+  border: #e0e0e0 1px solid;
 }
 
 .noTarea:hover {
-	background-color: rgba(0,0,0,0.1);
-	cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 600px){
-	.body{
-		overflow-y: hidden;
-		overflow-x: hidden;
-		height: initial;
-	}
+.canvasHome {
+  position: relative;
+}
 
+.canvasHome>img {
+  position: absolute;
+  left: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 200px;
+  height: 120px;
+}
+
+@media only screen and (max-width: 600px) {
+  .body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: initial;
+  }
+  #myCanvas {
+    width: 83%;
+  }
+  .icon {
+    margin-left: 5em;
+  }
+  .calendar {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 2em;
+  }
 }

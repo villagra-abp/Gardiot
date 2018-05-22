@@ -9,18 +9,18 @@ import { EdituserComponent } from './components/users/edituser/edituser.componen
 import { AdminListUsersComponent } from './components/users/listusers/listusers.component';
 //negocio
 import { StatisticsComponent } from './components/admin/statistics.component';
+//Plantas
+import { NewplantComponent } from './components/plants/newplant/newplant.component';
+import { EditplantComponent } from './components/plants/editplant/editplant.component';
 //treatment
 import { NewtreatmentComponent } from './components/treatments/newtreatment/newtreatment.component';
 import { EdittreatmentComponent } from './components/treatments/edittreatment/edittreatment.component';
 import { ListtreatmentComponent } from './components/treatments/listtreatment/listtreatment.component';
-import { TreatmentComponent } from './components/treatments/treatment/treatment.component';
 //product
 import { NewproductComponent } from './components/products/newproduct/newproduct.component';
 import { EditproductComponent } from './components/products/editproduct/editproduct.component';
 import { ListproductComponent } from './components/products/listproduct/listproduct.component';
-import { ProductComponent } from './components/products/product/product.component';
 //feed
-import { FeedComponent } from './components/feeds/feed/feed.component';
 import { NewfeedComponent } from './components/feeds/newfeed/newfeed.component';
 import { EditfeedComponent } from './components/feeds/editfeed/editfeed.component';
 import { ListfeedComponent } from './components/feeds/listfeed/listfeed.component';
@@ -38,19 +38,19 @@ export const admin_routes: Routes = [
   { path: 'users', component: AdminListUsersComponent,  canActivate: [AdminguardGuard] },
   { path: 'edituser/:id', component: EdituserComponent,  canActivate: [AdminguardGuard] },
   { path: 'newuser', component: NewuserComponent,  canActivate: [AdminguardGuard] },
+  //Plants
+  { path: 'newplant', component: NewplantComponent, canActivate: [AdminguardGuard] },
+  { path: 'editplant/:id', component: EditplantComponent, canActivate: [AdminguardGuard] },
   //treatment
   { path: 'treatments', component: ListtreatmentComponent,  canActivate: [AdminguardGuard] },
-  { path: 'treatment/:id', component: TreatmentComponent,  canActivate: [AdminguardGuard] },
   { path: 'edittreatment/:id', component: EdittreatmentComponent,  canActivate: [AdminguardGuard] },
   { path: 'newtreatment', component: NewtreatmentComponent,  canActivate: [AdminguardGuard] },
   //product
   { path: 'products', component: ListproductComponent,  canActivate: [AdminguardGuard] },
-  { path: 'product/:id', component: ProductComponent,  canActivate: [AdminguardGuard] },
   { path: 'editproduct/:id', component: EditproductComponent,  canActivate: [AdminguardGuard] },
   { path: 'newproduct', component: NewproductComponent,  canActivate: [AdminguardGuard] },
   //feed
   { path: 'feeds', component: ListfeedComponent,  canActivate: [AdminguardGuard] },
-  { path: 'feed/:id', component: FeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'editfeed/:id', component: EditfeedComponent,  canActivate: [AdminguardGuard] },
   { path: 'newfeed', component: NewfeedComponent,  canActivate: [AdminguardGuard] },
   //newtreatmentsplants

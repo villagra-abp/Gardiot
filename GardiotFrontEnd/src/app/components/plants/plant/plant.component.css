@@ -1,16 +1,16 @@
-/* Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 */
-
-/* CONTENEDOR PRINCIPAL */
-/* div{
-  border: 1px solid green;
-} */
 .vistaUser{
   margin-right: 130px;
   margin-left: 130px;
 }
+.volver{
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+  text-align: center;
+  margin-top: 2%;
+}
 .buttonAdmin{
-  margin-top:1em;
+  margin-top: 1em;
   margin-left: 0.4em;
   margin-right: 0.4em;
   padding-left: 0.2em;
@@ -18,15 +18,14 @@
 
 }
 .buttonAdmin button{
-  margin-bottom: 100%
-  /* border: none; */
+  margin-bottom: 45%
 }
+
 article{
   margin-right: auto;
   margin-left: auto;
 }
 div,article,section{
-  /* border: 1px solid black; */
   padding: 1%;
 }
 
@@ -39,8 +38,6 @@ div,article,section{
 .iconplant{
   max-width: 30px;
   max-height: 30px;
-  /* min-width: 25px;
-  min-height: 25px; */
   padding-right: 3%;
 }
 .iconoTrata{
@@ -117,7 +114,6 @@ dd.caracteristicas {
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
-  /* border: 1px solid #ffb200; */
   border: 1px solid rgba(255, 178, 0, .3);
 }
 
@@ -135,17 +131,13 @@ dd.caracteristicas {
 }
 .descriptionTrata{
   font-size: .9em;
-  /* border: 1px solid #ffb200; */
   text-align: justify;
 }
 
 /* PRODUCTOS */
-ul{
-  /* max-width: 400px; */
-}
+
 li{
   text-decoration: none;
-  /* font-size: .9em; */
 }
 p.listaProductos{
   font-style: italic;
@@ -155,32 +147,11 @@ p.listaProductos{
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
-  /* border: 1px solid #ffb200; */
   border: 1px solid rgba(255, 178, 0, .3);
-
   margin-top: 2%;
-
 }
 
-
-mat-accordion{
-  /* -moz-transition: none;
-    -webkit-transition: none;
-    -o-transition: color 0 ease-in;
-    transition: none; */
-    /* border:none !important;
-    outline:none; */
-}
 mat-expansion-panel{
   background-color: #f3f3f3;
-  /* border:none !important;
-  outline:none; */
-}
-mat-panel-title{
-/* border:none !important;
-outline:none; */
-}
-mat-expansion-panel-header{
-  /* border:none !important;
-  outline:none; */
+  max-width: 20%;
 }

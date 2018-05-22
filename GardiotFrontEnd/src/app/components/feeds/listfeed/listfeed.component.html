@@ -5,42 +5,36 @@
         <input type="text" [(ngModel)]="feed.name" class="form-control col-md-6" name="name" placeholder="Título">
       </article>
       <article class="form-group col-md-6">
-        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
+        <button title="Buscar" class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button title="Busqueda avanzada" data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
       </article>
       <article class="form-group col-md-2 nav justify-content-end">
-        <button [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
+        <button title="Crear nuevo consejo" [routerLink]="['/admin/newfeed']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
     <div id="demo" class="collapse">
       <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
-          <div class="form-group col-md-4">
-            <label for="content">Texto</label>
-            <input type="text" [(ngModel)]="feed.text" class="form-control col-md-6" id="content" name="content">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inicio">Inicio</label>
-            <input type="date" [(ngModel)]="feed.dateInit" class="form-control col-md-6" id="inicio" name="inicio">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="fin">Fin</label>
-            <input type="date" [(ngModel)]="feed.dateFinal" class="form-control col-md-6" id="fin" name="fin">
-          </div>
-          <div class="form-group col-md-12S">
-            <button class="btn btn-default" type="submit">Filtrar</button>
-          </div>
-
+        <div class="form-group col-md-4">
+          <label for="content">Texto</label>
+          <input type="text" [(ngModel)]="feed.text" class="form-control col-md-6" id="content" name="content">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inicio">Inicio</label>
+          <input type="date" [(ngModel)]="feed.dateInit" class="form-control col-md-6" id="inicio" name="inicio">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="fin">Fin</label>
+          <input type="date" [(ngModel)]="feed.dateFinal" class="form-control col-md-6" id="fin" name="fin">
+        </div>
+        <div class="form-group col-md-12S">
+          <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
+          <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()"><i class="material-icons">format_clear</i></button>
+        </div>
       </form>
     </div>
     <table class="table table-hover" *ngIf="numeroItems!=0">
       <thead>
         <tr>
-          <!-- <th scope="col">Título</th>
-          <th scope="col">Texto</th>
-          <th scope="col">Fecha Inicial</th>
-          <th scope="col">Fecha Final</th>
-          <th scope="col"></th>
-          <th scope="col"></th> -->
         </tr>
       </thead>
       <tbody>
@@ -49,8 +43,8 @@
           <td>{{feed.text}}</td>
           <td>{{feed.dateInit | date}}</td>
           <td>{{feed.dateFinal| date}}</td>
-          <td><button class="btn btn-outline-primary" [routerLink]="['/admin/editfeed/',feed.id]"><i class="material-icons">mode_edit</i></button></td>
-          <td><button class="btn btn-outline-danger" (click)="openDialog(feed.id,3)"><i class="material-icons">delete</i></button></td>
+          <td><button title="Editar" class="btn btn-outline-primary search" [routerLink]="['/admin/editfeed/',feed.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button title="Eliminar" class="btn btn-outline-danger search" (click)="openDialog(feed.id,3)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>

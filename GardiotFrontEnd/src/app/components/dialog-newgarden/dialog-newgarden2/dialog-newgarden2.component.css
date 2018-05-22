@@ -1,39 +1,52 @@
-div{
-    width: 100%;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.1);
-    padding: 1.5em;
-    /* border: 2px solid #fff;
-    border-radius: 20px/50px;
-    background-clip: padding-box; */
-    text-align: center;
+div {
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1em;
+  text-align: center;
 }
-/* section{
-  margin-top: -26px;
-} */
-ul{
+
+ul {
   width: 100%;
 }
-li{
+
+li {
   margin-left: 0.2em;
 }
 
-mat-dialog-actions{
-padding: 2.5px;
+mat-dialog-actions {
+  padding: 2.5px;
 }
-button{
-margin: auto;
+
+button {
+  margin: auto;
 }
 
 .selectsearch__field {
-    background: transparent;
-    padding: 0 12px;
-    height: 32px;
-    line-height: 1.42857143;
-    margin-top: 0;
-    min-width: 5em;}
+  background: transparent;
+  padding: 0 12px;
+  height: 32px;
+  line-height: 1.42857143;
+  margin-top: 0;
+  min-width: 5em;
+}
 
-#ciudad{
+#ciudad {
   font-family: 'Kavoon', cursive;
   font-size: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  div {
+    padding: 0.2em;
+  }
+  a, button, p, label {
+    font-size: 10px;
+  }
+  h4 {
+    font-size: 15px;
+  }
+  .controlSelec2 {
+    width: 45% !important;
+  }
 }

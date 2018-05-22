@@ -1,22 +1,39 @@
-div{
-    width: 100%;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.1);
-    padding: 1.5em;
-    text-align: center;
+div {
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1em;
+  text-align: center;
 }
-mat-dialog-actions{
-padding: 2.5px;
+
+mat-dialog-actions {
+  padding: 2.5px;
 }
-ul{
+
+ul {
   width: 100%;
 }
-li{
+
+li {
   margin-left: 0.2em;
 }
-button{
-margin: auto;
+
+button {
+  margin: auto;
 }
-a.inline{
+
+a.inline {
   font-size: .9em;
+}
+
+@media only screen and (max-width: 600px) {
+  div {
+    padding: 0.2em;
+  }
+  a, button, p, label {
+    font-size: 10px;
+  }
+  h4, legend {
+    font-size: 15px;
+  }
 }

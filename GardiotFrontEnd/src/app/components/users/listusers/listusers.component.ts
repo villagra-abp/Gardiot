@@ -38,11 +38,11 @@ export class AdminListUsersComponent {
             this.users.push(data[key$]);
           }
         },
-        error => {
-          console.error(error);
-        });
+          error => {
+            console.error(error);
+          });
     } else {
-      this.searchcontent(this.paginaActual,this.elementosPorPagina);
+      this.searchcontent(this.paginaActual, this.elementosPorPagina);
     }
   }
 
@@ -51,9 +51,9 @@ export class AdminListUsersComponent {
       .subscribe(data => {
         this.ActualizarPagina();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   ActualizarPagina() {
@@ -71,14 +71,12 @@ export class AdminListUsersComponent {
         }
         this.mostrar();
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
 
   searchcontent(page: number, items: number) {
-    console.log('blablabla');
-    console.log(this.user);
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
 
@@ -94,17 +92,21 @@ export class AdminListUsersComponent {
             this.users.push(data[key$]);
           }
 
-        }else{
+        } else {
           this.users = [];
           this.numeroItems = 0;
           this.paginaActual = 1;
 
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
+  clear() {
+    this.user = new User();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',

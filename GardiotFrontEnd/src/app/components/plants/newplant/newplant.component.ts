@@ -13,17 +13,13 @@ import { Ng2ImgMaxService } from 'ng2-img-max';
   styleUrls: ['./newplant.component.css']
 })
 export class NewplantComponent implements OnInit {
-  plant = new Plant();
-  // treatmentPlant=new TreatmentPlant();
+  public plant = new Plant();
   public plants: any[] = [];
   public families: any[] = [];
-  // public treatments:any[]=[];
-  // public treatmentsPlants:any[]=[];
-  uploader: FileUploader;
+  public uploader: FileUploader;
 
   constructor(
     public _plantService: PlantService,
-    // public _treatmentService:TreatmentService,
     public _appComponent: AppComponent,
     public _ng2ImgMax: Ng2ImgMaxService,
 
@@ -34,10 +30,10 @@ export class NewplantComponent implements OnInit {
       .subscribe(data => {
         this._appComponent.mensajeEmergente("La planta se ha guardado", "primary", "plants?pag=1");
       },
-      error => {
-        let v = JSON.parse(error._body);
-        this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
-      });
+        error => {
+          let v = JSON.parse(error._body);
+          this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
+        });
   }
 
   mostrarFamilias() {
@@ -47,22 +43,10 @@ export class NewplantComponent implements OnInit {
           this.families.push(data[key$]);
         }
       },
-      error => {
-        console.error(error);
-      });
+        error => {
+          console.error(error);
+        });
   }
-  // mostrarTratamientos(){
-  //   this._treatmentService.detailsAll(1,10000)
-  //       .subscribe(data=>{
-  //                       console.log(data);
-  //         for(let key$ in data){
-  //           this.treatments.push(data[key$]);
-  //         }
-  //       },
-  //     error => {
-  //       console.error(error);
-  //     });
-  //   }
 
   uploadPhoto() {
     let imgUpl = <HTMLInputElement>document.querySelector('#photo_plant');
@@ -82,7 +66,7 @@ export class NewplantComponent implements OnInit {
         },
         error => console.log(error)
       );
-    }else{
+    } else {
       this._appComponent.mensajeEmergente("Introduce una foto", "danger", "");
     }
   }
@@ -105,13 +89,7 @@ export class NewplantComponent implements OnInit {
 
   ngOnInit() {
     this.mostrarFamilias();
-    // this.mostrarTratamientos();
     this.managePhoto();
-
-
-
-
-
   }
 
 }

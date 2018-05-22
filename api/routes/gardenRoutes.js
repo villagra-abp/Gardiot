@@ -99,16 +99,13 @@ router.get('/gardenByUser', passport.authenticate('jwt', {session: false}), rout
 
 
 router.get('/firstgardenByUser', passport.authenticate('jwt', {session: false}), routeRequirements, function(request, response) {
-	var user = request.user.id;
-	gardenModel.getGardenByUser(user, function(error, data) {
+	gardenModel.checkGardenExistence(request.user.id, function(error, data) {
 		if (error)
 			response.status(500).json({"Mensaje":error.message});
-		else if (typeof data !== 'undefined' && data.length > 0) {
+		else if (typeof data !== 'undefined' && data[0].number > 0) 
 			response.status(200).json({"Mensaje":"Existe"});
-		}
-		else {
+		else 
 			response.status(200).json({"Mensaje":"No existe"});
-		}
 	});
 });
 

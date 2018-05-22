@@ -18,7 +18,7 @@ export class ListproductComponent implements OnInit {
   public paginaActual: number = 1;
   public elementosPorPagina: number = 4;
   public estado: boolean = false;// false es listado y true buscador
-  dialogResult = "";
+  public dialogResult = "";
 
   constructor(
     public _productService: ProductService,
@@ -97,15 +97,15 @@ export class ListproductComponent implements OnInit {
       });
   }
 
+  clear(){
+    this.product = new Product();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',
       data: { idObject: id, typeObject: tipo }
     });
-    // dialogRef.afterClosed().subscribe(result=> {
-    //   console.log(`Dialog closed: ${result}`);
-    //   this.dialogResult = result;
-    // })
   }
 
   ngOnInit() {

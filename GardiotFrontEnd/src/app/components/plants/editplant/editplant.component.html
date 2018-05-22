@@ -1,7 +1,6 @@
 <div class="vistaAdmin">
 	<section class="container main-container">
 		<form (ngSubmit)="this.uploadPhoto()" #forma="ngForm">
-			<!-- <h4>Datos Básicos</h4> -->
 			<div class="form-row">
 				<div class="col nombre">
 					<label>Nombre común</label>
@@ -14,12 +13,6 @@
 			<div class="form-group">
 				<textarea class="form-control" [(ngModel)]="plant.description" name="description" placeholder="Descripción" required rows="3"></textarea>
 			</div>
-			<!-- <label for="photo_plant">Foto</label> -->
-			<div class="upload-btn-wrapper form-control foto ">
-				<button class="bttn">Selecionar imagen</button>
-				<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
-			</div>
-			<!-- <h4>Datos Técnicos</h4> -->
 			<div class="form-row">
 				<div class="form-group">
 					<label for="family_plant">Familia</label>
@@ -29,20 +22,16 @@
 					<label for="resist_plant">Resistencia</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.diseaseResist" name="diseaseResist" id="resist_plant" placeholder="Se mide en ºC" required>
 				</div>
-
 				<div class="form-group profundidad">
 					<label for="depth_plant">Profundidad</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.depth" name="depth" id="depth_plant" placeholder="Se mide en cm" required>
-
 					<label for="distance_plant">Distancia</label>
 					<input type="text" class="form-control" [(ngModel)]="plant.distance" name="distance" id="distance_plant" placeholder="Se mide en cm" required>
 				</div>
-
 				<div class="form-group hoja">
-					<!-- <label for="photo_plant">Modelo 3D</label> -->
-					<div class="upload-btn-wrapper form-control">
-						<button class="bttn">Modelo 3D</button>
-						<input type="file" class="form-control" name="myfile" id="photo_plant" />
+					<div class="upload-btn-wrapper form-control foto ">
+						<button class="bttn">foto</button>
+						<input type="file" name="myfile" id="photo_plant" ng2FileSelect [uploader]="uploader" />
 					</div>
 					<div class="form-group">
 						<label for="leaveType">Tipo hoja</label>
@@ -50,52 +39,49 @@
 					</div>
 				</div>
 			</div>
-			<!-- FECHAS -->
-
-				<div class="row fechas">
-					<legend class="col">Plantación</legend>
-					<div class="form-row">
-						<div class="form-group">
-							<label for="date_initplant">Inicio</label>
-							<input type="date" class="form-control" [(ngModel)]='plant.initDatePlant' name="initplant" id="date_initplant">
-						</div>
-						<div class="form-group">
-							<label for="date_endplant">Fin</label>
-							<input type="date" class="form-control" [(ngModel)]="plant.finDatePlant" name="endplant" id="date_endplant">
-						</div>
+			<div class="row fechas">
+				<legend class="col">Plantación</legend>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="date_initplant">Inicio</label>
+						<input type="date" class="form-control" [(ngModel)]='plant.initDatePlant' name="initplant" id="date_initplant">
+					</div>
+					<div class="form-group">
+						<label for="date_endplant">Fin</label>
+						<input type="date" class="form-control" [(ngModel)]="plant.finDatePlant" name="endplant" id="date_endplant">
 					</div>
 				</div>
-				<hr>
-				<div class="row fechas">
-					<legend class="col">Floración</legend>
-					<div class="form-row">
-						<div class="form-group">
-							<label for="date_initDateBloom">Inicio</label>
-							<input type="date" class="form-control" [(ngModel)]="plant.initDateBloom" name="initDateBloom" id="date_initDateBloom">
-						</div>
-						<div class="form-group">
-							<label for="date_finDateBloom">Fin</label>
-							<input type="date" class="form-control" [(ngModel)]="plant.finDateBloom" name="finDateBloom" id="date_finDateBloom">
-						</div>
+			</div>
+			<hr>
+			<div class="row fechas">
+				<legend class="col">Floración</legend>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="date_initDateBloom">Inicio</label>
+						<input type="date" class="form-control" [(ngModel)]="plant.initDateBloom" name="initDateBloom" id="date_initDateBloom">
+					</div>
+					<div class="form-group">
+						<label for="date_finDateBloom">Fin</label>
+						<input type="date" class="form-control" [(ngModel)]="plant.finDateBloom" name="finDateBloom" id="date_finDateBloom">
 					</div>
 				</div>
-				<hr>
-				<div class="row fechas">
-					<legend class="col">Cosecha</legend>
-					<div class="form-row">
-						<div class="form-group">
-							<label for="date_initDateHarvest">Inicio</label>
-							<input type="date" class="form-control" [(ngModel)]="plant.initDateHarvest" name="initDateHarvest" id="date_initDateHarvest">
-						</div>
-						<div class="form-group">
-							<label for="date_finDateHarvest">Fin</label>
-							<input type="date" class="form-control" [(ngModel)]="plant.finDateHarvest" name="finDateHarvest" id="date_finDateHarvest">
-						</div>
+			</div>
+			<hr>
+			<div class="row fechas">
+				<legend class="col">Cosecha</legend>
+				<div class="form-row">
+					<div class="form-group">
+						<label for="date_initDateHarvest">Inicio</label>
+						<input type="date" class="form-control" [(ngModel)]="plant.initDateHarvest" name="initDateHarvest" id="date_initDateHarvest">
+					</div>
+					<div class="form-group">
+						<label for="date_finDateHarvest">Fin</label>
+						<input type="date" class="form-control" [(ngModel)]="plant.finDateHarvest" name="finDateHarvest" id="date_finDateHarvest">
 					</div>
 				</div>
-
+			</div>
 			<button type="submit" class="btn btn-outline-primary">Guardar cambios</button>
-			<button [routerLink]="['/plants']" [queryParams]="{pag: 1}" class="btn btn-outline-danger">Cancelar</button>
+			<button [routerLink]="['/plant', plant.id]" class="btn btn-outline-danger">Cancelar</button>
 		</form>
 	</section>
 </div>
