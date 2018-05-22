@@ -27,7 +27,7 @@ export class EditProfileComponent implements OnInit {
   startCountry: Observable<string>;
   cityData: Observable<Array<Select2OptionData>>;
   startCity: Observable<string>;
-
+  imgUrl = "";
   uploader: FileUploader;
 
 
@@ -92,7 +92,7 @@ export class EditProfileComponent implements OnInit {
         this.user.countryCode = data.countryCode;
         console.log(this.user.photo);
         document.querySelector('.divPhoto').setAttribute('style', `width: 200px; height: 200px;
-          background-image: url("${this.user.photo}");
+          background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
@@ -221,6 +221,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(window.location.toString().indexOf("localhost")>=0){
+      this.imgUrl="http://localhost:4200/assets/images/imgProfile/";
+    }
+    else if(window.location.toString().indexOf("gardiot")>=0){
+      this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
+    }
     this.checkAdmin();
     this.uploader = new FileUploader({ url: this._detailService.apiURL + 'uploadAvatar', itemAlias: 'photo' });
     this.mostrar();
