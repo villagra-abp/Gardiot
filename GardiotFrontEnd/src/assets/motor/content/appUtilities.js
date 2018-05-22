@@ -222,12 +222,20 @@ async function rotarSol(){
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
  */
-async function demoSol() {
-  await sleep(100);
-  let now = new Date(window.lastTime);
-  now.setMinutes(now.getMinutes() + 20);
-  calcularPosicionAstros(now);
-  demoSol();
+function demoSol(i) {
+  setTimeout(function () {
+    let now = new Date(window.lastTime);
+    let inc = 20;
+    now.setMinutes(now.getMinutes() + inc);
+    calcularPosicionAstros(now);
+    if (((24*60)/inc) - 1 > i) {
+      console.log(now.getHours() + ':' + now.getMinutes());
+      i++;
+      demoSol(i);
+    }
+    else
+      rotarSol();
+  }, 100); 
 }
 
 /**
