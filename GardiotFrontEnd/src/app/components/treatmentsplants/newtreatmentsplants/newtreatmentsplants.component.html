@@ -19,11 +19,7 @@
         <h2 *ngIf="this.plant.id != undefined">{{this.plant.commonName}}</h2>
         <h3>Añadir tratamiento</h3>
         <button [routerLink]="['/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
-        <button type="button" [routerLink]="['/plant', plant.id]" title="Volver a la planta" class="btn btn-outline-info volver">Volver</button>
-
       </div>
-
-
     </div>
 
     <form (ngSubmit)="this.guardar()" method="post">
