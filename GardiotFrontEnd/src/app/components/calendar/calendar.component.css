@@ -6,15 +6,16 @@
   background-color: #63d297;
   color: #fff;
 }
-a{
-  color: red;
+.search:visited{
+  background-color: #63d297;
+  color: #fff;
 }
 
-.ng-tns-c3-6{
-  background-color: red;
+.myicon{
+  /* color:#63d297 !important;
+  background-color: red; */
 }
-
-
-.ng-star-inserted {
-    background-color: red;
+.calendar{
+  width: 100%;
+  min-height: 90px !important;
 }

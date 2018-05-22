@@ -44,12 +44,12 @@ const colors: any = {
     secondary: '#FAE3E3'
   },
   blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
+    primary: '#25b5aa',
+    secondary: 'rgba(0,0,0,0.04)'
   },
   yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
+    primary: '#ffb200',
+    secondary: 'rgba(0,0,0,0.04)'
   },
   green: {
     primary: '#009900',
@@ -102,14 +102,14 @@ export class CalendarComponent implements OnInit {
       }
     },*/
     {
-      label: '<i class="material-icons">check</i>',
+      label: '<i class="material-icons myicon">check</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         //this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event, undefined);
       }
     },
     {
-      label: '<i class="material-icons">close</i>',
+      label: '<i class="material-icons myicon">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event, undefined);
@@ -118,7 +118,7 @@ export class CalendarComponent implements OnInit {
   ];
   doneActions: CalendarEventAction[] = [
     {
-      label: '<i class="material-icons">check</i>',
+      label: '<i class="material-icons myicon">check</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         //this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Done', event, undefined);
@@ -128,7 +128,7 @@ export class CalendarComponent implements OnInit {
   undoneActions: CalendarEventAction[] = [
     {
       //label: '<i class="material-icons">close</i>',
-      label: '<i class="material-icons">close</i>',
+      label: '<i class="material-icons myicon">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         //this.events = this.events.filter(iEvent => iEvent !== event);
 
@@ -237,7 +237,7 @@ export class CalendarComponent implements OnInit {
       actions = this.undoneActions;
     }
     else {
-      (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.red);
+      (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.yellow);
       actions = this.doneActions;
       drag = true;
     }
@@ -294,7 +294,7 @@ export class CalendarComponent implements OnInit {
 
           event.draggable = true;
           event.actions = this.doneActions;
-          event.color = colors.red;
+          event.color = colors.yellow;
           this.refresh.next();
         });
 
@@ -397,16 +397,7 @@ export class CalendarComponent implements OnInit {
               parseInt(key$),
               data[key$].dateDone != null);
           }
-
-          //console.log(data[key$], this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'));
-          // console.log(data[key$]);
-          // this.addEvent(data[key$].name + " " + data[key$].commonName,
-          //   this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-          //   this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
-          //   parseInt(key$),
-          //   data[key$].dateDone != null);
         }
-
       },
         error => {
           console.error(error);
@@ -436,17 +427,14 @@ export class CalendarComponent implements OnInit {
       for(let i=0; i<dates.length; i++){
         this._taskService.detailsAll(dates[i])
       .subscribe(data => {
-
         for (let key$ in data) {
           this.tasks.push(data[key$]);
-          // console.log(data[key$]);
           this.addEvent(data[key$].name + " " + data[key$].commonName,
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             this.datePipe.transform(data[key$].date, 'yyyy-MM-dd'),
             parseInt(key$),
             data[key$].dateDone != null);
         }
-
       },
         error => {
           console.error(error);
@@ -454,9 +442,6 @@ export class CalendarComponent implements OnInit {
       }
 
     }
-    //console.log(this.monthsLoaded);
-
-
   }
 
   checkAdmin(){
