@@ -52,7 +52,7 @@ router.post('/admin/treatmentPlant', passport.authenticate('jwt', {session: fals
 							if (error)
 								response.status(400).json({"Mensaje":error.message});
 							else
-								response.status(400).json({"Mensaje":"Nuevo tratamiento asociado a planta. Insertadas nuevas " + data + " tareas en los jardines de los usuarios ya existentes."});
+								response.status(200).json({"Mensaje":"Nuevo tratamiento asociado a planta. Insertadas nuevas " + data + " tareas en los jardines de los usuarios ya existentes."});
 						});
 					}				
 					else
