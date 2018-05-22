@@ -77,8 +77,6 @@ export class AdminListUsersComponent {
   }
 
   searchcontent(page: number, items: number) {
-    console.log('blablabla');
-    console.log(this.user);
     this._detailService.searchAll(this.user, page, items)
       .subscribe(data => {
 
@@ -105,6 +103,10 @@ export class AdminListUsersComponent {
         console.error(error);
       });
   }
+  clear(){
+    this.user = new User();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',

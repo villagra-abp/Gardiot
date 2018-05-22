@@ -43,12 +43,13 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.glProgram = [];
 
 
+  window.mobile=typeof window.orientation != 'undefined';
   //program 0 = cartoon
   //program 1 = estandar
   //program 2 = shadows
-  //window.program = 1;
-  window.program = 1;
+  mobile?window.program=3:window.program=1;
 
+  
 
   window.shadowFramebuffer = [];
   window.shadowDepthTexture = [];
@@ -59,11 +60,14 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   iniciamosWebGL('myCanvas');
 
-  cargarShaders(['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs'],
-                ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs']);
-  for(let i=0; i<7; i++){
-    initFramebufferSombras(i);
+  cargarShaders(['shaderCartoon.vs', 'shaderP.vs', 'shadow.vs', 'shaderMobile.vs'],
+                ['shaderCartoon.fs', 'shaderP.fs', 'shadow.fs', 'shaderMobile.fs']);
+  if(!mobile){
+    for(let i=0; i<7; i++){
+      initFramebufferSombras(i);
+    }
   }
+  
   
   setupWebGL();
   window.motor = new TMotor(gestor);

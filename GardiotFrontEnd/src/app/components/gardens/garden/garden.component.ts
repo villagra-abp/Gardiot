@@ -22,6 +22,7 @@ declare var window: any;
 declare var motor: any;
 declare var vec3: any;
 declare var hammertime: any;
+declare var demoSol: any;
 
 
 @Component({
@@ -158,10 +159,9 @@ export class GardenComponent {
 
 
 
-  @HostListener('document:keyup', ['$event'])
 
+  @HostListener('document:keyup', ['$event'])
   searchZip(event: KeyboardEvent): void {
-    console.log((<HTMLInputElement>event.srcElement).value);
     if (event.srcElement.id == 'commonName') {
       let sPlant = new Plant();
       sPlant.commonName = (<HTMLInputElement>event.srcElement).value;
@@ -187,7 +187,7 @@ export class GardenComponent {
             console.error(error);
           });
     }
-    else {
+    else if(event.srcElement.id == 'zipCode'){
       //aqui vamos cargando las posibles ciudades a elegir
       let input = (<HTMLInputElement>document.querySelector("#zipCode"));
       if (input.value.length == 5) {
@@ -235,7 +235,9 @@ export class GardenComponent {
             });
       }
     }
-
+    else if (event.which == 69) {
+      new demoSol(0);
+    }
   }
 
   listarPaises() {

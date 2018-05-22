@@ -71,6 +71,17 @@ garden.getGardenByUser = function(user, callback) {
   }
 }
 
+garden.checkGardenExistence = function (user, callback) {
+  if (connection) {
+    connection.query('SELECT COUNT(*) AS number FROM Garden WHERE user = "' + user + '"', function (error, number){
+      if (error)
+        callback (error, null);
+      else 
+        callback(null, number);
+    });
+  }
+}
+
 garden.insertGarden = function(data, callback) {
   if(connection) {
     sql = 'INSERT INTO Garden SET ';

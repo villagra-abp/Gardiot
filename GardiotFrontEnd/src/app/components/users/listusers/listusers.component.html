@@ -38,7 +38,8 @@
             <option value="1">Activo</option>
           </select>
         </div>
-        <button class="btn btn-outline-info search" type="submit"><i class="material-icons">search</i></button>
+        <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
+        <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()" ><i class="material-icons">format_clear</i></button>
       </form>
     </div>
     <table class="table table-hover" *ngIf="numeroItems!=0">
