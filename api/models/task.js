@@ -199,7 +199,7 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 			else if (typeof row!== 'undefined' && row.length > 0) {
 				var sqlValues = '';
 				var sqlBase = '(' + plant + ',' + treatment + ',' + plant + ', X';
-				if (typeof frequency !== 'undefined' && typeof initDate == 'undefined' && typeof finalDate == 'undefined') {
+				if (typeof frequency !== 'undefined' && typeof initDate === 'undefined' && typeof finalDate === 'undefined') {
 					todayDate = new Date();
 					var nextMonth = todayDate.getMonth() + 1;
 					while(todayDate.getMonth() < nextMonth) {
@@ -207,9 +207,10 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 						sqlValues += sqlBase + ',"' + dateFormat(todayDate) + '"),';
 						todayDate.setDate(todayDate.getDate() + frequency);
 					}
+							
 				}
-				else if (typeof frequency == 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
-					if (initDate.getMonth() == new Date().getMonth || finalDate.getMonth() == new Date().getMonth()) {
+				else if (typeof frequency === 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
+					if (initDate.getMonth() == new Date().getMonth() || finalDate.getMonth() == new Date().getMonth()) {
 						let nextMonth = initDate.getMonth() + 1;
 						if (ini.getMonth() < new Date().getMonth())
 							ini = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
@@ -224,14 +225,18 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 					sqlFilled += sqlValues.replace(new RegExp('X', 'g'), row[mplant].id);	
 							
 				sqlFilled = sqlFilled.slice(0, -1);	
-				connection.query(sqlFilled, function (error, result) {
-					if (error)
-						callback (error, null);
-					else
-						callback (null, result.affectedRows);
-				});
+				if (sqlValues != '') {
+					connection.query(sqlFilled, function (error, result) {
+						if (error)
+							callback (error, null);
+						else
+							callback (null, result.affectedRows);
+					});
+				}	
+				else
+					callback (null, 0);	
 			}
-		});
+		});	
 	}
 }
 
