@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AppComponent } from "../../app.component";
 import { UserService } from "../../services/user.service";
 
@@ -37,7 +37,7 @@ export class ResetPassComponent implements OnInit {
           this._appComponent.mensajeEmergente("Introduce un email.", "danger", "");
       }
     }
-    
+
   ngOnInit() {
 
   }
