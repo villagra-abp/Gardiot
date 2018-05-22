@@ -7,7 +7,7 @@
         </div>
         <div class="body">
           <div *ngIf="checkTareas == true">
-            <div *ngIf="tareas.length == 0" class="noTarea" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
+            <div *ngIf="tareas.length == 0" class="noTarea" title="Ir a tu jardín" (click)="goGarden()" >No existen tareas, haz click aqui para añadir plantas a tu jardín. </div>
             <div *ngIf="tareas.length != 0">
               <div class="row fila" *ngFor="let grupo of tareas">
                 <div class="col-sm-2 fecha">
