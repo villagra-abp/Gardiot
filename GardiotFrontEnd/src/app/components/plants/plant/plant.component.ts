@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
-
 import { UserService } from '../../../services/user.service';
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Treatment } from "../../../classes/treatment.class";
 import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { MatExpansionModule } from '@angular/material/expansion';
-
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
 
@@ -26,17 +24,16 @@ export class PlantComponent implements OnInit {
   public treatments: any[] = [];
   public products: any[] = [];
   public productTreatments: any[] = [];
-
   public producttreatment = new ProductTreatment();
-
   public iniSiembra: String;
   public finSiembra: String;
   public iniFlores: String;
   public finFlores: String;
   public iniRecolectar: String;
   public finRecolectar: String;
-
-  mes: String;
+  public mes: String;
+  public haytratamiento: number=1;
+  public hayproducto: number=1;
 
   constructor(
     public _plantService: PlantService,
@@ -55,21 +52,18 @@ export class PlantComponent implements OnInit {
         this.plant.scientificName = data[0].scientificName;
         this.plant.description = data[0].description;
         this.plant.photo = data[0].photo;
-        // this.plant.photo=data[0].3DModel;
         this.plant.family = data[0].name;
         this.plant.depth = data[0].depth;
         this.plant.distance = data[0].distance;
         this.plant.diseaseResist = data[0].diseaseResist;
-
         this.iniSiembra = this.dameMes(data[0].initDatePlant);
         this.finSiembra = this.dameMes(data[0].finDatePlant);
         this.iniFlores = this.dameMes(data[0].initDateBloom);
         this.finFlores = this.dameMes(data[0].finDateBloom);
         this.iniRecolectar = this.dameMes(data[0].initDateHarvest);
         this.finRecolectar = this.dameMes(data[0].finDateHarvest);
-
         this.plant.leaveType = data[0].leaveType;
-        // this.plant.commonName=data[0].3DModel;
+
       },
       error => {
         console.error(JSON.parse(error._body).Mensaje);
@@ -94,14 +88,12 @@ export class PlantComponent implements OnInit {
   showProductPlant(treatment: number, idPlant: number) {
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        // console.log(data);
+        this.haytratamiento=0;
         if (data.length == 0) {
             // console.log("No hay");
         }else{
           for (let key$ in data) {
             this.productTreatments.push(data[key$]);
-            // console.log("data.length "+data.length);
-            // this.encuentraProducto();
           }
         }
       },

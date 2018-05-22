@@ -78,6 +78,11 @@ export class LibraryComponent implements OnInit {
       });
   }
 
+  clear(){
+    this.plant = new Plant();
+  }
+
+
 
   deleteplant(idPlant: number) {
     this._plantService.deletePlant(idPlant)
