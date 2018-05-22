@@ -636,7 +636,7 @@ class TMotor {
 
 
 				//se la pasamos al shader
-				//console.log(this.luzRegistro[i].entity.tipo);
+
 				let isActive, lightPosUniformLocation, lightIntUniformLocation,
 					lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 				if (luz.entity.tipo == "puntual") {
@@ -715,7 +715,7 @@ class TMotor {
 
 
 			//se la pasamos al shader
-			//console.log(this.luzRegistro[i].entity.tipo);
+
 			let isActive, lightPosUniformLocation, lightIntUniformLocation,
 				lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 			if (lightTransformations[contLuces][0].tipo == "puntual") {
