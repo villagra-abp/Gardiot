@@ -5,11 +5,11 @@
         <input type="text" [(ngModel)]="product.name" class="form-control" name="name" placeholder="Nombre">
       </article>
       <article class="form-group col-md-6">
-        <button class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
-        <button data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
+        <button title="Buscar" class="btn btn-outline-success search" type="submit"><i class="material-icons">search</i></button>
+        <button title="Busqueda avanzada" data-toggle="collapse" data-target="#demo" class="btn btn-outline-info search"><i class="material-icons">filter_list</i></button>
       </article>
       <article class="form-group col-md-2 nav justify-content-end">
-        <button [routerLink]="['/admin/newproduct']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
+        <button title="Crear nuevo producto" [routerLink]="['/admin/newproduct']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
       </article>
     </form>
     <div id="demo" class="collapse">
@@ -45,9 +45,9 @@
           <th scope="row">{{product.name}}</th>
           <td>{{product.type}}</td>
           <td>{{product.description}}</td>
-          <td><button class="btn btn-outline-primary search" [routerLink]="['/admin/editproduct/',product.id]"><i class="material-icons">mode_edit</i></button></td>
+          <td><button title="Editar" class="btn btn-outline-primary search" [routerLink]="['/admin/editproduct/',product.id]"><i class="material-icons">mode_edit</i></button></td>
           <!-- <td><button  class="btn btn-outline-danger" (click)="delete(product.id)" [routerLink]="['/admin/products']" [queryParams]="{pag: 1}" >Eliminar</button></td> -->
-          <td><button class="btn btn-outline-danger search" (click)="openDialog(product.id,1)"><i class="material-icons">delete</i></button></td>
+          <td><button title="Eliminar" class="btn btn-outline-danger search" (click)="openDialog(product.id,1)"><i class="material-icons">delete</i></button></td>
         </tr>
       </tbody>
     </table>

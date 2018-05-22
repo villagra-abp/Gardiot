@@ -83,8 +83,12 @@ router.post('/admin/feed', passport.authenticate('jwt', {session: false}), route
 			feedModel.insertFeed(feedData, function(error, data) {
 				if (data)
 					response.status(200).json({"Mensaje":"Insertado"});
-				else
-					response.status(500).json({"Mensaje":error.message});
+				else if (error) {
+					if (error.errno == '1406')
+						response.status(500).json({"Mensaje":"Texto demasiado largo"});
+					else			
+						response.status(500).json({"Mensaje":error.message});
+				}
 			});
 		}
 	}
@@ -113,8 +117,12 @@ router.put('/admin/feed/:id', passport.authenticate('jwt', {session: false}), ro
 						response.status(200).json({"Mensaje":"Actualizado"});
 					else if (data == 0)
 						response.status(404).json({"Mensaje":"No existe"});
-					else
-						response.status(500).json({"Mensaje":error.message});
+					else if (error) {
+						if (error.errno == '1406')
+							response.status(500).json({"Mensaje":"Texto demasiado largo"});
+						else			
+							response.status(500).json({"Mensaje":error.message});
+					}
 				});
 			}
 		}

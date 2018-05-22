@@ -40,20 +40,15 @@ export class NewtreatmentsplantsComponent implements OnInit {
   ) { }
 
   guardar() {
-    console.log(this.treatmentPlant.treatment);
-    console.log(this.productTreatment);
-    console.log(this.productTreatment.product);
     this._treatmentPlantService.savetreatment(this.treatmentPlant, this.idPlant)
       .subscribe(data => {
-        let v = JSON.parse(data._body);
-        this._appComponent.mensajeEmergente("Insertado nuevo tratamiento y productos", "primary", "");
+        this._appComponent.mensajeEmergente(data.Mensaje, "primary", "");
       },
       error => {
         let v = JSON.parse(error._body);
         this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
       });
-    if (this.productTreatment.product.length != undefined) {
-      for (let cont = 0; cont < this.productTreatment.product.length; cont++) {
+      for(let cont in this.productTreatment.product) {
         this._treatmentPlantService.saveproduct(this.treatmentPlant.treatment, this.productTreatment.product[cont], this.idPlant)
           .subscribe(data => {
           },
@@ -61,7 +56,6 @@ export class NewtreatmentsplantsComponent implements OnInit {
             let v = JSON.parse(error._body);
           });
       }
-    }
   }
 
   mostrarTratamientos() {
