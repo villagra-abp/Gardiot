@@ -56,7 +56,7 @@ finder.find = function(model, data, number, page, order, sort, callback) {
 					else if (key.toUpperCase().indexOf('LT')!= -1)
 						sqlParams += ' ' + key.slice(2) + ' <= ' + data[key] + ' AND';
 					else
-						sqlParams += ' ' + key + ' = ' + data[key] + ' AND';
+						sqlParams += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
 				}
 				else if (isASCII(data[key]) || isEmail.validate(data[key])){
 					sqlParams += ' ' + key + ' LIKE "%' + data[key] + '%" AND';
