@@ -112,6 +112,10 @@ export class DetailComponent implements OnInit {
       this.photoURL="/app/assets";
       this.imgUrl="https://gardiot.ovh/app/assets/images/imgProfile/";
     }
+    else{
+      this.photoURL="/assets";
+      this.imgUrl="http://192.168.100.3:4200/assets/images/imgProfile/";
+    }
   }
 //------ comprobamos si es su primera vez en la app------//
   checkGarden() {

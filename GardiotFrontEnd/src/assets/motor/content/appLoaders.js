@@ -52,7 +52,6 @@ function loadPlants () {
         motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
       motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
 
-
   }
 }
 
@@ -62,10 +61,13 @@ function loadPlants () {
 	 * @param  {number} length
 	 */
 function loadSoil (width, length) {
-  for (let i = -width - 2; i <= width + 2; i++) {
-    for (let j = -length - 2; j <= length + 2; j++) {
+  let desv=2;
+  if(mobile){desv=0}
 
-      if (i < -width || i > width || j < -length || j > length) {
+  for (let i = -width - desv; i <= width + desv; i++) {
+    for (let j = -length - desv; j <= length + desv; j++) {
+
+      if ((i < -width || i > width || j < -length || j > length)) {
         motor.crearNodoMalla("sueloExt" + i + '-' + j, "sueloExt", "tierra.jpg", undefined);
         motor.escalarMallaXYZ("sueloExt" + i + '-' + j, 0.5, 0.1, 0.5);
         motor.moverMalla("sueloExt" + i + '-' + j, i, -0.1, j);
@@ -78,7 +80,6 @@ function loadSoil (width, length) {
     }
   }
 }
-
 /**
 	 * Carga del suelo exterior al jardín
 	 */
@@ -88,7 +89,7 @@ function loadExtSoil () {
       motor.crearNodoMalla("sueloGrande" + i + '-' + j, "sueloGrande", "tierra.jpg", undefined);
       motor.escalarMallaXYZ("sueloGrande" + i + '-' + j, 8, 8, 8);
       motor.rotarMalla("sueloGrande" + i + '-' + j, -90, "x");
-      motor.moverMalla("sueloGrande" + i + '-' + j, 49 * i, -0.01, 49 * j);
+      motor.moverMalla("sueloGrande" + i + '-' + j, 49 * i, -0.002, 49 * j);
     }
   }
 }
@@ -206,6 +207,7 @@ function loadSun (sunrise, sunset) {
   iluminarAstro(minuteOfDay);
   rotarSol();  
 }
+
 
 /**
 	 * Funcion que llama a las anteriores de carga

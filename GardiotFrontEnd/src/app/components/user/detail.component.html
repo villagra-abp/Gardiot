@@ -36,8 +36,9 @@
     <div class="col-lg-7">
       <section class="herramienta row ">
         <article class="form-row">
-          <div class="form-group" (click)="goGarden()">
-            <canvas title="Tu jardín" id="myCanvas" oncontextmenu="return false;" onmousemove="mouse_move(event, 'detail');" onmousedown="mouse_down(event, 'detail');" onmouseup="mouse_up(event, 'detail');" onmousewheel="scrolling(event, 'detail');" width="350" height="300"></canvas>
+          <div class="canvasHome" (click)="goGarden()">
+            <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín"/>
+            <canvas style="cursor: pointer" title="Tu jardín" id="myCanvas" oncontextmenu="return false;" width="350" height="300"></canvas>
           </div>
           <!-- <img src="{{user.photo}}" alt="asd"> -->
         </article>

@@ -164,6 +164,21 @@ p{
 	cursor: pointer;
 }
 
+.canvasHome{
+	position: relative;
+}
+.canvasHome>img{
+	position: absolute;
+	left:2em; 
+	right: 0; 
+	top: 0;
+	bottom: 0;
+	margin: auto; 
+
+	width: 200px; /* Need a specific value to work */
+	height: 120px;
+}
+
 @media only screen and (max-width: 600px){
 	.body{
 		overflow-y: hidden;

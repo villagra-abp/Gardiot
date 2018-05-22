@@ -13,10 +13,15 @@ class TRecursoTextura extends TRecurso {
     this._img.onload = function () {
       //creamos y configuramos la textura
       this.texture = gl.createTexture();
-      gl.activeTexture(gl.TEXTURE0+window.index);
-      gl.bindTexture(gl.TEXTURE_2D, this.texture);
-      this.index=parseInt(''+(window.index));
+      console.log(window.index);
+      let ind=parseInt(''+window.index);
+
       window.index++;
+      gl.activeTexture(gl.TEXTURE0+ind);
+      gl.bindTexture(gl.TEXTURE_2D, this.texture);
+      this.index=ind;
+  
+      
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);

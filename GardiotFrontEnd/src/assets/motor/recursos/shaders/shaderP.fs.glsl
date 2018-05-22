@@ -157,12 +157,8 @@ void main()
 				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
 			}
 			else if(uHovered==4){
-				gl_FragColor=vec4(texel.rgb*vec3(uFactor, uFactor, uFactor), propiedades.opacity);
+				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
 			}
-			else if(uHovered==5){
-				gl_FragColor=vec4(texel.rgb*vec3(uFactor, uFactor, uFactor)*visibility, propiedades.opacity);
-			}
-
 			//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
 	}
 
