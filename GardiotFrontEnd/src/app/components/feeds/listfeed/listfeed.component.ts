@@ -95,6 +95,10 @@ export class ListfeedComponent implements OnInit {
       });
   }
 
+  clear(){
+    this.feed = new Feed();
+  }
+
   openDialog(id: number, tipo: number) {
     let dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '40em',
