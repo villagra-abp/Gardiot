@@ -159,8 +159,8 @@ export class GardenComponent {
 
 
 
-  @HostListener('document:keyup', ['$event'])
 
+  @HostListener('document:keyup', ['$event'])
   searchZip(event: KeyboardEvent): void {
     if (event.srcElement.id == 'commonName') {
       let sPlant = new Plant();

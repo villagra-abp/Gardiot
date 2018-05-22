@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
     public _appComponent: AppComponent) { }
 
   guardar() {
-    console.log(this.user);
     this._userService.register(this.user)
       .subscribe(data => {
         if (window.location.toString().indexOf("gardiot") >= 0) {
