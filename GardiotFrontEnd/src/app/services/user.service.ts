@@ -365,17 +365,6 @@ export class UserService {
         return res.json();
       })
   }
-  /* Comprueba si existe el usuario */
-  isUser(idUser: String) {
-    let headers = new Headers({
-      'Authorization': `Bearer ${localStorage['Bearer']}`
-    });
-
-    return this.http.get(this.apiURL + "admin/userExist/" + idUser, { headers })
-      .map(res => {
-        return res.json();
-      })
-  }
 
   logInGrafana() {
     let headers = new Headers({
