@@ -1,5 +1,3 @@
-<!-- Julián Sánchez García.
-   Ingeniería Multimedia UA 2018 -->
 <div class="vistaUser evolver">
     <!-- PLANTA -->
     <article class="row">
@@ -44,7 +42,7 @@
       <p *ngIf="plant.description !=undefined">{{plant.description}}</p>
     </article>
     <!-- BLOQUE 2 -->
-    <div class="productoTrata">
+    <div class="productoTrata"*ngIf="haytratamiento == 0" >
       <h3>Tratamientos</h3>
       <!-- TRATAMIENTOS -->
       <section *ngFor="let treatment of treatments">
@@ -55,7 +53,7 @@
         <!-- DESCIPCION TRATAMIENTOS  -->
         <p class="descriptionTrata" *ngIf="treatment.description !=undefined">{{treatment.description}}</p>
         <!-- PRODUCTOS  *ngIf="treatment.id == producttreatment.treatment"-->
-          <mat-accordion>
+          <mat-accordion >
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title class="matpanel" title="Productos asociados a cada tratamientos">
@@ -63,7 +61,7 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <!-- LISTA DE PRODUCTOS -->
-              <span *ngFor="let producttreatment of productTreatments">
+              <span *ngFor="let producttreatment of productTreatments" >
                 <p class="listaProductos" *ngIf="treatment.id == producttreatment.treatment">{{producttreatment.name}}</p>
               </span>
             </mat-expansion-panel>
