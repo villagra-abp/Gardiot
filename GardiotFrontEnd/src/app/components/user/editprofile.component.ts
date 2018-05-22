@@ -28,6 +28,7 @@ export class EditProfileComponent implements OnInit {
   public cityData: Observable<Array<Select2OptionData>>;
   public startCity: Observable<string>;
   public uploader: FileUploader;
+  public imgUrl: string;
 
   constructor(
     public _detailService: UserService,

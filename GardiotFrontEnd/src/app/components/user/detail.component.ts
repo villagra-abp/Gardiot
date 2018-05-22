@@ -85,12 +85,12 @@ export class DetailComponent implements OnInit {
   public tareas: any[] = [];
   public checkTareas = false;
   public photoURL = "";
-  private imgUrl = "";
+  public imgUrl = "";
   public temperature = 0;
   public plantNumber = 0;
-  private percentTareas = 0;
-  private fecha_actual = "";
-  private fecha_hoy = new Date();
+  public percentTareas = 0;
+  public fecha_actual = "";
+  public fecha_hoy = new Date();
 
 
   constructor(

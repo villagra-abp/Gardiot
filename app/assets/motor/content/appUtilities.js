@@ -8,8 +8,8 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
-
-    motor.drawSombras();
+    if (!window.mobile)
+      motor.drawSombras();
     motor.draw();
   }
   requestAnimationFrame(animLoop, canvas);
@@ -66,9 +66,22 @@ function setupWebGL() {
 
   glProgram[window.program].shadowMapUniform = [];
   glProgram[window.program].shadowMapUniform[0] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[0]");
+  glProgram[window.program].shadowMapUniform[1] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[1]");
+  glProgram[window.program].shadowMapUniform[2] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[2]");
+  glProgram[window.program].shadowMapUniform[3] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[3]");
+  glProgram[window.program].shadowMapUniform[4] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[4]");
+  glProgram[window.program].shadowMapUniform[5] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[5]");
+  glProgram[window.program].shadowMapUniform[6] = gl.getUniformLocation(glProgram[window.program], "uShadowMap[6]");
 
   glProgram[window.program].lmvpMatrixUniform = [];
   glProgram[window.program].lmvpMatrixUniform[0] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[0]");
+  glProgram[window.program].lmvpMatrixUniform[1] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[1]");
+  glProgram[window.program].lmvpMatrixUniform[2] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[2]");
+  glProgram[window.program].lmvpMatrixUniform[3] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[3]");
+  glProgram[window.program].lmvpMatrixUniform[4] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[4]");
+  glProgram[window.program].lmvpMatrixUniform[5] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[5]");
+  glProgram[window.program].lmvpMatrixUniform[6] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[6]");
+
 
   //Nos traemos las matrices, projection, model y view al motor
   glProgram[window.program].pMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrix");
@@ -76,7 +89,7 @@ function setupWebGL() {
   glProgram[window.program].vMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrix");
   glProgram[window.program].mvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVMatrix");
   glProgram[window.program].mvpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uMVPMatrix");
-  
+
   glProgram[window.program].lpMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrixFromLight");
   glProgram[window.program].lvMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uVMatrixFromLight");
 
@@ -97,6 +110,14 @@ function setupWebGL() {
   glProgram[window.program].shin = gl.getUniformLocation(glProgram[window.program], "propiedades.shininess");
   glProgram[window.program].opac = gl.getUniformLocation(glProgram[window.program], "propiedades.opacity");
 
+  gl.useProgram(glProgram[window.program]);
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  gl.clearColor(0.98, 0.98, 0.98, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.enable(gl.DEPTH_TEST);
+  gl.enable(gl.CULL_FACE);
+  gl.cullFace(gl.BACK);
+
 }
 
 /**
@@ -104,15 +125,17 @@ function setupWebGL() {
  * @param  {number} i Iterador 
  */
 function initFramebufferSombras(i) {
-  
+
   shadowFramebuffer[i] = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer[i]);
 
-  shadowDepthTexture[i] = gl.createTexture();
-  gl.activeTexture(gl.TEXTURE0 + window.index);
-  gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
-  shadowDepthTexture[i].index=parseInt(''+window.index);
+  let ind = parseInt('' + window.index);
   window.index++;
+  shadowDepthTexture[i] = gl.createTexture();
+  gl.activeTexture(gl.TEXTURE0 + ind);
+  gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
+  shadowDepthTexture[i].index = ind;
+
 
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
@@ -212,7 +235,7 @@ async function rotarSol() {
 /**
  * Rota los astros cada X tiempo recursivamente
  */
-async function rotarSol(){
+async function rotarSol() {
   await sleep(300000); //5 min
   let now = new Date();
   calcularPosicionAstros(now);
@@ -221,56 +244,64 @@ async function rotarSol(){
 
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
+ * @param i Iterador recursivo
  */
-async function demoSol() {
-  await sleep(100);
-  let now = new Date(window.lastTime);
-  now.setMinutes(now.getMinutes() + 20);
-  calcularPosicionAstros(now);
-  demoSol();
+function demoSol(i) {
+  setTimeout(function () {
+    let now = new Date(window.lastTime);
+    let inc = 20;
+    now.setMinutes(now.getMinutes() + inc);
+    calcularPosicionAstros(now);
+    if (((24 * 60) / inc) - 1 > i) {
+      i++;
+      demoSol(i);
+    }
+    else
+      rotarSol();
+  }, 100);
 }
 
 /**
  * Calcula cuantos grados rotar en funcion del tiempo transcurrido desde la ultima vez
  * @param  {Date} now
  */
-function calcularPosicionAstros(now){
+function calcularPosicionAstros(now) {
   let minuteOfDay = now.getHours() * 60 + now.getMinutes();
   let minutesDiff = Math.abs(now - window.lastTime) / 20000;
   let relationNowDay = minutesDiff / (24 * 60);
   let gradeSunPosition = relationNowDay * 110 * velocidadOrbital;
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes() + ':'+now.getSeconds());
+  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   //Cogemos la luz activa
   let luz = motor.luzRegistro.find(x => x.activa == true);
-    if (luz.name == 'sol') {
-      //Si es el sol y acabamos de pasar la hora de la puesta, hacemos salir la luna
-      if (minuteOfDay >= window.minuteOfSunset) {
-        motor.rotarLuzOrbitalA('sol', -100);
-        motor.rotarLuzOrbitalA('luna', 100);
-        motor.desactivarLuz('sol');
-        motor.activarLuz('luna');
-        iluminarLuna(minuteOfDay);
-      }
-      //Si no, actualizamos el color del sol para dibujar
-      else{
-        iluminarSol(minuteOfDay);    
-      }
+  if (luz.name == 'sol') {
+    //Si es el sol y acabamos de pasar la hora de la puesta, hacemos salir la luna
+    if (minuteOfDay >= window.minuteOfSunset) {
+      motor.rotarLuzOrbitalA('sol', -100);
+      motor.rotarLuzOrbitalA('luna', 100);
+      motor.desactivarLuz('sol');
+      motor.activarLuz('luna');
+      iluminarLuna(minuteOfDay);
     }
-    else if (luz.name == 'luna') {
-      //Idem Sol. Si es de noche y llegamos a la hora de amanecer, sacamos el sol
-      if (minuteOfDay >= window.minuteOfSunrise && now.getHours()<14) {
-        motor.rotarLuzOrbitalA('luna', 100);
-        motor.rotarLuzOrbitalA('sol', -80);
-          //inclinación lateral para evitar errores
-        motor.rotarLuzOrbital('sol', 10, 'x');
-        motor.desactivarLuz('luna');
-        motor.activarLuz('sol');
-        iluminarSol(minuteOfDay);
-      }
-      //De noche, el color de la luna es uniforme durante el paso del tiempo
+    //Si no, actualizamos el color del sol para dibujar
+    else {
+      iluminarSol(minuteOfDay);
     }
+  }
+  else if (luz.name == 'luna') {
+    //Idem Sol. Si es de noche y llegamos a la hora de amanecer, sacamos el sol
+    if (minuteOfDay >= window.minuteOfSunrise && now.getHours() < 14) {
+      motor.rotarLuzOrbitalA('luna', 100);
+      motor.rotarLuzOrbitalA('sol', -80);
+      //inclinación lateral para evitar errores
+      motor.rotarLuzOrbital('sol', 10, 'x');
+      motor.desactivarLuz('luna');
+      motor.activarLuz('sol');
+      iluminarSol(minuteOfDay);
+    }
+    //De noche, el color de la luna es uniforme durante el paso del tiempo
+  }
   window.lastTime = now;
 }
 
@@ -310,9 +341,9 @@ function iluminarSol(minutes) {
     let rgbMoment = { red: rgbDiffSun.red * percent, green: rgbDiffSun.green * percent, blue: rgbDiffSun.blue * percent };
     rgb = { red: rgbNoon.red - rgbMoment.red, green: rgbNoon.green - rgbMoment.green, blue: rgbNoon.blue - rgbMoment.blue }
   }
-  window.factorIlumination = 1-Math.abs((minutes-(window.minutesOfSun))/(window.minutesOfSun));      
+  window.factorIlumination = 1 - Math.abs((minutes - (window.minutesOfSun)) / (window.minutesOfSun));
   gl.uniform1i(glProgram[window.program].noche, -1);
-  window.velocidadOrbital=(60*24/2)/minutesOfSun;
+  window.velocidadOrbital = (60 * 24 / 2) / minutesOfSun;
   sol.entity.setIntensidad(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
   sol.entity.setIntensidadSpecular(rgb.red / 70, rgb.green / 70, rgb.blue / 70);
 }
@@ -321,9 +352,9 @@ function iluminarSol(minutes) {
  * Ilumina la luna en funcion de los minutos transcurridos en el dia. Pasadas las doce, suma un dia entero a los minutos transcurridos
  * @param  {number} minutes
  */
-function iluminarLuna(minutes){
+function iluminarLuna(minutes) {
   let minutesOfNight = (24 * 60) - window.minutesOfSun;
-  window.velocidadOrbital=(60*24/2)/minutesOfNight;
+  window.velocidadOrbital = (60 * 24 / 2) / minutesOfNight;
   luna.entity.setIntensidad(0.3, 0.3, 0.3);
   luna.entity.setIntensidadSpecular(0.3, 0.3, 0.3);
   gl.uniform1i(glProgram[window.program].noche, 0);
