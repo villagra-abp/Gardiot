@@ -214,7 +214,7 @@ class TMotor {
 
 	/**
 	 * Movimiento de la cámara nombre en los parámetros x, y z.
-	 * Además, tiene en cuenta los límites de 
+	 * Además, tiene en cuenta los límites del jardín
 	 * @param  {string} nombre
 	 * @param  {number} x
 	 * @param  {number} y
