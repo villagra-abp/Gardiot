@@ -1,4 +1,8 @@
 /**
+ * En appCallouts están todas las funciones del motor que se comunican con el servidor y/o base de datos
+ * Aquí están las llamadas y la funcionalidad en función si la comunicación es satisfactoria o no
+ */
+/**
  * Carga un recurso contenido en una carpeta local
  * @param  {string} url
  * @param  {Function} callback

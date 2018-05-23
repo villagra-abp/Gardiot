@@ -1,4 +1,9 @@
 /**
+ * En appUtilities.js tenemos funciones auxiliares para clarificar el código de otros sitios: compilación de shaders,
+ * bucle de animación, transformar los clicks en el canvas en coordenadas de la escena, etc.
+ */
+
+/**
  * Realiza la iteracion de dibujado segun fps
  */
 function animLoop() {
@@ -236,6 +241,7 @@ async function rotarSol() {
  * Rota los astros cada X tiempo recursivamente
  */
 async function rotarSol() {
+  console.log('rotarsol');
   await sleep(300000); //5 min
   let now = new Date();
   calcularPosicionAstros(now);

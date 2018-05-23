@@ -33,7 +33,7 @@ class TRecursoMalla extends TRecurso {
 
   }
   /**
-   * Carga un archivo JSON y crea los diferentes buffers
+   * En cargarFichero, cargamos el json y creamos y rellenamos todos los buffers del objeto
    * @param  {String} nombre
    * @param  {String} textura
    */
@@ -130,6 +130,9 @@ class TRecursoMalla extends TRecurso {
     this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
   }
 
+  /**
+   * Draw de las sombras de la escena
+   */
   drawSombras() {
     //Cálculo de la matrix model view projection desde la luz
     mat4.multiply(this.lightProjectionViewModelMatrix, viewLightMatrix[window.i], matrixModel);
@@ -146,6 +149,7 @@ class TRecursoMalla extends TRecurso {
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
   }
   /**
+   * Draw estándar de la escena
    * @param  {String} variable Color de la celda
    */
   draw(variable) {
@@ -230,15 +234,9 @@ class TRecursoMalla extends TRecurso {
       gl.uniform1i(glProgram[window.program].hovered, 4);
     }
 
-
-
-
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.bufferIndex);
 
     //dibujamos en el canvas el objeto
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
-    //gl.drawArrays(gl.TRIANGLES, 0, index.number_vertex_points);
-
-
   }
 }

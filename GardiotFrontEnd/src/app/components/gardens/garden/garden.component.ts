@@ -94,6 +94,7 @@ export class GardenComponent {
   public plantsmotor: any[] = [];
   public plant = new Plant();
   public searchPlant: string;
+  public switchMode: string='Añadir plantas';
 
   constructor(
     public _gardenService: GardenService,
@@ -539,6 +540,7 @@ export class GardenComponent {
 
   toggleState() {
     if (this.visible == 0) {
+      this.switchMode='Ir a visualización';
       this.visible = 1;
       this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
@@ -547,6 +549,7 @@ export class GardenComponent {
       }
       
     } else {
+      this.switchMode='Añadir plantas';
       this.visible = 0;
       if (typeof window.orientation !== 'undefined') {
         (<HTMLElement>document.querySelector('app-header')).style.display = 'initial';
