@@ -49,8 +49,8 @@ export class ProfileComponent implements OnInit {
         this.user.lastName = data.lastName;
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
-        document.querySelector('.divPhoto').setAttribute('style', `width: 63%; height: 12.5em;
-          margin-left: 4em;
+        document.querySelector('.divPhoto').setAttribute('style',
+        `margin-left: 3em;
           background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
@@ -70,18 +70,15 @@ export class ProfileComponent implements OnInit {
   }
 
   selectPhoto(e) {
-    console.log(e);
     let file = <HTMLInputElement>document.querySelector('input[type="file"]');
     file.click();
   }
 
   uploadPhoto(event) {
     if (this.uploader.getNotUploadedItems().length) {
-      console.log(event.target.files);
       let file = [];
       file.push(event.target.files[0]);
       file.forEach(function() {
-        console.log(file);
       });
       this._ng2ImgMax.compress(file, 1.25).subscribe(
         result => {
@@ -96,7 +93,6 @@ export class ProfileComponent implements OnInit {
 
     }
   }
-
 
   ngOnInit() {
     if(window.location.toString().indexOf("localhost")>=0){
@@ -113,8 +109,6 @@ export class ProfileComponent implements OnInit {
     };
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      //console.log("ImageUpload:uploaded:", item, status, response);
-
       let url = response.split(" ");
       url = url[url.length - 1];
       url = url.split("\\");

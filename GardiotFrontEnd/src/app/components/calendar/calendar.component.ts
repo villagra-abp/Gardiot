@@ -182,7 +182,12 @@ export class CalendarComponent implements OnInit {
     }
     else {
       (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.yellow);
-      actions = this.doneActions;
+      if(new Date(Tstart)<=new Date()){
+        actions = this.doneActions;
+      }else{
+        actions = undefined;
+      }
+
       drag = true;
     }
     this.events.push({
