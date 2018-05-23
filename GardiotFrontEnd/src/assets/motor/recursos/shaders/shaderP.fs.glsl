@@ -1,3 +1,7 @@
+/**
+*TAG.45	Shader básico (Sombreado de Phong, reflexión de Phong) con materiales
+*TAG.46	Shader básico (Sombreado de Phong, reflexión de Phong) con materiales y texturas
+*/
 precision mediump float;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
@@ -51,6 +55,9 @@ uniform int uNight;
 
 varying float vLightCount;
 
+/** Esta función y el cálculo de la sombra ha sido sacado del tutorial 
+http://www.chinedufn.com/webgl-shadow-mapping-tutorial/ con las correspondientes
+modificaciones para el funcionamiento en nuestro motor */
 float decodeFloat (vec4 color) {
   const vec4 bitShift = vec4(
     1.0 / (256.0 * 256.0 * 256.0),
@@ -61,10 +68,11 @@ float decodeFloat (vec4 color) {
   return dot(color, bitShift);
 }
 
-
 void main()
 {
 	highp float visibility=0.0;
+	//Para todas las luces que tenemos, calculamos la sombra de cada fragmento
+	//TAG.59	Shadow mapping
 	for(int i=0; i<7; i++){
 		if(float(i)>=vLightCount){break;}
 			vec3 fragmentDepth = shadowPos[i].xyz/shadowPos[i].w;
@@ -99,6 +107,7 @@ void main()
 	float specular=0.0;
 
 
+	//Para todas las luces puntuales que tenemos, calculamos la iluminación del fragmento
 	for(int i=0; i<cULights; i++){
 		if(uLight[i].isActive==0){break;}
 			vec3 L = normalize(vec3(vView*vec4(uLight[i].position.xyz, 1.0))-vTVertPosition);
@@ -115,7 +124,7 @@ void main()
 	}
 
 
-
+	//Para todas las luces dirigidas que tenemos, calculamos la iluminación del fragmento
 	for(int i=0; i<cUSpotLights; i++){
 		//Calculate SpotLight
 		if(uSpotLight[i].isActive==0){break;}
@@ -132,7 +141,7 @@ void main()
 				specular=pow(RV, propiedades.shininess);
 			}
 
-			//Applicate light if it is inside of the cone
+			//Aplicar luz si está dentro del cono de luz
 			if(spotEffect>spotLimit && diffuse>0.0){
 				vLight  +=  material.Kd * diffuse * uSpotLight[i].color;
 				vLight +=  material.Ks* specular * uSpotLight[i].specColor;
@@ -144,29 +153,27 @@ void main()
 	vec4 texel;
 	if(uTextured==1){
 		texel=texture2D(uSampler, vFragTexCoord);
-			if(uHovered==0){
-				gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
-			}
-			if(uHovered==1){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
-			}
-			else if(uHovered==2){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0)*visibility, propiedades.opacity);
-			}
-			else if(uHovered==3){
-				gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
-			}
-			else if(uHovered==4){
-				gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
-			}
-			//gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+		//En función de la variable uHovered, haremos la iluminación de objetos de la escena
+		//Iluminación de plantas, de casillas, etc.
+		if(uHovered==0){
+			gl_FragColor=vec4(texel.rgb*vLight*visibility, propiedades.opacity);
+		}
+		if(uHovered==1){
+			gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 2.0, 2.0)*visibility, propiedades.opacity);
+		}
+		else if(uHovered==2){
+			gl_FragColor=vec4(texel.rgb*vLight*vec3(1.0, 2.0, 1.0)*visibility, propiedades.opacity);
+		}
+		else if(uHovered==3){
+			gl_FragColor=vec4(texel.rgb*vLight*vec3(2.0, 1.0, 1.0)*visibility, propiedades.opacity);
+		}
+		else if(uHovered==4){
+			gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
+		}
 	}
 
 	else{
 		texel=vec4(0.1, 0.4, 0.1, 1.0);
 		gl_FragColor=vec4(texel.rgb*vLight, propiedades.opacity);
-		//gl_FragColor=vec4(texel.rgb, propiedades.opacity);
 	}
-
-
 }

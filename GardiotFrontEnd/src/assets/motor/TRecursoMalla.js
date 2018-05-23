@@ -1,5 +1,8 @@
 class TRecursoMalla extends TRecurso {
 
+  /**
+   * TAG.27	Estructura básica de la malla (constructor, destructor)
+   */
   constructor(nombre) {
     super(nombre)
     this._vertices = [];
@@ -8,7 +11,7 @@ class TRecursoMalla extends TRecurso {
     this._textura;
     this._textureCoords = [];
 
-    //materiales
+    //TAG.34	Estructura básica del material (constructor, destructor)
     this.Ka = [];
     this.Kd = [];
     this.Ks = [];
@@ -33,6 +36,7 @@ class TRecursoMalla extends TRecurso {
 
   }
   /**
+   * TAG.18	Datos de mallas, texturas, materiales… (llamadas al gestor de recursos)
    * En cargarFichero, cargamos el json y creamos y rellenamos todos los buffers del objeto
    * @param  {String} nombre
    * @param  {String} textura
@@ -40,7 +44,7 @@ class TRecursoMalla extends TRecurso {
   cargarFichero(nombre, textura) {
     window.loading.push(1);
     let objeto;
-    //cargamos el objeto del directorio
+    //TAG.28	Lectura de disco (con assimp)
     loadJSONResource('/recursos/mallas/' + nombre + '.json', function (modelErr, modelObj) {
       if (modelErr) {
 
@@ -52,6 +56,7 @@ class TRecursoMalla extends TRecurso {
       }
     });
 
+    //TAG.29	Creación de buffers de vértices, normales, índices… y relleno
     //almacenamos los vértices del objeto
     this._vertices = objeto.meshes[0].vertices;
 
@@ -65,13 +70,12 @@ class TRecursoMalla extends TRecurso {
       this._textureCoords = objeto.meshes[0].texturecoords[0];
     }
 
-    //almacenamos el material del objeto
+    //TAG.35	Leer de disco (con librería o con parser propio) y rellenar valores
     if (objeto.materials.length > 0) {
       for (let i = 0; i < objeto.materials[objeto.materials.length - 1].properties.length; i++) {
 
         if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.ambient')
           this.Ka = objeto.materials[objeto.materials.length - 1].properties[i].value;
-
         else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.diffuse')
           this.Kd = objeto.materials[objeto.materials.length - 1].properties[i].value;
         else if (objeto.materials[objeto.materials.length - 1].properties[i].key == '$clr.specular')
@@ -130,6 +134,8 @@ class TRecursoMalla extends TRecurso {
     this.vertexPosAttributeShadows = gl.getAttribLocation(glProgram[2], "aVertPosition");
   }
 
+
+
   /**
    * Draw de las sombras de la escena
    */
@@ -149,6 +155,7 @@ class TRecursoMalla extends TRecurso {
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
   }
   /**
+   * TAG.30	Dibujado de las mallas (draw, con paso de los buffers a OpenGL)
    * Draw estándar de la escena
    * @param  {String} variable Color de la celda
    */
@@ -197,7 +204,7 @@ class TRecursoMalla extends TRecurso {
     }
 
 
-    //Pasamos los materiales al shader
+    //TAG.36	Dibujado (preparar los materiales y cargarlos en OpenGL)
     if (this.Ka.length > 0 && this.Kd.length > 0 && this.Ks.length > 0) {
       gl.uniform3fv(glProgram[window.program].ka, this.Ka);
       gl.uniform3fv(glProgram[window.program].kd, this.Kd);
@@ -239,4 +246,5 @@ class TRecursoMalla extends TRecurso {
     //dibujamos en el canvas el objeto
     gl.drawElements(gl.TRIANGLES, this.bufferIndex.number_vertex_points, gl.UNSIGNED_SHORT, 0);
   }
+
 }

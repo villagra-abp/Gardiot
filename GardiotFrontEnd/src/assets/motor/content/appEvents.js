@@ -1,10 +1,15 @@
 /**
  * En este archivo se controlan los eventos y la interacción del motor con el usuario. Se controlan tanto los
  * eventos del ordenador como los gestos para dispositivos móviles
+  TAG.50	Integración con la aplicación
+  TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+  TAG.52	Realización de una fachada genérica
+  TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
  */
 
 /**
  * Establece el parametro de identificacion de la planta arrastrada
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
  * @param  {Object} e
  */
 function drag(e) {
@@ -14,6 +19,7 @@ function drag(e) {
 
 /**
  * Bloquea los disparadores de evento por defecto de JS
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
  * @param  {Object} e
  */
 function allowDrop(e) {
@@ -23,6 +29,7 @@ function allowDrop(e) {
 
 /**
  * Establece el color de celda sobre la que se esta arrastrando
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
  * @param  {Object} e
  */
 function dragCanvas(e) {
@@ -41,6 +48,7 @@ function dragCanvas(e) {
 
 /**
  * Inserta la planta en el jardin al soltar el click del raton
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
  * @param  {Object} e
  */
 function drop(e) {
@@ -95,7 +103,7 @@ function mouse_move(e) {
         let dir = vec3.fromValues(ejeX * 10, 0, ejeY * 10);
         let rad = Math.PI * rotationCamY / 180;
         vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), rad);
-        vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI * 45 / 180);
+        //vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI * 45 / 180);
         motor.moverCamara("dynamicCamera", dir[0], 0, dir[2]);
       }
       //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
@@ -107,7 +115,7 @@ function mouse_move(e) {
       let ejeY = window.originClickY - (y / cv.offsetHeight);
       let ejeX = window.originClickX - (x / cv.offsetWidth);
       if (window.mode == 1) {
-
+        window.rotationCamY+=(ejeX*150);
         motor.rotarCamara("dynamicCamera", ejeX * 150, "z");
       } else {
         motor.rotarCamaraOrbital("dynamicCamera", ejeX * 150, "y");

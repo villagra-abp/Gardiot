@@ -1,3 +1,7 @@
+/**
+El shaderMobile es un shader más ligero ya que no se realiza el cálculo de sombras
+Para el móvil, entre otros recortes para mejorar el rendimiento, no dibujamos las sombras
+*/
 precision mediump float;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);

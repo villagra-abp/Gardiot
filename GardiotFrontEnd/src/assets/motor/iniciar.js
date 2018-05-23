@@ -28,11 +28,15 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   //Rotaciones de la cámara y altura de esta
   window.rotationCamX = -40;
   window.rotationCamY = -45;
-  window.camHeight=5;
+  window.camHeight = 5;
 
   window.mode = 0; //0 modo visualización - 1 modo edición - 2 modo sombras
-
-  //inicialización de matrices
+  window.transitionToEdit = false; //Si estamos en transición entre un modo y otro
+  window.transitionToDetail = false; //Si estamos en transición entre un modo y otro
+  window.cont = 0;
+  /**
+   * TAG.05	Matrices (model, view, projection) y pila estáticas y su manejo
+   */
   window.matrixStack = [];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
   matrixStack.push(matrixModel);//añadimos matriz modelo a la pila
@@ -49,6 +53,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.viewLightMatrix = []; //view matrix from light
   window.gl = null;
   window.glProgram = []; //Aquí se almacenan los programas
+  window.fShaders = [];
+  window.vShaders = [];
 
 
   window.mobile = typeof window.orientation != 'undefined';
@@ -84,12 +90,12 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   //Cargará todos los objetos del jardín
   loadEntities(sunrise, sunset);
-  
+
   //Camara de vista
   motor.crearNodoCamara("dynamicCamera", true, undefined);
   motor.activarCamara("dynamicCamera");
 
-  
+
 
   //Dependiendo de si estamos en modo visión o modo edición, la cámara estará en un sitio u otro
   //Aquí colocamos la cámara y llamamos al dibujado de la escena

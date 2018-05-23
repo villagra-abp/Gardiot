@@ -1,6 +1,9 @@
 /**
  * En appUtilities.js tenemos funciones auxiliares para clarificar el código de otros sitios: compilación de shaders,
  * bucle de animación, transformar los clicks en el canvas en coordenadas de la escena, etc.
+  TAG.50	Integración con la aplicación
+  TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+  TAG.52	Realización de una fachada genérica
  */
 
 /**
@@ -13,6 +16,23 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+    if(window.transitionToEdit){
+      console.log(window.steps);
+      window.cont++;
+      if(window.cont<=20){
+        motor.rotarCamaraOrbital('dynamicCamera', window.steps[0], 'y');
+        motor.rotarCamara('dynamicCamera', window.steps[1], 'x');
+        motor.moverCamara('dynamicCamera', 0, window.steps[3], window.steps[4]);
+      }
+      else{
+        rotationCamX=-90;
+        window.transitionToEdit=false;
+        window.cont=0;
+      }
+    }
+    else if(window.transitionToDetail){
+
+    }
     if (!window.mobile)
       motor.drawSombras();
     motor.draw();
@@ -37,8 +57,12 @@ function makeShader(src, type) {
   return shader;
 }
 
+
 /**
+ * TAG.44	Funciones para crear shaders y gestionarlos
  * Inicializa shaders
+ * @param  {string} vertexShaders
+ * @param  {string} fragmentShaders
  */
 function cargarShaders(vertexShaders, fragmentShaders) {
   let vs = [];
@@ -50,6 +74,8 @@ function cargarShaders(vertexShaders, fragmentShaders) {
 
     glProgram[i] = gl.createProgram();
     //añadimos los shaders al programa
+    vShaders.push(vs[i]);
+    fShaders.push(fs[i]);
     gl.attachShader(glProgram[i], makeShader(vs[i], gl.VERTEX_SHADER));
     gl.attachShader(glProgram[i], makeShader(fs[i], gl.FRAGMENT_SHADER));
     gl.linkProgram(glProgram[i]);
@@ -60,6 +86,31 @@ function cargarShaders(vertexShaders, fragmentShaders) {
     }
   }
   gl.useProgram(glProgram[window.program]);
+}
+/**
+ * Elimina el programa y los shaders que le pasamos por parámetro
+ * @param  {number} shader
+ */
+function deleteShader(shader){
+  if(shader>0){
+    try{
+      gl.useProgram(glProgram[shader]);
+
+      gl.detachShader(glProgram[shader], vShaders[shader]);
+      gl.detachShader(glProgram[shader], fShaders[shader]);
+      gl.deleteShader(vShaders[shader]);
+      gl.deleteShader(fShaders[shader]); 
+
+      gl.useProgram(glProgram[window.program]);
+
+      gl.deleteProgram(glProgram[shader]);   
+      glProgram[shader]=undefined;
+      return true; 
+    }
+    catch(e){
+      return false;
+    }
+  }
 }
 
 /**
@@ -120,6 +171,7 @@ function setupWebGL() {
   gl.clearColor(0.98, 0.98, 0.98, 1);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.enable(gl.DEPTH_TEST);
+  //TAG.54	Backface culling
   gl.enable(gl.CULL_FACE);
   gl.cullFace(gl.BACK);
 
@@ -239,6 +291,7 @@ async function rotarSol() {
 
 /**
  * Rota los astros cada X tiempo recursivamente
+ * TAG.73	Movimiento y configuración de luces (mañana/tarde)
  */
 async function rotarSol() {
   console.log('rotarsol');
@@ -250,6 +303,7 @@ async function rotarSol() {
 
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
+ * TAG.73	Movimiento y configuración de luces (mañana/tarde)
  * @param i Iterador recursivo
  */
 function demoSol(i) {
