@@ -1,6 +1,9 @@
 /**
  * En appCallouts están todas las funciones del motor que se comunican con el servidor y/o base de datos
  * Aquí están las llamadas y la funcionalidad en función si la comunicación es satisfactoria o no
+    TAG.50	Integración con la aplicación
+    TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+    TAG.52	Realización de una fachada genérica
  */
 /**
  * Carga un recurso contenido en una carpeta local

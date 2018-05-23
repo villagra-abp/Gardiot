@@ -1,3 +1,6 @@
+/**
+ * TAG.26	Estructura básica del recurso (constructor, destructor. Es virtual, vacío)
+ */
 class TRecurso {
 
   constructor(nombre) {

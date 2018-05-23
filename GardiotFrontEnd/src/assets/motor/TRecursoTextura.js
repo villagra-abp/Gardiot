@@ -1,17 +1,21 @@
 class TRecursoTextura extends TRecurso {
 
+  /**
+   * TAG.31	Estructura básica de la textura (constructor, destructor)
+   */
   constructor(nombre) {
     super(nombre);
     this._img = new Image();
     this._img.texture;
   }
   /**
+   * TAG.32	Leer de disco (con librería) y rellenar buffers
    * @param  {String} nombre Carga una textura
    */
   cargarFichero(nombre) {
     window.loading.push(1);
     this._img.onload = function () {
-      //creamos y configuramos la textura
+      //TAG.33	Dibujado (preparar las texturas y cargarlas en OpenGL)
       this.texture = gl.createTexture();
       let ind = parseInt('' + window.index);
 
@@ -36,7 +40,7 @@ class TRecursoTextura extends TRecurso {
       }
 
     }
-    
+
     let relURL = '';
     if (window.location.toString().indexOf('gardiot') >= 0) {
       relURL = 'https://gardiot.ovh/app/assets/motor/recursos/texturas/' + nombre;

@@ -2,6 +2,8 @@
 //Clase de la fachada del motor
 class TMotor {
 
+	//TAG.39	Estructura básica de la fachada (constructor, destructor, inicialización motor y openGL)
+	//TAG.42	Funciones para crear transformaciones (creación de varios nodos con las transformaciones, manejo de las transformaciones)
 	constructor(gestorRecursos) {
 		this.escena = new TNodo('Raiz', undefined, undefined);
 		this.gestorRecursos = gestorRecursos;
@@ -108,6 +110,7 @@ class TMotor {
 			gl.clearColor(0.98, 0.98, 0.98, 1);
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 			gl.enable(gl.DEPTH_TEST);
+			//TAG.54	Backface culling
 			gl.enable(gl.CULL_FACE);
 			gl.cullFace(gl.BACK);
 
@@ -140,7 +143,11 @@ class TMotor {
 		}
 	}
 
-	//Cambio de shaders
+	
+	/**
+	 * Usar shaders por defecto
+	 * @param  {string} shader
+	 */
 	usarShader(shader) {
 		let p = -1;
 		if (shader == 'cartoon')
@@ -154,6 +161,20 @@ class TMotor {
 			window.program = p;
 			setupWebGL();
 			gl.useProgram(glProgram[p]);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Activar el shader personalizado que le pasemos por parámetro
+	 * @param  {} shader
+	 */
+	activarShader(shader){
+		if(shader>=0){
+			window.program=shader;
+			setupWebGL();
+			gl.useProgram(glProgram[shader]);
 			return true;
 		}
 		return false;
@@ -182,6 +203,7 @@ class TMotor {
 	}
 
 	//=================================INICIO CÁMARA============================
+	//TAG.40	Funciones para crear cámaras y gestionarlas (manejo de las cámaras, registro, cálculo de la matriz view)
 	/**
 	 * Crea una camara con todos los controladores
 	 * si hermano se deja a nulo lo crea en la raiz
@@ -417,9 +439,11 @@ class TMotor {
 	 */
 	dibujarCamaraActiva() {
 		let camera = this.getCamaraActiva();
+		//TAG.10	Rellenar matriz paralela (con glm)
 		if (!camera.entity._isPerspective) {
 			mat4.ortho(projectionMatrix, camera.entity._left * 10, camera.entity._right * 10, camera.entity._bottom * 10, camera.entity._top * 10, camera.entity._near, camera.entity._far * 100);
 		}
+		//TAG.11	Rellenar matriz perspectiva (con glm)
 		else {
 			mat4.frustum(projectionMatrix, camera.entity._left, camera.entity._right, camera.entity._bottom, camera.entity._top, camera.entity._near, camera.entity._far);
 		}
@@ -449,6 +473,7 @@ class TMotor {
 
 
 	//=================================INICIO LUCES============================
+	//TAG.41	Funciones para crear luces y gestionarlas (manejo de las luces registro, cálculo de la matriz light)
 	/**
 	 * Crea una luz, se tiene que definir su nombre,
 	 * intensidad y si quieres que cuelgue de un hermano
@@ -502,10 +527,15 @@ class TMotor {
 			var rotLuz = new TNodo(nombre + "_R", new TTransf(), traLuz);
 			var luz = new TNodo(nombre, new TLuz("dirigida", i, i, i, i, i, i, amplitud, direccion), rotLuz);
 		}
-		//this.crearNodoMalla("cubo", "cubo", undefined, luz);
+
 		this.luzRegistro.push(luz);
 		return luz;
 	}
+
+	/**TAG.14	Datos y funciones luz puntual
+	 * TAG.15	Datos y funciones luz dirigida
+	 * Muchas de las funciones sirven para ambos tipos de luz
+	 */
 
 	//True if can activate, false otherwise
 	/**
@@ -752,7 +782,16 @@ class TMotor {
 	}
 	//=================================FIN LUCES============================
 
+	//=================================INICIO SHADERS=======================
+	anyadirShader(vs, fs){
+		cargarShaders()
+	}
+
+
+	//=================================FIN SHADERS=======================
+
 	//=================================INICIO MALLAS============================
+	//TAG.43	Funciones para crear mallas y animaciones
 	/**
 	 * Se le pasa un recurso y un hermano si queremos que
 	 * cuelgue de la estructura de alguno de ellos.
@@ -857,16 +896,26 @@ class TMotor {
 		let malla = this.mallaRegistro.find(x => x.name == nombre);
 		if (malla !== undefined) {
 			malla.dad.dad.dad.dad.removeChild(malla.dad.dad.dad);
+			malla.dad.dad = undefined;
+			malla.dad = undefined;
 			malla = undefined;
 		}
 	}
 	//=================================FIN MALLAS============================
 
-
 	//============================Animaciones==========================
 	//
-	//Nombre, nombre del recurso y si tiene un hermano o no
-	//se maneja igual que una malla y tiene el mismo tipo tambien
+	//TAG.20	Estructura básica de la animación (Constructor, destructor)
+	//TAG.23	Dibujado (begindraw, enddraw, matriz model…)
+	//El dibujado es el mismo que el de las mallas, ya que son un conjunto de 
+	//mallas hermanas
+	/**
+	 * Crear nodo animación
+	 * @param  {string} nombre
+	 * @param  {string} recurso
+	 * @param  {number} numeroFrames
+	 * @param  {TNodo} hermano
+	 */
 	crearNodoAnimacion(nombre, recurso, numeroFrames, hermano) {
 		if (hermano !== undefined) {
 			var traMalla = new TNodo(nombre + "_T", new TTransf(), hermano.dad);
@@ -875,6 +924,7 @@ class TMotor {
 
 			var animacion = new TNodo(nombre, new TTransf(), escMalla);
 
+			//TAG.21	Datos de animaciones, mallas, texturas, materiales (multiples, con llamadas al gestor de recursos)
 			for (var i = 0; i < numeroFrames; i++) {
 				var malla = new TNodo(nombre + "_" + i, new TMalla(recurso + "" + i, undefined), animacion);
 				if (i != 0) {
@@ -888,6 +938,7 @@ class TMotor {
 
 			var animacion = new TNodo(nombre, new TTransf(), escMalla);
 
+			//TAG.21	Datos de animaciones, mallas, texturas, materiales (multiples, con llamadas al gestor de recursos)
 			for (var i = 0; i < numeroFrames; i++) {
 				var malla = new TNodo(nombre + "_" + i, new TMalla(recurso + "" + i, undefined), animacion);
 				if (i != 0) {
@@ -900,6 +951,7 @@ class TMotor {
 		return malla;
 	}
 
+	//TAG.22	Getión temporal de las animaciones (frames…)
 	iterar() {
 		for (var i = 0; i < this.animRegistro.length; i++) {
 			this.siguienteMallaAnimada(this.animRegistro[i]._name);
@@ -930,6 +982,14 @@ class TMotor {
 			activa = 0;
 		}
 		this.animRegistro[pos]._childs[activa]._active = 1;
+	}
+
+	borrarRegistro(nombre) {
+		let animacion = this.animRegistro.find(x => x.name == nombre);
+		if (animacion !== undefined) {
+			animacion.dad.dad.dad.dad.removeChild(animacion.dad.dad.dad);
+			animacion = undefined;
+		}
 	}
 	//=================================FIN ANIMACION============================
 

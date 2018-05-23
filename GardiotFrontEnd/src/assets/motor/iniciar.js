@@ -32,7 +32,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
 
   window.mode = 0; //0 modo visualización - 1 modo edición - 2 modo sombras
 
-  //inicialización de matrices
+  /**
+   * TAG.05	Matrices (model, view, projection) y pila estáticas y su manejo
+   */
   window.matrixStack = [];//pila de matrices
   window.matrixModel = mat4.create();//matriz modelo
   matrixStack.push(matrixModel);//añadimos matriz modelo a la pila
@@ -49,6 +51,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.viewLightMatrix = []; //view matrix from light
   window.gl = null;
   window.glProgram = []; //Aquí se almacenan los programas
+  window.fShaders = [];
+  window.vShaders = [];
 
 
   window.mobile = typeof window.orientation != 'undefined';

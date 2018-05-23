@@ -1,5 +1,8 @@
 /** 
 *En este archivo tendremos la carga inicial de todos los objetos de la escena
+TAG.50	Integración con la aplicación
+TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+TAG.52	Realización de una fachada genérica
 */
 /**
 	 * Carga de la animación del aleteo del pajaro

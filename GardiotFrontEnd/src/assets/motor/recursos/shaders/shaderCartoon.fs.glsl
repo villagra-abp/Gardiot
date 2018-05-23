@@ -1,3 +1,4 @@
+//TAG.47	Shader Cartoon
 precision mediump float;
 
 const vec3 cAmbientLight=vec3(0.2, 0.2, 0.2);
@@ -68,6 +69,7 @@ void main()
 {
 	highp float visibility=0.0;
 	//Para todas las luces que tenemos, calculamos la sombra de cada fragmento
+	//TAG.59	Shadow mapping
 	for(int i=0; i<7; i++){
 		if(float(i)>=vLightCount){break;}
 			vec3 fragmentDepth = shadowPos[i].xyz/shadowPos[i].w;
