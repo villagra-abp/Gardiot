@@ -15,7 +15,8 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   window.canvas = null;
   window.jardin = jardinBBDD;
   window.loading = [];//array que estará vacío si no hay nada cargándose
-
+  window.interfaz = accion;
+  window.duracionTransicion=20;
   //Variables para el bucle de movimiento
   window.fpsInterval = 1000 / 30;
   window.startTime = 0;
@@ -114,9 +115,9 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
-    motor.moverCamaraA("dynamicCamera", 0, 3, 6);
+    motor.moverCamaraA("dynamicCamera", 0, 4, 8);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
-    motor.startDrawingStatic();
+    motor.startDrawing();
   }
 }

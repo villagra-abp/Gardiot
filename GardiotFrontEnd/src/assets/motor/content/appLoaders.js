@@ -149,6 +149,7 @@ function loadFence(width, length) {
 
 /**
 	 * Creacion de luces ambientales y colocacion inicial segun parametros locales
+   * TAG.72	Creación de luces en la interfaz (día/noche)
 	 * @param  {Date} sunrise
 	 * @param  {Date} sunset
 	 */

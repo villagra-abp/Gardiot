@@ -183,29 +183,32 @@ class TMotor {
 	/**
 	 * Aquí cambiamos entre el modo de visualización y modo edición
 	 */
+
 	toggleVista() {
+		//TAG.74	Animaciones de la aplicación
 		if (window.mode == 0) {//visualización
 			let pos=motor.getMatPosCamaraActiva();
 			let pos2=motor.getPosCamaraActiva();
-			console.log(pos);
-			window.steps=[-rotationCamY/20, -50/20, pos[0]/20, (camHeight-pos2[1])/20, -pos[2]/20];
+			rotationCamX=rotationCamX%360;
+			rotationCamY=rotationCamY%360;
+			if(rotationCamY<-180){rotationCamY+=360}
+			window.steps=[-rotationCamY/window.duracionTransicion, -50/window.duracionTransicion, -pos[0]/window.duracionTransicion, (camHeight-pos[1])/window.duracionTransicion, -pos[2]/window.duracionTransicion];
+			if(rotationCamY)
 			window.transitionToEdit=true;
-			//this.rotarCamaraOrbitalA("dynamicCamera", 0, "y");
-			//window.rotationCamX = -40;
-			//window.rotationCamY = -45;
+
 			window.mode = 1;
-			//this.rotarCamaraA("dynamicCamera", -90, "x");
-			//this.moverCamaraA("dynamicCamera", 0, camHeight, 0);
+
 		}
 		else if (window.mode == 1) {//edición
-			this.resetOrbital("dynamicCamera");
+			window.transitionToDetail=true;
+			let pos=motor.getMatPosCamaraActiva();
+			rotationCamX=rotationCamX%360;
+			rotationCamY=rotationCamY%360;
+
+			window.steps=[(-45-rotationCamY)/window.duracionTransicion, 50/window.duracionTransicion, -pos[0]/window.duracionTransicion, (5-pos[1])/window.duracionTransicion, (10-pos[2])/window.duracionTransicion];
+
 			window.mode = 0;
-			window.rotationCamX = -40;
-			window.rotationCamY = -45;
-			this.rotarCamaraA("dynamicCamera", 0, "x");
-			this.moverCamaraA("dynamicCamera", 0, camHeight, camHeight * 2);
-			this.rotarCamaraOrbital("dynamicCamera", 0, "y");
-			this.rotarCamara("dynamicCamera", rotationCamX, "x");
+
 		}
 	}
 
@@ -318,8 +321,8 @@ class TMotor {
 		let camera = this.camaraRegistro.find(x => x.name == nombre);
 		if (camera !== undefined) {
 			if(eje=='x')
-			rotationCamX+=grados;
-			if (eje == 'y')
+				rotationCamX+=grados;
+			if (eje == 'z')
 				rotationCamY += grados;
 			camera.dad.entity.rotar(grados, eje);
 			return true;
@@ -367,6 +370,7 @@ class TMotor {
 			else if (eje == 'y') {
 				rotationCamY += grados;
 				let rad = Math.PI * rotationCamY / 180;
+				console.log(rotationCamY);
 				mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
 			}
 			return true;

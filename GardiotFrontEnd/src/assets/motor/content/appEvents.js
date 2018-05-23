@@ -115,8 +115,8 @@ function mouse_move(e) {
       let ejeY = window.originClickY - (y / cv.offsetHeight);
       let ejeX = window.originClickX - (x / cv.offsetWidth);
       if (window.mode == 1) {
-        window.rotationCamY+=(ejeX*150);
-        motor.rotarCamara("dynamicCamera", ejeX * 150, "z");
+        //window.rotationCamY+=(ejeX*150);
+        //motor.rotarCamara("dynamicCamera", ejeX * 150, "z");
       } else {
         motor.rotarCamaraOrbital("dynamicCamera", ejeX * 150, "y");
       }

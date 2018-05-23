@@ -16,23 +16,49 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+    /**
+     * TAG.74	Animaciones de la aplicación
+     * A la hora de cambiar de modo, realizamos una transición de la cámara de forma que
+     * el cambio de visualización no sea brusco. Para realizar esto, cuando cambiamos de modo
+     * definimos unos intervalos para que la transición se haga en un número concreto de dibujados
+     * Aquí gracias a un contador, controlamos el fin de la animación
+     */
     if(window.transitionToEdit){
-      console.log(window.steps);
       window.cont++;
-      if(window.cont<=20){
+      if(window.cont<=window.duracionTransicion){
         motor.rotarCamaraOrbital('dynamicCamera', window.steps[0], 'y');
         motor.rotarCamara('dynamicCamera', window.steps[1], 'x');
-        motor.moverCamara('dynamicCamera', 0, window.steps[3], window.steps[4]);
+        motor.moverCamara('dynamicCamera', window.steps[2], window.steps[3], window.steps[4]);
       }
       else{
+        motor.rotarCamaraOrbitalA('dynamicCamera', 0, 'y');
+        motor.rotarCamaraA('dynamicCamera', -90, 'x');
+        motor.moverCamaraA('dynamicCamera', 0, 5, 0);
         rotationCamX=-90;
+        rotationCamY=0;
         window.transitionToEdit=false;
         window.cont=0;
       }
     }
     else if(window.transitionToDetail){
-
+      window.cont++;
+      if(window.cont<=window.duracionTransicion){
+        motor.rotarCamaraOrbital('dynamicCamera', window.steps[0], 'y');
+        motor.rotarCamara('dynamicCamera', window.steps[1], 'x');
+        motor.moverCamara('dynamicCamera', window.steps[2], window.steps[3], window.steps[4]);
+      }
+      else{
+        motor.rotarCamaraOrbitalA('dynamicCamera', -45, 'y');
+        motor.rotarCamaraA('dynamicCamera', -40, 'x');
+        motor.moverCamaraA('dynamicCamera', 0, 5, 10);
+        rotationCamX=-40;
+        rotationCamY=-45;
+        window.transitionToDetail=false;
+        window.cont=0;
+      }
     }
+    if(interfaz=='home')
+      motor.rotarCamaraOrbital('dynamicCamera', 0.3, 'y');
     if (!window.mobile)
       motor.drawSombras();
     motor.draw();
