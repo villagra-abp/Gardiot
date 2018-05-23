@@ -84,7 +84,7 @@ export class NewtreatmentsplantsComponent implements OnInit {
   mostrarPlanta(numplant: number) {
     this._plantService.details(numplant)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.plant.id = data[0].id;
         this.plant.commonName = data[0].commonName;
         this.plant.photo = data[0].photo;

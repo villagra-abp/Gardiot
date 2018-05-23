@@ -37,7 +37,7 @@ export class DialogNewgarden1Component implements OnInit {
   getid() {
     this._gardenService.details().subscribe(data => {
       if (data != null) {
-        console.log(data);
+        //console.log(data);
         this.garden = data;
         this.garden.length !== undefined ? this.garden.length = (this.garden.length - 1) / 2 : this.garden.length = 6;
         this.garden.width !== undefined ? this.garden.width = (this.garden.width - 1) / 2 : this.garden.width = 6;

@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
           this.uploader.addToQueue([newImage]);
           this.uploader.uploadAll();
         },
-        error => console.log(error)
+        error => console.error(error)
       );
     }
   }
@@ -108,7 +108,7 @@ export class ProfileComponent implements OnInit {
     };
 
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      console.log("ImageUpload:uploaded:", item, status, response);
+      //console.log("ImageUpload:uploaded:", item, status, response);
 
       let url = response.split(" ");
       url = url[url.length - 1];
@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
 
       this._detailService.savePhotoUser(this.user.photo)
         .subscribe(data => {
-          console.log(data);
+          //console.log(data);
           if (data.Mensaje == 'Actualizado')
             this._renderer.setElementStyle(img, 'background-image', `url("${this.imgUrl + this.user.photo}")`);
         });

@@ -116,7 +116,7 @@ export class LibraryComponent implements OnInit {
           aux.push({ id: data[i].id, text: data[i].name });
         }
         this.families = aux;
-        console.log(this.families);
+        //console.log(this.families);
         this.familyData = Observable.create((obs) => {
           obs.next(aux);
           obs.complete();

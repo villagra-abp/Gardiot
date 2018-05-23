@@ -21,7 +21,7 @@ export class ConfirmationComponent implements OnInit {
       if (params['key'] != null) {
         this._comprobationService.comprobateActivationToken(params['key'])
           .subscribe(data => {
-            console.log(data);
+            //console.log(data);
             this._appComponent.mensajeEmergente("Tu cuenta se ha activado correctamente! Loguéate ahora", "primary", "login");
           },
             error => {
