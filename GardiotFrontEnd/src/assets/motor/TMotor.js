@@ -81,17 +81,18 @@ class TMotor {
 		}
 	}
 
-
 	allLoaded() {
 		clearInterval(window.interval);
 	}
 
-
 	draw() {
+		//Si estamos en el móvil, configuramos viewport y dibujamos las luces
 		if (window.mobile) {
 			gl.viewport(0, 0, canvas.width, canvas.height);
 			this.dibujarLucesMobile();
 		}
+		//Si se están dibujando sombras, activamos las texturas de sombras y se las pasamos
+		//al shader
 		else {
 			gl.useProgram(glProgram[window.program]);
 			//Pass all shadow textures
@@ -120,6 +121,7 @@ class TMotor {
 		this.escena.draw();
 	}
 
+	//Activamos los framebuffers de cada luz y creamos las texturas de sombras
 	drawSombras() {
 		gl.useProgram(glProgram[2]);
 
@@ -138,6 +140,7 @@ class TMotor {
 		}
 	}
 
+	//Cambio de shaders
 	usarShader(shader) {
 		let p = -1;
 		if (shader == 'cartoon')
@@ -156,6 +159,7 @@ class TMotor {
 		return false;
 	}
 
+	//Para cambiar entre modos, movemos la cámara a otro sitio
 	toggleVista() {
 		if (window.mode == 0) {//visualización
 			this.resetOrbital("dynamicCamera");
@@ -427,8 +431,8 @@ class TMotor {
 			if (auxCamara.entity !== undefined)
 				auxStack.push(auxCamara.entity.matrix);
 		}
-		//tenemos el recorrido de la cámara a la raíz en auxStack
 
+		//tenemos el recorrido de la cámara a la raíz en auxStack
 		//recorremos la lista auxiliar invertida
 		let auxMatrix = mat4.create();
 		for (let i = auxStack.length - 1; i >= 0; i--) {
@@ -601,6 +605,12 @@ class TMotor {
 		}
 	}
 
+	/**
+	 * DibujarLucesMobile hace el recorrido del árbol de todas las luces activas y las representa en la escena.
+	 * Se ha creado este método porque como no se dibujan sombras en el móvil, necesitábamos un método que
+	 * hiciera los cálculos necesarios y los estrictamente necesarios
+	 */
+
 	dibujarLucesMobile() {
 		let contLuces = 0;
 		for (let i = 0; i < this.luzRegistro.length; i++) {
@@ -620,12 +630,6 @@ class TMotor {
 					let au = [];
 					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
 				}
-
-
-				//el resultado lo invertimos y tenemos la matrix View desde la luz
-				viewLightMatrix[contLuces] = [];
-				mat4.invert(viewLightMatrix[contLuces], auxMatrix.slice(0));
-
 
 				//calculamos la posición de la luz
 				let lPos = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
@@ -666,6 +670,10 @@ class TMotor {
 		}
 	}
 
+	/**
+	 * DibujarLucesActivasSombras realiza el recorrido a través del árbol de las luces y calcula
+	 * las matrices view desde cada luz
+	 */
 	dibujarLucesActivasSombras() {
 		//dibujar ambient light
 		let contLuces = 0;
@@ -700,7 +708,8 @@ class TMotor {
 	}
 
 	/**
-	 * Dibujar en la escena las luces que tengamos activas
+	 * Dibujar en la escena las luces que tengamos activas, para ello recore las matrices calculadas
+	 * en el dibujarLucesActivasSombras
 	 */
 	dibujarLucesActivas() {
 		let contLuces = 0;
@@ -713,9 +722,7 @@ class TMotor {
 			vec4.transformMat4(lPos, lPos, lightTransformations[contLuces][1]);
 			vec4.subtract(lPos, lPos, aux);
 
-
 			//se la pasamos al shader
-
 			let isActive, lightPosUniformLocation, lightIntUniformLocation,
 				lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 			if (lightTransformations[contLuces][0].tipo == "puntual") {
@@ -743,7 +750,6 @@ class TMotor {
 			contLuces++;
 		}
 	}
-
 	//=================================FIN LUCES============================
 
 	//=================================INICIO MALLAS============================
@@ -854,9 +860,8 @@ class TMotor {
 			malla = undefined;
 		}
 	}
-
-
 	//=================================FIN MALLAS============================
+
 
 	//============================Animaciones==========================
 	//
@@ -894,12 +899,12 @@ class TMotor {
 		this.mallaRegistro.push(animacion);
 		return malla;
 	}
+
 	iterar() {
 		for (var i = 0; i < this.animRegistro.length; i++) {
 			this.siguienteMallaAnimada(this.animRegistro[i]._name);
 		}
 	}
-
 
 	siguienteMallaAnimada(nombre) {
 		var pos = -1;
@@ -926,10 +931,6 @@ class TMotor {
 		}
 		this.animRegistro[pos]._childs[activa]._active = 1;
 	}
-
-
-
-
 	//=================================FIN ANIMACION============================
 
 }

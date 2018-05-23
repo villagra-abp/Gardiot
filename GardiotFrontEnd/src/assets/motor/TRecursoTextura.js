@@ -13,14 +13,14 @@ class TRecursoTextura extends TRecurso {
     this._img.onload = function () {
       //creamos y configuramos la textura
       this.texture = gl.createTexture();
-      let ind=parseInt(''+window.index);
+      let ind = parseInt('' + window.index);
 
       window.index++;
-      gl.activeTexture(gl.TEXTURE0+ind);
+      gl.activeTexture(gl.TEXTURE0 + ind);
       gl.bindTexture(gl.TEXTURE_2D, this.texture);
-      this.index=ind;
-  
-      
+      this.index = ind;
+
+
 
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this);
@@ -36,6 +36,7 @@ class TRecursoTextura extends TRecurso {
       }
 
     }
+    
     let relURL = '';
     if (window.location.toString().indexOf('gardiot') >= 0) {
       relURL = 'https://gardiot.ovh/app/assets/motor/recursos/texturas/' + nombre;
@@ -46,7 +47,7 @@ class TRecursoTextura extends TRecurso {
     else if (window.location.toString().indexOf('localhost:8080') >= 0) {
       relURL = '/recursos/texturas/' + nombre;
     }
-    else{
+    else {
       relURL = 'http://192.168.100.3:4200/assets/motor/recursos/texturas/' + nombre;
     }
     this._img.src = relURL;
