@@ -320,7 +320,6 @@ async function rotarSol() {
  * TAG.73	Movimiento y configuración de luces (mañana/tarde)
  */
 async function rotarSol() {
-  console.log('rotarsol');
   await sleep(300000); //5 min
   let now = new Date();
   calcularPosicionAstros(now);
@@ -356,7 +355,6 @@ function calcularPosicionAstros(now) {
   let minutesDiff = Math.abs(now - window.lastTime) / 20000;
   let relationNowDay = minutesDiff / (24 * 60);
   let gradeSunPosition = relationNowDay * 110 * velocidadOrbital;
-  console.log("Roto el sol " + gradeSunPosition + ' grados a las ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds());
   motor.rotarLuzOrbital('sol', gradeSunPosition, 'z');
   motor.rotarLuzOrbital('luna', gradeSunPosition, 'z');
   //Cogemos la luz activa

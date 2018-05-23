@@ -180,7 +180,6 @@ function loadSun(sunrise, sunset) {
   if (typeof sunrise === 'undefined' && typeof sunset === 'undefined') {
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
     sunset = new Date(2018, 11, 11, 20, 14, 42);
-    console.log("No se ha pasado la hora de amanecer y anocher de OpenWeatherMap al motor");
   }
 
   /* COLOCACION DEL SOL */
