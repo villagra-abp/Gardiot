@@ -370,7 +370,6 @@ class TMotor {
 			else if (eje == 'y') {
 				rotationCamY += grados;
 				let rad = Math.PI * rotationCamY / 180;
-				console.log(rotationCamY);
 				mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
 			}
 			return true;
