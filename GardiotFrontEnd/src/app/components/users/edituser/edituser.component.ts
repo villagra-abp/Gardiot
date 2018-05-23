@@ -97,7 +97,7 @@ export class EdituserComponent implements OnInit {
         }).delay(1000);
       },
         error => {
-          console.log(error);
+          //console.log(error);
         });
   }
 
@@ -113,7 +113,7 @@ export class EdituserComponent implements OnInit {
   //Estas dos funciones son para guardar los datos
   //del país y ciudad en el objeto de usuario
   saveCountry(e) {
-    console.log(e.value);
+    //console.log(e.value);
     if (e.value != 0 && e.value !== undefined) {
       this.user.countryCode = e.value;
     }
@@ -158,7 +158,7 @@ export class EdituserComponent implements OnInit {
           input.value = '';
         },
           error => {
-            console.log(error);
+            //console.log(error);
           });
     }
   }

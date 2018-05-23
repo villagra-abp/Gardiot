@@ -5,6 +5,12 @@
       <input [(ngModel)]="user.id" name="id" type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required>
       <input [(ngModel)]="user.password" name="password" type="password" id="exampleInputPassword1" placeholder="Contraseña" required>
       <input [(ngModel)]="user.password2" name="password2" type="password" id="exampleInputPassword2" placeholder="Repetir contraseña" required>
+      <!-- Check y enlace a la politica de privacidad -->
+      <label class="checkbox-inline">
+        <input (change)="fieldsChange($event)" value="angular" type="checkbox"/>
+        <a [routerLink]="['/privacyterms']" target="_blank" class="inline" href="#">Aceptar términos de uso</a>
+      </label>
+
       <button [disabled]="!forma.valid" type="submit"><img src="./assets/buttons/register.png" alt="Registrarse"></button>
       <a href="{{this._userService.apiURL}}auth/google"><img src="./assets/buttons/logingoogle.png" alt="Acceder con Google"></a>
       <a href="{{this._userService.apiURL}}auth/facebook"><img src="./assets/buttons/loginfacebook.png" alt="Acceder con Facebook"></a>

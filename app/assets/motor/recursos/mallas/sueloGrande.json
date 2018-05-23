@@ -639,9 +639,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.94
-						,0.94
-						,0.94
+						 0.44
+						,0.44
+						,0.44
 					]
 				}
 				,{
@@ -672,9 +672,9 @@
 					,"index": 0
 					,"type": 1
 					,"value": [
-						 0.14
-						,0.14
-						,0.14
+						 0.04
+						,0.04
+						,0.04
 					]
 				}
 				,{
@@ -696,7 +696,7 @@
 					,"semantic": 1
 					,"index": 0
 					,"type": 3
-					,"value": "sueloGrande3D\\piedras.jpg"
+					,"value": "MODELOSV2\\suelo\\cesped.jpg"
 				}
 				,{
 					 "key": "$tex.uvtrafo"

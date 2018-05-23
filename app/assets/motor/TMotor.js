@@ -23,17 +23,26 @@ class TMotor {
 	 */
 	startDrawing() {
 		this.running = true;
-		//Asignamos el rendimiento del motor a 30fps
-		
 
 		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
-			motor.draw();
-			animLoop();
+			window.interval = setInterval(function () {
+				//Cuando esté todo cargado, dibujamos
+				if (window.loading.length == 0) {
+					let load = document.getElementsByClassName('loadingComponent');
+					for (let el of load)
+						el.remove();
+
+					motor.draw();
+					animLoop();
+					motor.allLoaded();
+				}
+			}, 100);
 		}
 		else {
 			alert("No funciona WebGL");
 		}
+
 	}
 
 	/**
@@ -48,7 +57,6 @@ class TMotor {
 	 * Con él podemos obtener una imagen estática
 	 */
 	startDrawingStatic() {
-		this.running = true;
 
 		//Inicialización de WebGL
 		if (iniciamosWebGL('myCanvas')) {
@@ -57,8 +65,12 @@ class TMotor {
 			window.interval = setInterval(function () {
 				//Cuando esté todo cargado, dibujamos
 				if (window.loading.length == 0) {
-					motor.draw();
-					motor.drawSombras();
+					let load = document.getElementsByClassName('loadingComponent');
+					for (let el of load)
+						el.remove();
+
+					if (!mobile)
+						motor.drawSombras();
 					motor.draw();
 					motor.allLoaded();
 				}
@@ -69,31 +81,37 @@ class TMotor {
 		}
 	}
 
+
 	allLoaded() {
 		clearInterval(window.interval);
 	}
 
+
 	draw() {
-
-		gl.useProgram(glProgram[window.program]);
-
-		//Pass all shadow textures
-		for (let i = 0; i < viewLightMatrix.length; i++) {
-			gl.activeTexture(gl.TEXTURE0 + shadowDepthTexture[i].index);
-			gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
-			gl.uniform1i(glProgram[window.program].shadowMapUniform[i], i);
+		if (window.mobile) {
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			this.dibujarLucesMobile();
 		}
+		else {
+			gl.useProgram(glProgram[window.program]);
+			//Pass all shadow textures
+			for (let i = 0; i < viewLightMatrix.length; i++) {
+				gl.activeTexture(gl.TEXTURE0 + i);
+				gl.bindTexture(gl.TEXTURE_2D, shadowDepthTexture[i]);
+				gl.uniform1i(glProgram[window.program].shadowMapUniform[i], i);
+			}
 
-		gl.uniform1i(glProgram[window.program].cont, viewLightMatrix.length);
+			gl.uniform1i(glProgram[window.program].cont, viewLightMatrix.length);
 
-		gl.viewport(0, 0, canvas.width, canvas.height);
-		gl.clearColor(0.98, 0.98, 0.98, 1);
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		gl.enable(gl.DEPTH_TEST);
-		gl.enable(gl.CULL_FACE);
-		gl.cullFace(gl.BACK);
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			gl.clearColor(0.98, 0.98, 0.98, 1);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			gl.enable(gl.DEPTH_TEST);
+			gl.enable(gl.CULL_FACE);
+			gl.cullFace(gl.BACK);
 
-		this.dibujarLucesActivas();
+			this.dibujarLucesActivas();
+		}
 
 		//inicializar cámara
 		this.dibujarCamaraActiva();
@@ -316,6 +334,21 @@ class TMotor {
 				let rad = Math.PI * rotationCamY / 180;
 				mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
 			}
+			return true;
+		}
+	}
+
+	/**
+	 * Rotar la cámara a un ángulo alrededor del punto 0, 0, 0 en el eje y
+	 * @param  {string} nombre
+	 * @param  {number} grados
+	 */
+	rotarCamaraOrbitalA(nombre, grados) {
+		let camera = this.camaraRegistro.find(x => x.name == nombre);
+		if (camera !== undefined) {
+			let rad = Math.PI * grados / 180;
+			mat4.fromRotation(camera.dad.dad.dad.dad.entity.matrix, rad, [0.0, 1.0, 0.0]);
+
 			return true;
 		}
 	}
@@ -568,10 +601,75 @@ class TMotor {
 		}
 	}
 
+	dibujarLucesMobile() {
+		let contLuces = 0;
+		for (let i = 0; i < this.luzRegistro.length; i++) {
+			let luz = this.luzRegistro[i];
+			if (luz.activa) {
+
+				let auxStack = [];
+				let auxLuz = luz;
+				while (auxLuz = auxLuz.dad) {
+					if (auxLuz.entity !== undefined)
+						auxStack.push(auxLuz.entity.matrix);
+				}
+				//tenemos el recorrido de la cámara a la raíz en auxStack
+				//recorremos la lista auxiliar invertida
+				let auxMatrix = mat4.create();
+				for (let i = auxStack.length - 1; i >= 0; i--) {
+					let au = [];
+					mat4.multiply(auxMatrix, auxMatrix/*.slice(0)*/, auxStack[i]);
+				}
+
+
+				//el resultado lo invertimos y tenemos la matrix View desde la luz
+				viewLightMatrix[contLuces] = [];
+				mat4.invert(viewLightMatrix[contLuces], auxMatrix.slice(0));
+
+
+				//calculamos la posición de la luz
+				let lPos = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+				let aux = vec4.fromValues(1.0, 1.0, 1.0, 0.0);
+
+				vec4.transformMat4(lPos, lPos, auxMatrix);
+				vec4.subtract(lPos, lPos, aux);
+
+
+				//se la pasamos al shader
+
+				let isActive, lightPosUniformLocation, lightIntUniformLocation,
+					lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
+				if (luz.entity.tipo == "puntual") {
+					isActive = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].isActive`);
+					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].position`);
+					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].color`);
+					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uLight[${contLuces}].specColor`);
+				}
+				else if (luz.entity.tipo == "dirigida") {
+					isActive = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].isActive`);
+					lightPosUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].position`);
+					lightIntUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].color`);
+					lightSpecUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].specColor`);
+					lightDirUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].direction`);
+					lightAmpUniformLocation = gl.getUniformLocation(glProgram[window.program], `uSpotLight[${contLuces}].amplitude`);
+					gl.uniform4fv(lightDirUniformLocation, luz.entity.direccion);
+					gl.uniform1f(lightAmpUniformLocation, luz.entity.amplitud);
+				}
+
+				gl.uniform1i(isActive, 1);
+				gl.uniform4fv(lightPosUniformLocation, lPos);
+				gl.uniform3fv(lightIntUniformLocation, luz.entity.intensidad);
+				gl.uniform3fv(lightSpecUniformLocation, luz.entity.intensidadSpecular);
+
+				contLuces++;
+			}
+		}
+	}
+
 	dibujarLucesActivasSombras() {
 		//dibujar ambient light
 		let contLuces = 0;
-		lightTransformations=[];
+		lightTransformations = [];
 		for (let i = 0; i < this.luzRegistro.length; i++) {
 			let luz = this.luzRegistro[i];
 			if (luz.activa) {
@@ -617,7 +715,7 @@ class TMotor {
 
 
 			//se la pasamos al shader
-			//console.log(this.luzRegistro[i].entity.tipo);
+
 			let isActive, lightPosUniformLocation, lightIntUniformLocation,
 				lightSpecUniformLocation, lightDirUniformLocation, lightAmpUniformLocation;
 			if (lightTransformations[contLuces][0].tipo == "puntual") {

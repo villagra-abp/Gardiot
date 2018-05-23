@@ -1,4 +1,9 @@
 /**
+ * En appUtilities.js tenemos funciones auxiliares para clarificar el código de otros sitios: compilación de shaders,
+ * bucle de animación, transformar los clicks en el canvas en coordenadas de la escena, etc.
+ */
+
+/**
  * Realiza la iteracion de dibujado segun fps
  */
 function animLoop() {
@@ -81,7 +86,7 @@ function setupWebGL() {
   glProgram[window.program].lmvpMatrixUniform[4] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[4]");
   glProgram[window.program].lmvpMatrixUniform[5] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[5]");
   glProgram[window.program].lmvpMatrixUniform[6] = gl.getUniformLocation(glProgram[window.program], "uMVPMatrixFromLight[6]");
-  
+
 
   //Nos traemos las matrices, projection, model y view al motor
   glProgram[window.program].pMatrixUniform = gl.getUniformLocation(glProgram[window.program], "uPMatrix");
@@ -129,7 +134,7 @@ function initFramebufferSombras(i) {
   shadowFramebuffer[i] = gl.createFramebuffer();
   gl.bindFramebuffer(gl.FRAMEBUFFER, shadowFramebuffer[i]);
 
-  let ind=parseInt(''+window.index);
+  let ind = parseInt('' + window.index);
   window.index++;
   shadowDepthTexture[i] = gl.createTexture();
   gl.activeTexture(gl.TEXTURE0 + ind);
@@ -236,6 +241,7 @@ async function rotarSol() {
  * Rota los astros cada X tiempo recursivamente
  */
 async function rotarSol() {
+  console.log('rotarsol');
   await sleep(300000); //5 min
   let now = new Date();
   calcularPosicionAstros(now);
@@ -252,13 +258,13 @@ function demoSol(i) {
     let inc = 20;
     now.setMinutes(now.getMinutes() + inc);
     calcularPosicionAstros(now);
-    if (((24*60)/inc) - 1 > i) {
+    if (((24 * 60) / inc) - 1 > i) {
       i++;
       demoSol(i);
     }
     else
       rotarSol();
-  }, 100); 
+  }, 100);
 }
 
 /**

@@ -13,7 +13,6 @@ class TRecursoTextura extends TRecurso {
     this._img.onload = function () {
       //creamos y configuramos la textura
       this.texture = gl.createTexture();
-      console.log(window.index);
       let ind=parseInt(''+window.index);
 
       window.index++;

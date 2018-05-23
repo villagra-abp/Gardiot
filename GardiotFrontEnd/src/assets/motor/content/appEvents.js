@@ -1,6 +1,11 @@
 /**
+ * En este archivo se controlan los eventos y la interacción del motor con el usuario. Se controlan tanto los
+ * eventos del ordenador como los gestos para dispositivos móviles
+ */
+
+/**
  * Establece el parametro de identificacion de la planta arrastrada
- * @param  {String} e
+ * @param  {Object} e
  */
 function drag(e) {
   window.dragging = true;
@@ -9,7 +14,7 @@ function drag(e) {
 
 /**
  * Bloquea los disparadores de evento por defecto de JS
- * @param  {String} e
+ * @param  {Object} e
  */
 function allowDrop(e) {
   e.preventDefault();
@@ -18,9 +23,9 @@ function allowDrop(e) {
 
 /**
  * Establece el color de celda sobre la que se esta arrastrando
- * @param  {String} e
+ * @param  {Object} e
  */
-function dragCanvas(e){
+function dragCanvas(e) {
   if (window.dragging) {
     e.preventDefault();
     e.stopPropagation();
@@ -36,7 +41,7 @@ function dragCanvas(e){
 
 /**
  * Inserta la planta en el jardin al soltar el click del raton
- * @param  {String} e
+ * @param  {Object} e
  */
 function drop(e) {
   e.preventDefault();
@@ -67,7 +72,7 @@ function drop(e) {
 
 /**
  * Controla las acciones asociadas al movimiento del raton sobre el canvas, camara principalmente
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_move(e) {
   if (typeof projectionMatrix !== 'undefined') {
@@ -143,7 +148,7 @@ function mouse_move(e) {
 
 /**
  * Controla las acciones asociadas al los clicks derecho (rotar) e izquierdo (seleccionar planta) del raton
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_down(e) {
   let cv = document.querySelector('#myCanvas'),
@@ -187,7 +192,7 @@ function mouse_down(e) {
 
 /**
  * Controla las acciones asociadas al levantar el dedo del ratón. Derecho (detener rotacion), izquierdo (colocar planta seleccionada)
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_up(e) {
   colorCell = [];
@@ -207,35 +212,37 @@ function mouse_up(e) {
         let point = get3DPoint([e.clientX, e.clientY], cv.offsetWidth, cv.offsetHeight);
         let coordX = Math.round(point[0]);
         let coordY = Math.round(point[2]);
-        let plant=window.jardin.plants.find(x=>x.isDragging);
-          if (plant) {
-            plant.isDragging = false;
-            window.dragging = false;
-            let datos = dataPlants[plant.model.toUpperCase()];
-            if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
-              let occupied = false;
-              if(plantsMap.has(coordX+'-'+coordY)){
-                motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
-                  occupied = true;
-                  break;
-              }
-              if (!occupied)
-                updateMyPlant(window.jardin.id, plant, coordX, coordY);
+        let plant = window.jardin.plants.find(x => x.isDragging);
+        if (plant) {
+          plant.isDragging = false;
+          window.dragging = false;
+          if(plant.model==null || typeof plant.model == 'undefined')
+            plant.model='logo';
+          let datos = dataPlants[plant.model.toUpperCase()];
+          if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
+            let occupied = false;
+            if (plantsMap.has(coordX + '-' + coordY)) {
+              motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
+              occupied = true;
+              break;
             }
-            else {
-              let rect = cv.getBoundingClientRect();
-              let xPos = e.clientX - rect.left;
-              let yPos = e.clientY - rect.top;
-              if (xPos >= 90 * cv.offsetWidth / 100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10 * cv.offsetHeight / 100)
-                deleteMyPlant(window.jardin.id, plant);
-              else
-                motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
-            }
-            cv.removeAttribute('rotando-camara');
-            window.originClickX = undefined;
-            window.originClickY = undefined;
-            break;
+            if (!occupied)
+              updateMyPlant(window.jardin.id, plant, coordX, coordY);
           }
+          else {
+            let rect = cv.getBoundingClientRect();
+            let xPos = e.clientX - rect.left;
+            let yPos = e.clientY - rect.top;
+            if (xPos >= 90 * cv.offsetWidth / 100 && yPos >= 0 && xPos <= cv.offsetWidth && yPos <= 10 * cv.offsetHeight / 100)
+              deleteMyPlant(window.jardin.id, plant);
+            else
+              motor.moverMallaA(plant.id, plant.x, datos.posY, plant.y);
+          }
+          cv.removeAttribute('rotando-camara');
+          window.originClickX = undefined;
+          window.originClickY = undefined;
+          break;
+        }
       }
       cv.removeAttribute('moviendo-camara');
       break;
@@ -245,28 +252,28 @@ function mouse_up(e) {
 
 /**
  * Desactiva la variable general que controla el dragging
- * @param  {String} e
+ * @param  {Object} e
  */
-function disableDragging(e){
-  window.dragging=false;
+function disableDragging(e) {
+  window.dragging = false;
 }
 
 /**
  * Elimina una MyPlant
- * @param  {String} e
+ * @param  {Object} e
  */
 function deletePlant(e) {
   e.preventDefault();
   e.stopPropagation();
   if (window.mode == 1 && window.dragging) {
-    let plant=window.jardin.plants.find(x=>x.isDragging);
-      if (plant) {
-        plant.isDragging = false;
-        window.dragging = false;
+    let plant = window.jardin.plants.find(x => x.isDragging);
+    if (plant) {
+      plant.isDragging = false;
+      window.dragging = false;
 
-        deleteMyPlant(window.jardin.id, plant);
-        colorCell = [];
-      }
+      deleteMyPlant(window.jardin.id, plant);
+      colorCell = [];
+    }
   }
 }
 
@@ -310,8 +317,8 @@ function subZoom() {
 
 
 /**
- * Controla el zoom de la cámara en el modo edición
- * @param  {String} e
+ * Controla el zoom de la cámara con la rueda del ratón
+ * @param  {Object} e
  */
 function scrolling(e) {
   e.preventDefault();
@@ -349,13 +356,33 @@ function scrolling(e) {
 }
 
 /**
- * Controla el multigesto con los dispositivos tactiles
+ * Se ejecutará para añadir plantas desde el móvil
+ * @param {Object} e evento javascript
+ */
+function handlePlant(e) {
+  if (window.mobile) {
+    let plant = e.srcElement.id.split('-');
+    let posCam = motor.getPosCamaraActiva();
+    let inserted = false;
+    for (let i = Math.round(posCam[0]); i < window.jardin.width / 2 && !inserted; i++) {
+      for (let j = Math.round(posCam[2]); j < window.jardin.length / 2 && !inserted; j++) {
+        if (!window.plantsMap.has(i + '-' + j)) {
+          insertMyPlant(window.jardin.id, plant[0], i, j, plant[1]);
+          inserted = true;
+
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Controla los gestos con los dispositivos táctiles
  */
 function hammertime() {
   var is_touch_device = 'ontouchstart' in document.documentElement;
   if (is_touch_device) {
     mc = new Hammer(document.getElementById('myCanvas'), {
-      tap: { enable: false }
     });
 
     // create a pinch and rotate recognizer
@@ -375,7 +402,7 @@ function hammertime() {
     mc.add([pan, press]);
 
     var liveScale = 1;
-    var currentRotation = 0;
+    var rotatingscaling=false;
     var prevRotation = 0;
     var rotation = 0;
     var scale = 1, last_scale = 1,
@@ -387,7 +414,7 @@ function hammertime() {
 
     var lastPosX = 0, lastPosY = 0, posX = 0, posY = 0;
 
-    mc.on("rotate rotatestart rotateend pan press panstart panend tap multitap", function (e) {
+    mc.on("rotate rotatestart rotateend pan press panstart panend", function (e) {
       e.preventDefault();
 
       let canvas = document.querySelector('#myCanvas');
@@ -395,29 +422,44 @@ function hammertime() {
 
       switch (e.type) {
         case 'rotatestart':
-          currentRotation = Math.round(e.rotation);
+          rotatingscaling=true;
+          currentRotation = e.rotation;
           currentScale = Math.round(e.scale);
           break;
         case 'rotate':
+        let pos = motor.getPosCamaraActiva();
 
-          var diff = Math.round(e.rotation) - currentRotation;
-          var diffScale;
+
           e.pointers = [];
-
           if (window.mode == 1) {
-            diffScale = 2 * (currentScale - e.scale);
-            motor.rotarCamara("dynamicCamera", diff, "z");
-            motor.moverCamara("dynamicCamera", 0, diffScale, 0);
-
-          } else {
-            diffScale = 1 + ((currentScale - e.scale) * 2);
-            motor.rotarCamaraOrbital("dynamicCamera", diff, "y");
-            motor.escalarCamara("dynamicCamera", diffScale);
+            if(currentScale-e.scale<0){
+              if (pos[1] > 4) {
+                motor.moverCamara("dynamicCamera", 0, (currentScale - e.scale) * 5, 0);
+              }
+            }else{
+              if (pos[1] < 8) {
+                motor.moverCamara("dynamicCamera", 0, (currentScale - e.scale) * 5, 0);
+              }
+            }
           }
-          currentRotation = Math.round(e.rotation);
-          currentScale = e.scale;
 
-          break;
+          else if (window.mode == 0) {
+            diffScale = 1 + ((currentScale - e.scale) * 2);
+            motor.rotarCamaraOrbital("dynamicCamera", e.rotation - currentRotation, "y");
+            if (diffScale < 1) {
+              if (pos[1] > 3) {
+                motor.escalarCamara("dynamicCamera", diffScale);
+              }
+            }else{
+              if (pos[1] < 5) {
+                motor.escalarCamara("dynamicCamera", diffScale);
+              }
+            }
+          }
+            currentRotation = e.rotation;
+            currentScale = e.scale;
+
+            break;
 
         case 'panstart':
           window.originDeltaX = 0;
@@ -425,6 +467,7 @@ function hammertime() {
 
           break;
         case 'pan':
+        
           if (!dragging) {
             motor.moverCamara("dynamicCamera", (originDeltaX - e.deltaX) / 100, 0, (originDeltaY - e.deltaY) / 100);
             originDeltaX = e.deltaX;
@@ -432,30 +475,41 @@ function hammertime() {
           }
           else {
             let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
-            let plant=window.jardin.plants.find(x=>x.isDragging);
-              if (plant) {
-                motor.moverMallaA(plant.id, point[0], 0, point[2]);
-                break;
-              }
+            let plant = window.jardin.plants.find(x => x.isDragging);
+            if (plant) {
+              motor.moverMallaA(plant.id, point[0], 0, point[2]);
+              break;
+            }
 
           }
+
           break;
 
         case 'panend':
+
           if (dragging) {
-            let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
-            let coordX = Math.round(point[0]);
-            let coordY = Math.round(point[2]);
-            let plant=window.jardin.plants.find(x=>x.isDragging);
-            if (plant) {
+            let plant = window.jardin.plants.find(x => x.isDragging);
+            let bounds = document.getElementById('del').getBoundingClientRect();
+            if (e.center.x < bounds.right && e.center.x > bounds.left
+              && e.center.y > bounds.top && e.center.y < bounds.bottom) {
+              window.dragging = false;
+
+              deleteMyPlant(window.jardin.id, plant);
+            }
+            else {
+              let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
+              let coordX = Math.round(point[0]);
+              let coordY = Math.round(point[2]);
+
+              if (plant) {
                 plant.isDragging = false;
                 window.dragging = false;
                 if (coordX <= jardin.width * 1.0 / 2 && coordX >= jardin.width * (-1.0) / 2 && coordY <= jardin.length * 1.0 / 2 && coordY >= jardin.length * (-1.0) / 2) {
                   let occupied = false;
-                  if(plantsMap.has(coordX+'-'+coordY)){
-                      motor.moverMallaA(plant.id, plant.x, 0, plant.y);
-                      occupied = true;
-                      break;
+                  if (plantsMap.has(coordX + '-' + coordY)) {
+                    motor.moverMallaA(plant.id, plant.x, 0, plant.y);
+                    occupied = true;
+                    break;
                   }
                   if (!occupied)
                     updateMyPlant(window.jardin.id, plant, coordX, coordY);
@@ -463,25 +517,26 @@ function hammertime() {
                 else {
                   motor.moverMallaA(plant.id, plant.x, 0, plant.y);
                 }
-                break;
+
+              }
             }
+            window.dragging = false;
           }
 
-          break;
-        case 'tap':
           break;
         case 'press':
           if (window.mode == 1) {
             let point = get3DPoint([e.center.x, e.center.y], canvas.offsetWidth, canvas.offsetHeight);
+
             let coordX = Math.round(point[0]);
             let coordY = Math.round(point[2]);
-            if(plantsMap.has(coordX+'-'+coordY)){
+            if (plantsMap.has(coordX + '-' + coordY)) {
+              let plant = window.jardin.plants.find(x => x.x == coordX && x.y == coordY);
               plant.isDragging = true;
-                window.dragging = true;
+              window.dragging = true;
+              window.navigator.vibrate(50);
             }
           }
-          break;
-        case 'multitap':
           break;
       }
 

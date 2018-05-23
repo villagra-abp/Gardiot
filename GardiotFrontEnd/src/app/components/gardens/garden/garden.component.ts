@@ -22,6 +22,7 @@ declare var window: any;
 declare var motor: any;
 declare var vec3: any;
 declare var hammertime: any;
+
 declare var demoSol: any;
 
 
@@ -93,6 +94,7 @@ export class GardenComponent {
   public plantsmotor: any[] = [];
   public plant = new Plant();
   public searchPlant: string;
+  public switchMode: string='Añadir plantas';
 
   constructor(
     public _gardenService: GardenService,
@@ -165,24 +167,24 @@ export class GardenComponent {
       //aqui vamos cargando las posibles ciudades a elegir
       let input = (<HTMLInputElement>document.querySelector("#zipCode"));
       if (input.value.length == 5) {
-        console.log("callCity");
+        //console.log("callCity");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
             let sp = document.querySelector('#ciudad');
 
             if (data.length > 0) {
-              console.log(data[0]);
+              //console.log(data[0]);
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
                 this.garden.city = data[0].adminName3;
                 this.city = data[0].adminName3;
-                console.log(this.city);
+                //console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
                 this.city = data[0].placeName;
-                console.log(this.city);
+                //console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
@@ -538,12 +540,16 @@ export class GardenComponent {
 
   toggleState() {
     if (this.visible == 0) {
+      this.switchMode='Ir a visualización';
+      this.visible = 1;
       this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
+      
         (<HTMLElement>document.querySelector('app-header')).style.display = 'none';
       }
-      this.visible = 1;
+      
     } else {
+      this.switchMode='Añadir plantas';
       this.visible = 0;
       if (typeof window.orientation !== 'undefined') {
         (<HTMLElement>document.querySelector('app-header')).style.display = 'initial';

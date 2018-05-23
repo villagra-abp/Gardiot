@@ -23,14 +23,13 @@ export class DialogNewgarden0Component implements OnInit {
     public dialog: MatDialog,
     public _gardenService: GardenService,
   ) {
-    if (window.location.toString().indexOf("localhost") >= 0) {
-      this.photoURL = "/assets";
-    }
-    else if (window.location.toString().indexOf("gardiot") >= 0) {
-      this.photoURL = "/app/assets";
-    }
-
-  }
+      if(window.location.toString().indexOf("localhost")>=0){
+        this.photoURL="/assets";
+      }
+      else if(window.location.toString().indexOf("gardiot")>=0){
+        this.photoURL="/app/assets";
+      }
+   }
 
   onCloseConfirm() {
     this.saveGarden(1);
