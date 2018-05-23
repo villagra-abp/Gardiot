@@ -16,6 +16,23 @@ function animLoop() {
   //Si toca dibujar y el motor está corriendo
   if (elapsed > fpsInterval && motor.running) {
     then = now - (elapsed % fpsInterval);
+    if(window.transitionToEdit){
+      console.log(window.steps);
+      window.cont++;
+      if(window.cont<=20){
+        motor.rotarCamaraOrbital('dynamicCamera', window.steps[0], 'y');
+        motor.rotarCamara('dynamicCamera', window.steps[1], 'x');
+        motor.moverCamara('dynamicCamera', 0, window.steps[3], window.steps[4]);
+      }
+      else{
+        rotationCamX=-90;
+        window.transitionToEdit=false;
+        window.cont=0;
+      }
+    }
+    else if(window.transitionToDetail){
+
+    }
     if (!window.mobile)
       motor.drawSombras();
     motor.draw();
@@ -274,6 +291,7 @@ async function rotarSol() {
 
 /**
  * Rota los astros cada X tiempo recursivamente
+ * TAG.73	Movimiento y configuración de luces (mañana/tarde)
  */
 async function rotarSol() {
   console.log('rotarsol');
@@ -285,6 +303,7 @@ async function rotarSol() {
 
 /**
  * Demo para comprobar el ciclo de un dia en pocos segundos
+ * TAG.73	Movimiento y configuración de luces (mañana/tarde)
  * @param i Iterador recursivo
  */
 function demoSol(i) {

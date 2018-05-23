@@ -180,15 +180,22 @@ class TMotor {
 		return false;
 	}
 
-	//Para cambiar entre modos, movemos la cámara a otro sitio
+	/**
+	 * Aquí cambiamos entre el modo de visualización y modo edición
+	 */
 	toggleVista() {
 		if (window.mode == 0) {//visualización
-			this.resetOrbital("dynamicCamera");
-			window.rotationCamX = -40;
-			window.rotationCamY = -45;
+			let pos=motor.getMatPosCamaraActiva();
+			let pos2=motor.getPosCamaraActiva();
+			console.log(pos);
+			window.steps=[-rotationCamY/20, -50/20, pos[0]/20, (camHeight-pos2[1])/20, -pos[2]/20];
+			window.transitionToEdit=true;
+			//this.rotarCamaraOrbitalA("dynamicCamera", 0, "y");
+			//window.rotationCamX = -40;
+			//window.rotationCamY = -45;
 			window.mode = 1;
-			this.rotarCamaraA("dynamicCamera", -90, "x");
-			this.moverCamaraA("dynamicCamera", 0, camHeight, 0);
+			//this.rotarCamaraA("dynamicCamera", -90, "x");
+			//this.moverCamaraA("dynamicCamera", 0, camHeight, 0);
 		}
 		else if (window.mode == 1) {//edición
 			this.resetOrbital("dynamicCamera");
@@ -250,7 +257,7 @@ class TMotor {
 		let camera = this.camaraRegistro.find(x => x.name == nombre);
 		if (camera !== undefined) {
 			let position = this.getPosCamaraActiva();
-			if (window.mode == 1 && !window.transition) {
+			if (window.mode == 1) {
 				if (position[0] < (-jardin.width / 2) && x < 0) {
 					x = 0;
 				} else if (position[0] > (jardin.width / 2) && x > 0) {
@@ -263,7 +270,7 @@ class TMotor {
 				camera.dad.dad.entity.trasladar(x, y, z);
 			}
 
-			else if (!window.transition) {
+			else if(window.mode==0){
 				position = this.getCamaraActiva().dad.dad.entity.matrix;
 				let length = Math.max(jardin.width / 2, jardin.length / 2);
 				if (position[12] < ((-length) - 10) && x < 0) {
@@ -310,7 +317,9 @@ class TMotor {
 	rotarCamara(nombre, grados, eje) {
 		let camera = this.camaraRegistro.find(x => x.name == nombre);
 		if (camera !== undefined) {
-			if (eje == 'z')
+			if(eje=='x')
+			rotationCamX+=grados;
+			if (eje == 'y')
 				rotationCamY += grados;
 			camera.dad.entity.rotar(grados, eje);
 			return true;
@@ -432,6 +441,10 @@ class TMotor {
 		let position = vec3.create();
 		vec3.transformMat4(position, position, this.camaraPosition);
 		return position;
+	}
+	getMatPosCamaraActiva(){
+		let pos= this.getCamaraActiva().dad.dad.entity.matrix;
+		return [pos[12], pos[13], pos[14]];
 	}
 
 	/**
