@@ -1,5 +1,5 @@
 div {
-  width: 150%;
+  width: 100%;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.1);
   padding: 2em;
@@ -33,6 +33,7 @@ input[type="file"] {
 }
 
 .divPhoto>div {
+    height:10em;
   /* display: none; */
 }
 
