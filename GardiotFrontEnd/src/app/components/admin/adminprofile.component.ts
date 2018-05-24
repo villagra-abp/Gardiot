@@ -101,7 +101,8 @@ export class AdminProfileComponent implements OnInit {
   edit() {
     this._detailService.modifyUserProfile(this.user)
       .subscribe(data => {
-        this._appComponent.mensajeEmergente("Datos modificados", "success", "");
+        console.log("entra");
+        this._appComponent.mensajeEmergente("Datos modificados", "success", "admin/statistics");
       },
         error => {
           let v = JSON.parse(error._body);

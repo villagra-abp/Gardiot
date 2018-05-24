@@ -21,6 +21,11 @@
   margin-bottom: 45%
 }
 
+.search {
+  border: none;
+}
+
+
 article{
   margin-right: auto;
   margin-left: auto;

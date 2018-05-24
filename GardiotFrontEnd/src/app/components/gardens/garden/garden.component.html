@@ -6,7 +6,7 @@
     </form>
     <section class="list">
       <ul>
-        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" draggable="true" ondragstart="drag(event);">
+        <li *ngFor="let plantmotor of plantsmotor" value="{{plantmotor.id}}" onclick='handlePlant(event)' draggable="true" ondragstart="drag(event);">
           <div>
             <img src="{{plantmotor.photo}}" id="{{plantmotor.id+'-'+plantmotor._3DModel}}" alt="planta">
           </div>
@@ -69,7 +69,7 @@
     <div class="toggleDeko litButton desplegable" id="plt" onclick="openEditor(this)" (click)="this.toggleState()">
       <i class="material-icons">
           switch_camera
-          </i> <span>Cambiar modo</span><i style="visibility:hidden" class="material-icons">close</i>
+          </i> <span>{{switchMode}}</span><i style="visibility:hidden" class="material-icons">close</i>
     </div>
 
     <div class="toggleDeko litButton big desplegable" id="plus" onclick="changeShaders()">

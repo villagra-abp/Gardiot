@@ -1,6 +1,16 @@
 /**
+ * En este archivo se controlan los eventos y la interacción del motor con el usuario. Se controlan tanto los
+ * eventos del ordenador como los gestos para dispositivos móviles
+  TAG.50	Integración con la aplicación
+  TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+  TAG.52	Realización de una fachada genérica
+  TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
+ */
+
+/**
  * Establece el parametro de identificacion de la planta arrastrada
- * @param  {String} e
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
+ * @param  {Object} e
  */
 function drag(e) {
   window.dragging = true;
@@ -9,7 +19,8 @@ function drag(e) {
 
 /**
  * Bloquea los disparadores de evento por defecto de JS
- * @param  {String} e
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
+ * @param  {Object} e
  */
 function allowDrop(e) {
   e.preventDefault();
@@ -18,7 +29,8 @@ function allowDrop(e) {
 
 /**
  * Establece el color de celda sobre la que se esta arrastrando
- * @param  {String} e
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
+ * @param  {Object} e
  */
 function dragCanvas(e) {
   if (window.dragging) {
@@ -36,7 +48,8 @@ function dragCanvas(e) {
 
 /**
  * Inserta la planta en el jardin al soltar el click del raton
- * @param  {String} e
+ * TAG.79	Realizar Drag&Drop de las plantas en nuestro jardín
+ * @param  {Object} e
  */
 function drop(e) {
   e.preventDefault();
@@ -67,7 +80,7 @@ function drop(e) {
 
 /**
  * Controla las acciones asociadas al movimiento del raton sobre el canvas, camara principalmente
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_move(e) {
   if (typeof projectionMatrix !== 'undefined') {
@@ -90,7 +103,7 @@ function mouse_move(e) {
         let dir = vec3.fromValues(ejeX * 10, 0, ejeY * 10);
         let rad = Math.PI * rotationCamY / 180;
         vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), rad);
-        vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI * 45 / 180);
+        //vec3.rotateY(dir, dir, vec3.fromValues(0.0, 0.0, 0.0), Math.PI * 45 / 180);
         motor.moverCamara("dynamicCamera", dir[0], 0, dir[2]);
       }
       //Necesarios para calcular la dirección de la cámara cuando arrastremos (variables ejeX y ejeY)
@@ -102,8 +115,8 @@ function mouse_move(e) {
       let ejeY = window.originClickY - (y / cv.offsetHeight);
       let ejeX = window.originClickX - (x / cv.offsetWidth);
       if (window.mode == 1) {
-
-        motor.rotarCamara("dynamicCamera", ejeX * 150, "z");
+        //window.rotationCamY+=(ejeX*150);
+        //motor.rotarCamara("dynamicCamera", ejeX * 150, "z");
       } else {
         motor.rotarCamaraOrbital("dynamicCamera", ejeX * 150, "y");
       }
@@ -143,7 +156,7 @@ function mouse_move(e) {
 
 /**
  * Controla las acciones asociadas al los clicks derecho (rotar) e izquierdo (seleccionar planta) del raton
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_down(e) {
   let cv = document.querySelector('#myCanvas'),
@@ -187,7 +200,7 @@ function mouse_down(e) {
 
 /**
  * Controla las acciones asociadas al levantar el dedo del ratón. Derecho (detener rotacion), izquierdo (colocar planta seleccionada)
- * @param  {String} e
+ * @param  {Object} e
  */
 function mouse_up(e) {
   colorCell = [];
@@ -247,7 +260,7 @@ function mouse_up(e) {
 
 /**
  * Desactiva la variable general que controla el dragging
- * @param  {String} e
+ * @param  {Object} e
  */
 function disableDragging(e) {
   window.dragging = false;
@@ -255,7 +268,7 @@ function disableDragging(e) {
 
 /**
  * Elimina una MyPlant
- * @param  {String} e
+ * @param  {Object} e
  */
 function deletePlant(e) {
   e.preventDefault();
@@ -312,8 +325,8 @@ function subZoom() {
 
 
 /**
- * Controla el zoom de la cámara en el modo edición
- * @param  {String} e
+ * Controla el zoom de la cámara con la rueda del ratón
+ * @param  {Object} e
  */
 function scrolling(e) {
   e.preventDefault();
@@ -350,6 +363,10 @@ function scrolling(e) {
   }
 }
 
+/**
+ * Se ejecutará para añadir plantas desde el móvil
+ * @param {Object} e evento javascript
+ */
 function handlePlant(e) {
   if (window.mobile) {
     let plant = e.srcElement.id.split('-');

@@ -1,8 +1,13 @@
-
+/** 
+*En este archivo tendremos la carga inicial de todos los objetos de la escena
+TAG.50	Integración con la aplicación
+TAG.51	Realización de una aplicación que maneje el motor (sólo si no existe)
+TAG.52	Realización de una fachada genérica
+*/
 /**
 	 * Carga de la animación del aleteo del pajaro
 	 */
-function loadAnimation () {
+function loadAnimation() {
   //window.mallaAnimada = motor.crearNodoAnimacion("animacion", ["chair", "bote", "Susan"], undefined);
   //motor.siguienteMallaAnimada("animacion")
 
@@ -23,34 +28,36 @@ function loadAnimation () {
 /**
 	 * Carga de plantas desde la BD al jardin
 	 */
-function loadPlants () {
+function loadPlants() {
   window.dragging = false;
   //Este mapa servirá para identificar si hay una planta en una posición concreta.
   //Por ejemplo, para una planta en la posición 3, 4, la forma de añadirla al mapa será
   //plantsMap.set('3-4', idPlanta) De esta forma tenemos identificada la posición y la
   //planta que hay en ella.
   window.plantsMap = new Map();
+  //Recorremos el objeto recibido de base de datos y vamos creando y colocando las plantas
+  //en el jardín.
   for (let i = 0; i < jardin.plants.length; i++) {
     let resource = jardin.plants[i].model;
-    if (typeof resource == 'undefined' || resource==null)
-      resource='logo';
-      plantsMap.set(jardin.plants[i].x + '-' + jardin.plants[i].y, jardin.plants[i].id);
-      resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
-      resource = resource.toUpperCase();
-      if(typeof dataPlants[resource] == 'undefined'){
-        jardin.plants[i].model='logo';
-        resource='LOGO';
-      }
-        
-        motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
-      motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
-      if (dataPlants[resource].rotX != 0)
-        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
-      if (dataPlants[resource].rotY != 0)
-        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
-      if (dataPlants[resource].rotZ != 0)
-        motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
-      motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
+    if (typeof resource == 'undefined' || resource == null)
+      resource = 'logo';
+    plantsMap.set(jardin.plants[i].x + '-' + jardin.plants[i].y, jardin.plants[i].id);
+    resource.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); //Cambia acentos por no acentos
+    resource = resource.toUpperCase();
+    if (typeof dataPlants[resource] == 'undefined') {
+      jardin.plants[i].model = 'logo';
+      resource = 'LOGO';
+    }
+
+    motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
+    motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
+    if (dataPlants[resource].rotX != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
+    if (dataPlants[resource].rotY != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotY, "y");
+    if (dataPlants[resource].rotZ != 0)
+      motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotZ, "z");
+    motor.moverMalla(jardin.plants[i].id, jardin.plants[i].x, dataPlants[resource].posY, jardin.plants[i].y);
 
   }
 }
@@ -60,9 +67,9 @@ function loadPlants () {
 	 * @param  {number} width
 	 * @param  {number} length
 	 */
-function loadSoil (width, length) {
-  let desv=2;
-  if(mobile){desv=0}
+function loadSoil(width, length) {
+  let desv = 2;
+  if (mobile) { desv = 0 }
   for (let i = -width - desv; i <= width + desv; i++) {
     for (let j = -length - desv; j <= length + desv; j++) {
 
@@ -82,7 +89,7 @@ function loadSoil (width, length) {
 /**
 	 * Carga del suelo exterior al jardín
 	 */
-function loadExtSoil () {
+function loadExtSoil() {
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       motor.crearNodoMalla("sueloGrande" + i + '-' + j, "sueloGrande", "tierra.jpg", undefined);
@@ -94,11 +101,11 @@ function loadExtSoil () {
 }
 
 /**
-	 * Carga de la valla que cubre el perimetro del jardin
+	 * Carga de la valla que cubre el perímetro del jardin
 	 * @param  {number} width
 	 * @param  {number} length
 	 */
-function loadFence (width, length) {
+function loadFence(width, length) {
   /* Consideramos length y width como unidades de suelo*/
 
   /* Construimos en el lado derecho del suelo tantas vallas
@@ -142,10 +149,11 @@ function loadFence (width, length) {
 
 /**
 	 * Creacion de luces ambientales y colocacion inicial segun parametros locales
+   * TAG.72	Creación de luces en la interfaz (día/noche)
 	 * @param  {Date} sunrise
 	 * @param  {Date} sunset
 	 */
-function loadSun (sunrise, sunset) {
+function loadSun(sunrise, sunset) {
   window.sol = motor.crearNodoLuz("sol", 2, undefined);
   window.luna = motor.crearNodoLuz("luna", 1, undefined);
 
@@ -168,11 +176,10 @@ function loadSun (sunrise, sunset) {
   window.rgbDiffSun = { red: rgbNoon.red - rgbInit.red, green: rgbNoon.green - rgbInit.green, blue: rgbNoon.blue - rgbInit.blue };
   window.rgbDiffMoon = { red: rgbMoon.red - rgbInit.red, green: rgbMoon.green - rgbInit.green, blue: rgbMoon.blue - rgbInit.blue };
 
-  
+
   if (typeof sunrise === 'undefined' && typeof sunset === 'undefined') {
     sunrise = new Date(2018, 11, 11, 8, 42, 30);
     sunset = new Date(2018, 11, 11, 20, 14, 42);
-    console.log("No se ha pasado la hora de amanecer y anocher de OpenWeatherMap al motor");
   }
 
   /* COLOCACION DEL SOL */
@@ -191,20 +198,20 @@ function loadSun (sunrise, sunset) {
   }
   else { //NOCHE
     if (minuteOfDay < minuteOfSunrise)
-        minuteOfDay = (24 * 60) + minuteOfDay;
+      minuteOfDay = (24 * 60) + minuteOfDay;
     relation = (minuteOfDay - minuteOfSunset) / minutesOfNight;
     offset = 90;
   }
-  let gradePosition = (relation * 160)+10;
+  let gradePosition = (relation * 160) + 10;
   factorIlumination = Math.sin(Math.radians(gradePosition)) + ilumOffset;
   motor.rotarLuzOrbitalA('sol', gradePosition + offset);
   motor.rotarLuzOrbitalA('luna', gradePosition + offset);
 
-    //inclinación lateral para evitar errores
-    motor.rotarLuzOrbital('sol', 10, 'x');
+  //inclinación lateral para evitar errores
+  motor.rotarLuzOrbital('sol', 10, 'x');
 
   iluminarAstro(minuteOfDay);
-  rotarSol();  
+  rotarSol();
 }
 
 
@@ -213,7 +220,7 @@ function loadSun (sunrise, sunset) {
 	 * @param  {Date} sunrise
 	 * @param  {Date} sunset
 	 */
-function loadEntities (sunrise, sunset) {
+function loadEntities(sunrise, sunset) {
   let width = Math.floor(jardin.width / 2), length = Math.floor(jardin.length / 2);
   loadSoil(width, length);
   loadExtSoil();

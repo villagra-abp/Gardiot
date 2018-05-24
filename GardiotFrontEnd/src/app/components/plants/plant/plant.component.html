@@ -8,10 +8,10 @@
       <!-- BOTONES Admin -->
       <div class="form-row">
         <div class="form-group col-md-4 buttonAdmin">
-          <button type="button" [routerLink]="['/plants']" [queryParams]="{pag: 1}" title="Volver a la biblioteca" class="btn btn-outline-info volver">Volver</button>
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/editplant/',plant.id]" class="btn btn-outline-primary iconbutton" title="Editar"><i class="material-icons">mode_edit</i></button>
-          <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-warning iconbutton" title="Añadir tratamiento"><i class="material-icons">assignment</i></button>
-          <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton" (click)="openDialog(plant.id,4)"><i class="material-icons" title="Eliminar">delete</i></button>
+          <button type="button" [routerLink]="['/plants']" [queryParams]="{pag: 1}" title="Volver a la biblioteca" class="btn btn-outline-info volver search"><i class="material-icons">keyboard_return</i></button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/editplant/',plant.id]" class="btn btn-outline-primary iconbutton search" title="Editar"><i class="material-icons">mode_edit</i></button>
+          <button *ngIf="this.user.isAdmin" [routerLink]="['/admin/newtreatmentsplants/',plant.id]" class="btn btn-outline-warning iconbutton search" title="Añadir tratamiento"><i class="material-icons">assignment</i></button>
+          <button *ngIf="this.user.isAdmin" class="btn btn-outline-danger iconbutton search" (click)="openDialog(plant.id,4)"><i class="material-icons" title="Eliminar">delete</i></button>
         </div>
       </div>
       <!-- FICHA PLANTA  -->
@@ -23,18 +23,18 @@
             <dd class="familia" *ngIf="plant.family !=undefined">{{plant.family}}</dd>
           </div>
           <div class="iconitos">
-            <dd class="prof" *ngIf="plant.depth !=undefined"><img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra" style="margin-right: 5px">{{plant.depth}} cm</dd>
-            <dd class="distance" *ngIf="plant.distance !=undefined"><img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra" style="margin-right: 5px">{{plant.distance}} cm</dd>
-            <dd class="resist" *ngIf="plant.diseaseResist !=undefined"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo" style="margin-right: 5px">{{plant.diseaseResist}} º C</dd>
+            <dd class="prof" *ngIf="plant.depth !=undefined"><img class="iconplant" src="assets/images/icon/descargar.png" alt="Profundidad de siembra" title="profundidad siembra" style="margin-right: 5px">{{plant.depth}} cm</dd>
+            <dd class="distance" *ngIf="plant.distance !=undefined"><img class="iconplant" src="assets/images/icon/separacion.png" alt="Separación de siembra" title="distancia siembra" style="margin-right: 5px">{{plant.distance}} cm</dd>
+            <dd class="resist" *ngIf="plant.diseaseResist !=undefined"><img class="iconplant" src="assets/images/icon/hielo.png" alt="Hielo" title="resistencia frio" style="margin-right: 5px">{{plant.diseaseResist}} º C</dd>
           </div>
         </dl>
       </div>
     </article>
     <!-- FECHAS  -->
     <article class="row fechas">
-      <div *ngIf="iniSiembra !=undefined && finSiembra !=undefined"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></div>
-      <div *ngIf="iniFlores !=undefined && finFlores !=undefined"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></div>
-      <div *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Floración"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></div>
+      <div *ngIf="iniSiembra !=undefined && finSiembra !=undefined"><img class="iconplant" src="assets/images/icon/siembra.png" alt="Siembra"title="siembra"><strong>{{iniSiembra}}</strong> - <strong>{{finSiembra}}</strong></div>
+      <div *ngIf="iniFlores !=undefined && finFlores !=undefined"><img class="iconplant" src="assets/images/icon/girasol.png" alt="Floración" title="floración"><strong>{{iniFlores}}</strong> - <strong>{{finFlores}}</strong></div>
+      <div *ngIf="iniRecolectar !=undefined && finRecolectar !=undefined"> <img class="iconplant" src="assets/images/icon/cosecha.png" alt="Cosecha" title="Cosecha"><strong>{{iniRecolectar}}</strong> - <strong>{{finRecolectar}}</strong></div>
     </article>
 
     <!-- DESCIPCION DE PLANTA -->

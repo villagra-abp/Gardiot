@@ -210,10 +210,12 @@ task.insertNewTreatmentTask = function (plant, treatment, frequency, initDate, f
 							
 				}
 				else if (typeof frequency === 'undefined' && typeof initDate != 'undefined' && typeof finalDate != 'undefined') {
+					initDate = new Date(initDate);
+					finalDate = new Date(finalDate);
 					if (initDate.getMonth() == new Date().getMonth() || finalDate.getMonth() == new Date().getMonth()) {
 						let nextMonth = initDate.getMonth() + 1;
-						if (ini.getMonth() < new Date().getMonth())
-							ini = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
+						if (initDate.getMonth() < new Date().getMonth())
+							initDate = new Date(ini.getFullYear(), ini.getMonth() + 2, 1);
 						while (initDate.getMonth() < nextMonth && initDate <= finalDate) {	
 							sqlValues += sqlBase + ',"' + dateFormat(initDate) + '"),';
 							initDate.setDate(initDate.getDate() + 1);

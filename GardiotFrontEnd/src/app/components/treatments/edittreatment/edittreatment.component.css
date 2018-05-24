@@ -1,3 +1,6 @@
+.search {
+  border: none;
+}
 form {
   border-radius: 25px 25px 25px 25px;
   -moz-border-radius: 25px 25px 25px 25px;
