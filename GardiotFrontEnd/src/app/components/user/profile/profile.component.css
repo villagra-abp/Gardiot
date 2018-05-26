@@ -1,5 +1,5 @@
 div {
-  width: 150%;
+  width: 100%;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.1);
   padding: 2em;
@@ -33,10 +33,12 @@ input[type="file"] {
 }
 
 .divPhoto>div {
+    height:10em;
   /* display: none; */
 }
 
 .divPhoto:hover {
+  height:10em;
   position: relative;
 }
 
@@ -44,6 +46,7 @@ input[type="file"] {
   display: block;
   position: absolute;
   border-radius: 200px;
+  height:10em;
   top: 0;
   bottom: 0;
   left: 0;
@@ -57,7 +60,7 @@ input[type="file"] {
   display: block;
   position: absolute;
   font-size: 90px;
-  margin-top: 1em;
-  margin-left: 1em;
-  transform: translate(-1em, -1%);
+  margin-top: 0.5em;
+  margin-left: 1.5em;
+  transform: translate(-1em, -10%);
 }

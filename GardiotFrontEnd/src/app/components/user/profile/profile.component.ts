@@ -50,7 +50,8 @@ export class ProfileComponent implements OnInit {
         this.user.city = data.city;
         this.user.countryCode = data.countryCode;
         document.querySelector('.divPhoto').setAttribute('style',
-        `margin-left: 3em;
+          `margin-left: 1em;
+          margin-right:1em;
           background-image: url("${this.imgUrl+this.user.photo}");
           background-position: center;
           background-repeat: no-repeat;
