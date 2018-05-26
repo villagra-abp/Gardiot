@@ -68,7 +68,7 @@ function loadPlants() {
 	 * @param  {number} length
 	 */
 function loadSoil(width, length) {
-  let desv = 2;
+  let desv = 4;
   if (mobile) { desv = 0 }
   for (let i = -width - desv; i <= width + desv; i++) {
     for (let j = -length - desv; j <= length + desv; j++) {

@@ -50,7 +50,7 @@ function animLoop() {
       else{
         motor.rotarCamaraOrbitalA('dynamicCamera', -45, 'y');
         motor.rotarCamaraA('dynamicCamera', -40, 'x');
-        motor.moverCamaraA('dynamicCamera', 0, 5, 10);
+        motor.moverCamaraA('dynamicCamera', 0, 3.5, 5);
         rotationCamX=-40;
         rotationCamY=-45;
         window.transitionToDetail=false;
@@ -58,7 +58,7 @@ function animLoop() {
       }
     }
     if(interfaz=='home')
-      motor.rotarCamaraOrbital('dynamicCamera', 0.3, 'y');
+      motor.rotarCamaraOrbital('dynamicCamera', 0.1, 'y');
     if (!window.mobile)
       motor.drawSombras();
     motor.draw();

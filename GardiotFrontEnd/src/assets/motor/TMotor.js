@@ -205,7 +205,7 @@ class TMotor {
 			rotationCamX=rotationCamX%360;
 			rotationCamY=rotationCamY%360;
 
-			window.steps=[(-45-rotationCamY)/window.duracionTransicion, 50/window.duracionTransicion, -pos[0]/window.duracionTransicion, (5-pos[1])/window.duracionTransicion, (10-pos[2])/window.duracionTransicion];
+			window.steps=[(-45-rotationCamY)/window.duracionTransicion, 50/window.duracionTransicion, -pos[0]/window.duracionTransicion, (3.5-pos[1])/window.duracionTransicion, (5-pos[2])/window.duracionTransicion];
 
 			window.mode = 0;
 

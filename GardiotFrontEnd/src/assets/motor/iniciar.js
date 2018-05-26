@@ -102,7 +102,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   //Aquí colocamos la cámara y llamamos al dibujado de la escena
   if (accion == 'detail') {
     window.mode = 0;
-    motor.moverCamaraA("dynamicCamera", 0, 5, 10);
+    motor.moverCamaraA("dynamicCamera", 0, 3.5, 5);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
     motor.startDrawing();
@@ -115,7 +115,7 @@ function iniciar(accion, jardinBBDD, sunrise, sunset) {
   }
   else if (accion == 'home') {
     window.mode = 0;
-    motor.moverCamaraA("dynamicCamera", 0, 4, 8);
+    motor.moverCamaraA("dynamicCamera", 0, 2, 4);
     motor.rotarCamaraOrbital("dynamicCamera", 0, "y");
     motor.rotarCamara("dynamicCamera", rotationCamX, "x");
     motor.startDrawing();
