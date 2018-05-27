@@ -73,7 +73,7 @@ export class TreatmentService {
     let headers = new Headers({
       'Authorization': `Bearer ${localStorage['Bearer']}`
     });
-    return this.http.get(this.apiURL + "/admin/numTreatments", { headers })
+    return this.http.get(this.apiURL + "admin/numTreatments", { headers })
       .map(res => {
         return res.json();
       })

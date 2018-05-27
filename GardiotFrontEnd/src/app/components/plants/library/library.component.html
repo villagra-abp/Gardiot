@@ -13,44 +13,60 @@
           <button title="Crear nueva planta" *ngIf="this.user.isAdmin" [routerLink]="['/admin/newplant']" class="btn btn-outline-primary search"><i class="material-icons">add_circle</i></button>
         </article>
       </form>
-      <section class="form-row">
-        <div id="demo" class="collapse">
-          <form (ngSubmit)="this.searchcontent(1,15)" class="form-row" #forma="ngForm">
-            <div class="form-group col-md-4">
-              <label for="family">Familia</label>
-              <br>
-              <select id="family" name="family" class="form-control col-md-6" [(ngModel)]="plant.family">
-                  <option value="undefined">Selecciona una familia</option>
-                  <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
-                </select>
+      <!-- BUSCADOR  -->
+      <section class="form buscador">
+        <div id="demo" class="row collapse">
+          <form (ngSubmit)="this.searchcontent(1,15)" class="form-control" #forma="ngForm">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="form-group col-md-6">
+                    <input type="text" [(ngModel)]="plant.scientificName" class="form-control" id="scientificName" name="scientificName" placeholder="Nombre científico">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="initDatePlant">Inicio de plantación</label>
+                    <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control" id="initDatePlant" name="initDatePlant">
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="finDatePlant">Fin de plantación</label>
+                    <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control" id="finDatePlant" name="finDatePlant">
+                  </div>
+                </div>
+
+                <div class="form-group col-sm">
+                  <select id="family" name="family" class="form-control col-md-8" [(ngModel)]="plant.family">
+                      <option value="undefined">Selecciona una familia</option>
+                      <option *ngFor="let family of families" value="{{family.id}}" >{{family.text}}<option>
+                  </select>
+                  <br>
+                  <label>Tipo de hoja</label>
+                  <select [(ngModel)]="plant.leaveType" class="form-control col-md-8" id="tipo" name="tipo" default="">
+                      <option value="undefined">Todos</option>
+                      <option value="caduca">Caduca</option>
+                      <option value="perenne">Perenne</option>
+                    </select>
+                    <br>
+                    <div class="form-group col-md-6">
+                      <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
+                      <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()"><i class="material-icons">format_clear</i></button>
+                    </div>
+                </div>
+
+
+              </div>
             </div>
-            <div class="form-group col-md-4">
-              <label for="scientificName">Nombre Científico</label>
-              <input type="text" [(ngModel)]="plant.scientificName" class="form-control col-md-6" id="scientificName" name="scientificName" placeholder="Nombre científico">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="tipo">Tipo de hoja</label>
-              <select [(ngModel)]="plant.leaveType" class="form-control col-md-6" id="tipo" name="tipo" default="">
-                  <option value="undefined">Todos</option>
-                  <option value="caduca">Caduca</option>
-                  <option value="perenne">Perenne</option>
-                </select>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="initDatePlant">Inicio de plantación</label>
-              <input type="date" [(ngModel)]="plant.initDatePlant" class="form-control col-md-6 " id="initDatePlant" name="initDatePlant">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="finDatePlant">Fin de plantación</label>
-              <input type="date" [(ngModel)]="plant.finDatePlant" class="form-control col-md-6" id="finDatePlant" name="finDatePlant">
-            </div>
-            <div class="form-group col-md-12">
-              <button class="btn btn-outline-info search" title="Buscar" type="submit"><i class="material-icons">search</i></button>
-              <button class="btn btn-outline-info search" title="Limpiar" (click)="clear()"><i class="material-icons">format_clear</i></button>
-            </div>
+
+
+
+
+
           </form>
         </div>
       </section>
+
       <section class="galeria">
         <article *ngFor="let plant of plants" class="card" style="width: 18rem;">
           <div class="view view-first">
