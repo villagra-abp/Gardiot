@@ -58,9 +58,11 @@
               <mat-expansion-panel-header>
                 <mat-panel-title class="matpanel" title="Productos asociados a cada tratamientos">
                   <img class="iconoProducto" src="assets/images/icon/producto.png" alt="producto">
+                  <p class="productoRecomendado">Productos</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <!-- LISTA DE PRODUCTOS -->
+
               <span *ngFor="let producttreatment of productTreatments">
                 <p class="listaProductos" *ngIf="treatment.id == producttreatment.treatment">{{producttreatment.name}}</p>
               </span>

@@ -34,9 +34,7 @@
               <span id="ciudad"></span>
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
-          <button [routerLink]="['/admin/statistics']" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
-        </form>
+          </form>
       </div>
       <div class="col-sm">
         <div class="contra">
@@ -53,6 +51,9 @@
             <input class="form-control col-md-6" [(ngModel)]="user.password2" type="password" name="password2" id="password2_user">
           </div>
         </div>
+        <button type="submit" class="btn btn-outline-primary search"><i class="material-icons">save</i></button>
+        <button [routerLink]="['/admin/statistics']" class="btn btn-outline-danger search"><i class="material-icons">keyboard_return</i></button>
+      
       </div>
     </div>
   </div>
