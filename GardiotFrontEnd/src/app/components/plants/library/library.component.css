@@ -164,7 +164,17 @@ p {
 /* Para los buscadores */
 
 .select2 .select2-container .select2-container--default .select2-container--focus {
-  width: 100% !important;
+  /* width: 100% !important; */
+}
+/* .container-fluid div{border: 1px solid green;} */
+.buscador {
+  /* max-width: 890px; */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.container label{
+  font-style: italic;
 }
 
 .search {
@@ -175,11 +185,7 @@ input, label, option, select {
   font-size: .9em;
   padding: 0;
   margin: 0;
-  width: 100%;
-}
-
-select {
-  width: 100%;
+  /* width: 100%; */
 }
 
 th {
