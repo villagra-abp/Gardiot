@@ -1,6 +1,6 @@
 img {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 
 .icono {
@@ -9,7 +9,7 @@ img {
 }
 
 .icon {
-  margin-left: 4em;
+  margin-left: 2em;
 }
 
 .icontarea {
@@ -45,8 +45,15 @@ p {
   border-style: solid;
   border-width: 2px;
   border-color: #ffb200;
-  border-radius: 25px;
-  margin-left: 2em;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /* border-radius: 5px;
+  margin-left: 0.25em;
+  width: 350px;
+  height: 300px; */
+}
+.jardin{
+  padding-left: 0;
 }
 
 .material-icons:hover {
@@ -84,7 +91,7 @@ p {
 
 .body2 {
   padding: 10px;
-  height: 280px;
+  height: 273px;
   width: 100%;
   background-color: #fff;
   overflow-y: scroll;
@@ -94,7 +101,23 @@ p {
   border-color: #25b5aa;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
+
+.body3 {
+  padding: 10px;
+  height: 304px;
+  width: 100%;
+  background-color: #fff;
+  overflow-x: hidden;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #343a40;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 
 #titulo2 {
   background-color: #25b5aa;
@@ -111,6 +134,24 @@ p {
 
 #titulo {
   background-color: #299654;
+  text-align: center;
+  color: white;
+  padding: 0.2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#titulo3 {
+  background-color: #ffb200;
+  text-align: center;
+  color: white;
+  padding: 0.2em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#titulo4 {
+  background-color: #343a40;
   text-align: center;
   color: white;
   padding: 0.2em;
@@ -192,9 +233,6 @@ p {
     overflow-y: hidden;
     overflow-x: hidden;
     height: initial;
-  }
-  #myCanvas {
-    width: 83%;
   }
   .icon {
     margin-left: 5em;

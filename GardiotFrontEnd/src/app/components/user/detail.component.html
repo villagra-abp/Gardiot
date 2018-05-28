@@ -34,14 +34,17 @@
     </section>
     <div class="col-lg-7">
       <section class="herramienta row ">
-        <article class="form-row">
+        <article class="col-lg-8 jardin">
+          <div class="title">
+            <h6 id="titulo3">{{garden.title}}</h6>
+          </div>
           <div class="canvasHome" (click)="goGarden()">
             <img src="{{photoURL}}/loading/Facebook-1s-200px.gif" class="loadingComponent" title="Cargando jardín" alt="Cargando jardín" />
-            <canvas style="cursor: pointer" title="Tu jardín" id="myCanvas" oncontextmenu="return false;" width="350" height="300"></canvas>
+            <canvas style="cursor: pointer" title="Tu jardín" id="myCanvas" oncontextmenu="return false;" width="424px" height="300"></canvas>
           </div>
         </article>
-        <article>
-          <section class="row icono">
+        <article class="col-lg-4">
+          <!-- <section class="row icono">
             <div class="icon">
               <img src="{{photoURL}}/images/imgGardiot/checklist.png" title="% tareas realizadas" class="rounded mx-auto d-block " alt="Logo">
               <p class="texto_dato">{{percentTareas}}%</p>
@@ -61,6 +64,37 @@
             <div class="icon">
               <img src="{{photoURL}}/images/imgGardiot/ubicacion.png" title="Ubicación del jardín" class="rounded mx-auto d-block icon" alt="Logo">
               <p class="texto_dato">{{garden.city}}</p>
+            </div>
+          </section> -->
+
+
+          <section class="feeds row">
+            <div class="title">
+              <h6 id="titulo4">Estado</h6>
+            </div>
+            <div class="body3">
+              <section class="row icono">
+                <div class="icon">
+                  <img src="{{photoURL}}/images/imgGardiot/checklist.png" title="% tareas realizadas" class="rounded mx-auto d-block " alt="Logo">
+                  <p class="texto_dato">{{percentTareas}}%</p>
+                  <p class="mes">hoy</p>
+                </div>
+                <div class="icon">
+                  <img src="{{photoURL}}/images/imgGardiot/flower.png" title="Número de plantas en tu jardín" class="rounded mx-auto d-block icon" alt="Logo">
+                  <p class="texto_dato">{{plantNumber}} </p>
+                  <p class="mes">plantas</p>
+                </div>
+              </section>
+              <section class="row icono">
+                <div class="icon">
+                  <img src="{{photoURL}}/images/imgGardiot/temperature.png" class="rounded mx-auto d-block icon" title="Temperatura" alt="Logo">
+                  <p class="texto_dato">{{temperature | number:'.0-0'}}º</p>
+                </div>
+                <div class="icon">
+                  <img src="{{photoURL}}/images/imgGardiot/ubicacion.png" title="Ubicación del jardín" class="rounded mx-auto d-block icon" alt="Logo">
+                  <p class="texto_dato">{{garden.city}}</p>
+                </div>
+              </section>
             </div>
           </section>
         </article>
@@ -84,6 +118,40 @@
           </div>
         </div>
       </section>
+
+
+
+      <!-- <section class="feeds row">
+        <div class="title">
+          <h6 id="titulo2">Estado</h6>
+        </div>
+        <div class="body3">
+          <section class="row icono">
+            <div class="icon">
+              <img src="{{photoURL}}/images/imgGardiot/checklist.png" title="% tareas realizadas" class="rounded mx-auto d-block " alt="Logo">
+              <p class="texto_dato">{{percentTareas}}%</p>
+              <p class="mes">hoy</p>
+            </div>
+            <div class="icon">
+              <img src="{{photoURL}}/images/imgGardiot/flower.png" title="Número de plantas en tu jardín" class="rounded mx-auto d-block icon" alt="Logo">
+              <p class="texto_dato">{{plantNumber}} </p>
+              <p class="mes">plantas</p>
+            </div>
+          </section>
+          <section class="row icono">
+            <div class="icon">
+              <img src="{{photoURL}}/images/imgGardiot/temperature.png" class="rounded mx-auto d-block icon" title="Temperatura" alt="Logo">
+              <p class="texto_dato">{{temperature | number:'.0-0'}}º</p>
+            </div>
+            <div class="icon">
+              <img src="{{photoURL}}/images/imgGardiot/ubicacion.png" title="Ubicación del jardín" class="rounded mx-auto d-block icon" alt="Logo">
+              <p class="texto_dato">{{garden.city}}</p>
+            </div>
+          </section>
+        </div>
+      </section> -->
+
+
     </div>
   </div>
 </div>
