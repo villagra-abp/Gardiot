@@ -71,7 +71,7 @@ const colors: any = {
 })
 export class CalendarComponent implements OnInit {
 
-  public view: string = 'month';
+  public view: string = 'week';
   public viewDate: Date = new Date();
   public locale: string = 'es';
   public weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
