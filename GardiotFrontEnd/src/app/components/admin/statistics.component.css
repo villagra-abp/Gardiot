@@ -1,15 +1,18 @@
 iframe {
   max-height: 680px;
   min-height: 540px;
-}
+  margin-left: -8%;
+  width: 100%;
+  /* margin-left: auto; */
+  margin-right: 0;
+  display: block;
 
-section, mat-tab {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 section {
-  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   text-align: center;
   height: unset !important;
 }

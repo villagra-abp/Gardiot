@@ -1,8 +1,14 @@
-//clase entidad de la que derivarán todas las transformaciones
+/**
+ * TAG.04	Estructura básica de la entidad (Constructor, destructor, funciones… todas virtuales, vacías)
+ * Clase entidad de la que derivarán todas las transformaciones
+ */
 class TEntidad {
 
 }
 
+/**
+ * TAG.06	Estructura básica de la transformación (Constructor, destructor, matriz transformación…)
+ */
 class TTransf extends TEntidad {
     constructor() {
         super();
@@ -29,7 +35,7 @@ class TTransf extends TEntidad {
     }
 
 
-    //OPERACIONES DE TRANSFORMACIÓN: trasladar, rotar y escalar
+    //TAG.07	Operaciones de transformación (trasladar, rotar, escalar, identidad, trasponer, invertir, todas con GLM)
     /**
      * @param  {number} x
      * @param  {number} y
@@ -67,7 +73,7 @@ class TTransf extends TEntidad {
         mat4.scale(this._matrix, this._matrix, vec3scalation);
     }
 
-    //sobreescribiendo métodos de dibujado
+    //TAG.08	Dubujado (begindraw, enddraw, manejo pila y matriz model)
     beginDraw() {
         /*Aquí añadimos la matriz de la entidad actual a la pila de matrices. Luego tenemos que multiplicar todas
         las matrices de la pila y guardarla en el this._matrix para que a la hora de dibujar las entidades se le
@@ -84,6 +90,7 @@ class TTransf extends TEntidad {
 
 class TLuz extends TEntidad {
     /**
+     * //TAG.13	Estructura básica de la luz (Constructor, destructor)
      * @param  {String} tipo Puntual o dirigida
      * @param  {number} r
      * @param  {number} g
@@ -178,6 +185,7 @@ class TLuz extends TEntidad {
 
 class TCamara extends TEntidad {
     /**
+     * //TAG.09	Estructura básica de la cámara (Constructor, destructor, matriz proyección)
      * @param  {boolean} isPerspective
      */
     constructor(isPerspective) {
@@ -227,7 +235,11 @@ class TCamara extends TEntidad {
 
 
 class TMalla extends TEntidad {
-    //al constructor le pasamos el nombre de la mlla y el nombre de la textura asociada
+    /**
+     * TAG.17	Estructura básica de la malla (Constructor, destructor)
+     * @param {string} nombreMalla 
+     * @param {string} textura 
+     */
     constructor(nombreMalla, textura) {
         super();
         this._malla = gestor.getRecurso(nombreMalla, 'malla', textura);
@@ -241,6 +253,7 @@ class TMalla extends TEntidad {
         this._malla = gestor.getRecurso(nombreMalla, 'malla', textura);
     }
 
+    //TAG.19	Dibujado (begindraw, enddraw, matriz model…)
     beginDraw(variable) {
         //Comprobación básica si estamos en un programa normal o en el de sombras
         gl.getParameter(gl.CURRENT_PROGRAM).samplerUniform!==undefined?this._malla.draw(variable):this._malla.drawSombras();

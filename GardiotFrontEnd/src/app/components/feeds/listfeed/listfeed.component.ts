@@ -25,6 +25,7 @@ export class ListfeedComponent implements OnInit {
   ) { }
 
   mostrar() {
+    this.estado=false;
     if (this.estado == false) {
       this._feedService.detailsAll(this.paginaActual, this.elementosPorPagina)
         .subscribe(data => {

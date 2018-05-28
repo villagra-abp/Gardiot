@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Plant } from "../../../classes/plant.class";
 import { Router, ActivatedRoute } from "@angular/router";
 import { PlantService } from "../../../services/plant.service";
-
 import { UserService } from '../../../services/user.service';
 import { TreatmentPlantService } from "../../../services/treatmentplant.service";
 import { Treatment } from "../../../classes/treatment.class";
 import { Product } from "../../../classes/product.class";
 import { ProductTreatment } from "../../../classes/producttreatment.class";
 import { MatExpansionModule } from '@angular/material/expansion';
-
 import { DialogDeleteComponent } from '../../dialog-delete/dialog-delete.component';
 import { MatDialog } from '@angular/material';
 
@@ -86,12 +84,12 @@ export class PlantComponent implements OnInit {
 
   }
   showProductPlant(treatment: number, idPlant: number) {
-    this.haytratamiento=0; 
+    this.haytratamiento=0;
     this._treatmentPlantService.showProductPlant(treatment, idPlant)
       .subscribe(data => {
-        // console.log(data);
+        // //console.log(data);
         if (data.length == 0) {
-            // console.log("No hay");
+            // //console.log("No hay");
         }else{
           for (let key$ in data) {
             this.productTreatments.push(data[key$]);
@@ -173,11 +171,6 @@ export class PlantComponent implements OnInit {
       data: { idObject: id, typeObject: tipo }
     });
   }
-
-  // encuentraProducto(){
-  //   let registro=this.productTreatments.find(x=>x.treatment==this.treatment.id);
-  //   console.log("Registro "+registro);
-  // }
 
   ngOnInit() {
 

@@ -71,7 +71,7 @@ const colors: any = {
 })
 export class CalendarComponent implements OnInit {
 
-  public view: string = 'month';
+  public view: string = 'week';
   public viewDate: Date = new Date();
   public locale: string = 'es';
   public weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
@@ -182,7 +182,12 @@ export class CalendarComponent implements OnInit {
     }
     else {
       (Ttitle.indexOf('Regar') >= 0 ? color = colors.blue : color = colors.yellow);
-      actions = this.doneActions;
+      if(new Date(Tstart)<=new Date()){
+        actions = this.doneActions;
+      }else{
+        actions = undefined;
+      }
+
       drag = true;
     }
     this.events.push({

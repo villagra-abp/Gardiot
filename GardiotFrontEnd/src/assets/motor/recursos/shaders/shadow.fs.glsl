@@ -1,3 +1,6 @@
+/**Shader obtenido del tutorial 
+http://www.chinedufn.com/webgl-shadow-mapping-tutorial/
+*/
 precision mediump float;
 
 vec4 encodeFloat (float depth) {

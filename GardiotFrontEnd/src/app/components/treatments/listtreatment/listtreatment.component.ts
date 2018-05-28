@@ -26,6 +26,8 @@ export class ListtreatmentComponent implements OnInit {
   ) { }
 
   mostrar() {
+    
+    this.estado = false;
     if (this.estado == false) {
       this._treatmentService.detailsAll(this.paginaActual, this.elementosPorPagina)
         .subscribe(data => {

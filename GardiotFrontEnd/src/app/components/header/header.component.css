@@ -136,12 +136,13 @@ button {
   z-index: 20;
 }
 
-/* .quedate:not([disabled]):not(.disabled).active{
-  color: #fff;
-  background-color: red;
-  border-color: #63d297;
-  box-shadow: 0 0 0 0.2rem rgba(99,210,151,.5);
-} */
+.popperfil{
+  cursor: pointer;
+}
+
+.popperfil>a{
+  width:100%;
+}
 
 @media (min-width: 768px) {
   .sidebar-nav {

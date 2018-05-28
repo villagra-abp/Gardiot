@@ -1,4 +1,6 @@
-//clase nodo de la que derivarán todos los nodos del árbol
+/**
+ * TAG.01	Estructura básica del nodo (array de hijos, puntero a padre, puntero a entidad, funcionalidad básica -constructor, destructor, gets, sets, manejo de hijos….)
+ */
 class TNodo {
     constructor(name, entity, dad) {
         this._name = name;
@@ -60,12 +62,19 @@ class TNodo {
         }
         return position;
     }
-
+    /**
+     * TAG.02	Recorrido-dibujado del árbol
+     * En el draw del nodo tenemos varias condiciones para obtener un dibujado u otro
+     */
     draw() {
         if (this._active == 1) {
+            //Si entity !== unefined, es decir, si no es el nodo raíz el cual no tiene entidad
             if (this._entity !== undefined) {
+                //Si estamos pasando el ratón por encima de una planta, pasaremos una variable
+                //para que se dibuje diferente
                 if (this.name == hovered)
                     this._entity.beginDraw(true);
+                //Esto es para colorear las celdas en verde o en rojo
                 else if (this.name == colorCell[0] || this.name == colorCell[2])
                     this._entity.beginDraw(colorCell[1]);
                 else

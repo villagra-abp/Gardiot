@@ -94,6 +94,7 @@ export class GardenComponent {
   public plantsmotor: any[] = [];
   public plant = new Plant();
   public searchPlant: string;
+  public switchMode: string='Añadir plantas';
 
   constructor(
     public _gardenService: GardenService,
@@ -166,24 +167,24 @@ export class GardenComponent {
       //aqui vamos cargando las posibles ciudades a elegir
       let input = (<HTMLInputElement>document.querySelector("#zipCode"));
       if (input.value.length == 5) {
-        console.log("callCity");
+        //console.log("callCity");
         this._gardenService.listCitiesByZip(this.garden.countryCode, input.value)
           .subscribe(data => {
             let sp = document.querySelector('#ciudad');
 
             if (data.length > 0) {
-              console.log(data[0]);
+              //console.log(data[0]);
               this.garden.latitude = data[0].lat.toFixed(2);
               this.garden.longitude = data[0].lng.toFixed(2);
               if (data[0].adminName3 !== undefined && !data[0].adminName3.includes("/")) {
                 this.garden.city = data[0].adminName3;
                 this.city = data[0].adminName3;
-                console.log(this.city);
+                //console.log(this.city);
               }
               else if (data[0].placeName !== undefined) {
                 this.garden.city = data[0].placeName;
                 this.city = data[0].placeName;
-                console.log(this.city);
+                //console.log(this.city);
               }
               else if (data[0].adminName2 !== undefined) {
                 this.garden.city = data[0].adminName2;
@@ -329,7 +330,7 @@ export class GardenComponent {
     this._gardenService.prevision(this.garden)
       .subscribe(data => {
         if (data.cod != '404') {
-          try {
+          //try {
             var date = new Date();
             var today = new Date();
             var todayDay = today.getDate();
@@ -338,24 +339,31 @@ export class GardenComponent {
             var auxDia3 = [];
             var auxDia4 = [];
             var auxDia5 = [];
+
             for (var i = 0; i < data.list.length; i++) {
+              let dat=new Date();
               date.setTime(data.list[i].dt * 1000);
-              if (date.getDate() == todayDay) {
+              if (date.getDate() == dat.getDate()) {
                 auxToday.push(data.list[i]);
               }
-              if (date.getDate() == todayDay + 1) {
+              dat.setDate(dat.getDate()+1);
+              if (date.getDate() == dat.getDate()) {
                 auxTomorrow.push(data.list[i]);
               }
-              if (date.getDate() == todayDay + 2) {
+              dat.setDate(dat.getDate()+1);
+              if (date.getDate() == dat.getDate()) {
                 auxDia3.push(data.list[i]);
 
                 this.nombreDia3 = this.diaSemana(date.getDay() - 1);
               }
-              if (date.getDate() == todayDay + 3) {
+              dat.setDate(dat.getDate()+1);
+              if (date.getDate() == dat.getDate()) {
                 auxDia4.push(data.list[i]);
                 this.nombreDia4 = this.diaSemana(date.getDay() - 1);
               }
-              if (date.getDate() == todayDay + 4) {
+              dat.setDate(dat.getDate()+1);
+              if (date.getDate() == dat.getDate()) {
+                
                 auxDia5.push(data.list[i]);
                 this.nombreDia5 = this.diaSemana(date.getDay() - 1);
               }
@@ -370,23 +378,24 @@ export class GardenComponent {
             this.statusMan = this.prevMan[4].weather[0].main;
             this.statusDia3 = this.prevDia3[4].weather[0].main;
             this.statusDia4 = this.prevDia4[4].weather[0].main;
-            this.statusDia5 = this.prevDia5[4].weather[0].main;
+            //this.statusDia5 = this.prevDia5[4].weather[0].main;
 
             this.fotoHoy = this.prevHoy[0].weather[0].icon;
             this.fotoMan = this.prevMan[4].weather[0].icon;
             this.fotoDia3 = this.prevDia3[4].weather[0].icon;
             this.fotoDia4 = this.prevDia4[4].weather[0].icon;
-            this.fotoDia5 = this.prevDia5[4].weather[0].icon;
+            //this.fotoDia5 = this.prevDia5[4].weather[0].icon;
 
 
             this.ordenarTemperatura();
             (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '180px';
             this.haveWeather = true;
-          }
+          /*}
           catch (e) {
+            alert('falla algo al configurar');
             (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
             this.haveWeather = false;
-          }
+          }*/
         }
         else {
           (<HTMLElement>document.getElementsByClassName('formulario')[0]).style.top = '120px';
@@ -539,6 +548,7 @@ export class GardenComponent {
 
   toggleState() {
     if (this.visible == 0) {
+      this.switchMode='Ir a visualización';
       this.visible = 1;
       this.ActualizarPagina();
       if (typeof window.orientation !== 'undefined') {
@@ -547,6 +557,7 @@ export class GardenComponent {
       }
       
     } else {
+      this.switchMode='Añadir plantas';
       this.visible = 0;
       if (typeof window.orientation !== 'undefined') {
         (<HTMLElement>document.querySelector('app-header')).style.display = 'initial';

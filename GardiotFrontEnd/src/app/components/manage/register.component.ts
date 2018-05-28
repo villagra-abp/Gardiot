@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
 
   fieldsChange(values:any){
-    console.log(values.currentTarget.checked);
+    //console.log(values.currentTarget.checked);
     this.aceptado = values.currentTarget.checked;
   }
 
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         },
         error => {
           let v = JSON.parse(error._body);
-          console.log(v.Mensaje);
+          //console.log(v.Mensaje);
           this._appComponent.mensajeEmergente(v.Mensaje, "danger", "");
         });
 

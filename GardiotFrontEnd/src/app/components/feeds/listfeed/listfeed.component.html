@@ -1,6 +1,6 @@
 <div class="vistaAdmin">
   <div class="container main-container wrap">
-    <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+    <form (ngSubmit)="this.searchcontent(1,4)" class="form-row" #forma="ngForm">
       <article class="form-group col-md-4">
         <input type="text" [(ngModel)]="feed.name" class="form-control col-md-6" name="name" placeholder="Título">
       </article>
@@ -13,7 +13,7 @@
       </article>
     </form>
     <div id="demo" class="collapse">
-      <form (ngSubmit)="this.searchcontent(1,6)" class="form-row" #forma="ngForm">
+      <form (ngSubmit)="this.searchcontent(1,4)" class="form-row" #forma="ngForm">
         <div class="form-group col-md-4">
           <label for="content">Texto</label>
           <input type="text" [(ngModel)]="feed.text" class="form-control col-md-6" id="content" name="content">
