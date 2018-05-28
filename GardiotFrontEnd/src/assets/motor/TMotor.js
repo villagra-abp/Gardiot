@@ -438,7 +438,7 @@ class TMotor {
 	}
 
 	/**
-	 * Obtener la posición de la cámara activa
+	 * Obtener la posición de la cámara activa aplicándole transformaciones
 	 */
 	getPosCamaraActiva() {
 		let position = vec3.create();

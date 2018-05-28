@@ -51,6 +51,7 @@ function loadPlants() {
 
     motor.crearNodoMalla(jardin.plants[i].id, resource.toLowerCase(), dataPlants[resource].textura, undefined);
     motor.escalarMalla(jardin.plants[i].id, dataPlants[resource].escalado);
+    motor.escalarMallaXYZ(jardin.plants[i].id, 1, 1, dataPlants[resource].escaladoZ);
     if (dataPlants[resource].rotX != 0)
       motor.rotarMalla(jardin.plants[i].id, dataPlants[resource].rotX, "x");
     if (dataPlants[resource].rotY != 0)
@@ -236,6 +237,7 @@ window.dataPlants = {
   LECHUGA: {
     textura: 'lechuga.jpg',
     escalado: 2.5,
+    escaladoZ: 1,
     rotX: 0,
     rotY: 0,
     rotZ: 0,
@@ -244,6 +246,7 @@ window.dataPlants = {
   CALABAZA: {
     textura: 'calabaza.jpg',
     escalado: 0.3,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 90,
@@ -252,6 +255,7 @@ window.dataPlants = {
   TOMATE: {
     textura: 'tomatera.png',
     escalado: 0.006,
+    escaladoZ: 1,
     rotX: 0,
     rotY: 0,
     rotZ: 0,
@@ -259,6 +263,7 @@ window.dataPlants = {
   },
   MACETA: {
     escalado: 0.05,
+    escaladoZ: 1,
     rotX: 0,
     rotY: 0,
     rotZ: 0,
@@ -267,6 +272,7 @@ window.dataPlants = {
   PEREJIL: {
     textura: 'peregil.jpg',
     escalado: 0.004,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 0,
@@ -275,6 +281,7 @@ window.dataPlants = {
   ROSA: {
     textura: 'rosa.jpg',
     escalado: 0.01,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 10,
     rotZ: 0,
@@ -283,6 +290,7 @@ window.dataPlants = {
   MARGARITA: {
     textura: 'margarita.jpg',
     escalado: 0.06,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 0,
@@ -291,6 +299,7 @@ window.dataPlants = {
   CYCA: {
     textura: 'cyca2.jpg',
     escalado: 0.1,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 0,
@@ -299,6 +308,7 @@ window.dataPlants = {
   CIPRES: {
     textura: 'arbol.jpg',
     escalado: 0.2,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 0,
@@ -307,6 +317,7 @@ window.dataPlants = {
   LOGO: {
     textura: 'logo.jpg',
     escalado: 0.3,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 90,
@@ -315,9 +326,28 @@ window.dataPlants = {
   SANDIA: {
     textura: 'sandia.jpg',
     escalado: 0.3,
+    escaladoZ: 1,
     rotX: -90,
     rotY: 0,
     rotZ: 0,
     posY: -0.1
   },
+  ZANAHORIA: {
+    textura: 'zanahoria.jpg',
+    escalado: 0.06,
+    escaladoZ: 2,
+    rotX: -90,
+    rotY: 0,
+    rotZ: 0,
+    posY: 0
+  },
+  PUERRO: {
+    textura: 'puerro.jpg',
+    escalado: 0.04,
+    escaladoZ: 3,
+    rotX: -90,
+    rotY: 0,
+    rotZ: 0,
+    posY: 0
+  }
 };
