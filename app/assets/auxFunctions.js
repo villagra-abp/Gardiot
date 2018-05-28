@@ -9,7 +9,8 @@ function showPopover(e) {
 
 function hidePopover(e) {
   let a = document.querySelector('.popover.fade');
-  a.remove();
+  if(a!=null || typeof a!='undefined')
+    a.remove();
 }
 
 // Converts from degrees to radians.
@@ -115,7 +116,9 @@ function closeWeather(e, element) {
 }
 function closeWeatherMobile(e) {
 
-  document.getElementById('prevision').classList.add('previsionClosed');
+  let i=document.getElementById('prevision');
+  if(i!=null && typeof i!= 'undefined')
+    i.classList.add('previsionClosed');
 
 }
 

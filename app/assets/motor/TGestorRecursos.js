@@ -1,4 +1,5 @@
 /**
+   * TAG.24	Estructura básica del gestor de recursos (constructor, destructor, vectores de recursos)
 	 * Gestor de recursos. Abre cada recurso apuntando
    * a la dirección de memoria.
 	 */
@@ -11,7 +12,10 @@ class TGestorRecursos {
   }
 
   /**
-	 * Obtiene un recurso bajo los parametros especificados
+   * TAG.25	Obtener recurso (gestión adecuada de memoria)
+	 * Obtiene un recurso bajo los parametros especificados. Lo hemos resuelto con
+   * un mapa, cuya key es el nombre de la malla y el valor es el recurso en si.
+   * De esta forma es sencillo acceder y comprobar si existe un recurso en memoria.
 	 * @param  {String} nombre Nombre del recurso
 	 * @param  {String} tipo Malla, material, shader o textura
    * @param  {String} textura
